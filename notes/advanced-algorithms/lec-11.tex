@@ -1,0 +1,249 @@
+\chapter{Parallel algorithms, part 2}
+
+\section{Pointer jumping}
+Pointer jumping is the technique of updating a successor with the
+successor's successor. As this is repeated, the sucessor gets closer
+to the root node. The distance between a node and its successor
+doubles in each round trip.
+
+
+\begin{minted}{python}
+# F := Forest consisting of rooted, directed trees. F is specified using
+# an array P
+
+# P[i] := P[i] = j iff (i, j) is an edge in F. That is, j is a parent
+# of i.
+
+# P must contain self-loops at *each of the roots*. Each arc is
+# specified by (i, P[i])
+
+# output: a list S, containing the root of i at S[i]
+def find_roots(P):
+    for i in parallel([1, n]):
+        S[i] = P[i]
+
+        while S[i] != S[S[i]:
+            S[i] = S[S[i]
+
+    return S
+
+\end{minted}
+
+\section{List Ranking}
+
+We have a list $L$ of $n$ nodes. $S[i]$ contains a pointer to the
+node \textit{following} node $i$ on L, for $1 \leq i \leq n$. We assume
+that $S(i) = 0$ when $i$ is the end of the list. The \textit{List-ranking problem}
+is to determine the distance of each node $i$ from the end of the list.
+
+\subsection{\textbf{non-optimal} list ranking using pointer jumping}
+
+\begin{minted}{python}
+def listrank(S):
+    for i in parallel([1, n]):
+        S[i] =  R[i] == 0 ? 0: 1
+
+
+    for i in parallel([1, n]):
+        Q[i] = S[i]
+        while Q[i] != 0 && Q[Q[i]] != 0:
+            R[i] = R[i] + R[Q[i]]
+            Q[i] = Q[Q[i]]
+\end{minted}
+
+this takes time $O(\log n)$, using $O(n \log n)$ operations.
+
+\subsection{Making our algorithm better}
+We want to make our algorithm better, we have a work complexity of $O(\log n)$
+which we are trying to eliminate.
+
+There are also some implementation issues. In the PRAM model, syncrhonous execution
+means that all $n$ processors execute each step in parallel. So, we can have
+inconsistent results!
+
+How do we pick a list of size $n / \log n$? Our input is in the form of an array
+of successor elements. So, we can't take equi-distant parts of the array,
+since it won't be a valid sub-list anymore.
+
+
+What we can do is to pick \textit{independent nodes}. Formally, we want
+to remove an independent set: vertices that share no edge amongst them.
+
+\begin{minted}{python}
+1 -> (8) -> 5 -> 11 -> (2) -> 6 -> (10) -> 4 -> 3 -> (7) -> 12 -> 9
+on removal:
+1 -> 5 -> 11 -> 6 -> 4 -> 3 -> 12 -> 9
+\end{minted}
+We can remove \texttt{8, 2, 10, 7} in parallel.
+
+We want to go to a subset of size $n / \log n$, but by removing independent
+nodes, we can go smallest to $n / 2$.
+
+\begin{minted}{python}
+a -> (b) -> c -> (d) -> e -> (f) -> ...
+\end{minted}
+There are no other elements in the above chain we can add to the independent set.
+So, we will need to repeat our process to reach $n / \log n$.
+
+\section{Detour: Independent sets}
+In a graph $G = (V, E)$, a subset of nodes $U \subseteq V$ is called an
+\textit{independent set} if:
+$$U~\text{is an independent set of G} \equiv \forall (u_1, u_2) \in U, u_1 \neq u_2 \implies (u_1, u_2) \notin E$$.
+
+Linked lists, when viewed as graphs, have large independent sets.
+
+\subsection{Technique: Symmetry breaking}
+The idea is to look at a symmetric setting, and then induce differences
+between them. Independent sets are symmetric, because given two nodes
+that are neighbours, they're both eligible to be in the independent set 
+(modulo other obstructions). This algorithm is applicable for graph coloring.
+
+Usually, this technique requires randomization. However, there are special
+cases where fast, deterministic symmetry breaking is possible. Linked lists
+and directed cyclic graphs are examples where this is possible.
+
+We first construct a symmetry-breaking based graph coloring solution,
+which is then used to find independent sets.
+
+\subsection{Coloring by Symmetry breaking}
+Considered a directed cycle of $n$ nodes $0 \dots n-1$.
+
+Assume we have 8 nodes, which are labeled using 3 bits. We may not have
+consecutive numbering of our nodes, so we assume that our nodes are randomly
+numbered, from 0 to 7 (3 bits).
+
+
+\begin{itemize}
+    \item Initially, treat each number as a color for the vertex.
+    \item We can reduce the number of colors to $\log n$ in one step:
+    \begin{itemize}
+    \item Compare color with the parent. $Newcolor(u) = 2 k + color(u)[k]$.
+    \item $k$ is the index of the first bit position from LSB where $color(u)$ and $color(parent(u))$ differ.
+    \item So, $color(u)[k]$ is indexing the k-th bit of $color(u)$ starting from LSB.
+    \item note that $0 \leq k \leq \log n - 1$.
+    \item such a $k$ will always exist, since we are guaranteed some unique
+    labelling of the vertices when we start this process.
+    \end{itemize}
+\end{itemize}
+
+\begin{minted}{python}
+This table may not be fully accurate, re-check:
+
+u   | v   | new color (mostly 2 bits)
+110 | 000 | 11 (k = 1)
+000 | 100 | 100 (k = 2)
+100 | 111 | 00 (k = 0)
+010 | 001 | 00 (k = 0)
+001 | 011 | 10 (k = 1)
+011 | 101 | 11 (k = 1)
+111 | 010 | 01 (k = 0)
+101 | 110 | 01 (k = 0)
+\end{minted}
+
+\subsubsection{Correctness proof}
+Proof by contradiction.
+Suppose we have an edge $(u, v)$, where $newcolor(u) = newcolor(v)$.
+Let $newcolor(u) = 2k + color(u)[k]$, and $newcolor(v) = 2r + color(v)[r]$.
+
+If $newcolor(u) = newcolor(v)$, then $2k + color(u)[k] = 2r + color(v)[r]$.
+Rearranging, we get that $2(r - k) = color(u)[k] - color(v)[k]$.
+
+
+If $k = r$, then we get that $color(u)[k] = color(v)[k]$. But this cannot
+happen, because by definition, $k$ is the bit where $u, v$ first differ!
+
+
+If $k \neq r$, then we get that $2(r - k) = color(u)[k] - color(v)[k]$.
+By comparing magnitudes, we see that $\big|color(u)[k] - color(v)[k]\big| \leq 1$
+(since we're subtracting bit values), while $\big|2(r - k)\big| \geq 2$. 
+This can't happen either for two equal values!
+
+\subsubsection{Analysing number of new colors}
+In one iteration, we can reduce the number of colors from $n$ to $2 \log n$.
+For the new colors, we only need $1 + ceil(\log \log n)$ bits.
+
+\textbf{Can we repeat this technique? Yes, we can}. This technique reduces number
+of colors from $t$ to $1 + ceil(\log t)$. At some point, $t < 1 + ceil(\log t)$,
+at which point we will be forced to stop. 
+
+This stopping point happens at $t = 3$. So, we repeat until only $8$ colors
+are being used.
+
+The total time is the solution to the recurrence $T(n) = T(\log n) + 1$.
+We define the function that solves the recurrence as $\log^* n$.
+$$\log^*n = i \equiv \log(\log(\dots \text{$i$ times} \dots (n))) = 1$$
+
+
+\subsubsection{Reducing from $8$ to $3$ colors}
+for $i$ in $[8..3]$, If node $u$ is colored $i$, then choose a color among
+$\{1, 2, 3\}$ that is not the same as its neighbours.
+
+\begin{minted}{python}
+# color: map (vertex -> color)
+# V: vertex set
+for c in range(8, 3):
+    for v in V:
+        if color[v] == c:
+            # we will always have one number here, since we have three 
+            # colors, and we are only removing two colors
+            newcolor[v] = rand ({1, 2, 3} - color[pred(v)] - color[succ(v)])
+    newcolor = color
+\end{minted}
+
+This is always possible.
+
+
+\subsection{Finding Indepenent sets using the coloring}
+For bounded degree graphs colored with $O(1)$ colors, a coloring is equivalent
+to finding a large independent set.
+
+Iterate on each color and count the number of nodes with a given color.
+Pick the subset of like colored nodes of the largest size. It is clearly
+an independent set, and has size of at least some fraction of $n$.
+
+\subsection{Algorithm outline}
+
+\begin{minted}{python}
+def rank(L):
+    L1 = L
+
+    for r in [2, R]:
+        color the list with 3 colors
+        pick an independent set U_i of nodes of size >= n /3
+        L_i = remove nodes in U_i from L_{i - 1}
+
+    Rank the List L_r using poiner jumping
+
+
+    for i in [r, 1]:
+        reinsert the nodes in U_i into L_i
+\end{minted}
+
+We are removing $n / 3$ nodes in each iteration, we want to stop at
+$n / \log  n$ nodes. We need $O(\log \log n)$ iterations.
+
+
+\subsection{total time taken}
+Each iteration is $O(\log^* n)$. At $O(\log \log n)$ iterations, this takes
+$O(\log^* n \log \log n)$ time.
+
+To rank the remaining list, we take $O(\log n)$ time.
+
+To reintroduce the removed elements, we take $r = O(\log \log n)$ iterations,
+$O(\log \log n)$ time.
+
+
+\subsection{Slowing down re-introduction to make this optimal}
+We can reintroduce slower.
+
+we can use only $n / \log n$ processor
+
+
+\subsection{Slowing down independent set}
+
+
+\section{Back to list ranking}
+\begin{itemize}
+    \item Anderson-Miller is in JaJa's book
+    \item Hellman-JaJa is another popular approach (read the paper)
+\end{itemize}

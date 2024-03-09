@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}     
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\section{Cryptocurrencies}
+
+\section{Why are they impossible? (If they were possible, would not be part of the course!)}
+
+Consider some cash. Once we spend it, we don't \textit{own it anymore}.
+Copying physical currency is difficult, expensive, and innacurate.
+Hence, double spending is difficult.
+
+Copying digital media is possible. Hence, we can construct a central authority to keep
+track of money. However, this causes us to lose out on decentralisation, and also lose out on
+annonymity.
+
+
+In a P2P system however, since agreement is ``eventual'', we can construct scenarios of
+double spending. This is a famous problem, apparently. 
+
+
+\section{Idea behind cryptocurrencies}
+
+All transactions are public. However, how does this solve double spending?
+
+\section{Solving the problem: Blockchains}
+
+1. Transactions are in chains (time series). A change at $t=i$ needs to make a change
+for all $i < t0 \leq \text{len(chain)}$. That is, a change in the middle must cascade
+till the end of the chain.
+
+2. Chain must grow with new transactions.
+
+Note that this is already making double spending difficult. If someone wants to mess with an older
+transaction, he has to be faster than the rest of the world.
+
+3. Takes a 'lot of work' to make a change.
+
+4. Longest chain is the honest chain.
+
+This makes double spending somewhat impossible: Changing the chain is now very hard. Since the fastest growing
+chain represents ``truth'', an adversary will need to change the *longest* chain, as the longest chain grows.
+
+
+Notice that it makes sense for the longest chain to be the honest chain, since in general, the longest chain is the
+one that most people in the distributed system agree on (or you have access to more computational power than everyone else *combined*).
+
+
+The proof-of-work is critical. We need proof that someone spent a lot of time solving a problem. So, we use
+crypto puzzles for this. (verification is easy, solving is difficult. So, some NP problem).
+
+People who add to the ledger are termed ``miners''.
+A miner can add an arbitrary transaction to the blockhain, by being allowed to add a transaction that ``creates money''.
+That is, he can add a transaction that says ``add 5 BTC to my account''. The block will need to contain proof-of-work,
+as well as a link to the previous block, and a chain of transactions.
+
+
+The current proof-of-work time is ~10 minutes for the entire network.
+
+
+At any stage, the network will probably fork, for, say, 1 block. However, the probability of the network agreeing on a longest chain
+is very high.
+
+\section{How do blockchains solve our problems?}
+
+When $A$ sends some money to $B$, $B$ waits for the transaction to appear in some longest chain. Once the transaction appears,
+$B$ will render its services to $A$.
+
+$A$ cannot double spend, since everyone knows that $A$ has sent money to $B$.
+
+To invalidate the transaction $A \rightarrow B$, then $A$ needs to fork the chain before the transaction and establish a new
+longesst chain. This is impossible since $A$ will be then competing against everyone else.
+
+
+\section{Details of blockchain}
+
+
+
+Notice that there is still a single point of failure: the CA that maintains our digital signatures.
+
+\section{Possible solution that would be environmentally friendly}
+
+We have a way to build secure computers on top of insecure computers. IT will probably be a hybrid of proof-of-stake
+and proof-of-work.
+
+
+There will be many miners. All miners will not be wasting effort. They will be involved in simulating one machine.
+This abstract machine will choose which the next miners will be. Since we pick the next miners that will be a
+subset of the previous miners, we won't waste work. However, the choice will be done in a way we that no one can
+influence who the next person is.
+
+Envionmental friendliness is not a lasting problem.
+
+\end{document}

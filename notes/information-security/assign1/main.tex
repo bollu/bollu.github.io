@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, physics}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+\usepackage[euler-digits,small]{eulervm}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\keyspace}{\mathcal{K}}
+\newcommand{\cipherspace}{\mathcal{C}}
+\newcommand{\messagespace}{\mathcal{M}}
+\newcommand{\pr}[1]{Pr \left[ #1 \right]}
+\newcommand{\prcond}[2]{Pr \left[ #1 \mid #2 \right]}
+\newcommand{\xor}{\osum}
+\newcommand{\gen}{\texttt{GEN}}
+\newcommand{\enc}{\texttt{ENC}}
+\newcommand{\dec}{\texttt{DEC}}
+\newcommand{\bits}[1]{\left\langle \texttt{#1} \right\rangle}
+\author{Siddharth Bhat}
+\title{Principles of information security - Assignment 1}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Q1}
+Let the mono alphabetic substitution ciphers used be $f_0, f_1, \dots f_t : A \rightarrow A$
+where $A$ is the alphabet.
+
+If $t$ is known, then one simply needs to perform a frequency analysis attack
+on the subsequence of the messages \[m_k \equiv \big[ a_i ~|~ i \% t = k, i \in [0, len(a)]\big]\].
+
+
+To discover $t$, we can use Kasiski's attack.
+
+Alternatively, to discover $t$, Let the probability of the occurence of plaintext
+$a \in A$ be $p(a)$. Consider the quantity $sig = \sum_{a \in A} p^2(a)$.
+
+Now, let us try all possible potential key lengths $\tau \in \N$. For a
+given $\tau$, we extract out the subsequences for each $k$
+
+\begin{align*}
+    a(k, \tau) \equiv \big[ a[i] ~|~ i \% \tau = k, i \in \N \big]
+\end{align*}
+
+Now, for each subsequence, we compute the quantity  $q(k, \tau)$, the
+probability distribution of the alphabet in $a(k, \tau)$. From this,
+we compute the value $sig(k, \tau) \equiv \sum_{a \in A} q(k, \tau)(a)^2$.
+
+\section{Q3}
+If plain text and cipher is known:
+
+For Ceasar, $Enc(x) = x + \delta$, so
+compute $Enc(x) - x = \delta$. So, with 1 letter, we can break the cipher.
+
+For Vigenere cipher, $a'[i] = a[i] + k[i \% |k|]$. So, $a'[i] - a[i] = k[i \%
+|k|]$. We need to read the first $|k|$ letters to break the encryption.
+
+\section{Q4}
+Exactly the same as Q3 (known plaintext attack). We will need to find the
+keys, and we are using number of queries = entropy of key, which is optimal.
+
+\section{Q5}
+
+If an encryption scheme is perfectly secret, then $\prcond{M=m}{C=c} = \pr{M=m}$.
+\begin{align*}
+    \prcond{M=m}{C=c} = \frac{\pr{M=m, C=c}}{\pr{C=c}} = \pr{M=m} \\
+    \pr{M=m}\pr{C=c} = \pr{M=m,C=c}
+\end{align*}
+Hence, the probabilities are independent.
+
+So, $\prcond{M=m}{C=c} = \pr{M=m}$, and $\prcond{M=m',C=c} = \pr{M=m'}$. But
+the given statement would imply that $\pr{M=m} = \pr{M=m'}$ which is untrue.
+
+For example, consider $\messagespace \equiv \{0, 1\}$, $\pr{M=0} = p, \pr{M=1}
+= (1 - p)$. Let the ciphertext be independent of the message. The encryption
+function is $(Enc(m) \equiv \text{$0$ or $1$ with equal probability})$. In this
+case, it is clearly perfectly secure, since the adversary can learn
+nothing about the plaintext from the ciphertext.  However, our definition
+would have us prove that the probability of the \emph{plaintext} being $0$
+is the same as the probability of the \emph{plaintext} being $1$ which
+is clearly wrong.
+
+
+\section{Q6}
+Yes, it is still perfectly secret, for the adversary does not know that
+the message was sent with the key $0^l$. For example, let us assume
+that the message $m$ was the cleartext message that was sent. It is
+just as likely that the cleartext message was the complement of m, $\overline{m}$,
+and the ciphertext was $1^l$.
+
+\section{Q7}
+False. Consider $Enc_k(m) = m$. In this case, $\prcond{M=m}{C=m} = 1$, while
+$\pr{M=m} = 1/|M|, \pr{C=m} = 1/|M|$. Hence, $\prcond{M=m}{C=m} \neq \pr{M=m}\pr{C=m}$.
+They're not independent, and is therefore not perfectly secret.
+
+\section{Q8}
+
+Instantiate $m = m' = m_0$, $c = c_0, c' = c_1, c_0 \neq c_1$
+for the given inequality. This yields
+\begin{align*}
+    \prcond{M=m_0 \land M'=m_0}{C=c_0 \land c' =c_1} = \pr{M=m_0 \land M'=m_0}
+\end{align*}
+
+If $M=m_0$, then $c_0 = \enc(m_0)$. Similarly, $c_1 = \enc(m_0)$. But we
+assumed that $c_0 \neq c_1 \implies \enc(m_0) \neq \enc(m_0)$ which is
+clearly false. Hence, the LHS has probability 0.
+
+On the other hand, the RHS has probability $1/|M|^2 \neq 0$. Hence, this
+inequality is possible to be satisfied by any encoding scheme.
+
+\section{Q9}
+
+\section{Q10}
+
+We can use a regular encoding scheme, and then chop off a single bit at the
+end. Now, each value can collide with at most another value, and the
+probability of a collision is $2^{-l}$, with key space $|K|/2$.
+
+If this encryption is not secure, then we can use this to beat the
+original cryptosystem, by trying $\bits{m0}$ and $\bits{m1}$.
+
+\section{Q11}
+
+\section{Q12}
+
+
+\end{document}

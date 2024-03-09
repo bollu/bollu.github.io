@@ -1,0 +1,803 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+
+\title{Philosophy: God and knowledge}
+\author{Siddharth Bhat}
+\date{Monsoon 2019}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Introductory class}
+
+The difference between mathematical truths and factual truths.
+
+\section{The problem of psychologism}
+
+Even though mathematics seems objective, we still filter
+mathematics through our psychology, so it might not be
+as objective as we want it to be.
+
+\chapter{Descartes: Meditations, Doubt and Belief}
+
+He begins with \textit{methodic doubt}, where we do not question each and
+every particular belief. Rather, we question the source of knowledge of our
+beliefs. If this source of knowledge is open to even the least doubt, then 
+we reject all beliefs which arise from this knowledge.
+
+We start with perception, the most obvious source of knowledge. We know that
+our perception can easily deceive us --- for example, madmen are clearly
+deceived by their perceptions. We do not need to presuppose such an
+extreme position, however. Dreams are another example where our perceptions
+deceive us. Yet another example is that of temperature: We can
+change our perception of hot or cold, by dipping our hands into a
+jug of hot or cold water.
+
+As an aside, ``neurotics'' have some connection with reality, ``psychotics''
+have a clean break with reality. So ``madmen'' can be subdivided into
+these two classes, by Freud's classification. Freud says that normal
+dreams as wish fulfillmentt. That is, you are able to fulfill your wishes
+that have been repressed. Also, nightmares are your subconscious
+trying to work through some form of trauma. It is the subconscious
+trying to take trauma and rework it into a manageable form. They
+had a patient who had a recurrent nightmare of being shot
+in the head. Clearly, this is not ``wish fulfillment''.
+He creates the explanation that we constantly relive a bad
+experience to learn how to manage it.
+
+Now, Descartes makes a decisive move --- Even if we are dreaming,
+the \textit{content} of our dreams as mental images are
+\textit{embedded in reality}.
+For example, think of an imaginary/fictitious object, such
+as a unicorn or a fantastic alien, or an orientable Mobius strip.
+Even so, there would be elements which are recognizable.
+
+At the level of mental images, the images cannot be doubted, though
+what they are images \textit{of} may not exist. The content
+of the images in terms of shape, figure, and color must exist in our head,
+for them to \textit{be images}. Hence, we cannot reject the existence
+of figure and color.
+
+We are also unable to reject time. Dreams can \textit{distort} time, but
+we can still feel the passage of time in a dream. We are trying to move
+from something that is mental, to something that is more than our thought
+process.
+
+\textbf{Subjective idealism} says that it is just my flow of consciousness,
+and everything is confined to \textit{my} consciousness.
+
+\textbf{Objective idealism} says that to even possess consciousness, we need
+abstract entities that transcend just our consciousness --- for example,
+time.
+
+Since time is required to be able to dream, time cannot be reduced
+to dreaming. This is called as \textbf{Transcendental philosophy}.
+``Transcendental'' since we find that at the very moment we
+turn inwards, a different reality. We find a transcendence in
+imminence (imminence = the inner). That is, me observing
+myself internally causes me to come across certain structures that
+I cannot reduce to myself. For example, that of temporality.
+
+Hence, he believes that mathematics contains some measure of
+certainty. The natural sciences have an element of empiricism
+mixed into them. They presuppose things existing in the external
+world. This presupposition is open to doubt. On the other hand,
+arithmetic does not need to hypothesize the existence of
+physical numbers. The ideal entity of numbers (in the sense of Plato's forms)
+is something which is independent of our subjective experience.
+
+TODO: I left this class to go back home. finish this
+
+\chapter{Lecture 4}
+Descartes is not happy with saying that this is how we are physically
+constituted. So he's looking for this absolute, indubitable ground. Therefore,
+he has to actually prove that there is some transcendent source which
+guarantees your perception. "clear and distinct perception" is what we require,
+but this is hard to get to.
+
+"Doubt has taken the ground beneath my feet" --- At the same time, I can no
+longer remain on the surface. So far, I had been on the surface and it was not
+a problem for me since I had never doubted. Once I began this quest, I do not
+find any absolutely certain ground. I cannot forgot about this shaky ground
+and continue to live there.
+
+He asks what he can be certain of, given hyperbolic doubt --- perception,
+memory, body, figure, extension and movement are all fiction. He asks whether
+his \textit{very existence}, his notion of I is in itself something real. The
+act of thinking is the conformation of my existence as a thinking being. As long
+as I am doubting, I exist as a doubting being. As long as I am being deceived,
+I exist as a being who is deceived, and so on.
+
+I think \textit{therefore} I am --- the \textit{therefore} is one of assigning
+thinking and being equal / identity. It is \textbf{not} inference.
+
+% need to have a \aside{...} to log interesting tangents.
+% Maybe I should call it \kannan{...}
+\subsection{The problem of personal identity}
+Descartes walks into a bar. The bartender asks, "what will it be?" Descartes
+responds, "I think not", and he promptly disappears.
+
+Memory constitutes a large fragment of our personal identity. On Descartes'
+theory, there is no reference to the past. We can only affirm out existence
+in the now.
+
+\subsection{Solipsilm: The sole I}
+
+How does one get out of ones mind, to access the rest of the physical realm?
+Currently, I only know my own mental appearances. Everything else is an
+illusion.
+
+Descartes wishes to reject this branch of thought. For example, he questions
+whether he stops existing when we sleep. He wishes to come up with an 
+explanation for our sense of continuity.
+
+
+After introducing "I think therefore I am", he continues saying "I do not know
+very clearly what I am, except for the fact that I am".
+
+Imagination is imagistic, and images have already been rejected, insofar
+as they refer to the external world. However, imagination which refers to the
+internal world is indubitable.
+
+The only proof certificate of existence we have found so far is
+that of thinking.h
+
+At some point, Descartes' defines the body as that which cannot be self-moved.
+This is different from Aristotelian physics, where everything is self-moved
+according to its telos. Descartes has broken tradition from the Aristotelian
+model, to somewhat arrive at the notion of inertia. (Netwon, a century later
+formalizes this).
+
+Descartes rejects the reality of his perception, but marvels at the richness of
+his perception. A mirage does not truly exist, but it exists \textit{for me}.
+This brings out a gap between the external world and the internal world.
+Yet, we believe that we know the external world better than the internal world.
+
+\subsubsection{The wax example}
+Descartes takes something we are absolutely sure of: For example, a piece of
+wax.  He waxes poetic about this piece of wax, its physical characteristics
+(sound, color, smell). When we begin to melt the wax, it heats up, loses color
+and smell, becomes liquid. He then asks: "does the same wax remain after this
+change?" We must confess that it does remain, no one would say otherwise.
+However, by what criterion are we judging that it is the same? All of its
+physical characteristics have been altered!
+
+He wishes to retain physical objects. But by his standards for indubitable
+knowledge, he is forced to recourse to God. 
+
+\subsection{Why does modern science reject teleology?}
+Teleology presupposes what is to be explained. If we say that something moves
+because it is supposed to move, this is not an explanation.
+
+\section{Lecture 5}
+Empiricism is not the annihilation of reason. Rather, it is a viewpoint on where
+reason lies: Does it lie in the mind, or does it lie within nature? That is,
+are all our ideas and connections between ideas are "out there", and we are
+passively listening to these. We are discovering the laws of nature, not
+inventing them.
+
+Descartes with "cogito ergo sum" is closing the gap between subject and object.
+He is saying: "only that really exists for sure, which I can subjectively
+grasp". The usual way of looking at things would be to say that a table exists,
+and I am \textit{able to} perceive it. Descartes' view of this is that I can be
+aware of the existence of the table \textit{since} I am perceiving it.
+
+Principle of coherence: My beliefs are true if all my beliefs are coherent.
+
+He decides to abstract from everything that is unnecessary from the piece of
+wax to define the piece of wax. It's not the form, since the form changes. The
+extension changes.
+
+
+So, we need the notion of a god to protect us from a demon who might hinder our
+clear and distinct perception. There is a circularity in his logic, where he
+starts out by assuming that we need a clear and distinct perception, and
+therefore we need a God. He then continues to use God to make whatever we see
+through clear and distinct perception to be true.
+
+\section{Lecture 6}
+
+The intuition that descartes has is referred to as "clear and distinct perception",
+"natural light of reason" --- This is used to describe "self-evident" objects
+for Descartes. For Descartes, rationality is equivalent to self-evidence.
+However, he still believes that is possible to be deceived by clear
+and distinct perception due to his standards of truth.
+
+\subsection{The circularity of the argument}
+
+\begin{itemize}
+    \item Whatever I clearly and distinctly perceive is true.
+    \item I clearly and distinctly perceive that god is not a deceiver.
+    \item Therefore, god has created me in such a way that everything I clearly and distinctly see is true
+\end{itemize}
+
+\begin{itemize}
+    \item I can be certain that whatever I can see clearly and distinctly is if
+        God exists
+    \item I can know and be certain that God exists and is not a deceiver only
+        if I know thatever I see clearly and distinctly is true
+\end{itemize}
+
+\subsection{Ideas involved in the arguments}
+
+\begin{itemize}
+    \item \emph{Formal reality}: Any idea as a mental object has formal reality. Even
+        if we are hallucinating, the hallucination has a formal reality, as per
+        the experience of the observer.
+    \item \emph{Objective reality}: Idea insofar as it represents something outside
+        itself. That is, the thought represents an object.
+\end{itemize}
+
+Formal reality cannot be false, due to "cogito ergo sum". There are all true as
+figments of imagination, and therefore possess formal reality.
+
+\subsection{Tangent}
+Words like "this", "that", "now" and so on in modern philosophy are called
+"indexicles". These words are somewhat special in language, since their meaning
+is tied to the context of their utterance. When we say "this", we are stepping
+out of language, into reality. Philosophers have argued that even "this" is a
+concept which has a kind of universality to it. We can understand the word
+"this" even if we do not know what specific "this" it refers to. Descartes was
+the first to elucidate this with the wax example.
+
+Wittgenstein argues against ostensive definitions (definitions which involve
+pointing) --- ostensive definitions imply that meaning can be found in the
+thing we are pointing to.  Alternatively, ostensive definitions imply that
+language gets it meaning from reality. 
+
+Let us say we say the sentence "this is a table", by pointing at a table.
+However, the child who we are teaching about "table" needs to realize that
+"table" does not refer to, say, the wood, or the color of the table.  
+
+Wittgenstein calls this as "playing the language game".
+
+\subsection{Formal versus Objective reality}
+
+\begin{itemize}
+    \item There is as much reality in the effect as there is in the cause.
+    \item something cannot arise from nothing.
+    \item something more perfect cannot arise from nothing.
+    \item all ideas have formal reality.
+    \item objective mode of being belongs to ideas, formal modes of being
+          is available to all causes of ideas.
+    \item god is infinite.
+    \item Therefore I could not have generated the idea.
+    \item hence god must exist to affirm god.
+    \item now, god has a formal reality. However, we still need to be able to
+          pull god out into an objective reality.
+\end{itemize}
+
+The cause must have as much reality as its effect. From this it follows,
+
+\begin{itemize}
+    \item something cannot proceed from nothing
+    \item what has more reality within itself cannot proceed from something
+        with less reality. If not, this too opens up a gap of reality
+\end{itemize}
+
+There is a formal reality to all ideas, but some have greater objective reality.
+
+I have many ideas in my head, all of which have formal reality. We wish to
+judge its objective reality. For example, let us pick the idea of substance".
+The "substance" is a formal reality which has an "effect". For many of these
+ideas like "motion", since I can think that I am moving, I can get the idea of
+of "motion" myself, from the fact that I think I can move myself. So these
+ideas of the physical world, I can access insofar as I can experience them.
+
+However, there is only one idea that is so perfect, that I cannot derive from
+myself since I am an imperfect being. Being finite, I cannot derive the idea of
+the infinite. Being an imperfect being, I cannot derive the idea of the perfect
+God.
+
+The idea of God, insofar as it is a formal reality in my head, carries all of
+these attributes. 
+
+Now, every idea as an effect requires a cause, since nothing can come from
+nothing. The only idea I can clearly and distinctly see, but cannot produce is
+that of God. This depends on the principle that the cause (the ideas that lead
+to the new idea) has to have at least as much reality as the effect (the new
+idea that is generated). If this were not the case, then this too opens up a
+gap, where the there is gap of reality between the cause and the effect.
+
+Unfortunately for us, he does not believe that mathematics is perfect since he
+believes in psychologism. 
+
+However, the question is now whether God can also be attributed to
+psychologism.  He believes that God is infinite, and therefore he cannot access
+God. He also believes that he cannot get to the infinite by negating the
+finite. In some sense, he's a intuioninst, in the mathematical sense of the
+word.  Therefore, he claims that we need the capacity to negate a fact to be
+able to negate it.
+
+\section{Leture 7}
+
+The correspondence theory of truth --- my ideas have to correspond to the
+world outside.
+
+If we have a physical object that we are viewing, then let us assume that
+the object we are viewing has formal reality. Our thoughts naturally have
+a formal reality (by definition). We now need to link the objective reality
+of the object to the formal reality of the object.
+
+In modern science, we do not have correspondence --- we do not need to see
+atoms in order to posit atoms. What we see is indeed not what we get. The
+modern scientific epistemology has broken with the idea that our ideas need to
+correspond with reality in an immediate way.
+
+The idea that what we see has to directly correspond with what we see is known
+as naive realism --- naive as opposed to scientific realism, which explains what
+we see in terms of complex structures.
+
+There is another problem that occurs at the mathematical level. The correspondence
+does not imply existence. For example, there is  mathematical correspondence
+between reality and our mathematical ideas, but they (need not) correlate to
+reality.
+
+An example from aristotelian logic would be to say "all men are mortal" --- what
+we are saying is that if there was such a thing as a man, then they would be mortal.
+({\texttt{forall m in men, mortal(m)}}). Hence, there is a gap between truth
+and validity.
+
+An objection to descartes is that the ideas we have are in contradiction to the
+\textit{formal} idea of God. Hence, we need some way to transport a formal god
+into an objective god.
+
+Now, he needs an argument called as the "ontological argument" which argues
+that perfection \textit{must} exist.  That is, something that is perfect must
+exist. This is extremely suspect.
+
+\begin{itemize}
+    \item As formal reality, all ideas that we have in our head have the same
+    level of existence.  Ideas might have different contents, or objective
+    referents.  
+    
+    \item This difference in content must have been generated from
+    somewhere. If I am simply hallucinating, then I should not be able to
+    create distinctions in my head.  There are specific differences in our
+    ideas, which cannot simply be explained by formal existence. One can say
+    that this come from other formal ideas. However, this would lead to some
+    kind of infinite regress.
+\end{itemize}
+
+
+How are we guaranteed continuity of existence? Indeed, the great mystery of
+time is that it is continuous (the existence of the passage of time or the
+arrow of time).  At the same time, it is discrete,  in that it is broken up
+into instants. As we speak, it becomes the past. We cannot point to the
+present. If time were discrete, what connects the I across two instants?
+If time were truly continuous, then it would be eternal, without change.
+
+
+If we take time to be discrete, Descartes argues that at each instant of time,
+we have a cause that produces the I in each moment. 
+
+Buddhists don't believe in a soul. They believe that each preceding moment 
+generates the succeeding moment out of itself. There is causality operating
+at the level of our soul. The soul is nothing but causality occurring over
+the string of moments. This is called the "theory of dependent origination".
+A cool quote by heidigger: "In passing, time remains". Hereclitis said "you
+cannot step into the same river twice".
+
+
+\section{Escaping the vicious circle of God --- The trademark argument}
+
+The cartesian god is a replacement for the problem of infinite regress when
+it comes to describing the flow of time. If we have to postulate an I, then
+this I needs to be "outside" / "transcendental" of time.
+
+
+God as a creator left a trademark in my mind, through which I am capable of
+conceiving god.  That is, there are innate ideas in my head. Since I am
+imperfect, I could not have gotten the idea of perfection from myself.
+
+
+Why should the pythagorean theorem hold? There is some objectivity to the truth
+that is outside of my mental performance. However, I do need my mental
+performance to make it explicit to me. Similarly, there is an innate notion of
+God. But it is only when I exercise this capacity that I can fully form this
+idea of God through the clear and distinct perception.
+
+So, God has given us the clear and distinct perception. He then uses
+the \emph{clear and distinct perception} to access the notion of God.
+
+
+If we had separated clear and distinct perception as something that \emph{humans}
+posess, then we get a vicious cycle. However, if we say that clear and
+distinct perception was \emph{given my God}, but we need to \emph{exercise} this
+clear and distinct perception.
+
+
+For example, all of math is tautological. So in some sense, the entire
+information content is zero. However, every time we prove a theorem, we have
+gained some knowledge. So, Descartes' notion of knowledge is about making
+these concepts explicit, like that of mathematics, or clear and distinct
+perception. ${a = a}$ is a trivial truth. However, a derivation 
+${a \rightarrow b \rightarrow \dots z}$
+is still tautological, but is more useful, since it makes explicit that $a$
+implies $z$.
+
+\section{Kant's theory of morality}
+
+God has the power to decieve us, but the desire to decieve us is a lack. 
+Hence, God will choose not to decieve us.
+
+If we are infinitely rational, we cannot but be moral, according to Kant.
+Kant is a perfectly secular rationalist, and therefore provides more
+accessible arguments to many of descartes' claims. 
+
+If god cannot deceive us, how are we deceived? The example of 
+temperature as felt by the hand, for example. Why did God not
+make me perfect? Why is there evil in the world --- why did God
+allow me to be evil? If I am capable of rational thought, how is it
+that I can perform evil, which is irrational (Kant)?
+
+Kant says that there are no actual moral values with content.
+There is no God to guarantee morality.
+Why should we be moral?
+
+Take any subjective maxim. The test for whether it is moral is whether
+it is universalizable. What would happen to such a society? If society
+breaks down, then this is immoral.
+
+For example, consider the notion of a promise. If I believe "I ought
+to break a promise whenever it is convenient to me ". However, if I
+universalize this, I will get "Everyone ought to break a promise
+whenever it is convenient for anyone" --- this leads to a break down
+of society.
+
+In general, for us to break a social norm, we both need the social norm
+or law to exist, so that we are able to break the law. So, in some sense,
+we want both $A$ (for the law to exist) and ${\lnot A}$
+(for us to be able to break the law).
+
+Going back to the promise example, we would require the institution of promises
+to exist for us to gain something by breaking it, so we have $Promise$. We also need
+to be able to break a promise, so we are arguing for $\lnot Promise$.
+
+For Kant, there is no cultural relativism. So, there is a best morality that is
+accessible through rationality.
+
+\section{Pulling back Kant to Descartes}
+
+Descartes says that as long as we seen something clearly and distinctly and we
+are absolutely sure of its truth, we cannot be mistaken. 
+
+He creates a distinction between \emph{understanding} and \emph{judging}
+something. In logic, this is the difference as introduced by Frege between the
+content stroke $[- A]$(assume $A$ is true) and  the judgment stroke \texttt{[turnstile A]}
+($A$ is the case).
+
+We are temporal beings, so we can lose our clear and distinct perception --- for example,
+we can forget the proof of a theorem which we had studied.
+
+Our conception of the will: The will is infinite, and is what allows us to conceive of God.
+This goes back to the negativity of thought: we are able to suspend a thought,
+doubt it, and take a step back. The freedom of the will is the only mark of infinity
+that we have. Therefore, we are able to conceive of notions of infinity, which we cannot
+see clearly and distinctly, but we can still conceive it. Therefore, free will is
+the mark of perfection that we possess. 
+
+However, since this is freedom, we can use this freedom to make mistakes.
+He makes an interesting observation that this kind of freedom is not merely indifference
+between two equal possibilities (freedom is just another word for nothing left to lose).
+However, for Descartes, freedom is the ability to gravitate towards truths that
+are self-evident is a rationally determined will. Contrast this to the rebellious
+will of a teenager.
+
+\section{A review of Descartes}
+
+Logical truth does not provide us with proof of existence. For example, the
+nature of the triangle is such that even if there are no physical triangles.
+However, Descartes is trying to derive existence from the conceivability of
+something.
+
+After Descartes, rationalism takes a different turn --- it grants that we
+cannot actually say anything factual about the world. So, "phenomenology"
+decides to talk about phenomena, \textit{as phenomena} --- we don't care
+if phenomena refer to something beyond themselves.
+
+Whatever I see clearly and distinctly, I cannot but help agreeing to it. For
+example, the truths of mathematics. The reason for error is that my freedom of
+will is much greater than my comprehension. If I actually see things cleary and
+distinctly, I cannot be open to error anymore, because of the existence of a
+non-deceiving god.
+
+\chapter{Defending Hume}
+
+We have pieces of music which are temporal, and do not have an identity
+at an instant of time.
+
+Indeed, it is just because our idea of a person allows for the momentary
+existence of a person that we are able to ask questions about personal identity
+of the first place. Only when we presuppose the idea that the self is not temporal
+can we ask the question about the character of a person at a moment in time.
+Hence, a person is \emph{not} like a piece of music, and therefore, the
+person must be an object, such that the entirety of the object is present
+at that piece of time. 
+
+Numerical identity: identity of "one-ness". Specific identity: identity
+of "exactly equal / specifically equal".
+
+
+He wishes to show that numerical identity does not presuppose continuity.
+We compare two types of identity: specific and numerical identity.
+If we imagine a ship which has changed over time in the sense that
+every piece of its plank, beam, etc. has been replaced. So we would say
+They are no longer numerically identical, but they have the same specific
+identity / resemblance, since the new ship is an exact resemblance of the
+old ship. On the other hand, if the same ship continues over time, then
+they are numerically identical.
+
+
+On the other hand, if we imagine a human being growing up, I have a different
+specific identity, since I am clearly different, but I intuitively
+have the same numerical identity, since I feel like the same person.
+
+
+We can have something have the same numerical identity but different
+specific identity for us to be able to talk about change. Otherwise,we 
+do not know that they belong to the same object.
+
+Hume has said that we have no access to mind-independent reality. We only
+have our ideas. There is no difference between ascribing identity to a thing
+v/s ascribing an identity to oneself, since both are bare ideas.
+
+This defense of Hume requires us to differentiate between a spatial and a temporal
+object. So, the self is not a temporal object (since it is not like music), since
+we can talk about it instantaneously, and therefore the notion of the self
+is fiction.
+
+If everything is an idea, space is also temporally experienced. We are mentally
+synthesizing space as a phenomena. So, for example, when we see a chair,
+we see some perspective projection of the chair. So, we are not given
+all of the chair at once. However, we imagine the entire chair as a spatial
+object, in a way that I do not with music.
+
+John Berger in "ways of seeing", says that the artist has to unlearn what
+he knows and paint what he sees.
+
+\chapter{Kant (1760s)}
+Hume was of the opinion that there is no causality, only association. However,
+our associations are usually non-arbitrary. We presuppose constancy of association,
+to be able to explain experience.
+
+Kant is going to show how regular association must exist, and it therefore
+cannot be at the empirical level. So, the unity of self transcends experience, 
+but it's a logical posit, which we require to associate ideas, so we can form
+the fiction of causality, the fiction of ideas, etc.
+
+Kant has two deductions. He's trying to deduce the necessary conditions for
+the possibility of experience. He formulates a deduction to deduce these categories.
+There are two editions: The A deduction and the B deduction.
+
+We no longer have access to the thing in itself, all we have is
+experience (phenomenology). Both space and time are synthesized by consciousness.
+In the case of a temporal object, is it easy to see why 
+we need synthesis: for example, a melody needs a synthesis for it to be a melody.
+For a spatial object, we still need synthesis to integrate the different
+perspectives that we experience of the spatial object. 
+
+From within experience, we can differentiate between space and time, since we can
+reverse spatial synthesis, but not temporal synthesis. The arrow of time, in a
+sense (or the hyperbolic metric of spacetime, if that's the cut of your jib).
+
+Kant believes that time has a certain privilege over space: Everything is temporal.
+Even though our sense of space is not reducible to time, the reversibility of space
+still happens within time. To quote Kant:
+
+\begin{quote}
+	Every intuition contains in itself a manifold which can be represented
+	as a manifold, only insofar as the mind distinguishes the time in the
+	sequence of one impression upon another, for each representation, insofar
+	as it is contained in a single moment, can never be anything other than
+	absolute unity. in order that a unity may arise from the manifold, as is required
+	for the representation of space, it must first be run through and
+	held together. This act I name the \emph{synthesis of apprehension}.
+\end{quote}
+
+For Kant, "intuition" is some sense of "impression ". "representation "
+is whatever it is that 
+allows us to experience space (in its pure form), instead of things in space. This
+is in the sense of Euclid: He is trying to understand how Euclidian Geometry
+is the "science of space". It is concerned with the very \emph{form of space}.
+
+Kant recognizes pure intuition, which is non-sensational,but is almost like 
+Descarte's "clear and distinct perception ". Kant has a phrase --- 
+"necessity is existence given through possibility itself".
+
+For example, consider the universe of (mathematical) possibilities. What
+we are seeing as a mathematician is possibility qua possibility. And pure 
+intuition goes into being able to see mathematical necessity.
+
+We have a pure intuition of space, which is
+then synthesized in various ways to get Euclidian geometry.
+The idea is a higher order constitution through synthesis. 
+
+\chapter{Strassen - Freedom and Resentment}
+
+The goal of philosophy, strictly speaking is to do meta-ethics. The idea is 
+that we are trying to consider the source of ethics. What constitutes value,
+for example. 
+
+Strassen wishes to analyze our ordinary sensible understanding of ethics,
+and how we actually behave. And then, we can see how this reflects these
+deeper kind of convictions that we hold. These convictions might be implicit.
+
+We can take natural science as the starting point, and claim that no one
+deserves blame or praise, since all is deterministic.
+Alternatively, we can start from the abstract notion of freedom, and argue that
+people do deserve blame and praise.
+
+In the deterministic model (there is no free will), can we have moral praise
+or blame?
+
+We do not have the same reactive attitudes between people who are, say, crazy.
+We cannot be resentful of people like this. We treat them like an object to be
+contained. This is in stark contrast to how we as a society treat violent
+offenders.
+
+There exists a "just deserve" theory --- if you kill someone, you open yourself up
+for being killed. You deserve it because you are fully chose. Of course,
+the "chose" is the real question here.
+
+Strassen builds up an argumnt for showing how this entire exercise that
+if determinism is true, there is no moral responsibility, and therefore
+there is no guilt, etc. All of this stays at the intellectual level, and
+is unable to account for the kinds of nuances that constitute the experience
+of our humanity. In virtue of being humans, we understand implicitly this
+very intricate structure.
+
+What he does is to break the deadlock between the incompatibilist position 
+(determinism and free will is not compatible), and the compatibilist position
+(even if determinism is true, we can still have moral responsibility and punishment).
+Both of these are carried out in the intellectual realm. He opens
+by talking about two kinds of people. The moral optimist says the truth of
+determinism does not prevent us from having reactive attitudes. He is
+a compatiblist. The moral pessimist will say if determinism is true, then there
+is no responsibility, and hence there can be no attribution of judgement. The
+moral pessimist is the incompatibilist. The problem is that the way in which
+the moral optimist reconciles these two postions is wrong. This is because the
+moral optimist admits the possiblity of determinism. He goes on to say
+"even \emph{if} determinism is true, \dots". But they do not appeal to the utility
+of punishment.  Strassen goes on to prove that there is a social utility in
+punishment even under determinism. This way, we do not have to deal with
+intensionality of the agent. 
+
+No matter how benevolent an action looks, people are doing it for their
+own ends. This is unfalsifiable.  The position that all we are doing when we
+are acting is out of self-intrest is called egoism. We can only show a
+lack of self-interest in cases of conflict.
+
+The deontology versus consequentialism is an offshoot of the rationalist versus
+empericist divide. Since consequences can be measured, it leads itself to
+empirical evidence. While deontological reasoning cannot be measured, since
+motives and intentions are not tangible. Hence, they
+require rationalist style argumentation.
+
+We have so far not discussed Kant's view on morality, so we cannot be precise
+when we discuss morality here, with respect to Kantian ethics.
+
+\section{Strassen's argumentation}
+
+compatibilist (Those who believe that morality exists even if free will does not)
+is called as the moral optimist by Strassen. The incompatibilist is termed by Strassen as
+a pessimist (That is, those who believe that moral attribution of any kind 
+is not possible without free will).
+
+The moral optimist could try and reconcile with the moral pessimist. Even
+if determinism is true, holding someone responsible / morally judging someone
+is possible due to its social efficacy. That is, these practices regulate
+social behaviour in desirable ways. We are defending the compatiblist position
+with a consequentialist argument. 
+
+The moral pessimist rejects these as incorrect criteria. Morality is not
+based on consequences, it's based on intentions.
+
+The optimist might continue to pursue their line of argumentation, and
+argue that there are many cases where freedom of will simply means that we 
+are not coerced in any way. The optimist gives a \emph{negative} conception
+of freedom. Under these circumstances, moral attribution is right / meaningful.
+It is a minimalist notion of freedom. We don't know whether we are free in the
+full fledged sense, of being pure agents with free will. But we can, in a 
+concrete situation, figure out whether we were compelled or not. Negative
+freedom is visible. Positive freedom is a metaphysical problem.
+
+The pessimist is of the opinion that the full sense of morality depends on
+\emph{positive freedom}, and this is what is lacking in the optimist's 
+position.  The pessimist is of the opinion that
+consequentialism is not the right criteria / notion of morality. Our
+morality is based on a certain sense of freedom, which is not reducible to
+consequentialism.
+
+Now we are at an impasse. Straseen  will attempt to intervene here, and will
+phrase the question in such a way that the optimist position can be saved,
+though consequentialism drops out, in return for a concession by the
+pessimist. What Strassen introduces is going to be a non metaphysical way
+of argument. In the history of philosophy, this is a recognizable move. The only
+way to undercut an impasse is to change the assumptions of the debate. What
+Strasesen does is not by starting from the metaphysics, but by starting
+from our ordinary everyday experience of morality. 
+
+What is the sense of the moral that we have in our everyday, inter-personal
+interactions? This is quite similar to the phenomenological move. When
+seen from the history of moral philosophy, this is quite significant.
+
+
+Let's take the non detached feeling we have when we have an interpersonal
+relationship.  It's only here that I can feel love, hate. We normally make
+moral judgements form a third person perspective. A judge is not personally
+affected by the crime, but a judge sits in judgement.
+
+Sartre has a great example of this. He gives an example of the peeping tom.
+They are conscious of the people who they are seeing, since they 
+are totally immernsed in the peeping.Hence, they are not self conscious.
+Sartre says that self conscious is social. We have this only in the
+presence of the other. It is the other's imagined gaze that leads us to
+have a self conciousness. This is very different from the view point of
+the meditator, who has a notion of self-reflection and self conciousness.
+We also feel awkward at a party, ie, self-concious. So, self conciousness is
+indeed social.
+
+Revenge is first-order, Punishment is second-order. Punishment is mediated
+by existing moral law.
+
+Our reactive attitudes are mediated.
+
+\end{document}

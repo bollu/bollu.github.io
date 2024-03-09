@@ -1,0 +1,95 @@
+\documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{comment}
+\usepackage{physics}
+% look for package for quantum computing!
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+% \DeclareMathOperator{\tr}{trace}
+
+\title{Quantum computation and information - Indranil Chakravarty}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+% qubit
+\newcommand{\qb}[1]{\ensuremath{|#1\rangle}}
+% \newcommand{\braket}[2]{\ensuremath{\langle#1~\vert~#2\rangle}}
+%\newcommand{\ket}[2]{\ensuremath{\langle#1~\vert~#2\rangle}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}
+\newcommand{\tensor}{\ensuremath{\otimes}}
+% \newcommand{innerprod}[2]{\ensuremath{\bra{#1}{\ket{#2}}}}
+\newcommand{\E}[1]{\mathbb{E}\left[ #1 \right]}
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+\newcommand{\xor}{\ensuremath{\oplus}}
+%\newcommand{\tensor}{\ensuremath{\otimes}}
+
+\maketitle
+\tableofcontents
+\include{lec-1}
+\include{lec-2}
+\include{lec-3}
+\include{lec-4}
+\include{lec-5}
+\include{lec-6}
+\include{lec-7}
+
+\end{document}

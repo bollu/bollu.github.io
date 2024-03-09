@@ -1,0 +1,106 @@
+\chapter{Quantum deletion}
+
+\begin{align*}
+    &\psi = \alpha \ket0 + \beta \ket 1 \\
+    &\ket \psi \ket 0 \ket M \rightarrow \ket \psi \ket \psi \ket M_{\psi} \\
+    &(\alpha \ket0 + \beta \ket 1) \ket 0 \ket M = (\alpha \ket{00} + \beta \ket{10}) \ket M \\
+\end{align*}
+
+Cloning is possible upto fidelity $0.83$. We get a similar theorem for
+quantum deletion --- in that, we can perform approximate deletion.
+
+
+If $\psi_1, \psi_2$ are two non-orthogonal states, then there is no deletion
+machine by which we can delete one copy from two cpies of of $\psi_1$ and 
+$\psi_2$
+
+\begin{align*}
+&\psi_1 \psi_1 \rightarrow \psi_1 \Sigma \\
+&\psi_2 \psi_2 \rightarrow \psi_2 \Sigma \\
+&\bra{\psi_1}\ket{\psi_2}^2 = \bra{\psi_1}\ket{\psi_2}\bra{\Sigma}\ket{\Sigma} \\
+&(\bra{\psi_1}\ket{\psi_2} - 1) \bra{\psi_1}\ket{\psi_2} = 0
+\end{align*}
+
+Hence $\bra{\psi_1}\ket{\psi_2} = 0 \lor 1$
+
+
+\section{No flipping}
+One of the strongest impossible operations. Given a state $\ket{\psi}$, we cannot
+make a state that takes it to an orthogonal state $\ket{\overline{\psi}}$.
+
+(Take a state $a0 + b1$ to $-b0 + a1$?)
+
+
+\section{No partial erasure}
+$\ket{\psi(\theta, \phi)} \rightarrow \ket{\psi'(\theta)}\ket{\Sigma}$ is
+impossible, where $\psi(\theta, \phi)$ is the parametrisation of a 2
+qubit state on a bloch sphere.
+
+\section{No splitting}
+We cannot split quantum information.
+$\ket{\psi(\theta, \phi)} \rightarrow \ket{\psi'(\theta)}\ket{\Sigma'(\phi)}$ is
+impossible. That is, we cannot split the combined information in $(\theta, \phi)$
+into two separate pieces of data.
+
+\chapter{Clasical information theory}
+Book recommendation: Elements of Information theory --- JJ Thomas and Thomas Cover.
+
+\section{What is information}
+\paragraph{Entropy}
+Blah blah blah, define surprisal of a probability 
+\begin{align*}
+    I: [0, 1] \rightarrow \R \quad
+    I(p) = - \log p
+\end{align*}
+Now, entropy of a random variable $X$ is:
+\begin{align*}
+    \H : \text{Random variable} \rightarrow \R \quad
+    \H(X) \equiv \sum_{x \in X} p(x) I\l(p(x)\r)
+\end{align*}
+
+\paragraph{Conditional entropy}
+\begin{align*}
+    &\H : \text{Random variable} \times \text{Random variable} \rightarrow \R \quad
+    \H(Y|X) \equiv \sum_{x \in X} p(x) H(Y|X=x) \\
+\end{align*}
+
+It can be shown that
+    $\H(X, Y) = \H(X) + \H(Y|X)$
+\paragraph{Mutual information}
+\begin{align*}
+    I(X; Y) &\equiv H(X) - H(X|Y) \\
+            &= H(X) - [H(X, Y) - H(Y)] \\
+            &= H(X) + H(Y) - H(X, Y) 
+\end{align*}
+It is a measure of the reduction of uncertainty in $X$ upon knowing $Y$.
+
+\paragraph{Relative entropy / K-L divergence}
+Suppose there are two probability distributions $P(x)$ and $Q(x)$. The
+relative entropy is:
+
+\begin{align*}
+    H \l(p(x) || q(x) \r) \equiv \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}
+\end{align*}
+
+\begin{theorem}
+    K-L divergence is always positive. That is, $H(p(x) || q(x)) \geq 0$,
+    with $H(p(x) || q(x)) = 0 \iff p(x) = q(x)$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        H(p(x) || q(x)) 
+        &= \sum_{x \in X} p(x) \log \l( \frac{p(x)}{q(x)} \r) \\
+        &= - \sum_{x \in X} p(x) \log \l( \frac{q(x)}{p(x)} \r) \\
+\end{align*}
+
+We know that $\log x \leq \frac{x - 1}{\ln 2}$.
+Hence, $-\log x \geq \frac{1 - x}{\ln 2}$.
+
+\begin{align*}
+        H(p(x) || q(x)) 
+        &= - \sum_{x \in X} p(x) \log \l( \frac{q(x)}{p(x)} \r) \\
+        &\geq \frac{1}{\ln 2} \sum_{x \in X} p(x) \l( 1 - \frac{q(x)}{p(x)} \r) \\
+        &\geq \frac{1}{\ln 2} \sum_{x \in X}\l(p(x) - q(x) \r) \\
+        &\geq \frac{1}{\ln 2} (1 - 1) = 0 \\
+\end{align*}
+\end{proof}

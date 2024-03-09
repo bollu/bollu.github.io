@@ -1,0 +1,23 @@
+% https://tex.stackexchange.com/questions/1050/whats-the-difference-between-newcommand-and-newcommand
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+\begin{document}
+\newcommand*{\Z}{\mathbb Z}
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\qed}{\ensuremath{\blacksquare}}
+
+
+\section{Chapter 1}
+
+\end{document}

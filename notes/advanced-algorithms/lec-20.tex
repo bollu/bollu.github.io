@@ -1,0 +1,173 @@
+\chapter{Approximate Counting}
+
+The idea is to see how many objects satisfy a given condition.
+
+
+\begin{itemize}
+    \item Count the number of spanning trees of a graph (matrix-tree theorem)
+    \item Count the number of matchings of a given graph (permenant of a graph)
+    \item Count the number of truth assignments that satisfy a formula in DNF
+        (sum of products)
+\end{itemize}
+
+\section{Counting truth assignments in DNF}
+
+DNF syntax is $DNF \equiv C_1 \lor C_2 \dots C_n$ where each $C_i \equiv L_1 \land L_2 \dots L_j$.
+$L \equiv \texttt{literal}$, each literal is either a variable $X_k$, or its
+negation $X_k'$.
+Problem has uses in network design and reliability.
+
+A truth assignment is said to satisfy a DNF boolean formula $F$, if some clause in $F$
+is true in the assignment. We are interested in $\#F$ -- the number of distinct
+satisfying assignments for $F$.
+
+\section{DNF counting --- Problem formalization}
+
+Let $U$ be a finite set of truth assignments, and a boolean function $f: U \mapsto \{0, 1\}$.
+Define $G \equiv \{ u~\vert~f(u) = 1\}$.
+We assume that given $u \in U$, $f(u)$ is easy to compute.
+We also assume that it is possible to sample uniformly at random from $U$.
+We want to estimate the size of $G$.
+
+Note that the requirement that we can uniformly sample from $U$ is
+quite important! We need an explicit encoding of the object to be able
+to sample efficiently and uniformly at random.
+
+\subsection{Solution --- Monte Carlo}
+
+\subsubsection{Sketch}
+Choose $N$ independent samples from $U$, say $u_1, u_2, \dots u_N$. Evaluate
+$f$ at each one of these samples, and count the number of satisfying instances.
+Use this count to estimate $G$.
+
+\subsubsection{Details}
+
+Let 
+\begin{align*}
+    &Y_i \equiv \text{random variable, indicates if $u_i \in G$} \\
+    &Y_i = \begin{cases}
+        1 & f(u_i) = 1 \\
+        0 & f(u_i) = 0
+    \end{cases} \\
+    &\E{Y_i} = \Pr{[Y_i = 1]} = \frac{|G|}{|U|} \\
+\end{align*}
+
+Define another random variable:
+
+\begin{align*}
+    &Z \equiv \text{Size that we guess based on $Y_i$} \\
+    &Z = |U| \cdot \frac{\sum_i Y_i}{N} \\
+    &\E{Z} = \frac{|U|}{N}\E{\sum_i Y_i} =  \frac{|U|}{N} \sum_i \frac{|G|}{|U|} = |G|
+\end{align*}
+
+We want the value of $Z$ to be close to $|G|$. Once again, we can use Chernoff
+bounds to approximate the tail inequality:
+
+\begin{align*}
+    &\epsilon \equiv \text{confidence of the estimate} \\
+    & Y \equiv \sum_i Y_i \\
+    & r \equiv \frac{|G|}{|U|},~ N \equiv |U|,~ Nr = |G| \\
+    &\Pr \big[ (1 - \epsilon)|G| \leq Z \leq (1 + \epsilon)|G|) \big] \\
+    &=\Pr \big[ (1 - \epsilon)|G| \leq \frac{|U|Y}{N} \leq (1 + \epsilon)|G| \big] \\
+    &=\Pr \big[ (1 - \epsilon)Nr \leq  Y \leq (1 + \epsilon)Nr \big] \\
+    &= 1 - \Pr \big[  Y \geq (1 + \epsilon)Nr \big] - \Pr \big[ Y \leq (1 - \epsilon)Nr \big]\\
+    &\geq 1 - 2e^{-\epsilon^2 Nr / 4}
+\end{align*}
+
+Let $\delta \equiv 2e^{-\epsilon^2 Nr / 4}$. We want $\delta$ to be small.
+So, we need $N$ and $r$ to be large for $\delta$ to be small. For this
+to work, since $r \equiv |G|/|U|$, we need $|G|$ to be large. This means
+that we need a large number of truth assignments for this to work.
+
+\subsection{Importance sampling}
+Do not rely on uniform sampling, so we use skewed sampling. Skew
+towards useful samples. We want to increase $r \equiv |G|/|U|$.
+
+Let $V$ be a finite universe. We are given $m$ subsets
+$H_1, H_2, \dots H_m$ such that:
+
+\begin{itemize}
+\item $\forall i,~|H_i|$ can be computed in polynomial time.
+\item It is possible to sample uniformly at random from any $H_i$.
+\item For all $v \in V$, we can determine if $v \in H_i$ in polynomial time.
+\end{itemize}
+
+The goal is to estimate $H \equiv \bigcup_i H_i$.
+
+In the equivalence to $DNF$, $V$ is all possible assignments,
+each $H_i$ is the assignments that satisfy $C_i$. $|H_i| = 2^{n - \text{number of clauses not in $C_i$}}$.
+
+\subsubsection{Set for sampling during importance sampling}
+
+Define a multiset $U$ of the union of $H_i$s where the multiset keeps
+multiple copies of each element. Alternatively, we can define it as:
+
+\begin{align*}
+  &U \equiv \{ (v, i)~\vert~v \in H_i \} \\
+  &|U| = \sum_i |H_i| \geq |H| \\
+\end{align*}
+
+We also define for every $v \in V$, the coerage set of $v$ as $cov(v, U) \equiv \{ (v, i)~\vert~(v, i) in U$.
+The size of $cov(v)$ is the number of $H_i$s that contain $v_i$.
+
+\subsubsection{Properties of $cov$}
+\begin{itemize}
+\item The number of coverage sets is exactly $|H|$
+\item The coverage sets partition $U$, ie, $U = \bigcup_{v \in H} cov(v)$
+\item $|U| = \sum_{v \in H} |cov(v)|$
+\item for all $v \in H$, $|cov(v) \leq m$ 
+\end{itemize}
+
+
+Deifne a function $f: U \mapsto \{0, 1\}$ as $f((v, i)) = 1~\text{if}~i = \min \{j~|~ v \in H_j \}$,
+and $0$ otherwise.
+
+Define $G \equiv \{ (v, j) \in U~\vert~f((v, j)) = 1 \}$. Notice that
+$|G| = |H|$.
+
+\subsubsection{Sid viewpoint}
+We create the set $U$ which is a set of $(value, pos)$. We then quotient
+by an equivalence relation $(v_1, p_1) ~ (v_2, p_2) \iff v_1 = v_2$. Then, we pick
+a distinguished/canonical element per equivalence class, called $(v_i, smallest)$, where
+$smallest$ is the smallest index among all the $v_i$.
+
+Also notice that $r = \frac{|G|}{|U} \geq \frac{1}{m}$, since:
+$$
+|U| = \sum_{v \in H} |cov(v)| \leq \sum{v \in H} m = m |H| \leq m |G|
+$$
+
+Now, we use monte-carlo to sample $U$. Same calculations hold now. Now, we need to
+sample uniformly at random from $U$.
+
+\begin{itemize}
+    \item Pick an index $j$ with probability
+        $\Pr [\text{$i$ is chosen}] \equiv |H_i| / U$.
+    \item Now, pick an element uniformly at random from $H_i$.
+    \item \textbf{(Is there some geometric intuition for this picking process?)}
+\end{itemize}
+Now, this pair $(v, i)$ is now uniformly at random over $U$ \textbf{(TODO: finish proof)}
+
+\subsection{Some definitions}
+
+\subsubsection{Polynomially randomized approximation scheme (PRAS)}
+Given a counting problem $\Pi$, $A$ is a randomized algorithm which runs
+in polytime such that on any instance $I$ of $P$, and a real number $\epsilon > 0$,
+it produces an output $A(I)$ such that 
+
+$$
+\Pr \big[ (1 - \epsilon) \#I \leq A(I) \leq (1 + \epsilon) \#I \big ] \geq \frac{3}{4}
+$$
+
+\subsubsection{Fully randomized approximation scheme (FPRAS)}
+Runtime s bounded by a polynomial in both $n$ and $\frac{1}{\epsilon}$
+
+\subsubsection{\# P}
+
+A problem is in $\# P$ if the corresponding decision problem is in \nptime.
+
+A problem is $\# P$ if there is an NDMP such that for any problem instance $I$,
+it has a number of accepting computations that is equal to the number of distinct solutions
+to instance $I$.
+
+$\# P$-complete problems are those which can be reduced in polytime. DNF
+counting is $\# P$ complete.

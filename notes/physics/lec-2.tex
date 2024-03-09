@@ -1,0 +1,126 @@
+\chapter{Functional calculus}
+
+this chapter develops a completely handwavy physics version of functional
+analysis.
+
+
+\begin{definition}
+    A \textbf{functional} $F$ is a function: $F : (\reals \to \reals) \to \reals$
+\end{definition}
+
+\begin{notation}
+Evaluation of a functional $F$ with respect to $f$ is denoted by $F[f]$.
+\end{notation}
+
+\section{Functional Derivative - take 1}
+
+Consider a functional $F: (\reals \to \reals) \to \reals$, 
+a function $f: \reals \to \reals$, 
+and a "test function" $\phi: \reals \to \reals$.
+
+Consider a functional $F$.  We only define the derivative of a functional $F$
+with respect to a function $f$ by what happens under an integral sign as follows:
+
+\begin{align*}
+\int \fdv{F}{f} (x) \phi(x) \dd x = 
+\lim_{\epsilon \to 0}
+\frac{F[f + \epsilon \phi] - F[f]}{\epsilon}
+\end{align*}
+
+Now, we can define a small variation in $F$ as:
+
+\begin{align*}
+    \delta F &: (\reals \to \reals) \times (\reals \to \reals) \to \reals \\
+    \delta F(f, \phi) &\equiv \int \fdv{F}{f} (x) \phi(x) \dd x
+\end{align*}
+
+Intuitively, $\delta F$ tells us the variation of the function $f$ along
+a test function $\phi$. So, it encapsulates some kind of "directional derivative".
+
+
+So, we can look at $\fdv{F}{f}$ as a functional as follows:
+\begin{align*}
+    \fdv{F}{f} &: (\reals \to \reals) \to \reals \\
+    \fdv{F}{f} (\phi) &=  \delta F (f, \phi)
+\end{align*}
+
+Wehre $\fdv{F}{f}$ allows us to "test" the change of $F$ with respect to $f$
+along a given "direction" $\phi$.
+
+\section{Functional Derivative as taught in class}
+
+Substitute $\phi = \delta (x - p)$. Now, the quantity:
+
+\begin{align*}
+    &\fdv{F}{f}(x) \phi(x) =
+    \delta F (f, \delta (x - p))  \\
+    % 
+    &\text{Rewriting $\delta F$ by sticking it under an integral:} \\
+    %
+    &\int \fdv{F}{f} (x) \delta (x - p) \dd x =  
+    \lim_{\epsilon \to 0}
+    \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}  \\
+    %
+    & \fdv{F}{f}{\bigg \rvert_p} = 
+    \lim_{\epsilon \to 0}
+    \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}
+\end{align*}
+
+That is, we can start talking about "derivative of the functional $F$ with
+respect to a function $f$ at a point $p$" as long as we only test the functional $F$ against
+$\delta$-functions.
+
+So, we can alternatively define this quantity as:
+
+\begin{align*}
+\fdv{F}{f}{\bigg \rvert_p} \equiv 
+\lim_{\epsilon \to 0} \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}
+\end{align*}
+
+While this does not "look like a functional", it actually is, if we
+mentally replace:
+
+\begin{align*}
+    p \to  \int ~\rule{0.3cm}{0.1mm}~\delta (x - p) \dd x
+\end{align*}
+
+This is how mukku got that expression.
+
+\section{Common functional derivatives}
+
+\subsection{$F[f] = \int_0^\infty f dx$}
+
+
+\begin{align*}
+    \frac{\delta F[f]}{\delta f (x_0)} &=
+        \lim_{\epsilon \to 0} 
+         \frac{\int_0^\infty (f + \epsilon \delta (x - x_0)) \dd x- \int_0^\infty f \dd x }{\epsilon} \\
+         %%%%
+         &= \int_0^\infty \delta(x - x_0) \dd x = 1
+\end{align*}
+
+\subsection{$F[f] = \int_0^\infty g [f] dx$}
+This does not actually type-check for me. $g: (\reals \to \reals) \to reals$,
+so I don't fully understand what we are "varying" where when we integrate
+with respect to $dx$.
+
+So, there's something bizarre here that I don't understand --- the 
+integral doesn't really make sense.
+
+\subsection{Derivative of $F[\phi] \equiv \int (\pdv{\phi}{y})^2$}
+
+$\fdv{F}{f}{\bigg \rvert_p} = \int (\pdv{\phi}{y})^2$
+
+
+\section{Deriving E-L from functional magic}
+
+\section{Weird things in Functional Analysis as taught in class}
+
+Consider the functional
+
+$J[f] = \int g[f'] dy$:
+
+since $g$ is a functional, it has a type $g: (\reals \to \reals) \to \reals$.
+So, our integrand must be some function $df$, and not some
+\textbf{space component} $dy$. \textbf{I don't understand what the definition of J means}.
+

@@ -1,0 +1,140 @@
+\chapter{Randomized Algorithms}
+Reference --- randomized algorithms, Motwani and Raghavan.
+
+\newcommand{\E}[1]{\mathbb{E}\big[ #1 \big]}
+% \newcommand{\Pr}[1]{\mathcal{Pr}\bigg[ #1 \bigg]}
+
+\section{Randomized Quicksort}
+
+\begin{minted}{py}
+def randquicksort(l):
+	pivot = uniform_random_pick(S)
+	S1 = [x for x in l if x > pivot]
+	S2 = [x for x in l if x < pivot]
+	return randquicksort(S1) + [x] + randquicksort(S2)
+\end{minted}
+We assume time to partition is $O(n)$.
+
+Maximum value of $T(n)$ occurs when the pivot element $x_i$ is
+the largest element of the remaining set. So, each iteration, we take $i$ time
+to partition, and then recurse.
+
+$$T_{worst}(n) = n + (n - 1) + \dots = O(n^2)$$
+$$P_{worst}(n) = \frac{1}{n} \cdot \frac{1}{n - 1} \dots \frac{1}{2} \cdot 1 = 1/n!$$
+
+Best case is when the pivot splits the set $S$ into two subsets.
+Then, $T(n) = O(n \log n)$.
+
+When we pick pivots, as long as we can guarantee that a \textit{constant} fraction
+is inside one of the pivot sets, we will still get $\log$, since it will reduce by $constant^k$ for $k$ steps.
+
+So, $O(n \log n) \leq T(n) \leq O(n^2)$. We now derive the \textit{expected value} of $T(n)$.
+
+\begin{itemize}
+\item  If the ith smallest element is choice as the pivot, then $|S_1| = i - 1, |S_2| = n - (i - 1) - 1 = n - i$. This choice
+has probability $\frac{1}{n}$, since we are picking an element uniformly. $i$ is the \textit{rank} we would like to pick.
+
+\item $T(n) = x + T(X) + T(n - X)$ is the recurrence relation, where $X$ is a random variable, $X \in [0, n]$, and $X$
+denotes the \textit{rank of the element} we would like to pick in the array.
+
+\item now, $T(n)$ is also a random variable.
+
+\item $\Pr[X = i] = \frac{1}{n} = Pr[n - 1 - X = i]$, since the pivot is chosen \textit{uniformly at random}.
+\end{itemize}
+
+\begin{align*}
+&\E{T(n)} \\
+&= \E{n + T(X) + T(n - X)} \\
+&= n + \E{T(X)} + \E{T(n - X)} \\
+&= n +  \sum_{i = 1}^{n - 1} \E{T(i)} \cdot \Pr[X = i] + \sum_{i = 1}^{n - 1} \E{T(n - i)} \cdot \Pr[n - X = i] \\
+&= n + \sum_{i = 1}^{n - 1} \E{T(i)} \cdot \frac{1}{n} + \sum_{i = 1}^{n - 1} \E{T(n - i)} \cdot \frac{1}{n} \\
+&= n + \frac{2}{n} \sum_{i = 1}^{n - 1} \E{T(i)} \\
+%
+\\
+&\text{Let $f(n) \equiv \E{T(n)}$ for simplicity} \\
+&f(n) = n + \frac{2}{n}\sum_{i = 1}^{n - 1} f(i) \\
+&f(n) = n + \frac{2}{n}\big(f(1) + f(2) + \dots f(n - 1) \big) \\
+%
+\\
+& n f(n) = n^2 + 2\big(f(1) + f(2) + \dots f(n - 1) \big) \\
+& (n - 1) f(n - 1) = (n - 1)^2 + 2\big(f(1) + f(2) + \dots f(n - 2) \big) \\
+%
+\\
+&\text{subtracting $(n - 1)f(n - 1)$ from $nf(n)$,} \\
+&nf(n) - (n - 1) f(n - 1) = n^2 - (n - 1)^2 + 2f (n - 1) \\
+&nf(n)= (2n - 1) + 2f (n - 1) + (n - 1) f(n - 1) \\
+&nf(n)= (2n - 1) +(n + 1) f(n - 1) \\
+%
+\\
+&f(n)= \frac{2n - 1}{n} + \frac{n + 1}{n} f(n - 1) \\
+\end{align*}
+
+We now need to guess $f(n)$. We guess $f(n) \leq 2 n \log n$:
+
+\begin{align*}
+	&f(n) = \frac{2n - 1}{n} + \frac{n + 1}{n}2(n - 1)\log(n - 1) \\
+	& = \frac{2n - 1}{n} + 2(n + 1) \log(n - 1) - 2\frac{(n + 1)}{n} \log(n - 1) \\
+	&\leq 2n \log n + \bigg[ \frac{2n - 1}{n} + 2\log(n - 1) - 2\frac{(n + 1)}{n} \log(n - 1) \bigg] \\
+	&\leq 2n \log n + \bigg[\text{less than 0 (look this up)} \bigg] \leq 2n \log n
+\end{align*}
+
+So, the randomized quicksort algorithm has \textit{expected} runtime $O(n \log n)$. However,
+we don't know the spread \textit{around} the expected value. To answer these questions,
+we study \textbf{tail inequalities}.
+
+\section{Tail inequalities}
+
+The more information we know about the random variable, the better the estimate we can derive
+about a given tail probability.
+
+\subsection{Markov Inequality}
+If $X$ is a non-negative valued random variable with an expectation of $\mu$, then
+$$
+\Pr[X \geq c \mu] \leq \frac{1}{c}
+$$
+
+\subsubsection{Proof}
+\begin{align*}
+&\mu = \sum_a a \Pr[X = a] \\
+&\mu = \sum_{a < c \mu} a \cdot \Pr[X = a] + \sum_{a \geq c \mu} a \cdot \Pr[X = a] \\
+&\text{since $X$ is non-negative, $a \geq 0$} \\
+&\mu \geq 0 + \sum_{a \geq c \mu} a \cdot \Pr[X = a] \\
+&\mu \geq c \mu \sum_{a \geq c \mu} \Pr[X = a] \\
+&\mu \geq c \mu \cdot \Pr [X \geq c \mu] \\
+&\Pr[X \geq c \mu] \leq \frac{1}{c}
+\end{align*}
+
+\subsubsection{Bounding quicksort using Markov inequality}
+$$\Pr [T(n) \geq 12 n \log n] = \Pr \bigg[T(n) \geq 4 \E{T(X)}\bigg] \leq \frac{1}{6}$$
+
+\subsection{Chebyshev Inequality}
+Let $X$ be a radom variable with mean $\mu$. We define the variance
+$var(X) \equiv \E{(X - \mu)^2}$.
+
+The standard deviation, $\sigma_x \equiv \sqrt{var(x)}$.
+
+\begin{itemize}
+    \item Let $X$ be a random variable with mean $\mu$ and standard deviation $\sigma$.
+    \item Then, $\Pr \big[ \big| X - \mu| \geq c \sigma \big] \leq \frac{1}{c^2}$
+\end{itemize}
+
+Let us define $Y = var(x) = (X - \mu)^2$
+\begin{align*}
+    &\E{Y} = \E{var(X)} = \sigma^2 \\
+    \\
+    &\Pr \big[ \big| X - \mu| \geq c \sigma \big] = 
+    \Pr \big[ (X - \mu)^2 \geq (c \sigma)^2 \big] = 
+    \Pr \big[ Y \geq (c \sigma)^2 \big]
+\end{align*}
+
+We can now apply markov inequality:
+
+\begin{align*}
+    &\Pr \big[ Y \geq (c \sigma_x)^2 \big] =  \\
+    &\text{(\textbf{TODO:} why is $\sigma_x^2 = \mu_y$?)}  \\
+    &\Pr \big[ Y \geq c^2 \mu_y \big] \leq \frac{1}{c^2}
+\end{align*}
+
+
+
+

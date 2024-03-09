@@ -1,0 +1,184 @@
+\chapter{Tree processing}
+\section{Traversal via an Euler tour}
+\begin{definition}
+an \textbf{Euler tour} is a cycle of a graph that includes every edge of the
+graph exactly once.
+\end{definition}
+
+\begin{lemma}
+A directed graph $G$ \textbf{has an Euler tour} iff for every vertex,its in-degree
+equals its out-degree.
+\end{lemma}
+
+For a tree $T = (V, E)$, to define an euler tour, we make it a directed graph.
+$T_e = (V_e, E_e)$, where $V_e = V$, and $E_e = \cup_{(u,v) \in V} \{ (u, v), (v, u) \}$
+That is, each $(u, v)$ in $E$ creates two edges $(u, v)$, and $(v, u)$ in $E_e$.
+$T_e$ will have an Euler tour.
+
+
+We have to define a successor function $s: E_e \to E_e$. Here, the successor for an edge.
+For a node $u$ in $T_e$, order its \textbf{neighbours (both incoming and outgoing)}
+$v_1, v_2, \dots v_d$. This can be done \textbf{independently at each node}. 
+For $e = (v_i, u)$, set $s(e) = (u, v_{i + 1~\text{mod $d$}})$. This choice of $s$ is valid
+since we always have both edges $(x, y)$ and $(y, x)$, and we are therefore
+assured that $(v_i, u)$ will be an incoming edge, and $(u, v_{i + 1}$ will be
+an outgoing edge. Also, compute $i + 1$ modulo $d$, so that we eventually
+cycle.
+
+\textbf{TODO: relabel vertices to $[0..(d - 1)]$ so that modulo works properly}
+\textbf{TODO: add example}
+
+\begin{theorem}
+$s$ actually constructs a tour.
+\end{theorem}
+\begin{proof}
+Induction on number of vertices. If $n = 1$, obviously true. 
+If $n = 2$, at most one edge present. We will go along the edge and come back,
+which is a valid tour.
+
+
+\begin{itemize}
+\item Let the tour be well defined for $n = k$. We will prove it for $n = k + 1$.
+\item Every tree has at least one leaf, call it $l$. Create a tree $T' = T/\{l\}$.
+\item Let $u$ be a neighbour of $l$ in $T$.
+\item Let $N(u) = \{ v_0, v_1, \dots v_i = l, v_{i + 1}, \dots v_d \}$.
+\item Set $s_{new}(u, v) \equiv (v, u)$. Set $s_{new}(v_{i - 1}, u) \equiv (u, v)$.
+\item For all other vertices, $s_{new}(e) = s(e)$.
+\end{itemize}
+\end{proof}
+
+
+\section{Using euler tours for traversal}
+Operations on a tree such a rooting, preorder, and postorder traversal
+can be converted to routines on an Euler tour.
+
+\subsection{Rooting a tree}
+Designate a node in a tree as the root. All edges in the tree are
+directed towards (or away) from the root.
+
+\begin{itemize}
+\item let $\{v_1, v_2, \dots v_d\}$ be the neighbours of root node $r$. 
+\item we mark the final edge of the tour as \texttt{NIL}, so we get an
+Euler path, and not an Euler tour.
+\item the edge $(r, v_i)$ appears before $(v_i, r)$.
+\item so the edge $parent \to child$ appears before $child \to parent$
+\item So, if $uv$ precedes $vu$, then set $u = parent(v)$. Orient the
+edge $uv$ as $v \to u$ (that is, $child \to parent$), since we want all edges towards the root.
+\end{itemize}
+
+\subsection{Preorder traversal}
+We have a rooted tree with $r$ as the root. In a preorder traversal, a node is
+listed before any of the nodes in its subtrees.
+
+In an Euler tour, nodes in a subtree are visited by entering subtrees,
+and the exiting towards the parent.
+
+If we can track the first occurence of a node in an euler path, this will
+tell us the preorder traversal. Note that edges in the euler tour occur
+first as $parent \to child$, and later as $child \to parent$. So, we can
+look at the sequence of edges in the euler tour, and find the preorder
+numbering.
+
+\subsection{Expression tree evauation of binary trees}
+Tree may not be balanced.
+
+We use the \texttt{RAKE} technique to evaluate subexpressions. We rake the
+leaves from the expression tree --- we remove the leaf node and its parent.
+
+\begin{itemize}
+\item $T = (V, E)$ is a tree rooted at root node $r$. $p: E \to E$ is the 
+parent function.
+\item One step of the rake operation at a leaf $l$ with $p(l) \neq r$ involves:
+    \begin{itemize}
+    \item Remove node $l$, $p(l)$ from the tree
+    \item Make the sublings of $l$ as the child of $p(p(l))$. That is, graft
+    the siblings of $l$ to the grandparent of $l$.
+    \end{itemize}
+\end{itemize}
+
+Why is this a good technique? Can this be applied in parallel to several leaf
+nodes? Yes, it can be applied to leaf nodes that don't share the same parent.
+In general, there is a richness of leaf nodes in a tree, since there
+are only $n - 1$ edges.
+
+Each application of rake at all leaves reduces the  number of leaves by half.
+Each application of \texttt{RAKE} is $O(1)$. So, total time is $O(\log n)$.
+
+
+\begin{minted}{python}
+def shrinkTree(R):
+    compute labels for leaf nodes, store in array A (exclude leftmost
+    and rightmost nodes in this A)
+
+    for _ in range(k):
+        apply rake operation to all odd numbered leaves that are
+        the *left* children of their parent
+
+        apply rake operation to all odd numbered leaves that are
+        the *right* children of their parent
+
+        update A to be the remaining even leaves
+\end{minted}
+
+Applying \texttt{Rake} means that we can process more than one leaf node
+at the same time.
+
+Fo expression evaluation, this may mean that an internal node with 
+only one operand gets raked.
+
+\begin{minted}{python}
+          + g(u)
+  
+    + p(u) 
+
+Y     X (u)
+
+
+--After raking--
+
+   + g(u)
+Y
+\end{minted}
+
+\begin{itemize}
+    \item Transfer the impact of applying the operaot at p(u) to the sibling of u
+    \item $R_u = a_u X_u + b_u$
+    \item $X_u$ is the result of the subexpression at node $u$ -- $X_u = f(left, right)$
+    \item adjust $a_u$ and $b_u$ during any rake operation appropriately
+    \item Initially, at each leaf node, $a_u = 1, b_u = 0$.
+\end{itemize}
+
+
+
+\begin{minted}{python}
+          + g(u)
+  
+    + p(u) 
+    X_w
+    a_w
+    b_w
+
+v        (u) 5, 1, 0
+X_v,
+a_v,
+b_v
+
+--After raking--
+
+     + g(u)
+v
+X_v'
+a_v'
+b_v'
+\end{minted}
+
+\begin{itemize}
+    \item Before removing $p(u)$, the contribution of $p(u)$ to $g(u)$ will be $X_w a_w + b_w$.
+    \item we want what $p(u)$ used to calculate to be what $v$ calculates after.
+    \item $X_w = (X_u a_u + b_u) + (X_v a_v + b_v)= (X_v a_v) + (X_u a_u + b_u + b_v)$
+    \item What $p(u)$ used to calculate is: $a_w X_w + b_w = a_w (a_v X_v + a_u x_u + b_u + b_v) + b_w = a_w a_v x_v + a_w (a_u X_u + b_u + b_v) + b_w$
+    \item what $p(v)$ should be: $a_v' = a_w a_v$, $b_v' = a_w (\dots)$
+\end{itemize}
+
+For other operators, proceed in a similar fashion (\textbf{TODO: do this and send to kiko, he seems interested!})
+

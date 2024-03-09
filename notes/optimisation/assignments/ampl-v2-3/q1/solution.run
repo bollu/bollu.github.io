@@ -1,0 +1,9 @@
+option solver couenne;
+option solver_msg 0;
+option display_1col 0;
+option output_level	 0;
+model solution.mod;
+data solution.dat;
+solve;
+display delta;
+display useitem;

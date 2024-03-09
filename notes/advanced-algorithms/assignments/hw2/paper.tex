@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\author{Siddharth Bhat (20161105)}
+\title{Complexity and Advanced Algorithms -- Assignment 2}
+\begin{document}
+\newcommand{\threesat}{\texttt{3-SAT}~}
+\newcommand{\pspace}{\texttt{PSPACE}~}
+\newcommand{\np}{\texttt{NP}~}
+\newcommand{\nat}{\mathbb{N}~}
+\newcommand{\pred}{\mathbb{P}~}
+\newcommand{\logspace}{\texttt{LOGSPACE}~}
+\newcommand{\ptime}{\texttt{P}~}
+\newcommand{\nptime}{\texttt{NP}~}
+\maketitle
+
+\section{Write appropriate quantified formulae}
+\subsection{infinitely many primes}
+We create a predicate called $Prime : \nat \to \pred$ which is true
+when a number is prime. We use this to define the infinitude of primes.
+
+\begin{align*}
+    &Prime: \nat \to \pred \\
+    &Prime(n) \equiv \forall k \in \nat, 2 \leq k < n \implies n \% k \neq 0
+    \\
+    \\
+    &Infitude \equiv \forall n \in \nat, Prime(n) \implies \exists m \in \nat, m > n \land Prime(m)
+\end{align*}
+
+Note that using the function $Prime$ is nothing special --- it is simply
+shorthand for substituting the expression of $Prime$ into the expression
+for $Infitude$. I will continue to do this in the next question as well.
+This does not affect the correctness of the answer, since it can be converted
+into one large logical formula. Writing it this way simply makes it
+easier to reason about.
+
+\subsection{Every pair of positive integers have a unique GCD}
+
+We first define a predicate $CD: \nat \times \nat \times \nat \to \pred$, where
+$CD(n, m, d)$ means that $d$ is a common divisor of $n, m$.
+
+This is used to define $GCD: \nat \times \nat \times \nat \to \pred$, where
+$GCD(n, m, d)$ means that $d$ is the $GCD$ of $n$ and $m$. 
+
+Finally, the definition of $GCD$ is used to define the uniqueness of $GCD$.
+\begin{align*}
+    &CD: \nat \times \nat \times \nat \to \pred \\
+    &CD(n, m, d) \equiv n \% d = 0 \land m \% d = 0
+    \\
+    \\
+    &GCD: \nat \times \nat \times \nat \to \pred \\
+    &GCD(n, m, d) \equiv CD(n, m, d) \land \forall d' \in \nat, d' > d \implies \lnot CD(n, m, d')
+    \\
+    \\
+    &UniqueGCD \equiv \forall n, m, d,  d' \in \nat, GCD(n, m, d) \land GCD(n, m, d') \implies d = d'
+\end{align*}
+
+\section{Sorting  $\in \logspace$}
+Assume we wish to sort in ascending order (The solution is symmetric in the
+descending order case).
+
+
+Let us index the output list as $\langle o_1, o_2, o_3, \dots, o_N$
+
+In the output list, the numbers indexed by the set $[1, k_1]$ numbers are smaller
+than all the others: that is, they are greater than $0$ of the other numbers in the list.
+
+The numbers in the range of $[k_1 + 1, k_0]$ numbers are greater than $1$ of the
+other numbers. 
+
+If we generalize, the numbers $[k_i + 1, k_{i+1}]$ are greater than $i - 1$.
+
+we can iterate over the count $i - 1$ with a variable
+\texttt{nums\_greater\_required}, which represents the count of numbers 
+the output must be greater than.
+
+Next, for each \texttt{nums\_greater\_required}, we check each number in the list
+(indexed by \texttt{cur\_num\_position}) the count of numbers it is greater than
+(by walking the list using \texttt{compare\_num\_position}, and storing the count
+of numbers the current number is greater than in \texttt{cur\_nums\_greater}).
+
+If this count is equal to \texttt{nums\_greater\_required}, we have the correct
+number.
+
+
+\begin{minted}{python}
+def logsort_unique(input):
+    # nums_greater_required := space O(log(|input|))
+    for nums_greater_required in range(len(input)):
+
+        # cur_num_position := space(O(log(|input|)))
+        for cur_num_position in range(len(input)):
+
+            # 0 <= cur_nums_greater <= nums_greater_required => 
+            # cur_nums_greater := space O(log(|input|))
+            cur_nums_greater = 0
+
+
+            # compare_num_position := space(O(log(|input|)))
+            for compare_num_position in range(len(input)):
+
+
+                # input[cur_num_position] := space O(1)
+                # input[compare_num_position] := space O(1)
+                if input[cur_num_position] > input[compare_num_position]:
+                    cur_nums_greater += 1
+
+
+            if cur_nums_greater == nums_greater_required:
+                print (input[cur_num_position])
+\end{minted}
+
+The time complexity of this is $O(|input| * |input| * |input|) = O(|input|^3)$
+
+
+
+\section{\pspace is closed under union and intersection}
+Let $L_1$ and $L_2$ be languages in \pspace. Let $M_1$ and $M_2$ be the
+turing machines which decide $L_1$ and $L_2$ respectively.
+
+\subsection{$L_1 \cup L_2 \in \pspace$}
+We create a new machine $M$ which accepts the language $L_1 \cup L_2$.
+
+This machine first runs $M_1$, and stores the output of $M_1$ in bit $b_1$.
+Since $M_1 \in \pspace$, $M$ will not run out of space. Since $M_1$
+is a decision procedure, we are guaranteed it will halt, so $M$
+waiting for $M_1$ to halti is legal.
+
+Similarly, $M$ then runs $M_2$ and stores $b_2$. finally, $M$ outputs
+$b_1 \lor b_2$. 
+
+$M$ accepts only when either $M_1$ or $M_2$ accept, that is, $M$ accepts
+if a string belongs to either language.
+
+
+\subsection{$L_1 \cap L_2 \in \pspace$}
+Repeat the exact same construction, except change the output bit from
+$b_1 \lor b_2$ to $b_1 \land b_2$.
+
+$M$ accepts only when both $M_1$ and $M_2$ accept, that is, $M$ accepts
+only if a string belongs to both languages.
+
+
+
+\section{Equivalence between \np as nondeterministic solver v/s deterministic verifier}
+\subsection{nondeterministic solver $\implies$ deterministic verifier}
+Consider a language $L$, which has a non-deterministic solver $S \in \nptime$.
+We construct a verifier $V$, and a function $witness: L \to \{0, 1\}^*$ which
+constructs the witness string $y = witness(w)$ for a given string $w \in L$.
+
+Consider a successful run of the non-deterministic solver $S$ for a
+given $w \in L$. We create the witness string $y$ by \textit{recording} all of the
+values that the non-deterministic solver $S$ \textit{guessed for a successful run}.
+
+So, $y = \text{collection of all guesses made by $S$}$
+
+We create the verifier $V$ by running $S$ deterministically, and at every 
+point $S$ tries to use non-determinism, we use the \textit{correct value}
+that is stored in $y$. 
+
+Thus, if a successful run exists for $S$ (that is, $w \in L$),
+then the verifier $V$ will \textit{have access to the right guesses}.  On the other hand,
+if $w \notin L$, the there \textit{are no right guesses}, so $V$ will reject.
+
+
+
+\subsection{deterministic verifier $\implies$ nondeterministic solver}
+Consider a language $L$, with a deterministic verifier $V \in \ptime$.
+
+We design a nondeterministic solver $S \in \nptime$, which on input string
+$w$, guesses the witnesss string $y$ using nondeterminism and
+then querifies the verifier with $V(w, y)$. That is,
+
+$S(w) = V(w, \overline{y})$ where $\overline{y}$ is guessed using
+nondeterminism.  This is in \np, since the verifier $V$ runs in polynomial
+time, and the non-determinism is used to guess $\overline{y}$.
+
+
+\end{document}

@@ -1,0 +1,120 @@
+
+\chapter{Cryptography from channel noise, without 1-way functions}
+
+\subsection{Introduction Kannan philosophy}
+If the insecure channel connecting $A$ and $B$ is noisy, we can have secure communication.
+This is possible because we have two adversaries -- the actual adversary and the noise
+in the channel. Intuitively, these are adversaries of each other. \\
+
+The ``noise injector'' is disrupting information that the eavesdropper wishes to understand. Can we design a channel that disrupts the eaversdropper more than it disrupts $B$? This was not initially considered to be  possible because of the seeming impossibility of harnessing the noise. \\
+
+In previous lectures, we have shown how to simulate a secure machine on two insecure machines. The contents of this secure machine's memory were the bitwise \texttt{XOR} of the memories of the two insecure machines. This can be done by simulating secure \texttt{XOR} and secure \texttt{AND}. We have already shown how to simulate secure \texttt{XOR} without one-way functions. However, to simulate \texttt{AND} we used one-way functions. We now show a protocol to compute secure \texttt{AND} over a noisy channel without the use of one-way functions. 
+
+\subsection{Secure \texttt{AND} without one-way functions}
+
+Initially $A$'s memory consists of two bits, $x_A$ and $y_A$. Similarly $B$'s memory consists of two bits, $x_B$ and  $y_B$. The secure machine's memory consists of two bits $x$ and $y$ where $x = x_A + x_B$ and $y = y_A + y_B$. We want $A$ and $B$ to compute $z_A$ and $z_B$ respectively, such that $z = z_a + z_b = x \cdot y$. \\1
+
+In general, we will introduce bits that are consistently named between $A$ and $B$. The naming scheme will be
+$bitname_A, bitname_B$. This indicates that the secure virtual machine has a bit $bitname = bitname_A + bitname_B$.
+
+\subsubsection{First simplification -- constraints on the noise}
+
+As a pedagogical simplification, we assume that out of every four consecutive bits sent over the channel, \textit{exactly one} of the four bits will be toggled. This restriction will be lifted later. 
+
+\subsubsection{Protocol}
+
+We define a matrix $T$, representing the truth table of the bitwise \texttt{AND} operation. Note that $T$ is public and part of the protocol.
+
+\[T = 
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{bmatrix}
+\]
+
+\begin{algorithm}
+% \caption{{\it }}
+\label{a-enc-h}
+\begin{algorithmic}[1]
+\State \textbf{Initial state:} $A$ has two bits, $x_A$ and $y_A$. $B$ has two bits, $x_B$ and $y_B$.
+\State $A$ generate four random bits $R = \langle r_0, r_1, r_2, r_3 \rangle$, and sends $R$ to $B$.
+\State $B$ receives four bits from $A$, $S = \langle  s_0, s_1, s_2, s_3 \rangle$.
+\State $A$ computes $R \times T = \langle a_A, b_A, c_A \rangle$, and $B$ computes $S \times T = \langle a_B, b_B, c_B \rangle$. Correspondingly, the secure machine has computed $(R + S) \times T = \langle a, b, c \rangle $.
+\State $A$ noiselessly sends (using an error-correcting code) $x_A + a_A$ and $y_A + b_A$ to $B$. $B$ noiselessly sends $x_B + a_B$ and $y_B + b_B$ to $A$.
+\State $A$ and $B$ both compute $X = (x_A + a_A) + (x_B + a_B)$ and $Y = (y_A + b_A) + (y_B + b_B)$.
+\State $A$ defines $z_A = (X \cdot Y) + (x_A \cdot y) + (y_A \cdot x) + c_A$.
+\State $B$ defines $z_B = (X \cdot Y) + (x_B \cdot y) + (y_B \cdot x) + c_b$. We have $z = z_A + z_B = x \cdot y$, as desired.
+\State \textbf{Final state:} $A$ and $B$ have computed $z_a$ and $z_b$ respectively such that $z = z_a + z_b = (x_A + x_B) \cdot (y_A + y_B) = x \cdot y$
+\end{algorithmic}
+\end{algorithm}
+
+\pagebreak
+
+% Steps 1-3
+Note that by the assumption on the channel noise, $R$ differs from $S$ at exactly one position. Therefore, $R + S$ is $1$ at exactly one position and $0$ at the other positions. However, the position where $R$ and $S$ differ is unknown, and it is this uncertainty that we harness to implement the secure computation. \\
+
+% Step 4
+In Line $4$, the secure machine computes $(R + S) \times T = \langle a, b, c \rangle $. Since $R + S$ has exactly one bit set to $1$ the remaining bits being set to $0$, $\langle a, b, c \rangle$ is in fact a row of $T$. Since $T$ is the truth table of the bitwise \texttt{AND} operation, it follows that $a \cdot b = c$. \\
+
+We have computed the \texttt{AND} of some \textit{random bit} $c$, but \textit{not} that of the bit $z$ which we are interested in. We will use $\langle a, b, c \rangle$ to compute $z$. \\
+
+% Step 5
+In Line $5$, we simulate a noiseless channel over the noisy channel using error correction codes. We have used the noise of the channel to construct $c$. After this, we have no more use of the noise in the channel. \\
+
+$A$ sends $(x_A + a_A)$ and $(y_A + b_A)$ to $B$. $B$ sends $(x_B + a_B), (y_B + b_B)$ to $A$. Here $a_A, a_B, b_A$, and $b_B$ function as one-time-pads since they are random bits. Hence, they prevent $A$ from getting information about $x_B$ and $y_B$, and prevent $B$ from getting information about $x_A$ and $y_A$.
+
+% Step 6
+Using the shared information, both $A$ and $B$ can now compute $X = (x_A + a_A) + (x_B + a_B)$ and $Y = (y_A + b_A) + (y_B + b_B)$. These will be used to construct $z_a$ and $z_b$ such that $z = z_a + z_b = x \cdot y$.
+
+\begin{align*}
+x &= x_a + x_b \\
+X &= x_a + a_a + x_b + a_b \\
+\text{Hence, } x &= X + (a_a + a_b) \\
+\text{Similarly, } y &= Y + (b_a + b_b) 
+\end{align*}
+  
+Let us compute $x \cdot y$.
+
+\begin{align*}
+x  \cdot y &= (X + (a_a + a_b)) \cdot (Y + (b_a + b_b)) \\
+&= (XY) + X(b_a + b_b) + (a_a + a_b)Y +  (a_a + a_b) (b_a + b_b) \\
+&= (XY) + X(b_a + b_b) + (a_a + a_b)Y +  \underline{a \cdot b} \\
+&= (XY) + X(b_a + b_b) + (a_a + a_b)Y +  \underline{c} \\
+&= (XY) + X(b_a + b_b) + (a_a + a_b)Y +  \underline{(c_a + c_b)}
+\end{align*}
+
+$A$ defines $z_a = XY + X b_a + a_a Y + c_a$. $B$ defines $z_b = X b_b + a_b Y + c_b$. Both $A$ and $B$ are using locally available bits, along with the globally known $X$ and $Y$. We see that $x \cdot y = z_a + z_b = z$.
+
+\section{Relaxing the channel noise constraints}
+Suppose that in each block of four, at most two of the bits can get flipped. This is reasonable because the overall number of bits flipped can be at most half for any channel over which communication is possible. We will relax this assumption later.\\
+
+We now give a protocol for detecting if the number of bits flipped is odd or even. This is sufficient to detect whether the number of bits flipped is one under the assumption that at most two bits are flipped.\\
+
+$A$ and $B$ compute and publish $\sum r_i$ and $\sum s_i$, respectively. $A$ and $B$ compute $p = (\sum r_i + \sum s_i)$. $p$ will be $1$ if an odd number of bits are toggled. Given our assumption that at most $2$ bits are toggled, if $p$ is $1$, then the number of bits toggled is $1$. Both $A$ and $B$ know $p$. If $p$ is not $1$, then we restart the protocol until our constraint on the channel is satisfied, i.e. until we have $p = 1$.
+
+\subsection{Relaxing the constraint on local noise}
+Let us suppose that there is no constraint on the number of bits that can be toggled. If $0, 2$ or $4$ bits are toggled, then $p$ will be $0$ and the protocol will be restarted. Hence, we need only worry about the case when $p = 3$. We repeat this protocol $n$ times with $p$ being $1$ or $3$ in each of the iterations. (we restart if $p$ is not $1$ or $3$.) The answers can be wrong only in the cases where $p = 3$. \\
+
+Recall that in a distributed computation, if there are $n$ nodes and less than $n/3$ of them are actively disruptive, we can still perform the computation. In this case, we consider the iterations where the answer can be wrong to be analogous to disruptive nodes in the distributed computation. Therefore, if the number of iterations where $p = 3$ is less than $n/3$, then we can perform correct computation. \\
+
+This is also a reasonable assumption because it is quite pathalogical for the noise to be clumped locally and flip exactly $3$ bits in many $4$-bit windows when the overall average is at most $2$ bits per $4$-bit window.
+
+\subsection{Further relaxation using distillation}
+We now further relax the channel noise. We will show that it is sufficient for the number of iterations where $p = 1$ to be greater than the number of iterations where $p = 3$.\\
+
+TODO: Find out how to do this.
+
+\subsection{Conjecture: Buggy software is more secure than bug free software}
+
+In this situation, we exploited the unpredictable nature of the noise to achieve secure computation over the noisy channel. However, we conjecture that we can achieve the same result by considering other sources of unpredictability. For example, we could use race conditions as a source of unpredictability to perform this protocol over. \\
+
+However, this is definitely not a "free lunch" theorem. We use the unpredictability in controlled ways. In particular, we need a way to turn it on or off -- recall that we disable the noise in the later parts of the algorithm by employing an error correction code.
+
+\subsection{Future work}
+Certain obvious directions of extension are to consider larger window sizes than just 4. With larger window sizes, we can pick larger $T$ matrices that allow us to perform multi-gate operations. However, this ability will be offset by a harder analysis on the error-detection side. The use of the parity bit $p$ will need to be generalised for higher window width variants. \\
+
+We could also try to perform this over $GF_{p^n}$ rather than $GF_{2}$. In this case, each element of the field itself takes up $\log p^n$ space, and therefore local spikes in noise would need to be much stronger to disrupt the protocol. \\
+
+Lastly, we would like to axiomatise precisely what sources of unpredictability can be used with this algorithm.

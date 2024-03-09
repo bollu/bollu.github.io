@@ -1,0 +1,69 @@
+\chapter{Problems, Solutions, and Resources}
+
+\section{Problems}
+Alphabet set is finite, call it $\Sigma$. Strings must be finite length.
+
+Given some input, and a computer that produces some output, the description
+could be infinite --- both input and output.
+
+However, the machine's \textit{description} (aka, the relationship between
+input and output) must be finite.
+
+So, the \textit{total input} can be infinite, but the input chunk must be
+finite, and the response of the machine per \textit{input chunk} must be finite.
+
+So, we can just use the language $L= \{0, 1\}$ for the machine.
+
+Problems which have yes/no as answers are called decision problems.
+Inputs are from $\Sigma^{*}$, outputs are from $\{0, 1\}$. The problem is a
+mapping $f: \Sigma^{*} \to \{0, 1\}$. This is equivalent to providing the set
+$\texttt{ACCEPT} \subset \Sigma^{*} = f^{-1}(1)$. Note that $\texttt{REJECT} =
+\texttt{ACCEPT}^c$. The set $\texttt{ACCEPT}$ is called a language.
+
+Now, we can study languages by looking at their grammars (welcome, Chomsky).
+
+What about fractional bit problems? Is this useful? Could we exploit some
+properties of fractional dimension?
+
+\subsubsection{Cantor set}
+take $S_0 = [0, 1]$ In each iteration, remove the middle one-third of each
+continuous interval. Therefore,
+\begin{itemize}
+\item $S_0 = [0, 1]$
+\item $S_1 = [0, \frac{1}{3}] \cup [\frac{2}{3}, 1]$
+\end{itemize}
+
+In $S_\infty$, \textit{uncountably infinite} points remain (However, this
+set has \textit{measure $0$}).
+
+So now, the question is, what is the dimension? We define Haussdorf dimension, 
+and use this to exhibit fractional dimension of the Cantor set.
+
+\texttt{TODO: fill this up!}
+
+The total number of problems that can exist is $powerset(\Sigma^*)$.
+$\texttt{RE}$ (recursively enumerable) Is a subset of $powerset(\Sigma^*)$
+which computers can handle. The annoying thing is that there are \textit{finite
+length problems} which computers cannot solve.
+
+\subsection{Kannan}
+If the universe is a machine, then it must have infinite description.
+
+QM is the meeting point of universes?
+
+\section{Solutions}
+
+\subsection{Kannan}
+\textbf{Question:} We study a lot of Science --- why? What is the ultimate goal
+of science? Equivalently, what is the theory of everything we need to find
+to halt on the journey of Science?
+
+Assuming Science = God, we need to ask Science a question. Which language
+will we use to query Science? Or, well, which language is \textit{enough} to
+query Science? If the query alphabet is $\Sigma$, we can ask $\Sigma^*$ questions.
+However, we can only reasonably pose questions of finite length (even though the
+Science oracle can answer questions of infinite length).
+
+In this case, have we achieved te ultimate goal of science?
+
+\section{Resources}

@@ -1,0 +1,171 @@
+\chapter{Quantum Entropy}
+
+\section{Quantum relative entropy}
+$$S(\rho || \sigma) \equiv \Tr(\rho \log \rho) - \Tr (\rho \log \sigma)$$
+
+This is a meaausre of entanglement.
+$$\varepsilon(\rho) = \min_{delta} S(\rho ||\delta)$$
+
+We will now prove that this value is always non negative.
+$S(\rho || \sigma) \geq 0$.
+
+\begin{align*}
+&\rho = \sum_i p_i \ket{i} \bra{i} \quad \sigma = \sum_j q_j \ket{j} \bra{j} \\
+&S(\rho || \sigma) = Tr(\rho \log \rho) - \Tr(\rho \log \sigma) = \sum_i p_i \log p_i - \sum_i \bra{i} \rho \log \sigma \ket{i} \\
+&\text{Notice that $\bra{i} \rho = p_i \bra{i}$. Substituting,} \\
+&\bra{i} \log \sigma \ket{i} = p_i \bra{i} \log \sigma \ket{i} = \bra{i} \l( \sum_j \log(q_j) \ket{j}\bra{j} \r) \ket{i} =
+\sum_j \log q_j \bra{i}\ket{j} \bra{j}\ket{i} \\
+&\text{Let $P_{ij} \equiv\bra{i}\ket{j} \bra{j}\ket{i}$} \\
+&S(\rho || \sigma) = \sum_i p_i \log p_i - \sum_i p_i \bra{i} \rho \log \sigma \ket{i} 
+= \sum_i p_i \l(\log p_i - \sum_j \log q_j P_{ij} \r) \\
+&\text{Since $\log(\cdot)$ is a concave function,} \\
+&-\sum_j P_{ij} \log q_j \geq - \log r_i \quad \text{where $r_i \equiv \sum_j P_{ij} q_j$}\\
+&S(\rho || \sigma) = \sum p_i \l( \log p_i - \sum_j P_{ij} \log q_j \r) \geq
+\sum_i p_i \l( \log p_i - \log r_i \r) = H(p_i || r_i)
+\end{align*}
+
+Note that $H(p_i || r_i) = 0 \iff \forall i, ~p_i = r_i $
+
+\begin{itemize}
+\item The entropy is non-negative. It is 0 iff the state is pure.
+\item In a $d$ dimensional hilbert space, the entropy is at most $\log d$
+\item The entropy is $\log d$ when the system is completely mixed. That is,
+$I / d$. (\emph{white noise})
+\item For a composite system $AB$, $S(A) = S(B)$
+\item $S(\sum_i p_i \rho_i) = H(p_i) = \sum_i p_i S(rho_i)$
+\item Suppose $p_i$ are the probabilities for $\{ \ket{i} \}$, and $\rho_i$ are
+any density operators of system $B$. $S(\sum_i p_i \ket{i}\bra{i} \otimes \rho_i) = H(p_i) + \sum_i p_i S(\rho_i)$
+\end{itemize}
+
+\begin{align*}
+&S(\rho || I/d) = -S(\rho) -tr(\rho \log(I/d)) \geq 0 \\
+& -S \rho -\log(1/d) \tr \rho \geq 0 \\
+&-S(\rho) + \log d \geq 0 \\
+&S(\rho) \leq \log(d)
+\end{align*}
+
+Let $\lambda_i^d$ and $\ket{e_i^d}$ be the eigenvalues and eigenvectors of $\rho_i$.
+Observe that $p_i \lambda_i^j$ and $\ket{e_i^j}$ are eigenvalues and 
+eigenvectors of $\sum_i p_i \rho_i$. 
+
+\begin{align*}
+S \l(\sum_i p_i \rho_i\r) &= \sum_{ij} p_{i} \lambda_{i}^j \log \l( p_i \lambda_i^j \r) \\
+&= - \sum_i p_i \log p_i + \sum p_i (-sum_j \lambda_i^j log \lambda_i^j \\
+&= H(p_i) + \sum p_i S(\rho_i)
+\end{align*}
+
+\chapter{Locality}
+
+$\ket{\psi} = \frac{1}{\sqrt2} \l( \ket{01}_{AB} - ket{10}_{AB} \r)$
+
+Ontological model: Something in the background which is controlling stuff that
+goes on in the foreground. Einstein was convinced that there are some hidden
+variables in the ontological model which give rise to quantum weirdness.
+Particularly, there is a \emph{hidden variable} $\lambda$. It is an unknown 
+variable that is present to describe $\psi$, but we are unable to measure /
+access it. That is, our state is $\ket{\psi(x, \lambda)}$
+
+Any local, realistic, hidden variable model can be shown to satisfy an
+inequality which at first glance seems absurd. However, it was later shown
+experimentally that QM does not satisfy this inequality.
+QM can also be explained with a non-local, deterministic, hidden variable
+theory (pilot wave theory). (Note to self: Go read the axioms sometime).
+
+Any local realistic model will have $(lhs \leq 2)$. Quantum mechanics can
+hit $(lhs = 2 \sqrt 2)$. The inequality by construction can go up to $4$.
+There are stronger correlations (example, PR-box) which can hit $4$.
+
+There is a polytope (no signalling polytope) in which PR-box is a vertex.
+
+\section{Bell's inequality}
+
+\begin{minted}{text}
+A <-C-> B
+\end{minted}
+
+Bell's inequality has nothing to do with QM. It is a purely mathematical
+construction that is \emph{independent} of QM.
+
+Imagine Alice recieves her particle and does a measurement on it. Imagine that
+she has two different measurement apparatus, and she chooses to perform one
+of the two different measurements ($P_Q$ and $P_R$). Bob has two measurements
+as well, and he can perform one of the measurements ($P_S$ and $P_T$).
+The measurements to be done are chosen with uniform probability $1/2$.
+
+To make things simple, let the measurement outcomes be $+1, -1$.
+
+\paragraph{Reality}
+$Q, R, S, T$ are objective values of the particle. That is, these values exist
+independent of measurement
+
+\paragraph{Locality}
+Any action performed by Alice cannot affect measurements performed by Bob.
+
+\paragraph{The Inequality}
+Now consider the function $QS + RS + RT - QT = (R + Q)S + (R - Q)T$. 
+Note that each of $Q, R, S, T$ can be $\pm 1$. Hence, the maximum value
+it can reach is $2$ (TODO: prove).
+
+$P(q, r, s, t)$ is the probability of $(Q=q, R=r, S=s, T=t)$.
+$\E{QS + RS + RT - QT} = \E{QS} + \E{RS} + \E{RT} - \E{QT} \leq 2$.
+
+
+Now, for the QM side of the story. 
+
+\begin{align*}
+    &\ket{\psi} = \frac{\ket{01} - \ket{10}}{\sqrt 2} \quad
+    Q = Z_1 \quad R = X_1 \quad S = \frac{-Z_2 -X_2}{\sqrt 2} \quad T = \frac{Z_2 - X_2}{\sqrt 2} \\
+    & \E{QS + RS + RT - QT} = 2 \sqrt 2
+\end{align*}
+
+This clearly violates bell's inequality. So, we ned to lose either reality or
+locality in QM (and understand which one is lost).
+
+\section{Measures of Entangelement}
+Consider a state in superposition $(\alpha \ket{0} + \beta \ket{1})$. If a state
+$\psi \neq \ket{\phi_1} \otimes \ket{\phi_2} \forall \phi_1, \phi_2$, then $\psi$ is entangled.
+
+For mixed state, $\rho \geq 0$, $\Tr(r) = 1$. We have the inequality that
+$\Tr(\rho^2) = 1$ for a pure state, and $\Tr(\rho^2) < 1 $ for a mixed state.
+
+Let $\l( \rho \neq \sum_i p_i \rho_i^A \otimes \rho_i^B \r)$ where the $\rho_i$ are
+pure states. So now the question is, how do we detect if such a $\rho$ contain
+entanglement. Let the states have dimensionality $d_a$ and $d_b$. 
+
+\section{Detecting Entanglement}
+
+\subsection{PPT criteria (Positive Partial Transposition)}
+$\rho_{AB} \rightarrow \rho_{AB}^{T_{A(B)}}$.
+$T_{A(B)}\l( \ket{pq}\bra{xy} \r) \equiv \ket{xq}\bra{py}$.  If it remains
+a density matrix which is positive, then it is called PPT. If it 
+is not positive, then it is called NPT, and is known to be entangled (sufficient).
+The condition is necessary and sufficient for dimensions $2 \otimes 2$, $2 \otimes 3$.
+The intuition is that when we perform transposition for these dimensions, we will
+always get negative eigenvalues. 
+
+Note that this is not physically realisable. It is physically realised by
+adding white noise. This is called structural physical approximation.
+It then becomes a complete positive map. (TODO: what are
+the definitions of these words?)
+
+\subsection{Entanglement Witness}
+The Hahn-banach theorem states that for any convex, compact set and a given point,
+either the point lies within the set, or one can construct a hyperplane which
+separates the set from the point. (We only need to invoke Hahn banach 
+in the infinite dimensional case. For the finite dimensional case, Farkas
+lemma works)
+
+\section{Quantification of Entanglement}
+A function $Q: M(\mathbb{C}) \to \R$ is said to be an entanglement quantifier iff:
+\begin{itemize}
+    \item For separable states $\rho$, $Q(\rho) = 0$.
+    \item Constant under local unitary: $Q(LU (\rho)) = Q(\rho)$
+    \item Under LOCC, $Q(LOCC(\rho)) \leq Q(\rho)$
+    \item (Desirable) Convex under classical mixing: $Q\l(\sum_i p_i \rho_i\r) \leq \sum_i p_i Q(\rho_i)$.
+        That is, states can lose entanglement under classical mixing.
+    \item (Desirable) Additive: $Q(\rho \otimes \sigma) = Q(\rho) + Q(\sigma)$
+    \item (Desirable) Continuity: $\lim_{n \to \infty} \bra{\psi^{\otimes n}} \rho^{\otimes n} \ket{\psi^{\otimes n}} \rightarrow 1$
+\end{itemize}
+
+
+

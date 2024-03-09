@@ -1,0 +1,390 @@
+% // https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
+\documentclass[5pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{listing}
+\usepackage{comment}
+\usepackage{dirtytalk}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+
+%\newcommand{\NP}{\texttt{NP}}
+%\newcommand{\PSPACE}{\texttt{PSPACE}}
+%\newcommand{\NPSPACE}{\texttt{NPSPACE}}
+%\newcommand{\TQBF}{\texttt{TQBF}}
+
+\newcommand{\nptime}{\texttt{NP}}
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\dspace}{\texttt{DPSACE}}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
+\newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
+\newcommand{\rp}{\texttt{RP} }
+\newcommand{\corp}{\texttt{co-RP} }
+\newcommand{\zp}{\texttt{ZP} }
+\newcommand{\maxsat}{\texttt{MAXSAT} }
+\newcommand{\ilp}{\texttt{ILP} }
+\DeclareMathOperator{\shape}{dim}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{proof}[theorem]{Proof}
+
+\newcommand{\ip}{\texttt{IP} }
+\newcommand{\lp}{\texttt{LP}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+\title{Critical thinking}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Propositions and Arguments}
+\begin{definition}
+    Logic is the study of the methods and principles used to distinguish 
+    correct from incorrect reasoning.
+\end{definition}
+
+\begin{definition}
+    A proposition asserts that something is the case or it asserts that 
+    something is not.
+\end{definition}
+
+Questions, commands, and exclamations -- unlike propositions -- are neither 
+true nor false.
+
+The term statement is not an exact synonym of proposition, but it is often used
+in logic in much the same sense. Some logicians prefer statement to proposition,
+although the latter has been more commonly used in the history of logic. Other
+logicians eschew both terms as metaphysical, using only the term sentence.
+
+Propositions can be simple and compound.
+
+\begin{itemize}
+    \item \textit{Conjunctive proposition}: I am a beatboxer and a computer 
+        scientist. (AND)
+
+    \item \textit{Disjunctive proposition}: You can have a scotch or take a 
+        hike. (OR)
+
+    \item \textit{Hypothetical proposition}: If God did not exist, it would be 
+        necessary to invent him.
+\end{itemize}
+
+\begin{definition}
+    An argument affirms one proposition, conditioned upon the truth of others.
+    The proposition that the argument affirms is called the conclusion and the
+    propositions upon which the affirmation of the conclusion depends are called 
+    premises, or collectively, the inference.
+\end{definition}
+
+Conclusion indicators: therefore, thus, hence, so, accordingly, in consequence,
+consequently, proves that, as a result, etc.
+
+Premise indicators: since, because, for, as, follows from, as shown by, etc.
+
+Context is important in understanding arguments. (Duh)
+
+\textbf{Note: Rhetorical questions can serve as premises. Arguments that depend 
+on rhetorical questions are always suspect. Because the question is neither true 
+nor false, it may be serving as a device to suggest the truth of some proposition 
+while avoiding responsibility for asserting it. (Presumption fallacy: plurium 
+interrogatium)}
+
+Premises may be considered implicit if they are commonly accepted knowledge.
+
+Explanations look like arguments (same indicators) but are not. (Duh) Figuring 
+out which can be iffy.
+
+\begin{definition}
+    A deductive argument makes the claim that its conclusion is supported by its
+    premises conclusively.
+\end{definition}
+
+\begin{definition}
+    Inductive arguments are usually based on repeated observation of a phenomenon.
+\end{definition}
+
+\begin{definition}
+    A deductive argument is said to be valid if the claim made by the premises 
+    (if true) provide incontrovertible grounds for the assertion of the 
+    conclusion. 
+\end{definition}
+
+Examples of validity:
+
+\begin{enumerate}
+    \item Valid, true inference and conclusion: All mammals have lungs. All whales 
+        are mammals. Therefore all whales have lungs.
+    \item Valid, false inference and conclusion: If I owned all the gold in Fort Knox, 
+        then I would be wealthy. I do not own all the gold in Fort Knox. Therefore I 
+        am not wealthy.
+    \item Invalid, true inference, false conclusion: If Bill Gates owned all the gold 
+        in Fort Knox, then Bill Gates would be wealthy. Bill Gates does not own all 
+        the gold in Fort Knox. Therefore Bill Gates is not wealthy.
+    \item Valid, false inference, true conclusion: All fishes are mammals. All whales 
+        are fishes. Therefore all whales are mammals.
+    \item Invalid, false inference, true conclusion: All mammals have wings. All whales 
+        have wings. Therefore all whales are mammals.
+    \item Invalid, false inference and conclusion: All mammals have wings. All whales 
+        have wings. Therefore all mammals are whales.
+\end{enumerate}
+
+
+
+
+\begin{definition}
+    Retrograde analysis: Reasoning that seeks to explain how things
+    must have developed from things that have happened before.
+\end{definition}
+
+\section{Definitions}
+\begin{definition}
+    Definiendum: The word or symbol being defined
+\end{definition}
+
+\begin{definition}
+    Definiens: A symbol or group of symbols that have the same definition
+    as the Definiendum
+\end{definition}
+
+\begin{definition}
+    Ambiguity: A term is ambiguous \textbf{in a given context} when it
+    has more than one distinct meaning, and the context does not make clear
+    what is intended.
+\end{definition}
+
+\begin{definition}
+    Vagueness: A term is vague, when there are borderline cases where the
+    term may or may not apply.
+\end{definition}
+
+\subsection{Types of definitions --- (5)}
+\texttt{S(tipulative)L(exical)IT(theoretical) P(precising)P(ersuasive)}
+
+\begin{itemize}
+    \item \textbf{Stipulative definition}: A new definition where some meaning is
+        arbitrarily defined. Such a definition cannot be correct or incorrect.
+        Eg. Zetta has been stipulatively defined to mean $10^{12}$.
+    \item \textbf{Lexical definition}: Reports the meaning that the Definiendum
+        already has. The report maybe correct or incorrect, so such a definition
+        maybe true or false.
+    \item \textbf{Precising definition}: A definition used to eliminate 
+        vagueness or ambiguity.
+
+        It reports on a word that already exists, but it makes the known
+        meaning more precise. It could increase the precision by stipulating,
+        but the purpose of this stipulation is to \textit{improve a pre-existing}
+        meaning.
+
+    \item \textbf{Theoretical definition}: A definition that encapsulates
+        an understanding of the theory in which the term is a key element.
+    \item \textbf{Persuasive definition}: A definition used to resolve
+        disputes  by influencing attitudes and stirring emotion. Often
+        uses emotive language.
+\end{itemize}
+
+\section{Intention and extension}
+\begin{definition} Extension: The set of all objects to which a term
+    may be applied. $$extention(P) \equiv \{ x ~|~\forall x \in universe, ~P(x) \}$$
+\end{definition}
+
+\begin{definition} Intension: The attributes shared by all and only the objects
+    in the class the term denotes. Or, the connotation of the term.
+
+    $$intension(P) \equiv \bigcap_{\forall x \in extension(P)} attribs(x) $$
+\end{definition}
+
+\paragraph{The equilateral triangle example} 
+Consider equi-\textbf{angular} triangle,
+whose intention is different from equi-\textbf{lateral} triangle.
+
+Both of these have the same \textit{extension} (since the sets are the
+same), but have different \textit{intentions}.
+
+\section{Extension and denotative definitions}
+Means of defining extensive terms:
+\begin{definition}Denotative definition: A definition that identifies
+    the extention of a term, by (for eg.) listing the members
+    of the definition. An extensive definition
+\end{definition}
+
+
+\begin{definition}Ostensive definition: A denotative definition, where
+    the definition is made by pointing.
+
+    For example, the word desk means \textit{this}.
+\end{definition}
+
+\begin{definition}Quasi Ostensive definition:
+    Example: the desk is means \textit{this} article of furniture. This
+    presupposes the meaning of \textit{article of furniture}.
+\end{definition}
+
+\section{Intention and Intensional Definitions}
+\subsection{Types of intentional definitions}
+\begin{definition}Subjective intension: Set of all attributes speaker
+    believes are posessed by objects denoted by that word
+\end{definition}
+
+\begin{definition}Objective intension: Total set of characteristics
+    shared by all objects in the word's extension
+\end{definition}
+
+\begin{definition}
+    Conventional intension: Commonly accepted intension of a term; 
+\end{definition}
+
+\subsection{Techniques for creating intensional definitions}
+\begin{definition}Synonymous definition: A word, phrase, etc. is defined
+    in terms of another
+\end{definition}
+
+\begin{definition}Operational definition: Defined by means of operations.
+    Example: length can be defined by the measuring procedure.
+\end{definition}
+
+\begin{definition}Definitions by genus and difference (Analytical definitions):
+    Class whose membership is divided: \textbf{genus}. Subclasses: \textbf{species}.
+\end{definition}
+
+\section{Fallacies}
+\subsection{Fallacies of relevance - 8} 
+\texttt{A3 MARS --- Appeal to {logic, emotion, force}, Missingthepoint-Adhomenim-Redherrring-Strawman}
+\begin{itemize}
+    \item \textbf{Appeal to populace}: Appeal to people's emotions. Eg. speeches
+        by fascist leaders.
+    \item \textbf{Appeal to emotion}: Appeal to base emotions such as pity.
+    \item \textbf{Red herring}: Distract from the actual argument with a
+        \textit{deliberately misleading trail}. Etymology: People who used to
+        try and save foxes from being hunted by leaving a smoked herring, which
+        confuses dogs, and also turns red.
+    \item \textbf{Strawman}: Misconstrue argument to make it seem weaker
+        than it actually is, and then defeat the weakened argument.
+    \item \textbf{Ad homenim --- abusive type (Argument against the person)}: Attack moral character
+        of person. 
+    \item \textbf{Ad homenim --- circumstantial type}: Attacking someone's argument
+        based on their \textit{circumstance}. Eg. calling a non-vegeterian who
+        argues for reduced meat consumption a hypocrite. This does not reduce the
+        validity of the argument at all.
+    \item \textbf{Appeal to force}: Appeal to threats to coerce the other
+        person to accept your argument.
+    \item \textbf{Missing the point}: One attacks a different thesis than
+        the one the interlocutor was advancing.
+
+\end{itemize}
+\subsection{Fallacies of defective induction - (4)}
+\texttt{IGNORE AUTHORITY CA(use) GE(generalization)}
+\begin{itemize}
+    \item \textbf{Argument from ignorance}: Arguing that just because something
+        is not \emph{proven} true, it \textit{must be} false, or the converse.
+    \item \textbf{Appeal to inappropriate authority}: Appeal to the authority
+        of someone who is not an authority on the subject at hand. 
+
+        Example: Invoking Picasso on a discussion about economics.
+
+    \item \textbf{False cause}: Arguing for a cause-and-effect relationship
+        where none exists. Eg. you fell sick because of the bees this time
+        of year.
+
+    \item \textbf{Hasty Generalization}: Performing induction from a very
+        small sample size.
+\end{itemize}
+
+\subsection{Fallacies of presumption - (3)}
+\texttt{A(ccident) B(egging the question) C(omplex question)}
+These come from presuming unjustified assumptions.
+\begin{itemize}
+    \item \textbf{Accident}: Assuming a generalization applies to all concrete
+        cases. 
+
+        Example: It is wrong to steal. We can create corner cases such as 
+        \say{what if the person was hungry}? This falls under accident.
+
+    \item \textbf{Complex question}: Constructing a loaded question where
+        refuting a part of the question implicitly provides truth to another
+        part, which was unintended.
+
+        Example: \say{With all of the hysteria, all of the fear, all of the
+        phony science, could it be that man-made global warming is the greatest
+    hoax ever perpetrated on the American people?}
+
+    \item \textbf{Begging the question}: Assuming the conclusion in the 
+        supposition.
+
+        Example: \say{There is no such thing as knowledge which cannot be
+        carried into practice, for such knowledge is really no knowledge at
+        all.}
+\end{itemize}
+
+
+\end{document}
+

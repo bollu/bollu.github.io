@@ -1,0 +1,134 @@
+\chapter{Quantum Secret Key Establishment}
+
+\section{Three Polarizers Experiment}
+
+Photon is a single Qubit system: Vector in $\mathbb{C}^2$
+
+$|\psi> = a |0> + b|1>, a, b \in C$
+
+Normalized, such that $|a|^2 + |b|^2 = 1$.
+
+
+Postulates of QM:
+\begin{itemize}
+    \item For any system, there is a state vector in Hilbert space.
+    \item Measurement postulate: If we measure a qubit, then with probablibity of $|a|^2$, we get $|0>$, with probablibity of $|b|^2$, we get $|1>$.
+        After measurement, things collapse to one of the measured values
+    \item  Evolution postulate: Will evolve according to schrodinger / unitary transformation
+\end{itemize}
+
+
+\section Quantum Key exchange
+
+$A$, $B$. Have two channels, classical and quantum.
+$E_{(ve)}$ is eavesdropping on both channels.
+
+
+\begin{align*}
+\ket{+} = \frac{\ket{0} + \ket{1}} {\sqrt(2)}
+\ket{-} = \frac{\ket{0} - \ket{1}} {\sqrt(2)}
+\end{align*}
+
+Step 1: $A$ chooses to encode $0$ as either $\ket{0}$ or as $\ket{+}$
+$A$ chooses to encode $1$ as either $\ket{0}$ or as $\ket{-}$
+
+
+Consider a stream of random bits: $r_0, r_1, \dots, r_n$, $s_0, s_1, \dots s_n$
+
+$r_i$ is the value we encode. $s_i$ dictates how we encode $r_i$.
+
+$r_i = 0, s_i = 0$, then we sent $\ket{0}$.
+$r_i = 0, s_i = 1$, then we sent $\ket{+}$.
+Et cetra.
+
+
+$A$ encodes $r_i$ with respect to $s_i$ and sends the qubits to bob.
+So, $n$ qubits have been sent. All the qubits can be eavesdropped by $E$.
+
+
+
+Step 2: $B$ receives these qubits and measures them in one of the two bases
+\textit{at random}. (either 01 or plus-minus). $B$ records the answers.
+
+$B$'s choice of basis will be governed by random bits $s_1', s_2', \dots s_n'$
+Let the answers on measuring in the $s_i$ basis be $r_1', r_2', \dots r_n'$. 
+
+
+Note that if $s_i = s_i'$, then $r_i = r_i'$. If $s_i \neq s_i'$, then
+$r_i = r_i'$ with $0.5$ probability.
+
+
+
+Step 3: $A$ and $B$ publish the $s_i$, $s_i'$. (publish measurement basis info)
+Ignore all indeces where $s_i \neq s_i'$. So, from now on, we will consider
+the index set $I_{eq} = { i \in [1\dots n] \vert  s_i = s_i' }$
+
+Analyzing Eve: Eve has a $s_i''$ that is used to measure the channel.
+When $s_i = s_i'$, but $s_i'' \neq s_i$ (that is, Eve is measuring using a 
+different basis from $A$ and $B$).
+
+Assume WLOG that $A$ and $B$ are using the 01 basis. Now, if Eve measures
+using +- basis, then the original $\ket{0}$ or $\ket{1}$ will now become
+$\ket{+}$ or $\ket{-}$.
+
+So now, when Bob measures, he will only \textit{get the original with 0.5 probability!}
+
+We can detect the presence of someone who is intercepting the channel
+with this principle.
+
+
+So, there will be ~25 percent chance that $s_i \neq s_i'$ when $r_i = r_i'$, if
+Eve is eavesdropping. If not, then $s_i \neq s_i' \implies r_i \neq r_i'$.
+
+Step 4: Randomly sample some subset of the $r_j$ for those indeces with $s_j = s_j'$.
+If eavesdropper did not exist, then all the $r_j$  will match. If eavesdropper
+exists, then some values will be mismatched.
+
+This will let us \textit{detect} the presence of an eavesdropper.
+
+So now, if the eavesdropper is not there, the rest of the
+\textit{unpublished $r_k$'s} where $s_k = s_k'$ become
+our secret key. This is shared, since we know that this will not
+be corrupted, due to the lack of an eavesdropped. We also know that the
+values will be equal since we use the measurement basis ($s_k = s_k'$)
+
+
+\subsection{Why can't eve keep a copy of the qubits?}
+In theory, Eve could have tried to keep a copy of the qubits, and then measured
+once the $s_i$ have been published. However, no-cloning prevents this from happening.
+
+\section{Dealing with noise}
+
+On a noisy quantum channel, we will need to deal with the case that possibly
+$s_i = s_i'$, but $r_i \neq r_i'$.
+
+
+\section{Dealing with noise}
+
+On a noisy quantum channel, we will need to deal with the case that possibly
+$s_i = s_i'$, but $r_i \neq r_i'$. We can use classical error correction on
+the $r_i$'s to deal with this stuff. We do not go this analysis in the lecture.
+
+
+\section{Two qubit systems}
+
+four classical possible outcomes: $\ket{00}$, $\ket{01}$, $\ket{10}$, $\ket{11}$.
+Superposition of all four is allowed.
+
+$\ket{\psi} = a_{00} \ket{00} + a_{01} \ket{01} + a_{10} \ket{10} + a_{11} \ket{11}$.
+
+\section{$n$ qubit system}
+$n$ qubit system will have $2^n$ classical outcomes - we will need $2^n$ complex amplitudes.
+On the other hand, for am $n$ bit system, we will need, well, $n$ bits.
+
+\section{Why quantum computer?}
+
+Note that a quantum computer runs $2^n$ computations in parallel, samples one of
+them (by nature's choice), and deletes all $2^n - 1$ values.
+
+the argument is that, for a classical computer, even \textit{deleting}
+$2^n - 1$ values will take exponential time. However, we can at least
+exploit this "deleting" property.
+
+
+\end{document}

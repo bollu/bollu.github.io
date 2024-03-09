@@ -1,0 +1,160 @@
+\section{Public key crypto}
+
+Before Mid-1, we created a CCA-secure scheme.
+We assumed that the key $K$ is pre-shared between sender, receiver.
+
+Diffie Hellman key exchange.
+
+
+Can the key be made public, such that converting from public (encryption) key to the
+private (decryption) key is hard?
+
+So, we can publish an encryption key that is public, thereby allowing everyone to
+communicate with us.
+
+
+\subsection{Diffie Hellman SKE(Secret Key Exchange)}
+\begin{itemize}
+\item There is a group $G$ and a generator $g$ of $G$. Eg: $Z_p^x = <g>$. These are *public*.
+\item Alice chooses a random element $a \in G$. Alice sends $g^a$ to Bob.
+\item Eve is eavesdropping, all she can see is $g^a$.
+\item Bob chooses $b$, sends $g^b$ to Alice.
+\item Eve sees $g^b$, cannot find $b$.
+\item Key is $g^{ab} = g^a \cdot g^b$
+\item key for Eve is $g^{b^a}$ ($g^b$ came from Bob).
+\item Key for Bob is $g^{a^b}$ ($g^a$ came from Alice).
+\item Now, they both have the key, while an eavesdropper cannot find the key.
+\end{itemize}
+
+This is insecure if it is possible to get $g^{ab}$ from $g^a$, $g^b$. Even if discrete log is
+hard, there could be some way to use group structure to do this.
+
+This assumption is called 'CDH assumption': given $g^a, g^b$, computing $g^ab$ is hard.
+
+
+\subsection{Does this satisfy our need? Or, RSA}
+This solves key exchange, but not the way we wanted to. We wanted to *publish* the encryption key.
+
+\subsubsection{RSA}
+\begin{itemize}
+\item $p$ and $q$ are two *large* primes of nearly same length. (today, ~512 bits).
+  $n = p \cdot q$. $e \in [1..(p-1)]$, $(e, (p - 1)(q - 1)) = 1$
+  $d$ such that $ed = 1 mod (p - 1)(q - 1)$
+
+  Public key: $<N, e>$
+  Private key: $<p, q, d>$
+
+\item $Encryption(m) = m^e (mod N)$
+\item $Decryption(c) = c^d (mod N)$
+\end{itemize}
+
+\subsubsection{Correctness of RSA}
+\begin{align}
+  dec(enc(m)) &= \\
+  c^d(mod N) &= \\
+  (m^e)^d (mod N) &= \\
+  m^{ed} (mod N)
+  = m \text(since ed = (p - 1)(q - 1) = \phi(n))
+\end{align}
+
+\paragraph{$phi(N)$}
+$phi(N) = pq \text{(all numbers)} - q \text{(multiples of p)} - p \text{(multiples of q)} + 1 \text{(double subtraction of $N$)}$
+
+\paragraph{$a^\phi(n) = 1 (mod n)$}
+consider the set $S' = {i_1 a , i_2 a, i_3 a, i_\phi(n) a}$, $S = {i_1, i_2, ..., i_\phi(n)}$.
+Show that $S$ and $S'$ are permutations.
+QED. (TODO: how to box?)
+
+
+However, here, we don't publish the key.
+
+\paragraph{RSA assumption}
+
+Given Encrypted message $m^e (mod N)$, and the public key $<N, e>$ we cannot get $m$.
+
+
+\paragraph{Textbook RSA does not work}
+\begin{itemize}
+\item RSA is deterministic. Hence, we do not have CPA security.
+\item Small key, small N: If Key is small, then, for example, let $m^3 = N$. Now, we can compute cube root $m < \sqrt[3](N)$.
+\item Small key:  $c_1 = m^3 mod (N_1)$. $c_2 = m^3 mod (N_2)$. $c_3 = m^3 mod (N_3)$ We are multi-casting
+  this message to two people, both of whom have chosen $3$ as their exponent.
+  Use chinese remainder theorem. Find $m^3$ in $0 \leq m^3 \leq N_1N_2N_3$.
+\end{itemize}
+
+\paragraph{Chinese Remainder Theorem}
+
+Given a family of congruence equations $x = a_i (mod N_i)$, all $N_i, N_j, i \neq j$ are pairwise coprime,
+Then we can find $x \in N_1N_2N_3...N_k$.
+
+That is, there is a ring isomorphism:
+
+$Z/N_1Z x Z/N_2Z, Z/N_3Z x ... x Z/N_kZ ~= Z/(N_1N_2N_3 \cdots N_k)Z$
+
+Backwards is obvious, just take modulo $N_1, N_2, N_3, \cdots, N_k$.
+
+Simplest case:
+
+Assume $a_1 = 1$, all other $a_k = 0$. In this case we must set, $x = q.N_2N_3N_4..N_k$.
+Let $q = (N_2N_3..N_k)^{-1} (mod N_1)$. Hence, $a_1 = 1 (mod N_1)$. (since $q.N_2N_3N_4..N_k = 1$ (mod $N_1$)).
+Also, this number $x$ modulo any *other* $N_k, k \neq 1$ will be $0$ since $x$ is a multiple of that $N_k$.
+
+Similarly, the vector
+$[0, 1, 0, 0, ....0]$ = Let  $ Sol= Pi_{i = 1}^k N_i / N_2$. Now, the number we need is $x = Sol*(Sol^{-1}) (mod N_2)$.
+
+So, we can in generate construct our ``basis vectors'' $[1, 0, 0, ...], [0, 1, 0, 0, ..], [0, 0, 1, ...]$.
+So, write any number as:
+$a_1 [1, 0, 0, ...] + a_2 [0, 1, 0, ...] + a_3 [0, 0, 1, ...]$ (I am somewhat confused, how do we *find* $a_i$?)
+
+
+\subsection{PKCS v1.5 (Public Key standard)}
+We give a probabilistic version of RSA to give it CPA security. To encrypt a message $m$:
+
+\begin{itemize}
+\item $Enc(m) = (0000~0000~||~0000 0010~||~r$ (at least 8 bytes, $r \neq all-zeroes$) $||~0000~0000 || m)^e (mod N)$ (|| = concatenation.)
+\item We lose *at least* 11 bytes of performance. ($1 + 1 + (\geq 8) + 1$). If we fix length of $r$ to be $8$ (or some other constant),
+  then the scheme is insecure! (Homework assignment).
+\item for RSA, LSB is the hard core predicate. That is, it is hard to get LSB(x) given $x^e (mod N)$. The first 16 bits are very easy to get (apparently).
+  So, we standardise something in the first 16 bits. (WTF? Read the proof of this). The bits after that are right after (where $r$) sits is
+  also weaker than LSB. So, we keep the randomness in the weaker bits, and the *actual message* in the stronger bits (remember, LSB is hard!).
+\item 
+\item Dec(m)
+\end{itemize}
+
+Theoretical version of this is called $RSA-OAEP$. (OAEP = optimal asymmetric encryption padding).
+This has a proof in the random oracle model that $RSA-OAEP$ is secure. There is no such proof of $PKCS$.
+
+\subsection{El Gamal scheme}
+New public key scheme that is based on discrete log, but uses the public key template.
+Has a proof of CPA-security in the standard model.
+
+
+Let $G$ be a group. Let the message be an *element* of the group $m \in G$.
+Let $r \in G$, $r$ random. Let the cipher text $c = m \cdot r$. $c \in G$.
+
+We want $r$ to look like $g^{xy}$. We know from diffie-hellman that $g^xy$ cannot be found from
+$g^x, g^y$.
+
+Group $G$ is published. Generator $g$ is published ($G = <g>$), $|G|$ is public.
+There is a *secret element $x$*. We publish $g^x$.
+
+$PK = <G, g, |G|, h = g^x>$
+$SK = x$
+
+$Enc(m) = Choose y \in G. <g^y, h^y * m>$
+
+$Dec(g^y, h^y * m) = (g^x)^y * m = (g^{y^x}) * m$
+$m = h^y * m / (g^y)^x.$
+
+So, we can get $m$.
+
+We get $CPA$ security since it is probabilistic (choice of $y$ is probabilistic).
+
+
+\subsubsection{Homomorphic Encryption with El-Gamal}
+Note that El-Gamal is homomorphic WRT group operation.
+$<g^y1, h^y1 * m1>, <g^y2, h^y2 * m2>$. Then multiply pointwise. $<g^{y_1 + y_2}, h^{y_1 + y_2}*m_1*m_2>$. Hence, we have encrypted $m_1 * m_2$.
+
+
+
+

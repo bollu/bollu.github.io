@@ -1,0 +1,292 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{report}
+\usepackage{classicthesis}
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+\usepackage{color}% or xcolor
+\usepackage{quiver}
+\usepackage{changepage}
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\cC}{\cat{C}}
+\renewcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cCat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\cSet}{\cat{Set}}
+\newcommand{\cFin}{\cat{Fin}}
+\newcommand{\cCAT}{\cat{CAT}}
+\newcommand{\cTop}{\cat{Top}}
+\newcommand{\ctop}{\cat{Top}}
+\newcommand{\cgrp}{\cat{Grp}}
+\newcommand{\cGrp}{\cat{Grp}}
+\newcommand{\cCone}{\cat{Cone}}
+
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\renewcommand{\op}{\text{op}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+%\newcommand{\ant}[2]{\alpha : F \nt G} 
+%\newcommand{\bnt}[2]{\beta : F \nt G} 
+%\newcommand{\anti}[2]{\alpha : F \cong G} 
+%\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbbm{0}}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\two}{\mathbbm{2}}
+\newcommand{\three}{\mathbbm{3}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{id}}
+\newcommand{\colim}{\operatorname{colim}}
+
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+ 
+% \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\comma}{\downarrow}
+
+
+% \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Nat}{\ensuremath{\operatorname{Nat}}}
+\newcommand{\FinSet}{\texttt{FinSet}}
+\newcommand{\RMod}{\texttt{R-Mod}}
+\newcommand{\Set}{\texttt{Set}}
+\newcommand{\delay}{\ensuremath{\triangleright}}
+\newcommand{\into}{\ensuremath{\hookrightarrow}}
+\newcommand{\xinto}[1]{\ensuremath{\xhookrightarrow{#1}}}
+
+\title{Category theory}
+\author{Siddharth Bhat}
+\date{Oct 2022}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Sheaves in Geometry and Logic: Chapter 1}
+\begin{question}
+    Q2: Show that $\N \to \FinSet$ has no subobject classifier.
+\end{question}
+\begin{answer}
+    Key idea: Study $\Set^2$ (ie, pairs of sets connected by a morphism $S \xrightarrow{f} T$,
+    see that the subobject classifier is $\{T, \delay T, \delay^\infty T\} \to \{T, \delay \infty T\}$, which is to say, 
+    given $S \to T \subseteq X \to Y$, we have three kinds of elements in $s \in S$: those that are in $X$ ($T$),
+    those that will be in $X$, delayed by a step ($\delay T$), those that won't be in $X$, ie, those that
+    will be in $X$ after "infinite" time, given by $\delay \infty T$.
+
+    Thus, for each timestep we add, we will need one more delay. This will show us that the subobject classifier
+    would need an infinite number of steps in the case of $\N \to \FinSet$ to classify elements.
+
+    To concretely show an example, consider the family of sets $X_i$ to be the constant family $\{\star\} \to \{\star\} \to \dots$,
+    and consider a family of subobjects:
+    \begin{itemize}
+        \item $S_0 \equiv \{\star\} \to \{\star\} \to \{\star\} \dots$
+        \item $S_1 \equiv \emptyset \to\{\star\} \to \{\star\} \to \{\star\} \dots$
+        \item $S_2 \equiv \emptyset \to \emptyset \to \{\star\} \to \{\star\} \dots$
+    \end{itemize}
+
+    Note that these are infinitely many subobjects of $X$, which means for each of them, there must be a 
+    morphism $X \to \Omega$. But this is the cardinality of $|\Omega|^|\{\star\}| = |\Omega|$. But $\Omega$
+    is a finite set, and thus cannot be put in bijection with infinitely many subobjects! Thus, contradiction,
+    \FinSet{} has no subobject classifier
+\end{answer}
+
+\begin{answer}
+    There is some nice solution involving yoneda and ideals that I want to grok, because it seems more categorical:
+    Suppose $\Omega$ is the subobject classifier. Then let us investigate what $\Omega(0)$ is (ie, the first
+    set in the sequence that classifies $S \into X$. By yoneda, we have that $\Omega(0) \simeq \Nat_{\N \to \FinSet}(\Hom_\N(-, 0), \Omega)$.
+    Now, by the subobject classifier property, morphisms into $\Omega$ are the same as subobjects of $\Hom_\N(-, 0)$.
+
+    We can now see that $\Hom_\N(-, 0)$ has infinitely many subobjects from the argument above.
+\end{answer}
+
+\begin{question}
+    Q3: Prove that for a ring $R$, the category of left $R$ modules has no subobject classifier
+\end{question}
+\begin{answer}
+    Starting at the subobject classifier diagram will inform us that for a subobject $S \hookrightarrow{f} T$,
+    we will need to choose a characteristic map $T \xrightarrow{\xi_f} \Omega$ such that $ker(\xi_f) = \Omega$,
+    or said different, $T/ker(\xi_f) \simeq im(\xi_f) \subseteq \Omega$. This will allow us to make $\Omega$
+    as large as we want, therefore $\Omega$ cannot exist. 
+
+    More concretely, suppose $\Omega$ exists. Then consider the object $2^\Omega$ with trivial subobject $\{0\}$.
+    Then $T/ker(\xi_f) \simeq 2^\Omega/\{0\} \simeq 2^\Omega$. But then we cannot have $2^\Omega \subseteq \Omega$,
+    thus we are done.
+\end{answer}
+
+\begin{answer}
+    There is some nice solution involving yoneda and ideals that I want to grok, because it seems more categorical:
+    Suppose $\Omega$ is the subobject classifier. 
+
+    Consider the forgetful functor $U: \RMod \to \Set$.
+    See that $U$ is represented by $R$, ie, $U(-) \simeq \Hom(R, -)$. 
+
+    Why? Suppose we have $F: \Set \to \RMod$
+    left adjoint to $U: \RMod \to \Set$ This can follow by abstract
+    nonsense as follows: $U(-) \simeq \Hom_{\Set}(\{\star\}, U(-)) \simeq  \Hom_{\RMod}(F\{\star\}, -) \simeq \Hom{\RMod}(R, -)$,
+    where the first step follows by identifying elements with arrows from $\{\star\}$, and the second step follows by replacing
+    the adjunction with its mate. More concretely, Let $M$ be an $R$-module. We want to show that $U(M) \simeq \Hom(R, M)$.
+    For a given element $m \in M$, we can create a representaion map $rep(m): R \to M; r \mapsto r \cdot m$. On the other side,
+    given a map $f: R \to M$, we can produce an element $f(1_R) \in M.$ God willing, these are inverses, and we've 
+    established the theorem that $U(-) \simeq \Hom_{\RMod}(R, -)$.
+
+    Now, we see that $U(\Omega) \simeq \Hom(R, \Omega)$. But see that $\Hom(R, \Omega)$ is the collection of left ideals of $R$.
+    We should begin to suspect that there can't be a general subobject classifier, since there's no good module structure
+    on the collection of left ideals of a ring $R$.
+\end{answer}
+
+\begin{question}
+4. Show that if $C \simeq D$ are equivalent categories, prove that a subobject classifier for $C$ yields one for $D4$
+\end{question}
+
+
+\begin{question}
+4. Show that if $C \simeq D$ are equivalent categories, prove that cartesian closed for $C$ yields one for $D$.
+\end{question}
+
+\begin{question}
+    5. Consider the topos of $M$ sets for a monoid $M$. See that $\Hom(X, Y)$ is the set of equivariant maps from $X$ to $Y$.
+    Prove that the exponent $Y^X$ is the set $Hom(M \times X, Y)$ of equivariant maps from $M \times X$ to $Y$,
+    with the action given by $(e: M \cdot f: M \times X \to Y) \equiv \lambda (m, x). f(e \cdot m, x): M \times X \to Y$
+\end{question}
+\begin{answer}
+\end{answer}
+
+
+\chapter{Bart Jacobs: Chapter 1}
+\section{1.1: Fibered categories}
+\begin{definition}
+    A fibration is a functor $\pi: E \to B$, such that for every such diagram: 
+
+% https://q.uiver.app/?q=WzAsNSxbMiwxLCJiIl0sWzMsMSwiYiciXSxbMCwxLCJCIl0sWzMsMCwiZSciXSxbMCwwLCJFIl0sWzAsMSwiZiJdLFszLDEsIlxccGkiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+\[\begin{tikzcd}
+	E &&& {e'} \\
+	B && b & {b'}
+	\arrow["f", from=2-3, to=2-4]
+	\arrow["\pi"', two heads, from=1-4, to=2-4]
+\end{tikzcd}\]
+
+There is a morphism $\hat f: e \to e'$ where $e$ lies over $b$ (notice the similarity to a pullback square:)
+
+% https://q.uiver.app/?q=WzAsNixbMiwxLCJiIl0sWzMsMSwiYiciXSxbMCwxLCJCIl0sWzMsMCwiZSciXSxbMCwwLCJFIl0sWzIsMCwiXFxyZWQgZSJdLFswLDEsImYiXSxbMywxLCJcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsMywiXFxyZWR7XFxwaV57LTF9IGZ9Il0sWzUsMCwiXFxyZWQgXFxwaSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+    E && {\textcolor{red} e} & {e'} \\
+	B && b & {b'}
+	\arrow["f", from=2-3, to=2-4]
+	\arrow["\pi"', two heads, from=1-4, to=2-4]
+	\arrow["{\textcolor{red}{\hat f}}", from=1-3, to=1-4]
+	\arrow["{\textcolor{red} \pi}"', two heads, from=1-3, to=2-3]
+\end{tikzcd}\]
+
+Moreover, this morphism $\hat f$ is cartesian (sorta mimics the universal property of pullbacks).
+This means that for eveery thing in textcolor{green}:
+
+% https://q.uiver.app/?q=WzAsOCxbMiwyLCJiIl0sWzMsMiwiYiciXSxbMCwyLCJCIl0sWzMsMSwiZSciXSxbMCwxLCJFIl0sWzIsMSwiXFxyZWQgZSJdLFsxLDAsIlxcZ3JlZW57ZV8wfSJdLFsxLDEsIlxcZ3JlZW57Yl8wfSJdLFswLDEsImYiXSxbMywxLCJcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsMywiXFxoYXR7Zn0iXSxbNSwwLCJcXHJlZCBcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsMywiXFxncmVlbntofSA7IFxccGkoaCkgPSBnIFxcY2lyYyBmIiwwLHsiY3VydmUiOi0yfV0sWzcsMCwiXFxncmVlbntnfSIsMl0sWzYsNywiXFxncmVlbntcXHBpfSJdXQ==
+\[\begin{tikzcd}
+	& {\textcolor{green}{e_0}} \\
+	E & {\textcolor{green}{b_0}} & {\textcolor{red} e} & {e'} \\
+	B && b & {b'}
+	\arrow["f", from=3-3, to=3-4]
+	\arrow["\pi"', two heads, from=2-4, to=3-4]
+	\arrow["{\hat{f}}", from=2-3, to=2-4]
+	\arrow["{\textcolor{red} \pi}"', two heads, from=2-3, to=3-3]
+	\arrow["{\textcolor{green}{h} ; \pi(h) = g \circ f}", curve={height=-12pt}, from=1-2, to=2-4]
+	\arrow["{\textcolor{green}{g}}"', from=2-2, to=3-3]
+	\arrow["{\textcolor{green}{\pi}}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+We have a unique morphism in {\textcolor{orange}orange}:
+
+% https://q.uiver.app/?q=WzAsOCxbMywyLCJiIl0sWzQsMiwiYiciXSxbMCwyLCJCIl0sWzQsMSwiZSciXSxbMCwwLCJFIl0sWzMsMSwiXFxyZWQgZSJdLFsxLDAsIlxcZ3JlZW57ZV8wfSJdLFsxLDEsIlxcZ3JlZW57Yl8wfSJdLFswLDEsImYiXSxbMywxLCJcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsMywiXFxoYXR7Zn0iXSxbNSwwLCJcXHJlZCBcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsMywiXFxncmVlbntofSA7IFxccGkoaCkgPSBnIFxcY2lyYyBmIiwwLHsiY3VydmUiOi0yfV0sWzcsMCwiXFxncmVlbntnfSIsMl0sWzYsNywiXFxncmVlbntcXHBpfSJdLFs2LDUsIlxcb3Jhbmdle2t9OyBcXHBpKFxcb3JhbmdlIGspID0gXFxncmVlbiBnIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	E & {\textcolor{green}{e_0}} \\
+	& {\textcolor{green}{b_0}} && {\textcolor{red} e} & {e'} \\
+	B &&& b & {b'}
+	\arrow["f", from=3-4, to=3-5]
+	\arrow["\pi"', two heads, from=2-5, to=3-5]
+	\arrow["{\hat{f}}", from=2-4, to=2-5]
+	\arrow["{\textcolor{red} \pi}"', two heads, from=2-4, to=3-4]
+	\arrow["{\textcolor{green}{h} ; \pi(h) = g \circ f}", curve={height=-12pt}, from=1-2, to=2-5]
+	\arrow["{\textcolor{green}{g}}"', from=2-2, to=3-4]
+	\arrow["{\textcolor{green}{\pi}}", from=1-2, to=2-2]
+    \arrow["{\textcolor{orange}{k}; \pi({\textcolor{orange} k}) = \textcolor{green} g}"{description}, dashed, from=1-2, to=2-4]
+\end{tikzcd}\]
+
+there exists a unique 
+
+\end{definition}
+\begin{question}
+    foo
+\end{question}
+\end{document}                                              

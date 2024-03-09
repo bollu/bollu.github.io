@@ -1,0 +1,450 @@
+
+\documentclass[10pt,a4paper]{article}
+
+
+%\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{epsfig}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{amsmath, amssymb, amsthm, amsfonts, graphicx}
+\usepackage{url,color}
+\usepackage{tabularx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{nicefrac}
+\usepackage{graphicx}
+%\graphicspath{ {/home/vatsal/IIIT/Sem4/OM/Homework} }
+\usepackage{epsfig}
+\usepackage{hyperref}
+
+\usepackage{tabu}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{wrapfig}
+\usepackage{empheq}
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{pstricks-add, auto-pst-pdf}
+\usepackage{tikz}
+\usepackage{textcomp}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+\frenchspacing
+\newtheorem{note}{Note}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\setlength{\topmargin}{ 0.1in}
+\setlength{\columnsep}{2.0pc}
+\setlength{\headheight}{0.0in} \setlength{\headsep}{0.0in}
+\setlength{\oddsidemargin}{.15in} \setlength{\parindent}{1pc}
+\setlength{\evensidemargin}{.15in} \setlength{\parindent}{1pc}
+\setlength{\parsep}{15pt}
+\textheight 9.0in \textwidth 6.0in
+\newcommand{\hr}{\noindent\rule{\textwidth}{.35mm}\vspace{8pt}}% 
+
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+
+
+
+\begin{document}
+
+
+\begin{table}[!h]
+\centering
+%\resizebox{\textwidth}{!}{
+\begin{tabularx}{\textwidth}{|Xll|}
+\hline
+& &\\
+Introduction to Game Theory &  Date: & \emph{23rd March 2020}\\
+ & &\\
+Instructor: \emph{Sujit Prakash Gujar} & Scribes: & {Siddharth Bhat \& Harshit Sankhla} \\ 
+ \hline
+
+\end{tabularx}
+%}
+\end{table}
+
+\begin{center}
+\begin{LARGE}
+Lecture 16: Quasi-Linear games
+\end{LARGE}
+\end{center}
+
+\section{Recap}
+This is the a special class of environments where the Gibbard–Satterthwaite
+theorem does not hold.  We can either relax DSIC or relax rich preference structure. We decided
+to look at quasi-linear environments where we relax preferences. A popular
+example of this is auctions.
+
+\section{Introduction}
+The structure of the quasi-linear setting is as follows:
+
+\begin{equation}
+%\begin{align*}
+X \equiv \left\{ (k, t_1, \dots, t_n) : k \in K, t_i \in \R, \sum_i t_i \leq 0 \right\}.
+%\end{align*}
+\end{equation}
+
+
+where $X$ is the space of alternatives, $K$ is the set of possible allocations.
+$k \in K$ is the currently chosen allocation, and $t_i$ are monetary transfer receives by agent $i$.
+By convention $t_i > 0$ implies that the agent \emph{receives money}, and
+$t_i < 0$ implies that the agent \emph{is paid money}. We assume that our
+agents have no external source of funding (the \emph{weakly budget-balanced}
+condition). Hence, we stipulate that $\sum_i t_i \leq 0$.
+
+A social choice function (henceforth abbreviated as SCF) in this setting
+is of the form $f: \Theta \rightarrow X$, where we write 
+$f(\theta \in \Theta) \equiv (k(\theta), t_1(\theta), t_2(\theta), \dots, t_n(\theta)) \in X$.
+That is, we require that $k: \Theta \rightarrow K$, $t_i: \Theta \rightarrow \R$
+such that for alll $\theta \in \Theta, \sum_i t_i(\theta) \leq 0$.
+
+This setting is known as quasi-linear since the agent's utility function
+is of the form:
+\begin{align*}
+	&u_i: X \times \Theta_i \rightarrow \R; 
+	u_i(x, \theta_i) \equiv u_i((k, t_1, t_2, \dots, t_n), \theta_i) = v_i(k, \theta_i) + t_i \\
+	&v_i: K \times \Theta_i \rightarrow \R \equiv \text{(Agent $i$'s valuation)} \quad t_i \equiv \text{amount paid to agent} 
+\end{align*}
+
+Here, $v_i : \Theta \rightarrow \R$ is the agent's valuation function, and $t_i$
+is the amount that is paid (or is to be paid) by the agent. This informs
+our choice of sign convention for $t_i$: if the agent $i$ \emph{is paid}, then
+it has earned money, $t_i$ is positive, its utility is higher. 
+
+\begin{definition}{Allocative Efficiency(AE)}
+We say that a social choice function $f: \Theta \rightarrow X$
+is allocatively efficient iff for all states of private information,
+the SCF causes us to choose the allocation that leads to the \emph{maximum common good}.
+More formally,  for all $(\theta_1, \theta_2, \dots, \theta_n) \in \Theta$, we have that:
+\begin{equation}
+    k(\theta) \in \arg \max_{k \in K} \sum_{i=1}^n v_i(k, \theta_i).
+\end{equation}
+
+Equivalently:
+
+$$
+\sum_{i=1}^n v_i(k(\theta), \theta_i) = \arg \max_{k \in K} \sum_{i=1}^n v_i(k, \theta_i).
+$$
+\end{definition}
+
+
+We can think about this as saying:
+\begin{quote}
+``Every allocation is value-maximizing allocation. Allocations are given to
+those agents that covet them.''
+\end{quote}
+
+\begin{definition}{Budget Balance(BB)}
+A social choice function $f: \Theta \rightarrow X$ is said to be
+\emph{budget-balanced} iff the total money is conserved for all states
+of private information. Formally:
+\begin{equation}
+\forall \theta \in \Theta, ~ \sum_i t_i(\theta) = 0
+\end{equation}
+\end{definition}
+
+We first show that the class of quasi-linear functions is non-degenerate,
+in the sense that it is non-dictatorial.
+
+\begin{lemma}
+All social choice functions $f: \Theta \rightarrow X$
+in the quasilinear setting are non-dictatorial.
+\end{lemma}
+Let us assume we have a dictator who is player $d$ (for dictator).
+For every $\theta \in \Theta$, we have that:
+
+$$
+u_d(f(\theta), \theta_d) \geq u_d(x, \theta_d) ~~\forall x \in X.
+$$
+
+This models a dictator since this tells us that $u_d$ gets what he wants
+for all scenarios. Written differently:
+
+$$
+u_d(f(\theta), \theta_d) = \max_{x \in X} u_d(x, \theta_d)
+$$
+
+Since our environment is quasi-linear, we have that
+$u_d(f(\theta), \theta_d) = v_d(k(\theta), \theta_d) + t_d(\theta)$. Hence, 
+we can an alternative $f' : \Theta \rightarrow X$:
+
+$$
+f(\theta)
+\begin{cases}
+(k(\theta), (t_{-d}(\theta), t_d \equiv t_d(\theta)  - \sum_i t_i(\theta))) & \sum_{i=1}^n t_i(\theta) < 0 \\
+(k(\theta), (t_{-d, -j}(\theta), t_d \equiv t_d(\theta)  - \epsilon, t_j \equiv t_j(\theta) + \epsilon) & \sum_{i=1}^n t_i(\theta) = 0 \\
+\end{cases}
+$$
+% & \sum_{i=1}^n t_i(\theta) = 0
+% \end{cases}
+% $$
+
+For the following outcome, we have that $u_d(x, \theta) > u_d(f'(\theta), \theta_d)$
+which contradicts the assumption that $d$ is a dictator.
+
+\qed.
+
+
+\begin{definition}{Ex-post efficiency:}
+Intuitively, items are always allotted to the agents
+that value it the most. Formally, we state that a
+social choice function $f: \Theta \rightarrow X$ is said to be \emph{Ex-post efficient} iff:
+\begin{equation}
+\sum_{i=1}^n u_i(k(\theta), \theta_i) = \arg \max_{k \in K} \sum_{i=1}^n u_i(k, \theta_i).
+\end{equation}
+
+\end{definition}
+
+\begin{lemma}
+A social choice function $f: \Theta \rightarrow X$
+in the quasilinear setting is Ex-post efficient (EPE)
+iff it is budget-balanced.
+\end{lemma}
+
+\begin{proof}
+\textbf{Part 1: Quasi-Linear + Ex-post efficient  implies strictly-budget-balanced}
+
+Suppose for contradiction that $f = (k, t)$ is quasi-linear, Ex-post efficient but not strictly-budget-balanced.
+There exists a $\theta$ such that 
+$\sum_i t_i(\theta) < 0$. Hence, there exists at least
+one agent $j$ such that $t_j < 0$. (If every $i$ has positive $t_i$, sum cannot be less than 0).
+Consider a new allocation $X' = (k, t')$ where :
+
+\begin{align*}
+&t'_j(\theta) \equiv
+\begin{cases}
+    t_j(\theta) -  \sum_i t_i(\theta)/n & \text{if $t_j(\theta) < 0$} \\
+    t_j(\theta) & \text{otherwise}
+\end{cases}. \\
+&u'_j(k, t') > u_j(k, t) \text{ for $j$ where $t_j(\theta) < 0$}. \\
+&u'_j(k, t') = u'_j(k, t) \text{ for other agents}.
+\end{align*}
+
+Hence, $(k, t')$ \textbf{pareto dominates} $(k, t)$. This is a contradiction
+to the assumption that $f$ was Ex-post-efficient, since we constructed an
+outcome where one agent does better, and others don't do worse.
+Therefore, the function $f$ must be strictly-budget-balanced.
+
+
+\textbf{Part 2: Quasi-Linear + SBB implies EPE}
+
+\end{proof}
+
+
+\section{Groves theorem}
+The next result provides a sufficient condition for an allocatively efficient
+social choice function in quasilinear environment to be dominant strategy
+incentive compatible. 
+
+\begin{theorem}{Groves Theorem}: Let the SCF $f(\cdot) \equiv (k^*(\cdot), t_1(\cdot), \dots, t_n(\cdot))$ be AE. 
+Let $h_{-i}: \Theta_{-i} \rightarrow \mathbb R$ be an arbitrary function.
+Then $f(\cdot)$ is DSIC if it satisfies the following payment structure:
+
+\begin{equation}
+t_i(\theta_i, \theta_{-i}) \equiv 
+    \left[ \sum_{j \neq i} v_j(k^*(\theta), \theta_j) \right] + h_i(\theta_{-i}) \forall i \in \{1, 2, \dots, n\}
+\end{equation}
+\end{theorem}
+\begin{proof}
+    Proof proceeds by contradiction.
+    Suppose $f (\cdot)$ satisfies both allocative effi ciency and the Groves
+    payment structure but is not DSIC. This implies that $f (\cdot)$ does not satisfy
+    the following necessary and sufficient condition for DSIC:
+
+    \begin{align*}
+        u_i(f(\theta_i, \theta_{-i}), \theta_i) \geq u_i(f(\theta'_i, \theta_{-i}, \theta_i)) 
+        \forall \theta'_i \in \Theta_i, \forall \theta \in \Theta, \forall \theta_{-i} \in \Theta_{-i}, \forall i \in N
+    \end{align*}
+
+    Hence, there is at least one agent (call them $i$) for whom the above inequality is \textbf{false}.
+    Therefore:
+ 
+    \begin{align*}
+        &\exists \theta_i, \theta'_i \in \Theta_i, \theta_{-i} \in \Theta_{-i}:~ 
+        u_i(f(\theta'_i, \theta_{-i}), \theta_i) > u_i(f(\theta_i, \theta_{-i}, \theta_i)).  \\
+        &\exists \theta_i, \theta'_i \in \Theta_i, \theta_{-i} \in \Theta_{-i}:~ 
+        v_i(k^*(\theta'_i, \theta_{-i}), \theta_i) + t_i(\theta'_i, \theta_{-i}) + m_i > 
+        v_i(k^*(\theta_i, \theta_{-i}, \theta_i))  + t_i(\theta_i, \theta_{-i}) + m_i. \\
+    \end{align*}
+
+    Substituting the Groves payment structure, cancelling $m_i$'s, we arrive at:
+
+    $$
+        v_i(k^*(\theta'_i, \theta_{-i}), \theta_i) +  \left[  \sum_{j \neq i} v_j(k^*(\theta_i'), \theta_j) \right] + h_i(\theta_{-i}) >
+        v_i(k^*(\theta_i, \theta_{-i}, \theta_i))  + \left[  \sum_{j \neq i} v_j(k^*(\theta_i), \theta_j) \right] + h_i(\theta_{-i}) 
+    $$
+
+    which implies:
+
+    $$
+      \sum_{i=1}^n  v_i(k^*(\theta'_i, \theta_{-i}), \theta_i) >
+      \sum_{i=1}^n v_i(k^*(\theta_i, \theta_{-i}), \theta_i) 
+    $$
+
+    However, this contradicts allocative efficiency, since the mechanism
+    chose a $k^*(\theta_i, \theta_{-i}) $ whose net-good is \emph{sub-optimal}:
+    it would have been better for the mechanism to have chosen 
+    $k^*(\theta'_i, \theta_{-i}), \theta_i$.
+
+    \begin{align*}
+    \end{align*}
+
+\end{proof}
+
+\section{Groves mechanism}
+A direct revelation mechanism, 
+$D \equiv (\Theta, f(\cdot) \equiv (k(\cdot), t_1(\cdot), \cdots, t_n (\cdot)))$ 
+satisfies allocative efficiency  and Groves payment rule is known as a Groves
+mechanism. These are also called VCG (Vickry Clark Groves) mechanisms.
+
+$$
+\text{Vickry Mechanism} \subsetneq \text{Clarke Mechanism} \subsetneq \text{Groves Mechanism}
+$$
+
+
+
+\section{Examples of SCF in quasi-linear settings}
+\begin{itemize}
+    \item \textbf{Players}: Seller and two buyers
+    \item \textbf{Private information}: Seller $\Theta_0 = \{ 0 \}$. Byers = $\theta_1 =\theta_2 = [0, 1]$.
+\end{itemize}
+
+% \section{First price versus second price auction}
+% First price: reporting valuation truthfully is not an equilibrium. Second
+% price: truthful reporting is equilibrium.
+% 
+% How do we generalize this to more situations? The key idea is that in a second
+% price auction, our payment is independent of what we report. The allocation
+% might depend on our payment, but payment does not. How can we have more
+% DSIC mechanisms?
+% 
+% Three families A B C, can go to Munnar or Simla. 
+% 
+% 
+% \begin{tabular}{l r r l}
+%   &  \textbf{Manali} &  \textbf{Shimoga} & \\
+% \textbf{A} & -1 &  10 & \\
+% \textbf{B} & 5  & -2  & \\
+% \textbf{C} & 5  & 4  & (Claire is a kid, loves vacations) \\
+% \end{tabular}
+% 
+% We want to get this information truthfully, by using VCG/Groves mechanism.
+% 
+% there are two outcoomes, M or S . If we go to M, the tuility is 5+5-1=9. If
+% we choose S, it is 10-2+4=12. so S is allocatively efficient.
+% 
+
+
+% \begin{tabular}{l r r r r r r r}
+%     & $\{ A \}$  & $\{ B \}$   & $\{ C \}$  &  $\{ A, B \}$ & $\{ A, C \}$ & $\{ B, C  \}$ & $\{  A, B, C \}$ \\
+% $P_1$  & 10 & 0   & 5  &  10  &  20 &   5  &  20 \\
+% $P_2$  & 0  & 9   & 15  &  9  &  15 &  20  &  20 \\
+% $P_3$  & 10 &  2   & 2  &  10  &  12 &  2  &   28 \\
+% $P_4$  & 8  &  3   & 3  &  8  &   8 &   3  &    8
+% \end{tabular}
+% 
+% 
+% Giving $A$ to $P_1$ and $BC$ to $P_2$ gives $10 + 20 = 30$.
+
+
+\section{Clarke mechanism}
+
+A special class of Groves mechanisms was developed by Clarke. These are
+called as Clarke / pivotal mechanisms. We use a particular $h: \Theta \rightarrow \mathbb R$:
+
+\begin{equation}
+    \underset{\text{clarke}}{h_i(\theta_i)} \equiv
+    \sum_{j \neq i} v_j(k_{-i}^\star(\theta_{-i}, \theta_j))
+    \qquad \forall \theta_{-i} \in \Theta_{-i}
+\end{equation}
+
+That is, each agent $i$ receives:
+
+\begin{equation}
+    \underset{\text{clarke}}{t_i(\theta)} \equiv
+    \sum_{j \neq i}(v_j(k^\star(\theta), \theta_j)) - \sum_{j \neq i} v_j(k^\star_{-i}(\theta_{-i}), \theta_j))
+\end{equation}
+
+This works for combinatorial auctions as well. It's a generalization
+of second-price auction.
+
+\subsubsection{Example use of Clarke mechanism}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{l r r }
+& \textbf{M}anali & \textbf{S}himla  \\
+\textbf{A} &-1  &10   \\
+\textbf{B} & 5  &-2  \\
+\textbf{C} & 5 & 4   \\
+\textbf{Total} & 9 & $\mathbf{12}$   \\
+\end{tabular}
+\caption{Payoffs for planning a family vacation to Manali or Shimla. Shimla is allocatively efficient with $A$ involved.}
+\end{center}
+\end{figure}
+
+Let us attempt to calculate the payoff for $A$. First, when $A$ is involved (ie, all players are considered),
+we find that $[S \equiv 10 - 2 + 4 = 9] > [M \equiv -1 + 5 + 5 = 9]$. That is,
+\textbf{S} is the allocatively efficient option. Next, we consider what
+happens without player $A$:
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{l r r}
+& \textbf{M}anali  & \textbf{S}himla \\
+\textbf{A}  & ---  & ---   \\
+\textbf{B}  & 5  & -2  \\
+\textbf{C}  & 5  & 4          \\
+\textbf{Total} & $\mathbf{10}$ & 2   \\
+\end{tabular}
+\caption{Payoffs for the same vacation, with $A$ suppressed for Clarke mechanism. Manali is allocatively efficient 
+        without $A$ involved.}
+\end{center}
+\end{figure}
+
+In this case, $[\textbf{M} \equiv 5 + 5 = 10] > [\textbf{S} \equiv 4 + -2 = 2]$, and hence \textbf{M}
+is allocatively efficient, and the allocatively efficient valuation is $5 + 5 =
+10$.  Following Clarke Mechanism, we should set the payment for $A$ to be:
+
+\begin{align*}
+\underset{\text{clarke}}{t_A} \equiv &[\text{valuation of remaining agents at allocatively efficient outcome without A}](-2+4)  \\
+     & - [\text{valuation of remaining agents at allocatively efficient outcome with A}][5+5] \\
+     &= 8
+\end{align*}
+
+
+For player B, we once again consider what happens when they are not involved; we
+notice that when they are not involved, the equilibrium does not change; Thus,
+they deserve to be paid \emph{nothing} --- since they have no effect on the
+equilibrium! Performing the computation:
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{lrr}
+              &  \textbf{M} &   \textbf{S} \\
+\textbf{A}    & -1 &  10  \\
+\textbf{B}    &  --- &  ---   \\
+\textbf{C}    &  5 &  4  \\
+\textbf{Total} & 4    &  \textbf{14}  \\
+\end{tabular}
+    \caption{Payoffs for the same vacation, with $B$ suppressed for Clarke mechanism. Shimla continues
+        to be allocatively efficient without $B$ involved}.
+\end{center}
+\end{figure}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{igt20}
+\end{document}

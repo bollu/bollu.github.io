@@ -1,0 +1,37 @@
+\chapter{Quantum Computing: Shor's algorithm}
+
+We have $pq = N$. We wish to find $x$ such that $y = a^x \mod N$.
+
+\begin{align*}
+    &s_0 = \ket 0^{\tensor n} \\
+    &s_1 = H^{\tensor n} s_0  = \frac{1}{2^n} \sum_i \ket{i} \\
+    &s_2 = a^{s_1} \mod N = \frac{1}{2^n} \sum_i \ket{a^i \mod N} \\
+\end{align*}
+
+Let us now consider the function $f(x) = a^x \mod N$. This function will
+be periodic with period $r$. Let us assume that $f: [0, Q-1] \to [0, Q-1]$ where
+$Q$ is the domain of the function / the maximum value that is fed to $f$.
+
+Now, note that since the function is periodic, $\l[\forall y, |f^{-1}(y)| = Q/r\r]$.
+
+\begin{align*}
+    &s_3 = measure(s_2) = \frac{1}{\sqrt\frac{Q}{r}} \l(\ket{a_0} + \ket {a_0 + r} + \dots \r)
+\end{align*}
+
+At this point, the states in $s_3$ will consists of inputs $\l[ a_0, a_0 + r, \dots a_0 + \delta r \r]$
+such that $f(a_0 + \delta r) = m_0$.
+
+We now wish to extract the $r$ from the superposition of states. A non solution
+is to try and repeatedly measure the values, then what we can get is a set of
+values $\l[a_0 + \delta_0 r, a_1 + \delta_1 r, a_2 + \delta_2 r, \dots \r]$.
+Recovering $r$ from this set is difficult, so we try another solution.
+
+because the Fourier transform is a change of basis, it's a unitary matrix,
+and can hence be implemented as a quantum circuit. Since the function $f$
+periodic and $r$ is the perid, feeding $f$ into a fourier transform will
+allow us to find $r$. 
+
+On applying the fourier transform, the function becomes a new function
+such that $g \equiv FFT(f)$ such that $g(0) = g(Q/r) = g(2Q/r) = g(\lambda Q/r) = 1, g(\_) = 0~\text{otherwise}$.
+
+    

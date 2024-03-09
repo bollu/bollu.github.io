@@ -1,0 +1,132 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+
+%\newcommand{\P}{\texttt{P}}
+%\newcommand{\NP}{\texttt{NP}}
+%\newcommand{\PSPACE}{\texttt{PSPACE}}
+%\newcommand{\NPSPACE}{\texttt{NPSPACE}}
+%\newcommand{\TQBF}{\texttt{TQBF}}
+
+\newcommand{\cobpp}{\texttt{co-BPP}}
+\newcommand{\ip}{\texttt{IP}}
+\newcommand{\dip}{\texttt{DIP}}
+\newcommand{\zkp}{\texttt{ZKP}}
+
+\newcommand{\textbb}[1]{$\mathbb{#1}$}
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+
+
+\newcommand{\hashsat}{\texttt{\#SAT}}
+\newcommand{\tqbf}{\texttt{TQBF}}
+
+
+\newcommand{\pptm}{\texttt{PPTM}}
+\newcommand{\dtm}{\texttt{dtm}}
+
+
+\title{Computational Complexity Theory}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\include{lec-1}
+\include{lec-2}
+\include{lec-3}
+\include{lec-4}
+\include{lec-5}
+\include{lec-6}
+\include{lec-7}
+\include{lec-8}
+\include{lec-9}
+\include{lec-10}
+\include{lec-11}
+\include{lec-12}
+
+\chapter{Questions}
+$f (n) = f (n − 1) + 10$
+$f (n) = f (n − 1) + n$
+$f (n) = 2f (n − 1)$
+$f (n) = f (n/2) + 10$
+$f (n) = f (n/2) + n$
+$f (n) = 2f (n/2) + n$
+$f (n) = 3f (n/2)$
+$f (n) = 2f (n/2) + O(n^2)$
+
+
+\chapter{Review}
+\section{PH}
+\subsection{$\nptime = \conptime$ implies that PH collapses}
+\subsection{$\text{\ppoly} \subset \nptime$ implies PH collapses to level 2}
+intuitiion: ppoly's advice string lets us do something like quantifier
+exchange, since it gives us an outer there exists for the advice string,
+which can be guessed by and $NP^{NP}$ oracle. Also relies on the trick that
+$\exists = \lnot \forall$, and you can not in this case due to being oracle call.
+\section{BPP}
+\subsection{BPP subset P/poly}
+Intuition: can guess random seeds that are good for \emph{all} inputs.
+\subsection{$BPP \subset \Sigma_p^2 \cap \Pi_p^2$}
+Intutiion: can show we can find some $u_i$ to spread randomness around.
+If we are on the accept side, the good seeds are large enough that we
+can use randomness to cover the full set. If we are on the bad side, the
+spreading with $u_i$ will not let us cover enough ground. So, we can 
+convert it to $\exists u_i, \forall x_i, ...$ which is a PH style problem.
+
+\end{document}

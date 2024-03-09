@@ -1,0 +1,268 @@
+\section{Generalized Secret Sharing}
+
+(a beginning towards a major unresolved
+problem/issue in Crypto/Algo)
+
+\section{Review of last class}
+- Shamir's secret sharing, and using it for secure
+multi-party communication.
+
+
+\section{Kannan philosophy}
+
+We will take generalized secret sharing and generalise it. This will crop
+up to have ramifications on crypto and algo.
+
+\section{Generalization}
+
+We have a secret $S$ that we split into $n$ shares $S_1\cdots S_n$.
+
+In Shamir's secret sharing, $\leq t$ learns nothing, $\geq t + 1$ learns
+full information.
+
+Implicit assumption: Network is homogeneous in trust. Adversary will attack
+one part of the network just as likely as any other part of the network.
+
+
+However, there can be situations where we believe that some subset of the
+network is relatively more trustworthy than other sections of the network.
+
+In this case, we want to get $n$ shares, such that $<= t_1$ in the first
+$\frac{n}{2}$, $<= t_2$ in the next $\frac{n}{2}$ does not get the secret.
+Other combinations can learn.
+
+Example: let $n = 4$, $t = 2$, this means all subsets of size $>= 2 + 1$
+can access the secret.
+
+Example': we want to make a statement such as: This basis (aka "access structure")
+and all supersets of the basis should be allowed to access the secret:
+Eg, we can give a basis 
+{{S1, S2}, {S1, S3, S4}}, and we want a secret sharing method that will let
+us share secrets among these sets and their supersets.
+
+
+Note that this *is a generalization* of the original. A $t$ access threshold is
+this basis scheme, where the basis is all subsets of size $t + 1$.
+
+
+\section{Alternate view of access structure as boolean functions}
+We said that an access structure is *monotone* over over subsets of ${1..n}$ 
+(MONOTONE: If a subset $S$ is in the access structure, all supersets of $S$
+are in the access structure)
+
+
+We can look at the access structure as $f: {0, 1}^n \rightarrow {0, 1}$. (There
+is clearly a bijection between subsets and ${0, 1}^n$, so represent subset as
+${0, 1}^n$. We define  $f(bitencode(subset)) = 1$ if subset is in access structure, $0$ otherwise.
+
+
+Now, we need $f$ to be a monotone boolean function. that is,
+$f(bitencode(S)) = 1 \implies forall S \subset S', f(bitencode(S')) = 1$ (if $S$ can access the secret,
+all supersets of $S$ can access the secret).
+
+So now, we have constructed a boolean function to represent our access structure.
+We will now invoke complexity theory.
+
+\subsection{Hardness}
+We can construct an access structure which will be lower bounded in exponential
+size of the secret?
+
+Number of subsets of powerset of set $n$ is $2^(2^n)$.
+ 
+The monotonicity does not reduce this by much (Sid: Proof?)
+
+For every access structure, we will have a secret sharing scheme. So, we will
+have $O(2^{2^n})$ secret sharing scheme. So, the number of bits for some
+secret sharing scheme will be $O(log(2^{2^n})) = O(2^n)$.
+
+
+So, we will  have a secret sharing scheme that is exponential. Note that
+the length is the number of instructions in the scheme  (both the message itself
+and the instructions for the secret sharing) will be exponential. However, the
+*share* could be small.
+
+So, we have a computation versus communication trade-off that we need to explore.
+That is, we can trade-off the sizes of the computation (instructions length)
+and the size of communication (that is, the share length).
+
+
+
+\subsubsection{Unresolved Problems (Open problems)}
+\begin{itemize}
+    \item Does there exist an access structure on $n$ shares 
+        such that *every* secret sharing scheme for it has super-polynomial
+        length? (that is, is there an access structure that does not allow
+        for efficient encoding in terms of share length).
+
+    \item Suppose we convert an access structure to a monotone boolean function.
+        Suppose we only care about those functions that are in $P$ 
+        (that is, polynomial circuit depth).
+
+        Do all efficiently computable (in $P$) access structures have
+        efficient secret sharing schemes?
+
+        Given an access structure that is *efficiently computable*
+        (in $P$), can we construct a secret sharing scheme that is in P?
+
+
+        Relationship to algorithms:
+
+        We have a notion of "input size" in algorithms.
+        If we have a distributed algorithm, assume it is parametrised by
+        number of nodes $n$, and say $<= t$ nodes that are allowed to be faulty.
+
+
+        Assume we had captured the fault tolerance in terms of our
+        boolean function, $f: {0, 1}^n -> {0, 1}$. When
+        $f(S) = 0$, it is faulty, and failure here need to be tolerated.
+        When $f(S) = 1$, it is not faulty, and failure here need not be tolerate.
+
+        Note that these are equivalent to the old definition. Sets with
+        $f(S) = 1$ are the "critical nodes", which need to be present. We can
+        have $f(S) = 1 forall |S| >= t + 1$, and this gives us back our
+        old definition based on number of nodes that are faulty.
+
+        So, distributed systems can also say, we wish to tolerate some
+        monotone $f$ in general, so we have generalized distributed system
+        tolerance to a general "critical nodes" notion.
+
+        So now, the size of our description of our distributed systems
+        algorithm depends on the **size of $f$** (Since $f$ is now a
+        parameter to our distriuted system algorithm)
+
+        Before, our distributed system algorithm was $dsalgo(n, t)$, Now it is
+        $dsalgo'(n, f)$, so we need to give f as a parameter.
+
+
+        Consider the old problem with tolerance described in terms of the
+        number $t$. Encoded as a function, it is: $f(S) = 1 if |S| > t, 0 when |S| <= t$.
+        If we have to *describe* f, then if we decide to describe it in terms
+        of the basis, we will have $nC(t + 1)$ elements in the basis. 
+        What used to be a **number**(t) is now a set of size $nC(t + 1)$, since
+        we generalized $t$ to $f$.
+
+        
+        If I choose to view fault tolerance as an access structure problem
+        always, then the basis size is in itself $nC(t + 1)$. So, my
+        input size is $nC(t + 1)$. So, any ridiculous crap of $nC(t + 1)$ 
+        will be "polynomial". 
+
+        However, the old encoding will consider a polynomial in $nC(t + 1)$
+        as exponential.
+
+        So, our choice of encoding is skewing our notion of what is
+        "small".
+
+        So, we need some reasonable way to define "size of access structure",
+        that does not allow blowup like this.
+
+
+        Why can't we argue that the input size is size of the function $f$?
+        Size of $f$ has two notions: one as the length of the description of $f$,
+        and the other as the *time taken for $f$ to execute*. That is, 
+        I can have a small description that takes exponential time, or I can
+        have an exponential description that takes constant time.
+        (list of tuples verus encoding the smallest program)
+
+        This leads us to: what is the size of a program? If two programs
+        have the same length, but one is faster, then we would like to 
+        consider the one that is faster (maybe?)
+
+        Why should runtime play a role? Kannan argument: of what use is a program
+        that will not give us output for billions of years. This is as good as
+        not giving us a program at all.
+
+        So, we would like to optimise on both length and running time.
+
+
+        This fucks us over when the program that we choose is used to
+        describe something about our runtime environment, like the access
+        structure as given above.
+
+
+        This naturally leads us to the question, given that the access
+        strucrure is efficiently computable, can we have an efficient
+        secret sharing scheme for that?
+
+
+    \item Assume that it is *impossible* to have efficient secret sharing
+        schemes for efficient access structures, so we wish to crypto it
+        and solve-the-impossibility.
+
+        We do not even know if we can solve this assuming the whole crypto-model.
+        That is, adversary is PPTM, negligible prob. of error, one way
+        functions exist, do all efficient access structures have efficient
+        secret sharing schemes? Unknown.
+
+    \item Supposedly, similar problems crop in other areas. To quote kannan,
+        "messy waters", "murky", etc.
+
+
+        Coding theory:
+
+        We have a noisy channel, and we have to model noise.
+        Noise is modelled as: if I send $n$ bits/symbols, $<= t$ symbols
+        are in error. Can we give an error correction code that can 
+        tolerate such noise?
+
+        Again, do the same thing, replace $<= t$ with an access structure, as
+        we did in distributed systems.  We land in the same problem of
+        describing input size.
+
+
+        Why would we need access structures for ECC ever? For example, consider 
+        two channels between $S --> R$. One channel has 1/5 chance of error,
+        other channel has 1/4 chance of error. Say I send the first n/2 bits
+        over the first channel and the next n/2 bits over the next channel.
+
+        This can be modeled using an access structure over the full n bit
+        string. So, knowing details about where this "toggling" will happen
+        should let us design better ECC schemes.
+
+        For example, if our channel sent first n/2 bits correctly and next
+        n/2 bits fully wrong, we have an ECC: only send data in the first n/2
+        bits. This is *not* the same as stating that "50\% of data is corrupted"
+        In this case, there is no ECC that can solve this.
+
+        So, having data regarding where the toggles happen is *useful information*
+        to have. So, the access function is a *useful abstraction* in ECC, it
+        is not frivolous.
+
+        Thus, we are not allowed to say "access structures are useless in ECC".
+        So now, our noise is a program / monotone boolean function.  This now
+        leads us to the thorny problem of defining size of monotone
+        boolean function.
+
+
+        For the past half-century, ECC has only worked on the threshold
+        kind of $f$. We have not worked on ECC of the general access
+        function kind.
+
+        Rounding back, we need to define input size of $f$, which is the
+        noise in the channel.
+        
+        If $f$ is very short in length but it takes exponential time to run, then we cannot
+        "observe" the error since it takes exp time to run.
+
+        Suppose we get a noisy channel in real life whose $f$ is not in $P$. Then the
+        real world Channel is computing $f$ which is in NP.
+        
+        So, we can sample the channel (which is computing $f$) to solve NP
+        problems. But such channels should not exist, since nature
+        cannot solve NP problems in P time. So, we need
+        $f$ which is in $P$.
+
+        Q) does there exist efficient ECC for all realistic channel $f \in P$?
+
+        Cute Scott Aaronson quote: "If P != NP were a question in physics, then
+        it would have been a law by now (since we have *never* observed nature
+        solve NP problems in P time".
+
+        
+\end{itemize}
+
+
+Physics is ridiculous, since we expect reality == math prediction.
+
+We can weaken it, by saying people should be able to distinguish reality 
+and math prediction in polynomial time!

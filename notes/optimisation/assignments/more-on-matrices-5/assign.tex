@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- More on Matrices 5}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+Let $A$ be the matrix. The $LU$ decomposition is:
+\begin{align*}
+    &A = LU \\
+    &\begin{bmatrix} 
+    b_1 & c_1 & &  &\\
+    a_2 & b_2 & c_2 & & \\
+     & a_3 & b_3 & c_3  & \\
+     & &  \ddots & \ddots & \ddots \\
+     &&  & a_{n-1} & b_{n-1} & c_{n-1} \\
+     &  & & & & a_n & b_n
+\end{bmatrix} =
+\begin{bmatrix} 1 \\
+    l2 & 1 \\
+       & l3 & 1 \\
+       & & \ddots & \ddots \\
+       &    & & l_n & 1
+    \end{bmatrix}
+ \begin{bmatrix}
+v_1 & c_1 \\
+    & v_2 & c_2 \\
+    & & \ddots & \ddots \\
+    & & & v_{n-1} & c_{n-1} \\
+    & & & & v_n
+\end{bmatrix}
+\end{align*}
+\begin{align*}
+    &b_1 = v_1 \implies v_1 = b_1 \\
+    &a_k = l_k v_{k-1} \implies l_k = a_k / v_{k-1} \\
+    &b_k = l_k c_{k-1} + v_k \implies v_k = b_k - l_k c_{k-1}
+\end{align*}
+\end{document}
+

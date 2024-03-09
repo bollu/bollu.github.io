@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+\newcommand{\threesat}{\texttt{3-SAT}~}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\np}{\texttt{NP}}
+\section{Q1. Deterministic TMs}
+
+\subsection{$f(n) = 2^n$}
+
+the idea is that we encode both the input and the output in unary. We strike
+out inputs' digits one-by-one. When we do, we copy the output digits (that is,
+we double the current output) that is currently on the tape. We then go back to
+the input and repeat this process.
+
+
+\subsection{$f(v, b) = \log_b(v)$}
+
+One simple way to encode the log is to  implement $g(i) = b^i$. We then 
+compute $g(i)$, $i \geq 0$ till $g(i) \geq v$. We then return $i - 1$
+
+To implement $g(i)$, we copy the string $b$ $i$ times, similar to how we copy the
+string once in the implementation of $2^n$.
+
+\section{Q2. \np $\subseteq$ \pspace}
+since \threesat is NP-complete, we show that \threesat can be computed in
+\pspace. Hence, \np $\subseteq$ \pspace.
+
+We can simply enumerate all possible $2^n$ assignments of the given \threesat
+problem in $\log(2^n) = n = poly(n)$ space, and verify whether they satisfy
+the given problem.
+
+\section{Q3. Nodes not in path between two nodes}
+
+Note that a node $v$ is in the path $s \rightarrow t$, if there exists paths
+$s \rightarrow v$, $v \rightarrow t$.
+
+We can first compute all pairs shortest path using floyd-warshall, which is 
+$O(V^3)$, after which for each $v$, we can look for the existence of paths
+$s \rightarrow v \rightarrow t$, in $O(1)$ time. The total time works out to be 
+$O(V^3) + O(1)O(V) = O(V^3)$
+
+
+\section{Q4. Tshirts}
+
+We first compute probabilites which are used to compute expectation.
+\begin{align*}
+&P(\text{k people not receiving t shirts}) = \\
+&P(\text{picking $(n - k)$ people from $n$ people, $n$ times (with reptition)}) = \\
+&{\bigg(\frac{n - k}{n}\bigg)}^n
+\end{align*}
+
+Now that we know the probability of $k$ people not receiving t-shirts, we can
+compute the expectation of this:
+
+\begin{align*}
+&\mathbb{E}[\text{number of participants with no tshirt}] =  \\
+&\sum_{i = 0}^n i  P(\text{i people not receiving t-shirts}) = \\
+&\sum_{i = 0}^n i {\bigg(\frac{n - i}{n}\bigg)}^n 
+\end{align*}
+
+\end{document}

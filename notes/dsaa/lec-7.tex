@@ -1,0 +1,42 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\begin{document}
+\section{Lecture 6 - Actual Statistical signal processing}
+
+\section{Regression}
+
+Linear regression: curve fit $y = M x + C$ to given dataset $(x[k], y[k])$.
+$N$ is max number of samples.
+
+$yhat[k] = Mx[k] + C$.
+
+$e[k] = yhat[k] - y[k]$
+
+$ E = \Sum_k e[k]^2 = \Sum (yhat[k] - y[k])^2 = \Sum (Mx[k] + C - y[k])^2$
+
+E needs to be minimised.
+
+Take two partial derivatives, one wrt $M$, one wrt $C$, solve this sytem.
+
+
+\subsubsection{Minimisation over C}
+\frac{partial E}{partial C} = \Sum 2(Mx[k] + C - y[k])a = 0
+
+Finally, we g
+
+$$
+C = \frac{\Sum{y[k]}}{N} - \frac{Mx[k]}{N}.
+$$
+
+\sububsection{Minimisation over M}

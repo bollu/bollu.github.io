@@ -1,0 +1,35 @@
+\newcommand{\parity}{\texttt{PARITY}}
+\newcommand{\majority}{\texttt{MAJORITY}}
+\chapter{Property testing}
+
+We have some language $L \subset \{0, 1\}^*$. We need to decide if $x \in_? L$
+by only querying a \textit{fixed number of query locations} in $x$.
+the query number $q$ is fixed and is \textit{independent} of $n$.
+
+
+\section{\parity}
+
+$$\parity \equiv \{ x \in \{0, 1\}^*~|~ \text{$\#1$s in $x$ is even} \}$$
+
+parity cannot be done by querying an independent number of locations, since
+intuitively, an adversary can flip bits at locations that have not been read by
+us.
+
+\section{\majority}
+
+
+$$
+\majority \equiv \{x \in \{0, 1\}^*~|~ \text{$\#1$s in $x$ is $\geq n/2$} \}
+$$
+
+This is also not possible to be solved, because the adversary can flip bits
+of a string where $\#1's = n / 2$.
+
+\section{Approximate decision problems}
+
+$x \in L$ versus $x$ which is $\epsilon$-far from $L$. ($x$ is $\epsilon$-far
+from $L$ if there exists no string in $L$ with hamming distance less than
+$\epsilon$ in L).
+
+\subsection{\partity, approximate}
+$\#1's \geq n/2$, then accept. $\#1's \leq n/4$, then reject.

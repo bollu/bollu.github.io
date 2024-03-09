@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{cancel}
+
+\newtheorem{lemma}{Lemma}
+
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}%
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+\usepackage{amsfonts}
+\author{Siddharth Bhat (20161105)}
+\title{Complexity and Advanced Algorithms -- Assignment 5}
+\begin{document}
+\newcommand{\threesat}{\texttt{3-SAT}~}
+\newcommand{\pspace}{\texttt{PSPACE}~}
+\newcommand{\np}{\texttt{NP}~}
+\newcommand{\nat}{\mathbb{N}~}
+\newcommand{\pred}{\mathbb{P}~}
+\newcommand{\logspace}{\texttt{LOGSPACE}~}
+\newcommand{\nlogspace}{\texttt{NLOGSPACE}~}
+\newcommand{\ptime}{\texttt{P}~}
+\newcommand{\nptime}{\texttt{NP}~}
+\newcommand{\E}[1]{\mathbb{E}\big[ #1 \big]}
+\newcommand{\prob}[1]{\mathbb{P}\big [ #1 \big ]}
+\maketitle
+
+\section{$N$ balls are thrown uniformly at random into $N$ bins}
+We first define bernoulli random variables:
+\begin{align*}
+	&X_i \equiv \text{number of balls in bin $i$} \\
+	&Y_{i, j} \equiv
+	\begin{cases}
+	1 & \text{ball $j$ goes into bin $i$} \\
+	0 & \text{otherwise}
+	\end{cases}
+\end{align*}
+
+Now, we know that
+
+$$
+X_i = \sum_j Y{i, j}
+$$
+
+We first compute the mean of $X_i$, that is, the expected number of
+balls per bin:
+
+\begin{align*}
+	\E{X_i} = \E{\sum_j Y_{i, j}} = \sum_j \E{Y_{i, j}} = \sum_j \frac{1}{N} = N
+\end{align*}
+
+That is, the mean is one ball per bin.
+
+\subsection{Expected number of empty bins}
+We first create random variables to describe a single bin being empty,
+which we then use to find the expected number of empty bins.
+
+
+We also define:
+\begin{align*}
+	&Emp_i \equiv \text{probability of bin $i$ being \textbf{empty} after $N$ rounds} \\
+    &\E{Emp_i} = 0 \times \prob{Emp_i=0} + 1 \times \prob{Emp_i=1}  = \prob{Emp_i=1}\\
+    &= \text{probability that the $i$th bin is empty after $N$ balls} \\
+    &= (\text{probability that a ball is not thrown into the $i$th bin})^N \\
+    &= {\bigg( \frac{N - 1}{N} \bigg)}^N
+\end{align*}
+
+Next, we define $Emp = \sum_i Emp_i$. $Emp$ is a random variable whose
+value is the number of empty bins after $n$ rounds.
+
+$$
+\E{Emp} = \E{\sum_i Emp_i} = \sum_i \E{Emp_i} = N {\bigg (\frac{N - 1}{N} \bigg)}^N
+$$
+
+
+\subsection{Probability that some bin has more than $6 \log n$ balls}
+
+We know that $\mu(X_i) = \E{X_i} = 1$. We will use Chernoff bounds to calculate
+the value
+
+\begin{align*}
+&\prob{X_i \geq 6 \log n} = \prob{X_i \geq \mu (1 + (6 \log N - 1)) } \\
+&\text{since $\delta > 1$, we know that $\prob{X \geq \mu (1 + \delta))} \leq e^{\frac{\mu \delta^2}{4}}$} \\
+&\prob{X_i \geq 6 \log n} \leq e^\frac{(6 \log N - 1)^2}{4}
+\end{align*}
+
+
+\section{sum of $N$ IID geometric random variables $X_i$ with parameter $p$}
+Recall that the definition of a geometric random variable:
+\begin{align*}
+    &\prob{X=k} \equiv \text{probability of bernoulli trials failing till round $(k - 1)$, succeeding in round $k$} \\
+    & = (1-p)^{k -1} p
+\end{align*}
+
+\subsection{$\E{X_1}$}
+\begin{align*}
+    &\E{X_1} = \sum_{i=1}^\infty \prob{X_1=i} \cdot i \\
+    &= \sum_{i=1}^\infty (1-p)^{i - 1} p  \cdot i
+    = p \bigg(\sum_{i=1}^\infty (1-p)^{i - 1}  \cdot i \bigg) \\
+    &= p \bigg(\sum_{i=1}^\infty (1-p)^{i - 1}  +
+                \sum_{i=2}^\infty (1 - p)^{i-1} + \dots +
+                \sum_{i=k}^\infty (1-p)^{i-1} + \dots \bigg) \\
+                %
+    &\text{(using sum of GP is $a/(1-r)$)} \\
+    &= p \bigg(\sum_{start=1}^\infty \sum_{i=start}^\infty (1-p)^{i - 1} \bigg) \\
+    &= p \bigg(\sum_{start=1}^\infty \frac{(1-p)^{start - 1}}{1 - (1 - p)} \bigg)
+    = p \bigg(\sum_{start=1}^\infty \frac{(1-p)^{start - 1}}{p} \bigg)
+    = \frac{p}{p} \bigg(\sum_{start=1}^\infty (1-p)^{start - 1} \bigg) \\
+    %
+    &= \bigg(\sum_{start=1}^\infty (1-p)^{start - 1} \bigg)
+    = \bigg(\sum_{start=1}^\infty (1-p)^{start - 1} \bigg)
+    = \frac{1}{1 - p}
+\end{align*}
+\subsection{$\E{X}$}
+\begin{align*}
+    &\E{X} = \E{\sum_{i=1}^N X_i} = \sum_{i=1}^N \E{X_i} = \frac{N}{1 - p}
+\end{align*}
+\subsection{Chernoff bound for tail of $X$}
+
+We first define $X \equiv \sum_i X_i$ where $X_i$ are IID geometric distributions.
+We define $Y_i \equiv e^{t X_i}$.
+
+\begin{align*}
+&\E{Y_i} = \E{e^{tX_i}} = \sum_{i=1}^{\infty} e^{ti} \cdot (1-p)^{(i - 1)} p \\
+&= p \sum_{i=1}^{\infty} e^{ti} \times (1-p)^{(i - 1)} \\\
+&= \frac{p}{(1 - p)} \sum_{i=1}^{\infty} e^{ti}  \cdot (1-p)^i \\
+&= \frac{p}{(1 - p)} \sum_{i=1}^{\infty} (e^{t}\cdot  (1-p))^i \\
+&= \frac{p}{1 - p} \cdot \frac{e^t (1 - p)}{1 - e^t (1 - p)}  \\
+&= \frac{pe^t}{1 - e^t(1 - p)}
+\end{align*}
+
+Let $Y \equiv \prod_i Y_i$. Notice that:
+\begin{align*}
+Y = \prod_i Y_i = \prod_i e^{tX_i} = e^{\sum_i t X_i} = e^{t \sum_i X_i} = e^{tX}
+\end{align*}
+And hence, we will use $Y$ when deriving the Chernoff bound in place of $e^{tX}$
+
+
+We now compute the expectation of $Y$:
+\begin{align*}
+&\E{Y} = \E{\prod_i Y_i}\\
+&\text{$Y_i$ are IID, expectation of product = product of expectation} \\
+& = \prod_i \E{Y_i} = \bigg( \frac{pe^t}{1 - e^t(1 - p)} \bigg)^n
+\end{align*}
+
+Now that we have the expectation, we can begin to compute the Chernoff bound:
+
+\begin{align*}
+\prob{X \geq a} = \prob{e^{tX} \geq e^{ta}} \leq \frac{\E{e^{tX}}}{e^{ta}} = \frac{\E{Y}}{e^{ta}}
+\end{align*}
+
+
+\section{Problem 3}
+To go to an event you are required to collect one sticker of
+n different types. These stickers are given out uniformly at random by the
+dealer. You can approach the dealer any number of times till you get at
+leats one sticker of each type. Find the expected number of times you have
+to visit the dealer that you get at least one sticker of each type
+
+
+Let $T$ be the time to collect all $N$ stickers. Let $t_i$ be the time
+the $i$th sticker has been collected \textit{after $i - 1$ stickers} have been
+collected.
+
+The probability of picking up a \textbf{new sticker} $p_i = (n - (i - 1))/n$, since
+we have $n - (i - 1)$ "new" candidates out of $n$ total coupons.
+
+So, $t_i$ is a geometric distribution (since we can fail many times at picking
+a new $i$th coupon till we succeed), with expectation $1/p_i$, (since the expectation
+of a geometric distribution is $1/p$ where $p$ is the success rate).
+
+
+Now, we use linearity of expectations to calculate:
+
+\begin{align*}
+&\E{T} = \E{\sum_i t_i} = \sum_i \E{t_i} = \sum_i \frac{1}{p_i} \\
+&=  \frac{n}{n} + \frac{n}{n - 1} + \frac{n}{n - 2} + \dots + \frac{n}{1}\\
+&= n \bigg(  \frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + 1 \bigg) \\
+& = n H_n
+\end{align*}
+
+Where $H_n$ is the $n$th harmonic number
+\end{document}

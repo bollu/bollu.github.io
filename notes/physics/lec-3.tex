@@ -1,0 +1,438 @@
+\chapter{Maxwell's equations in Minkowski space}
+% http://www.physics.ucc.ie/apeer/PY4112/Tensors.pdf
+
+Let us first review Maxwell's equations:
+
+\begin{align*}
+&\div E = \frac{\rho}{\epsilon_0}~\text{(Electric charges produce fields)}\\
+&\div B = 0~\text{(Only magnetic dipoles exist)}\\
+&\curl E = - \pdv{B}{t}~\text{(Lenz Law / Faraday's law - time varying magnetic field induces current that opposes it)} \\
+&\curl B =  \mu_0 \bigg(J + \epsilon_0 \pdv{E}{t} \bigg)~\text{(Ampere's law + fudge factor)}
+\end{align*}
+
+\section{Constructing $F$, or Tensorifying Maxwell's equations}
+
+Begin with the equation that $\div B = 0$. This tells that $B$ can be written
+as the curl of some other field:
+
+\begin{equation}
+    \boxed{B \equiv \curl A}
+\end{equation}
+
+Expanding this equation of $B$ in tensorial form:
+\begin{equation}
+    \boxed{ B^i = \levicevita^{ijk}  \partial_j A^k }
+\end{equation}
+
+Next, take $\curl E = - \pdv{B}{t}$.
+
+
+\begin{align*}
+&\curl E = - \pdv{B}{t} = \pdv{(\curl A)}{t} = \curl{\pdv{A}{t}} \\
+&\curl (E + \pdv{A}{t}) = 0 \\
+&\text{writing this as the gradient of some field $\phi$ scaled by $\alpha : \reals$} \\
+&E + \pdv{A}{t} = \alpha \big(\grad \phi\big) \\
+&E = \alpha \grad \phi - \pdv{A}{t}
+\end{align*}
+
+Since electrostatics is time-independent, we choose to think of $\alpha = -1$, 
+so we can interpret $\phi$ as the potential.
+
+\begin{equation}
+     E^i = - \pdv{\phi}{x^k}  g^{ik} - \pdv{A}{t}^i
+\end{equation}
+
+A slight reformulation (since we know that in Minkowski space, $\partial_t = \partial_0$)
+we get the equation:
+
+
+\begin{equation}
+    \boxed{ E^i = - g^{ik} \partial_k \phi - \partial_0 A^i}
+\end{equation}
+
+We get the metric $g^ik$ involved to raise the covariant $\pdv{\phi}{x^k}$
+into the contravariant $E^i$.
+
+(\textbf{Sid question:} how does one justify switching $\curl$ and $\partial$? It feels like some algebra)
+
+\textbf{Here be magic!} We define A new rank-$2$ tensor in Minkowski space-time,
+called $F$ (for Faraday),
+
+\begin{equation}
+    \boxed{F_{\mu \nu} \equiv \partial_\mu A_\nu - \partial_\nu A_\mu}
+\end{equation}
+
+(\textbf{Sid question:} why is this object $F_{\mu \nu}$ covariant? What does this \textit{mean}?)
+
+\begin{lemma}
+$F_{\mu \nu}$ is antisymmetric.
+\end{lemma}
+
+\begin{lemma}
+$F_{\mu \nu}$ has 6 degrees of freedom
+\end{lemma}
+\begin{proof}
+Number of degrees of freedom of $F$: 
+\begin{align*}
+\frac{4^2~\text{(total)} - 4~\text{(diagonal)}}{2~\text{(anti-symmetry)}} = 6
+\end{align*}
+\end{proof}
+
+Notice that $F$ is a 1-form!
+
+\section{Expressing $B$, $E$ in terms of $F$}
+We now wish to re-expresss $B^{ij}$ and $E^{ij}$ in terms of $F$, so that
+this $F$ captures all of maxwell's equations.
+
+\begin{align*}
+    B^i &= \levicevita^{ijk}  \partial_j A^k = \levicevita^{ikj} \partial_k A^j \tag*{by $k$, $j$ being free variables} \\
+    B^i &= \frac{1}{2} \bigg( \levicevita^{ijk} \partial_j A^k + \levicevita^{ikj} \partial_k A^j \bigg) \\
+        &\text{Substituting $\partial_j A_k - \partial_k A_j = F_{jk}$, } \\
+    B^i &= \frac{1}{2} \levicevita^{ijk} F_{jk}
+\end{align*}
+
+
+So, $B$ in terms of $F$ is:
+\begin{equation}
+    \boxed{B^i = \frac{1}{2} \levicevita^{ijk} F_{jk}}
+\end{equation}
+
+Similarly, we wish to write $E$ in terms of $F$. The algebra is as follows:
+\begin{align*}
+    E^i &= -g^{ik} \partial_k \phi - \partial_0 A^i \\
+    E^i &= -g^{ik} \partial_k \phi - \partial_0 g^{ik} A_k  \tag*{Is this allowed? Am I always allowed to insert the $g_{ik}$?} \\
+    E^i &= -g^{ik} (\partial_k \phi + \partial_0 A_k) \\
+\end{align*}
+
+Since $k = \{1, 2, 3\}$ ($k$ is spacelike coordinates), and we would like to
+relate $\phi$ with $A$ (to unify $E$), we \textbf{set}:
+
+\begin{equation}
+    \boxed{A_0 \equiv - \phi}
+\end{equation}
+
+Continuing the derivation,
+
+
+
+\begin{align*}
+    E^i &= -g^{ik} (\partial_k (- A_0) + \partial_0 A_k) \\
+    E^i &= -g^{ik} (\partial_0 A_k - \partial_k A_0 ) \\
+    E^i &= -g^{ik} F_{0k}
+\end{align*}
+
+
+So, finally, the relation is:
+
+\begin{equation}
+    \boxed{E^i = -g^{ik} F_{0k}}
+\end{equation}
+
+
+Let us reconsider what we believed $E$ to be. We had:
+\begin{align*}
+    E &= - \grad \phi - \pdv{A}{t}
+\end{align*}
+However, comparing dimensions, space derivative of $\phi$ = time
+derivative of $A$. This means that 
+$\frac{\delta \phi}{\delta x} = \frac{\delta A}{\delta y}$, and so
+$\frac{\delta \phi}{\frac{\delta x}{\delta t}} =  \delta A$. We arbitrarily
+pick $c$ as our measuring stick for $\frac{\delta x}{\delta t}$.
+Also, in minkowski space, our measuring stick is actually $(ct, x, y, z)$,
+so $\partial_0 = \partial_{ct}$ So, when we write the equation for $E$, we should actually write
+
+\begin{align*}
+    E &= c \bigg(- \frac{\grad \phi}{c}  - \pdv{A}{ct}\bigg)
+\end{align*}
+
+which becomes:
+\begin{equation}
+    \boxed{E^i = c F^{i0}}
+\end{equation}
+
+\section{Rewriting Maxwell's equations in terms of $F$}
+Now that we have constructed the Faraday tensor $F$, we wish to re-expresss
+Maxwell's equations in terms of this object. This will give us a compact
+form of the laws which are invariant under coordinate transforms.
+
+\subsection{Combining (1) $\grad E = \frac{\rho}{\epsilon_0}$, (4) $\curl B = \mu_0 J + \pdv{E}{t}$}
+\subsubsection{1. Using (4) $\curl B = \mu_0 J + \pdv{E}{t}$}
+
+We consider the 4th Maxwell equation:
+
+\begin{align*}
+    \curl B &= \mu_0 J + \epsilon_0 \mu_0 \pdv{E}{t} \\
+    \curl B &= \mu_0 J + \frac{1}{c^2} \pdv{E}{t} \\
+            &\text{Converting to indices,}\\
+    (\curl B)^i &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{ct} \tag{From $\partial_{ct} = \frac{1}{c} \partial_t$} \\
+                &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{X^0} \\
+                &= \mu_0 J^i + \pdv{F^{i0}}{X^0} \tag{From $E^i = c F^{i0}$} \\
+                &= \mu_0 J^i + \partial_0 F^{i0}
+\end{align*}
+
+Now, we start to simplify the LHS, $\curl B$:
+
+\begin{align*}
+    &(\curl B)^i = \levicevita^{ijk} \partial_j B_k \\
+    %
+    &\text{Since $B^k = \frac{1}{2} \levicevita^{kmn} F_{mn}$,} \\
+    %
+    &\text{$B_k = \frac{1}{2} \levicevita_{kmn} F^{mn}$,} \tag{\textbf{TODO:} this is scam} \\
+    %
+    &(\curl B)^i = \levicevita^{ijk} \partial_j \bigg( \frac{1}{2} \levicevita_{kmn} F^{mn} \bigg) =
+    \frac{1}{2} \levicevita^{ijk} \levicevita_{kmn} \partial_j F^{mn}\\
+\end{align*}
+
+\textbf{Aside: We need to know how to evaluate $\levicevita^{ijk} \levicevita_{kmn}:$}
+\begin{align*}
+    \levicevita_{i_1, i_2, \dots, i_n} \levicevita_{j_1, j_2, \dots j_n} =  
+    \det{
+    \begin{vmatrix}
+        \delta_{i_1 j_1} & \delta_{i_1 j_2} &\dots &\delta_{i_1 j_n} \\
+        \delta_{i_2 j_1} &\delta_{i_2 j_2} &\dots &\delta_{i_2 j_n} \\
+        \vdots           &\vdots  & \ddots & \vdots \\
+        \delta_{i_n j_1} & \delta_{i_n j_2} & \dots & \delta_{i_n j_n}
+\end{vmatrix}}
+\end{align*}
+
+$\levicevita^{ijk} \levicevita^{imn} = -1 (\delta_j^m \delta_k^n - \delta_j^n \delta_k^m)$
+
+
+He argued that we get a $-1$ factor here due to the presence of the
+metric. I'm not fully convinced, but I can handwave this using the
+magic words "tensor density".
+
+
+Plugging both equations together,
+
+\begin{align*}
+    &\frac{1}{2} \levicevita^{ijk} \levicevita_{kmn} \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0}  \\
+    %
+    &\text{(Since $kij$ is an even permutation of $ijk$):} \\
+    %
+    &\frac{1}{2} \levicevita^{kij} \levicevita_{kmn} \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0}  \\
+    %
+    &\text{(Using  $\levicevita^{kij} \levicevita^{kmn} = -1 (\delta_i^m \delta_j^n - \delta_i^n \delta_j^m)$):}\\
+    %
+    &\frac{1}{2} \big[ 
+   - \big(\delta^i_m \delta^j_n - \delta^i_n \delta^j_m\big) \big]
+   \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0} \\
+    %
+   &- \frac{1}{2} \big[ \partial_n F^{in} - \partial_m F^{mi}  \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   %
+   &\text{($F$ is anti-symmetric, so rewriting $\partial_m F^{mi} = -\partial_m F^{im}$):} \\
+   %
+   &-\frac{1}{2} \big[ \partial_n F^{in} + \partial_m F^{im} \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   %
+   &\text{(Replacing $\partial_m F^{im} \equiv \partial_n F^{in}$ since $m$ is free):} \\
+   %
+   &-\big[ \partial_m F^{im} \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   % 
+   &\mu_0 J^i + \partial_0 F^{i0}  + \partial_m F^{im}  = 0 \\
+   % 
+   &\mu_0 J^i + \partial_\mu F^{i\mu} = 0 \tag{$\mu = \{0, 1, 2, 3 \}$}
+\end{align*}
+
+This gives us a continuity-style equation, linking the current density $J$ to
+the rate of change of $F$.
+\begin{equation}
+    \boxed{ \mu_0 J^i + \partial_\mu F^{i\mu} = 0 \tag{$\mu = \{0, 1, 2, 3 \}$} }
+\end{equation}
+
+
+\subsubsection{Second part, using 1st equation}
+
+\begin{align*}
+    &\grad E = \frac{\rho}{\epsilon_0} \\
+    %%
+    &\partial_i E^i = \frac{\rho}{\epsilon_0} \\
+    %%
+    &\text{(Substituting $E^i = c F^{i0}$, $c^2 = \frac{1}{\mu_0 \epsilon_0}$): } \\
+    %%
+    &c \partial_i F^{i0} = \frac{\rho}{\epsilon_0}  = \frac{\rho \mu_0}{\mu_0 \epsilon_0} = \rho \mu_0 c^2 \\
+    %%
+    &\partial_i F^{i0} = \mu_0 c \rho \\
+    %%
+    &\text{(Since $F$ is anti-symmetric, $F^{00} = 0$, Hence):}\\
+    %%
+    &\partial_0 F^{00} + \partial_i F^{i0} = \mu_0 c \rho \\
+    %%
+    &\partial_\mu F^{\mu 0} = \mu_0 c \rho
+\end{align*}
+
+\begin{equation}
+    \boxed{ \partial_\mu F^{\mu0} = \mu_0 c \rho}
+\end{equation}
+
+\subsubsection{Combining part 1 and part 2:}
+
+
+\begin{align*}
+    \mu_0 J^i + \partial_\mu F^{i\mu} = 0 \tag{From $B$}  \\
+    \partial_\mu F^{i\mu} = -\mu_0 J^i 
+    \partial_\mu F^{\mu 0} = \mu_0 c \rho \\
+    \partial_\mu F^{0 \mu} = - \mu_0 c \rho \\
+\end{align*}
+
+To combine these equations, \textbf{we set:}
+\begin{equation}
+    \boxed{J^0 \equiv c \rho}
+\end{equation}
+We arrive at the unified equation:
+
+\begin{align*}
+    \partial_\mu F^{\nu \mu} = - \mu_0 J^{\nu}
+\end{align*}
+
+Choose units such that $c = \frac{h}{2 \pi} = G_n = 1$, which gives us:
+
+
+\begin{align*}
+    &\partial_\mu F^{\nu \mu} = -  J^{\nu} \\
+    &\text{$F$ is antisymmetric, so flipping indices} \\
+    &\partial_\mu F^{\mu \nu} =  J^{\nu} \\
+\end{align*}
+
+\begin{equation}
+    \boxed{ \partial_\mu F^{\mu \nu} =  J^{\nu} }
+\end{equation}
+
+Note that this is \textbf{Ampere's law!}
+
+\subsection{Combining (2) $\curl E = - \pdv{B}{t}$, (3) $\grad B = 0$}
+
+\begin{align*}
+    %%
+    &\curl E = - \pdv{B}{t} \\
+    %%
+    &(\curl E)^i = \levicevita^{ijk} \partial_j E_k = - \partial_0 B \\
+    %%
+    &\levicevita^{ijk} \partial_j E_k = - \partial_0 (\frac{1}{2} \levicevita^{ijk} F_{jk}) \\
+    %%
+    &\levicevita^{ijk} \partial_j E_k  + \partial_0 (\frac{1}{2} \levicevita^{ijk} F_{jk})  = 0 \\
+    %%
+    &2\levicevita^{ijk} \partial_j E_k  + \partial_0 (\levicevita^{ijk} F_{jk})  = 0 \\
+\end{align*}
+
+Now we begin from the other direction, and start the derivation.
+
+We know that the equation we want is:
+
+\begin{equation}
+    \boxed{\levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0}
+\end{equation}
+
+\subsubsection{$\alpha = 0$ case:}
+First, set $\alpha = 0$. So now, the other $\beta, \mu, \nu$ are forced to be
+become space components --- $(i, j, k)$.
+
+Therefore, the equation now becomes:
+\begin{align*}
+    \levicevita^{0 i j k}  \partial_{i} F_{j k} = 0
+\end{align*}
+
+However, note that $\levicevita{0 i j k} = \levicevita{i j k}$, because if
+$(i j k)$ is an even permutation, so will $(0 i j k)$, and vice versa for odd
+(since $0 < i, j, k$).
+
+Using this, the equation becomes
+
+\begin{align*}
+    \levicevita^{i j k}  \partial_{i} F_{j k} = 0 \\
+    \partial_{i} ( \levicevita^{i j k} F_{j k}) = 0 \\
+    \text{Since $B^i = \frac{1}{2} \levicevita^{ijk} F_{j k}$:} \\
+    \partial_{i} \bigg( \frac{B^i}{2} \bigg) = 0 \\
+    \partial_{i}  B^i = 0 \\
+    \grad B = 0
+\end{align*}
+
+Hence, the above equation does encode $\grad B = 0$.
+
+\subsubsection{$\alpha = m$ case:}
+Let $\alpha$ be a spatial dimension $m = \{ 1, 2, 3 \}$.
+\begin{align*}
+    \levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0 \\
+    \levicevita^{m \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0
+\end{align*}
+
+Once again, we get two cases, one where $\beta = 0$, and one where $\beta = n$
+where $n$ is a spatial dimension. If $\beta = 0$, then the other dimensions
+are forced to be spatial dimensions, which we shall denote as $\mu \equiv x$,
+$\nu \equiv y$
+\begin{align*}
+    \levicevita^{m \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0 \\
+    \levicevita^{m 0 x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+\end{align*}
+
+Now note that $\levicevita^{m 0 \mu \nu} = - \levicevita{0 m \mu \nu} = - \levicevita{m \mu \nu}$.
+
+Using this, we can rewrite the above equation as:
+
+\begin{align*}
+    %%%
+    \levicevita^{m 0 x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    %%%
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+\end{align*}
+
+We now consider cases for $\mu$ in the second term, where either $\mu = 0$ or $\mu = o \in \{1, 2, 3\}$
+
+If $\mu = 0$, then the other dimension $\nu$ must be a spatial dimension $p$.
+If $\mu = q$, then the other dimension $\nu$ must be a time dimension $0$
+(This is because we are not allowed to have 4 spatial dimensions, since the $\levicevita$
+evaluates to 0 on repeated dimensions).
+
+
+\begin{align*}
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    \\
+    %%%
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \\
+    %%% mu = 0, nu = p
+    \levicevita^{m n 0 p}  \partial_{n} F_{0 p}  \tag{$\mu = 0$, $\nu = p$} \\
+    %%% mu = q, nu = 0
+    \levicevita^{m n q 0}  \partial_{n} F_{q 0} \tag{$\mu = q$, $\nu = 0$} \\
+    = 0 
+\end{align*}
+Rearranging, and using the fact that $F_{0 p} = - F {p 0}$,
+$\levicevita{m n 0 p} = \levicevita{0 m n p} = \levicevita{m n p}$,
+$\levicevita{m n q 0} = - \levicevita{0 m n q} = - \levicevita{m n q}$,
+
+\begin{align*}
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + 
+    %%% mu = 0, nu = p
+    \levicevita^{m n p}  (- \partial_{n} F_{p 0}) +
+    %%% mu = q, nu = 0
+    (- \levicevita^{m n q})  \partial_{n} F_{q 0}
+    = 0 
+\end{align*}
+
+Multiplying throughout by $-1$, and noticing that since $p, q$ are dummy indeces,
+we can set $p = q$. This allows us to get:
+
+
+
+\begin{align*}
+    \levicevita^{m x y}  \partial_{0} F_{x y} + 
+    %%% mu = 0, nu = p
+    2 \levicevita^{m n p}   \partial_{n} F_{p 0} = 0
+\end{align*}
+
+First, remember that $E_p = F_{p 0}$. So, we can replace the term $F_{p 0}$
+(upto fudging of constant factors that we have always done), with $E_p$.
+
+Now, compare
+
+\begin{align*}
+    &\levicevita^{m x y}  \partial_{0} F_{x y} + 
+    2 \levicevita^{m n p}   \partial_{n} E_p = 0 \tag{Our equation} \\
+    \\
+    &2\levicevita^{ijk} \partial_j E_k  + \partial_0 (\levicevita^{ijk} F_{jk})  = 0 \tag{Previous equation} \\
+\end{align*}
+
+Note that the two equations are identical upto variable naming, and are
+hence considered equal. So, we have encoded both of Maxwell's
+laws into this particular equation:
+\begin{equation}
+    \boxed{\levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0}
+\end{equation}

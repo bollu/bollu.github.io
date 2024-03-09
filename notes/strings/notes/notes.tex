@@ -1,0 +1,68 @@
+\documentclass{report}
+
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\theorem}{\leavevmode\newline \textbf{Theorem: } }
+\newcommand*{\intuition}{\leavevmode\newline \textbf{Intuition: } }
+\usepackage{amsmath}
+
+\newcommand{\pref}{<_{pfx}}
+\newcommand{\suff}{<_{sfx}}
+
+\usepackage{amssymb}
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage[T1]{fontenc}
+\begin{document}
+\chapter{Tools}
+\begin{itemize}
+        \item Factor: $u$ is a factor of $s$ iff there exists $l, r \in A*$ (where $A$ is the alphabet)
+               such that $s = lur$.
+        \item De bruijn string for alphabet $A$ of length $k$: string which contains exactly one copy of each string in $A^k$.
+              For example, where $A \equiv \{0, 1\}$, the strings $0, 1$ are de bruijn strings of length $1$. The string
+              $01100$ is a de bruijn string of length $2$, and the string $0001011100$ is a de bruijn string of length $3$.
+        \item Border: proper factor of $s$ that is both prefix and suffix. The string \texttt{aabaabaa} has broders
+            \texttt{a}, \texttt{aa}, \texttt{aabaa}.
+        \item Period: an integer $p$ such that $x[i] = x[i+p]$ for $i \in [0, |x|-p-1]$. For every nonempty string,
+              the length of the string itself is a valid period.
+\end{itemize}
+
+\theorem Period as string exponentation: if period of $x$ is $p$, then there exists a string $t$ of length $p$ ($|t| = p$)
+   and an integer $k$ such that $x \pref t^k$.
+\intuition $t$ is the string that is repeated. $x$ is a prefix since it may not contain the last occurence of 
+  the repeat fully.
+
+\theorem Period as proper prefix-suffix repetition: if period of $x$ is $p$, then there exist unique strings $l \in A^+$, $r \in A^*$
+  such that $x = (lr)^kl$ and $|lr| = p$.
+\intuition For example, let $x = 0120120$. Then $l=0, r=12$. 
+   $l$ is the portion of the periodic string that is written down by the last period. The rest of the periodic string
+  is $r$. $r$ can be empty if the string $x = l^k$.  See that $l$ is both a prefix and a suffix of the string.
+
+\theorem Period as bordered: if period of $x$ is $p$, then there are strings $l, r, s$ such that $x = lr = rs$ and $|l|=|s|=p$.
+\intuition (period implies bordered) TODO
+\intuition (bordered implies period) TODO
+
+\theorem Period as left extensible : if period of $x$ is $p$, then there exists a string $l$ such that $x \leq_{pfx} lx$ and $|l|=p$.
+\intuition (period implies left extensible) If $x \equiv 0123012301$, then choose $l=0123$. Then it is indeed true that $(0123)^2 01 <_p (0123)^3 01$.  We use $l$ to cover the trailing $01$.
+\intuition (left extensible implies periodic: proof by solving fixpoint)
+\begin{itemize}
+    \item $x \leq{pfx} tx$ is $xr = tx$. extending by $r$ gives $(xr)r = (tx)r$. This gives $xr^2 = t(tx)$. Inductively, we'll
+        get $xr^k = t^kx$ where $|t^k| > |x|$. So we've covered $x$ by copies of $t$.
+\end{itemize}
+\intuition (left extensible implies periodic)
+\begin{itemize}
+\item Let us have $x \leq_{pfx}$.
+\item Now $x[i+p] = (lx)[i+p]$ (since $x$ is a prefix). 
+\item $(lx)[i+p]$ is equal to $x[i+p-p]$ (drop $l$, which drops $p$ letters). 
+\item $x[i+p-p] = x[i]$. This establishes $x[i+p] = x[i]$.
+\end{itemize}
+
+\chapter{Algorithms on strings: Ch1}
+
+In a suffix tree, a new suffix adds one leaf, and at most one internal node (A branch where the suffix became different from an already added suffix),
+we need at most $2 \cdot |\texttt{Text}|$ number of vertices! How do we store edge labels? We store pointers into the original text.
+
+Why dollar sign ? Try drawing the suffix tree for \texttt{papa}.
+
+\end{document}

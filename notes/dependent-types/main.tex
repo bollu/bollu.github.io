@@ -1,0 +1,130 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{mathpartir}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\begin{document}
+\chapter{Hott lectures}
+\href{https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0945cc7f-48b7-4803-81af-e7193a3f461d}{CMU 2013 Fall: 15-819 Advanced Topics in Programming Languages --- Video lectures}. Course notes: \href{http://www.cs.cmu.edu/~rwh/courses/hott/}{15 819: Homotopy type theory}
+
+\chapter{Hott lecture 1: Introduction}
+
+\begin{itemize}
+\item ITT = intensional type theory.
+\item ETT = extensional type theory.
+\item ETT = ITT + ER (equality reflection) + UIP (uniqueness of identity proofs). It's sort of like an intensional theory of sets. Related to
+        Bishop's constructive real analysis.
+\item HoTT = ITT + HIT (higher inductive types) + UA (univalence axiom). Is an
+    intensional theory of weak infinity groupoids. Types are abstract spaces.
+\end{itemize}
+
+\section{Brower's program}
+\begin{itemize}
+    \item Mathematics is a social activity. Thus we need a language for
+        communicating math.
+    \item How is it possible for people to communicate math. ideas? The
+        fundamental idea is that of an algorithm.  What all people are capable
+        of doing is to perform a construction.
+    \item Proofs are forms of construction. This has a technical consequence:
+        \emph{Proof relevance}. Proofs are mathmatical objects we can
+        manipulate. A formal proof (ala Godel) is a weak shadow of a proof,
+        since we can enumerate the formal proofs available, but what
+        constitutes a proof is outside of that. Arguably, Godel's
+        incompleteness shows that the set of formal proofs is strictly smaller
+        than the set of proofs.
+    \item HoTT establishes a relationship between proofs of equations v/s paths
+        in a space.
+    \item Homotopy theorists do "assembly on paths". HoTT people perform
+        functional programming on paths.
+\end{itemize}
+
+Synthetic geometry is what Euclid did. Objects are things in themselves where
+we begin from an axiomatization.  Analytic was the Cartesian definition, where
+a circle is a locus of points, and we start working with real analysis. 
+
+Similarly in the case of HoTT, we don't consider paths as $\R \rightarrow X$.
+Rather, we work in Quillen model category / LF / Twelf. the lecturer feels that
+Coq is more like the traditional approach. HoTT works because we are doing
+synthetic homotopy theory. This distinction is due to Lawvere.
+
+Type theory is an analysis + categorification of Brouwer's intuitionism drawing
+on Gentzen's proof theory. A \emph{type} classifies \emph{constructions}.  We
+have \emph{introduction rules} that tell us how to effect the construction, the
+\emph{elimination rules} tells us how to use a construction. Finally, the
+inversion rules, which is like a conservation law for proofs, says that
+elimination after the introduction rule is identity (ie, elim is post-inverse
+to intro). The introduction/elimination rules are the \emph{statics}, while the
+inversion rule is the \emph{dynamics}.
+
+\emph{Axiomatic freedom of constructive mathematics:} Hilbert believed that
+Brouwer was negating everything that was done so far. However, this is not the
+case. Fewer assumptions lead to stronger results. Brouwer did not include law
+of excluded middle.
+
+\emph{Computational Trinitariamism:} type theory, proof theory, category
+theory.  Starting with proof theory (PT), \emph{Intuistionstic logic} is like
+``logic as if people matter''. Written down in modern form, we have the judgements:
+\texttt{A prop} which meeans that $A$ is a proposition. \texttt{A true} which means
+that $A$ is a true proposition, that is, it \emph{has a proof}. We do not expect
+that for any proposition, either \texttt{A true} or \texttt{A false}.
+
+\emph{Open endedness:} The principle that we do not imagine that we have
+circumscribed all possible proofs. If a system is not closed ended, we lose,
+since we can diagonalize our way out of it.
+
+\emph{Negative fragment of Intuistionstic propositional logic:} Propositions
+are more than the fact that they are provable, since they have computational content.
+Thus, we will write down a grammar of proofs. $T$ is the trivially true proposition
+in what follows. 
+
+$$
+\inferrule*[right=T-formation]{~}{\texttt{T prop}}
+\inferrule*[right=T-Introduction]{~}{\texttt{T true}}
+$$
+
+$$
+\inferrule*[right=AND-formation]{A~prop\\B~prop}{A \land B~prop} 
+$$
+$$
+\inferrule*[right=AND-introduction]{A~true\\B~true}{A \land B~true}
+$$
+$$
+\inferrule*[right=AND-elimination-left]{A ~true~ \land ~B~ true}{A ~true}
+\inferrule*[right=AND-elimination-right]{A ~true~ \land ~B~ true}{B ~true}
+$$
+
+For entailment, we draw a distinction between entailment ($A \vdash B$) and implication
+($A \supset B$) [yes, we write implication as horshoe for reasons that will be explained later
+apprently]. The idea is something like this: we can consider the collection of monotone maps 
+between posets, which is like considering entailments (since entailments are proof morphisms). It so 
+happens that the collection of monotone maps is itself a poset. This is similar to how we can
+internalize entailment as the logical statement of implication $A \supset B$.
+
+$$
+\inferrule*[right=implication-formation]{A~prop\\B~prop}{A \supset B~prop}
+$$
+
+$$
+\inferrule*[right=implication-intro]{A~true\vdash B~true}{A \supset B~true}
+$$
+
+$$
+\inferrule*[right=implication-elim]{A \supset B~true}{A~true \vdash B~true}
+$$
+
+We can sometimes uncurry this rule, to get:
+
+$$
+\inferrule*[right=implication-elim]{A \supset B~true\\A~true}{B~true}
+$$
+
+\chapter{Hott lecture 2: Judgements}
+
+\end{document}

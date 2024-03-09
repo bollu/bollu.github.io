@@ -1,0 +1,88 @@
+\chapter{Binary search}
+
+\section{Binary Search With Closed-Closed Intervals}
+
+\begin{minted}{cpp}
+// precondition: arr[0] <= arr[1] .. <= arr[n-1]
+int binsearch(int *arr, int v, int n) {
+  int left = 0, right = n-1;
+  while(left <= right) {
+      int mid = left + (right - left)/2;
+      if (arr[mid] == v) {
+          return mid;
+      } else if (arr[mid] > v) {
+          // search in left subrange.
+          right = mid-1; 
+      } else {
+          // search in right subrange:
+          // arr[mid] < v.
+          left = mid+1;
+      }
+  }
+}
+\end{minted}
+
+\section{Leftmost Index That Satisfies Predicate}
+
+Key idea, separate out the binary search range from the variable that tracks
+the best index. One style of implementing this is to ensure the the \texttt{left}
+variable keeps track of the leftmost index that satisfies this property. But this burdens
+the variable with two tasks: 
+\begin{itemize}
+\item keeping track of the satisfying leftmost index
+\item keep track of the range we are exploring
+\end{itemize}
+
+It is far better to separate these two concerns. So we keep a \texttt{best} variable
+to keep track of the leftmost index we have seen so far. This frees us to freely manipulate
+the \texttt{left}, \texttt{right} variables as we like.
+
+\begin{minted}{cpp}
+// FFFFF TTTTTTT
+//       ^
+//       |
+//     output
+int left = 0, right = n;
+int best = -1;
+while(left <= right) {
+    int mid = left + (right - left)/2;
+    bool p = solve(mid);
+    if (p) {
+        best = min(best, mid);
+        // explore left
+        // find smaller indexes with T
+        right = mid-1; 
+    } else {
+        // property is not true
+        // need to move higher.
+        left = mid+1;
+    }
+}
+cout << best;
+\end{minted}
+
+\section{Rightmost Index That Satisfies Predicate}
+
+\begin{minted}{cpp}
+// TTTTTTT FFFFFFF
+//       ^
+//       |
+//     output
+int left = 0, right = n;
+int best = -1;
+while(left <= right) {
+    int mid = left + (right - left)/2;
+    bool p = solve(mid);
+    if (p) {
+        best = max(best, mid);
+        // explore right
+        // find larger indexes with T
+        left = mid+1;
+    } else {
+        // property is not true,
+        // need to move lower.
+        right = mid-1;
+    }
+}
+\end{minted}
+

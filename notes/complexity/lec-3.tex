@@ -1,0 +1,65 @@
+chapter{Review of the last 3 lectures, after add-drop}
+
+\begin{itemize}
+    \item Is it easier to \textit{pose} problems than to \textit{solve} them?
+    \item Can every "solvable" problem have a solution that uses finite
+        resources?
+    \item What problems are \textit{interesting}?
+    \item Are all interesting problems solved in an \textit{interesting} way?
+        (P v/s NP)
+    \item Can things get more interesting? (Quantum Mechanics, Approximation,
+        Randomness, Interactivitiy, \dots)
+\end{itemize}
+
+Are there problems with infinite length input / output but can still be
+posed in finite time?  Eg. output $\pi$ in decimal. However, we decided that
+both input/output should be finite. We decided this does not belong to problems
+we wish to solve it, since we cannot solve it in finite time. If we believe
+that nature is inherently noisy, or nature is quantized, or nature has finite
+precision, then we cannot consider problems that require infinite time as
+problems in this universe (since Nature / the universe itself cannot pose
+such a problem).
+
+Quantum mechanics (which is a theory of quantization) is developed over
+infinite precision mathematics ($\mathbb{C}$). Does this really make sense?  
+There is a way in which a quantized universe can be infinite precision: This
+is by using 'external help': There are infinite such quantized universes which
+intersect at some points, and at those points, precision will increase. 
+(If we both have a resolution of 1 pixel but are at a gap of 1/2, my least
+count is now 1/2). If there are an infinite number of universes overlapping
+at a single point, then we can construct "infinite precision". 
+(\textit{I feel this is crazy. Is this really crazy?})
+
+
+Posing a question is creating a language $L \subset \Sigma^*$. (Sid: a solution
+is a classifier for $L$). 
+
+Kannan's view: 
+\begin{itemize}
+    \item Finite space $\equiv$ finite information can be stored.
+        (Turing: finite tape alphabet. Since a cell demarcates a finite volume,
+        we want to have a finite amount of info in this cell)
+    \item Information travels at finite speed. If we have cells, we should not
+        be able to store and retreive information "equally" (based on how far
+        we are from it). Hence, all infinite memory must be sequential memory
+        since information travels at finite speed.
+    \item Finite program $\equiv$ finite control.
+\end{itemize}
+
+Solution to these choices is a TM.
+
+
+Do all languages have a TM recognizing it? No (\texttt{RE} = solvable by TM).
+
+The class \texttt{R} = decidable by a TM (TM halts on all inputs). Diagonalization
+led us to Halting problem.
+
+
+We have the class $P$, and we claimed that $P$ is interesting. Given that $P$
+is considered interesting because of feasibility, it is possible that there are
+questions that are interesting even though \textbf{solving them} is not
+feasible. For example, if we can actually \textbf{understand} the solution, or
+the proof of non-existence of solutions, then we will care. \texttt{IP =
+PSPACE} is one such magical case where if someone can solve with a lot more
+power than you have access to, you can learn things from them interactively in
+reasonable time.

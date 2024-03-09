@@ -1,0 +1,170 @@
+\chapter{Exploring probabilistic complexity classes}
+
+\begin{itemize}
+    \item $\bpp \subset \Sigma^p_2 \cap \Pi^p_2$ (Sipser-Gaes theorem)
+    \item $\bpp \subset \ppoly$ (Adleman's theorem)
+    \item Hierarchy theorem for circuit complexity --- $SIZE(f(n))$
+\end{itemize}
+
+
+\begin{theorem}
+    $\bpp \subseteq \Sigma^p_2 \cap \Pi^p_2$ (Sipser-Gaes theorem)
+\end{theorem}
+\begin{proof}
+    First, notice that $\bpp = \cobpp$ (flip the answer, similar to $\ptime = \coptime$).
+
+    Showing $\bpp \subseteq \Sigma_2^p$, it would automatically imply that $\bpp \subseteq \Pi_2^p$,
+    since $\bpp = \cobpp$.
+    So now, all we need to show is that $\bpp \subseteq \Sigma_2^p$.
+
+    \begin{align*}
+    &\text{Definition of \bpp~for a language $L$:} \\
+    &\exists \text{poly time}~M, \forall w \in L, P[M(w, r) = accept] \geq \frac{2}{3} \\
+    &\exists \text{poly time}~M, \forall w \notin L, P[M(w, r) = accept] \leq \frac{1}{3}
+    \end{align*}
+
+    By repeating, we can make the probabilities:
+    \begin{align*}
+    &\text{Definition of \bpp~for a language $L$:} \\
+    &\exists \text{poly time}~M, \forall w \in L, P[M(w, r) = accept] \geq \ 1 - \frac{1}{2^n} \\
+    &\exists \text{poly time}~M, \forall w \notin L, P[M(w, r) = accept] \leq \frac{1}{2^n}
+    \end{align*}
+\end{proof}
+
+\begin{align*}
+    S_x = \{ r~\vert~ r~\text{is good for input x} \}
+\end{align*}
+
+That is, given $r$ as the randomness for input $x$ on machine $M$, $M$ will
+accept with high probability (ie. $M(x, r)$ accepts with high probability).
+
+
+There are only two cases: Either $|S_x|$ is large, or $|S_x|$ is very small,
+since $x \in L \lor x \notin L$.  Let $|r| = m$. Now, we count the size
+of $|S_x|$ depending on the cases of $x \in_? L$.
+
+
+%% TODO: fix this
+\begin{align*}
+    x \in L &\implies |S_x| \geq (1 - \frac{1}{2^n}) \cdot 2^m \\
+    x \notin L &\implies |S_x| \leq \frac{1}{2^n} \cdot 2^m
+\end{align*}
+
+We can exploit this idea to show the theorem: "every string either has a large
+$|S_x|$ or a small $|S_x|$ can be written as a "good" $\Sigma_2^p$ statement.
+
+
+Let $S$ be any set, $|S|< 2^{m - n}$ ($|S|$ is small). Let $k = ceil(m / n) + 1$.
+Let us define:
+
+$$
+S + u_i \equiv \{ x + u_i~\vert~x \in S \}
+$$
+
+where $+$ is bitwise-XOR.
+
+First of all, note that $|S + u_i| = |S|$ ($\texttt{blank} + u_i$ = XOR = bijective, hence we don't change cardinality).
+
+
+\begin{align*}
+    \bigcup_{i=1}^k |(S + u_i)| \leq \sum_{i=1}^k |S + u_i| = \sum_{i=1}^k |S| = k |S| = k \cdot 2^{m - n}
+\end{align*}
+
+
+\begin{align*}
+    \forall u_1, u_2, \dots u_k \in \{0, 1\}^*, |u_i| = m, \bigcup_{i=1}^k (S + u_i) \neq \{0, 1\}^m
+\end{align*}
+Immediate, because $|\bigcup_{i=1}^k (S + u_i)| \leq k \cdot 2^{m - n}$,
+$|\{0, 1\}^m| = 2^m$.  ($m = poly(n)$, hence $k = poly(n)$, now argue inequalities).
+
+
+Next, we argue something similar for \textit{large} sets. 
+If $|S| \geq (1 - \frac{1}{2^n}) \cdot 2^m$,
+
+\begin{align*}
+    Stmt \equiv \exists u_1, u_2, \dots u_k \in \{0, 1\}^*, |u_i| = m, \bigcup_{i=1}^k (S + u_i) = \{0, 1\}^m
+\end{align*}
+
+We prove this using the \textbf{probabilistic method}.  $P[Stmt] > 0$ is what we want to show.
+Let us show this by considering the \textit{converse}: $P[\lnot Stmt] < 1$. 
+
+
+We first make some definitions to state formally: 
+$$B_r \equiv r \notin \bigcup (S + u_i)$$
+ $$B_r^i \equiv r \notin S + u_i$$
+
+The converse is now the probability that $B_r$ does not cover $\{0, 1\}^m$.  
+We know that $$|S + u_i| \geq (1 - \frac{1}{2^n}) \cdot 2^m$$.
+Note that in this probability, we range over all $u_i$.
+
+\begin{align*}
+    P[B_r^i] \leq \texttt{TODO: complete this} = 2^{-n} \\
+    P[B_r] \leq  k \cdot 2^{-n} \leq 1
+\end{align*}
+
+Hence, there must exist $\{ u_i \}$.
+
+
+So now, we can pose the membership query $x \in_? L$ as:
+
+\begin{align*}
+    \exists u_1, u_2, \dots u_k, \forall r \in \{0, 1\}^m, r \in \bigcup_{i = 1}^k (S_x + u_i)
+\end{align*}
+
+If the statement had been $r \in S_x$, then this means that $M(x, r) = \texttt{ACCEPT}$.
+However, here we know that $r \in \bigcup_{i = 1}^k (S_x + u_i)$. From this, 
+we infer that $\exists i, r \in S_x + u_i$.  This means
+that $r = r_0 + u_i$ where $M(x, r_0) = \texttt{ACCEPT}$. Hence, this means
+that $r + u_i$ will accept $M(x, r + u_i) = M(x, r_0 + u_i + u_i) = M(x, r_0) = \texttt{ACCEPT}$.
+
+So, we can create a new machine $M'(x, r) = \text{run}~M(x, r + u_i),  \forall i \in [1, k]$.
+Note that $M'$ is in poly, since $M$ is poly, and $k = ceil(m, n) = poly(n)$, since
+$m$ is the amount of randomness the machine $M$ consumes.
+
+\textbf{Figure out where we need the $k = \dots + 1$ precisely (why the $+1$)}
+
+\begin{align*}
+    \exists u_1, u_2, \dots u_k, \forall r \in \{0, 1\}^m, M'(x, r) = \texttt{ACCEPT}
+\end{align*}
+
+This statement is now in $\Sigma_2^p$, since $M' \in \ptime$, and we have the correct
+$\exists \forall$ structure.
+
+
+\textbf{Intuitive picture: if $x \in L$, then the set $S_x$ is large enough that we
+only need a polynomial number of $\{u_i\}$ to "spread" $S_x$ around to cover all
+possible $r$, and the converse}.
+
+\section{$\bpp \subset \ppoly$ (Adleman's theorem)}
+
+\begin{align*}
+    P(M[x, r] = L(x)]) \geq  1 - \frac{1}{2^{n + 1}}
+\end{align*}
+
+Let the length of $r$ be $m$, and hence there are $2^m$  number of $r$.
+The number of bad $r$'s is $\leq \frac{2^m}{2^{n + 1}}$.
+
+There are only $2^n$ possible $x$ inputs to the machine $M$.
+
+Let us try to count the number of bad things for \textit{any} $x$. This will 
+be $\leq 2^n \cdot \frac{2^m}{2^{n + 1}} = \frac{2^m}{2} < 2^m$.
+
+So, there must exist a random string $r$ that is good for \textbf{all} $x$.
+Give this as the advice string to derandomize. So now, we got the advice
+sring for \ppoly~for every $n$.
+
+This does not allow us to reduce to \ptime, because we still need to know
+this special $r$ that allows us to derandomize every string of length $n$.
+
+Note that we do need polynomial time here, so we can get exponentially close
+to 1.
+
+What we are using is that for a string that belongs in the language, there
+are \textit{many} certificates, and similarly for strings that don't belong,
+there are \textit{very few} certificates (the "barren middle" exists for \bpp).
+
+\section{Computation is messy (Philosophy)}
+Computation is in itself a "messy" object. Small changes in input leads
+to huge changes in output. 
+
+In most of known mathematics, it is not as sensitive. 

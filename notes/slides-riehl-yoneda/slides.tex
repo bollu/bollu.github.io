@@ -1,0 +1,284 @@
+    % Created 2018-06-21 Thu 12:30
+\documentclass[8pt]{beamer}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{changepage}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{polynom}
+\renewcommand{\mod}[1]{\left( \texttt{mod}~#1 \right)}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\cSet}{\cat{Set}}
+\newcommand{\nt}{\Rightarrow}
+\tolerance=1000
+\usetheme{Antibes}
+\author{Siddharth Bhat}
+\date{July 25 2021}
+\institute{\texttt{\#\#harmless} Category Theory in Context}
+\title{The Yoneda Lemma}
+\begin{document}
+
+\maketitle
+
+% \begin{frame}[label=sec-1]{Equivalence of categories}
+\begin{frame}[fragile]{The statement}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \textbf{Given}
+    \begin{itemize}
+        \item A locally small category $C$
+        \item A functor $F: C \to \cSet$
+        \item An element $a \in C$
+
+    \end{itemize}
+   \textbf{Question:} How many natural transformations $\eta: Hom(a, -) \nt F$ are there?
+
+
+   \textbf{Answer:} Exactly as many as $|F(a)|$ (where $F(a) \in Obj(\cSet))$)
+
+
+   \textbf{How?} Establish a bijection between elements $x \in F(a)$ and
+   natural transformations $\eta_x: Hom(a, -) \nt F$.
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{minted}{hs}
+  type Hom a b = a -> b
+  type Reader a = Hom a
+  type Nat f g = forall x. f x -> g x
+
+  yoFwd :: Nat (Hom a) f -> f a
+  yoBwd :: f a -> Nat (Hom a) f
+\end{minted}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{The proof (1) (natural transformations $\eta: Hom(a, -) \nt F$ have an element of $F(a)$)}
+\begin{minted}{hs}
+type Hom a b = a -> b
+type Reader a = Hom a
+type Nat f g = forall x. f x -> g x
+
+yoFwd :: Nat (Hom a) f -> f a
+yoFwd :: (forall x. (Hom a x) -> f x) -> f a
+yoFwd :: (forall x. (a -> x) -> f x) -> f a
+yoFwd ak = (ak @ a) (id @ a:: a -> a) :: f a
+-- ak @ a :: (a -> a) -> f a; id @ a :: a -> a
+
+yoBwd :: f a -> Nat (Hom a) f
+\end{minted}
+
+\begin{itemize}
+\item Given the element $a \in C$, functor $F: C \to \cSet$,
+       natural transformation $\eta: Hom(a, -) \nt F$, we must produce an element of $F(a)$. \pause
+\item Idea: see that $id_a \in Hom(a, a)$. \pause
+\item See that the natural transformation at point $a$ is $\eta_a: Hom(a, a) \nt F a$. \pause
+\item Combine the two, apply $\eta_a(id_a) : F a$. \pause
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The proof (2) (an element $x \in F(a)$ creates a natural transformation $\eta_a: Hom(a, -) \nt F$)}
+
+\begin{adjustwidth}{-3em}{-3em}
+
+\begin{minted}{hs}
+
+type Hom a b = a -> b; type Reader a = Hom a; type Nat f g = forall x. f x -> g x
+
+yoBwd :: f a -> Nat (Hom a) f
+yoBwd :: f a -> (forall x. (a -> x) -> f x)
+yoBwd :: forall x. f a -> (a -> x) -> f x
+yoBwd :: f a -> (a -> x) -> f x
+yoBwd fa aUser = (fmap @ f) aUser fa
+
+yoFwd :: Nat (Hom a) f -> f a
+yoFwd ak = (ak @ a) (id @ a:: a -> a) :: f a
+
+\end{minted}
+
+\begin{itemize}
+\item Given the element $a \in C$, functor $F: C \to \cSet$,
+        an element $fa \in F(a)$, we must produce a natural transformation $\eta_{fa}: Hom(a, -) \nt F$. \pause
+\item For each $fa \in F(a)$, let's define the natural transformation $\eta_{fa}: Hom(a, -) \nt F -$. \pause
+\item Define it component-wise. For each $x \in C$, consider $\eta_{fa}(x): Hom(a, -)(x) \nt F(x)$. \pause
+\item Take an arrow $a \xrightarrow{aUser} x \in Hom(a, -)(x)$. \pause
+\item Send it to $F(a) \xrightarrow{F(aUser)} F(x)$. \pause
+\item Apply it on $fa \in F(a)$, giving $F(aUser)(fa) \in F(x)$.\pause
+\item Success! elements $fa \in F(a)$ are natural transformations $\eta_{fa}$ defined componentwise. \pause
+\item Naturality? \pause
+\end{itemize}
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}[fragile]{Proof from the book}
+
+% https://q.uiver.app/?q=WzAsOCxbMSwwLCJpZF9hIDogSG9tKGEsIGEpIl0sWzQsMCwiXFxldGEoaWRfYSkgOiBGKGEpIl0sWzEsMiwicCBcXGluIEhvbShhLCB4KSJdLFs0LDIsIlxcZXRhKHApID0gPyA6IEYoeCkiXSxbNSwwLCJcXHRleHR0dHtbQ0hPU0VOXX0iXSxbMCwwLCJcXHRleHR0dHtbS05PV05dfSJdLFswLDIsIlxcdGV4dHR0e1tBUkJJVFJBUlldfSJdLFs1LDIsIlxcdGV4dHR0e1tVTktOT1dOXX0iXSxbMCwxLCJcXGV0YSJdLFsyLDMsIlxcZXRhIl1d
+\[\begin{tikzcd}
+    {\texttt{[KNOWN]}} & {id_a : Hom(a, a)} &&& {\eta(id_a) : F(a)} & {\texttt{[CHOSEN]}} \\
+    \\
+    {\texttt{[ARBITRARY]}} & {p \in Hom(a, x)} &&& {\eta(p) = ? : F(x)} & {\texttt{[UNKNOWN]}}
+    \arrow["\eta", from=1-2, to=1-5]
+    \arrow["\eta", from=3-2, to=3-5]
+\end{tikzcd}\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Proof from the book}
+
+% https://q.uiver.app/?q=WzAsNixbNSwxLCJcXHRleHR0dHtbQ0hPU0VOXX0iXSxbMCwxLCJcXHRleHR0dHtbS05PV05dfSJdLFsxLDAsIkhvbShhLCBhKSJdLFsyLDEsImlkX2EiXSxbMywxLCJcXGV0YShhKShpZF9hKSJdLFs0LDAsIkYoYSkiXSxbMiw1LCJcXGV0YShhKTogSG9tKGEsIGEpIFxcdG8gRihhKSJdLFszLDQsIlxcZXRhKGEpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+\[\begin{tikzcd}
+    & {Hom(a, a)} &&& {F(a)} \\
+    {\texttt{[KNOWN]}} && {id_a} & {\eta(a)(id_a)} && {\texttt{[CHOSEN]}}
+    \arrow["{\eta(a): Hom(a, a) \to F(a)}", from=1-2, to=1-5]
+    \arrow["{\eta(a)}", maps to, from=2-3, to=2-4]
+\end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]{Proof from the book}
+% https://q.uiver.app/?q=WzAsMTIsWzUsMSwiXFx0ZXh0dHR7W0NIT1NFTl19Il0sWzAsMSwiXFx0ZXh0dHR7W0tOT1dOXX0iXSxbMSwwLCJIb20oYSwgYSkiXSxbMiwxLCJpZF9hIl0sWzMsMSwiXFxldGEoYSkoaWRfYSkiXSxbNCwwLCJGKGEpIl0sWzAsMiwiW1xcdGV4dHR0e0FSQklUUkFSWX1dIl0sWzEsMywiSG9tKGEsIHgpIl0sWzIsMiwicCJdLFszLDIsIj8iXSxbNSwyLCJbXFx0ZXh0dHR7VU5LTk9XTn1dIl0sWzQsMywiRih4KSJdLFsyLDUsIlxcZXRhKGEpOiBIb20oYSwgYSkgXFx0byBGKGEpIl0sWzMsNCwiXFxldGEoYSkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzgsOSwiXFxldGEocCkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsMTEsIlxcZXRhKHgpOiBIb20oYSwgeCkgXFx0byBGKHgpIiwyXV0=
+\[\begin{tikzcd}
+    & {Hom(a, a)} &&& {F(a)} \\
+    {\texttt{[KNOWN]}} && {id_a} & {\eta(a)(id_a)} && {\texttt{[CHOSEN]}} \\
+    {\texttt{[ARBITRARY]}} && p & {?} && {\texttt{[UNKNOWN]}} \\
+    & {Hom(a, x)} &&& {F(x)}
+    \arrow["{\eta(a): Hom(a, a) \to F(a)}", from=1-2, to=1-5]
+    \arrow["{\eta(a)}", maps to, from=2-3, to=2-4]
+    \arrow["{\eta(p)}", maps to, from=3-3, to=3-4]
+    \arrow["{\eta(x): Hom(a, x) \to F(x)}"', from=4-2, to=4-5]
+\end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]{Proof from the book}
+% https://q.uiver.app/?q=WzAsMTIsWzUsMSwiXFx0ZXh0dHR7W0NIT1NFTl19Il0sWzAsMSwiXFx0ZXh0dHR7W0tOT1dOXX0iXSxbMSwwLCJIb20oYSwgYSkiXSxbMiwxLCJpZF9hIl0sWzMsMSwiXFxldGEoYSkoaWRfYSkiXSxbNCwwLCJGKGEpIl0sWzAsMiwiW1xcdGV4dHR0e0FSQklUUkFSWX1dIl0sWzEsMywiSG9tKGEsIHgpIl0sWzIsMiwicCJdLFszLDIsIj8iXSxbNSwyLCJbXFx0ZXh0dHR7VU5LTk9XTn1dIl0sWzQsMywiRih4KSJdLFsyLDUsIlxcZXRhKGEpOiBIb20oYSwgYSkgXFx0byBGKGEpIl0sWzMsNCwiXFxldGEoYSkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzgsOSwiXFxldGEocCkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsMTEsIlxcZXRhKHgpOiBIb20oYSwgeCkgXFx0byBGKHgpIiwyXV0=
+\[\begin{tikzcd}
+    & {Hom(a, a)} &&& {F(a)} \\
+    {\texttt{[KNOWN]}} && {id_a} & {\eta(a)(id_a)} && {\texttt{[CHOSEN]}} \\
+    {\texttt{[ARBITRARY]}} && p & {?} && {\texttt{[UNKNOWN]}} \\
+    & {Hom(a, x)} &&& {F(x)}
+    \arrow["{\eta(a): Hom(a, a) \to F(a)}", from=1-2, to=1-5]
+    \arrow["{\eta(a)}", maps to, from=2-3, to=2-4]
+    \arrow["{\eta(x)}", maps to, from=3-3, to=3-4]
+    \arrow["{\eta(x): Hom(a, x) \to F(x)}"', from=4-2, to=4-5]
+\end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]{Proof from the book}
+
+% https://q.uiver.app/?q=WzAsMTMsWzUsMSwiXFx0ZXh0dHR7W0NIT1NFTl19Il0sWzAsMSwiXFx0ZXh0dHR7W0tOT1dOXX0iXSxbMSwwLCJIb20oYSwgYSkiXSxbMiwxLCJpZF9hIl0sWzMsMSwiXFxldGEoYSkoaWRfYSkiXSxbNCwwLCJGKGEpIl0sWzAsMiwiW1xcdGV4dHR0e0FSQklUUkFSWX1dIl0sWzEsMywiSG9tKGEsIHgpIl0sWzIsMiwicCJdLFszLDIsIj8iXSxbNSwyLCJbXFx0ZXh0dHR7VU5LTk9XTn1dIl0sWzQsMywiRih4KSJdLFsxLDJdLFsyLDUsIlxcZXRhKGEpOiBIb20oYSwgYSkgXFx0byBGKGEpIl0sWzMsNCwiXFxldGEoYSkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzgsOSwiXFxldGEocCkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsMTEsIlxcZXRhKHgpOiBIb20oYSwgeCkgXFx0byBGKHgpIiwyXSxbMiw3LCJIb20oYSwgLSkocCkiLDJdLFszLDgsIlxcbGFtYmRhIGYuIHAgXFxjaXJjIGYiLDJdXQ==
+\[\begin{tikzcd}
+    & {Hom(a, a)} &&& {F(a)} \\
+    {\texttt{[KNOWN]}} && {id_a} & {\eta(a)(id_a)} && {\texttt{[CHOSEN]}} \\
+    {[\texttt{ARBITRARY}]} & {} & p & {?} && {[\texttt{UNKNOWN}]} \\
+    & {Hom(a, x)} &&& {F(x)}
+    \arrow["{\eta(a): Hom(a, a) \to F(a)}", from=1-2, to=1-5]
+    \arrow["{\eta(a)}", maps to, from=2-3, to=2-4]
+    \arrow["{\eta(x)}", maps to, from=3-3, to=3-4]
+    \arrow["{\eta(x): Hom(a, x) \to F(x)}"', from=4-2, to=4-5]
+    \arrow["{Hom(a, -)(p)}"', from=1-2, to=4-2]
+    \arrow["{\lambda f. p \circ f}"', from=2-3, to=3-3]
+\end{tikzcd}\]
+\end{frame}
+
+
+\begin{frame}[fragile]{Proof from the book}
+\begin{adjustwidth}{-3em}{-3em}
+
+% https://q.uiver.app/?q=WzAsMTMsWzUsMSwiXFx0ZXh0dHR7W0NIT1NFTl19Il0sWzAsMSwiXFx0ZXh0dHR7W0tOT1dOXX0iXSxbMSwwLCJIb20oYSwgYSkiXSxbMiwxLCJpZF9hIl0sWzMsMSwiXFxldGEoYSkoaWRfYSkiXSxbNCwwLCJGKGEpIl0sWzAsMiwiW1xcdGV4dHR0e0FSQklUUkFSWX1dIl0sWzEsMywiSG9tKGEsIHgpIl0sWzIsMiwicCJdLFszLDIsIlxcZXRhKHgpKHApPUYocCkiXSxbNSwyLCJbXFx0ZXh0dHR7VU5LTk9XTn1dIl0sWzQsMywiRih4KSJdLFsxLDJdLFsyLDUsIlxcZXRhKGEpOiBIb20oYSwgYSkgXFx0byBGKGEpIl0sWzMsNCwiXFxldGEoYSkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzgsOSwiXFxldGEoeCkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsMTEsIlxcZXRhKHgpOiBIb20oYSwgeCkgXFx0byBGKHgpIiwyXSxbMiw3LCJIb20oYSwgLSkocCkiLDJdLFszLDgsIlxcbGFtYmRhIGYuIHAgXFxjaXJjIGYiLDJdLFs1LDExLCJGKHApIl0sWzQsOSwiRihwKSJdXQ==
+\[\begin{tikzcd}[scale=0.75,transform shape]
+    & {Hom(a, a)} &&& {F(a)} \\
+    {\texttt{[KNOWN]}} && {id_a} & {\eta(a)(id_a)} && {\texttt{[CHOSEN]}} \\
+    {[\texttt{ARBITRARY}]} & {} & p & {\scriptstyle \eta(x)(p) \equiv F(p)(\eta(a)(id_a))} && {[\texttt{UNKNOWN}]} \\
+    & {Hom(a, x)} &&& {F(x)}
+    \arrow["{\eta(a): Hom(a, a) \to F(a)}", from=1-2, to=1-5]
+    \arrow["{\eta(a)}", maps to, from=2-3, to=2-4]
+    \arrow["{\eta(x)}", maps to, from=3-3, to=3-4]
+    \arrow["{\eta(x): Hom(a, x) \to F(x)}"', from=4-2, to=4-5]
+    \arrow["{Hom(a, -)(p)}"', from=1-2, to=4-2]
+    \arrow["{\lambda f. p \circ f}"', from=2-3, to=3-3]
+    \arrow["{F(p)}", from=1-5, to=4-5]
+    \arrow["{F(p)}", from=2-4, to=3-4]
+\end{tikzcd}\]
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}[fragile]{Naturality in the functor}
+
+    Given a natural transformation $\eta: F \nt G$, we wish to show the diagram commutes:
+
+\begin{adjustwidth}{-3em}{-3em}
+
+    % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiSG9tKEMoYSwgLSksIEYpIl0sWzQsMCwiRmEiXSxbNCw0LCJHYSJdLFswLDQsIkhvbShDKGEsIC0pLCBHKSJdLFsxLDEsIlxcYWxwaGE6SG9tKGEsIC0pIFxcUmlnaHRhcnJvdyBGIl0sWzMsMSwiXFxhbHBoYV9hKGlkX2EpIl0sWzEsMywiXFxldGEgXFxjaXJjIFxcYWxwaGEiXSxbMywyLCJcXGV0YV9hKFxcYWxwaGFfYShpZF9hKSkiXSxbMiwzLCIoXFxldGEgXFxjaXJjIFxcYWxwaGEpKGEpKGlkX2EpIl0sWzMsMywiXFxldGFfYSAoXFxhbHBoYV9hKGlkX2EpKSJdLFsxLDIsIlxcZXRhX2E6IEZhIFxcUmlnaHRhcnJvdyBHYSJdLFswLDEsIlxcdGV4dHR0e1lvfShGKSJdLFszLDIsIlxcdGV4dHR0e1lvfShHKSIsMl0sWzAsMywiXFxldGFfKiBcXGVxdWl2IFxcbGFtYmRhIFxcZ2FtbWEuXFxldGEgXFxjaXJjIFxcZ2FtbWEgIiwyXSxbNCw1LCJcXHRleHR0dHtZb30iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNiwiXFxldGFfKihcXGFscGhhKSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw3LCJcXGV0YV9hIiwyXSxbNiw4LCJcXHRleHR0dHtZb30iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsOSwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOCw5LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{Hom(C(a, -), F)} &&&& Fa \\
+	& {\alpha:Hom(a, -) \Rightarrow F} && {\alpha_a(id_a)} \\
+	&&& {\eta_a(\alpha_a(id_a))} \\
+	& {\eta \circ \alpha} & {(\eta \circ \alpha)(a)(id_a)} & {\eta_a (\alpha_a(id_a))} \\
+	{Hom(C(a, -), G)} &&&& Ga
+	\arrow["{\eta_a: Fa \Rightarrow Ga}", from=1-5, to=5-5]
+	\arrow["{\texttt{Yo}(F)}", from=1-1, to=1-5]
+	\arrow["{\texttt{Yo}(G)}"', from=5-1, to=5-5]
+	\arrow["{\eta_* \equiv \lambda \gamma.\eta \circ \gamma }"', from=1-1, to=5-1]
+	\arrow["{\texttt{Yo}}"', maps to, from=2-2, to=2-4]
+	\arrow["{\eta_*(\alpha)}"', maps to, from=2-2, to=4-2]
+	\arrow["{\eta_a}"', from=2-4, to=3-4]
+	\arrow["{\texttt{Yo}}"', maps to, from=4-2, to=4-3]
+	\arrow[dotted, no head, from=3-4, to=4-4]
+	\arrow[dotted, no head, from=4-3, to=4-4]
+\end{tikzcd}\]
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}[fragile]{Naturality in the object}
+    Given an arrow $a \xrightarrow{f} b$, in $C$, we wish to show that this diagram commutes:
+\begin{adjustwidth}{-3em}{-3em}
+
+    % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiSG9tKEMoYSwgLSksIEYpIl0sWzMsMCwiRmEiXSxbMCw1LCJIb20oQyhiLCAtKSwgRikiXSxbMyw1LCJGYiJdLFsxLDEsIlxcYWxwaGE6QyhhLCAtKSBcXFJpZ2h0YXJyb3cgRiJdLFsyLDEsIlxcYWxwaGFfYShpZF9hKSJdLFsyLDIsIihGZikoXFxhbHBoYV9hKGlkX2EpKSJdLFsxLDQsIlxcbGFtYmRhIGIyeC4gXFxhbHBoYV94KGIyeCBcXGNpcmMgZikiXSxbMiw0LCJcXGFscGhhX2EoaWRfYSBcXGNpcmMgZikiXSxbMiwzLCJcXGFscGhhX2EoQyhhLC0pKGYpKGlkX2EpKSJdLFswLDEsIlxcdGV4dHR0e1lvfSJdLFswLDIsIlxcbGFtYmRhIFxcZXRhLiBcXGxhbWJkYSBiMnguIFxcZXRhX3goYjJ4IFxcY2lyYyBmKSIsMl0sWzEsMywiRmYiXSxbMiwzLCJcXHRleHR0dHtZb30iLDJdLFs0LDUsIlxcdGV4dHR0e1lvfSIsMl0sWzUsNiwiRmYiLDJdLFs0LDddLFs3LDgsIlxcdGV4dHR0e1lvfSJdLFs4LDldLFs2LDksIlxcdGV4dHR0e25hdHVyYWxpdHl9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	{Hom(C(a, -), F)} &&& Fa \\
+	& {\alpha:C(a, -) \Rightarrow F} & {\alpha_a(id_a)} \\
+	&& {(Ff)(\alpha_a(id_a))} \\
+	&& {\alpha_a(C(a,-)(f)(id_a))} \\
+	& {\lambda b2x. \alpha_x(b2x \circ f)} & {\alpha_a(id_a \circ f)} \\
+	{Hom(C(b, -), F)} &&& Fb
+	\arrow["{\texttt{Yo}}", from=1-1, to=1-4]
+	\arrow["{\lambda \eta. \lambda b2x. \eta_x(b2x \circ f)}"', from=1-1, to=6-1]
+	\arrow["Ff", from=1-4, to=6-4]
+	\arrow["{\texttt{Yo}}"', from=6-1, to=6-4]
+	\arrow["{\texttt{Yo}}"', from=2-2, to=2-3]
+	\arrow["Ff"', from=2-3, to=3-3]
+	\arrow[from=2-2, to=5-2]
+	\arrow["{\texttt{Yo}}", from=5-2, to=5-3]
+	\arrow[from=5-3, to=4-3]
+	\arrow["{\texttt{naturality}}"', dashed, no head, from=3-3, to=4-3]
+\end{tikzcd}\]
+\end{adjustwidth}
+\end{frame}
+
+\end{document}

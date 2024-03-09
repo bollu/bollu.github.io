@@ -1,0 +1,121 @@
+\chapter{Hierarchy Theorems}
+
+$\exists L$, such that $\forall f: \mathbb{N} \to \mathbb{N}$, where $f$ is
+space/time constructible,
+\begin{align*}
+    Space(f) &\supsetneq Space(o(f)) \\
+    Time(f) &\supsetneq Time \bigg (\frac{o(f)}{log f} \bigg )
+\end{align*}
+
+So, there is a Hierarchy of complexity classes in time and space.
+
+\subsection{Proof sketch}
+We exhibit a languag $A$, such that $A \in Space(f(n))$, and $A \notin Space(o(f(n))$.
+
+Let $D$ decide $A$. D's definition:
+\begin{itemize}
+    \item compute $f(n)$ and mark the end of $f(n)$ cells. If the read-write head
+        ever crosses it, \texttt{REJECT}, \texttt{HALT}. We first need
+        $f(n)$ to use $f(n)$ cells or less to compute. This is called as 
+        \textbf{space-constructribility}. ($f: \mathbb{N} \to \mathbb{N}$ is
+        space-constructible iff given $n$, $\exists$ TM which computes $f(n)$ 
+        using at most $f(n)$ cells). Also, we want $f(n)$ to be at least
+        $log(n)$. Clearly, this process is in space $f(n)$.
+
+    \item We now need to "seaparate" A from the smaller classes. If A can be
+        solved in a smaller space (ie, we cannot separate $A$), then
+        there must be a TM (say, $D'$) which decides A in space less than $f(n)$.
+        So now, we need to choose some input such that $D'$ is different from $D$.
+        We can use diagonalization to construct such a function.
+
+    \item let the input be $x$. Let $x = M10*$ for some TM $M$. if not,
+        \texttt{REJECT}, \texttt{HALT}.
+
+    \item Let $D$ simulate $M$ on input $M$. If $M$ takes less that $f(n)$
+        time to run on $M$, then $M$ can decide A in time less than $f(n)$.
+        So now, $D$ knows how much space $M(\langle M \rangle)$ requires. if $M(\langle M \rangle)$
+        accepts, we reject.  If $M(\langle M \rangle)$ rejects, we accept (diagonalization).
+
+    \item To find out whether $M(\langle M \rangle)$ rejects, note that it is space-bounded, so
+        we can just check how many states of the configuration space it visits.
+        If it has not halted after visiting all states in the configuration
+        space, we can conclude that $M(\langle M \rangle)$ does not halt. The configuration space
+        is $O(2^{f(n)})$. So we need to run $D$ for time $O(2^f(n))$, and then
+        \texttt{REJECT} if it continues running.
+\end{itemize}
+
+\textbf{Arjun Q:} Are there examples of non-space constructible functions, which are non-trivial?
+Other than ones that are too-small?
+
+
+Proofs of time are similar to the space separation theorem.
+\begin{itemize}
+    \item compute $t(n)$ ($t(n)$ should be time-constructible).
+        decrement a counter initialized to $t(n)$. if this hits $0$, 
+        \texttt{REJECT, HALT}. We get a $log$ factor due to the slowdown
+        of keeping time. (People are trying to speed this up).
+
+    \item once again, repeat the same construction used for $SPACE$.
+\end{itemize}
+
+\section{Savitch's Theorem:  $\texttt{NSPACE($f(n)$)} \subseteq \texttt{PSPACE($f(n)^2$)}$}
+$NSPACE(f(n))$ -- one branch of a NTM $N$ decides $L$ in space $O(f(n)$.
+
+Configuration space is $O(\texttt{alphabet}^{f(n)}) = O(2^f(n))$ -- otherwise,
+configurations are repeated.
+
+Our branch depth is exponential in $f(n)$. So, we need to keep track of
+$O(2^{f(n)})$ data.
+
+Given $\langle C_1 \in Config(N), C_2 \in Config(N), t \in \mathbb{N} \rangle$
+if we can find whether $C_1$ goes to $C_2$ in $t$ space, then we can solve
+our original problem.
+
+This can be solved by recursion by asking if there exists a $C_{mid}$, such that
+$C_1 \to C_{mid}$ in $t/2$ steps, similarly $C_{mid} to C_2$ in $t/2$ steps.
+
+% F(C1, C2, t)
+% for all config C{mid}:
+% a1 = F(C1, Cmid, t/2)
+% a2 = F(Cmid, C2, t/2)
+% accept if both accept
+
+\section{Cook Levin theorem}
+$L$ is \texttt{NP-complete}, if 
+
+\begin{itemize}
+    \item $L \in NP$
+    \item $\forall L' \in NP$, there exists a Karp reduction from $L'$ to $L$: $L' \leq_p L$ (\texttt{NP-hard})
+\end{itemize}
+
+$A \leq_p B$ if there exists a poly time computable function $f: \Sigma^* \to
+\Sigma^*$ such that 
+
+$$w \in A \Leftrightarrow f(a) \in B$$
+Karp reduction = poly time mapping reduction.
+
+Define \texttt{SAT}, and show that \texttt{SAT} is \texttt{NP-complete}.
+
+
+We have boolean formulas $\phi$, which is given in CNF.
+
+$$\texttt{SAT} = \{ \phi~\vert~\phi~\text{is in CNF (product of sums),}~\phi~\text{is satisfiable} \}$$.
+
+This is clearly decidable since we can try all possible assignments.
+
+It is in NP since a NDTM can try to guess assignments.
+
+To show that this is NP-complete, take any language $L'$ in \texttt{NP}. We provide
+a karp reduction to \texttt{SAT}. We take the poly-time checker for $L'$ into a
+SAT problem $\psi$, such that \textbf{iff} a solution for $\psi$ exists, then the poly
+time checker will accept the string, and vice versa (for reject).
+
+
+
+\section{\texttt{EXPSPACE} completeness - $EQ_{REG\uparrow}$}
+$r \uparrow \equiv \exists k \in \mathbb{N}. r \uparrow$ is regular if $r$ is
+regular.  We need this operator to control input size.
+
+Question: Check if two regular expressions are the same -- We show that
+this $\notin \texttt{PSPACE}$, and hence $\notin \texttt{PTIME}$. We show that
+this problem is $\texttt{EXPSPACE}$ complete.

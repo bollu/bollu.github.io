@@ -1,0 +1,185 @@
+\chapter{Tail Inequalities}
+
+Better inequalities can be ontained by a powerful technique called
+Chernoff bounds. However, they are harder to use.
+
+\section{Chernoff bounds}
+
+Let $X_1, X_2, \dots X_n$ be\textbf{independent, identically
+distributed} (IID) random variables.
+
+Let $X = X_1 + X_2 + \dots X_n$.
+
+Let each $X_i$ be a \textit{Bernoulli} random variable - that is, the values
+the random variable can take is $\{0, 1\}$.
+
+Let $\Pr(X_i = 1) = p$. Hence, $\Pr(X_i = 0) = 1 - p$.
+
+Finally, let us compute $\E{X} \equiv \mu$. We exploit the fact that they are
+IID to derive:
+
+$$
+\E{X} = \sum_i \E{X_i} = n (1 \cdot p + (1 - p) \cdot 0) = n p
+$$
+
+\subsection{Physical interpretation}
+
+Consider throwing a biased coin over n trials. Each trial, the prob. of
+heads is $p$. So, each $X_i$ corresponds to the fact that the ith trial is
+heads. $X$ counts the number of heads over the $n$ trials.
+
+\subsection{The bound}
+
+\begin{align*}
+\Pr(X \geq \mu (1 + \delta)) \leq
+{\bigg[ \frac{e^\delta}{({1 + \delta)}^{1 + \delta}}} \bigg]^\mu
+\end{align*}
+
+\subsection{Proof technique}
+
+We use higher order moments ($\E{x^k}$ is the kth moment). We will use
+\textit{exponential moments} - That is, $\E{e^x}$ style moments.
+
+
+\subsection{The proof}
+For each $X_i$, we define $Y_i \equiv e^{t X_i}$, for a real number $t$
+that will be \textbf{chosen later}.
+
+
+Since the distribution is IID, we will use $p$ and $1 - p$ for the random
+variables $X_i$. We do not need to consider a separate $p_i$ for each $X_i$.
+\begin{align*}
+\E{Y_i} = \E{e^{t X_i} } = p \cdot e^{t \cdot 1} + (1 - p) \cdot e^0 =
+p \cdot e^t + 1 - p
+\end{align*}
+
+
+Now, we define another random variable $Y \equiv Y_1 \cdot Y_2 \dots Y_n$.
+
+\begin{align*}
+&\E{Y} = \E{Y_1 \cdot Y_2 \dots Y_n}  \\
+&\text{Since $Y_i$ is independent, expectation of product = product of expectation} \\
+&\E{Y} = \prod_{i=1}^n \E{Y_i} = (p e^t + 1 - p)^n
+\end{align*}
+
+First, notice that $Y = e^{tX}$:
+\begin{align*}
+Y = Y_1 \cdot Y_2 \cdot Y_n = e^{tX_1} e^{t X_2} \dots e^{e X_n} = e^{t(X_1 + X_2 + \dots X_n)} = e^{tX}
+\end{align*}
+
+Further, Notice that we can transfer the bound of X to Y:
+
+\begin{align*}
+&X \geq \mu(1 + \delta) \implies e^{tX} \geq e^{t \mu(1 + \delta}) \\
+&Y \geq e^{t \mu (1 + \delta)}
+\end{align*}
+
+Also notice that $Y$ is a \textit{positive valued} random variable, so we can
+now use the Markov inequality.
+
+\begin{align*}
+&\Pr[Y \geq e^{t \mu (1 + \delta)}] \leq \frac{\E{Y}}{e^{t \mu (1 + \delta)}} =
+\frac{\prod (1 - p + pe^t)}{e^{t \mu (1 + \delta)}} \\
+%
+&\leq \frac{\prod_{i=1}^n (1 - p + pe^t)}{e^{t \mu (1 + \delta)}} \\
+%
+&\text{since $1 + x \leq e^x$, (intuition: taylor series of $e^x$}, \\
+%
+&\leq \frac{\prod_{i=1}^n e^{(- p + pe^t)}}{e^{t \mu (1 + \delta)}} \\
+%
+&= \frac{e^{-\mu (1 - e^t)}}{e^{t \mu (1 + \delta)}} \\
+%
+&= e^{-\mu (1 - e^t) - t\mu(1 + \delta)} \\
+%
+\end{align*}
+
+
+We wish to minimise this right hand side, do we differentiate wrt $t$ and set
+it to $0$.  Rather than minimise the function, we can minimise the $\log$ of
+the function.
+
+\begin{align*}
+&f(t) \equiv \log (RHS) \\
+&f(t) = -\mu(1 - e^t) - t\mu (1 + \delta) \\
+& f'(t) = \mu e^t - \mu(1 + \delta) \\
+& f'(t) = 0 \implies t = \ln (1 + \delta)
+\end{align*}
+
+\textbf{TODO:} We need to check that it is the minima, but that's up to us!
+
+Now, we get:
+
+\begin{align*}
+&\Pr[Y \geq e^{t \mu (1 + \delta)}] \leq e^{-\mu (1 - e^t) - t\mu(1 + \delta)} \\
+\text{TODO: finish by substituting $t$}
+\end{align*}
+
+\subsection{Simplification of the right hand size}
+
+We can simplify the RHS to give:
+
+\begin{align*}
+\Pr(X \geq \mu(1 + \delta)) \leq
+\begin{cases}
+e^{-\mu \delta^2 / 4} & \text{if~$\delta \leq 1$} \\
+e^{-\mu \delta \ln \delta} & \text{if~$\delta > 1$}
+\end{cases}
+\end{align*}
+
+\section{Example of use of Chernoff bounds}
+
+Say we have $n$ balls and $n$ bins. We throw each ball to a bin chosen
+independently and uniformly at random. $X_i \equiv \text{number of balls in bin $i$}$
+We wish to compute $\E{X_i}$. For this, we define a new random variable
+$$
+Y_{i, j} =
+\begin{cases}
+1 & \text{ball $j$ goes to bin $i$} \\
+0 & \text{otherwise}
+\end{cases}
+$$.
+
+Note that $X_i = \sum_j Y_{i,j}$
+
+\begin{align*}
+\E{X_i} = \E{\sum_j Y_{i, j}} = \sum_j \E{Y_{i, j}} = \sum_{j=1}^n \frac{1}{n} = 1
+\end{align*}
+
+
+Now, we want to ask $\Pr(X_i \geq 4)$?
+
+
+By \textbf{Markov inequality}, we can answer:
+\begin{align*}
+\Pr(X_i \geq 4) = \Pr(X \geq 4 \cdot \E{X_i}) \leq \frac{1}{4}
+\end{align*}
+
+
+
+By \textbf{Chebyshev inequality}, we first compute:
+\begin{align*}
+\E{ Y_{i, j}} = \frac{1}{n} \\
+Var(Y_{i, j}) = \E{Y_{i, j}^2} - (E{Y_{i, j}})^2 \\
+= (1^2 \cdot \frac{1}{n} + 0) - (\frac{1}{n})^2 \\
+= \frac{1}{n} - \frac{1}{n^2}
+\end{align*}
+
+
+$X_i = sum_j Y_{i, j}$, $Y_{ij}$ independent. Therefore,
+
+\begin{align*}
+Var(X_i) = \sum_j Var(Y_{ij}) = n (\frac{1}{n} - \frac{1}{n^2}) = 1 - \frac{1}{n}
+\end{align*}
+
+We now try to write the inequality we care about in the form of chebyshev:
+$$
+Pr(|X - EX| >= c . sigma_x) <=(chebyshev) 1/c^2
+$$
+
+$$
+Pr(X_i >= 4) <=(chebyshev) Pr(|X_i - 1| >= 3) \leq \frac{\sigma_{x_i}^2}{9}
+$$
+
+$$
+Pr (X_i >= 4) = Pr(X_i >= 1. (1 + 3)) <=(chernoff) e^{-1 3 ln 3} = 3^{-3}
+$$

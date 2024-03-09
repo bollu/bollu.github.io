@@ -1,0 +1,155 @@
+\chapter{NP}
+\section{Cook Levin theorem}
+\texttt{SAT} is \texttt{NP-hard}. 
+\subsection{Proof}.
+Unfold theorem statement into:
+$\forall L \in \texttt{NP}, L \leq_p \texttt{SAT}$. 
+Since this should work for all things in NP, let's just write down the definition:
+
+there exists an \texttt{NDTM} $N$ such that $N$ accepts $w$, $\forall w
+\in L$, in $|w|^k$ steps.
+
+$N$ is an \texttt{NDTM}, so $N$ accepts $w$ means that there exists a branch
+of N that acceeps $w$ is $|w|^k$ steps.
+
+We should be able to construct a CNF such that $\phi(w)$ is \texttt{SAT} iff
+there exists an accepting branch for $N(w)$.
+
+\subsubsection{Caveats}
+
+1. the construction of $\phi$ from $N$ should make sure that
+$\phi$ has $poly(|w|)$ clauses --- otherwise, this is no longer a poly-time
+reduction.  We know that $\langle \texttt{AND}, \texttt{OR}, \texttt{NOT} \rangle$ is
+universal, so we can clearly construct any \texttt{TM} into a circuit. The problem
+is that the CNF we construct from the truth-table of the \texttt{TM} will be
+polynomial.
+
+\textbf{Sid Q:} Proof that boolean circuits are universal?
+
+\subsubsection{Proof sketch}
+Consider the NDTM $N(n)$, we will now argue about its configuration.
+
+We can cut off the turing tape after the first polynomial number of cells ---
+since the \texttt{NDTM} can only access those many cells.
+
+We should start will the initial state $q_{start}$.
+
+We should get the accept state $q_{accept}$ in $n^k$ steps.
+
+If we can pose this in terms of a CNF formula of poly-length, we are done.
+
+\subsubsection{Setting up \texttt{SAT}}
+
+\paragraph{\textbf{Variables - Cells of the tape}}
+The state of the turing tape on the $i$th step at the $j$th position of the
+turing tape for all $s \in alphabet(N)$ as $x_{i, j, s}$. $x_{i, j, s} = 1$
+is interpreted as "at step $i$, on cell $j$, value $s$ is written.
+
+For this to be valid, we need each cell to have exactly one symbol.
+
+
+\paragraph{\textbf{Formula - Validity of cells}}
+For every $(i, j)$ for at \textbf{least one} $s$ must be $1$:
+$\phi_{cell least} = \bigwedge\limits_{i, j} (\lor_s x_{i, j, s})$
+
+
+For every $(i, j)$ for at \textbf{most one} $s$ must be $1$. This is equivalent
+to saying that for every $(s, t)$, one of them must be absent.
+$\phi_{cell most} = \bigwedge\limits_{s, t, s \neq t} (\lnot{x_{i, j, s}} \lor \lnot{x_{i, j, t}})$.
+
+$\phi_{cell} = \phi_{cell least} \land \phi_{cell most}$
+
+
+\paragraph{\textbf{Formula - Initial state}}
+The initial cells contain the correct letters, corresponding to the initial
+input $w = \langle w_1 w_2 \dots w_n$, and the other cells must be blank.
+$\phi_{init} = x_{1, 0, \#} \land x_{1, 0, q_{start}} \land (x_{1, 1, w_1} \land x{1, 2, w_2} \land \dots \land x_{1, n, w_n}) \land (x_{1, n + 1, blank} \land x_{1, n + 2, blank} \land \dots \land x_{1, n^k, blank})$
+
+We use the $x_{\texttt{STATE}, \texttt{LOC}, \texttt{STATE ALPHABET}}$ to encode the current state
+we are in. We adjoin this to the alphabet since we automatically get mutual
+exclusion. The size of the \texttt{STATE ALPHABET} is constant, so it doesn't
+matter. The \texttt{LOC} of this will correspond to the \textbf{location of the head}.
+So, by placing the state symbol at a point, we understand that the head is at
+($\texttt{LOC} + 1$) in the original tape.
+
+
+\paragraph{\textbf{Formula - Final state}}
+To encode a TM configuration, what we need to know is the state of the TM,
+the position of the head, and the letters on the tape.
+
+$\phi_{accept} = \lor_{i, k} x_{i, j, q_{accept}}$
+
+
+\paragraph{\textbf{Formula - Transition}}
+Every valid move in the TM can only touch two adjacent cells, since the memory
+is not really 'random-access', it localizes computation.
+
+So, every transition formula will view three adjacent cells at once. If we 
+can view three are valid, we can "slide the window" to check the correctness
+of all cells. 
+
+$\phi_{move} = \bigwedge\limits_{\text{valid adjacent triplets}}$
+
+To identify valid adjacent triplets, let the 
+original config be \texttt{<a | b | c>}, 
+let the new config be \texttt{<d | e | f>}.
+
+The total number of legal windows will be a subset of $s^9$. So, for any
+legal window, we can create a formula of some constant size.
+
+$\phi_{move} = \bigwedge\limits{\text{legal window}}$.
+
+The number of legal windows is $O(n^k)$, since we only have $n^k$ steps
+and each legal window adds some constant number of formulas.
+
+
+
+\paragraph{\textbf{Final $\phi$}}:
+$\phi = \phi_{cell} \land \phi_{init} \land \phi_{accept} \land \phi_{move}$
+If the NDTM accepts, then $\phi$ will be valid and vice versa.
+
+
+\textbf{Sid Q:} Check that this reduction actually takes \textit{poly-time in n}! It
+is clear to me that this inflates the size in poly, but it's not clear to me
+that this takes only \textit{poly-time in n}.
+
+Hence, SAT is \textbf{NP-hard} (well, NP-complete).
+
+
+
+
+\section{3-SAT is NP-complete}
+3-SAT: Every clause has 3 literals.
+
+We reduce 4-SAT into 3-SAT, and then we show how to reduce \texttt{n-SAT} to \texttt{(n-1)-SAT}
+
+\begin{align*}
+    C_{\texttt{4-SAT}} &= x_1 \lor x_2 \lor x_3 \lor x_4 \\
+    C'_{\texttt{3-SAT}} &= (x_1 \lor x_2 \lor z) \land (x_3 \lor x_4 \lor \lnot{z})
+\end{align*}
+
+If $C$ is true, We can always pick an assignment for $z$ to make the \textbf{other clause true}.
+So, we can pick a correct $z$.
+
+Similarly, if $C$ is false, $C'$ reduces to $C' = z \land \lnot{z}$. This 
+is \texttt{UNSAT}, so this is not possible.
+
+Now, in general, we reduce \texttt{n-SAT} into \texttt{(n-1)-SAT}.
+
+\section{\texttt{CLIQUE} is NP-complete}
+Does the graph contain a $k$ clique?
+
+Proof.
+
+Reduce 3-SAT to \texttt{CLIQUE}
+
+$l$ clauses, $m$ variables.
+
+For every clause and its complement, create a collection of vertices. Within
+a triplet, there are no edges. All triplets are across. Connect everything
+to everything, unless they are contradictory. 
+
+The number of edges will be high.
+
+Now, ask for an $l$ clique. If this exists, then we have $l$ assignments
+which do not contradict each other.

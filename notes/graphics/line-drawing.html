@@ -1,0 +1,250 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>The Bresenham Line-Drawing Algorithm</title>
+</head><body><h2>The Bresenham Line-Drawing Algorithm</h2>
+
+
+
+
+<hr><p>
+</p><h3><a name="basic">The basic Bresenham algorithm</a></h3>
+
+Consider drawing a line on a raster grid where we restrict the
+allowable slopes of the line to the range <img src="line-drawing_files/slopelt1.gif">.<p>
+
+If we further restrict the line-drawing routine so that it always
+increments <em>x</em> as it plots, it becomes clear that, having
+plotted a point at <em>(x,y)</em>, the routine has a severely limited
+range of options as to where it may put the <em>next</em> point on the
+line:</p><p>
+</p><ul>
+<li> It may plot the point <em>(x+1,y)</em>, or:
+</li><li> It may plot the point <em>(x+1,y+1)</em>.
+</li></ul>
+<p>
+
+So, working in the <em>first positive octant</em> of the plane, line
+drawing becomes a matter of deciding between two possibilities at each
+step.</p><p>
+
+We can draw a diagram of the situation which the plotting program finds
+itself in having plotted <em>(x,y)</em>.</p><p>
+
+</p><center><img src="line-drawing_files/bres1.gif"></center><p>
+
+In plotting <em>(x,y)</em> the line drawing routine will, in general,
+be making a compromise between what it would like to draw and what the
+resolution of the screen actually allows it to draw. Usually the
+plotted point <em>(x,y)</em> will be in error, the actual, mathematical
+point on the line will not be addressable on the pixel grid. So we
+associate an error, <img src="line-drawing_files/eps.gif">, with each <em>y</em> ordinate, 
+the real value of <em>y</em> should be <img src="line-drawing_files/y_eps.gif">. This 
+error will range from -0.5 to just under +0.5.</p><p>
+
+In moving from <em>x</em> to <em>x+1</em> we increase the value of the
+true (mathematical) y-ordinate by an amount equal to the slope of the
+line, <em>m</em>. We will choose to plot <em>(x+1,y)</em> if the
+difference between this new value and <em>y</em> is less than 0.5.</p><p>
+
+</p><center><img src="line-drawing_files/yemlty5.gif"></center><p>
+
+Otherwise we will plot <em>(x+1,y+1)</em>. It should be clear that by
+so doing we minimise the total error between the mathematical line
+segment and what actually gets drawn on the display.</p><p>
+
+The error resulting from this new point can now be written back into
+<img src="line-drawing_files/eps.gif">, this will allow us to repeat the whole process for
+the next point along the line, at <em>x+2</em>.</p><p>
+
+The new value of error can adopt one of two possible values, depending
+on what new point is plotted. If <em>(x+1,y)</em> is chosen, the new
+value of error is given by:
+
+</p><center><img src="line-drawing_files/epsnew1.gif"></center><p>
+
+Otherwise it is:
+
+</p><center><img src="line-drawing_files/epsnew2.gif"></center><p>
+
+This gives an algorithm for a DDA which avoids rounding operations,
+instead using the error variable <img src="line-drawing_files/eps.gif"> to control plotting:
+</p><p>
+
+</p><center><img src="line-drawing_files/pseudo1.gif"></center><p>
+
+This still employs floating point values. Consider, however, what
+happens if we multiply across both sides of the plotting test by
+<img src="line-drawing_files/dx.gif"> and then by 2:
+
+</p><center><img src="line-drawing_files/derive1.gif"></center><p>
+
+All quantities in this inequality are now integral.</p><p>
+
+Substitute <img src="line-drawing_files/epsprime.gif"> for <img src="line-drawing_files/epsdx.gif">. The test
+becomes:
+
+</p><center><img src="line-drawing_files/test1.gif"></center><p>
+
+This gives an <em>integer-only</em> test for deciding which point to
+plot.</p><p>
+
+The update rules for the error on each step may also be cast into <img src="line-drawing_files/epsprime.gif"> form. Consider the floating-point versions of the
+update rules:
+
+</p><center><img src="line-drawing_files/update1.gif"></center><p>
+
+Multiplying through by <img src="line-drawing_files/dx.gif"> yields:
+
+</p><center><img src="line-drawing_files/update2.gif"></center><p>
+
+which is in <img src="line-drawing_files/epsprime.gif"> form.</p><p>
+
+</p><center><img src="line-drawing_files/update3.gif"></center><p>
+
+Using this new ``error'' value, <img src="line-drawing_files/epsprime.gif">, with the new test and
+update equations gives Bresenham's integer-only line drawing algorithm:</p><p>
+
+</p><center><img src="line-drawing_files/pseudo2.gif"></center><p>
+
+</p><ul>
+<li> Integer only - hence efficient (fast).
+</li><li> Multiplication by 2 can be implemented by left-shift.
+</li><li> This version limited to slopes in the first octant, <img src="line-drawing_files/slopelt1.gif">.
+</li></ul><p>
+
+Here is a C++ implementation of the Bresenham algorithm for line
+segments in the first octant.</p><p>
+
+</p><pre>    void linev6(Screen &amp;s,
+              unsigned x1, unsigned y1,
+              unsigned x2, unsigned y2,
+              unsigned char colour )
+    {
+      int dx  = x2 - x1,
+          dy  = y2 - y1,
+          y   = y1,
+          eps = 0;
+    
+      for ( int x = x1; x &lt;= x2; x++ )  {
+        s.Plot(x,y,colour);
+        eps += dy;
+        if ( (eps &lt;&lt; 1) &gt;= dx )  {
+          y++;  eps -= dx;
+        }
+      }
+    }
+</pre>
+
+This is an all-integer function, employs left shift for multiplication
+and eliminates redundant operations by tricky use of the
+<code>eps</code> variable.<p>
+
+This implementation of Bresenham's algorithm is incomplete, it does not
+check the validity of its arguments. A real implementation should do
+this.
+
+In fact, a real implementation of Bresenham's algorithm should do more
+than simply reject lines with slopes lying outside the first octant, 
+it should handle lines of arbitrary slope.</p><p>
+
+</p><hr><p>
+</p><h3><a name="slopes">Handling multiple slopes</a></h3>
+
+If we try out the C++ implementation of the Bresenham algorithm, we
+find it has some peculiar properties.<p>
+
+As expected, it fails to plot lines with negative slopes (try it and
+see what happens). It also fails to plot lines of positive slope
+greater than 1 (this is an interesting case, try it also and see if you
+can explain what is happening).</p><p>
+
+More unusually, we find that the order in which the endpoints are supplied 
+to this routine is significant, it will only work as long as <code>x1</code>
+is smaller than <code>x2</code>.</p><p>
+
+In fact, if we have two line segments with the same endpoints, and the
+same slope, this routine may draw one of them successfully but fails to
+draw the other one.</p><p>
+
+</p><center><img src="line-drawing_files/lsdlfp.gif"></center><p>
+
+Of course, this is not surprising really, when we consider that the
+function works by <strong>incrementing</strong> <em>x</em>. It does
+emphasise, however, that the routine is plotting <em>vectors</em>,
+direction is significant. Considering all the vectors from
+<em>(x1,y1)</em> to <em>(x2,y2)</em> we find that there are eight
+regions, (the ``octants'') and the basic Bresenham algorithm works in
+only one of them.</p><p>
+
+</p><center><img src="line-drawing_files/octants.gif"></center><p>
+
+A full implementation of the Bresenham algorithm must, of course, be able 
+to handle all combinations of slope and endpoint order.</p><p>
+
+Some of the regions in the plane, those for which <em>x2</em> is
+smaller than <em>x1</em> can be handled by exchanging the endpoints of the
+line segment.</p><p>
+
+It is also clear that we will need a piece of code to handle large
+slopes by stepping over <em>y</em> instead of <em>x</em> values.</p><p>
+
+However, careful consideration of the diagram will reveal that there is
+one case which cannot be reduced to a version of the algorithm we have
+already looked at. If we want to draw a line having a small 
+<em>negative</em> slope, we will have to consider a modification of the 
+basic Bresenham algorithm to do this. (The same point applies to lines of
+<em>large</em> negative slope as well, but the code for small negative
+slopes may be adapted to this case by stepping over <em>y</em> instead
+of <em>x</em>).</p><p> 
+
+</p><hr><p>
+</p><h3><a name="basic">Bresenham for negative slopes</a></h3>
+
+<center><img src="line-drawing_files/bres2.gif"></center><p>
+
+Consider a line with negative slope between 0 and 1 (i.e., small
+negative slope. Given that a line-drawing algorithm has plotted a point
+at <em>(x,y)</em>, its choice about where to plot the next point is 
+between <em>(x+1,y-1)</em> and <em>(x+1,y)</em>.</p><p>
+
+As usual there will be an error, <img src="line-drawing_files/eps.gif">, associated with
+<em>y</em>. Choice of the next point to plot will be based on an
+attempt to minimise error, so plot <em>(x+1,y)</em> if:</p><p>
+
+</p><center><img src="line-drawing_files/yyemlt5.gif"></center><p>
+
+Otherwise plot <em>(x+1,y-1)</em>. Notice that the error generated by
+the above is <em>negative</em>. A little manipulation gives a decision 
+inequality:
+
+</p><center><img src="line-drawing_files/emgt5.gif"></center><p>
+
+It is worth comparing this with the decision inequality for the case of
+positive slope.</p><p>
+
+The error update rules are also subtly different for this case of
+negative slope.</p><p>
+
+If plotting <em>(x+1,y)</em> the <em>new</em> value of error is given
+by:</p><p>
+
+</p><center><img src="line-drawing_files/epsnew3.gif"></center><p>
+
+Otherwise, plotting <em>(x+1,y-1)</em> gives new error:</p><p>
+
+</p><center><img src="line-drawing_files/epsnew4.gif"></center><p>
+
+A pseudocode algorithm for this routine may be written as:
+
+</p><center><img src="line-drawing_files/pseudo3.gif"></center><p>
+
+This is cast in terms of floating-point values.. It is, however, a
+trivial matter to convert the algorithm into an integer-only form.</p><p>
+
+</p><hr><p>
+
+</p><address>
+Colin Flanagan / flanaganc@ul.ie
+</address>
+
+</body></html>

@@ -1,0 +1,2 @@
+- String matching with suffix automata: https://www-igm.univ-mlv.fr/~lecroq/string/fdm.html#SECTION00220
+- Borders with suffix automata (compute automata of reverse string, it seems: https://www-igm.univ-mlv.fr/~lecroq/string/node23.html#SECTION00230)

@@ -1,0 +1,383 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+\newenvironment{code}{\VerbatimEnvironment \begin{minted}{haskell}}{\end{minted}}
+% \newenvironment{code}{\begin{minted}{haskell}}{\end{minted}}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand{\St}{\ensuremath{\mathcal{S}} }
+\newcommand{\Act}{\ensuremath{\mathcal{A}} }
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\pik}{{\pi_{k}}}
+\newcommand{\piknext}{{\pi_{k+1}}}
+\newcommand{\pieps}{{\pi_{\epsilon}}}
+
+\newcommand{\Vn}{{V_{n}}}
+\newcommand{\Vnnext}{{V_{n+1}}}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+
+\title{Topics in machine learning: Naresh Manwani}
+\author{Siddharth Bhat}
+\date{Monsoon 2019}
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+
+\chapter{Policy iteration}
+\begin{align*}
+    \pi_{k+1}(s) = arg \max_{a \in A(s)} r(s, a) + \gamma \sum_{s} P(s'|s, a) v_{\pi_k}(s')
+\end{align*}
+
+\begin{theorem}
+    The policy iteration algorithm generates a sequecnce of policies with
+    non-decreasing state values. That is, ${V^\piknext} \geq V^\pik$, 
+    $V^\pi \in \Rn$, is the vector of state values for state $\pi$
+\end{theorem}
+\begin{proof}
+    $F^\pik$ is the bellman expectation operator (?)
+
+    Since $V^\pik$ is a fixed point of $F^\pik$, 
+    \begin{align*}
+        V^\pik &= F^\pik (V^\pik) \leq F(V^\pik) \qquad \text{(upper bounded by max value)} \\
+        F(V^\pik) &=  F^\piknext (V^\pik) \qquad \text{(By defn of policy improvement step)} \\
+        V^\pik &\leq F^\piknext (V^\pik) \qquad \text{(eqn 1)} \\
+        F^\piknext (V^\pik) &\leq {(F^\piknext)}^2 (V^\pik) \qquad \text{(Monotonicity of $F^\piknext$)} \\
+        \forall t \geq 1, ~F^\piknext (V^\pik) &\leq {(F^\piknext)}^t (V^\pik) \qquad \text{(Monotonicity of $F^\piknext$)} \\
+        F^\piknext (V^\pik) &\leq {(F^\piknext)}^t (V^\pik) \leq V^\piknext \qquad \text{(Contraction mapping, $V^\piknext$ is fixed point)}
+        \\
+        V^\pik &= F^\piknext (V^\pik) \leq V^{\piknext}
+    \end{align*}
+\end{proof}
+
+For a set of actions \Act and a set of states \St, the total number of
+policies is ${|\Act^\St|}$. The number of computations per iteration is
+$O(|\St|^3)$. So the loose upper bound is be ${O(|\St|^3 \times |\Act^\St|)}$.
+
+\section{Value iteration algorithm}
+
+\begin{code}
+let v n s = max [r s a + gamma * sum [(p s' s a) * v (n-1) s' | s' <- ss] | a <- as]
+let vs = [v i | i <- [0..]]
+-- | L infinity
+let norm v v' = max [(v s - v' s) | s <- ss]
+let out = head $ 
+  dropWhile (\v v' -> norm (v' - v) < eps * (1 - gamma) / (2 * gamma)) $ 
+  zip vs (tail vs)
+let policy s = argmax as $ \a -> 
+  r s a + gamma * sum [ (p s' s a) * out s' | s' <- ss]
+\end{code}
+
+\begin{theorem}
+    For the series $V_n$ and the policy $\pi_\epsilon$ computed by the value
+    iteration algorithm, then:
+
+    $$ \forall \epsilon > 0, ~\exists n_0 \in \N, \forall n \geq n_0, \quad ||V_{n+1} - V_n||_{\infty} \leq \frac{\epsilon (1 - \gamma)}{2 \gamma} $$
+\end{theorem}
+\begin{proof}
+    We need to show that the sequence ${\{V_n\}_{n=0}^\infty}$ is a Cauchy sequence.
+    This has ben proven before by the use of contraction mapping. Thus, for a
+    given ${\epsilon' \geq 0, \exists n_0 \in \N, \forall n \geq n_0, ||V_{n+1} - V_n||_{\infty} \leq \epsilon'}$
+    by cauchy sequence. So, pick ${\epsilon' = \frac{\epsilon(1 - \gamma)}{2 \gamma}}$, and the proof
+    immediately follows.
+\end{proof}
+
+\begin{theorem}
+    If $ ||V_{n+1} - V_n||_{\infty} \leq \frac{\epsilon (1 - \gamma)}{2 \gamma} $, then $||V_{n+1} - V^\star||_{\infty} < \epsilon / 2$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        &||V_{n+1} - V^\star|| = 
+        ||V_{n+1} -FV_{n+1} + F\Vnnext - V^\star|| \leq 
+        || \Vnnext - FV^\star || + ||F\Vn - \Vn|| \qquad \text{(triangle inequality)} \\
+        &\leq || \Vnnext - FV^\star ||  + \gamma || \Vnnext - V^\star || \\
+        &\leq \gamma || \Vnnext - \Vn || + \gamma || \Vnnext - V^\star || \\
+        &(1 - \gamma) || \Vnnext - V^\star || \leq \gamma || \Vn - \Vnnext || \qquad \text{(how?)} \\
+        &\implies \dots
+    \end{align*}
+\end{proof}
+
+It appears that $V^\pieps$ is just $V_{n+2}$??
+
+\begin{theorem}
+The policy $\pieps$ is $\epsilon$-optimal: $|| V^\star - V^\pieps|| \leq \epsilon$
+\end{theorem}
+% \begin{proof}
+%     \begin{align*}
+%         || V^\star - V^\pieps|| = || V^\star - \Vnnext + \Vnnext - V^\pieps|| \leq
+%         || V^\star - \Vnnext || + || \Vnnext - V^\pieps|| \leq
+%         \eps/2 + || \Vnnext - F \Vnnext + F \Vnnext - V^\pieps || 
+%         % how did we replace V^\pieps with F^{\pieps} V^{\pieps}?
+%         \leq \eps/2 + || \F \Vn - F \Vnnext + F \Vnnext - F^{\pieps} V^\pieps || 
+%         \text{TODO: finish}
+%     \end{align*}
+% \end{proof}
+
+
+\chapter{Monte carlo methods for MDP}
+
+For dynamic programming, we needed to know the transition probability 
+distribution $P(s, a, s')$, nor the reward function $r(s, a)$.
+
+In the monte carlo methods, we assume that we do not know the transition 
+probability distribution. We rely only on simulations.
+
+This samples over \emph{episodes} for a fixed policy: sequences of states,
+actions, and rewards.
+
+
+\section{Naive}
+$$Episode_i (E_i) \equiv S_0^i \rightarrow A_0^i \rightarrow R_1^i \rightarrow S_1^i \rightarrow A_1^i \rightarrow  R_2^i \dots \rightarrow  S_{T_{i}} $$
+
+Episode $E_i$ terminates at $T_i$.
+\begin{itemize}
+    \item Let us define $G_i$ to be the reward of $E_i$. ${G_i \equiv \sum_{k=0}^{T_i} \gamma^k R^i_{k+1}}$
+    \item Estimate the value of $\pi$ starting from $s$ as 
+        ${\hat v_{\pi}(s) = \frac{1}{m} \sum_{i=1}^m G_i}$.
+    \item Show by chernoff bounds that this is an OK estimate. We can use 
+        Chernoff as ${ \{ G_i \} }$ are independent, 
+        since the episodes ${ \{ E_i \} }$ are independent.
+\end{itemize}
+
+\begin{itemize}
+    \item \emph{First-visit MC}: Average returns for the first time $s$ is visited in an episode
+    \item \emph{Every-visit MC}: Average returns for every time $s$ is visited in an episode.
+\end{itemize}
+Both of these asymptotally converge to the correct $v_{\pi}$.
+
+\subsection{First visit monte carlo policy evaluation}
+
+Run $\pi$ from a fixed state $s_0$ for $m$ times. This gives us $m$ episodes. The ith episode
+is $E_i$, which terminates at step $T_i$.
+
+$G(s, E_i)$ is defined as the return of $\pi$ in run $E_i$, starting from the time instant of the first
+appearance of $s$ in $E_i$ till the final state. If state $s$ occurs at time
+$t_s$, then ${G(s, E_i) \equiv \sum_{j=t_s}^{T_i} \gamma^{(j - t_s)} R^i_{j+1}}$.
+We start from $j+1$ since we want all rewards \emph{after} our state. Note that
+the reward $R_j$ is the reward granted \emph{before} transitioning to the state $S_j$.
+
+The value of a state $s$ under the policy $\pi$ is defined as:
+$$\hat v_\pi \equiv \frac{1}{m} \sum_{i=1}^m G(s, E_i)$$
+
+\subsection{Every visit monte carlo}
+Every time we visit a state, we are able to find the return starting from that state.
+\begin{code}
+-- | discount factor
+gamma = 0.9
+
+-- | an episode is a list of states, 
+-- with a possible (action,reward) pair 
+-- generating the next state
+type Episode = [(S, Maybe (A, R))]
+
+-- | Note the use of ParallelListComprehension!
+reward :: Episode -> R
+reward es = sum $ [gamma^i * r | i <- [1..] | (_, Just(_, r)) <- es]
+
+-- | Return all possible tails, in order of longest
+-- to shortest subsequence.
+-- > tails[1, 2, 3] = [[1, 2, 3], [2, 3], [3], []]
+tails :: Episode -> [Episode]
+tails [] = []
+tails xs = xs:tails (tail xs)
+
+-- | Find the longest subsequence with start state s0
+-- and calculate its reward. This assumes that
+-- tails returns the longer subsequences first
+firstVisit :: State -> Episode -> R
+firstVisit s0 episodes = 
+    case dropWhile (\e -> fst <$> headMaybe e /= Just s0) (tails episodes) of
+        (e:_) -> reward e
+        _ -> 0
+
+-- | Find all subsequences with start state s0, and calculate
+-- their rewards
+everyVisit :: State -> Episode -> R
+everyVisit s0 episodes = sum $ do 
+    e <- tails episodes
+    return $ if fst <$> headMaybe e /= Just s0 then 0 else reward e
+\end{code}
+For each run $E_i$ and state $s_0$, let $G(s_0, E_i, j)$ be the return of $\pi$ 
+in the run $E_i$ for the $j$th occurence of $s_0$ in $E_i$.
+Let $N_i(s)$ be the number of times state $s$ has occured in episode $E_i$.
+
+\begin{align*}
+    \hat v_\pi(s) = \frac{1}{\sum_{i=1}^m N_i(s)} \sum_{i=1}^m \sum_{j=1}^{N_i(s)} G(s, E_i, j)
+\end{align*}
+
+Note that $G(s, E_i, j)$ for a fixed state $s$ and $E_i$ is a dependent
+variable for different $j$. That is, $G(s, E_i, 1)$ is dependent on $G(s, E_i, 0)$.
+
+We also want $q_{pi}(s,a)$: The expected return starting from state $s$, taking
+an action $a$, and then following te policy $\pi$. (evaluation uses $v$, updates involve $q$).
+
+\section{Soft policy}
+
+Since our policy is deterministic, we cannot explore all state-action pairs. Therefore, we make
+our policy softly non-deterministic, by allowing transitions to all states with proabability
+$\epsilon$. This allows us to explore all state-action pairs.
+
+\begin{itemize}
+\item On-policy: Use same policy to generate the episode and update the policy.
+\item Off-policy: Use some policy to generate the episode, and update a different policy.
+\end{itemize}
+
+\begin{align*}
+&\pi: S \times A \rightarrow \R \\
+&\pi(s|a) = 
+  \begin{cases}
+    1 - \epsilon + \frac{\epsilon}{|A|} & \text{if $a = a^*$} \\
+    \frac{\epsilon}{|A|} & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+\section{On policy first-visit MC control, for $\epsilon$-soft policy}
+\begin{code}
+Q :: State -> Action -> Prob
+Q s a = random
+
+Returns :: State -> Action -> Real
+Returns s a = 0
+
+
+pi :: State -> Action -> Prob
+pi = an arbitrary epsilon soft policy
+
+- generate a new episode using pi
+- for each (s, a) in the episode, 
+   G <- return following the first occurence of (s, a)
+   append G to Returns(s, a)
+   Q(s, a) <- average(Returns(s, a))
+
+- for each s in the episode: A* <- arg max a Q(s, a)
+- pi <- a new epsilon soft policy based on A*
+\end{code}
+
+Because the optimal policy for a finite MDP is deterministic, we choose to keep the
+policy slightly away from deterministic: This way, we get to explore the space, while still
+being optimal.
+
+We will prove that this actually does improve the policy. Let the new policy
+be $\piknext$, and the current policy be $\pik$.
+
+\begin{align*}
+q_\pi(s, \piknext(a)) &= \sum_{a \in A(s) } \piknext(a|s) q_{\pik}(s, a) \\
+  &= (1- \epsilon) \max_{q_{\pik}}(s, a) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &=  (1- \epsilon) q_{\pik}(s, a^*) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  % &\left( \text{Note that $\left[ \frac{\sum_a \left( \pik(a|s) - \frac{\epsilon}{|A(s)|} \right) }{1 - \epsilon} \right] = 1$} \right) \\
+  % &= (1- \epsilon) \left[ \frac{\sum_a \pik(a|s) - \frac{\epsilon}{|A(s)|}}{1 - \epsilon} \right] q_{\pik}(s, a) + 
+  %   \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) 
+\end{align*}
+
+Note that $\pi'(a) = \frac{ \pik(a|s) - \frac{\epsilon}{|A(s)|} }{1 - \epsilon} \geq 0$.
+Also note that $\sum_a \pi'(a) = 1$. Now, since $avg \leq \max$, $\sum_a \pi'(a|s) q_\pik (s, a) \leq q_\pik(s, a^*)$.
+
+\begin{align*}
+  &=  (1- \epsilon) q_{\pik}(s, a^*) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &\geq  (1- \epsilon) \sum_a \pi'(a|s) q_{\pik}(s, a) + 
+         \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &= (1- \epsilon) \left[ \frac{\sum_a \left[ \pik(a|s) - \frac{\epsilon}{|A(s)|} \right] }{1 - \epsilon} \right] q_{\pik}(s, a) + 
+         \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &= \sum_a \pik(a|s) q_\pik(s, a) \qquad \left( \text{Cancellation of $\sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a)$} \right) \\
+  &= v_\pik(s)
+\end{align*}
+
+
+\section{Off policy}
+
+We can use another policy $\mu$ to generate data, and we estimate $q_{\pi}$ based on $\mu$.
+Here, $\pi$ is called the target policy, and $\mu$ is called the behaviour policy.
+
+We need $\mu$ to \emph{cover} $\pi: \pi(a|s) > 0 \implies \mu(a|s) > 0$. That is, every action
+taken by $\pi$ must have non-zero proability to be taken by $\mu$. That is, we can
+only choose to take actions that were taken by $\mu$, since we can only really learn from the
+things that $\mu$ has done.
+
+\section{Importance sampling}
+We want to find $\E_q[x]$, for a distribution $q$ that is hard to sample. We can only sample a distribution $p$
+that is easy to sample. What we do is to define a new random variable $\hat x = x \frac{q(x)}{p(x)}$. We know
+how to draw samples from $p(x)$ efficiently, so we create the $\hat x$ such that $\hat x \sim p \implies x \sim q$.
+
+\begin{align*}
+\E_p[\hat x] = \E_p\left[x \frac{q(x)}{p(x)}\right] = \sum_x p(x) \cdot x \frac{q(x)}{p(x)} = \sum_x x q(x) = \E_q[x]
+\end{align*}
+
+\section{Off-policy monte-carlo control}
+
+We take an episode that was sampled according to policy $\mu$, and we use importance sampling to perturb it into
+a policy $\pi$.
+
+For a given policy $\pi$, we define the probability of a subsequence of an episode occuring under policy $\pi$ as
+$P_\pi(t, T) \equiv \prod_{k=t}^{T-1} \pi(A_k|S_k) p(S_{k+1}| A_k, S_k)$. Now, to importance sample, we will get:
+
+
+$$
+\rho(t, T) \equiv 
+\frac{ \prod_{k=t}^{T-1} \pi(A_k|S_k) p(S_{k+1}| A_k, S_k)}{ \prod_{k=t}^{T-1} \mu(A_k|S_k) p(S_{k+1}| A_k, S_k)}
+  = \prod_{k=t}^{T-1} \frac{\pi(A_k|S_k)}{\mu(A_k|S_k)} 
+$$
+
+\begin{align*}
+\E_{A_k \sim \mu(A_k | S_k)}\left[ f(A_k) \frac{\pi(A_k|S_k)}{\mu(A_k|S_k)} \right] = E_{A_k \sim \pi(A_k|S_k)}[f(A_k)]
+\end{align*}
+
+We want to use $f(A_k) = G_t$ That is, we want to importance sample the \textit{reward} of a trajectory under $\mu$
+and perturb it to reward under $\pi$.
+
+
+\end{document}

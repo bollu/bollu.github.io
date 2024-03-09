@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- AMPL V3 2}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\inputminted[fontsize=\footnotesize]{ampl}{solution.mod}
+\begin{figure}[!htb]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\footnotesize]{ampl}{solution.dat}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\footnotesize]{ampl}{solution.run}
+    \end{minipage}
+\end{figure}
+\inputminted[fontsize=\tiny]{text}{solution.output}
+\thispagestyle{fancy}
+\end{document}
+

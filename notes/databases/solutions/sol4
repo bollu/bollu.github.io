@@ -1,0 +1,25 @@
+
+
+Solutions for Section 4.4
+Exercise 4.4.3(a)
+Hashing the key still gets us to the bucket where all records with that key live. Insertion can be done without regard to duplicate keys. However, for lookup or deletion, once we find one record with that key, we have to continue looking for others in the same bucket.
+
+The principal problem that occurs is when there are so few different keys that there are more buckets than keys. In that case, portions of the hash table will be unused, and buckets will grow in size, regardless of how many buckets we choose for our hash table.
+Exercise 4.4.4(a)
+Suppose B = 10. Since any integer can be written in the form 10a+b, where 0 <= b < 10, the bucket of any such integer can be determined by considering b only (since its square is 100a^2 + 20ab + b^2, which modulo 10 is the same as b^2 modulo 10.
+
+However, the squares of 0 through 9, modulo 10, are: 0, 1, 4, 9, 6, 5, 6, 9, 4, and 1. Thus, buckets 2, 3, 7, and 8 never get any records, while 1, 4, 6, and 9 get a double helping.
+Exercise 4.4.6(a)
+When we insert 0011, there are four records for bucket 0, which overflows. Adding a second bit to the bucket addresses doesn't help, because the first four records all begin with 00. Thus, we go to i = 3 and use the first three bits for each bucket address. Now, the records divide nicely, and by the time 1111 is inserted, we have two records in each bucket.
+Exercise 4.4.7
+
+    We could leave forwarding addresses in buckets when we split them.
+
+    We could use the full sequence of bits produced by the hash function as the pointer, and use the extensible or linear hash table to look up a record whenever an external pointer was followed. 
+
+Exercise 4.4.9
+In the best case, all buckets will have a number of records that is divisible by 100. Then, the number of blocks needed is 10,000.
+
+However, in the worst case, we could have only one record in each of 999 buckets. Since we are not sharing blocks among buckets, we would need 999 blocks for these buckets. The remaining bucket has 999,001 records, which requires 9991 blocks, for a total of 10,990 blocks.
+
+Return to Top 

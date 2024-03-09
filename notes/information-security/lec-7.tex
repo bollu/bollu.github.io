@@ -1,0 +1,109 @@
+\chapter{Probabilistic encryption}
+
+Determinisim fucks over security. Since now-a-days, servers encrypt pretty much
+everything you send them, you can try to mount a chosen plaintext attack.
+
+
+\section{Truly random functions} 
+Look at all functions from r to x. Pick one such function and use that. Number
+of such functions: $2^{n^{2^n}}$ 
+
+Number of bits to index this set: $$\log
+(2^{n^{2^n}}) = 2^n log(2^n) = n \cdot 2^n$$
+
+\section{Pseudorandom Function (PRF)}
+We need distributions on functions. We define this by using keyed functions.
+
+\begin{align*}
+F: (k: \binary^n) \to (r : \binary^n) \to (x: \binary^n)
+\end{align*}
+
+firstst string is key, second string is what to encode, output is encoded.
+In general, we fix a key, and then consider the function $F_k$. We assume
+that $F_k$ is efficent. That is, there is a deterministic polynomial time
+algorithm that can compute $(F_k(x)~\forall k, x)$.
+
+Intuitively $F$ is called a pseudorandom function if the function $F_k$
+for a randomly chosen $k$ is indistinguishable from a random function chosen
+from the set of all functions having that domain and range. 
+
+Note that the space of all functions is $(2^n)^{2^n}$, while the space of keys
+is just $(2^k)$.
+
+
+If we have key size as $n \cdot 2^n$, then $F_k$ (the kth function in the set
+of all TRFS from r to x) will be truly random.
+
+We formally define them as:
+\begin{itemize}
+\item Efficiency of computation:  given $x$, computing $f_k(x)$ is easy.
+\item Pseudorandomness: for all PPTM A, 
+
+\begin{align*}
+|P [ A^{f_k(\cdot)} = 1 ] - P [ A^{f_n(\cdot)} = 1 ]| \leq \negl(n)
+\end{align*} 
+where $k \leftarrow \binary^k$, is a key that is chosen uniformly at
+random from the key space, and $f_n \leftarrow (\binary^n \rightarrow \binary^n)$ 
+is chosen uniformly at random from the space of functions.
+\end{itemize}
+
+\section{CPA security from pseudorandom functions}
+Let $F$ be a pseudorandom function. Define an encryption scheme as follows:
+\begin{itemize}
+\item $\gen \equiv k \leftarrow \binary^n$. Choose a key at random
+\item $\enc(m) \equiv ( r, F_k(r) \xor m)$
+\item $\dec((r, c)) \equiv f_k(r) \xor c$.
+\end{itemize}
+
+This as seen before is CPA secure, but is problematically length doubling.
+
+\section{Pseudorandom permutations}
+A pseudorandom permutation is much like a pseudorandom function, except it
+is bijective, and there is a polynomial time algorithm to compute both
+$F_k(\cdot)$ and $F_k^{-1}(\cdot)$.
+
+\begin{definition}
+    Let $F: \binary^* \times \binary^* \rightarrow \binary^*$ be an efficent
+    keyed permutation. We call $F$ a pseudorandom permutation if for all
+    PPTM $D$, there exists a negligible function $\negl$ such that:
+    \begin{align*}
+        \left| \pr{D^{F_k(\cdot), F_k^{-1}(\cdot)} = 1} - 
+        \pr{D^{f_n(\cdot), f_n^{-1}(\cdot)} = 1} \right| \leq \negl(n)
+    \end{align*}
+    Where $k \leftarrow \binary^n$ is chosen uniformly at random, and $f_n$
+    is chosen uniformly at random from the set of all permutations of n
+    bit strings.
+\end{definition}
+
+\section{Modes of operation}
+A mode of operation is essentially a way to encrypt arbitrary length
+messages using a block cipher. We will see methods that have better
+\emph{ciphertext expansion}: The ratio between  the length of the message
+and the length of the ciphertext.
+
+\subsection{ECB --- Electronic Code Book} 
+Given plaintext $m = \langle m_1 m_2 \dots m_l \rangle$, cyphertext
+encrypts each block randomly, usin the PRF: $(c = \langle F_k(m_1), F_k(m_2) \dots F_k(m_l) \rangle)$
+
+This is deterministic, and so cannot be CPA-secure.  It doesn't even have
+indistinguishable encryption in the presence of an eavesdropper. This is
+because if the same block repeats in the plaintext, it repeats in the
+ciphertext.
+
+
+\subsection{CBC --- Cipher Block Chaining}
+
+Like the name says, chain blocks for messages. we perform $c_k = F_k(m_k \xor c_{k - 1})$. This creates a chain of dependences.
+
+\subsection{Output feedback mode} 
+Here, we set $r_n = f_k^n(r_0)$, where $r_0 \equiv IV$. This allows us to
+compute $r_n$ without having to have the entire history.
+
+\begin{align*}
+    &r_0 = \text{public} \\
+    &r_n = f_k(r_{n - 1}) \\
+    &c_k = m_k \xor r_k
+\end{align*}
+
+
+

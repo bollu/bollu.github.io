@@ -1,0 +1,145 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+% \usepackage{quiver}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\Vectorfield}{\ensuremath{\mathfrak{X}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+\newcommand{\vectorfield}{\ensuremath{\mathfrak{X}}}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proof}[theorem]{Proof}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+
+
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\answer}{\start{Answer}}
+% \newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\qed}{\ensuremath{\blacksquare}}
+
+\title{Algebraic topology: Hatcher}
+\author{Siddharth Bhat}
+\date{Spring of the second Year of the Plague}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Links}
+\url{https://pages.uoregon.edu/njp/hw2solutions.pdf} contains solutions to asssigned homework from hatcher.
+\chapter{Ch1}
+\section{Ch1.1}
+\subsection{Ex1}
+If $f_1 ; g_1 \simeq f_2 ; g_2$ and $g_1 ; g_2$ we must show that $f_1 \simeq f_2$. Let $h: [0, 1] \times S^1 \rightarrow X$
+witness $f_1; g_1 \simeq f_2; g_2$ and let $h': [0, 1] \times S^1 \rightarrow X$ witness $g_1 \simeq g_2$. Then
+define $h'^{-1}$ as the witness of $g_1^{-1} \simeq g_2^{-1}$. Then say that $f_1 \simeq f_1; g_1; g_1^{-1} \simeq f_2; g_2; \simeq g_2^{-1} \simeq f_2$ via $h; h'^{-1}$.
+
+\subsection{Ex2}
+Consider $\beta_h(f) \equiv h \circ f \circ h^{-1}$. If $h \simeq h'$ via the homotopy $H$, then we have that $H; id; H^{-1}$ 
+witnessing $h \circ f \circ h^{-1} \simeq h' \circ f \circ h'^{-1}$. Thus, $\beta_h(f) \simeq \beta_{h'}(f)$ for all $f$.
+
+\subsection{Ex3}
+\question{$\pi_1(X)$ is abelian iff $\beta_h$ depend only on endpoints of $h$.}
+
+\start{First part:} Assume $\beta_h$ depends only on endpoints, prove that $\pi_1(X)$ is abelain. Consider $f, g$ loops at $x_0$
+See that $\beta_f(g) = f; g; f^{-1}$, and $\beta_g(g) = g; g; g^{-1} \simeq g$. But $f(0) = g(0) = x_0$ and $f(1) = g(1) = x_0$
+Hence $\beta_f = \beta_g$, thus $\beta_f(g) = \beta_g(g)$, thus $f; g; f^{-1} = g$, or $f; g = g; h$ thus establishing
+that the group is abelian.
+
+\start{Second part:} Assume that $\pi_1(X)$ is abelian. Show that $\beta_*$ depends only on endpoints. Let $f, g$ be two
+loops with equal endpoints; $f(0) = g(0)$ and $f(1) = g(1)$. See that:
+
+$$
+\beta_f(g) = f; g; f^{-1} = g; f; f^{-1} = g
+$$
+
+Thus $\beta_f(g) \simeq g$. So this means that $\beta_f$ will perform no action on any path from $f(0)$ to $f(1)$.
+Thus, the action of $\beta_f$ will be equl to all $\beta_g$ as long as $f, g$ have the same endpoints.
+
+\subsection{Ex4}
+\start{Idea:} Use compactness to finite finite subcover of star shaped regions. Within each star shaped region,
+since star shaped is contractible, all paths are nullhomotopic. So we can homotope the section of the path into a point, and then expand
+back into the line segment. [I always get weirded out that homotopy does not preserver cardinality of the image, or indeed any intuition I have about
+``structure''].
+
+
+rigorous seems hard.
+
+\subsection{Ex5}
+
+\end{document}

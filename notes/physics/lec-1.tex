@@ -1,0 +1,34 @@
+% http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf
+\newcommand{\qdot}{{\dot q}}
+
+\chapter{Lagrangian, Hamiltonian mechanics}
+
+Mechanics in terms of generalized coords.
+\section{Lagrangian}
+Define a functional. $L$ over the config. space of partibles $q^i$, $qdot^i$.
+$L = L(q^i, qdot^i)$.  We have an explicit dependence on $t$.
+
+
+
+$L = KE - PE$
+
+Assuming a 1-particle system of unit mass,
+$$L = \frac{1}{2} \qdot^2 - V(q)$$
+
+Assuming an n-particle system of unit mass,
+$$L = \sum_i \frac{1}{2} {qdot^i}^2 - V(q^i)$$ 
+
+\section{Variational principle}
+
+Take a minimum path from $A$ to $B$. Now notice that the path that is
+slightly different from this path will have some delta from the minimum.
+
+Action
+$$S(t0, t1) = \int L \dd t = \int_{t0}^{t1} L(q^i, qdot^i) \dd t$$.
+Least action: $\delta S = 0$
+
+In physics, we try to minimise the action $L = T - V$ where $T$ is the
+Kinetic energy (Travail), and $V$ (Voltage) is the Potential energy.
+
+So, the question is, why does minimising the lagrangian work,
+and how do we get the euler-lagrange equations from this?

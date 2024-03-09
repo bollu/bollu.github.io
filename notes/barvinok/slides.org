@@ -1,0 +1,286 @@
+#+TITLE:     Counting integer points in polyhedra
+#+AUTHOR:    Siddharth Bhat
+#+EMAIL:     siddu.druid@gmail.com
+#+DATE:      June 22nd, 2018
+
+#+LATEX_CLASS_OPTIONS: [8pt]
+#+OPTIONS:    toc:nil
+
+
+# #+LaTeX_CLASS_OPTIONS: [tiny]
+
+* Definitions
+ 
+
+- Polyhedra: $\Big\{ \vec{x} \in \mathbb{Q}^d \mid Ax \leq \vec{b} \Big\}$
+- Polytope: bounded polyhedra.
+- Cone: $cone(\vec{u_i}) = \Big\{ \sum_i \lambda_i \vec{u_i} \mid \lambda_i \geq 0 \Big \}$, $\vec{u_i} \in \mathbb{Q}^d$
+- Simple cone: $SK = cone(\vec{u_i}), \vec u_i \in \mathbb{Z}^d$, $\vec u_i$ are linearly independent.
+- Unimodular cone: $UK = cone(\vec u_i)$, $Volume(\vec u_i) = 1$
+- Line: subspace.
+
+* Pictures of defintions!
+
+- polytope
+\begin{center}
+ \includegraphics[width=1cm, keepaspectratio]{res/polytope}
+\end{center}
+
+- cone
+\begin{center}
+ \includegraphics[width=1cm, keepaspectratio]{res/cone}
+\end{center}
+
+- polyhedra
+\begin{center}
+ \includegraphics[width=1cm, keepaspectratio]{res/polyhedra}
+\end{center}
+
+* Example 1: valuation of line
+
+- P is a polyhedra, then $\mathcal{F}([P]) = \sum_{\vec{m} \in P \cap \mathbb{Z}^d} (x^{\vec{m}} )$
+- $\mathcal{F}([P])(\vec 1)$ = number of points.
+\begin{align*}
+\mathcal{F}((-\infty, \infty)) &= \sum_{i \in \mathbb{Z}} x^i \\
+\text{count}(x) &= \mathcal{F}((-\infty, \infty)) \\
+                &= \mathcal{F}((-\infty, 0]) + \mathcal{F}([0, \infty))  - \mathcal{F}(0) \\ 
+                &=( \ldots + x^{-2} + x^{-1} + x^0) + (x^0 + x^1 + x^2 + \ldots) - x^0 \\
+                &= \frac{1}{1 - \frac{1}{x}} + \frac{1}{1 - x} - 1 \\ 
+                &= \frac{-x}{1 - x} + \frac{1}{1 - x}  = \frac{1 - x}{1 - x} - 1 = 0 \\
+\end{align*}
+
+- number of points in a line is 0!
+* Example 2: valuation of interval
+
+\begin{center}
+ \includegraphics[width=3cm, keepaspectratio]{res/interval}
+\end{center}
+
+\begin{align*}
+\text{count}(x) &= \mathcal{F}([0, n]) = \mathcal{F}([k, \infty)) + \mathcal{F}((-\infty, n]) - \mathcal{F}((\infty, infty)) \\
+                &= (x^k + x^{k + 1} + \ldots) + \\
+                & (\ldots +  x^{n - 2} + x^{n - 1} + x^n) +  \\
+                & (\ldots + x^{-2} + x^{-1} + x^0 + x^1 + \ldots) \\
+                &= \frac{x^k}{1 - x} + \frac{x^n}{1 - x^{-1}} + 0 \\
+                &= \frac{x^k - x^{n + 1}}{1 - x} \\
+\text{count}(1) &= \text{L'hospital} = (n + 1) - k = n - k + 1
+\end{align*}
+
+
+* Proof outline
+
+- Algbra of polyhedra, $P(\mathbb{Q}^d)$
+- $[\text{ }] : \mathbb{Q}^d \rightarrow P(\mathbb{Q}^d)$
+- Existence of $\mathcal{F}: P(\mathbb{Q}^d) \rightarrow \mathbb{C}(x)$, such that:
+    + \mathcal{F} is linear
+    + P is a polyhedra, then $\mathcal{F}([P]) = \sum_{\vec{m} \in P \cap \mathbb{Z}^d} (x^{\vec{m}} )$
+    + $\mathcal{F}([\text{line}]) = 0$ (important, allows modulo line decompositions)
+- $\mathcal{F}(P)(1) = \text{number of points in} P$
+- reduction: \mathcal{F} for cones gives full \mathcal{F}
+- reduction: \mathcal{F} for simple cones gives \mathcal{F} for cones
+- performance: $\mathcal{F}$ for unimodular cones gives $\mathcal{F}$ for simple cones
+
+
+* Caveats
+- Self taught :) 
+- Do not understand subtleties of convergence arguments (how is evaluating at $\vec{1}$ correct?).
+- No intuition for LLL, Lattice reduction.
+  
+
+
+* Assuming $\mathcal{F}$ for cones, derive full $\mathcal{F}$: Part 1 (Polytopes)
+
+#+attr_latex: :width 120px
+# [[./res/polytope-as-cross-section-of-cone.png]]
+\begin{center}
+ \includegraphics[width=6cm, keepaspectratio]{res/polytope-as-cross-section-of-cone}
+\end{center}
+- Write polytope as intersection of hyperplane + cone.
+- $\mathcal{F}(\text{polytope}) = (\frac{d}{dx_{d+1}} \mathcal{F}(\text{cone}))(\langle \vec 1^{d}, 0 \rangle)$
+- $\mathcal{F}(\text{cone}) = {x_{d+1}}^0 (\ldots) +  {x_{d+1}} (\texttt{POLYTOPE}) +  {x_{d+1}}^2(\ldots) + \ldots$
+- $\frac{d}{dx_d} \mathcal{F}(\text{cone}) = 0 + 0 \cdot  (\ldots) + 1 \cdot \texttt{POLYTOPE} +    2 x_{d+1} (\ldots) + \ldots$
+- $\frac{d}{dx_d} \mathcal{F}(\text{cone})(\langle \vec 1^{d}, 0 \rangle) = \texttt{POLYTOPE(\(\vec 1 \))} +  2 \cdot 0 \cdot (\ldots) + \ldots$
+- $\frac{d}{dx_d} \mathcal{F}(\text{cone})(\langle \vec 1^{d}, 0 \rangle) = \texttt{POLYTOPE(\(\vec 1 \))}$
+
+
+
+
+* Assuming $\mathcal{F}$ for cones, derive full $\mathcal{F}$: Part 2 (Lines)
+- Line = \sum_{dimension} cone + cone - point. 
+- Since line can be translated:
+\begin{align*}
+\forall \vec{x} \in L, L &= \vec{x} + L \\
+\forall x \in L, \mathcal{F}(L) &= \mathcal{F}(L) + \mathcal{F}(\vec{x})  \\
+\mathcal{F}(L) &= 0 \\
+\end{align*}
+
+\begin{align*}
+\text{count}(x) &= \mathcal{F}((-\infty, \infty)) \\
+                &=( \ldots + x^{-2} + x^{-1} + x^0) + (x^0 + x^1 + x^2 + \ldots) - x^0 \\
+                &= \frac{1}{1 - \frac{1}{x}} + \frac{1}{1 - x} - 1 \\ 
+\end{align*}
+- In 1-d example, radius of convergence of left and right cone was 0
+- Is this really well-defined? (what is this ring which admits $f(x) = \ldots + x^{-1} + x^0 + x^1 + \ldots$)
+
+
+* Assuming $\mathcal{F}$ for simple cone, derive for cone
+- Simple cone: $SK = co(u_i) = \{ \sum_i \lambda_i u_i \vert \lambda_i \geq 0 \}$, $u_i \in \mathbb{Z}^d$, $u_i$ are linearly independent.
+- Cone: $C = co(u_i)$, $u_i \in \mathbb{Q}^d$
+- inclusion exclusion: decompose cone into simple cones.
+[[./res/cut-cone-into-simple-cones.png]]
+
+
+* $\mathcal{F}$ for simple cones: Part 1
+- Consider the positive orthant in 3D: $P \subset \mathbb{Q}^3 = \Big\{(x, y, z) \mid x, y, z \geq 0 \Big\}$
+- $P = cone((1, 0, 0), (0, 1, 0), (0, 0, 1))$
+- this is a simple cone, and here's how we count it:
+
+\begin{align*}
+\mathcal{F}([P]) &= \sum_{i, j, k \in [0, \infty)} x^i y^j z^k \\
+                 &= \sum_{i=0}^\infty x^i \Bigg(\sum_{j=0}^\infty y^j \Bigg(\sum_{k=0}^\infty z^k\Bigg)\Bigg) \\
+                 &= \frac{1}{1 - x} \cdot \frac{1}{1 - y} \cdot \frac{1}{1 - z}
+\end{align*}
+
+
+* $\mathcal{F}$ for simple cones: Part 2
+- General story is similar
+- $SK = co(u_i)$, $u_i$ linearly independent.
+- Since $u_i$ is linearly independent, some points $\vec{x} \in cone(u_i)$ have unique representation  $\vec x = \sum_i \lambda_i u_i$, $\lambda_i \in \mathbb{Z}$
+- fundamental paralellopiped $(\Pi)$ will tile the plane.
+- We can count the $\vec{x}$, and make $\vec{x}$ responsible for the "tile" of skipped points.
+
+\begin{center}
+ \includegraphics[width=3cm, keepaspectratio]{res/fundamental-paralellopiped-tiled}
+ \includegraphics[width=3.40cm, keepaspectratio]{res/fundamental-parallelopiped.png}
+\end{center}
+
+$$\mathcal{F}(SK) &= \Bigg(\underbrace{\sum_{\vec p \in \Pi \cap \mathbb{Z}^d} x^{\vec p} }_\text{per-tile points} \Bigg)
+                           \underbrace{\prod_i \frac{1}{1 - x^{u_i}}}_\text{tile starting point \( \vec{x} \)}$$
+
+* Performance - How?
+
+- Write simple cone as sum of unimodular cones:
+$$[K] = \sum_i \alpha_i [K_i]+ \text{lower dimesnional cones}$$ 
+
+- We concentrate on $\sum_i \alpha_i [K_i]$
+\begin{center}
+    $\alpha_i \in \{ -1, 1 \}$  and $K_i$ are unimodular.
+\end{center}
+
+- Lower dimensional cones are taken care of by a trick.
+
+
+
+* Unimodular decomposition of a simple cone $K$: Part 1
+
+\begin{center}
+\includegraphics[width=10cm, keepaspectratio]{res/simple-cone-into-unimodular-cones}
+\end{center}
+
+* Unimodular decomposition of simple cone $K$: Part 2
+- $Index(K) = Volume(\Pi(K))$
+
+$Index(K) = 1 \leftrightarrow \text{K is unimodular}$. $Index(K)$ is a measure of non-unimodularity.
+
+- Introduce procedure which takes \textbf{polynomial steps} to \textbf{reduce Index(K)}
+- Let $K = cone(u_1, u_2, \ldots, u_d)$, $u_i \in \mathbb{Z}^d$, $u_i$ are linearly independent.
+- High level idea:
+    + Pick a non-zero integer point $p$, which is shorter than the current $u_i$.
+    + create $d$ new "basis sets", $\texttt{Basis}_j = \{u_1, u_2 , \ldots, u_d\} \setminus \{u_j\} \cup \{p\}$
+    + make new cones, $K_i = cone(\texttt{Basis}_j)$ and show that $Index(K_i) < Index(K)$
+    + Intuition for shorter index: $p$ is shorter than $u_i$, parallelopiped will be smaller.
+    + $K = \sum \alpha_i K_i + \text{faces of \(K_i \)}$
+    + show that $Index(K_i)$ reduces by a large enough factor that poly rounds are enough to reduce to 1  
+    + eliminate faces for $K_i$ with trick to kill lower dimensional objects.
+
+* Decomposition example
+
+\begin{center}
+\includegraphics[width=7cm, keepaspectratio]{res/simple-cone-as-combination-smaller-indeces}
+\end{center}
+
+
+* Polar trick
+- Polar: $$P^\circ = \Bigg\{ \vec y \in \mathbb{Q}^d :  \forall \vec p \in P, \  \vec p \cdot \vec y  \ \geq 0 \Bigg\}$$
+
+\begin{center}
+\includegraphics[width=3.40cm, keepaspectratio]{res/polar-of-cone.png}
+\end{center}
+
+- Lower dimensional cones do not matter. First take $[K^\circ]$, then compute unimodular decomposition of this:
+$$[K^\circ] = \sum_i \alpha_i [K_i] + \text{lower dimensional cones}$$
+$$[(K^\circ)^\circ] = [K] = \sum_i \alpha_i K_i + \text{cones with lines}$$
+$$ \mathcal{F}([K]) = \sum_i \alpha_i \mathcal{F}(K_i) + \mathcal{F}(\text{cones with lines}) = \sum_i \alpha_i \mathcal{F}(K_i) + 0$$
+
+  
+
+* References
+- Lattice Points, Polyhedra, and Complexity: Alexander Barvinok
+- Integer points in polyhedra: Alexander Barvinok
+
+
+* Thanks!
+Questions?
+
+
+* Minkowski convex body theorem
+
+- Statement: Convex set $P \subset \mathbb{R}^d$, which is symmetric with respect to the origin ($\forall x \in P, -x \in P$), has volume greater than or
+  equal to $2^d$ contains a non-zero integer point.
+
+- Recap: Let $K = cone(u_1, u_2, \ldots, u_d)$, $u_i \in \mathbb{Z}^d$, $u_i$ are linearly independent.
+    + Pick a non-zero integer point $p$ in $K$ \textbf{(why does this integer point exist?)}.
+
+- Construct $$\Pi_0 = \Bigg\{ \sum_i \alpha_i u_i :  |\alpha_i| \leq \frac{1}{\sqrt[d]{Index(K)}}  \Bigg\}$$
+  + Symmetric
+  + Length per axis: $\frac{2 |u_i|}{\sqrt[d]{Index(K)}}$
+
+- Total volume:
+\begin{align*}
+Volume(\Pi_0) &= \prod_{i=1}^d \frac{2 |u_i|}{\sqrt[d]{Index(K)}}\\
+ &= 2^d \frac{ \prod_{i=1}^d |u_i| }{Index(K)} = 2^d
+\end{align*}
+
+- Hence, by Minkowski convex body, we find a point $p \in \mathbb{Z}^d$ in $\Pi_0$. If this point is in the wrong direction (facing outward), pick $-p$.
+
+- This only gives us \textbf{existence} of such a point; need to use LLL to \textbf{construct} this point.
+
+* Minkowski convex body theorem example
+
+\begin{center}
+\includegraphics[width=3cm, keepaspectratio]{res/minkowski-convex-body}
+\end{center}
+
+
+* LLL  (Lenstra–Lenstra–Lovász lattice basis reduction)
+- Given an arbitrary basis $u_i \in \mathbb{Z}^d$ of a lattice, produces a new basis which is "nicer".
+- New basis consists of shorter vectors that are "more orthogonal"
+- Runs in polynomial time.
+- Determining \textit{shortest basis} is hard - used in cryptosystems IIUC.
+
+\begin{center}
+\includegraphics[width=7cm, keepaspectratio]{res/lattice-reduction}
+\end{center}
+- Black is input, red is output.
+
+
+* Using LLL
+- Refer to page $140$ of integer points in polyhedra.
+
+- Recap: Let $K = cone(u_1, u_2, \ldots, u_d)$, $u_i \in \mathbb{Z}^d$, $u_i$ are linearly independent.
+    + Pick a non-zero integer point $p$ in $K$ \textbf{(how do we find it?)}
+
+- Let $T: V \rightarrow V$, $T(u_i) = e_i$.
+- Let $\Lambda  = \text{Lattice of } u_i$
+- $\Lambda_0 = T(\Lambda)$
+- Apply LLL on $\Lambda_0$, get shorter description
+- Construct $w_0 \in \Lambda_0 \setminus \{ 0 \}$ such that $\lVert w_0 \rVert_{\infty}$ is minimum.
+- This bounds $\lVert w_0 \rVert  \leq \lVert w_0 \rVert_{\infty} \sqrt{d}$ .
+- $w = T^{-1}(w_0)$
+
+
+
+- Caveat: Why do we need this song and dance? Why not just work on the original space?
+
+* Assuming $\mathcal{F}$ for cones, derive full $\mathcal{F}$: Part 1.2 (Polytopes)
+[[./res/polytope-as-sum-of-tangent-cones.png]]

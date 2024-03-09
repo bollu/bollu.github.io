@@ -1,0 +1,92 @@
+\chapter{Quantum Computing: Simon's Problem}
+
+We are given a function $f: \{0, 1\}^n \to \{0, 1\}^n$. There exists
+an (unknown to us) $s \in \{0, 1\}^n$.
+
+
+We are promised that:
+\begin{itemize}
+\item $\forall x \in \{0, 1\}^n,~ f(x \oplus s) = f(x)$.
+\item $f(y) = f(x) \iff  [y = x \xor s] \lor [y = x]$.
+\end{itemize}
+Goal is to find $s$.
+
+\begin{align*}
+f(y \xor x) = f((y \xor s) \xor (x \xor s))
+\end{align*}
+
+
+Supppose we have checked $f$ for $y_1, y_2, \dots y_k$.
+For each pair, have a trial $s_{i, j} = y_i \xor y_j$.  If $y_i = y_j$, then
+$s = s_{i, j}$.
+
+What's the runtime? We can find a lower bound. There are $\frac{k(k-1)}{2}$
+pairs, but some $s_{i, j}$ may be the same. 
+\begin{align*}
+\frac{k^2}{2} > \frac{k(k-1)}{2} > 2^n > \frac{2^n}{2} \qquad k > \sqrt{2^n}
+\end{align*}
+
+Classically, we will need to perform at least $\sqrt{2^n}$ tests.
+
+\section{Quantum solution} 
+We will create a linear algorithm.
+
+\begin{align*}
+    &\ket{\psi_1} \equiv \ket0^{\tensor n} \ket0^{\tensor n} \\
+    &\ket{\psi_2} \equiv \H^{\tensor n} \tensor I^{\tensor n} (\psi_1) = 
+    2^{\frac{-n}{2}} \sum_{y \in {0, 1}^n} \ket y \ket 0^{\tensor n} \\
+    &\ket{\psi_3} \equiv U_f(\psi_2) = 2^\frac{-n}{2} \sum_{y \in \{0, 1\}^n} \ket y \ket{f(y)} \\
+\end{align*}
+
+Notice that since $f$ is two-to-one, for every component $\ket{f(y)}$ of the second
+qubit, we will have first qubits: $\ket{y}, \ket{y \xor s}$.
+
+\begin{align*}
+    &\ket{\psi_3}  \equiv 2^\frac{-n}{2} \sum_{y \in \{0, 1\}^n} \frac{\l( \ket y + \ket{y \xor s} \r) \ket{f(y)}}{2} \\
+\end{align*}
+
+We divide by two since we are double counting the pair $(y, y \xor s)$, since later
+we will hit $(y' \equiv y \xor s, y' \xor s = y \xor s \xor s = y)$.
+
+We now measure the second qubit:
+\begin{align*}
+    &\ket{\psi_4} \equiv M(\psi_3) =  \frac{\ket y + \ket{y \xor s}}{\sqrt 2} \qquad \text{(for some $y$ with prob. $2^{-(n - 1)}$)} \\
+\end{align*}
+We next apply hadamard to $\ket{\psi_4}$, which we will write using the
+identity:
+$$H^{\tensor n}\ket x \equiv 2^{\frac{-n}{2}} \sum_{z \in \{0, 1\}^n} (-1)^{x \cdot z} \ket z$$
+Here, $x \cdot y \equiv \text{inner product over $\Z/2\Z$}$.
+
+\begin{align*}
+    &\ket{\psi_5} \equiv H^{\tensor n} (\psi_4) = 
+    \frac{\sum_{z \in \{0, 1\}^n \l( (-1)^{y \cdot z} + (-1)^{(y \xor s) \cdot z} \r) \ket z }}
+        {2^{- \frac{n-1}{2}}} \\
+    = 
+    &\frac{\sum_{z \in \{0, 1\}^n \l( (-1)^{y \cdot z} \l[ 1 + (-1)^{(s \cdot z)}\r] \r) \ket z }}
+        {2^{- \frac{n-1}{2}}} \\
+\end{align*}
+
+If $(s . z = 1)$, then the coefficient $1 + (-1)^{s \cdot z} = 1 - 1 = 0$. So,
+we will only get $\ket z$ which have $(s . z = 0)$.
+
+Using this, we can get $z$'s such that $(s . z) = 0$.We can gather $(n - 1)$
+of these and solve the system $(s . z_i) = 0$ for $s$.
+
+\section{Probability computation}
+Next, we perform some probability computations to check how many of the vectors
+will be linearly independent.  The number of matrices is $2^{n \times (n - 1)}$.
+
+Now, we need to check that this matrix is invertible for the system of linear
+equations to be solvable. Note that for the first vector $z_1$, only the zero
+vector is not allowed. So, the number of $z_1$'s is $(2^n - 1)$. Now,
+the second vector $z_2$ must be linearly independent of the first vector $z_1$,
+for which we have $(2^n - 2)$ choices, since we must remove the $2$ vectors
+that are linearly dependent on $z_1$. For $z_3$, we need to eliminate the $4$ 
+vectors that are combinations of $z_1, z_2$. So, number of choices for $z_3$
+will be $(2^n - 2^2)$. For $z_i$, we will have $(2^n - 2^{i - 1})$.
+
+Total: 
+
+\begin{align*}
+    \frac{\prod_{i=1}^n(2^n - 2^{i - 1})}{2^{n \times (n - 1)}} > \frac{1}{4}
+\end{align*}

@@ -1,0 +1,342 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{mathtools}
+
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\mono}{\inj}
+
+
+\newcommand{\sur}{\twoheadrightarrow}
+\newcommand{\epi}{\sur}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\Set}{\ensuremath{\mathbf{Set}} }
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+
+
+
+\title{Topoi, Sheaves, Logic}
+\author{Siddharth Bhat}
+\date{Monsoon 2019}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Topoi of $M$-sets and automata}
+
+Finite automata is just an $M$-set where $M$ is the alphabet.
+Subobject classifier for $M$ for a set $A \subseteq X$, $\Xi_A$
+maps elements $ x \in X$ 
+to the left ideal $\Xi_A(x) \equiv \{ m \in M : m \curvearrowright x \in A \}$.
+
+So, given a "subset automata" $A \subseteq X$, which is a state of states closed under
+reachability, $\Xi_A$ assigns to that subset the entire language, and to
+other states $x \in X$ the set of strings with prefixes necessary to reach the subset $A$.
+
+What is conjunction and disjunction? Existential and universal quantification?
+
+The adjunction between $Set$ and $Rel$ should allow us to define $M-Rel$, as
+well as derive the NFA to DFA algorithm.
+
+\chapter{7 sketches}
+I'm following Seven sketches of compositionality. This is a transcription
+of the four parts of lecture 7, which promises to cover sheaves, topoi, and
+internal logics.
+
+Consider a plane, that has a relationship $\texttt{dial} \mapsto \texttt{thruster}$.
+We want this to represent some logical statement 
+$\forall t \in Time, @_t (\texttt{dial} = \texttt{bad}), \exists r \in \R, 0 < r < 1, st. @_{t + r} (\texttt{thursters} = \texttt{on})$
+We need some category where this logical statement lives. How do we define this
+$@$ operator and things like that in the category?
+
+We begin by studying the category of sets, where we normally interpret logic.
+Then, we move to richer logics, for example, those with truth values other than
+$\top, \bot$. For example, we can have things like $(\top~\text{ for 0 < t < 10})$.
+
+\chapter{Logic in the category Set}
+
+Objects are all sets, arrows are functions.
+
+\section{Properties of \Set}
+\begin{itemize}
+    \item 1. \Set has limits and colimits. (eg. empty set / initial object, disjoint union / coproduct, pushouts)
+    \item 1.1 \Set has terminal objects: the single element set. eg: $1 = \{ \star \}$. (it's unique upto unique isomorphism).
+    \item 1.2 \Set has products: $X, Y \in Set \implies X \times Y \in Set$. $X \times Y \equiv \{ (x, y) | x \in X, y \in Y \}$
+    \item 1.3 \Set has pullbacks: Given functions $f : X \to A, g: Y \to A$, we can create 
+                $X \times_A Y \equiv \{ (x, y) | f(x) = g(y) \}$
+
+        \begin{tikzcd}
+            X \times_A Y \arrow[d, dotted, "!"] \arrow[r, dotted, "!"] \arrow[dr, phantom, "\lrcorner", very near start] & X \arrow[d, "f"]\\ 
+            Y \arrow[r, "g"] & A
+        \end{tikzcd}
+        where the $\lrcorner$ means that the square is a pullback square.
+
+    \item 2. Set has epi-mono factorizations: given $f: X \to Y$, we can get
+        $epi: X \sur Im(f)$, $mono: Im(f) \inj Y$. $epi$ is surjective, $mono$ is injective.
+
+        \begin{tikzcd}
+            X \arrow[rd, "f"] \arrow[r, two heads] & Im(f) \arrow[d, hook]\\ & Y
+        \end{tikzcd}
+    \item 3. Internal hom: $\Set(A \times B, C) \simeq \Set(A, C^B)$ ($C^B \equiv \text{functions $B \to C$}$),
+        where $Set(X, Y)$ is the hom-set.
+    \item 4. Subobject classifiers: a \textbf{subobject} of $X \in C$ is (a subset in Set), 
+        is an equivalence class of monomorphisms $A \hookrightarrow X$. 
+        Given two monomorphisms $f: A \inj X, g: B \inj X$, The subobject will specify if $(f \sim g)$.
+
+        \begin{tikzcd}
+            A \arrow[rd, hook] \arrow[d, equal] \\ B \arrow[r, hook] & X
+        \end{tikzcd}
+
+        A \textbf{subobject classifier} in $C$ is an object $\Omega$ and a map $1 \rightarrow \Omega$, where $1$ is the terminal object,
+        such that for all subobjects, $m: A \mono X$, there exists $\ceil m: X \to \Omega$ such that:
+
+        \begin{tikzcd}
+            A \arrow[r, "!"] \arrow[hook, d, "m"]
+            \arrow[dr, phantom, "\lrcorner", very near start] & 1 \arrow[d, "true"] \\
+            X \arrow[r, "\ceil m"] & \Omega
+        \end{tikzcd}
+
+        Where $\ceil m$ is called as the \emph{classifier} of $m: A \rightarrow X$
+\end{itemize}
+
+The subobject classifier in $\Set$ is $\Omega = \{ true, false \}$. $(true: 1 \rightarrow \Omega; * \mapsto true)$
+
+We now classify a subobject, the even numbers of \N. let $E = \{ 0, 2 \dots \} \subseteq \N$.
+To classify this, we have the commuting square:
+
+\begin{tikzcd}
+E \arrow[r, "!"] \arrow[hook, d, "m"]
+\arrow[dr, phantom, "\lrcorner", very near start] & 1 \arrow[d, "true"] \\
+\N \arrow[r, "\ceil m"] & \Omega
+\end{tikzcd}
+
+What is $\ceil m: \N \rightarrow \Omega$? It's going be 
+$\ceil e = \begin{cases} true & e \mod 2 = 0 \\ false & \text{otherwise} \end{cases}$.
+
+We need to check that this is indeed a pullback. This clearly commutes, but
+we need to check that it's the most general solution.
+
+(It needs to be a pullback so we have a one-to-one correspondence between $E$ and $\ceil e$, apparently.
+I don't see it.)
+
+We call a morphism $(X \rightarrow \Omega)$ as a \textbf{predicate}. (This is clear in $\Set$).
+Intuitively, previously, $\ceil e$ was a predicate.  The subobject classifier
+allows us to find $E$ given the $\ceil e$, thereby find the semantics (as it
+were) from the predicate.
+
+\section{Logical operations}
+
+\subsection{And}
+\begin{tikzcd}[row sep=large, column sep=15ex]
+    1 \arrow[d, hook, "{(true , true)}"]  \arrow[r, equal] \arrow[dr, phantom, "\lrcorner", very near start]  & 1 \arrow[d, "true"]\\
+    \Omega \times \Omega \arrow[r, "{ \land \equiv \ceil{(true, true)}}"] & \Omega
+\end{tikzcd}
+
+We first draw the LHS, and we get the RHS by apply the subobject classifier
+onto the LHS!  $(\land: \Omega \times \Omega \rightarrow \Omega)$. 
+
+
+\textbf{Question:} How do we compute $\land(false, false)$?
+
+We know that the pullback is ging to be
+
+\chapter{Schloze: Condensed Mathematics Masterclass: Session 1}
+
+YouTube playlist link: \url{https://www.youtube.com/watch?v=PHm4bYziyug&list=PLAMniZX5MiiLXPrD4mpZ-O9oiwhev-5Uq&index=1}
+
+
+A topos is a generalization of a sheaf. Let $X$ be a topological space. Let $Op(X) \equiv \{ \text{open sets of } X \}$ be a poset 
+under inclusion, treated as a category.  A presheaf on $X$ is a functor $F: Op(X)^{op} \rightarrow Set$.
+A sheaf on a topological space $X$ is a presheaf $F$ on $X$ such that for any $U \subset X$ open, for $U_i$ open such that
+$\cup_i U_i = U$, we have:
+
+\begin{align*}
+    &F(U) \xrightarrow{\sim} eq \left(\pi_i F(U_i)^\rightarrow_\rightarrow F(U_i \cap U_j) \right)
+\end{align*}
+
+If $Y$ is a topological space, then the presheaf $F_Y(U) \equiv Hom(U, Y)$ is a sheaf.  If $Y$ is a discrete space,
+then the sheaf $F_Y$ on $X$ contains the locally constant functions on $X$. This is called as the ``constant sheaf''.
+Such a sheaf can also be obtained as the sheafification of the \emph{presheaf} $F_Y(U) \equiv Y$.
+
+\section{Sheafification}
+The inclusion $Sh(X) \hookrightarrow Psh(X)$ admits a left adjoint.  This left
+adjoint is the sheafification of the presheaf. 
+
+One way to see that this is possible is to notice that the conditions of a sheaf are defined
+in terms of limits (products and equalizers). Thus the limit of sheafs is also a sheaf. This ensures
+(by the adjoint functor theorem) that this functor has an adjoint.
+
+More concretely, we can construct the sheaf $F^\sharp$ of a presheaf $F$ concretely. Let 
+
+\begin{align*}
+&F^\natural(U) \equiv \colim_{(U_i)_i~\text{covers of U}}  eq \left(\prod_i F(U_i)^\rightarrow_\rightarrow \prod_{i, j} F(U_i \cap U_j) \right)
+&F^\sharp \equiv (F^\natural)^\natural
+\end{align*}
+
+The first operation makes the presheaf into a separated presheaf, and the next time it becomes a sheaf.
+\qed.
+
+\section{Stalks}
+For any $x \in X$, let $F_x \equiv colim_{x \in U} F(U)$ . These are called as the stalks of $F$ at $x$.
+(1) Sheafification does not change stalks. (2) If we have two sections $s, t \in F(U)$, then $s = t$ iff for all $x \in X$, $s_x = t_x$.
+So all the information of a sheaf is contained in the stalks. \qed.
+
+
+\section{Cohomology of abelian sheaves}
+
+
+Define $AB(X)$ as the sheaf of ableian groups (abelian sheaves) on $X$. This is an abelian category.
+We define $0 \rightarrow F' \rightarrow F \rightarrow F'' \rightarrow 0$ is exact iff it is exact at each stalk:
+$0 \rightarrow F'_x \rightarrow F_x \rightarrow F''_x \rightarrow 0$.
+
+But globally, we only get $0 \rightarrow F'(x) \rightarrow F(x) \rightarrow F''(X)$.
+
+
+\section{Sites}
+
+Abstraction of $Op(X)$ with the notion of covers. A Site is a category $C$ together with a set of
+maps $Cov(X) \equiv \{ f_i: (X_i \rightarrow X)_i \}$. Properties:
+
+\begin{itemize}
+        \item Pullbacks of covers exist and are covers.
+        \item Composites of covers are covers.
+        \item Isomorphisms are covers.
+\end{itemize}
+
+Recall: a presheaf on $C$ is a functor $F: C^{op} \rightarrow Set$. A sheaf on $C$ is a preseaf $F$
+such that for all $X \in C$, for all covers, $f_i: X_i \rightarrow X$,  we have that
+
+$$F(X) \simeq eq(\prod_i F(X_i)^\rightarrow_\rightarrow \prod_{i, j}F(X_i \times_X X_j)$$
+
+Notice that we now use fiber products $X_i \times_X X_j$. These fiber products exist
+because we asked for pullbacks to exist.  The interesting thing about this definition
+is that the morphisms $f_i: X_i \rightarrow X$ don't need to be injections!
+Everything carries over, including (a) Sheafification, (b) Abelian sheaves
+$Ab(X)$ form an abelian category. 
+
+An example is the opens on $X$. The real first
+example is the Etale site of a scheme, where $C \equiv \{ f: Y \rightarrow X \text{ etale} \}$.
+covers are maps. Another example is $G$ sets, for $G$ a group, where the covers are actually covers.
+Can consider profinite $G$ acting on profinite sets (inverse limit/limit of finite sets), that is the same
+as compact totally disconnect Haussdorf spaces.
+
+\section{Morphism of sites}
+
+A morphism of sites $f: C' \rightarrow C$ is a functor $f^{-1}: C \rightarrow C'$ (pullback)
+which commutes with finite limits and takes covers to covers. we get a pullback of sheaves
+$Sh(C) \rightarrow Sh(C')$.
+
+\section{Grothendieck topos}
+
+A topos is a category $T$ that is equivalent to $Sh(C)$ for some site $C$.
+Remark: this admits a characterization in terms of certain axioms on $T$, (due to Giraud).
+Sheaves on categories have all limits and colimits, so a topos has all limits and colimits.
+
+A functor of topoi $T' \rightarrow T$ is a pair of adjoint functors $f^*: J \rightarrow J'$,
+$f_*: J' \rightarrow J$. $f^*$ preserves all colimns as it is left adjoint. We ask that it also
+preserves all finite limits. 
+
+A \emph{point of a topos} is a map of topoi $Set \rightarrow J$. $J$ has enough points if
+$\{ f_i^*: J \rightarrow {Set}$ is a conservative family. A functor is conservative if it
+reflects isos: That is, $F(f)$ iso implies that $f$ is iso.
+
+\section{Quasicompact}
+An object $X \in T$ is quasicompact if for any collection of maps $(f_i: X_i \rightarrow X)$
+such that $\cup_i X_i \rightarrow X$ is surjective, then there is some finite $J \subseteq I$
+such that $\cup_{j \in J} X_j \rightarrow X$ is surjective. A map $f: Y \rightarrow X$ is quasicompact
+if $Y \in T/X$ is quasicompact. (lmao, using slice to relativize!) This is the usual notion of
+compact in terms of covers: every cover has a finite subcover.
+
+\section{Quasiseaprated}
+
+$X \in T$ is quasiseparated if for all $Y, Z \rightarrow X$ quasicompact, $Y \times_X Z \rightarrow X$
+is quasicompact. Intuitively, we can say that the diagonal is closed. So we may want to say something
+like $X$ is quasiseparated if $\Delta: X \rightarrow X \times X$ is quasicompact.
+
+
+
+
+\end{document}

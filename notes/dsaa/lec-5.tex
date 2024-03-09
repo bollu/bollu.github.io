@@ -1,0 +1,47 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\begin{document}
+\section{Lecture 5 - 2d Convolution, Statistical signal processing}
+
+- Using Gaussians for blurring.
+
+
+\subsection{Moving Average}
+Low pass conpoment: $movingaverage(x, N)$
+High pass component: x - movingaverage(x, N)$
+
+if $N$ is small, we will pick up on noise. if $N$ is large, we may smooth
+way too much.
+
+Now, we need to perform \textit{Statistics} on signals.
+
+\subsection{Recursive moving average}
+$y[n] = \frac{1}{N}\sum{m = 0}^{N - 1} x(n - m)$
+$y[n] = \frac{x[n]}{N} + \frac{1}{N}\sum{m = 1}^{N - 1} x(n - m)$ + \frac{1}{N}x(n - N) - \frac{1}{N} x(n - N)
+$y[n] = y[n - 1] + \frac{1}{N}(x(n) - x(n - N))$
+
+
+\section{Statistical signal processing}
+
+$Mean(n) = \frac{1}{N}\Sum{i = 0}{N - 1}x(i)$
+$Mean(n) = mean_{N - 1} \cdot \frac{N - 1}{N} + \frac{1}{N} x(n - 1)$
+
+
+$\sigma(n) = \frac{1}{N - 1} \sum{i = 0}{N - 1} (x(i) - \mu)^2$
+$ = \frac{1}{N-1} \sum{i = 0}{N - 1} (x(i)^2 + \mu^2 - 2 \mu x(i))$
+$ = \frac{1}{N-1} (\sum{i = 0}{N - 1} x(i)^2 + N \mu^2 - 2 \mu N \frac{\sum{i =0}^{N - 1} x(i)}{N} $
+$ = \frac{N}{N - 1}(\frac{\sum x(i)^2}{N} - \mu^2)
+
+(TODO: Write sigma recursively, just do this thing, not sure about computation)
+

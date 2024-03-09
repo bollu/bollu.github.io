@@ -1,0 +1,751 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{tikz}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\E}[1]{\ensuremath{\mathbb{E} \left[ #1 \right]}}
+\renewcommand{\P}[1]{\ensuremath{\mathbb{P} \left[ #1 \right]}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\Rgezero}{\ensuremath{\mathbb R_{\geq 0}}}
+\newcommand{\powerset}{\ensuremath{\mathcal{P}}}
+\renewcommand{\H}{\ensuremath{H}}
+%\renewcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\KL}[2]{\ensuremath{D(#1 || #2)}}
+\newcommand{\I}{\ensuremath{I}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+
+
+\title{Probabilistic graphical models}
+\author{Siddharth Bhat}
+\date{Spring 2020}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Background and aims}
+Consider a distribution of binary random variables $x_1, x_2, \dots x_n, y$.
+Note that to define the value of $P(x_1)$, we need just one value:
+$P(x_1 = 0)$. We can derive $P(x_1 = 1) \equiv 1 - P(x_1 = 0)$.
+
+However, the full joint distribution
+$P(x_1, x_2, \dots, x_n, y)$ needs $2^{n+1} - 1$ values to fully define.
+
+
+However, let us assume that $P(x_i|y)$ are all independent. Hence, we can
+rewrite the above distribution as $P(y) \prod_{i=1}^n P(x_i|y)$. Now, we need
+to know $P(x_i|y=0), P(x_i|y=1)$. Both of these are binary random variables
+which need one value to define. So in toto, we need $2n + 1$ values for
+the above (factored) joint distribution.
+
+So, we will study how to represent, perform inference, and perfom bayesian
+updates (learning). Also, connections to boltzmann distributions and whatnot
+will be explored. Connections to graph theory as well. We are also going to
+study MCMC (Markov chain monte carlo) methods. I hope we study more than
+just metropolis hastings: I want to understand Hamiltonian and Lavengin Monte
+Carlo more deeply (NUTS sampling, slice sampling, their interactions with 
+HMC, etc). Later, we will see some connections to Learning theory (PAC
+learning - defined by Valiant).
+
+The textbook is "Kohler and Friedman".
+
+
+\subsection{A teaser problem}
+We start with an ordered deck. We propose a shuffling mechanism: take the
+top card and move it to somewhere in the deck. Eg. If we start form $(1, 2, 3)$,
+we can move this to $(2, 1, 3)$, or $(2, 3, 1)$. Now, when the card $3$ comes
+to the top, note that we had placed all other numbers in the deck with
+uniform probability. So, when the card $3$ comes to the top, all the other
+cards are uniformly distributed. We now need to place $3$ uniformly in the
+deck.
+
+Let $T_1$ be the random variable of the first
+round at which a single card is placed \emph{underneath} $n$.
+
+There are $n-1$ slots where can place any top card, so the likelihood of
+hitting the bottom slot is $1/(n-1)$.
+
+\begin{align*}
+&P(T_1=1) \equiv \frac{1}{n - 1} \\
+&P(T_1=2) \equiv \left(1 - \frac{1}{n-1}\right) \frac{1}{n-1} = \frac{n-2}{n-1} \\
+&P(T_1=i) \equiv \left(1 - P(T_1=i-1) \right) \frac{1}{n-1} = 
+    \left( 1 - \frac{1}{n-1} \right)^{i-1} \frac{1}{n-1} = \frac{(n-2)^{i-1}}{(n-1)^i}
+\end{align*}
+
+This is a geometric distribution with parameter $\frac{1}{n-1}$. The expectation
+is going to be $\E{T_1} \equiv n-1$.
+
+We now define $T_2$ to be the random variable which is the time from when the
+first card went underneath the $n$th card, to when the second card went
+underneath the $n$th card. We have two locations at the bottom. Eg. if we had
+$(1, 2, 3, 4)$ to start with, and after $T_1$, we are now at $(2, 3, 4, 1)$. We
+now have two positions $(2, 3, 4, \circ, 1, \circ)$ to be underneath the card
+$4$.
+
+\begin{align*}
+&P(T_2=1) \equiv \frac{2}{n - 1} \\
+&P(T_2=i) \equiv \left( 1 - \frac{2}{n-1} \right)^{i-1} \frac{2}{n-1}
+\end{align*}
+
+This is a geometric distribution with parameter $\frac{2}{n-1}$. The expectation
+is going to be $\E{T_1} \equiv n-2$.
+
+
+
+The total time for the $n$th card to reach the top is going to be 
+$T \equiv T_1 + T_2 + \dots + T_n$. So the expectation is going to be
+$\E{T} = \sum_i \E{T_i} = \sum_i \frac{1}{n-i}$
+
+\subsection{Another problem}
+There are three balls, numbered $1$, $2$, $3$, and there are three numbered
+bins. We throw the first ball into each of the three bins with equal probability.
+Independently, throw the second ball and the third ball to each of the three
+bins Independently.
+
+Let $X$ be the number of balls in the first balls in the first bin. Let $N$ be
+the number of non-empty bins.
+
+Write down $P(X), P(N), P(X, N)$ where $P(X, N)$ is the joint distribution. 
+Also find $P(X|N)$, $P(N|X)$.
+
+\chapter{Review of Probability}
+
+The first thing we should know is the sample space $\Omega$. Next, we care
+about events $E \subseteq \powerset(\Omega)$. The probability is 
+a function $P: \Omega \rightarrow \Rgezero$ such that:
+
+\begin{itemize}
+    \item $P(\Omega) = 1$
+    \item if $A \cap B = \emptyset$, then $P(A \cap B) = P(A) + P(B)$
+\end{itemize}
+
+
+A random variable is a function $X: \Omega \rightarrow \R$.
+
+The expectation of a random variable $\E X \equiv \sum_i i \cdot P(X=i)$.
+That is, it is the average.
+
+Markov's inequality says that $\P{X > a} \leq \E{X}/a$.
+
+
+Chebyshev's inequality says that $\P{|X - \mu| > a} \leq Var(X)/a^2$.
+
+\section{Conditional Probability}
+
+To control to sample space and smooth interpolate probabilities a we 
+restrict to a smaller sample space, we use \emph{conditioning}. Hence
+we define the conditional probability: $P(B|A) \equiv P(B \cap A) / P(A)$
+
+We can have a chain of conditioning:
+\begin{align*}
+    P(A \cap B \cap C) = P(A) P(B \cap C | A) = P(A) P(B|A) P(C|A \cap B)
+\end{align*}
+
+
+\begin{example}
+    We have 3 bins and 4 balls.
+    We throw the 4 balls into the 3 bins independently. Each ball will
+    land into some bin.
+
+    Let $X$ be the number of balls in bin 1. $N$ be the number of non-empty
+    bins.
+
+    The total number of possibilities is $3^4$, since each ball has $3$
+    possible bins, and there are $4$ independent balls.
+
+    $P(X = 2 \land N = 1) = 0$. We have have only two balls in bin $1$
+    which occupies one bucket. Hence,the other two balls need another bin.
+    $N$ can be at minimum $2$.
+
+
+    $$P(X = 2 \land N = 2) = 
+    \text{ways to send 2 balls to 1st bin}
+    \cdot
+    \text{leftover bin to send the leftover 2 balls} = 
+    \frac{ {4 \choose 2} \cdot 2 }{3^4}$$
+\end{example}
+
+\begin{example}
+    We have a drunken man who takes a step forward with $p = 1/2$, and
+    2 steps backward with probability $p = 1/2$. at time $t = 0$, $x = 0$.
+    Let $T$ be the time of passing out. Let $pos_T$ be the set of positions
+    man could have been in when he passes out at time $T$. 
+
+    For example, at $T = 0, pos_0 = \{ 0 \}$. At $T = 1, pos_1 = \{ -2, 1 \}$. 
+    At $T = 2, pos_2 = \{ -4, -1, 2 \}$. $pos_3 = \{ 0, \dots \}$. 
+
+
+    Let $Y$ be a random variable such that $Y$ is $1$ with probability $0.5$,
+    and $-2$ with probability $0.5$.  Let $X$ be the random variable that is
+    the position after $T$ steps.  For example, $\E{X | T = 1} = \E{Y}$,  
+    $\E{X | T = 2} = \E{Y + Y} = \E{Y} + \E{Y}$. Linearity of distribution saves
+    us here.
+\end{example}
+
+
+\begin{example}
+    We have two distributions on the same sample sample, $p, q: \Omega \rightarrow [0, 1]$.
+    We need to distinguish between $p$ and $q$. We have an oracle $O$ that
+    provides numbers distributed according to either $p$ or $q$. That is,
+    we are given access to $O_r$ which provides numbers distributed according 
+    to distribution $r$. Return whether $r = p$ or $r = q$.
+
+    We should probably look at the event $a \equiv \max_{A \subseteq \Omega} p(A) - q(A)$,
+    the element that exhibits maximum discrepancy. Then we should draw events
+    from the set which maximised $a$ and see what happens.
+
+    Now, this number $a$ happens to be equal to
+    $\frac{1}{2} \sum_{w \in \Omega}  |p(w) - q(w)|$
+\end{example}
+
+\chapter{Belief networks}
+
+There are two people, Alice and Bob. They are neighbours, and there's a wall
+between their houses. Alice's house has a sprinkler. One day, she wakes up
+and notices that her lawn is wet. So now, we have the random variables:
+
+\begin{itemize}
+    \item $A$: Alice's lawn is wet/not wet.
+    \item $B$: Bob's lawn is wet/not wet.
+    \item $S$: Alice's sprinkler was switched on/not switched on.
+    \item $R$: Rained or not.
+\end{itemize}
+
+We have a joint probability distribution $P(A~ B~ S~ R)$. 
+We're now going to factor this using Bayes rule:
+\begin{align*}
+    &\P{A|BSR} \P{BSR} = \P{A|BSR} \P{B |SR} \P{R|S} \P{S}
+\end{align*}
+
+For $\P{A|BSR}$ we need to provide $\P{A=0|B=b~ S=s~ R=r}$. We can calculate
+$$\P{A=1|B=b~S=s~R=r} = 1 - \P{A=0|B=b~ S=s~ R=r}$$ So we need to provide $8$ values
+for all possible choices of $(b, s, r)$.
+
+Similarly, for $\P{B|SR}$ we need 4 numbers, and $\P{R|S}$ we need 2 numbers,
+and $\P{S}$ we need 1 number. The total is $8 + 4 + 2 + 1 = 15$, which is how many
+we need to describe the \emph{full} joint distribution $P(A, B, S, R)$.
+
+Now, for example, if we know the status of rain, we don't \emph{need to know the status
+of Bob's lawn to comment on Alice's lawn}. So, we can rewrite $P(A|BSR) = P(A|SR)$.
+This now needs only $4$ variables, from $8$.
+Similarly, if we know the status of the rain, the sprinkler in Alice's yard
+cannot affect Bob's yard. So, we can rewrite $P(B|SR) = P(B|R)$. This dropped
+4 numbers to 2 numbers.
+Finally, the status of rain does not affect whether the sprinkler was on
+or not. Hence, $P(S|R) = P(S)$. This lowers 2 numbers to 1 numbers.
+Hence, we now have a total of $4 + 2 + 1 + 1 = 8$, which is \emph{half} of
+what we started with.
+
+We can draw our relationships as a graph:
+
+\begin{tikzpicture}
+    % picture of the graphical model
+    % R -> A
+    % R -> B
+    % S -> A
+\end{tikzpicture}
+
+
+Let's assume we have an instantiation of this model on some concrete numbers:
+
+\begin{tabular}{ll}
+    $\P{R=1} = 0.2$ &   $\P{S=1} = 0.1$ \\
+    $\P{B=1|R=1} = 1$ & $\P{B=1|R=0} = 0.2$ \\
+    $\P{A=1|R=0~S=0} = 0$ & $\P{A=1|R=1~S=1} = 1$  \\
+    $\P{A=1|R=1~S=0} = 1$ & $\P{A=1|R=0~S=1} = 0.9$ \\
+\end{tabular}
+
+
+We can now begin number-crunching and compute what $\P{S=1|A=1}$ is going
+to be:
+\begin{align*}
+\P{S=1|A=1} &= \frac{\P{S=1~A=1}}{\P{A=1}} \\
+&= \frac{\sum_{R~ B} \P{S=1~ A=1~ R~ B}}{\sum_{R~ B~ S} \P{A=1~ R~ B~ S}} \\
+&= \frac{\sum_{R~ B} \P{A=1 |R~ S=1}\P{B | R~ S=1} \P{R} \P{S}}{\sum_{R~ B~ S} \P{A=1|RSB} \P{B|RS} \P{R} \P{S}}
+\end{align*}
+
+Suppose we find that $\P{S=1|A=1} = 0.3382$. Now, what is $\P{S=1|A=1~B=1}$?
+
+\begin{align*}
+\P{S=1|A=1~B=1} &= \frac{\P{S=1~A=1~B=1}}{\P{A=1~B=1}} \\
+&= \frac{\sum_{R~} \dots} {\sum_{S, R} \P{A=1~B=1~S~R}}
+\end{align*}
+
+We find that $P(S=1|A=1~B=1) = 0.1604$. That is, if both alice and bob
+had wet lawns, then it's unlikely that the water was from the sprinkler.
+
+Now, how do we design automated algorithms such that the above calculations
+we performed can be done \emph{automatically} and \emph{quickly}?
+
+\section{Computing joint distributions from the graph of the belief net}
+
+\begin{tikzpicture}
+    % picture of the graphical model
+    % R -> A
+    % R -> B
+    % S -> A
+\end{tikzpicture}
+
+We first perform a topological sort of the DAG(directed acyclic graph), which
+is always guaranteed to exist.
+
+\begin{tikzpicture}
+    % picture of the toposort from left to right
+    % |--------v------v
+    % R -> S-> B -> A
+    %      |--------^
+    
+\end{tikzpicture}
+
+We now visit the topo sort and multiply the values corresponding to each
+of the factors.
+
+Notice that $R$ has no incoming edges, so we need a term of $\P{R}$, 
+Similarly, $S$ has no incoming edges, so we need a term of $\P{S}$.
+$B$ has an incoming edges from $R$, so we get a term $\P{B|R}$. Similarly, $A$
+has incoming edges from $R, S$ so we get a term $\P{A|S~ R}$. This
+gives us the final solution:
+
+$$\P{A~B~S~R} = \P{R}\P{S}\P{B|R}\P{A|S~R}$$
+
+\section{Conditional independence of random variables}
+
+We wish to study situations of the form:
+"Are random variables $X$ and $Y$ are independent conditioned on $C$"? 
+If they are, this is notated as:
+\begin{align*}
+    X \perp Y | C \iff \P{X~ Y|C} = \P{X|C} \P{Y|C}
+\end{align*}
+
+\begin{example}
+    Let us assume we have $x_1, x_2, x_3$, all of which are 
+    dependent on each other with a network of the form:
+
+\begin{tikzpicture}
+    % picture of the network from left to right
+    % X1 -> X2 -> X3
+    % |------------^
+\end{tikzpicture}
+
+There are 6 graphs that can represent the network ($3!=6$)
+\end{example}
+
+\begin{example}
+\begin{itemize}
+    \item 1. ${(x_1 \rightarrow x_3 \leftarrow x_2)}$. We get $\P{X_1~X_2~X_3} = \P{X_1}~\P{X_2}~\P{X_3|X_1~X_2}$
+    \item 2.  ${(x_1 \leftarrow x_3 \rightarrow x_2)}$. We get $\P{X_1~X_2~X_3} = \P{X_3}~\P{X_1|X_3}~\P{X_2|X_3}$
+    \item 3. ${x_1 \rightarrow x_3 \rightarrow x_2}$. We get $\P{X_1~X_2~X_3} = \P{X_1} \P{X_3 | X_1} \P{X_2|X_3}$.
+\end{itemize}
+
+Note that the first graph is not the same as the second graph, 
+since in the first graph, $(X_1, X_2)$ are independent, but in the second
+one, they are not.
+
+The second and third are equal, and we can prove it!
+\begin{align*}
+    1 \leftarrow 3 \rightarrow 2 &= (\P{X_3}~\P{X_1|X_3})~\P{X_2|X_3}  \\
+       &=   (\P{X_1}~\P{X_3|X_1})~\P{X_2|X_3} \text{(Bayes rule)} \\
+       &= 1 \rightarrow 3 \rightarrow 2
+\end{align*}
+
+Similarly, the third and fourth are equal:
+\begin{align*}
+    2 \rightarrow 3 \rightarrow 1 &= (\P{X_2}~\P{X_3|X_2})~\P{X_1|X_3}  \\
+       &=   (\P{X_3}~\P{X_3|X_2})~\P{X_1|X_3} \text{(Bayes rule)} \\
+       &= 2 \leftarrow 3 \rightarrow 1
+\end{align*}
+\end{example}
+
+subgraphs of the form ${(x_1 \rightarrow x_3 \leftarrow x_2)}$ are called as
+\textbf{collisions}. Here, $x_1, x_2$ are independent, but conditioned on $x_3$,
+they may become dependent!
+
+\begin{align*}
+ &\P{X_1~ X_2 | X_3} =_? \P{X_1 | X_3} \P{X_2 | X_3} \\
+ &\P{X_1|X_3}\P{X_2 | X_1 ~X_3} =_? \P{X_1 | X_3} \P{X_2 | X_3} \\
+ &\P{X_2 | X_1 ~X_3} =_? \P{X_2 | X_3} \\
+\end{align*}
+
+Let $X_1, X_2$ be binary random variables that take on values ${0, 1}$ with
+probability half. Let $X_3 = X_1 \oplus X_2$ ($\oplus$ represents XOR). Now,
+$X_3$ is also a random variable. Now, notice that if we know only \textit{one}
+random variable, the other two random variables are independent. However,
+as soon as we know \textit{two random variables}, the third one
+is completely determined!  So, $\P{X_1 | X_1 ~ X_3} \in \{0, 1\}$, while $\P{X_2 | X_3} = 0.5$ for this example.
+Hence, the above probabilities are not equal, and therefore $X_1, X_2$ are
+not independent when conditioned on $X_3$.
+
+\section{d connectivity}
+
+We say that $X, Y$ are d-connected wrt $Z$, where $Z$ is a set
+of random variables, if there exists an \emph{undirected path}
+such that:
+\begin{itemize}
+    \item For all colliders, either $C$ or a descendant of $C \in Z$.
+    \item No non-colliders should be in $Z$.
+\end{itemize}
+
+\begin{example}
+    $a \rightarrow b \rightarrow d \leftarrow c$.
+    Now let's consider whether $a, c$ are d-connected with respect to $d$.
+    There exists a path $a \rightarrow b \rightarrow d \leftarrow c$. In this
+    path, $d$ is a colliding vertex, which does belong to $Z$. $b$ is a
+    non-colliding vertex that does not belong to $Z$. Hence, this satisfies the
+    conditions for this to be a $d$-connected path.
+\end{example}
+
+\begin{theorem}
+    $\text{$X$ is not d-connected to $Y$ with respect to $Z$} \implies (X \perp Y | C)$ 
+    Note that this is not iff.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\chapter{Belief / Bayesian nets}
+Missed class
+\chapter{Markov Networks}
+Not all distributions which have conditional independences. Not all of
+them can be modeled by a Bayes net.
+
+If we have an undirected graph $G$ where every person chooses the color of
+their hair based on their neighbour, and we have a 4-cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$,
+then we can build a bayes net:
+
+\begin{align*}
+&x_a \rightarrow x_c \\
+&x_a \rightarrow x_b \\
+&x_b \rightarrow x_d \\
+&x_c \rightarrow x_d \\
+\end{align*}
+
+However, note that our bayes net is directed, while the underlying process
+was undirected. I can build the same bayes net by starting with $x_c$:
+\begin{align*}
+&x_c \rightarrow x_a \\
+&x_c \rightarrow x_d \\
+&x_a \rightarrow x_b \\
+&x_d \rightarrow x_b \\
+\end{align*}
+
+According to this, $X_C \texttt{independent} X_B | X_A, X_D$, but this is not
+true in the first bayes net!
+
+To fix this, we just draw the \emph{undirected graph}. For this, we need a tool 
+called as a \emph{potential}: potentials are non-negative functions that are
+associated with cliques in the graph, denoted by $\phi$.
+
+A clique of a graph is a complete sub-graph of a graph.
+
+\begin{align*}
+&a, b \in \{ r, b, g \} \\
+&\phi_{A, B}(a, b) \equiv \begin{cases} 10 & a \neq b \\ 1 & a = b\end{cases}
+\end{align*}
+
+\begin{align*}
+    P_{X_A X_B X_C X_D} \equiv \prod_{c \in C} \phi_c (x_c) = 
+    \frac{1}{Z} \phi_{AB}(a, b) \phi_{AC}(a, c) \phi_{CD}(c, d) \phi_{BD}(b, d)
+\end{align*}
+Here, $Z$ is called as the partition function. It is the normalizing
+constant: $Z \equiv \sum_{a, b, c, d} \phi_{AB}(a, b) \phi_{AC}(a, b) \phi_{CD}(c, d) \phi_{BD}(b, d)$.
+
+\chapter{Preliminary definitions of Information}
+
+\begin{definition}
+    Entropy(\H): The entropy of a random variable $X$ with probability
+    distribution $p: X \rightarrow \R $ is defined as:
+    \begin{align*}
+        \H(X) \equiv - \sum_{x \in X} p(x) \log p(x) = \E[- \log \circ p]
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Condtional entropy($\H(X|Y)$): The conditional entropy of a random 
+    variable $X$ with respect to another variable $Y$ is defined as:
+    \begin{align*}
+        \H(X|Y) \equiv &- \sum_{y \in Y} p(y) \H(X|Y=y) \\
+                       &= \sum_{y \in Y} p(y) \sum_{x \in X} - p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y) p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y \land x) \log p(x | y)\\
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Kullback-Leibler divergence \KL{X}{Y}: The Kullback-Leibler divergence
+    of $X \sim p $ with respect to $X' \sim q$ is:
+    \begin{align*}
+        \KL{X}{X'} \equiv \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}
+    \end{align*}
+\end{definition}
+
+Note that \KL{X}{X'} is \emph{not symmetric}.
+
+Intuition: extra cost of encoding $X$ if we thought the distribution were $X'$.
+
+Useful extremal case to remember: Assume $X'$ has $q(x) = 0$ for some
+letter $x \in X$. In this case, $\KL{X}{X'}$ would involve a term $\frac{p(x)}{0}$,
+which is $\infty$. This is intuitively sensible, since $X'$ has no way to represent
+$x$, and hence $X'$ is \textit{infinitely far away from encoding $X$}. However,
+In this same case, one could have that $X$ is able to encode all of $X'$.
+
+\begin{definition}
+    Mutual information: \I(X;Y): This is the relative entropy between the
+    joint and product distributions.
+
+    \begin{align*}
+        \I(X;Y) &\equiv \KL{p(x, y)}{p(x)p(y)} \equiv H(X) - H(X|Y) \\
+                &= \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)}
+    \end{align*}
+    
+\end{definition}
+
+\begin{theorem}
+    Proof of equivalence of two definitions of mutual information:
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        &\I(X;Y)  = \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)} \\
+        &= \sum_x \sum_y p(x, y) \log \frac{p(x|y)}{p(x))} \\
+        &= - \sum_x \sum_y p(x, y) \log p(x) - \big[ - \sum_x \sum_y p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y \sum_x p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y p(y) \sum_x \log p(x|y) \big] \\
+        &= \H(X) - H(X|Y)
+    \end{align*}
+\end{proof}
+
+
+Some notes about mutual information:
+\begin{itemize}
+    \item $I(X; Y) = I(Y;X)$. That is, $I$ is symmetric.
+
+    \item Since $I(X;Y) = H(X) - H(X|Y)$, one can view it as the 
+         \textit{reduction in uncertainity} of $X$, after knowing $Y$. 
+         Alternatively, (to avoid double negatives), it's the \textit{gain in
+         certainty} of $X$ after knowing $Y$.  Another way of saying this is,
+         what is the expected reduction in the number of yes/no questions to be
+         answered to isolate the value of $X$ on knowing the value of $Y$.
+
+    \item $I(X;Y) = 0$ iff $X, Y$ are independent. That is, knowing $X$ reduces
+        no uncertainity about $Y$.
+
+    \item $I(X;X) = H(X)$. So, knowing $X$ allows us to reduce our uncertainity
+        of $X$ by $H(X)$. ie, we completely know $X$, since we have
+        \textit{reduced our uncertainity of X} which was initially $H(X)$, by $H(X)$.
+
+\end{itemize}
+
+\begin{theorem}
+    Chain rule for entropy: Let $X_1, X_2, \dots X_n \sim p(x_1, x_2, \dots, x_n)$
+    Then:
+    \begin{align*}
+        \H(X_1, X_2, \dots X_n) = \sum_i \H(X_i | X_{i-1}, X_{i-2}, \dots X_1)
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+    &\H(X_1, X_2) = \H(X_1) + \H(X_2 | X_1) \\
+    &\H(X_1, X_2, X_3) = \H(X_1) + \H(X_2, X_3 | X_1) = \H(X_1) + H(X_2 | X_1) + H(X_3 | X_2, X_1) \\
+    &\text{induction for the rest}
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Conditional mutual information: Conditional mutual information of random
+    variables $X$ and $Y$ given $Z$ is:
+    \begin{align*}
+        \I(X; Y | Z) \equiv \H(X|Z) - \H(X|Y, Z)
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    Chain rule for information:
+    \begin{align*}
+        \I(X_1, X_2, \dots X_n ; Z) = \sum_i I(X_i ; Z | X_1, X_2, \dots X_{i - 1}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    TODO: finish
+\end{proof}
+
+
+\chapter{Variational auto encoders}
+
+\chapter{Learning a graphical model}
+
+The graph of the model is fixed, we are interested in learning the parameters.
+This is unsupervised learning. We want to learn the distribution from which
+the samples were generated.
+
+We will use \emph{maximum likelihood}. There is a dataset $D$ which
+is sampled IID from a distribution $p^\star$.
+
+We need a notion of closeness for probability distributions. It is 
+usually measured using $K-L$ divergence.
+
+$$
+D_{KL}(p^\star || p) \equiv \sum_x p^\star(x) [\log(p^\star(x)) - \log(p(x))] \\
+&= -H(p^\star)  - \mathbb{E}_{x \sim p^\star} \log(p(x))
+$$
+
+Minimimsing $D_{KL}$ is the same as maximising $\mathbb{E}_{x \sim p^\star} \log(p(x))$.
+This quantity is typically called "log-likelihood". Ie, we want
+to find a distribution $p$ that maximises the probability of the dataset ($x$ is the dataset).
+We maximise $\log(\cdot)$ since it tends to be a better function.
+
+We cannot compute this either since we have expected value over $p^\star$.
+
+So we approxmiate this by taking average over samples.
+
+$$
+p^\star_D = \max_{p \in M} \frac{1}{|D|} \sum_{x \in D} \log p(x)
+$$
+
+Let $p~(x) = 1/D \sum_{y \in D} \delta(x, y)$. where
+$\delta(x, y) = 
+\begin{cases} 1 & \text{x = y} \\ 0 & \text{otherwise} \end{cases}$.
+
+\begin{theorem}
+    \arg \max 1/N \sum_{i=1}^N \log p(x_i | w) = \arg \min D_{KL} ( p~(x) || p(x, w))
+\end{theorem}
+\begin{proof}
+\begin{align*}
+    RHS &= \sum_x p~(x) \log{p~(x)} - \sum_x p~(x) \log{p(x|w)} \\
+        &=  H(p~) [ignore] - \sum_x p~(x) \log{p(x|w)} \\
+        &= \max w \sum_x 1/|D|  \sum_{y \in D} \delta(x, y) \log{p(x|w)} \\
+        &= \max w \sum_x 1/|D|  \sum_{y \in D} \log{p(y|w)} \\
+\end{align*}
+\end{proof}
+
+\section{CRFs}
+
+This also works for a general loss function:
+$\mathbb{E}_{x \sim p^\star}[L(x, p)]$. Supervised learning in generative models
+is called as conditioned random fields (CRFs).
+
+We want to find $P(y|x)$. We don't really care about $P(x, y)$. We really
+only care about the lablels. The loss function could be something like:
+$L(x, y, p) = -\log p(y|x)$.
+
+\section{Maxmimum likelihood for bayes nets}
+$p_\theta(x) = \prod_{i=1}^n \theta_{x_i| parent(x_i)}$
+
+$$
+L(\theta, D) =  -\sum_{i=1}^m \log P_\theta(x^(i))
+= -\sum_{i=1}^m \sum_{j=1}^m \log \theta_{x^(i)_j|x^(i)_{par(j)} \\
+= -\sum_{j=1}^n [\sum_{x \in par(j)} \sum_{x_i} \texttt{count}((x_j, x_{par(j)})] \log ...
+$$
+
+The value is minimised at the following [exercise]:
+
+$$
+\theta^{\star}_{ x_i | par(x_i)} = \frac{\texttt{count}((x_i, x_{par(j)})}{\texttt(count)(x_{par(j)})}
+$$
+
+\section{Markov Models}
+
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} \prod_{c \in clique} \phi_c(x_c, \theta)$$
+
+which we rewrite as:
+
+
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} e^{\sum_{c \in clique} \log(\phi_c(x_c, \theta))$$}
+
+
+
+We will define a function $f(x)$ such that:
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} e^{\theta\tilde^T . f(x)}$$
+
+$f(x)$ is called sufficient statistics. 
+
+If we have $m$ edges in our graph, there are $4m$ parameters: $ \{ 0, 1 \} \times \{ 0, 1 \} \times E$,
+for each edge, for each possible $x_i$ value. 
+
+Now the log likelihood is going to be:
+$$
+LL = 1/|D| \sum_{x \in D} \theta^T \cdot f(x) - \log(Z(\theta))
+$$
+
+Can we learn this using gradient descent?
+
+$$
+\grad{\theta} LL = 1/|D| \sum_{x \in D} f(x) - \grad_{\theta} \log(Z(\theta))
+$$
+
+$$
+\grad_{\theta} \log(Z(\theta)) 
+  =  1/Z(\theta) \grad_\theta Z(\theta) 
+  = 1/Z(\theta) \grad_{\theta} [\sum_{x \in X} \prod_{c \in clique} \phi_c(x)] \\
+$$
+
+moment matching of sufficient statistics.
+
+\end{document}
+

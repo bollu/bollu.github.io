@@ -1,0 +1,172 @@
+\chapter{Tensor product states}
+
+\section{Postulates of QM}
+\begin{itemize}
+\item Associated to any isolated physical system is a complex vector space
+with inner product. This space is called as the state space of the system.
+This system is completely described by its state vector which is a unit
+vector in the state space.
+\end{itemize}
+
+\section{Tensor product}
+
+Let $A$ and $B$ be vector spaces with bases $A_{basis}, B_{basis}$.
+$A \tensor B$ is a \emph{new vector space}, whose basis vectors are $a_i \tensor b_j$
+where $a_i \in A_{basis}, b_i \in B_{basis}$.
+
+Properties of the tensor product:
+\begin{itemize}
+    \item For any arbitrary scalar $z$ and element $v \in H_a$, $w \in H_b$,
+        $z (\ket v \tensor \ket w) = (z \ket v) \tensor \ket w = \ket v \tensor (z \ket w)$
+    \item $(\ket v_1 + \ket v_2) \tensor \ket w = \ket v_1 \tensor \ket w + \ket v_2 \tensor \ket w$
+    \item $\ket w \tensor (\ket v_1 + \ket v_2)= \ket w \tensor \ket v_1 + \ket w \tensor \ket v_2$
+    \textbf{TODO: what is an easy way to get correctly sized brackets?}
+    \item Suppose $\ket v \in H_a, \ket w \in H_b$, and $A$ and $B$ are linear
+        operators on $H_a$ and $H_b$ respectively. 
+        $(A \tensor B) (\ket v \tensor \ket w) \equiv (A \ket v) \tensor (B \ket w)$.
+
+    \item Let $C = \sum_i c_i A_i \tensor B_i$, where $A_i, B_i$ are linear
+        operators on $H_a, H_b$. Now, $C (\ket v \tensor \ket w) = \sum_i c_i ((A_i \ket v) \tensor (B_i \ket w))$
+    \item $\ket x = \sum_i a_i \ket v_i \tensor \ket w_i$. $\ket y = \sum_j b_j \ket v_j \tensor \ket w_j$.
+        Now, $\bra{x}\ket{y} = (\sum_i a_i^* \bra v_i \tensor \bra w_i)(\sum_j b_j \ket v_j \tensor \ket w_j)$,
+        which is equal to $\sum_i \sum_i a_i^* b_j \bra{v_i}\ket{v_j'} \bra{w_i}\ket{w_j'}$
+\end{itemize}
+
+This is way too redundant, \textbf{TODO:} write down the slick definition of tensor
+product spaces seen in John Lee's intro to smooth manifolds, or the definition
+seen in Tensor Geometry: The Geometric Viewpoint and its uses.
+
+\begin{align*}
+    \tr(A \ket \psi \bra \psi) = 
+    \sum_i \bra i A \ket \psi \bra{\psi}\ket{i} =  
+    \sum_i (\bra{\psi}\ket{i}) \cdot (\bra i A \ket \psi) = 
+    \sum_i \bra{\psi}(\ket{i} \bra i) A \ket \psi = 
+    \bra{\psi} A \ket \psi 
+\end{align*}
+
+
+\begin{theorem}
+    Two operators $A$, $B$ are simeltanelously diagonalizable iff $[A, B] = 0$,
+    where $[A, B] = AB - BA$. That is, there exists a basis where both $A$
+    and $B$ are diagonal matrices.
+\end{theorem}
+\begin{proof}
+    One direction of the proof is easy. If two operators are simeltanelously
+    diagonalizable, then we can simply write both operators in this common
+    basis. Diagonal matrices commute, hence $[A, B] = 0$.
+
+    Let $\ket{a, j}$ be an orthonormal basis for the eigenspace $V_a$ of $A$
+    with eigenvalue $a$ and index $j$ to label repeated eigenvalues.
+
+    $AB \ket{a, j} = BA \ket{a, j} = a B \ket {a, j}$. Hence,
+    $A (B \ket {a, j} = a (B \ket {a, j}$. Hence, $B \ket {a, j}$ is an
+    eigenvector of $A$. Therefore, $B\ket{a, j} \in V_a$. 
+
+    Define projector $P_a$ onto $V_a$. Now, define $B_a \equiv P_a B P_a$. This
+    is hermitian on $V_a$, since $$(P_a B P_a)^\dagger = P_a^\dagger B^\dagger P_a^\dagger = P_a B P_a$$.
+
+    Let us call the eigenvalues of $B_a$ as $\ket{a, b, k}$ where ${a, b}$ are
+    the eigenvalues of $A$ and $B$, and $K$ is the degeneracy index.
+
+    $P_a B \ket{a, b, k} = b \ket{a, b, k}$, since $B \ket{a, b, k} \in V_a$.
+    \textbf{TODO: complete proof}
+\end{proof}
+
+\begin{lemma} $[A, B]^\dagger = [B^\dagger, A^\dagger]$
+\end{lemma}
+\begin{proof}
+    $[A, B]^\dagger = (AB - BA)^\dagger = (B^\dagger A^\dagger - A^\dagger B^\dagger) = [B^\dagger, A^\dagger]$
+
+    \begin{align*}
+        &[A, B]^\dagger \\
+        &= (AB - BA)^\dagger \\
+        &= (B^\dagger A^\dagger - A^\dagger B^\dagger) \\
+        &= [B^\dagger, A^\dagger]
+    \end{align*}
+\end{proof}
+
+\section{Postulate 2 of QM: Unitary time evolution}
+
+The evolution of a closed quantum system is described by unitary transformation.
+That is, the state $\ket \psi$ of the system at time $t_1$ is related to
+a state  $\ket {\psi'}$ at a time $t_2$ by unitary operator $U$ which depends
+only on time $t_1$ and $t_2$. That is, $\ket {\psi'} = U(t_1, t_2) \ket \psi$.
+We usually suppress $t_1, t_2$ to write $\ket{\psi'} = U \ket{\psi}$.
+
+Schrodinger equation: $$i \hbar \pdv{\psi}{t} = H \ket{\psi}$$
+\textit{Homework: Show that the Schrodinger equation implies unitary evolution}
+
+\section{Postulate 3 of QM: Measurement postulate}
+Quantum measurements are described by a collection $\{ M_i \}$ of measurement
+operators. These operators are acting on the state space of the system which is
+measured.  The index $i$ refers to the measurement outcomes 
+that may occur in the experiment. If the state of the quantum system is 
+$\ket \psi$ before the measurement, the probability that the result $i$ occurs 
+is given by: \[p(i) \equiv \bra{\psi} M^\dagger_i M_i \ket{\psi}\]
+
+The state if result $i$ occurs is: \[  \ket{\psi'} = \frac{M_i \ket{\psi}}{\sqrt{p(i)}} \]
+
+We normalize the state $\ket{\psi'}$ to ensure that we evolve Unitarily.
+
+Also, notice that since $\sum_m p(m) = 1$, since $p(m)$ represents probabilities,
+we can write:
+\begin{align*}
+    &\sum_m p(m) = 1 \qquad
+    \bra{\psi}\sum_m   M_m^\dagger M_m \ket{\psi} = 1 \qquad
+    \sum_m \bra{\psi} M_m^\dagger M_m \ket{\psi} = 1 \\
+    &\text{Since $\ket{\psi}$ is a normalized state, we must have:} \\
+    &\sum_m M_m^\dagger M_m = I
+\end{align*}
+
+\subsection{Projective measurements}
+A projective measurement is described by an observable $M$, a hermitian
+operator on the state space of the system being observed.
+
+Let the observable $M$ have spectral decomposition: $$M \equiv \sum_m m P_m$$
+
+\begin{align*}
+    p(m) = \bra{\psi} P_m^\dagger P_m \ket{\psi} = \bra{\psi} P_m \ket{\psi}
+\end{align*}
+
+\begin{align*}
+    &\E{M} = \sum_m m p(m) 
+    = \sum_m m \bra{\psi} P_m \ket{\psi} 
+    = \bra{\psi} \sum_m m P_m \ket{\psi} 
+    = \bra{\psi} M \ket{\psi}
+    \\
+    &\E{M^2} = \bra{\psi} M^2 \ket{\psi}
+    \\
+    &V(M) = \E{M^2} - \E{M}^2 
+    = \bra \psi M^2 \ket \psi - (\bra \psi M \ket \psi)^2
+\end{align*}
+
+\subsection{Quantum sharing experiment}
+\begin{align*}
+    \text{Alice:}~ 
+    \left\{ \ket{\psi_1}, \ket{\psi_2}, \dots \right\} 
+    \xrightarrow{\quad \ket{\psi_i} \quad} 
+    \text{Bob:}~ \ket{\psi_i}
+\end{align*}
+
+Bob has to correctly guess the $i$ that was sent to him. We have two cases:
+One where $\{ \ket{\psi_i} \}$ are orthonormal, the other where they are not.
+
+If the states $\{ \ket{\psi_i} \}$ are not orthogonal, then we can prove
+that there is no quantum measurement that is capable of distinguishing
+the states.
+
+The idea is that bob will make a measurement $M_j$ with outcome $j$.
+Depending on the outcomes of the measurement, bob tries to guess the index 
+$i$ by some rule.
+
+\begin{proof}
+Consider two non-orthogonal states $\ket \psi_1, \ket \psi_2$. Assume a measurement
+is possible by which we can distinguish these two. In other words, if the state
+$\ket \psi_1$ is prepared, then the probability of measuring $k$ such that 
+(????) $f(j) = 1$ ($f$ is our guessing function)
+
+Define some measurement operator $E_i \equiv \sum_{j,~f(j) = i} M_j^\dagger M_j$
+
+
+\end{proof}
+

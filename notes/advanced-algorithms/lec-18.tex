@@ -1,0 +1,201 @@
+\chapter{Applications of Tail Inequalities - 2}
+
+
+\section{Polynomial verification}
+check that $P_1(x) P_2(x) =_? P_3(x)$
+
+If both polynomials have degree $n$, we can make it work in $n \log n$ using
+FFT. We will design an algorithm faster than this.
+
+
+\begin{itemize}
+    \item Let $S \subset F$ be a subset of size at least $2n + 1$.
+    \item We evaluate $P_1(s) P_2(s)$, and $P_3(s)$ for $s \in S$, s chosen uniformly
+    at random (using Horner's method, this is $O(n)$ per point). The evaluations
+    are the fingerprintts.
+    
+    \item Clearly, if $P_3(x) = P_1(x) P_2(x)$, this item will not make a
+    mistake. This algorithm \textit{makes a mistake} if $P_3(x) \neq P_1(x) P_2(x)$, but the
+    points we have in $S$ fail to catch this.
+    \item The probability that this makes a mistake: We create a new polynomial
+    $$Q(x) \equiv P_3(x) - P_1(x) P_2(x)$$
+    
+    It's degree is at most $2n$. If $P_3(x) \neq P_1(x) P_2(x)$, then $Q(x)$ is a
+    nonzero polynomial.
+
+    \item The polynomial $Q(x)$ has at most $2n$ roots. So, The probability
+    that $Q(r) = 0$ has probability $2n/|S|$, which is the probability of the
+    error.
+
+    \item We can make the error rate polynomially small in $n$ by using
+    repeated trials, or by picking a larger $S$.
+\end{itemize}
+
+This technique is useful when we don't have the polynomial directly available.
+For example, maybe we are only given oracle access to evaluation. For example,
+\textbf{permenant of a matrix}, apparently.
+
+
+\section{Definitions to classify the kinds of error}
+
+For both the algorithms considered, when the inputs are identical, the
+algorithm does not make an error.
+
+In inputs that are not identical, we make an error that is bounded by a
+constant.
+
+\subsection{The class $\rp$}
+$\rp$ is the class of languages $L$ such that there exists a randomized
+algorithm $A$ running in \textbf{worst case polynomial time}, such that for any input
+$x$:
+
+\begin{align*}
+x \in L \implies \Pr(\text{$A$ accepts $x$}) \geq \frac{1}{2} \\
+x \notin L \implies \Pr(\text{$A$ accepts $x$}) = 0
+\end{align*}
+
+The example was the \ip proof for graph non-isomorphism.
+
+
+\subsection{The class $\corp$}
+$\corp$ is the class of languages $L$ such that there exists a randomized
+algorithm $A$ running in \textbf{worst case polynomial time}, such that for any input
+$x$:
+
+\begin{align*}
+x \in L \implies \Pr(\text{$A$ accepts $x$})  = 0 \\
+x \notin L \implies \Pr(\text{$A$ accepts $x$}) \leq \frac{1}{2}
+\end{align*}
+
+
+\subsection{Reflection on \rp and \corp}
+
+The algorithms that we studed are the complement. We make no error
+on strings in the language, but we can have an error on strings that are 
+not in the language. So, the algorithms we studied are \corp.
+
+These are considered Monte-Carlo algorithms.
+
+
+\subsection{\zp / Las Vegas algorithms}
+\zp contains languages $L$ such that there is a randomized algorithm $A$
+that always outputs the correct answer in \textbf{expected polynomial time}.  
+These are also called as Las Vegas algorithms.
+
+
+\section{Proof by existence / Probabilistic method}
+\textit{(Refer to Chapter 5, Motwani and Raghavan)}
+
+
+Many a times, we want to show that a particular combinatorial object exists.
+It maybe very inefficient to build, because of a huge space and a small
+target of interest, like finding a needle in a haystack. Randomization
+can come to the rescue here:
+
+\begin{itemize}
+\item If a random variable $X$ has an expected value $\E{X} = a$, then there
+exists a realisation of $X$ with a value $\geq a$ and a realisation with
+value $\leq a$.
+
+\item If arandom objects from some universe of objects has some property $P$
+with nonzero probability, then there must exist an object with that property
+$P$ in this universe.
+\end{itemize}
+
+\subsection{Example 1}
+Consider a graph $G$. We want to find a subgraph $G'$ of $G$ such that it
+is bipartite, and has the largest number of edges of $G$ (largest bipartite
+subgraph of $G$).
+
+We will show the existence of a $G'$ with $|E(G')| \geq |E(G)|/2$.
+
+(We can use this technique to recursively break the graph into $\log n$
+bipartite subgraphs, and many algorithms work well on bipartite graphs)
+
+The randomized algorithm to produce this subgraph $G'$ is easy. We assign
+a bit $b(v)$ to each $v \in V(G)$.  Put all vertices in $G'$. 
+An edge $(u, v) \in G' \iff b(u) \neq b(v)$. The resulting graph 
+looks bipartite with the two bipartite regions consisting of all vertices
+$b(v) = 0, b(v) = 1$.
+
+
+Notice that 
+\begin{align*}
+&V_0 \equiv \{ v \in V ~\vert~b(v) = 0 \}\\ 
+&V_1 \equiv \{ v \in V ~\vert~b(v) = 1 \}\\ 
+&G' \equiv (V_0 \cup V_1, (V_0 \times V_1) \cap E(G)) \\
+\\
+&X_{uv} \equiv \text{$uv \in E'(G)$} \\
+&\E{X_{uv}} = \Pr(uv \in E'(G)) = \frac{1}{2} \\
+\\
+&X \equiv \sum_{u, v \in E(G)} X_{uv} \\
+&\E{X} = \E{\sum X_{uv}} = \sum \E{X_{uv}} = |E(G)|/2
+\end{align*}
+
+
+So, there must exist as assignment $b$ that constructs a bipartite graph
+with the required properties.
+
+\subsection{Expander graphs}
+We start defining an $(\alpha, \beta, n, d)$ expander.
+
+A bipartite graph $G = (V_1 \cup V_2, E)$ on $n$ nodes is an $(\alpha, \beta, n, d)$
+expander iff:
+\begin{itemize}
+\item Every vertex in $V_1$ has degree \textit{at most d}.
+\item For any subset $S$ of vertices from $V_1$, such that $|S| \leq \alpha n$, 
+then there are \textit{at least} $\beta |S|$ neighbours in $V_2$.
+\end{itemize}
+
+(Sid: Ideally, $d$ should be very small, and $\beta$ should be as large as possible.
+Max number of neighbours will be $d |S|$. That is $\beta \leq d$)
+
+To build such graphs in a deterministic manner is not easy. We can construct
+these randomized --- For example, consider $d = 18, \alpha = 1/3, \beta = 2$
+
+\subsubsection{Construction}
+Let each vertex in $V_1$ choose $d$ neighbours in $V_2$ by sampling
+independently and uniformly at random. We can \textbf{sample with replacement}
+(can pick the same thing repeatedly --- each vertex is independent). However,
+we will consider only one copy of any multiple choice.
+
+Consider any subset $S$ of $V_1$ with $|S| = s$. Let $T$ be 
+\textbf{some fixed subset} of $V_2$ of size $< \beta |S|$. 
+Consider the event that \textit{all neighbours of $S$} are in $T$. 
+
+This has probability:
+\begin{align*}
+&\text{probability of all neighbours lying in T} \\
+&\text{We simplify this by assuming that $|T| = \beta |S|$} \\
+&=(\text{Prob. of picking an element in T}^\text{number of neighbours})^\text{number of vertices} \\
+&=(\beta |S| / n)^{d |S|}
+\end{align*}
+
+\begin{align*}
+&E_{ij} \equiv \Pr(\text{There exists some $S_i$ and some $T_j$ such that all neighbours of $S_i$ are in $T_j$}) \\
+&\Pr (\cup E_{ij}) \leq \sum \Pr(E_{ij})
+\end{align*}
+
+There are $nCs$ ways to choose $S$ and $nC\beta s$ ways to chose $T$.
+
+The probability that for some S, all of its neighbours are in T is upper
+bounded by $$nCs~nC \beta s~ (\beta s/n)^{ds}$$
+
+\textbf{Stirling's approximation: $nCk \leq (en/k)^k$}
+
+
+
+Simplifying, what we get is:
+
+$$
+(en/s)^s \cdot (en/\beta s)^{\beta s} \cdot (\beta s / n)^{ds}
+$$
+
+Plug in and simplify. What we will eventually get is that it is
+upper bounded by $\frac{1}{2}^s$.
+
+Next, we should range over all sizes of $s=1\dots\alpha n$, which will
+give us $$Total = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots \leq \frac{1}{2}$$
+
+\subsubsection{Proof of stirling's approximation}
+\textbf{TODO: sid, should fill up}

@@ -1,0 +1,126 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage[euler-digits,small]{eulervm}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand{\I}{\ensuremath{\mathcal{I}} }
+\newcommand{\B}{\ensuremath{\mathcal{B}} }
+\newcommand{\powerset}{\mathcal{P}}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{exercise}{Exercise}
+\newtheorem{example}{Example}
+
+\title{IIIT Theory talks}
+\author{Siddharth Bhat}
+\date{Monsoon 2019}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Matroid theory}
+
+We follow the combinatorialists' tradition and use  the notation 
+${[m] = \{ 1, 2, \dots, m \}}$.
+
+generalization of the notion of linear independence. Goal of the talk is to 
+reach a decomposition theorem of Seymour, which simplifies a "regular matroid"
+into simpler matroids.
+
+\begin{exercise}
+Let $A$ be an $m \times n$ matrix, columns $[a_1, a_2, \dots, a_n]$.
+Let $I_1, I_2$ be a collection of linearly independent column indeces of $A$ such
+that $|I_1| < |I_2|$ (\textit{strictly} less than). Show that there exists some column index ${e \in I_2 \setminus I_1}$
+such that ${I_1 \cup \{e \}}$ is a set of linearly independent columns of $A$.
+\end{exercise}
+\begin{proof}
+    Space spanned by $I_1$ has dimension $|I_1|$. Space spanned by $I_2$
+    has dimension $|I_2|$. Hence, there must be at least one vector in $I_2$
+    which is independent of $I_1$. If this is not the case, then the dimension of $I_2$
+    will be equal to the dimension of $I_1$.
+
+    So we pick the index of that vector in $I_2$ that is linearly independent of $I_1$.
+\end{proof}
+
+\begin{definition}
+    Let $E$ be a finite set. Let $\I \subset \powerset(E)$ such that:
+    \begin{itemize}
+        \item Axiom $I_1$: $\emptyset \in \I$
+        \item  Axiom $I_2$: $\forall I \in \I, ~ J \subset I \implies J \in \I$ (\I is closed under subsets)
+        \item Axiom $I_3$: Let $I_1, I_2 \in \I$ such that $|I_1| < |I_2|$. Then there
+            exists an element $e \in I_2 \setminus I_1$ such that $I_1 \cup \{ e \} \in \I$
+    \end{itemize}
+    Then, $(E, \I)$ is called as a matroid. \I is called the collection of independent sets. An
+    element of \I is called as an independence set.
+\end{definition}
+
+\begin{example}
+    For a matrix $A_{m \times n}$ over an arbitrary field. Let $E$ be the set
+    of column indeces. Let $\I$ be all the subset of $E$ such that the subset 
+    is linearly independent. Then $(E, \I)$ is a matroid. This matroid is typically
+    denoted by $M[A]$, where $M$ is a mnemonic for "matroid".
+\end{example}
+
+\begin{definition}
+    The set of bases $\B$ is the set of maximal independent sets
+\end{definition}
+
+\begin{theorem}
+    If there are two bases $B_1, B_2 \in \B$, then $|B_1| = |B_2|$.
+\end{theorem}
+
+\begin{theorem}
+    Every indepenent set should lie within some basis.
+\end{theorem}
+\end{document}

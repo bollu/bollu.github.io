@@ -1,0 +1,155 @@
+\chapter{Applications of Tail Inequalities}
+
+
+\section{Set balancing problem}
+
+Consider trying to divide a data set into two parts: a test set and a training
+set. To make sure that both are roughly similar, we want to divide it so that
+both data sets have the same number of data items for any given feature.
+Similar requirelements also occur for drug trials.
+
+\begin{itemize}
+\item We will think of $n$ data items with $n$ features (we can generalize this to
+$m$ features), arranged in a matrix $A$. $A$ has entries from $\{0, 1\}$.
+Rows are features, columns are data items
+
+\item The goal is to find a vector $x$ of size $n$ with entries from $\{-1, 1\}$
+such that $Ax$ has the has the smallest possible maximum absolute entry.
+
+\item Rows with $+1$ in $x$ belong to one class, and those with $-1$ belong
+to another class.
+
+\item The maximum absolute value of each entry in $Ax$ tells us how many
+data items differ at feature $i$ according to the division by $x$.
+\end{itemize}
+
+\textbf{TODO: setup example}
+
+\subsection{Solution}
+Brute force is to take all possible choices of $2^n$ vectors. 
+
+Simple randomlized algorithm: We can consider choosing
+each element of $x$ uniformly at random from $\{1, -1\}$. We will show that
+the maximum absolute entry of $Ax$ in such an $x$ is bounded by
+$O((n \log n)^\frac{1}{2})$ with high probability.
+
+\begin{itemize}
+    \item Consider choosing each element of $x$ uniformly at random from $\{-1, 1\}$.
+    \item Let the product $Ax = y$.
+    \item Consider any $y_i$, say $y_1$. By the definition of matrix multiplication,
+    $y_1 = A_{11} x_1 + A_{12} x_2 + \dots + A_{1n} x_n$.
+    \item Note that $\E{x_i} = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot -1 = 0$, and therefore, by linearity of expectation,
+    $\E{y_i} = 0$.
+    \item Since $x_i$ is chosen independently, we can apply the Chernoff bound on $y_i$.
+    \item We had derived a Chernoff bound for bernoulli $\{0, 1\}$. But we use
+    $\{1, -1\}$, so we need to either derive a new Chernoff bound, or we shift
+    them to convert them to $\{0, 1\}$.
+    \item We want to know $\Pr[X \geq k]$ for some $k$.
+
+    \item Define $Y_i = (1 + X_i) / 2$. Note that $Y_i$ is $\{0, 1\}$ valued.
+    \item Define $Y$ as the sum of $Y_i$s.
+    \item $\E{Y} = n/2$.
+    \item Also note that $X \geq k$ iff $Y \geq n/2 + k/2$.
+    \item Now, $\Pr[X \geq k] = \Pr[Y \geq n/2 + k/2]$
+    \item $\Pr[Y \geq n/2 (1 +  k/n)] = \Pr[Y \geq \E{Y}(1 + k / n)]$
+    \item This is a Chernoff bound with $\delta = k/n < 1$.
+    \item Applying Chernoff bounds with the delta, we get that
+    $$
+    \Pr[Y \geq \E{Y}(1 + \delta)] \leq e^{-\E{Y} \frac{\delta^2}{4}} = e^{-\frac{n}{2} \frac{k^2}{4 n^2}} = e^{\frac{-k^2}{8n}}
+    $$
+
+    \item We now get that 
+    $$
+    \Pr(Y_1 \geq 8 \sqrt{n \log n}) \leq e^{\frac{-k^2}{8n}} = e^{\frac{-64 n \log n}{8n}} = e^{-8 \log n} = n^{-8}
+    $$
+
+    \item The probability of the first element being large 
+    $(\geq \sqrt{n \log n})$ is upper bounded by $n^{-8}$.
+
+    \item By symmetry, (since $Y_1$ can be negative), we get 
+    $$
+    \Pr[Y_1 \leq d] \leq n^{-8}
+    $$
+
+    \item Combining both of these, we recieve 
+    $$
+    \Pr[|Y_1| \geq \sqrt{8 n \log n}] \leq 2 n^{-8}
+    $$
+
+
+    \item $E_i \equiv |Y_i| \geq 8 \sqrt{n \log n}$. What we want is to bound
+    the event $E \equiv \cup_{i=1}^n E_i$
+
+    \item We use Boole's inequality to simplify the union computation:
+    $$\Pr[E_1 \cup E_2 \dots \cup E_n] \leq \Pr(E_1) + \Pr(E_2) + \dots \Pr(E_n)$$
+
+
+    Apply the aboce to get that with probability $$n \cdot \frac{2}{n^8} = \frac{2}{n^7}$$
+    we will exceed the required bounds.
+
+    \item So, the probability of \textbf{not exceeding} the bound will be
+    $$1 - \frac{2}{n^7}$$
+
+    \item Note that this is considered as \textbf{with high probability} (\textit{w.h.p}):
+    $$ 1 - \frac{1}{poly(n)} $$
+\end{itemize}
+
+\section{Randomization plus algebra --- Fingerprinting}
+
+Let $U$ be a universe of objects, and $x, y \in U$. We want to ask $x =_? y$.
+One can answer this using $\log |U|$ bits deterministically.
+
+However, consider mapping elements of $U$ into a sparse universe $V$, such that
+$$x =_? y \iff V(x) =_? V(y)~\text{(with high probability)}$$.
+
+These images in $V$ are called \textit{fingerprints}.
+
+\subsection{A concrete use: Marix product verification}
+Let $F$ be a field, let $A, B$ be two matrices with entries from $F$. Suppose
+that it is claimed that $C =_? A \cdot B$. The fastest known matrix
+multiplication is slower that $O(n^2)$. The algorithms are difficult to implement.
+
+There is a simpler \textit{randomized algorithm}. Let $r$ be a vector whose
+entries are chosen uniformly at random from $\{0, 1\} \subset F$.
+
+We now check $$Cr =_? ABr$$
+
+And we claim that this is a good fingerprint for $AB =_? C$.
+
+Suppose $AB \neq C$. In that case, we will show that $$\Pr(ABr = Cr \leq \frac{1}{2})$$
+
+Consider the matrix $D \equiv AB - C$. Since $AB \neq C$, matrix $D$ is not the zero
+matrix. We are interested in the event that $Dr = 0$.
+
+Assume without loss of generality that the first row of $D$ has a nonzero entry,
+and all nonzero entries in that row are before any zero entry. (This is WLOG
+since we can always move the rows up and down. Similarly, we can move the columns
+up and down. This will not change the null space \textbf{TODO: prove this}).
+
+Consider the first row of $D$, and the scalar obtained by multiplying the
+first row of $D$ with $r$. The result is 0 iff
+
+\begin{align*}
+&v_1 = \sum_{i=1}^n D_{1i} {r_i} \\
+&\text{k is the index of the rightmost non-zero entry, $k \leq n$} \\
+&v_1 = \sum_{i=1}^k D_{1i} {r_i} \\
+&v_1 = 0 \iff r_1 = - \frac{\sum_{i=2}^k D_1i r_i}{D_{11}}
+\end{align*}
+
+The probability of $Dr = 0$ is upper bounded by this event ($v_1 = 0$).
+
+To compute the above probability, imagine that $r_2, \dots r_k$ have been frozen.
+now, check the probability of picking an $r_1$ such that $r_1 = \dots$. If we
+did, then we infer that $C = AB$, while this is actually not true! So, our
+\textbf{error} is the probability of us picking $r_1 = \dots$.
+
+This proof technique is called as the \textbf{principle of deferred choices}.
+
+Note that the right hand size is a scalar from the field $F$. The left hand
+side($r_1$) is uniformly chosen amongst two values in $F$. The required probability
+therefore \textbf{cannot exceed 1/2}.
+
+So, in $t$ trials, the probability that all $t$ trials fail will be
+$\frac{1}{2}^t$.
+
+For $t = O(\log n)$, the failure probability is polynomially small.

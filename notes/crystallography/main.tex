@@ -1,0 +1,221 @@
+\documentclass{book}
+
+%%% % https://tex.stackexchange.com/a/97128
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%%% \linespread{1.025}              % Palatino leads a little more leading
+%%% % Euler for math and numbers
+%%% \usepackage[euler-digits,small]{eulervm}
+
+% \usepackage{cmbright}
+
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{cancel}
+\usepackage{mathtools}
+
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\CP}{\ensuremath{\mathbb{CP}}}
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\renewcommand{\O}{\ensuremath{\mathcal{O}}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\fracpart{\{}{\}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{nonexample}[theorem]{Non Example}
+\newtheorem{aside}[theorem]{Aside}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{slogan}[theorem]{Slogan}
+\newtheorem{Proposition}[theorem]{Proposition}
+
+% https://tex.stackexchange.com/questions/469588/strike-out-an-arrow-with-a-small-oblique-segment-like-with-nrightarrow
+% \newcommand*\Neg[2][0mu]{\Neginternal{#1}{\negslash}{#2}}
+% \newcommand*\sNeg[2][0mu]{\Neginternal{#1}{\snegslash}{#2}}
+% \newcommand*\negslash[1]{\m@th#1\not\mathrel{\phantom{=}}}
+% \newcommand*\snegslash[1]{\rotatebox[origin=c]{60}{$\m@th#1-$}}
+
+\begin{document}
+\chapter{Lecture 1a: Introduction}
+\begin{itemize}
+\item \href{MIT 3.60: Symmetry, Structure, and Tensor Properties of Materials}{https://ocw.mit.edu/courses/materials-science-and-engineering/3-60-symmetry-structure-and-tensor-properties-of-materials-fall-2005/}
+\item I'm reading this so I can gain intuition for semidirect products of
+      crystallographic groups, stress-energy tensors, and tensegrity.
+\item In the early part of the term, we're going to use plain old geometry.
+\item Halfway through, we'll switch to linear algebra and eigenvalue problems.
+      The first half of the course is one long process of synthesis.
+\item ``It will blossom like an elegant filigreed structure''.
+\item Textbook: Martin J Burger: ``Elementary crystallography''. Out of print
+   for 15 years!
+\item ``International tables for X-ray crystallography'': Published by
+  international union for crystallography. Volume I is symmetry tables. Everything
+  we will derive is tabulated here.
+\end{itemize}
+
+\section{Syllabus: Whirlwind tour}
+Crystallography is divided into X-ray crystallography and optical crystallography.
+Optical crystallography studies crystals using polarized light. We're going to be
+talking about geometrical crystallography / symmetry theory. This is the first
+month and a half.
+
+A thing in a pattern is called as a motif.
+
+A \textbf{translation} is given by a vector, has magnitude and direction, but no origin.
+We can think of it as a rubber stamp. Rather, we think of operations that act on all of space.
+\begin{definition}
+An object or a space possesses symmetry when there is an operation or a set of
+operations that maps it into congruence wit itself.
+\end{definition}
+
+For \textbf{rotation}, we need to know the point about which the rotation takes place,
+call it $A$, which is the location of the axis. Then, we need to know the angle,
+which will denote with a subscript $\theta$. So the full notation for a
+rotation is $A_\theta$.
+
+For \textbf{reflection}, we use the symbol $M$ for mirror. 
+
+And this is all that we have in 2D: translation, rotation, reflection.
+
+\chapter{Lecture 1b: Introduction}
+
+\begin{definition}
+a Symmetry Element is the locus of points that's left invariant/unmoved by the
+operation.  What is the net consequence of a sequence of transformations? We
+can answer by describing the symmetry element of a sequence of transformations.
+\end{definition}
+
+
+We now make a profound conclusion: Translation, Rotation, and reflection are the
+only ones that can exist as single step transformations. A translation performs
+$(x, y) \mapsto (x + a, y + b)$. A mirror plane moves $(x, y)$ to $(-x, y)$
+if the mirror line is perpendicular to the $x$-axis and passes through the
+origin. If we do this again, $(-x, y) \mapsto (x, y)$: we're left with the
+identity. If we now rotate by 180 degrees through the origin, the point
+$(x, y) \mapsto (-x, -y)$. If we perform it again, it would go to $(x, y)$.
+
+In more general terms, if we change the sense no coordinate, that's translation.
+If we change the sense of one coordinate, we get reflection. If we change the
+sense of both coordinate, it's going to be a rotation.
+
+We chose special cases to make it easy. But a mirror plane will always translate
+one coordiate, while a rotation will translate one coordinate.
+
+
+Extrapolating, in 1D, we can change the sense of no coordinate, that's
+translation, or we change the sense of 1 coordinate, that's reflection. So we
+don't have rotation in 1D.
+
+Now extrapolating in 3D, we're going to have 4 distinct one step operations.
+
+Are there are infinitely many operations on composition of operations? We'll see
+what happens when we compose two operations next lecture.
+
+\section{Patterns in 2D}
+
+\subsection{Translation}
+Translation has magnitude and direction, but it has no origin. We can summarize
+the periodicity by taking some feducial points $P$, by saying that something hung
+on one of the point $p$ will be hung on all of the other points $p' \in P$.
+This kind of a point is called as a \textbf{lattice point}. This array of
+ficticious point is called as a lattice. It is the array of ficticious point
+that represents the translational symmetry of the crystal is the lattice.
+                            
+If we put atoms on the lattice, then it's called as a \textbf{structure}.
+
+We can add another translational symmetry, let's say $T_2$ which is not along
+$T_1$. So we have two non-collinear translations which give us a 2D space lattice,
+at which motifs will be hung at $n T_1 + m T_2$ where $n, m \in \Z$. It's something
+called as a lattice net.
+
+How can we now define the area that is unique to one lattice point? We can
+draw a parallelogram starting from one lattice point. This gives us the
+unique part that is hung at a lattice point. This is called as the \textbf{unit cell}
+or as the \textbf{cell}.
+
+The existence of $T_1, T_2$ give us an array of lattice points, which define a
+cell. But if you pick a cell, there are many $T_1, T_2$ that define
+the exact same lattice! These are called \textbf{conjugate translations}.
+
+So the implication is that we're going to need rules. We could pick ridiculous
+cells that are long thin translations. We want to talk 'fat', short(est)
+translations.  The second rule is to pick $T_1, T_2$ that displays the symmetry
+(if any) of the lattice. The translational periodicity and the symmetry of the
+lattice go together.  These are the only two rules we need to pick what's
+called as the standard cell.
+
+What happens if we start with a translatory lattice, with a rotation $A_\alpha$.
+We can put the rotation at our designated lattice point. 
+
+\begin{minted}{text}
+        l
+    *--------*
+T  /          \
+  /            \
+ /              \  T
+*----------------*
+    T
+\end{minted}
+
+If our lattice looks like this, we need $l$ to be a multiple of $T$, because we need
+the lattice to have translational symmetry of $T$. So let's set $l = pT$
+
+\begin{minted}{text}
+        l=pT
+    *--------*
+T  /|        |\
+  / |        | \
+ /a |        |a \  T
+*---*--------*---*
+       pT
+<------T---------->
+\end{minted}
+From the horizational line at the bottom we get $2T \cos\alpha + pT = T$, which
+gives us the equation $1 - 2 \cos \alpha = p$, which makes sense because nothing
+in the construction depended on the size of what we took. This says that
+$\cos \alpha = (1 - p)/2$. This gives us something we can plug and chug.
+
+If we set $p = 3$, then we get $\cos \alpha = (3-1)/2 = -1$, which means
+$\alpha = 180^\circ$. We can try this. We start with:
+
+\begin{minted}{text}
+*----T-->*
+O        O'
+\end{minted}
+
+now let's rotate by 180 degrees counter clockwise about $O$, giving us $O_1$
+
+\begin{minted}{text}
+*<--T---*----T-->*
+O1      O        O'
+\end{minted}
+
+Next we can rotate it 180 degrees clockwise about $O'$, giving us $O_2$:
+
+\begin{minted}{text}
+*<--T---*----T-->*<------*
+O1      O        O'      O2
+\end{minted}
+
+Now it's indeed true that the distance between $O_1$ and $O_2$ is $3T$, as we picked
+$p = 3$.  Only a small number of rotations will be compatible. We'll pick up on
+that from the next lecture.
+
+\end{document}
+

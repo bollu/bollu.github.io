@@ -1,0 +1,165 @@
+\chapter{Gaps in space and time}
+
+We wish to study what is not computable given some resource.
+If there resource is time, we want to understand what can be solved
+in $t(n)$ but not in smaller than $t(n)$ --- in the sense of $o(t(n))$.
+
+We can try to construct a hierarchy of problems that can be solved
+given increasing time. 
+
+\begin{align*}
+f(n) \in o(g(n)) &\equiv \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0 \\
+f(n) \in O(g(n)) &\equiv \lim_{n \to \infty} \frac{f(n)}{g(n)} \in  O(1)
+\end{align*}
+
+\section{Space Hierarchy}
+
+A function $f: \mathbb{N} \to \mathbb{N}$ is said to be \textbf{space constructible}
+if there exists a turing machine that on input $1^n$, it computes $f(n)$
+using space $O(f(n))$. So the output can be $1^{f(n)}$ say, since that uses
+space $O(f(n))$.
+
+Most common functions such as polynomials, exponentials, and logarithms
+are all space constructible.
+
+\begin{theorem}
+Let $f$ be a space-constructible function. There exists a language $L$ which
+can be decided in $O(f(n))$ space, but not in $o(f(n))$ space.
+\end{theorem}
+\begin{proof}
+The proof is to \textbf{construct} a language which can be decided on $O(f(n))$
+space, but not in $o(f(n))$ space. Such a language tends to be artificial due
+to the construction having to work \textit{for all $f$}.
+
+We need two properties for this language $L$ we create:
+
+\begin{itemize}
+\item It is \textbf{not decidable} in $o(f(n))$ space.
+\item It \textbf{is} decidable in $O(f(n))$ space.
+\end{itemize}
+
+We will use diagonalization to show an construct an $L$ that 
+\textbf{cannot be decided} in $o(f(n))$ space. List each TM that runs in 
+$o(f(n))$ space. This collection of all TMs (viewed as strings) is written as:
+
+$$ALLTM = \cup_{i=0}^\infty \{0, 1\}^i$$
+
+
+We will define a language $L$ which cannot be decided by \textbf{any} TM
+on the above list.
+
+We will create a matrix of the form $DECIDE(i, j) = M_i(\langle M_j \rangle)$.
+That is, we feed $M_i$ the string of $M_j$.($\langle M_j \rangle$ interprets
+the machine $M_j$ as a string).
+
+Now, create a language $L$:
+
+\begin{align*}
+L \equiv \{ M~\vert~M ( \langle M \rangle ) = 0 \}
+\end{align*}
+
+Note that $L$ is \textbf{not decidable} in $o(f(n))$ space. Proof by contradtiction:
+Assume such a machine $M_c$ ($c$ for contradiction) exists. We now ask if $\langle M_c \rangle \in L$?
+
+\begin{itemize}
+\item If $\langle M_c \rangle \in L$, then $M_c (\langle M_c \rangle) = 0$ (by the definiton of $L$).
+But since $M_c$ \textbf{decides} $L$,
+$M_c (\langle M_c \rangle) = 0 \implies  \langle M_c \rangle \notin L$. \textbf{Contradiction}.
+
+\item On the other hand, say that $\langle M_c \rangle \notin L$, then $M_c (\langle M_c \rangle) = 1$
+(by the definition of $L$).
+But since $M_c$ \textbf{decides} $L$, $M_c (\langle M_c \rangle) = 1 \implies \langle M_c \rangle \in L$. 
+\textbf{Contradiction}.
+\end{itemize}
+
+
+We now move to show that $L$ \textbf{can be decided} in $O(f(n))$ space.
+Consider a machine \texttt{INTERPRET} that does this:
+
+\begin{minted}{python}
+def INTERPRET(w):
+    Mw = convert_to_TM(w)
+
+    # Naive solution: Try to run Mw, see what happens.
+    # flag = Mw.run(w)
+
+    # Problem 1: How do we know it runs in o(f(n)) space?
+    # flag = Mw.run_with_bounded_space(w, space_bound=f(n))
+
+    # Problem 2: How do we know that Mw halts?
+    # Count the size of the config. space, and reject if Mw
+    # takes more steps than the configuration space size.
+    flag = Mw.run_wth_bounded_space_and_steps(w, space_bound=f(n), 
+                                                 steps_bound=Mw.config_space_size())
+
+
+    return !flag
+\end{minted}
+\textbf{For more details, read Sipser chapter 9}
+\end{proof}
+
+
+
+\begin{corollary}
+For two functions $f1, f2 : \mathbb{N} \to \mathbb{N}$, if
+$f1 \in o(f2)$, then $\dspace~(f1) \subsetneq \dspace~(f2)$. 
+(\textbf{Sid note: we do not need the condition that $f1 \neq f2$ thanks to the fact
+that in $o(n)$, the limit tends to $0$})
+\end{corollary}
+
+\section{Time Hierarchy}
+
+\begin{theorem}
+Let $f$ be a time-constructible function. There exists a language $L$ which
+can be decided in $O(f(n))$ time, but not in $o \bigg(\frac{f(n)}{\log(f(n)} \bigg)$ time.
+\end{theorem}
+\begin{proof}
+Proof is the same as that of space hierarchy (roughly).
+
+We get the $\log$ factor for us to simulate a $f(n)$ time turing machine.
+We do not know how to perform the simulation with constant overhead.
+\end{proof}
+
+\begin{corollary} $\texttt{P} \subsetneq \texttt{EXPTIME}$ \end{corollary}
+
+
+\section{Polynomial Hierarchy}
+
+One interesting thing to study is the power of oracles (non-uniform computations).
+One can try to study the nature of languages, given oracle access.
+
+\begin{definition}
+Let $M$ be a turing machine, $A$ be a language. \textbf{The language $L(M^A)$} is the
+set of strings accepted by the machine $M$ with oracle access to $A$.
+\end{definition}
+
+We can deneralize this by giving access to a \textit{class of languages}!
+
+\begin{definition}
+Let $M$ be a turing machine, $C$ be a class of languages. 
+\textbf{The language $L(M^C)$} is the
+set of strings accepted by the machine $M$ with oracle access to any language
+in $C$.
+
+$$
+M^C = \{ L(M^A)~\vert~A \in C \}
+$$
+\end{definition}
+
+\begin{definition}
+Let $C_1, C_2$ be classes of languages.
+\textbf{The language $L(C_1^{C_2})$} is the
+set of strings accepted by some machine in $C_1$ given oracle access to 
+some machine in $C_2$.
+
+$$
+C_1^{C_2} = \{ L(M_1^{M_2})~\vert~M_1 \in C_1, M_2 \in C_2 \}
+$$
+\end{definition}
+
+We will use $M^\phi$ to denote oracle access to an "empty" oracle. Hence, $M^\phi \sim M$.
+
+An example would be $\conptime \subset \ptime^{\nptime}$, because the $\ptime$
+oracle can flip the answer of the $\nptime$ oracle.
+
+

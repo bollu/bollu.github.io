@@ -1,0 +1,183 @@
+\chapter{Information Theory, CPA security - Lecture 5}
+
+
+Most theorems will read as: if X is true, then the protocol $\Pi$ is secure.
+
+\section{Our first example of circumventing an impossibility}
+
+\section{PRNGs - Pseudo random number generators}
+This allows us to break $|K| \geq |M|$.
+This is still a one-time pad, but it allows us to create $|K| << |M|$.
+
+
+Deterministic program $G$.  Takes as input $n$-bit string, returns $l(n)$ bit string. We have two
+assumptions.
+\begin{itemize}
+\item 1. $l(n) > n$. Expansion.
+\item 2. Pseudorandomess.
+\end{itemize}
+
+\subsubsection{Pseudorandomness}
+for all PPTM(probabilistic polynomial turing machine) $D$,
+$$ |P[D(r) = 1] - P[D(G(s)) = 1]| \leq \negl(|s|) \quad  r \leftarrow \binary^{l(n)} \quad  s \leftarrow \binary^n$$
+$r, s$ are chosen uniformly at random. The probability distribution is over the
+random coins used by $D$, along with the uniform distributions of $r$ and $s$.
+
+
+\begin{itemize}
+\item Strings of length $l(n)$. pick one at random. probability of picking one of them is
+\item Strings of length $n$, and then we inject into $l(n)$ with $G$. Clearly, $|Im(G)| < 2^{l(n)}|$.
+So, we can sample all $|Im(G)|$. If we are in a pseudo-random world, it will repeat for sure (with $P = 1$).
+If we are in the non-PRNG world (true randomness), the chance that something repeats will be negligibly small.
+\item We cannot distinguish with polynomial samples, however. So, PPTM is a good choice for a distinguisher.
+\end{itemize}
+
+
+Given that we have to assume PRNGs exist, there are different ways to proceed:
+\begin{itemize}
+\item Heuristics - Assume that the PRNG we write is a true PRNG, and then get to work.
+\item Specific mathematical assumptions - Assume that certain problems are hard. Build PRNGs from this mathematical assumption.
+\item Provable Security - If there exists even one hard problem $P$, then we can use that to build a PRNG.
+\item Proven security - prove PRNGs exist.
+\end{itemize}
+
+
+\subsubsection{Assume PRNGs exist. We will build a secure encryption scheme}
+
+% \begin{align*}
+%     &M = \binary^{l(m)} \quad K = \binary^m \\
+%     &Gen: k = {0, 1}^n$ \\
+%     &Enc_k(m) = m \xor G(k) \quad Dec_k(c) = c \xor G(k)
+% \end{align*}
+
+
+Note that this is just one time. If they attacker can see two ciphertexts, they can XOR the ciphertexts to get the XOR of the cleartexts.
+
+\paragraph{Proof that this is sane}.
+If the adversary can differentiate between $M_0$ $M_1$, we will use it to break the PRNG (as in, distinguish between PRNG and RNG).
+Call the adversary A. It can generate 2 messages $M_0$ and $M_1$. When given $encryption(M_b) = G(k) xor M_b$, he can guess $b = 0 \/ b = 1$ with non-negligible probability.
+Call the distinguisher $D$. $D$ has to distinguish between truly random and pseudo random world for our proof.
+Given a string $w$ and ask if $w$ can be distinguished by $A$. We can pick $w$ from the PRNG world or the RNG world.
+
+If $A(w xor M0, w xor M1)$ gives us the  correct value(can distinguish), then we are using the PRNG. Otherwise, it is the RNG.
+
+
+\subsection{Multi message Indistinguishability experiment}
+
+This is defined for an encryption scheme $(\gen, \enc, \dec)$.
+\begin{itemize}
+\item Adversary outputs a pair of vector of messages $(\vec m_0, \vec m_1)$. Each
+    vector contains the same number of messages, and the $i$th messages have the
+    same length. That is, $|m_0[i]| = |m_1[i]|$.
+\item A random key is created: $ k \leftarrow \gen$, and a random bit
+    $b \leftarrow \binary$ is chosen. For all $i$, $c[i] \leftarrow \enc_k(m[i])$
+    is computed. $\vec c$ is given to the adversary $A$.
+\item The adversary $A$ outputs a bit $b'$. The output of the experiment is $1$
+    if $b = b'$, and $0$ otherwise.
+\end{itemize}
+
+Security definition of the cryptosystem remains unchanged.
+
+
+\paragraph{Weakness of one time pads under this threat model}
+Note that one time pads will fall to this threat model, since repeatedly
+ciphering data with a one-time pad will allow us to extract data from the
+one-time pad. Indeed, any deterministic scheme can be attacked under
+this threat model. So, we now need probabilistic encryption schemes.
+
+\paragraph{Attacking all deterministic cryptosystems under multi message threat model}
+Let $m_0 \equiv (0^n, 0^n), m_1 \equiv (0^n, 1^n)$. Run this through the experiment. We will
+be given $c \equiv (c_0, c_1)$. If $c_0 = c_1$, then  we know that the message
+was $(0^n, 0^n) = m_0$, and is $m_1$ otherwise. We know this since the encryption
+function is deterministic, and  hence $\enc_k(m_0) = \enc_k(m_1) \implies m_0 = m_1$.
+
+\subsection{Secure multiple encryptions using a stream cipher}
+TODO: add rigorous definition of stream ciphers.
+Two modes of operation.
+
+\paragraph{Synchronized mode} Communicating parties make sure they use
+different parts of the stream cipher. This way, no one reuses bits from the
+stream cipher. This can be viewed as one giant plaintext, by concatenating
+the messages exchanged between the two parties. Security immediately follows.
+
+This is difficult since we need to maintain state between encryptions, to make
+sure that we do not reuse randomness.
+
+\paragraph{Unsynchronize mode} We do not need to maintain state, but we
+need a more powerful definition of pseudorandom generator. We need a 
+seed $s$ and an initialization vector $IV$ of length $n$. The requirement
+we will need is that $G(S, IV=iv)$ is pseudo-random (That is, knowing $IV$
+while $s$ is secret keeps the output pseudorandom). Furthermore, for two
+randomly chosen initialization vectors $IV_1, IV_2$, $G(s, IV_1), G(s, IV_2)$
+is pseudo random when $IV_{\{1, 2\}}$ are known, but $s$ is secret. Note that
+$s$ is the same for both! We can create an encryption scheme as:
+
+\begin{align*}
+    \enc_k(m) \equiv (IV, G(k, IV) \xor m) \qquad
+    \dec_k((IV, c)) = m \xor G(k, IV)
+\end{align*}
+
+\subsubsection{CPA (Chosen plaintext attack) security: $\privkeysecurity{cpa}(n)$}
+This is defined for a cryptosystem $\Pi \equiv (\gen, \enc, \dec)$.
+\begin{itemize}
+    \item Random key is generated $k \leftarrow \gen(n)$.
+    \item The adversary $A$ is given oracle access to $\enc_k(\cdot)$. The
+        adversary generates two messages $m_0, m_1$.
+    \item Random bit $b \leftarrow \binary$ is chosen. A ciphertext
+        $c \leftarrow \enc_k(m_b)$ is computed, and is given to $A$.
+    \item $A$ continues to have oracle access to $\enc_k(\cdot)$. Adversary
+        outputs a bit $b'$.
+    \item Output of experiment is $1$ if $b = b'$, $0$ otherwise.
+\end{itemize}
+
+A private key encryption scheme $\Pi \equiv (\gen, \enc, \dec)$ has 
+Indistinguishable encryptions under CPA  security  if for all PPTM $A$, there
+exists a negligible function $\negl$ such that:
+
+\begin{align*}
+    Pr[\privkeysecurity{cpa}(n) = 1] \leq \frac{1}{2} + \negl(n)
+\end{align*}
+
+
+\paragraph{No determistic algorithm can be CPA secure}
+The adversary will ask for encryption of $M_0$ and encryption of $M_1$. He gets
+back $C_0$ and $C_1$. Then, we can compare that to our result, and find the
+random bit $b$.
+
+
+\paragraph{How to create CPA secure}
+$c \equiv \langle r, m \xor \enc_k(r) \rangle$ where $r \leftarrow \binary$ is a random string.
+Decryption will never fail. if we know $r$, we can $\xor$ to find $m$. However,
+the problem is length doubling: For data of length $n$, we need $|r| = n$.
+
+\subsubsection{Indexable PRNGS}
+A PRNG that we can index at a point, and it will start generating from that index. They are called ``pseudorandom functions''.
+
+Consider $Z/pZ^x$. All numbers except $1$ in $Z/pZ$ are generators.
+
+Discrete log: Given $g^x mod p$, given $g$, given $p$, find $x$. (log in a group). We know that Discrete log is hard. Let us try and build a PRNG.
+
+
+Step 1. Given a PRNG that expands 1 bit, we can use it to create a PRNG that expands any number of bits $n$
+$s = seed$. 
+$G(s), G(G(s)), G(G(G(s))), G^n(s)$, take the extra bits from each $G^i(s)$. This is a PRNG.
+
+This is a PRNG.
+
+Assume we can break this PRNG. $s_1 s_2 ... s_n$ = stuff from PRNG is distinguishable from $r_1 r_2 r_3 ... r_n$ = Random info.
+
+Construct $s_0 s_1 s_2 .. s_n$, $r_0 s_1 s_2.. s_n$, $r_0 r_1 s_2 s_3 ... s_n$. $r_0 r_1 r_2 r_3 .. r_n$. We know that we can
+distinguish first from last. Hence, there must be an adjacent set of strings that can be distinguished, since ``distinguishable'' is transitive (why?)
+so, if $r_i  dist r_{i+2}$, we need to have either $r_i dist r_{i + 1}$ or $r_{i + 1} dist r_{i + 2}$. However, between these strings, we have only edited $s_i$.
+So, we are able to distinguish one bit extra. This means we can actually distinguish the output of $G$.
+
+
+Step 2. if we can find $MSB(x)$, we can find x in polynomial time. So, all we need to do is to break $MSB(x)$.
+
+
+Step 3. Create PRNG that produces one bit output using discrete log.
+
+Take seed s. output $MSB(s_1 = g^s mod p)$. So we now have a PRNG that can create one bit. Second output: $MSB(s_2 = g^{s_1} mod p )$
+Third output: $MSB(s_3 = g^{s_3} mod p)$.
+
+Hence, if discrete log is hard, we can get a PRNG. 

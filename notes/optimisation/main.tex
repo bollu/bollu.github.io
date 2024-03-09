@@ -1,0 +1,417 @@
+% // https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
+\documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{comment}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+
+%\newcommand{\NP}{\texttt{NP}}
+%\newcommand{\PSPACE}{\texttt{PSPACE}}
+%\newcommand{\NPSPACE}{\texttt{NPSPACE}}
+%\newcommand{\TQBF}{\texttt{TQBF}}
+
+\newcommand{\nptime}{\texttt{NP}}
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\dspace}{\texttt{DPSACE}}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
+\newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
+\newcommand{\rp}{\texttt{RP} }
+\newcommand{\corp}{\texttt{co-RP} }
+\newcommand{\zp}{\texttt{ZP} }
+\newcommand{\maxsat}{\texttt{MAXSAT} }
+\newcommand{\ilp}{\texttt{ILP} }
+\DeclareMathOperator{\shape}{dim}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{proof}[theorem]{Proof}
+
+\newcommand{\ip}{\texttt{IP} }
+\newcommand{\lp}{\texttt{LP}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+\title{Optimisation methods: Linear and Integer optimisation}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\chapter{Introductory examples}
+
+
+\section{Classification}
+Consider a classification problem where we have labeled data at
+$(x_i, y_i)$, with some labeled $+$ and other data points labeled $-$.
+
+\chapter{\lp-relaxation}
+
+We know that $z^*_\ip \leq z^*_\lp$. We can solve an \lp problem using
+a solver.
+
+\section{Bipartite Matching}
+Let $G \equiv (V \equiv X \cup Y, E \subset V \times V, w: E \rightarrow \R)$. Graph is:
+\begin{itemize}
+    \item Undirected, so $(x, y) \in E \iff (y, x) \in E$, $w((v, v')) = w((v', v))$.
+    \item Bipartite, so that $(v, v') \in E \implies (v \in X \land v'\in Y) \lor (v \in Y \land v' \in X)$
+    \item It's a little annoying to write the condition, but basically, for
+        every edge, there's a unique weight which we adjust, even though
+        the graph is undirected.
+\end{itemize}
+        
+        We wish to find $M \subseteq E$ such that:
+
+\begin{align*}
+\max_{e \in M} w_e \\
+\end{align*}
+
+Can be transformed to:
+\begin{align*}
+    &\max_{e \in E} x_e w_e \qquad x_e \in \{0, 1\} \\
+    &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
+\end{align*}
+Where the $x_e$ are variables to be discovered.  
+We can now LP relax this, where $x_e \in [0, 1]$:
+\begin{align*}
+    &\max_{e \in E} x_e w_e \qquad x_e \in [0, 1] \\
+    &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
+\end{align*}
+How do we go from the optimal solution to this problem, to an
+integer solution?
+\begin{itemize}
+    \item Assume the \lp~is infeasible. This means that we have a vertex $u$
+        such that $\sum_{e \in E, e = (u, v)} x_e = 1$ fails. that is,
+        there's a vertex in $u$ that is not connected to $v$. In this case,
+        the \ip~is also infeasible.
+    \item Now, we know that the \lp is feasible. $a_1 \rightarrow b_1$ is
+        not saturated means that $b_1 \rightarrow a_2$ is not saturated
+        which implies that $a_2 \rightarrow b_2$ is not saturated, hence
+        $b_2 \rightarrow a_1$ is not saturated. (TODO: add tikz picture).
+        We can get a full cycle of edges with:
+
+        \begin{align*}
+        &x_{e_i} < 1 \\
+        &x_{e_i} \in {a_1 
+            \xrightarrow{e_1} b_1 
+            \xrightarrow{e_2} a_2 
+            \xrightarrow{e_3} b_2
+            \xrightarrow \dots 
+            \xrightarrow{e_{i-1}} b_n 
+        \xrightarrow{e_i} a_1}
+    \end{align*}
+        The number of
+        edges here will be \textit{even}. We can now pick a value $\epsilon \in (0, 1)$
+        such that:
+        \begin{align*}
+        y_e \equiv 
+        \begin{cases}
+            x_e^* + \epsilon & \text{$i$ is even, $x_e$ is in the cycle} \\
+            x_e^* - \epsilon & \text{$i$ is odd, $x_e$ is in the cycle} \\
+            x_e^* & \text{otherwise}
+        \end{cases}
+        \end{align*}
+        Note that $y_e$ is a valid solution, since we can set $\epsilon$ to
+        be smaller than the slack we had in the smallest value of $x_i$.
+        We can show that the $cost(y) \equiv \sum_{e \in E} w_e y_e$ is equal to:
+        \begin{align*}
+            cost(y) = cost(x_e^*) + \epsilon \bigg(\Delta \equiv \sum_{i=1}^n (-1)^i w(e_i) \bigg)
+        \end{align*}
+
+        Remember that $x_e^*$ is the best solution, so we can have nothing
+        better than $cost(x_e^*)$. Hence, $cost(y_e^*) \leq cost(x_e^*)$,
+        and hence, we are forced to conclude that $\Delta = 0$ 
+        (If $\Delta > 0$, pick $\epsilon > 0$, if $\Delta < 0$, pick $\epsilon
+        < 0$). 
+
+        Hence, we can keep moving $\epsilon$ till an even edge becomes $1$
+        (alternatively, and odd edge becomes $0$). Hence, we can \textit{keep rounding}
+        till all our edges become $\{0, 1\}$.
+\end{itemize}
+
+So, we managed to start from an \lp~solution, and then \textit{unrelax} it to
+construct an \ip~solution from it!
+
+\section{Min vertex cover}
+$G\equiv (V, E)$. We want to pick the smallest $F \subseteq V$, such that one end
+of all edges is in this cover.
+\[ \forall (u, v) \in E, u \in F \lor v \in F \]
+Intuitively, these vertices $f \in F$ are watching over the edges, and each
+edge must be watched by at least one vertex.
+
+TODO: add tikz picture
+
+
+\begin{align*}
+    &\text{Integer program for the problem:} \\
+    &x_v \in \{0, 1\}~\forall v \in V \qquad
+    \min \sum x_v \qquad
+    \forall (u, v) \in E, x_u + x_v \geq 1
+\end{align*}
+
+\begin{align*}
+    &\text{LP relaxed program for the problem:} \\
+    &x_v \in [0, 1]~\forall v \in V \qquad
+    \min \sum x_v \qquad
+    \forall (u, v) \in E, x_u + x_v \geq 1
+\end{align*}
+
+From the LP, we construct:
+\begin{align*}
+    S_\lp \equiv \bigg\{ u ~\bigg|~ x_u^* \geq \frac{1}{2} \bigg\} \qquad
+    \text{Claim: $S_\lp$ is a vertex cover}
+\end{align*}
+
+For each edge $(u, v) \in E$, since $u + v \geq 1$, we \textit{cannot have that}
+$x_u < 0.5 \land x_v < 0.5$, since then $x_u + x_v < 1$. Hence, each
+edge will have one of its vertices with $x_{vertex} \geq 0.5$, and thus
+$S_\lp$ is \textbf{a} vertex cover.
+
+We now show \textbf{optimality} of $S_\lp$.
+
+\begin{align*}
+    &\lp \leq \ip \qquad \text{since the problem is a minimization problem} \\
+    &\sum_{u \in V} x_u \leq \sum_{u \in V} y_u \qquad \text{$x$ is \lp~solution, $y$ is \ip~solution} \\
+    &|S_\lp| = \sum_{x \in S_\lp} 1 \text{(counting})\leq 
+    \sum_{u\in S_\lp} 2 x_u  \text{(definition of $S_\lp$)} \leq
+    \sum_{u \in V} 2 x_u \text{(enlarging $S_\lp$ to $V$)} \leq
+        \sum_{u \in V} 2 y_u = 2|s_{opt}| \\
+    &|S_{opt}| \leq S_\lp \leq 2 |S_{opt}|
+\end{align*}
+
+So, we are at worst twice the size of the best vertex cover.
+
+\section{Maximum independent set}
+A set $I \subseteq V$ is independent if no two vertices in $I$ are connected
+by an edge. Once again, let $x_v \in \{0, 1\}$ be indicators for a vertex
+being picked. We have the constraints:
+
+\begin{align*}
+    \text{maximise}~\sum_v x_v \qquad \text{subject to:}~\forall (u, v) \in E,~ x_u + x_v \leq 1
+\end{align*}
+
+in the LP case, There is always a solution by setting all $x_v = 1/2$. Hence,
+the optimal LP is always $|V|/2$ or larger.
+
+\chapter{Formulating common operations in terms of \ilp}
+
+\section{TODO: MISSED CLASS! LOOKUP WHAT HAPPENED}
+
+\chapter{Matrix decompositions}
+\subsection{Cholesky}
+Let $A$ be positive definite, $L$  be lower triangular. We decompose it as follows:
+
+\paragraph{Computing the decomposition}
+\begin{align*}
+    &A = L L^T\\
+    &\begin{bmatrix} a_{11} & A_{12} \\ A_{12} & A_{22} \end{bmatrix} = 
+    \begin{bmatrix} l_{11} & 0 \\ L_{21} & L_{22} \end{bmatrix}
+    \begin{bmatrix} l_{11} & L_{21}^T \\ 0 & L_{22}^T \end{bmatrix}  = 
+%
+    \begin{bmatrix}
+        l_{11}^2 & l_{11} L_{21}^T \\ l_{11} L_{21}^T & L_{21} L_{21}^T + L_{22} L_{22}^T
+    \end{bmatrix}
+\end{align*}
+
+\paragraph{Solving $Ax = b$}
+\begin{itemize}
+    \item We want to solve $Ax = b$, which is equivalent to $LL^Tx = b$
+    \item let $L^Tx  = u$. Now, $LL^T x = b \equiv Lu = b$.
+    \item Solve $Lu = b$ to find value of $u$.
+    \item Solve $L^Tx = u$ to find value of $x$.
+\end{itemize}
+
+\paragraph{Solving $x = ((A^TA)^{-1}A^T)b$}
+\begin{itemize}
+    \item Let $B = A^TA$. Now, original equation is $Bx = A^T b$.
+    \item Compute $B$.
+    \item Compute $d = A^Tb$
+    \item Solve $Bx = d$. This is possible since $B$ is positive definite.
+\end{itemize}
+
+
+\paragraph{Finding inverse}
+\begin{itemize}
+\item First decompose $A = LL^T$
+\item Solve $A x_i = e_i$
+\end{itemize}
+
+\subsection{LU}
+\begin{align*}
+    &A = PLU
+\end{align*}
+
+\subsection{QR}
+$A = QR$ where $\shape(A) = (m, n)$ $\shape(Q) = (m, n)$, $\shape(R) =  (n, n)$.
+$Q$ is orthogonal, $R$ is triangular.
+
+We care about this decomposition in certain cases. For example, consider
+$x = (A^TA)^{-1}A^Tb$. Let $A = QR$. Now, the expression becomes
+\begin{align*}
+    &x = (A^TA)^{-1}A^Tb \\
+    &x = ((R^TQ^T)(QR))^{-1} (R^TQ^T)b = (R^TR)^{-1}) (R^TQ^T) b = (R^{-1} (R^T)^{-1} R^T Q^T) b = R^{-1} Q^T b \\
+    &Rx = Q^T b \qquad \text{Let $Q^Tb = d$} \quad Rx = d \\
+    &\text{Solve $Rx = d$}
+\end{align*}
+
+\paragraph{Comparison of Cholesky and QR for Least squares}
+For cholesky, we want to find $x = (A^TA)^{-1}A^Tb$. First, rewrite to
+$A^TA x = A^T b$. $Bx = d$ where $B = A^TA$.
+\begin{itemize}
+    \item Compute $B$
+    \item Compute $d$
+    \item Cholesky of $B = L L^T$
+    \item Solve $Lv = d$
+    \item Solve $Lx = v$
+\end{itemize}
+
+For QR:
+\begin{itemize}
+    \item Factorize $A = QR$
+    \item Compute $d = Q^Tb$
+    \item Solve $Rx = d$
+\end{itemize}
+
+
+As we move from Cholesky to SVD, factorization cost increases, solution
+time decreases.
+
+\paragraph{Computing $QR$}
+\begin{align*}
+    &\begin{bmatrix}
+        a_1 & A_2
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        q_1 & Q_2
+    \end{bmatrix} 
+    \begin{bmatrix}
+        r_{11} & R_{12} \\ 0 & R_{22}
+    \end{bmatrix} =  
+    %
+    \begin{bmatrix}
+        q_1 r_{11}  & q_1 R_{12} + Q_2 R_{22}
+    \end{bmatrix} 
+    %
+    \\
+    %
+    &a_1 = q_1 r_{11} \quad A_2 = q_1 R_{12} + Q_2 R_{22}
+\end{align*}
+
+Since $Q^TQ = I$, $\begin{bmatrix}q_1 Q_2\end{bmatrix}^T \begin{bmatrix} q_1 Q_2\end{bmatrix} = I$,
+hence $q_1^T q_1 = 1$.
+
+So, \[a_1^Ta_1 = (q_1 r_{11})^T (q_1 r_{11}) = (r_{11} q_1^T) (q_1 r_{11}) = r_{11}^2\].
+Hence, \[r_{11} = \sqrt{a_1^T a_1} \qquad q_1 = a_1 / r_{11}\].
+
+To find $R_{12}$, \textbf{TODO}
+
+Next, Let $B = A_2 - q_1 R_{12} = Q_2 R_{22}$. Now perform QR on $B$.
+
+\subsection{SVD}
+$A = UDV^T$ where $\shape(A) = (m, n)$ $\shape(U) = (m, n)$, $\shape(D) =  (n, n)$.
+$\dim(V) = (n, n)$.  $U, V$ are orthogonal, $D$ is a diagonal matrix.
+
+\section{Bala's implicit enumeration algorithm}
+Used to solve $0, 1$ binary ILP problems.
+
+\href{https://www.sce.carleton.ca/faculty/chinneck/po/Chapter13.pdf}{good link for bala's algorithm}
+
+\chapter{Practice for mid-1}
+\begin{itemize}
+    \item Proof for unrelaxing bipartite matching from LP to best solution
+    \item Approximation ratio for vertex cover
+    \item Phrasing maximum independent set in terms of ILP
+    \item Different styles of constraints that can be encoded using ILP
+        \begin{itemize}
+            \item Functions of K discrete variables
+            \item Either-or constraints
+            \item K out of N constraints
+            \item Compound alternatives
+            \item Piecewise linear
+        \end{itemize}
+    \item Facility location problem
+    \item Bala's method to solve BIP
+    \item Scheduling and makespan
+    \item Costs of different factorizations, and different factorizations:
+        \begin{itemize}
+            \item Cholesky: $1/3n^3$
+            \item Solving system $L \vec x = b$ is $n^2$ by forward substitution.
+            \item computing LU: $2/3n^3$
+        \end{itemize}
+\end{itemize}
+
+\subsection{Derivation of least squares using matrix algebra}
+\href{https://ayearofai.com/rohan-3-deriving-the-normal-equation-using-matrix-calculus-1a1b16f65dda}
+\end{document}
+

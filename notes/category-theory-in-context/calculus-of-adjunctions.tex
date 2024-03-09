@@ -1,0 +1,565 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{article}
+\usepackage{classicthesis}
+
+\usepackage{bbm}
+\usepackage{bbding} % for flower.
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+\usepackage{color}% or xcolor
+\usepackage{quiver}
+\usepackage{changepage}
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\cC}{\cat{C}}
+\renewcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cCat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\cSet}{\cat{Set}}
+\newcommand{\cFin}{\cat{Fin}}
+\newcommand{\cCAT}{\cat{CAT}}
+\newcommand{\cTop}{\cat{Top}}
+\newcommand{\ctop}{\cat{Top}}
+\newcommand{\cgrp}{\cat{Grp}}
+\newcommand{\cGrp}{\cat{Grp}}
+\newcommand{\cCone}{\cat{Cone}}
+
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\renewcommand{\op}{\text{op}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+%\newcommand{\ant}[2]{\alpha : F \nt G}
+%\newcommand{\bnt}[2]{\beta : F \nt G}
+%\newcommand{\anti}[2]{\alpha : F \cong G}
+%\newcommand{\bnti}[2]{\beta : F \cong G}
+\newcommand{\zero}{\mathbbm{0}}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\two}{\mathbbm{2}}
+\newcommand{\three}{\mathbbm{3}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{id}}
+\newcommand{\colim}{\operatorname{colim}}
+
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+% \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\comma}{\downarrow}
+
+
+% \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+
+\title{Category theory in context: 4.4 --- Calculus of Adjunctions}
+\author{Siddharth Bhat}
+\date{Monsoon, second year of the plague}
+
+
+\begin{document}
+\maketitle
+
+\section{Proposition 4.4.1}
+
+If $F, F'$ are both left adjoint to $G$, then $F \simeq F'$. Moreover, there is a unique
+iso $\theta: F \simeq F'$ commuting with units and counits of adjunctions:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCIxX0MiXSxbMSwwLCJHRiJdLFsxLDEsIkdGJyJdLFsyLDAsIkZHIl0sWzIsMSwiRidHIl0sWzMsMCwiMV9EIl0sWzAsMSwiXFxldGEiXSxbMSwyLCJHXFx0aGV0YSJdLFswLDIsIlxcZXRhJyIsMl0sWzMsNSwiXFxlcHNpbG9uIl0sWzMsNCwiXFx0aGV0YSBHIiwyXSxbNCw1LCJcXGVwc2lsb24nIiwyXV0=
+\[\begin{tikzcd}
+    {1_C} & GF & FG & {1_D} \\
+    & {GF'} & {F'G}
+    \arrow["\eta", from=1-1, to=1-2]
+    \arrow["G\theta", from=1-2, to=2-2]
+    \arrow["{\eta'}"', from=1-1, to=2-2]
+    \arrow["\epsilon", from=1-3, to=1-4]
+    \arrow["{\theta G}"', from=1-3, to=2-3]
+    \arrow["{\epsilon'}"', from=2-3, to=1-4]
+\end{tikzcd}\]
+
+
+\subsection{Proof by unit/counit}
+
+Let's consider the data we need to define for an iso $\theta: F \Rightarrow F'$. Drawing out the naturality square, we need the arrows:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJGYyJdLFsxLDAsIkYnYyJdLFswLDEsIkZjJyJdLFsxLDEsIkYnYyciXSxbMCwyLCJGZiJdLFsxLDMsIkYnZiJdLFswLDEsIlxcdGhldGFfYyIsMV0sWzIsMywiXFx0aGV0YV97Yyd9IiwxXV0=
+\[\begin{tikzcd}
+    Fc & {F'c} \\
+    {Fc'} & {F'c'}
+    \arrow["Ff", from=1-1, to=2-1]
+    \arrow["{F'f}", from=1-2, to=2-2]
+    \arrow["{\theta_c}"{description}, from=1-1, to=1-2]
+    \arrow["{\theta_{c'}}"{description}, from=2-1, to=2-2]
+\end{tikzcd}\]
+
+By adjunction, defining a commutative diagram with $Fc \rightarrow d$ is the same as defining a commutative
+diagram with $c \rightarrow Gd$:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJjIl0sWzEsMCwiR0YnYyJdLFswLDEsImMnIl0sWzEsMSwiR0YnYyciXSxbMCwyLCJmIiwyXSxbMSwzLCJHRidmIl0sWzAsMSwiXFx0aGV0YV9jXlxcIyJdLFsyLDMsIlxcdGhldGFeXFwjX3tjJ30iLDJdXQ==
+\[\begin{tikzcd}
+    c & {GF'c} \\
+    {c'} & {GF'c'}
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["{GF'f}", from=1-2, to=2-2]
+    \arrow["{\theta_c^\#}", from=1-1, to=1-2]
+    \arrow["{\theta^\#_{c'}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+We define $\theta^\# \equiv \eta': 1 \to G F'$, since the types match. Using this, we compute a formula for $\theta$ as the
+transpose of $\theta^\#$. [TODO: how did we compute this in the first place?]
+
+$$
+\theta \equiv F \xRightarrow{F \eta'} FGF' \xRightarrow{\epsilon F'} F'
+$$
+
+Exchanging the roles of $F$ with $F'$, $\eta$ with $\eta'$, and $\epsilon$ with $\epsilon'$,
+this also computes a formula for $\theta'$ given by:
+
+$$
+\theta' \equiv F' \xRightarrow{F' \eta} F'GF \xRightarrow{\epsilon' F} F
+$$
+
+The hope is that $\theta$ and $\theta'$ are inverse natural transforms. We need to check that $\theta' \circ \theta = 1_F$.
+We claim that it suffices to check that $GF (\theta' \circ \theta) \circ \eta  = \eta$. [TODO: why does this suffice?]
+
+Writing out $G (\theta' \circ \theta) \circ \eta$, which is equal to $G \theta' \circ G \theta \circ \eta$:
+
+\begin{align*}
+&1 \xRightarrow{\eta} GF {\color{red} \xRightarrow{G \theta}} GF' { \color{blue} \xRightarrow{G \theta'}} GF \\
+&1 \xRightarrow{\eta} GF { \color{red} \xRightarrow{GF \eta'} GF GF' \xRightarrow{G \epsilon F'}} G F'
+{\color{blue} \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F}} GF \\
+\end{align*}
+
+We wish to swap $\eta$ with $GF\eta'$ (at the first two terms)
+to bring the $\eta$ and $\epsilon$ close together (at the first three terms) so we can use the triangle identities.
+To do this, we consider the commutative square, where we transport the morphism $c \xrightarrow{\eta'_c} GF' c$
+along $\eta: 1_Cx \to GFx$ to give:
+
+% https://q.uiver.app/?q=WzAsOSxbMCwxLCJjIl0sWzAsMywiR0YnYyJdLFsxLDEsIjFfQyhjKSJdLFsxLDMsIjFfQyhHRidjKSJdLFszLDEsIkdGKGMpIl0sWzMsMywiR0YoR0YnYykiXSxbMSwwLCIxX0MoeCkiXSxbMywwLCJHRih4KSJdLFsyLDIsIlxcZXRhflxcdGV4dHR0e25hdHVyYWx9Il0sWzAsMSwiXFxldGEnX2MiXSxbMiwzLCIxX0NcXGV0YSdfYyIsMl0sWzIsNCwiXFxldGFfe2N9Il0sWzMsNSwiXFxldGFfe0dGJ2N9IiwyXSxbNCw1LCJHRlxcZXRhJ19jIl0sWzYsNywiXFxldGFfeCJdXQ==
+\[\begin{tikzcd}
+    & {1_C(x)} && {GF(x)} \\
+    c & {1_C(c)} && {GF(c)} \\
+    && {\eta~\texttt{natural}} \\
+    {GF'c} & {1_C(GF'c)} && {GF(GF'c)}
+    \arrow["{\eta'_c}", from=2-1, to=4-1]
+    \arrow["{1_C\eta'_c}"', from=2-2, to=4-2]
+    \arrow["{\eta_{c}}", from=2-2, to=2-4]
+    \arrow["{\eta_{GF'c}}"', from=4-2, to=4-4]
+    \arrow["{GF\eta'_c}", from=2-4, to=4-4]
+    \arrow["{\eta_x}", from=1-2, to=1-4]
+\end{tikzcd}\]
+
+\begin{itemize}
+\item See that this square contains $1 \xRightarrow{\eta} GF \xRightarrow{GF\eta'} GFGF'$, by following right and top. The commutativity
+\item of the square witnesses that this is equal to $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta_{GF'}} GFGF'$.
+\item See that $\eta_{GF'}$ equals $\eta GF'$ since $\eta GF'(x) \equiv \eta_{GF'} GF'x$, which is the same as $\eta_{GF'}(GF'x)$.
+\item So, in total, the commutativity of this naturality square allows us to rewrite the segment
+  $1 \xRightarrow{\eta} GF' {\color{red} \xRightarrow{GF \eta'} GFGF'}$ with
+  $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'} GF GF'$.
+\end{itemize}
+
+This gives us the diagram:
+\begin{align*}
+&1 {\color{ForestGreen} \xRightarrow{\eta} GF \xRightarrow{GF \eta'} } GF GF' \xRightarrow{G \epsilon F'} G F'
+ \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 { \color{ForestGreen} \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}} GF GF' \xRightarrow{G \epsilon F'} G F'
+\xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+
+This is regrouped using $G \epsilon \circ \eta G = 1_G$ into:
+
+\begin{align*}
+&1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F'
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F' }
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{(\eta G; G \epsilon) F'}} G F'
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta'} GF'
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+
+Next, we use the naturality of $\eta$ to swap $eta'$ with $GF' \eta$:
+
+\begin{align*}
+&1 \xRightarrow{\eta'} GF'
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&{ \color{ForestGreen} 1 \xRightarrow{\eta'} GF' \xRightarrow{G F' \eta} } G F' G F \xRightarrow{G \epsilon' F} GF \\
+&{ \color{ForestGreen} 1 \xRightarrow{\eta} GF \xRightarrow{\eta' G F} } G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+
+Finally, we use the identity $G \epsilon ' \circ \eta' G = 1_G$ to reduce the equation:
+
+\begin{align*}
+&1 \xRightarrow{\eta} GF  \xRightarrow{\eta' G F} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta} GF { \color{ForestGreen}  \xRightarrow{\eta' G F} G F' G F \xRightarrow{G \epsilon' F} } GF \\
+&1 \xRightarrow{\eta} GF  { \color{ForestGreen} \xRightarrow{(\eta' G; G \epsilon) F} } GF \\
+&1 \xRightarrow{\eta} GF \\
+\end{align*}
+
+\subsection{Proof by Yoneda}
+\begin{itemize}
+    \item Since $F \vdash G$, we have that $D(Fc, d) \simeq C(c, Gd)$.
+    \item Similarly, since $F' \vdash G$, we have $C(c, Gd) \simeq D(F'c, d)$.
+    \item Together, this gives $D(Fc, d) \simeq D(F'c, d)$, natural in both $c$ and $d$.
+    \item This implies that $D(Fc, -) \simeq D(F'c, -)$, natural in $c$, or by Yoneda, that $Fc \simeq F'c$, natural in $c$.
+    \item The naturality in $c$ allows us to deduce that $F \simeq F'$.
+    \item We can identify the morphism which sends $Fc$ to $F'c$ by choosing $d = Fc$. This will start at $D(Fc, d=Fc)$ and ends at $D(F'c, d=Fc)$.
+\end{itemize}
+
+We compute $\theta_c$ by contemplating the diagram below, and setting $d=Fc$ to arrive at a morphism from $1_{Fc} \in D(Fc, d=Fc)$ to
+$\theta'_c \in D(F'c, d=Fc)$: [TODO: fill in the $?$]
+% https://q.uiver.app/?q=WzAsOSxbMCwwLCJEKEZjLCBkKSJdLFswLDEsImY6IEZjIFxcdG8gZCJdLFsxLDAsIkMoYywgR2QpIl0sWzIsMCwiRChGJ2MsIGQpIl0sWzEsMSwiYyBcXHhyaWdodGFycm93e1xcZXRhX2N9IEdGYyBcXHhyaWdodGFycm93e0dmfSBHZCJdLFsxLDIsImc6IGMgXFx0byBHZCJdLFsyLDIsIkYnYyBcXHhyaWdodGFycm93e0YnZ30gRidHZCBcXHhyaWdodGFycm93e1xcZXBzaWxvbidfZH0gZCJdLFswLDMsIjFfe0ZjfSBcXGluIEQoRmMsIEZjKSJdLFsyLDMsIj8iXSxbMCwyXSxbMSw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzIsM10sWzUsNiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs3LDhdXQ==
+\[\begin{tikzcd}
+    {D(Fc, d)} & {C(c, Gd)} & {D(F'c, d)} \\
+    {f: Fc \to d} & {c \xrightarrow{\eta_c} GFc \xrightarrow{Gf} Gd} \\
+    & {g: c \to Gd} & {F'c \xrightarrow{F'g} F'Gd \xrightarrow{\epsilon'_d} d} \\
+    {1_{Fc} \in D(Fc, Fc)} && {?}
+    \arrow[from=1-1, to=1-2]
+    \arrow[maps to, from=2-1, to=2-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow[maps to, from=3-2, to=3-3]
+    \arrow[from=4-1, to=4-3]
+\end{tikzcd}\]
+
+\section{Proposition 4.4.4}
+
+Given adjunctions $F \vdash G$ and $F' \vdash G'$, their composite $FF'$ is left adjoint to the composite $GG'$:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJDIl0sWzEsMCwiRCJdLFsyLDAsIkUiXSxbNCwwLCJDIl0sWzUsMCwiRSJdLFszLDAsIlxccmlnaHRzcXVpZ2Fycm93Il0sWzAsMSwiRiIsMCx7Im9mZnNldCI6LTJ9XSxbMSwwLCJHIiwwLHsib2Zmc2V0IjotMn1dLFsyLDEsIkcnIiwwLHsib2Zmc2V0IjotMn1dLFsxLDIsIkYnIiwwLHsib2Zmc2V0IjotMn1dLFszLDQsIkZGJyIsMCx7Im9mZnNldCI6LTJ9XSxbNCwzLCJHJ0ciLDAseyJvZmZzZXQiOi0yfV0sWzYsNywiIiwwLHsibGV2ZWwiOjEsInN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XSxbOSw4LCIiLDAseyJsZXZlbCI6MSwic3R5bGUiOnsibmFtZSI6ImFkanVuY3Rpb24ifX1dLFsxMCwxMSwiIiwwLHsibGV2ZWwiOjEsInN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
+\[\begin{tikzcd}
+	C & D & E & \rightsquigarrow & C & E
+	\arrow[""{name=0, anchor=center, inner sep=0}, "F", shift left=2, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "G", shift left=2, from=1-2, to=1-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{G'}", shift left=2, from=1-3, to=1-2]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{F'}", shift left=2, from=1-2, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{F'F}", shift left=2, from=1-5, to=1-6]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{GG'}", shift left=2, from=1-6, to=1-5]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=4, to=5]
+\end{tikzcd}\]
+
+\subsection{Proof by unit/counit}
+
+
+\begin{itemize}
+\item The only ``reasonable'' definition of $\overline \eta: 1_C \Rightarrow GG'F'F$ is given by:
+
+\begin{align*}
+  & \overline \eta \equiv 1_c \xRightarrow{\eta} GF \xRightarrow{G\eta'F} GG'FF' \\
+\end{align*}
+
+\item A point to note: morally, the reason we build $G \eta' F$ is for the types to work; $\eta': 1_D \rightarrow G'F'$.
+To mutate $GF$, it is the only type valid choice among ($\eta' GF$, $G \eta' F$, and $GF \eta'$).
+
+\item Similarly, the only reasonable definition of $\overline \epsilon: F' F G G' \Rightarrow 1_E$
+is given by the other expression as in the text.
+
+\item I dare not perform the ``entertaining'' diagram chase.
+\end{itemize}
+
+\subsection{Proof by Yoneda}
+
+The pleasant proof by yoneda:
+
+\begin{align*}
+  &E(F'Fc, e) \simeq D(F'c, Gd) \quad (F \vdash G) \\
+  &D(F'c, d) \simeq C(c, G'Gd) \quad (F' \vdash G')
+\end{align*}
+
+which establishes a natural bijection $E(FF'c, e) \simeq C(c, G'Gd)$, which means $FF' \vdash G'G$
+by the Hom-set definition of Yoneda.
+
+\section{4.4.5: Promoting equivalence to adjoint equivalence}
+
+Any equivalence $F: C \leftrightarrow D: G$ with $\eta: 1_C \simeq GF$ and $\epsilon: FG \simeq 1_D$
+can be promoted into an adjoint equivalence. This promotion involves defining $\epsilon'$, where the natural isos ($\eta, \epsilon'$) 
+now obey the triangle inequalities.
+
+\subsection{Proof by unit/counit: (a) $G \epsilon \circ \eta' G = 1_G$}
+
+\begin{itemize}
+  \item If it really were an adjunction, then $G \epsilon \circ \eta G = 1_G$. 
+  \item since we don't have an adjunction, measure the defect via $\gamma: G \Rightarrow{\eta G }  GFG \Rightarrow{G \epsilon} G$
+  \item Define $\epsilon' \equiv FG \Rightarrow{F \gamma^{-1}} FG \Rightarrow{\epsilon} 1_G$
+\end{itemize}
+
+We will show that the following diagram commutes:
+
+% https://q.uiver.app/?q=WzAsOCxbMCwxLCJHIl0sWzEsMSwiR0ZHIl0sWzIsMSwiR0ZHIl0sWzMsMSwiRyJdLFswLDAsIkciXSxbMSwwLCJHRkciXSxbMywwLCJHIl0sWzEsMiwiRyJdLFswLDEsIlxcZXRhIEciXSxbMSwyLCJHRlxcZ2FtbWFeey0xfSJdLFsyLDMsIkcgXFxlcHNpbG9uIl0sWzQsNSwiXFxldGEgRyJdLFs1LDYsIkcgXFxlcHNpbG9uJyJdLFswLDcsIlxcZ2FtbWFeey0xfSIsMl0sWzcsMywiXFxnYW1tYSIsMl0sWzcsMiwiXFxldGEgRyJdXQ==
+\[\begin{tikzcd}
+	G & GFG && G \\
+	G & GFG & GFG & G \\
+	& G
+	\arrow["{\eta G}", from=2-1, to=2-2]
+	\arrow["{GF\gamma^{-1}}", from=2-2, to=2-3]
+	\arrow["{G \epsilon}", from=2-3, to=2-4]
+	\arrow["{\eta G}", from=1-1, to=1-2]
+	\arrow["{G \epsilon'}", from=1-2, to=1-4]
+	\arrow["{\gamma^{-1}}"', from=2-1, to=3-2]
+	\arrow["\gamma"', from=3-2, to=2-4]
+	\arrow["{\eta G}", from=3-2, to=2-3]
+\end{tikzcd}\]
+
+\begin{itemize}
+  \item The top row is $G \Rightarrow{\eta G} GFG \Rightarrow{G \epsilon'} G$
+  \item The bottom is $G \Rightarrow{\gamma^{-1}} G \Rightarrow{\gamma} G = 1_G$.
+  \item Thus, if the diagram commutes, then top equals bottom, or $G \epsilon' \circ \eta G = 1_G$, implying one of the triangle identities hold.
+  \item The triangle to the right commutes by the definition of $\gamma$; $\gamma = G \epsilon \circ \eta G$.
+  \item The "triangle" to the left (which actually contains 4 elements) commutes because of \emph{naturality} of $eta$. To see this, redraw
+        the triangle as a commutative square:
+  % https://q.uiver.app/?q=WzAsOSxbMSwxLCIxX0cgR3giXSxbMCwxLCJHeCJdLFswLDMsIkd4Il0sWzEsMywiMV9HIEd4Il0sWzEsMCwiMV9HeCJdLFszLDAsIkdGeCJdLFszLDEsIkdGeCJdLFszLDMsIkdGeCJdLFsyLDIsIlxcZXRhIH5cXHRleHR0dHtuYXR1cmFsfSJdLFsxLDIsIlxcZ2FtbWFeey0xfSIsMl0sWzAsMywiMV9HXFxnYW1tYV57LTF9IiwyXSxbNCw1LCJcXGV0YV94Il0sWzAsNiwiXFxldGFfeCJdLFs2LDcsIkdGXFxnYW1tYV57LTF9Il0sWzMsNywiXFxldGFfe0d4fSIsMl1d
+\[\begin{tikzcd}
+	& {1_Gx} && GFx \\
+	Gx & {1_G Gx} && GFx \\
+	&& {\eta ~\texttt{natural}} \\
+	Gx & {1_G Gx} && GFx
+	\arrow["{\gamma^{-1}}"', from=2-1, to=4-1]
+	\arrow["{1_G\gamma^{-1}}"', from=2-2, to=4-2]
+	\arrow["{\eta_x}", from=1-2, to=1-4]
+	\arrow["{\eta_x}", from=2-2, to=2-4]
+	\arrow["{GF\gamma^{-1}}", from=2-4, to=4-4]
+	\arrow["{\eta_{Gx}}"', from=4-2, to=4-4]
+\end{tikzcd}\]
+
+This gives us the commutativity of the left part of the digram:
+
+% https://q.uiver.app/?q=WzAsNyxbMCwxLCJHIl0sWzEsMSwiR0ZHIl0sWzIsMSwiR0ZHIl0sWzAsMCwiRyJdLFsxLDAsIkdGRyJdLFszLDAsIkciXSxbMSwyLCJHIl0sWzAsMSwiXFxldGEgRyJdLFsxLDIsIkdGXFxnYW1tYV57LTF9Il0sWzMsNCwiXFxldGEgRyJdLFswLDYsIlxcZ2FtbWFeey0xfSIsMl0sWzYsMiwiXFxldGEgRyJdLFs0LDUsIkcgXFxlcHNpbG9uJyJdXQ==
+\[\begin{tikzcd}
+	G & GFG && G \\
+	G & GFG & GFG \\
+	& G
+	\arrow["{\eta G}", from=2-1, to=2-2]
+	\arrow["{GF\gamma^{-1}}", from=2-2, to=2-3]
+	\arrow["{\eta G}", from=1-1, to=1-2]
+	\arrow["{\gamma^{-1}}"', from=2-1, to=3-2]
+	\arrow["{\eta G}", from=3-2, to=2-3]
+	\arrow["{G \epsilon'}", from=1-2, to=1-4]
+\end{tikzcd}\]
+
+\item together, we now have the left and right triangle commute, and thus the whole diagram commutes, which validates one of the triangle identities.
+\end{itemize}
+
+\subsection{Proof by unit/counit: (b) $\epsilon' F \circ F \eta = 1_F$}
+
+\begin{itemize}
+  \item This is proven by showing that $\epsilon' F \circ F \eta$ is idempotent, since an idempotent invertible map is identity. This follows from 
+      $s^2 = s$ implies $s^2 s^{-1} = s s^{-1}$ or $s = id$.
+    \item 
+\end{itemize}
+
+Stare at the large diagram:
+
+
+% https://q.uiver.app/?q=WzAsMTEsWzAsMSwiRiJdLFsxLDEsIkZHRiJdLFsyLDEsIkYiXSxbMiwyLCJGR0YiXSxbMiwzLCJGIl0sWzAsMCwiRiJdLFszLDAsIkYiXSxbMywzLCJGIl0sWzAsMiwiRiBHRiJdLFsxLDMsIkZHRiJdLFsxLDIsIkZHRkdGIl0sWzAsMSwiRlxcZXRhIl0sWzEsMiwiXFxlcHNpbG9uJ19GIl0sWzIsMywiRiBcXGV0YSJdLFszLDQsIlxcZXBzaWxvbidfRiJdLFs1LDYsIlxcZXBzaWxvbicgRiBcXGNpcmMgRiBcXGV0YSJdLFs2LDcsIlxcZXBzaWxvbidGIFxcY2lyYyBGIFxcZXRhIl0sWzAsOCwiRiBcXGV0YSIsMl0sWzgsOSwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs5LDQsIlxcZXBzaWxvbidfRiIsMl0sWzgsOSwiIiwxLHsib2Zmc2V0IjoxLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMTAsIkZcXGV0YV97R0Z9Il0sWzEwLDksIkZHXFxlcHNpbG9uJ19GIl0sWzEsMTAsIkZHRlxcZXRhIl0sWzEwLDMsIlxcZXBzaWxvbidfe0ZHRn0iXV0=
+\[\begin{tikzcd}
+	F &&& F \\
+	F & FGF & F \\
+	{F GF} & FGFGF & FGF \\
+	& FGF & F & F
+	\arrow["F\eta", from=2-1, to=2-2]
+	\arrow["{\epsilon'_F}", from=2-2, to=2-3]
+	\arrow["{F \eta}", from=2-3, to=3-3]
+	\arrow["{\epsilon'_F}", from=3-3, to=4-3]
+	\arrow["{\epsilon' F \circ F \eta}", from=1-1, to=1-4]
+	\arrow["{\epsilon'F \circ F \eta}", from=1-4, to=4-4]
+	\arrow["{F \eta}"', from=2-1, to=3-1]
+	\arrow[no head, from=3-1, to=4-2]
+	\arrow["{\epsilon'_F}"', from=4-2, to=4-3]
+	\arrow[shift right=1, no head, from=3-1, to=4-2]
+	\arrow["{F\eta_{GF}}", from=3-1, to=3-2]
+	\arrow["{FG\epsilon'_F}", from=3-2, to=4-2]
+	\arrow["FGF\eta", from=2-2, to=3-2]
+	\arrow["{\epsilon'_{FGF}}", from=3-2, to=3-3]
+\end{tikzcd}\]
+
+\begin{itemize}
+    \item Throughout this diagram, we use the equivalence between $\alpha K$
+      and $\alpha_K$ for functor $K: X \to Y$ and natural transformation
+      $\alpha: L \Rightarrow M$ for $L, M: Y \to Z$ (this makes $\alpha K / \alpha_K: X \to Z$.
+    \item The top and right witness $(\epsilon' F \circ F \eta)^2$. The bottom witnesses $(\epsilon' F \circ F \eta)$. The commutativity of the whole
+      square witnesses idempotence.
+    \item The top left square commutes due to the naturality of $F \eta$:
+
+% https://q.uiver.app/?q=WzAsOCxbMSwxLCJGKDFfRngpIl0sWzIsMSwiRihHRngpIl0sWzEsMiwiRiAoIEdGIHgpIl0sWzIsMiwiRihHRkdGeCkiXSxbMCwyLCJcXGV0YV94Il0sWzAsMSwieCJdLFsxLDAsIkYoMV9GKSBcXHNpbWVxIEYiXSxbMiwwLCJGKEdGKSJdLFswLDEsIkZcXGV0YV94Il0sWzAsMiwiRiBcXGV0YSIsMl0sWzIsMywiRlxcZXRhX3tHRnh9Il0sWzEsMywiRkdGXFxldGEiXSxbNSw0XSxbNiw3LCJGXFxldGEiLDJdXQ==
+\[\begin{tikzcd}
+	& {F(1_F) \simeq F} & {F(GF)} \\
+	x & {F(1_Fx)} & {F(GFx)} \\
+	{\eta_x} & {F ( GF x)} & {F(GFGFx)}
+	\arrow["{F\eta_x}", from=2-2, to=2-3]
+	\arrow["{F \eta}"', from=2-2, to=3-2]
+	\arrow["{F\eta_{GFx}}", from=3-2, to=3-3]
+	\arrow["FGF\eta", from=2-3, to=3-3]
+	\arrow[from=2-1, to=3-1]
+	\arrow["F\eta"', from=1-2, to=1-3]
+\end{tikzcd}\]
+
+\item For basically the exact same reasons, the top-right square commutes due to the naturality of $\epsilon'F$ (which is equal to $\epsilon'_F$.
+\item The bottom-right square commutes due to the naturality of $\epsilon'F$.
+\item Now we're left with showing that the bottom-left triangle commutes. See that it asserts that $FG\epsilon'_F \circ F \eta_{GF} = 1_{FGF}$.
+  Refactoring the equation, we can write this as $F (G \epsilon' \circ \eta G) F = F (1_G) F$. This is true by our \emph{previous} proof, where
+  we showed that the first triangle identity is obeyed!
+\item Since every sub-square in our diagram commutes, the whole diagram commutes, and therefore we have shown the idempotence of $\epsilon' F \circ F \eta$,
+    which implies it's equal to the identity.
+\end{itemize}
+
+\subsection{Yoneda based proof}
+
+\begin{itemize}
+  \item If $\eta_c: 1_C \simeq GF$ is one of the natural isos of an equivalence of categories $F: C \leftrightarrow D: G$, then we define
+    the function:
+    $$
+    \begin{matrix}
+      & D(Fc, d) &\xrightarrow{G} &C(GFc, Gd) &\xrightarrow{ - \circ \eta_c} &C(c, Gd) \\
+      & f: Fc \to d &\overset{G}{\mapsto}  &Gf: GFc \to Gd &\overset{- \circ \eta_c}{\mapsto} &(Gf: GFc \to Gd) \circ (\eta_c: c \to GFc) : c \to G d
+    \end{matrix}
+    $$
+  \item This is full and faithful : $G$ is full and faithful since it's part of
+    an equivalence of categories, and $- \circ \eta_c$ is full and faithful
+    
+\end{itemize}
+
+\subsection{Example of equivalence that is not adjoint equivalence}
+\begin{itemize}
+  \item Intuition: Pick an automorphism of a category, with $aut: C \to C$ on one side, and $aut^{-1}: C \to C$ on the other. These two should
+         witness an equivalence, but they need not be adjoint.
+\end{itemize}
+
+\section{4.4.6: Adjunction raises to adjunction of diagrams}
+
+\begin{itemize}
+  \item Suppose $F \vdash G$ where $F: C \to D: G$.
+  \item Then we claim that there exists an adjunction between $(J \to C)$ and $(J \to D)$, given by:
+  % https://q.uiver.app/?q=WzAsNCxbMCwyLCIoSiBcXHRvIEMpIl0sWzEsMiwiKEogXFx0byBEKSJdLFswLDAsIkMiXSxbMSwwLCJEIl0sWzAsMSwiRiBcXGNpcmMgLSIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIkcgXFxjaXJjIC0iLDAseyJjdXJ2ZSI6LTJ9XSxbMiwzLCJGIiwwLHsiY3VydmUiOi0xfV0sWzMsMiwiRyIsMCx7ImN1cnZlIjotMX1dXQ==
+\[\begin{tikzcd}
+	C & D \\
+	\\
+	{(J \to C)} & {(J \to D)}
+	\arrow["{F \circ -}", curve={height=-12pt}, from=3-1, to=3-2]
+	\arrow["{G \circ -}", curve={height=-12pt}, from=3-2, to=3-1]
+	\arrow["F", curve={height=-6pt}, from=1-1, to=1-2]
+	\arrow["G", curve={height=-6pt}, from=1-2, to=1-1]
+\end{tikzcd}\]
+\end{itemize}
+
+\subsection{Yoneda based proof (Exercise 4.4.iii)}
+
+\begin{itemize}
+    \item What does it mean to have such an adjunction?
+    \item It means that we have a natural identification of hom-sets $Hom_{J \to D}(F_* d_C ,d_D)$
+        (where $d_K: J \to K$ is for digram in category $K$ indexed by $J$) with the hom set $Hom_{J \to C}(d_C, G_* d_D)$.
+    \item Consider any $\alpha \in Hom_{J \to D}(F_* d_C, d_D)$. We must build a $\alpha^\sharp \in Hom_{J \to C}(d_C, G_* d_D)$ that is natural in $d_C, d_D$.
+    \item  What is the data involved in $\alpha^\sharp$? Well, it's a commutative square:
+      % https://q.uiver.app/?q=WzAsNyxbMiwwLCJkX0MgaiJdLFsyLDEsImRfQyBrIl0sWzAsMCwiaiJdLFswLDEsImsiXSxbNCwwLCJHZF9EaiJdLFs0LDEsIkcgZF9EayJdLFszLDFdLFswLDEsImRfQ2EiLDJdLFsyLDMsImEiXSxbMCw0LCJcXGFscGhhXlxcc2hhcnBfaiIsMl0sWzEsNSwiXFxhbHBoYV5cXHNoYXJwX3trfSIsMl0sWzQsNSwiR2RfRGEiXV0=
+\[\begin{tikzcd}
+	j && {d_C j} && {Gd_Dj} \\
+	k && {d_C k} & {} & {G d_Dk}
+	\arrow["{d_Ca}"', from=1-3, to=2-3]
+	\arrow["a", from=1-1, to=2-1]
+	\arrow["{\alpha^\sharp_j}"', from=1-3, to=1-5]
+	\arrow["{\alpha^\sharp_{k}}"', from=2-3, to=2-5]
+	\arrow["{Gd_Da}", from=1-5, to=2-5]
+\end{tikzcd}\]
+  \item But by the adjointness of $F \vdash G$, the above square commutes iff the square below commutes:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwwLCJGZF9DIGoiXSxbMSwxLCJGZF9DIGsiXSxbMCwwLCJqIl0sWzAsMSwiayJdLFszLDAsImRfRGoiXSxbMywxLCJkX0RrIl0sWzIsMV0sWzAsMSwiRmRfQ2EiLDJdLFsyLDMsImEiXSxbMCw0LCIoXFxhbHBoYV5cXHNoYXJwX2opXlxcZmxhdCIsMl0sWzEsNSwiKFxcYWxwaGFeXFxzaGFycF97a30pXlxcZmxhdCIsMl0sWzQsNSwiZF9EYSJdXQ==
+\[\begin{tikzcd}
+	j & {Fd_C j} && {d_Dj} \\
+	k & {Fd_C k} & {} & {d_Dk}
+	\arrow["{Fd_Ca}"', from=1-2, to=2-2]
+	\arrow["a", from=1-1, to=2-1]
+	\arrow["{(\alpha^\sharp_j)^\flat}"', from=1-2, to=1-4]
+	\arrow["{(\alpha^\sharp_{k})^\flat}"', from=2-2, to=2-4]
+	\arrow["{d_Da}", from=1-4, to=2-4]
+\end{tikzcd}\]
+\item We can choose $(\alpha^\sharp)^\flat_j \equiv \alpha_j$, since $\alpha$ witneses the commutativity of exactly this diagram!
+\item This means that the map which links the Hom-sets is the transpose map, which transposes a natural transformation pointwise: 
+    $(\alpha^\sharp)_x \equiv (\alpha_x)^\sharp$.
+\end{itemize}
+
+\subsection{unit-counit based proof (Exercise 4.4.ii}
+
+\begin{itemize}
+  \item Denote as $F_*: (J \to C) \to (J \to D)$. (Notational note: you fall
+    forward and down toward the star, so pushforward is lower star; you look up
+    and fall back to look at the stars, so pull back is upper star). This is a push forward
+    since it's like pushing forward a curve $[0, 1] \to C$ via a map $F: C \to D$.
+  \item Similarly, denote as $G_*: (J \to D) \to (J \to C)$.
+  \item We must create a natural transformation $\overline \eta: 1_{C^J} \to G_* F_* 1_{C^J}$
+  \item This means that to any diagram $D: C^J$, we must associate a natural transformation $\overline \eta_D: D \to GFD$.
+  \item This can be written componentwise as $(\overline \eta_D)_j: Dj \to GFDj$.
+  \item This can be written more clearly as $(\overline \eta_D)_j: Dj \to GFDj$.
+  \item This can be given by the component of $\eta: 1_C \to GF$ along $Dj$, which is $\eta_{Dj}: Dj \to GF(Dj)$.
+  \item So we define $(\overline \eta_D)_j \equiv \eta_{Dj}$.
+\end{itemize}
+
+\section{Exercises}
+\end{document}

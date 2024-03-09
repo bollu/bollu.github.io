@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- Simplex theory 2}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\paragraph{Q1. If $\vec x$ is an optimal solution, then no more than $m$ of its components
+can be positive, where $m$ is the number of equality constraints}
+
+False, if $m$ counts the \textit{number of equality constraints
+in the linear program} . Consider a linear program:
+\begin{align*}
+\text{maximise $x + y$} \qquad \text{subject to:}~x \leq 1;~y \leq 1;~x, y \geq 0
+\end{align*}
+The optimal solution is the point $(x = 1, y = 1)$, which has $\mathbf{2}$ 
+positive components, but the program has $\mathbf{0}$ equality constraints.
+
+\paragraph{Q2. A variable that has just entered the basis cannot leave in the
+very next iteration}
+False. Consider the linear program:
+\begin{align*}
+    \text{maxmimize $Z = x + y$} \qquad \text{subject to:}~x + 3y + s = 3;~x,y,s, \geq 0
+\end{align*}
+\begin{itemize}
+    \item The initial basis $B_0 = \{s\}$. 
+    \item We will next pick $y$ since it gives us the greatest
+        per-variable increase. $y$ enters, $s$ leaves.
+    \item Our new state is:
+        \begin{align*}
+            \text{maxmimize $Z = 2 + \frac{x}{3} - \frac{2s}{3}$} \qquad \text{subject to:}~y = 1 - \frac{x}{3} - \frac{s}{3}
+        \end{align*}
+\item We can improve $Z$ by increasing $x$. $y$ leaves, $x$ enters
+\end{itemize}
+Clearly, $y$ entered in an iteration and left in the next iteration.
+\end{document}
+

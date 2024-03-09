@@ -1,0 +1,262 @@
+\documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{physics}
+\usepackage{listing}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{minted}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+
+\title{Quantum information and computation: Assignment 1}
+\author{Siddharth Bhat}
+\date{}
+\begin{document}
+\section{Q1 -- matrix representation for $\ket{\phi_k}\bra{\phi_j}$, in the
+orthonormal $\ket{v_i}$ basis}
+
+\begin{align*}
+    &O = \ket{\phi_k}\bra{\phi_j} = I \ket{\phi_k}\bra{\phi_j} I\\
+    &= \left(\sum_l \ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\right)
+\end{align*}
+
+Element at $\alpha$th row, $\beta$th column of an operator $O$ in the $\{v_i\}$ basis
+is $\bra{v_\alpha}O\ket{v_\beta}$. So, in this case, it is:
+\begin{align*}
+    &\bra{v_\alpha} \left(\sum_l \ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\right) \ket{v_\beta} \\
+    &= \left(\sum_l \bra{v_\alpha}\ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\ket{v_\beta} \right)  \\
+    &\text{$\bra{v_\alpha}\ket{v_l} = 1$ if $\alpha = l$, and $0$ otherwise since $\{v_i\}$ are orthonormal. Similarly for $\beta$. Hence:} \\
+    &= \bra{v_\alpha}\ket{\phi_k}\bra{\phi_j}\ket{v_\beta}
+\end{align*}
+
+\section{Q2 -- positive operator is Hermitian}
+We first show that a positive operator is normal, and this automatically
+implies that it is Hermitian.
+
+To show that a positive operator is normal, we consider $A^\dagger A$
+
+Now that we know that it is normal, by spectral decomposition, it
+posesses an eigenbasis. We now show that all of its eigenvalues are real.
+This is now a matrix with real entries on the diagonal, which is hermitian.
+
+To show that the eigenvalues are real, let $\ket \lambda$ be an eigenvector
+with magnitude $1$ and eigenvalue $\lambda$.
+\begin{align*}
+    \bra \lambda A \ket \lambda \geq 0 \qquad
+    \lambda \braket{\lambda} = \lambda \geq 0
+\end{align*}
+Hence, the eigenvalues are real and positive, and therefore it is Hermitian.
+
+\begin{align*}
+\end{align*}
+
+\section{Q3 -- $A^\dagger A$ is positive}
+\begin{align*}
+    \forall v \in V, ~\bra v A^\dagger A \ket v = \bra {A v} \ket {A v} = \norm{A v}^2 \geq 0
+\end{align*}
+Hence, $A^\dagger A$ is positive.
+
+\section{Q4. Eigenvalues of a projector $P$ are either $0$ or $1$}
+Let $\ket \lambda$ be an eigenvector of $P$ with associated eigenvalue
+$\lambda$.  
+
+\begin{align*}
+    P^2 (\ket \lambda) = \lambda (P \ket \lambda) = \lambda ^2 \ket \lambda \qquad
+    P (\ket \lambda) = \lambda \ket \lambda
+\end{align*}
+
+However, since $P$ is a projector, $P^2 = P$, and therefore, $\lambda^2 = \lambda$.
+The roots of this equation are $0, 1$. Hence, $\lambda \in \{0, 1\}$.
+
+\section{Q5. Tensor product of two unitary operators is unitary}
+Let $U, V$ be unitary operators.
+
+\begin{align*}
+    &\bra{U u \otimes V v} \ket{U u \otimes V v} = \\
+    &\bra{u \otimes v} (U^\dagger \otimes V^\dagger) (U \otimes V) \ket{u \otimes v} =  \\
+    &\bra{u \otimes v} (U^\dagger U \otimes V^\dagger V) \ket{u \otimes v} = \\
+    &\bra{u \otimes v} I \otimes I \ket{u \otimes v} = \\
+    &\bra{u \otimes v} \ket{u \otimes v} = \\
+\end{align*}
+Hence, $U \otimes V$ is unitary since it preserves inner products.
+
+\section{Q6. Tensor product of projectors is a projector}
+Let $P, Q$ be projectors. $P \equiv \sum_{i=1}^l \ket{i}\bra{i}$.
+$Q \equiv \sum_{j=1}^k \ket{j}\bra{j}$.
+
+
+\begin{align*}
+    P \otimes Q &\equiv (\sum_{i=1}^l \ket{i}\bra{i}) \otimes (\sum_{j=1}^k \ket{j}\bra{j}) \\
+                &\equiv \sum_{i=1}^l \sum_{j=1}^k \ket{ij}\bra{ij} \\
+\end{align*}
+
+Which is in the form of a projector, in that it leaves $\ket{ij}$ unchanged,
+and sends every other vector to $0$. So, it projects vectors onto the
+subspace spanned by $\ket{ij}$.
+
+
+\section{Q7. Find $\log$ and square root of matrix}
+\begin{align*}
+A = \begin{bmatrix}
+    4 & 3 \\
+    3 & 4
+\end{bmatrix}
+\end{align*}
+
+Finding eigenvalues,
+\begin{align*}
+    |A - \lambda I| = 0 \quad (4 - \lambda)^2 - 9 = 0 \quad \lambda = 7, 1
+\end{align*}
+Finding eigenvectors,
+\begin{align*}
+    v = (1/\sqrt 2, -1/\sqrt 2) \quad w = (1/\sqrt 2, 1/\sqrt 2)
+\end{align*}
+
+hence, we can now write $A = U^{-1} D U$, where $U$ transforms
+from the original basis to the eigenbasis, as:
+\begin{align*}
+    D \equiv \begin{bmatrix} 7 & 0 \\ 0 & 1 \end{bmatrix} \qquad
+    U \equiv \begin{bmatrix} 
+        1/\sqrt 2 & 1/\sqrt 2 \\
+        -1/\sqrt 2 & 1/\sqrt 2
+    \end{bmatrix}
+    U^{-1} \equiv \begin{bmatrix} 1
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Computing square root}
+ \begin{align*}
+     S = U^{-1} \sqrt D U 
+     \qquad \sqrt D = \begin{bmatrix} \sqrt 7 & 0 \\ 0 & 1 \end{bmatrix}
+     \qquad S = 
+     \begin{bmatrix}
+         1/2 + \sqrt7/2 & -1/2 + \sqrt7/2 \\
+         -1/2 + \sqrt 7/2 & 1/2 + \sqrt7 /2
+     \end{bmatrix}
+ \end{align*}
+ We prove that $S$ is the square root, since:
+ \begin{align*}
+     S^2 = (U^{-1} \sqrt D U) (U^{-1} \sqrt D U) = U^{-1} (\sqrt D)^2 U = U^{-1} D U = A
+ \end{align*}
+ 
+ \subsection{Computing $\log$}
+ We can now show that if $U$ is unitary and $D$ is diagonal, then:
+ \begin{align*}
+     &L \equiv \log(U^{-1} D U) = U^{-1} \log D U 
+     \qquad \log D = \begin{bmatrix} \log 7 & 0 \\ 0 & 0 \end{bmatrix} \\
+    &L  =\begin{bmatrix}
+         1/\sqrt 2 & -1 / \sqrt 2 \\ 1/\sqrt 2 & 1/\sqrt 2
+     \end{bmatrix}
+     \begin{bmatrix}\log 7 & 0 \\ 0 & 0 \end{bmatrix} 
+     \begin{bmatrix}
+         1/\sqrt 2 & 1/\sqrt 2 \\ -1/ \sqrt 2 & 1/\sqrt 2
+     \end{bmatrix} \\
+     &L = 1/2 \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix} 
+     \begin{bmatrix} \log 7 & 0 \\ 0 & 0 \end{bmatrix}
+     \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \\
+   &L = 1/2 \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix}  \begin{bmatrix} \log 7 & \log 7 \\ 0 & 0\end{bmatrix} \\
+   &L = 1/2 \begin{bmatrix} \log 7 & \log 7 \\ \log 7 & \log 7 \end{bmatrix}
+ \end{align*}
+
+\section{Q8. Trace properties}
+\subsection{$Tr(AB) = Tr(BA)$}
+\begin{align*}
+    Tr(AB) = \sum_z (AB)_{zz} = \sum_z \sum_k A_{zk} B_{kz} = \sum_z \sum_k B_{kz} A_{kz} = \sum_z (BA)_{zz} = Tr(BA)
+\end{align*}
+
+\subsection{$Tr(A + B) = Tr(A) + Tr(B)$}
+\begin{align*}
+    Tr(A + B) = \sum_z (A + B)_{zz} = \sum_z A_{zz} + B_{zz} = Tr(A) + Tr(B)
+\end{align*}
+
+
+\subsection{$Tr(2A) = 2Tr(A)$}
+\begin{align*}
+    Tr(2A) = \sum_z (2A)_{zz} = \sum_z 2 A_{zz} 2 \sum_z A_{zz} = 2 \Tr(A)
+\end{align*}
+
+\begin{align*}
+\end{align*}
+
+\section{Commutator properties}
+\subsection{$[A, B] = -[B, A]$}
+\begin{align*}
+    [A, B] = AB - BA = - (BA - AB) = - [B, A]
+\end{align*}
+
+\subsection{$\frac{[A, B] + \{A, B\}}{2} = AB$}
+\begin{align*}
+    \frac{[A, B] + \{A, B\}}{2} = \frac{(AB - BA) + (AB + BA)}{2} = AB
+\end{align*}
+
+\section{Express polar decomposition of normal matrix as outer product}
+Since the matrix $A$ is normal, it will posess an eigenbasis $\ket{\lambda_i}$
+with eigenvalues $\lambda_i$. Hence,
+
+\begin{align*}
+    A = \sum_i \lambda_i \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+
+Let $A = UP$ where $U$ is unitary and $P$ is positive definite. From the
+definition, we can clearly pick P:
+\begin{align*}
+    P = \sum_i |\lambda_i| \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+such that $P$ has positive eigenvalues.
+
+We pick $U$ as:
+\begin{align*}
+    U = \sum_i \frac{\lambda_i}{|\lambda_i|} \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+
+Clearly, $U$ has orthogonal columns $\frac{\lambda_i}{|\lambda_i|} \ket{\lambda_i}$,
+which have length $1$, hence the columns of $U$ are orthonormal.
+
+We can verify that $UP = A$ as follows:
+
+\begin{align*}
+    UP &= \left( \sum_j \frac{\lambda_j}{|\lambda_j|} \ket{\lambda_j} \bra{\lambda_j} \right)
+        \left( \sum_i |\lambda_i| \ket{\lambda_i} \bra{\lambda_i} \right) \\
+        &= \sum_j \sum_i \frac{\lambda_j}{|\lambda_j|} |\lambda_i| \ket{\lambda_j} \bra{\lambda_j}  \ket{\lambda_i} \bra{\lambda_i} \\
+        &\text{Since $\bra{\lambda_j}\ket{\lambda_i} = \delta_{ij}$, $\frac{\lambda_j}{|\lambda_j|} |\lambda_i| = \lambda_i$ when $i=j$:} \\
+        &= \sum_i \lambda_i  \ket{\lambda_i} \bra{\lambda_i} \\
+        &= A
+\end{align*}
+
+
+\section{Find left and right polar decomposition}
+matrix $A = \begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}$
+
+
+First, compute SVD, which gives $A = WD^\frac{1}{2}V^\dagger = WD^\frac{1}{2}$
+
+So, the polar decompositions are
+\begin{align*}
+    &A = WD^\frac{1}{2}V^\dagger = (WD^\frac{1}{2}W^\dagger) (WV^\dagger) \\
+    &A = WD^\frac{1}{2}V^\dagger = (WV^\dagger)(VD^\frac{1}{2}V^\dagger)
+\end{align*}
+
+where $WV^\dagger$ is unitary since $W, V$ are unitary. $WD^\frac{1}{2}W^\dagger$
+and $VD^\frac{1}{2}D^\dagger$ are positive definite since they are just
+similarity transforms of a positive definite matrix $D$.
+
+Computing, this gives:
+
+\begin{align*}
+    A = DU = \begin{bmatrix} 0.89 & 0.45 \\0.45 & 1.34 \end{bmatrix} \begin{bmatrix} 0.89 & -0.45 \\ 0.45 & 0.89 \end{bmatrix} \\
+    A = VD' =  \begin{bmatrix} 0.89 & -0.45 \\ 0.45 & 0.89 \end{bmatrix} \begin{bmatrix} 1.34 & 0.45 \\ 0.45 & 0.89 \end{bmatrix} \\
+\end{align*}
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- Eigen 2}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\paragraph{Real eigenvalues, orthogonal eigenvectors}
+A real matrix can have all eigenvalues and orthogonal eigenvectors iff 
+it is real symmetric. So, in this case, we will need $c = 5$, and $d$
+can be any value. 
+
+\paragraph{Orthonormal vectors as column combinations}
+To find three orthonormal vectors from the columns, we need the column
+vectors to span the 3-D space. If they do not, we will not be able to find
+three vectors which are orthonormal. This can be checked by checking that $|A| \neq 0$,
+or
+\begin{align*}
+    &\begin{vmatrix}
+        1 & 2 & 0 \\
+        2 & d & c \\
+        0 & 5 & 3
+    \end{vmatrix}
+    = 1 (3d - 5c) - 2(10 - 0) + 0 \neq 0 \\
+    &3d - 5c - 20 \neq 0
+\end{align*}
+
+\end{document}
+

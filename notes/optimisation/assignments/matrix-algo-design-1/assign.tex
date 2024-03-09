@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+
+\usepackage{fancyhdr}
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- Matrix algo design 1}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+Note that the question as written makes no sense. If we simply want to compute
+$\max_x \norm{Ax - b_1} + \norm{Ax - b_2}$, we can increase $x$ arbitrarily to
+$\infty$, so the question should probably be minimise:
+\begin{align*}
+    &\min_x \norm{Ax - b_1} + \norm{Ax - b_2}  \\
+\end{align*}
+Let $f(b) \equiv (Ax - b)^T(Ax - b)$. Simplifying:
+\begin{align*}
+    f(b) &\equiv (Ax - b)^T(Ax - b) \\
+         &= (x^TA^T - b^T)(Ax - b) = x^TA^TAX - x^TA^Tb - b^TAx + b^Tb \\
+         &= x^TA^TAx - 2x^TA^Tb + b^Tb
+\end{align*}
+Taking derivative with respect to $x$:
+\begin{align*}
+    \frac{df}{dx} = 2 A^TA x - 2A^Tb
+\end{align*}
+
+Now, notice that the objective is $f(b_1) + f(b_2)$. So, we can minimise the objective
+by setting $\frac{df(b_1)}{dx} + \frac{df(b_2)}{dx} = 0$. So, the calculuation
+yields:
+\begin{align*}
+    &\frac{df(b_1)}{dx} + \frac{df(b_2)}{dx} = 0 \\
+    &\l ( 2 A^TA x - 2A^Tb_1 \r) + \l( 2A^TA x - 2A^Tb_2 \r) = 0 \\
+    &2 A^TA x = A^T(b_1 + b_2) \\
+    &x = (A^TA)^{-1}A^T\frac{(b_1 + b_2)}{2}
+\end{align*}
+
+So, the optimal value of $x$ is:
+\begin{align*}
+    &x = (A^TA)^{-1}A^T\frac{(b_1 + b_2)}{2}
+\end{align*}
+\end{document}
+
