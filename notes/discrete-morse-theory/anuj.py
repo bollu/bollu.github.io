@@ -52,6 +52,7 @@ class Parityvec:
 	def __init__(self, vec):
 		assert isinstance(vec, List)
 		assert len(vec) == 4
+		vec = list(map(bool, vec))
 		self.vec = vec
 
 	def __hash__(self):
