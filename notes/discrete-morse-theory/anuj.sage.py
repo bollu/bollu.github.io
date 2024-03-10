@@ -17,7 +17,7 @@ class Vec:
 		return XNAMES[self.x] + YNAMES[self.y]
 
 	def __str__(self) -> str:
-		return f"({self.x}, {self.y})"
+		return f"({self.n}:{self.x}, {self.y})"
 	__repr__ = __str__
 
 	def __eq__(self, other) -> bool:
@@ -32,6 +32,9 @@ def grid_points(n : int):
 
 def directions(n) -> List[Vec]:
 	return [Vec(n, 1, 0), Vec(n, 0, 1), Vec(n, -1, 0), Vec(n, 0, -1)]
+
+def directions_right_up(n) -> List[Vec]:
+	return [Vec(n, 1, 0), Vec(n, 0, 1)]
 
 def add_vec_dir(v : Vec, d : Vec) -> Vec:
 	return Vec(v.n, \
@@ -106,15 +109,12 @@ class Torus:
 		self.XNAMES = "ABCD"
 		self.YNAMES = "PQRS"
 		self.edge2parity2var = { v : { w : { p : None for p in [False, True] } for w in grid_points(n) } for v in grid_points(n) }
-		self.v2dir2parity2term = { v : { d : { p : None for p in [False, True] } for d in directions(n) }  for v in grid_points(n) }
+		# self.v2dir2parity2term = { v : { d : { p : None for p in [False, True] } for d in directions(n) }  for v in grid_points(n) }
 		self.equations = []
 		self.variables = []
 
 		for v in grid_points(n):
-			right = Vec(t.n, 1, 0)
-			up = Vec(t.n, 0, 1)
-			dirs = [right, up]
-			for d in dirs:
+			for d in directions_right_up(self.n):
 				w = add_vec_dir(v, d)
 				eF = var(f"{v.name()}_{w.name()}_F")
 				eT = var(f"{v.name()}_{w.name()}_T")
@@ -156,19 +156,20 @@ class Torus:
 		else:			
 			# each vertex adds 2 edges, and each edge has parity 2
 			assert(len(self.variables) == 2 * 2 * self.n * self.n)
-		self.vertex2var = \
-			[[[self.edge2parity2var[v][add_vec_dir(v, d)][p] for p in [0, 1]] \
-				for d in directions(n)] \
-				for v in grid_points(n)]
+
+		# self.vertex2var = \
+		# 	[[[self.edge2parity2var[v][add_vec_dir(v, d)][p] for p in [0, 1]] \
+		# 		for d in directions(n)] \
+		# 		for v in grid_points(n)]
 		
 		for v in grid_points(n):			
 			for parityvec in parityvecs():
 				print(parityvec, directions(n))
 				for (p, d) in zip(parityvec, directions(n)):
 					w = add_vec_dir(v, d)
-					term = self.edge2parity2var[v][w][p]
-					self.v2dir2parity2term[v][d][p] = term
-					print(f"{v} ---[{d}:{p}]---> {w}: {term}")
+					variable = self.edge2parity2var[v][w][p]
+					# self.v2dir2parity2var[v][d][p] = var
+					print(f"{v} ---[{d}:{p}]---> {w}: {variable}")
 
 
 		for v in grid_points(n):
@@ -177,19 +178,20 @@ class Torus:
 	def v2parity2eqn(self, v, parityvec):
 		e = 0
 		for (p, d) in zip(parityvec, directions(self.n)):
-			e += self.v2dir2parity2term[v][d][p]
+			w = add_vec_dir(v, d)
+			e += self.edge2parity2var[v][w][p]
 		return e
 	
 	def original_system(self):
 		equations = []
-		for v in grid_points(t.n):
+		for v in grid_points(self.n):
 			for parityvec in parityvecs():
 				equations.append(self.v2parity2eqn(v, parityvec) == parityvec.parity())
 		return equations
 
 	def perturbed_system(self, perturbv : Vec):
 		equations = []
-		for v in grid_points(t.n):
+		for v in grid_points(self.n):
 			for parityvec in parityvecs():
 				rhs = parityvec.parity()
 				if v == perturbv:
@@ -205,48 +207,52 @@ class Torus:
 				print(f"{parityvec}:{self.v2parity2eqn(v, parityvec)}")
 		return out
 
-t = Torus(1)
-print(t)
 
+def solve_torus(t):
+	print(f"### SOLVING TORUS (n={t.n}): ###")
+	print(t)
+	print("### Creating equations by adding all equations with edge variables of parity F ")
+	# Now get equations involving only variables of the form x0
+	sum_eqn = 0
+	neqns = 0 # this will be the number of grid points, so we need the grid size to be odd.
+	for v in grid_points(t.n):
+		allzeros = Parityvec([False, False, False, False])
+		sum_eqn += t.v2parity2eqn(v, allzeros)
+		neqns += 1
 
-print("### Creating equations by adding all equations with edge variables of parity F ")
-# Now get equations involving only variables of the form x0
-sum_eqn = 0
-neqns = 0 # this will be the number of grid points, so we need the grid size to be odd.
-for v in grid_points(t.n):
-	allzeros = Parityvec([False, False, False, False])
-	sum_eqn += t.v2parity2eqn(v, allzeros)
-	neqns += 1
+	# Note that when the grid is (2k+1)x(2k+1), the system is insoluble, since
+	# in the usual graph G, we ask for each equal to be equal to 0,
+	# but in the perturbed system, we ask for each equation to be equal to 1,
+	# and we have an odd number of equations.
+	print(f"{sum_eqn} = 0 | {neqns}")
 
-# Note that when the grid is (2k+1)x(2k+1), the system is insoluble, since
-# in the usual graph G, we ask for each equal to be equal to 0,
-# but in the perturbed system, we ask for each equation to be equal to 1,
-# and we have an odd number of equations.
-print(f"{sum_eqn} = 0 | {neqns}")
+	print("### Original system and its solution: ")
+	original_system = t.original_system()
+	print("\n".join(map(str, original_system)))
+	(M, v) = system_to_matrix_vector_gf2(original_system, t.variables)
+	print(M.str())
+	print("solving system...")
+	(w, is_exact) = solve_system(M, v)
+	print(f"solution to original_system (exact = {is_exact}):")
+	print(w.T)
+	print(make_variable2solution_dict(t.variables, w))
 
-print("### Original system and its solution: ")
-original_system = t.original_system()
-print("\n".join(map(str, original_system)))
-(M, v) = system_to_matrix_vector_gf2(original_system, t.variables)
-print(M.str())
-print("solving system...")
-(w, is_exact) = solve_system(M, v)
-print(f"solution to original_system (exact = {is_exact}):")
-print(w.T)
-print(make_variable2solution_dict(t.variables, w))
+	print("### Perturbed system and its solution: ")
+	perturbed_system = t.perturbed_system(grid_points(t.n)[0])
+	print("\n".join(map(str, perturbed_system)))
+	(M2, v2) = system_to_matrix_vector_gf2(perturbed_system, t.variables)
+	print(M2.str())
+	try:
+		print("solving pertuebed system...")
+		(w2, is_exact2) = solve_system(M2, v2)
+		print(f"solution to perturbed system (exact = {is_exact2}):")
+		print(make_variable2solution_dict(t.variables, w2))
+	except ValueError as err:
+		print(f"ERROR: unable to solve perturbed system: {err}")
 
-print("### Perturbed system and its solution: ")
-perturbed_system = t.perturbed_system(grid_points(t.n)[0])
-print("\n".join(map(str, perturbed_system)))
-(M2, v2) = system_to_matrix_vector_gf2(perturbed_system, t.variables)
-print(M2.str())
-try:
-	print("solving pertuebed system...")
-	(w2, is_exact2) = solve_system(M2, v2)
-	print(f"solution to perturbed system (exact = {is_exact2}):")
-	print(make_variable2solution_dict(t.variables, w2))
-except ValueError as err:
-	print(f"ERROR: unable to solve perturbed system: {err}")
+solve_torus(Torus(3))
+solve_torus(Torus(2))
+solve_torus(Torus(1))
 
 """
 For the 2x2 torus, in the perturbed system, we see the eqn:
