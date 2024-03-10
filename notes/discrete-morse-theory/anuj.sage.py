@@ -82,7 +82,7 @@ def parityvecs():
 		yield Parityvec(ps)
 
 
-def system_to_matrix_vector_gf2(equations, variables):
+def system_to_matrix_vector_gf2(equations, variables):	
 	M = Matrix(GF(2), len(equations), len(variables), lambda i, j: equations[i].lhs().coefficient(variables[j]))
 	v = Matrix(GF(2), [eqn.rhs() for eqn in equations]).T
 	return (M, v)
@@ -91,11 +91,13 @@ def solve_system(M, v):
 	w = M \ v
 	return (w, M * w == v)
 
-def make_variable2solution_dict(variables, solution):
-	assert len(solution.dimensions()) == 2
-	assert len(variables) == solution.dimensions()[0]
-	assert solution.dimensions()[1] == 1
-	return { variables[i] : solution[i][0] for i in range(len(variables))}
+def make_variable2solution_dict(vs, sol):
+	assert len(sol.dimensions()) == 2
+	assert len(vs) == sol.dimensions()[0]
+	assert sol.dimensions()[1] == 1
+	return { vs[i] : sol[i][0] for i in range(len(vs))}
+
+
 class Torus:
 	n : int
 
@@ -106,7 +108,7 @@ class Torus:
 		self.edge2parity2var = { v : { w : { p : None for p in [False, True] } for w in grid_points(n) } for v in grid_points(n) }
 		self.v2dir2parity2term = { v : { d : { p : None for p in [False, True] } for d in directions(n) }  for v in grid_points(n) }
 		self.equations = []
-		self.variables = []
+		self.variables = set()
 
 		for v in grid_points(n):
 			for d in directions(v):
@@ -115,19 +117,31 @@ class Torus:
 				# --=={@@}==--
 				eF = var(f"{v.name()}_{w.name()}_F")
 				eT = var(f"{v.name()}_{w.name()}_T")
+				self.variables.add(eF)
+				self.variables.add(eT)
 				self.edge2parity2var[v][w][False] = eF
 				self.edge2parity2var[v][w][True] = eT
+
 				self.edge2parity2var[w][v][False] = eF
 				self.edge2parity2var[w][v][True] = eT
-				self.variables.append(eF)
-				self.variables.append(eT)
 				print(f"### {v}:{v.name()} ---{d}----> {w}:{w.name()}")
 				print(f"{v} ---[{False}]---> {w}: {eF}")
 				print(f"{v} ---[{True}]---> {w}: {eT}")
 				print(f"{w} ---[{False}]---> {v}: {eF}")
 				print(f"{w} ---[{True}]---> {v}: {eT}")
 
-
+		self.variables = list(self.variables)
+		# ^    ^    ^ 
+		# |    |    |
+		# x -> x -> x ->
+		# ^    ^    ^
+		# |    |    |
+		# x -> x -> x ->
+		# ^    ^    ^
+		# |    |    | 
+		# x -> x -> x ->
+		# each vertex adds 2 edges.
+		assert(len(self.variables) == 2 * self.n * self.n)
 		self.vertex2var = \
 			[[[self.edge2parity2var[v][add_vec_dir(v, d)][p] for p in [0, 1]] \
 				for d in directions(n)] \
@@ -177,7 +191,7 @@ class Torus:
 				print(f"{parityvec}:{self.v2parity2eqn(v, parityvec)}")
 		return out
 
-t = Torus(2)
+t = Torus(1)
 print(t)
 
 
@@ -197,13 +211,14 @@ for v in grid_points(t.n):
 print(f"{sum_eqn} = 0 | {neqns}")
 
 print("### Original system and its solution: ")
-print("\n".join(map(str, original_system)))
 original_system = t.original_system()
+print("\n".join(map(str, original_system)))
 (M, v) = system_to_matrix_vector_gf2(original_system, t.variables)
 print(M.str())
 print("solving system...")
 (w, is_exact) = solve_system(M, v)
 print(f"solution to original_system (exact = {is_exact}):")
+print(w.T)
 print(make_variable2solution_dict(t.variables, w))
 
 print("### Perturbed system and its solution: ")
