@@ -108,17 +108,18 @@ class Torus:
 		self.edge2parity2var = { v : { w : { p : None for p in [False, True] } for w in grid_points(n) } for v in grid_points(n) }
 		self.v2dir2parity2term = { v : { d : { p : None for p in [False, True] } for d in directions(n) }  for v in grid_points(n) }
 		self.equations = []
-		self.variables = set()
+		self.variables = []
 
 		for v in grid_points(n):
-			for d in directions(v):
+			right = Vec(t.n, 1, 0)
+			up = Vec(t.n, 0, 1)
+			dirs = [right, up]
+			for d in dirs:
 				w = add_vec_dir(v, d)
-				if v > w: continue
-				# --=={@@}==--
 				eF = var(f"{v.name()}_{w.name()}_F")
 				eT = var(f"{v.name()}_{w.name()}_T")
-				self.variables.add(eF)
-				self.variables.add(eT)
+				self.variables.append(eF)
+				self.variables.append(eT)
 				self.edge2parity2var[v][w][False] = eF
 				self.edge2parity2var[v][w][True] = eT
 
@@ -130,7 +131,16 @@ class Torus:
 				print(f"{w} ---[{False}]---> {v}: {eF}")
 				print(f"{w} ---[{True}]---> {v}: {eT}")
 
-		self.variables = list(self.variables)
+		self.variables = list(set(self.variables))
+		print(self.variables)
+
+		# ^      ^ 
+		# |      | 
+		# x -e-> x -e-> 
+		# ^      ^
+		# |      |
+		# x -e-> x -e->
+
 		# ^    ^    ^ 
 		# |    |    |
 		# x -> x -> x ->
@@ -140,8 +150,12 @@ class Torus:
 		# ^    ^    ^
 		# |    |    | 
 		# x -> x -> x ->
-		# each vertex adds 2 edges.
-		assert(len(self.variables) == 2 * self.n * self.n)
+		if self.n == 1:
+			# the vertex has two edges, one that goes right and one that goes up.
+			assert(len(self.variables) == 2)
+		else:			
+			# each vertex adds 2 edges, and each edge has parity 2
+			assert(len(self.variables) == 2 * 2 * self.n * self.n)
 		self.vertex2var = \
 			[[[self.edge2parity2var[v][add_vec_dir(v, d)][p] for p in [0, 1]] \
 				for d in directions(n)] \
