@@ -219,6 +219,16 @@ try:
 except ValueError as err:
 	print(f"ERROR: unable to solve perturbed system: {err}")
 
+"""
+For the 2x2 torus, in the perturbed system, we see the eqn:
+### Perturbed system and its solution:
+2*AP_AQ_F + 2*AP_BP_F == 1
+
+This is clearly insoluble mod 2.
+
+What happens for larger system?
+
+"""
 # print(t.equations_with_variables(t.variables[0]))
 # print(t.solve())
 # # Define the variables
