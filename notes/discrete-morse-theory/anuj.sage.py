@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+
+reset() # reset all sage vars.
+
 from typing import *
-import sympy
 
 class Vec:
 	def __init__(self, n, x, y):
@@ -109,7 +111,6 @@ class Torus:
 		self.XNAMES = "ABCD"
 		self.YNAMES = "PQRS"
 		self.edge2parity2var = { v : { w : { p : None for p in [False, True] } for w in grid_points(n) } for v in grid_points(n) }
-		# self.v2dir2parity2term = { v : { d : { p : None for p in [False, True] } for d in directions(n) }  for v in grid_points(n) }
 		self.equations = []
 		self.variables = []
 
@@ -157,18 +158,12 @@ class Torus:
 			# each vertex adds 2 edges, and each edge has parity 2
 			assert(len(self.variables) == 2 * 2 * self.n * self.n)
 
-		# self.vertex2var = \
-		# 	[[[self.edge2parity2var[v][add_vec_dir(v, d)][p] for p in [0, 1]] \
-		# 		for d in directions(n)] \
-		# 		for v in grid_points(n)]
-		
 		for v in grid_points(n):			
 			for parityvec in parityvecs():
 				print(parityvec, directions(n))
 				for (p, d) in zip(parityvec, directions(n)):
 					w = add_vec_dir(v, d)
 					variable = self.edge2parity2var[v][w][p]
-					# self.v2dir2parity2var[v][d][p] = var
 					print(f"{v} ---[{d}:{p}]---> {w}: {variable}")
 
 
