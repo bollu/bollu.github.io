@@ -9,6 +9,35 @@
 - **It's useful to finish things.**
 
 
+# Decreasing Metric for Mutual Recursive Functions
+
+```lean
+mutual
+def bar (fooN : Nat) (barN : Nat)  : Nat :=
+  match barN with
+  | 0 => foo fooN
+  | n'+ 1 => bar fooN n'
+termination_by (fooN, barN + 1) -- when dropping from bar to foo, give yourself an extra point.
+decreasing_by
+  . simp_wf; apply Prod.Lex.right; omega
+  . simp_wf; apply Prod.Lex.right; omega
+
+def foo (fooN : Nat) : Nat :=
+  match fooN with
+  | 0 => 42
+  | fooN' + 1 => bar fooN' fooN
+
+termination_by (fooN, 0)
+decreasing_by
+  · simp_wf; apply Prod.Lex.left; omega
+end
+```
+
+- This took me a while to figure out
+- Actually, what we are saying is that `fooN` terminates by `(fooN, bot)`, `barN` terminates by `(fooN, barN)` with the condition that `bot < _`.
+- In general, I guess this is how we want the termination criteria to be.
+- I should read the Isabelle docs on how they prove termination. 
+
 # FOL + Fixpoint + Counting does not capture P
 
 - I learnt this proof from Anuj Dawar's course in "logic and complexity, lent 2024".
