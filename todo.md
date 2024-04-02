@@ -1,3 +1,5 @@
+- [Agner Fog microarchitecture optimization book](https://www.agner.org/optimize/microarchitecture.pdf)
+- [The Modern Algorithmic toolbox: 2023](https://web.stanford.edu/class/cs168/index.html)
 - [Inexhaustibility: An non exhaustive treatment](Inexhaustibility: A Non-Exhaustive Treatment)
 - [rvld](https://github.com/bollu/rvld): A RISCV linker.
 - [rsync.net: Good cloud file storage](https://rsync.net/products/rclone.html)
