@@ -14,7 +14,7 @@
 ```lean
 mutual
 def bar (fooN : Nat) (barN : Nat)  : Nat :=
-  match barN with
+  match barN with 
   | 0 => foo fooN
   | n'+ 1 => bar fooN n'
 termination_by (fooN, barN + 1) -- when dropping from bar to foo, give yourself an extra point.
@@ -46960,6 +46960,16 @@ speak slower than you want to.
 
 - Hermeneutics: Derives from hermes who gave language to humans. 
   the study of interpretation, particularly of philosophical, wisdom literature, and biblical texts.
+
+# Favourite OP1 tutorials
+- [Opz trap](https://www.youtube.com/watch?v=F1snsWHrUms)
+- [opz boombap hip hop](https://www.youtube.com/watch?v=WVllTjtBTZk)
+- [opz hiphop](https://www.youtube.com/watch?v=OQ509eGdmGk)
+- [opz hiphop 2](https://www.youtube.com/watch?v=dRBBwMYrybs)
+- [lofi hip hop](https://www.youtube.com/watch?v=nXg7Mw0vwMk)
+- [hard hitting hip hop](https://www.youtube.com/watch?v=tFRyL42itNk)
+- [opz daft punk like](https://www.youtube.com/watch?v=olGUyIRi5Ig)
+- [how to make opz album pt 1](https://www.youtube.com/watch?v=gMlRTO93Q38)
 
 # Favourite Demoscenes
 
