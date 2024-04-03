@@ -1,0 +1,300 @@
+
+---
+
+
+src/Lean/Compiler/LCNF/CompilerM.lean:  if ptrEq type p.type then
+src/Lean/Compiler/LCNF/CompilerM.lean:  if ptrEq type decl.type && ptrEq value decl.value then
+src/Lean/Compiler/LCNF/CompilerM.lean:  if ptrEq type decl.type && ptrEq params decl.params && ptrEq value decl.value then
+src/Lean/Compiler/LCNF/Basic.lean:  | .type ty => if ptrEq ty type' then arg else .type type'
+src/Lean/Compiler/LCNF/Basic.lean:  | .const declName us args => if declName == declName' && ptrEq us us' && ptrEq args args' then e else .const declName' us' args'
+src/Lean/Compiler/LCNF/Basic.lean:  | .fvar fvarId args => if fvarId == fvarId' && ptrEq args args' then e else .fvar fvarId' args'
+src/Lean/Compiler/LCNF/Basic.lean:  | .const declName us args => if ptrEq args args' then e else .const declName us args'
+src/Lean/Compiler/LCNF/Basic.lean:  | .fvar fvarId args => if ptrEq args args' then e else .fvar fvarId args'
+src/Lean/Compiler/LCNF/Basic.lean:    if ptrEq c₁ c₂ then
+src/Lean/Compiler/LCNF/Basic.lean:    if ptrEq d₁ d₂ then
+src/Lean/Compiler/LCNF/Basic.lean:  | .default k => if ptrEq k k' then alt else .default k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .alt ctorName ps k => if ptrEq k k' then alt else .alt ctorName ps k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .alt ctorName ps k => if ptrEq k k' && ptrEq ps ps' then alt else .alt ctorName ps' k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .cases cs => if ptrEq cs.alts alts then c else .cases { cs with alts }
+src/Lean/Compiler/LCNF/Basic.lean:  | .cases cs => if ptrEq cs.alts alts && ptrEq cs.resultType resultType && cs.discr == discr then c else .cases { cs with discr, resultType, alts }
+src/Lean/Compiler/LCNF/Basic.lean:  | .let decl k => if ptrEq k k' && ptrEq decl decl' then c else .let decl' k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .let decl k => if ptrEq k k' then c else .let decl k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .fun decl k => if ptrEq k k' then c else .fun decl k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .jp decl k => if ptrEq k k' then c else .jp decl k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .fun decl k => if ptrEq k k' && ptrEq decl decl' then c else .fun decl' k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .jp decl k => if ptrEq k k' && ptrEq decl decl' then c else .jp decl' k'
+src/Lean/Compiler/LCNF/Basic.lean:  | .jmp fvarId args => if fvarId == fvarId' && ptrEq args args' then c else .jmp fvarId' args'
+src/Lean/Compiler/LCNF/Basic.lean:  | .unreach type => if ptrEq type type' then c else .unreach type'
+src/Lean/Compiler/LCNF/Basic.lean:  if ptrEq type p.type then
+src/Lean/Compiler/LCNF/Basic.lean:  if ptrEq type decl.type && ptrEq value decl.value then
+src/Lean/Compiler/LCNF/Basic.lean:  if ptrEq type decl.type && ptrEq params decl.params && ptrEq value decl.value then
+
+
+^^^ April 3
+
+Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goReduce
+
+----
+
+Lean.Compiler.LCNF.initFn._@.Lean.Compiler.LCNF.LambdaLifting._hyg.1757
+ReaderT.pure._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_1._rarg
+ReaderT.pure._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_1
+ReaderT.bind._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_2._rarg
+ReaderT.bind._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_2
+Lean.Compiler.LCNF.ScopeM.withBackTrackingScope._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_4
+Lean.Compiler.LCNF.ScopeM.withNewScope._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_3
+Array.foldlMUnsafe.fold._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._spec_5
+Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl._lambda_1
+Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyzeFunDecl
+Lean.RBNode.find._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_1
+panic._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_6
+Lean.mkHashMap._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_7
+Array.foldlMUnsafe.fold._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_8
+Lean.AssocList.erase._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_10
+Lean.HashMapImp.erase._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_9
+Array.forInUnsafe.loop._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_11
+Lean.Compiler.LCNF.ScopeM.withBackTrackingScope._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_13
+Lean.Compiler.LCNF.ScopeM.withNewScope._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_12
+Array.foldlMUnsafe.fold._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_14._lambda_1
+Array.foldlMUnsafe.fold._at.Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze._spec_14
+Lean.Compiler.LCNF.JoinPointCommonArgs.reduce.goAnalyze
+
+-----
+
+
+step16:
+step15:
+step14:
+step13:
+step12:
+step11:
+step10:
+step9:
+step8:
+step7:
+step6:
+step5:
+step4:
+step3:
+step2:
+step1: 
+step0: 
+
+
+^^^April 2^^^
+
+
+because lean reuses variables between stage0 and stage1, it's somehow unable to accept "new" variables living in stage0 but not in stage1? honestly I don't understand this at all myself --- it's something like, we have:
+- stage0: contains the env vars for LEAN_RESEARCH_PROFILE
+- stage1 (src/): does not contain the cmake for LEAN_RESEARCH_PROFILE. (since I Wanted to use baseline upstream instead of our instrumented upstream).
+- thus these options never get propagated.
+
+---
+
+const_fold.lean stack overflows.
+mak
+
+---
+
+Release:
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x12dd9e90800)
+  * frame #0: 0x00000001088589c8 libleanshared.dylib`lean::allocator::get_next_obj(obj=0x0000012dd9e90800) at alloc.cpp:188:12
+    frame #1: 0x0000000108859618 libleanshared.dylib`lean_alloc_small(sz=24, slot_idx=2) at alloc.cpp:409:31
+    frame #2: 0x0000000108704e0c libleanshared.dylib`lean_alloc_ctor_memory(sz=24) at lean.h:340:36
+    frame #3: 0x0000000108704cdc libleanshared.dylib`lean_alloc_ctor(tag=0, num_objs=2, scalar_sz=0) at lean.h:546:23
+    frame #4: 0x0000000108704be8 libleanshared.dylib`lean_io_result_mk_ok(a=0x000000014be66848) at lean.h:1917:23
+    frame #5: 0x0000000108703c9c libleanshared.dylib`lean::io_result_mk_ok(a=0x000000014be66848) at io.h:13:62
+    frame #6: 0x0000000108856d08 libleanshared.dylib`lean_st_ref_take(ref=0x000000012dd68308, (null)=0x0000000000000001) at io.cpp:944:16
+    frame #7: 0x000000010803955c libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId___lambda__1(x_1=0x000000012dd026f8, x_2=0x0000000000000001, x_3=0x000000014be66860, x_4=0x000000012dd68308, x_5=0x000000014be66818, x_6=0x000000012dd9fe20, x_7=0x000000012dcc9998, x_8=0x000000012dd5a6b8, x_9=0x000000012dcc9918, x_10=0x0000000000000001) at Check.c:4832:8
+    frame #8: 0x0000000108039830 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId(x_1=0x000000012dd026f8, x_2=0x000000014be66860, x_3=0x000000012dd68308, x_4=0x000000014be66818, x_5=0x000000012dd9fe20, x_6=0x000000012dcc9998, x_7=0x000000012dd5a6b8, x_8=0x000000012dcc9918, x_9=0x0000000000000001) at Check.c:4930:8
+    frame #9: 0x0000000108039dcc libleanshared.dylib`l_Array_foldlMUnsafe_fold___at_Lean_Compiler_LCNF_Check_withParams___spec__2(x_1=0x000000014c173600, x_2=0, x_3=7, x_4=0x0000000000000001, x_5=0x000000014be66860, x_6=0x000000012dd68308, x_7=0x000000014be66818, x_8=0x000000012dd9fe20, x_9=0x000000012dcc9998, x_10=0x000000012dd5a6b8, x_11=0x000000012dcc9918, x_12=0x0000000000000001) at Check.c:5391:8
+    frame #10: 0x000000010803a424 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_checkFunDeclCore(x_1=0x000000012dceb398, x_2=0x000000014c173600, x_3=0x000000012dd52428, x_4=0x000000012dd9fb98, x_5=0x000000014be66860, x_6=0x000000012dd68308, x_7=0x000000014be66818, x_8=0x000000012dd9fe20, x_9=0x000000012dcc9998, x_10=0x000000012dd5a6b8, x_11=0x000000012dcc9918, x_12=0x0000000000000001) at Check.c:5841:9
+ Debug:
+ * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 2.1
+  * frame #0: 0x00000001089653ec libleanshared.dylib`lean::allocator::get_next_obj(obj=0x000000011b33e4a0) at alloc.cpp:188:38
+    frame #1: 0x0000000108966040 libleanshared.dylib`lean_alloc_small(sz=24, slot_idx=2) at alloc.cpp:409:31
+    frame #2: 0x0000000108811834 libleanshared.dylib`lean_alloc_ctor_memory(sz=24) at lean.h:340:36
+    frame #3: 0x0000000108811704 libleanshared.dylib`lean_alloc_ctor(tag=0, num_objs=2, scalar_sz=0) at lean.h:546:23
+    frame #4: 0x0000000108811610 libleanshared.dylib`lean_io_result_mk_ok(a=0x000000014be66890) at lean.h:1917:23
+    frame #5: 0x00000001088106c4 libleanshared.dylib`lean::io_result_mk_ok(a=0x000000014be66890) at io.h:13:62
+    frame #6: 0x0000000108963730 libleanshared.dylib`lean_st_ref_take(ref=0x000000011b339408, (null)=0x0000000000000001) at io.cpp:944:16
+    frame #7: 0x0000000108160738 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId___lambda__1(x_1=0x000000011b3042b8, x_2=0x0000000000000001, x_3=0x000000014be66878, x_4=0x000000011b339408, x_5=0x000000014be66818, x_6=0x000000011b33e7b8, x_7=0x000000011b2cf4b8, x_8=0x000000011b349d78, x_9=0x000000011b2cf5e8, x_10=0x0000000000000001) at Check.c:3621:8
+    frame #8: 0x000000010816097c libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId(x_1=0x000000011b3042b8, x_2=0x000000014be66878, x_3=0x000000011b339408, x_4=0x000000014be66818, x_5=0x000000011b33e7b8, x_6=0x000000011b2cf4b8, x_7=0x000000011b349d78, x_8=0x000000011b2cf5e8, x_9=0x0000000000000001) at Check.c:3686:8
+    frame #9: 0x0000000108160e64 libleanshared.dylib`l_Array_foldlMUnsafe_fold___at_Lean_Compiler_LCNF_Check_withParams___spec__2(x_1=0x000000014c173600, x_2=0, x_3=7, x_4=0x0000000000000001, x_5=0x000000014be66878, x_6=0x000000011b339408, x_7=0x000000014be66818, x_8=0x000000011b33e7b8, x_9=0x000000011b2cf4b8, x_10=0x000000011b349d78, x_11=0x000000011b2cf5e8, x_12=0x0000000000000001) at Check.c:4004:8
+    frame #10: 0x00000001081613d4 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_checkFunDeclCore(x_1=0x000000011b2f2238, x_2=0x000000014c173600, x_3=0x000000011b2d3058, x_4=0x000000011b33f910, x_5=0x000000014be66878, x_6=0x000000011b339408, x_7=0x000000014be66818, x_8=0x000000011b33e7b8, x_9=0x000000011b2cf4b8, x_10=0x000000011b349d78, x_11=0x000000011b2cf5e8, x_12=0x0000000000000001) at Check.c:4328:9
+--
+
+static inline atomic<object*> * mt_ref_val_addr(object * o) {
+    return reinterpret_cast<atomic<object*> *>(&(lean_to_ref(o)->m_value));
+}
+
+
+extern "C" LEAN_EXPORT obj_res lean_st_ref_take(b_obj_arg ref, obj_arg) {
+    if (ref_maybe_mt(ref)) {
+        atomic<object *> * val_addr = mt_ref_val_addr(ref);
+        while (true) {
+            object * val = val_addr->exchange(nullptr);
+            if (val != nullptr)
+                return io_result_mk_ok(val);
+        }
+    } else {
+        object * val = lean_to_ref(ref)->m_value;
+        lean_assert(val != nullptr);
+        lean_to_ref(ref)->m_value = nullptr;
+        return io_result_mk_ok(val);
+    }
+}
+
+
+
+--
+
+/-- References -/
+opaque RefPointed : NonemptyType.{0}
+
+structure Ref (σ : Type) (α : Type) : Type where
+  ref : RefPointed.type
+  h   : Nonempty α
+
+@[extern "lean_st_ref_take"]
+unsafe opaque Ref.take {σ α} (r : @& Ref σ α) : ST σ α := inhabitedFromRef r
+
+-- 
+
+def StateRefT' (ω : Type) (σ : Type) (m : Type → Type) (α : Type) : Type := ReaderT (ST.Ref ω σ) m α
+
+
+---
+
+
+structure Context where
+  /-- Join points that are in scope. -/
+  jps : FVarIdSet := {}
+  /-- Variables and local functions in scope -/
+  vars : FVarIdSet := {}
+
+structure State where
+  /-- All free variables found -/
+  all : FVarIdHashSet := {}
+
+abbrev CheckM := ReaderT Context $ StateRefT State InferTypeM
+
+---
+def addFVarId (fvarId : FVarId) : CheckM Unit := do
+  if (← get).all.contains fvarId then
+    throwError "invalid LCNF, free variables are not unique `{fvarId.name}`"
+  modify fun s => { s with all := s.all.insert fvarId }
+
+
+---
+
+@[inline] def withParams (params : Array Param) (x : CheckM α) : CheckM α := do
+  params.forM (addFVarId ·.fvarId)
+  withReader (fun ctx => { ctx with vars := params.foldl (init := ctx.vars) fun vars p => vars.insert p.fvarId })
+    x
+
+
+-- 
+partial def checkFunDeclCore (declName : Name) (params : Array Param) (type : Expr) (value : Code) : CheckM Unit := do
+  checkParams params
+  withParams params do
+    discard <| check value
+    if (← checkTypes) then
+      let valueType ← mkForallParams params (← value.inferType)
+      unless (← InferType.compatibleTypes type valueType) do
+        throwError "type mismatch at `{declName}`, value has type{indentExpr valueType}\nbut is expected to have type{indentExpr type}"
+
+--
+
+  * frame #0: 0x0000000105f28990 libleanshared.dylib`lean_alloc_small + 60
+    frame #1: 0x0000000105f2779c libleanshared.dylib`lean_st_ref_take + 60
+    frame #2: 0x000000010587c914 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId___lambda__1 + 40
+    frame #3: 0x000000010587cbc4 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_addFVarId + 292
+    frame #4: 0x000000010587d41c libleanshared.dylib`l_Array_foldlMUnsafe_fold___at_Lean_Compiler_LCNF_Check_withParams___spec__2 + 640
+    frame #5: 0x000000010587df10 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_checkFunDeclCore + 1264
+    frame #6: 0x0000000105f1a6b8 libleanshared.dylib`lean_apply_8 + 1252
+    frame #7: 0x00000001058884f0 libleanshared.dylib`l_Lean_Compiler_LCNF_Check_run___rarg + 228
+    frame #8: 0x0000000105b0b920 libleanshared.dylib`l_Array_forInUnsafe_loop___at_Lean_Compiler_LCNF_checkpoint___spec__1___lambda__2 + 904
+    frame #9: 0x0000000105b0c3c4 libleanshared.dylib`l_Array_forInUnsafe_loop___at_Lean_Compiler_LCNF_checkpoint___spec__1 + 632
+    frame #10: 0x0000000105b0d184 libleanshared.dylib`l_Lean_Compiler_LCNF_checkpoint + 200
+    frame #11: 0x0000000105b10ccc libleanshared.dylib`l_Array_forInUnsafe_loop___at_Lean_Compiler_LCNF_PassManager_run___spec__7 + 844
+    frame #12: 0x0000000105b16148 libleanshared.dylib`l_Array_forInUnsafe_loop___at_Lean_Compiler_LCNF_PassManager_run___spec__7___boxed + 160
+    frame #13: 0x0000000105f14e74 libleanshared.dylib`lean::curry(void*, unsigned int, lean_object**) + 360
+    frame #14: 0x0000000105f01510 libleanshared.dylib`lean::ir::interpreter::call(lean::name const&, lean::array_ref<lean::object_ref> const&) + 668
+    frame #15: 0x0000000105eff69c libleanshared.dylib`lean::ir::interpreter::eval_body(lean::object_ref const&) + 3192
+    frame #16: 0x0000000105f017c4 libleanshared.dylib`lean::ir::interpreter::call(lean::name const&, lean::array_ref<lean::object_ref> const&) + 1360
+    frame #17: 0x0000000105eff69c libleanshared.dylib`lean::ir::interpreter::eval_body(lean::object_ref const&) + 3192
+    frame #18: 0x0000000105f035e8 libleanshared.dylib`lean::ir::interpreter::stub_m(lean_object**) + 556
+    frame #19: 0x0000000105f031e4 libleanshared.dylib`lean::ir::interpreter::stub_m_aux(lean_object**) + 92
+    frame #20: 0x0000000105f02e5c libleanshared.dylib`lean::ir::interpreter::stub_9_aux(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*) + 60
+
+
+---
+
+```lean
+-- lcnf1.lean
+import Lean
+import Lean.Compiler.LCNF
+
+open Lean
+
+set_option trace.compiler true in
+def compile2 (declNames : Array Name) : CoreM Unit := do
+  let _ <-  Lean.Compiler.LCNF.compile declNames
+  return ()
+
+#eval compile2 #[``Lean.Meta.isExprDefEqAuxImpl]
+```
+
+lldb -- ../../../build/release/stage2/bin/lean lcnf1.lean
+
+  ----
+
+	228 - leantest_computedFieldsCode.lean (Failed) --immaterial
+	890 - leanruntest_CompilerFindJoinPoints.lean (Failed)
+	997 - leanruntest_compilerTest1.lean (Failed)
+	1288 - leanruntest_lcnf1.lean (Failed)
+	1291 - leanruntest_lcnf4.lean (Failed)
+	1292 - leanruntest_lcnfBinderNameBug.lean (Failed)
+	1539 - leanruntest_simpExpBlowup.lean (Failed)
+
+-----
+
+
+to cherry pick: 37c8479b8687a295716fb7e4fd3012ac2c74c749
+
+
+^^ 1 Apr 2024
+
+
+2024-03-30--15-19--tcg40
+2024-borrowing-benching-baseline -> c016a25992392716885f5ba8fc5b3ddf7bec2467
+2024-borrowing-upstream-base
+
+----
+
+cd /homes/sb2743/2024-borrowing/lean4/build/release/; cmake ../../ -DRUNTIME_STATS=ON && make -j12 stage2 && cd stage2 && ctest -R leanruntest -j32;
+
+c4b5f0b8547eceb443af7ff43309f6bb45b9f23a: good
+5547b4d91c5aa48394533fa9aed8a2064d9856dd: bad
+2358eb0198753225a37acdf038b9019f332c71aa: ?? (build borked)
+5c8bfc548d545df11210e145cc7f9362520070f1: good
+
+
+The first bad commit could be any of:
+2358eb0198753225a37acdf038b9019f332c71aa
+5547b4d91c5aa48394533fa9aed8a2064d9856dd
+
+stage2:
+The following tests FAILED:
+	890 - leanruntest_CompilerFindJoinPoints.lean (Failed)
+	997 - leanruntest_compilerTest1.lean (Failed)
+	1192 - leanruntest_handleLocking.lean (Failed)
+	1288 - leanruntest_lcnf1.lean (Failed)
+	1291 - leanruntest_lcnf4.lean (Failed)
+	1292 - leanruntest_lcnfBinderNameBug.lean (Failed)
+	1539 - leanruntest_simpExpBlowup.lean (Failed)
+
+^^ 31 Mar 2024
+
+
