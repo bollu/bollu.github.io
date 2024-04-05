@@ -77,6 +77,24 @@ set_option interpreter.prefer_native false
     at ../build/debug/stage1/lib/temp/Lean/Elab/BuiltinCommand.c:23820
 ```
 
+
+
+#### Chat with Sebastian
+
+> Sebastian Ullrich: You adjusted the interpreter but the IR it is loading is still the unchanged one built by the stage 0 compiler. So indeed you need to update-stage0 and then use prefer_native in order to build stage 1 without depending on the interpreter
+> Siddharth Bhat: @Sebastian Ullrich thanks for the confirmation!
+> Siddharth Bhat: I was wondering: where does the interpreter load the old (stage0) IR from?
+> Sebastian Ullrich: The .oleans, which were created by stage 0
+> Siddharth Bhat: Right. I was wondering where in the codebase this loading happens.
+> Siddharth Bhat: (a pointer to a file / function name would be super :smile: )
+> Sebastian Ullrich: The interpreter gets passed the environment, the IR is in an environment extension
+
+#### Environment extension loading
+
+```
+lean_read_module_data 
+```
+
 ---
 
 
