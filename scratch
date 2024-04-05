@@ -1,3 +1,10 @@
+#### Rstudio libs for python
+
+- sibua.
+- plotnine.
+- buckaroo.
+- ToC plugin for jupyter lab.
+
 #### Explanation of what's going on:
 
 ### building `lean4/stage0/ --g++---> build/release/stage0`:
