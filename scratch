@@ -2,31 +2,29 @@
 
 ### building `lean4/stage0/ --g++---> build/release/stage0`:
 
-##### prefer_native=true
-- use symbols from `libInit.a` (?)
+##### `prefer_native=true`
+- use symbols from `libleanshared.so` (?)
 
-##### prefer_native=false
-  - ? 
+##### `prefer_native=false` (default)
+  - ?
 
 ### building `lean4/src ---stage0---> build/release/stage1`:
 
-1. build `build/release/stage1/lib/lean/**/*.olean` with `build/release/stage0/bin/lean`. 
+1. olean: `build/release/stage1/lib/lean/**/*.olean`  built by compiling `src/**.lean` with `build/release/stage0/bin/lean`. 
+1. static/dynamic libs: `build/release/stage1/lib/lean/**/lib{Init.a,Lean.a, leanshared.so}` built by ?
+2. binary: `build/release/stage1/bin/lean` built by compiling the C++ sources in `src/` with the 
 
-##### if `prefer_native=true`
-- use symbols from `libInit.a` (?)
+##### if `prefer_native=true` (default)
+- `build/release/stage1/bin/lean` will use symbols from `libleanshared.so`
 
-##### if prefer_native=false
+##### if `prefer_native=false`
 - interpret IR loaded from `build/release/stage1/lib/lean/**/*.olean`. These `olean`s are built from the `stage0`compiler.
 
 
 ### building `lean4/src ---stage1---> build/release/stage2`:
 
-##### if prefer_native=true
-- use symbols from `libInit.a` (?)
 
-##### if prefer_native=false
-- interpret IR loaded from `build/release/stage2/lib/lean/**/*.olean`. These `olean`s are built from the `stage1`compiler.
-
+- Identical to stage1, replace all occurrences: `(stage0, stage1) := (stage1, stage2)`. Parallel assignment semantics important ;) 
 
 
 #### More thoughts
