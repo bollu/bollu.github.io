@@ -4,14 +4,25 @@
 #### Explanation of what's going on:
 
 
-stage0 lean binary:
-  - links in Init as libInit.a
-  - what happens when prefer_native=false?
+### stage0 lean binary:
 
+##### prefer_native=true
+  - libInit.a 
 
-stage1 lean binary:
-  - if prefer_native=true, then picks up definitions from stdlib that come from stage1.
-  - if prefer_native=false, then picks up definitions that come from IR, which is stage0. This is stage0, since the IR is loaded from the Environment, 
+##### prefer_native=false
+  - libInit.a 
+
+### stage1 lean binary:
+
+##### if prefer_native=true
+- use symbols from `libInit.a` (?)
+
+##### if prefer_native=false
+- interpret IR loaded from `$BUILD_DIR/stage1/lib/lean/**/*.olean`. These `olean`s are built from the `stage0`compiler.
+
+- then picks up definitions from stdlib that come from stage1.
+##### prefer_native=false
+then picks up definitions that come from IR, which is stage0. This is stage0, since the IR is loaded from the Environment, 
 
 
 #### More thoughts
