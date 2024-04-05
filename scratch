@@ -1,4 +1,5 @@
 
+https://www.amazon.co.uk/Quantum-Computing-since-Democritus-Aaronson/dp/0521199565/ref=sr_1_1
 
 - Give warnings when large objects (e.g. arrays) are used nonlinearly.
 - This can be broken by closed term extraction.
