@@ -1,4 +1,11 @@
 
+
+- Give warnings when large objects (e.g. arrays) are used nonlinearly.
+- This can be broken by closed term extraction.
+
+=== Useful thing to have (Acc to henrik)
+
+
 ## benching commits
 
 commit 0295b501f26943637d15bfc26b7bfc5fc478c064 (tag: 2024-borrowing-benching-baseline-v2)
