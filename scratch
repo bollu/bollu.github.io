@@ -1,21 +1,8 @@
 ```
-468bc233e4 (HEAD -> 2024-borrowing-benchmarking-rebase, origin/2024-borrowing-benchmarking-rebase) feat: avoid isNull check if reuse is guaranteed to happen
-e8b2264137 chore: update-stage0
-bc569920a9 feat[1/2]: avoid isNull check if reuse is guaranteed to happen
-4d886fff29 feat: re-enable CI
-4ab9e96445 Revert commits [319b35ceb6802d698cc3c2d600d35e143e77c897 ... 01e9839a9712f5700a2d3a5bed33a6806ffa0b22]
-319b35ceb6 feat: enable CI
-48ef706159 (2024-borrowing-benchmarking) feat: update-stage0 with prefer-native=true
-87c9550362 chore: go back to stage0 from upstream fork off commit 9cb114eb8389d104fd69da2d289f768979b543f5
-7d01e77df3 chore: udpate-stage0
 b262c7fb21 feat: allow drop-guided reuse after a borrowed function call
 0746c44200 feat: correctly setup runner for stage0 bench
-3b08bde207 feat: reuse across types and handle RC of reset correctly
-b9fe13c9a9 feat: drop-guided reuse
-e0523f90ad chore: update stage0
-6b0e0a6c7a chore: cherry pick 3e21038
-01e9839a97 fix: rerun stdlib
-
+3b08bde207 feat: reuse across types and handle RC of reset correctly 
+b9fe13c9a9 feat: drop-guided reuse 
 ```
 
 
