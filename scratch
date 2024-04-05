@@ -1,6 +1,9 @@
 
 ## Verifying that the problem is indeed to do with mismatched runtimes.
 
+```
+set_option interpreter.prefer_native false
+```
 
 ```
 ../../src/library/compiler/ir_interpreter.cpp
