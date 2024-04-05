@@ -13,6 +13,8 @@ set_option interpreter.prefer_native false
 
 
 
+##### looking up functions 
+
 ```
 ../../src/library/compiler/ir_interpreter.cpp
 
@@ -29,9 +31,43 @@ set_option interpreter.prefer_native false
             return e_new;
         }
     }
+```
 
+##### evaluation of functions
 
 ```
+    value call(name const & fn, array_ref<arg> const & args) {
+        size_t old_size = m_arg_stack.size();
+        value r;
+        symbol_cache_entry e = lookup_symbol(fn);
+        if (e.m_addr) {
+            // (a) do the usual thing
+        } else {
+            if (decl_tag(e.m_decl) == decl_kind::Extern) {
+                // (b) ERROR say. that we were unable to find an extern fn
+                string_ref mangled = name_mangle(fn, *g_mangle_prefix);
+                string_ref boxed_mangled(string_append(mangled.to_obj_arg(), g_boxed_mangled_suffix->raw()));
+                throw exception(sstream() << "Could not find native implementation of external declaration '" << fn
+                                          << "' (symbols '" << boxed_mangled.data() << "' or '" << mangled.data() << "').\n"
+                                          << "For declarations from `Init` or `Lean`, you need to set `supportInterpreter := true` "
+                                          << "in the relevant `lean_exe` statement in your `lakefile.lean`.");
+            }
+            // evaluate args in old stack frame
+            for (const auto & arg : args) {
+                m_arg_stack.push_back(eval_arg(arg));
+            }
+            push_frame(e.m_decl, old_size);
+            // (c) evaluate the function body.
+            r = eval_body(decl_fun_body(e.m_decl));
+        }
+        pop_frame(r, decl_type(e.m_decl));
+        return r;
+    }
+```
+
+
+##### IR interpreter: function loading.
+
 
 ---
 
@@ -80,11 +116,11 @@ symbol_cache_entry lookup_symbol(name const & fn) {
 ```
 
 
-## Stuff to add to benching suite
+== Stuff to add to benching suite
 - Teach temci to intepret lean runtime outputs.
 
 
-## Relaxing projects
+== Relaxing projects
 - Add Lean4 support to hx editor.
 
 
