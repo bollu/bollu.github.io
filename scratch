@@ -1,60 +1,40 @@
 
+
+
 ## Verifying that the problem is indeed to do with mismatched runtimes.
 
 ```
+-- evalBuiltinInit.lean
+-- option should be ignored when evaluating a `[builtin_init]` decl
 set_option interpreter.prefer_native false
+#eval toString Lean.PrettyPrinter.formatterAttribute.defn.name
 ```
+
+
+
 
 ```
 ../../src/library/compiler/ir_interpreter.cpp
-493-                }
-494-            }
-495-            case expr_kind::PAp: { // unsatured (partial) application of top-level function
-496:                symbol_cache_entry sym = lookup_symbol(expr_pap_fun(e));
-497-                if (sym.m_addr) {
-498-                    // point closure directly at native symbol
-499-                    object * cls = alloc_closure(sym.m_addr, decl_params(sym.m_decl).size(), expr_pap_args(e).size());
---
-756-    }
-757-
-758-    /** \brief Return cached lookup result for given unmangled function name in the current binary. */
-759:    symbol_cache_entry lookup_symbol(name const & fn) {
-760-        if (symbol_cache_entry const * e = m_symbol_cache.find(fn)) {
-761-            return *e;
-762-        } else {
---
-800-            return *o;
-801-        }
-802-
-803:        symbol_cache_entry e = lookup_symbol(fn);
-804-        if (e.m_addr) {
-805-            // we can assume that all native code has been initialized (see e.g. `evalConst`)
-806-
---
-837-    value call(name const & fn, array_ref<arg> const & args) {
-838-        size_t old_size = m_arg_stack.size();
-839-        value r;
-840:        symbol_cache_entry e = lookup_symbol(fn);
-841-        if (e.m_addr) {
-842-            object ** args2 = static_cast<object **>(LEAN_ALLOCA(args.size() * sizeof(object *))); // NOLINT
-843-            for (size_t i = 0; i < args.size(); i++) {
---
-962-     *  * supports under- and over-application.
-963-     *  * supports "calling" (evaluating) nullary constants. */
-964-    object * call_boxed(name const & fn, unsigned n, object ** args) {
-965:        symbol_cache_entry e = lookup_symbol(fn);
-966-        unsigned arity = decl_params(e.m_decl).size();
-967-        object * r;
-968-        if (arity == 0) {
---
-1036-                object * o = io_result_get_value(r);
-1037-                mark_persistent(o);
-1038-                dec_ref(r);
-1039:                symbol_cache_entry e = lookup_symbol(decl);
-1040-                if (e.m_addr) {
-1041-                    *((object **)e.m_addr) = o;
-1042-                } else {
+
+    /** \brief Return cached lookup result for given unmangled function name in the current binary. */
+    symbol_cache_entry lookup_symbol(name const & fn) {
+        if (symbol_cache_entry const * e = m_symbol_cache.find(fn)) {
+            return *e;
+        } else {
+            symbol_cache_entry e_new { get_decl(fn), nullptr, false };
+            if (m_prefer_native || decl_tag(e_new.m_decl) == decl_kind::Extern || has_init_attribute(m_env, fn)) {
+                // (a) if prefer_native = false, we insert a stub function.
+            }
+            m_symbol_cache.insert(fn, e_new);
+            return e_new;
+        }
+    }
+
+
 ```
+
+---
+
 
 ```
 (venv) ➜  debug git:(2024-borrowing-baseline-NOBENCH) ✗ rg "lookup_symbol" ../../src/library/compiler
