@@ -1,4 +1,432 @@
 
+
+sb2743@dev-cpu-tcg40:/anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage1$ gdb --args ./bin/lean ../../../tests/lean/run/evalBuiltinInit.lean
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff758ef09 in lean_ptr_tag (o=0x3) at /anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage1/include/lean/lean.h:384
+384     return o->m_tag;
+(gdb)
+(gdb)
+(gdb)
+(gdb) bt
+#0  0x00007ffff758ef09 in lean_ptr_tag (o=0x3) at /anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage1/include/lean/lean.h:384
+#1  0x00007ffff758efce in lean_is_ctor (o=0x3) at /anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage1/include/lean/lean.h:454
+#2  0x00007ffff7591d5c in lean::is_cnstr (o=0x3) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object.h:59
+#3  0x00007ffff7592153 in lean::cnstr_get_ref (o=0x3, i=2) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object_ref.h:130
+#4  0x00007ffff76db6d5 in lean::cnstr_get_ref_t<lean::nat> (o=..., i=2) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object_ref.h:142
+#5  0x00007ffff76cfdb2 in lean::ir::ctor_info_size (c=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:77
+#6  0x00007ffff76d5212 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:438
+#7  0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#8  0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#9  0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#10 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#11 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#12 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#13 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#14 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#15 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#16 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#17 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#18 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#19 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#20 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#21 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#22 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#23 0x00007ffff76d98f5 in lean::ir::interpreter::stub_m (this=0x7fffffffa310, args=0x7fffffff6510)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:893
+#24 0x00007ffff76d999f in lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}::operator()(lean::ir::interpreter&) const (__closure=0x7fffffff6490,
+    interp=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:903
+#25 0x00007ffff76e2d6f in std::__invoke_impl<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(std::__invoke_other, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__f=...) at /usr/include/c++/11/bits/invoke.h:61
+#26 0x00007ffff76e05e4 in std::__invoke_r<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__fn=...) at /usr/include/c++/11/bits/invoke.h:142
+#27 0x00007ffff76de4cd in std::_Function_handler<lean_object* (lean::ir::interpreter&), lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}>::_M_invoke(std::_Any_data const&, lean::ir::interpreter&) (__functor=..., __args#0=...) at /usr/include/c++/11/bits/std_function.h:290
+#28 0x00007ffff76de59f in std::function<lean_object* (lean::ir::interpreter&)>::operator()(lean::ir::interpreter&) const (this=0x7fffffff6490, __args#0=...)
+    at /usr/include/c++/11/bits/std_function.h:590
+#29 0x00007ffff76dc534 in lean::ir::interpreter::with_interpreter<lean_object*>(lean::environment const&, lean::options const&, lean::name const&, std::function<lean_object* (lean::ir::interpreter&)> const&) (env=..., opts=..., fn=..., f=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:379
+#30 0x00007ffff76d9a59 in lean::ir::interpreter::stub_m_aux (args=0x7fffffff6510) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:902
+#31 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x555555e84c08, x_4=0x7ffff2acd088, x_5=0x555555bef628, x_6=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
+#32 0x00007ffff77062dc in lean::lean_apply_1 (f=0x555555b2bd78, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:113
+#33 0x00007ffff7721f6e in lean::lean_apply_n (f=0x555555b2bd78, n=1, as=0x7fffffff67e0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:906
+#34 0x00007ffff76d4969 in lean::apply_n (f=0x555555b2bd78, n=1, args=0x7fffffff67e0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object.h:173
+#35 0x00007ffff76d5c19 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:518
+#36 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#37 0x00007ffff76d98f5 in lean::ir::interpreter::stub_m (this=0x7fffffffa310, args=0x7fffffff7080)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:893
+#38 0x00007ffff76d999f in lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}::operator()(lean::ir::interpreter&) const (__closure=0x7fffffff7000,
+    interp=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:903
+#39 0x00007ffff76e2d6f in std::__invoke_impl<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(std::__invoke_other, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__f=...) at /usr/include/c++/11/bits/invoke.h:61
+#40 0x00007ffff76e05e4 in std::__invoke_r<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__fn=...) at /usr/include/c++/11/bits/invoke.h:142
+#41 0x00007ffff76de4cd in std::_Function_handler<lean_object* (lean::ir::interpreter&), lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}>::_M_invoke(std::_Any_data const&, lean::ir::interpreter&) (__functor=..., __args#0=...) at /usr/include/c++/11/bits/std_function.h:290
+#42 0x00007ffff76de59f in std::function<lean_object* (lean::ir::interpreter&)>::operator()(lean::ir::interpreter&) const (this=0x7fffffff7000, __args#0=...)
+    at /usr/include/c++/11/bits/std_function.h:590
+#43 0x00007ffff76dc534 in lean::ir::interpreter::with_interpreter<lean_object*>(lean::environment const&, lean::options const&, lean::name const&, std::function<lean_object* (lean::ir::interpreter&)> const&) (env=..., opts=..., fn=..., f=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:379
+#44 0x00007ffff76d9a59 in lean::ir::interpreter::stub_m_aux (args=0x7fffffff7080) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:902
+#45 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x757ce7d10538, x_4=0x555555e85c88, x_5=0x555555b2bd78, x_6=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
+#46 0x00007ffff77062dc in lean::lean_apply_1 (f=0x555555b2bb38, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:113
+#47 0x00007ffff7721f6e in lean::lean_apply_n (f=0x555555b2bb38, n=1, as=0x7fffffff7350) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:906
+#48 0x00007ffff76d4969 in lean::apply_n (f=0x555555b2bb38, n=1, args=0x7fffffff7350) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object.h:173
+#49 0x00007ffff76d5c19 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:518
+#50 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#51 0x00007ffff76d98f5 in lean::ir::interpreter::stub_m (this=0x7fffffffa310, args=0x7fffffff7bf0)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:893
+#52 0x00007ffff76d999f in lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}::operator()(lean::ir::interpreter&) const (__closure=0x7fffffff7b70,
+    interp=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:903
+#53 0x00007ffff76e2d6f in std::__invoke_impl<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(std::__invoke_other, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__f=...) at /usr/include/c++/11/bits/invoke.h:61
+#54 0x00007ffff76e05e4 in std::__invoke_r<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__fn=...) at /usr/include/c++/11/bits/invoke.h:142
+#55 0x00007ffff76de4cd in std::_Function_handler<lean_object* (lean::ir::interpreter&), lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}>::_M_invoke(std::_Any_data const&, lean::ir::interpreter&) (__functor=..., __args#0=...) at /usr/include/c++/11/bits/std_function.h:290
+#56 0x00007ffff76de59f in std::function<lean_object* (lean::ir::interpreter&)>::operator()(lean::ir::interpreter&) const (this=0x7fffffff7b70, __args#0=...)
+    at /usr/include/c++/11/bits/std_function.h:590
+#57 0x00007ffff76dc534 in lean::ir::interpreter::with_interpreter<lean_object*>(lean::environment const&, lean::options const&, lean::name const&, std::function<lean_object* (lean::i--Type <RET> for more, q to quit, c to continue without paging--
+r::interpreter&)> const&) (env=..., opts=..., fn=..., f=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:379
+#58 0x00007ffff76d9a59 in lean::ir::interpreter::stub_m_aux (args=0x7fffffff7bf0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:902
+#59 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x757ce7d0e500, x_4=0x555555e85c88, x_5=0x555555b2bb38, x_6=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
+#60 0x00007ffff77062dc in lean::lean_apply_1 (f=0x555555b2bc78, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:113
+#61 0x00007ffff7721f6e in lean::lean_apply_n (f=0x555555b2bc78, n=1, as=0x7fffffff7ec0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:906
+#62 0x00007ffff76d4969 in lean::apply_n (f=0x555555b2bc78, n=1, args=0x7fffffff7ec0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object.h:173
+#63 0x00007ffff76d5c19 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:518
+#64 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#65 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#66 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#67 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#68 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#69 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#70 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#71 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#72 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#73 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#74 0x00007ffff76d971e in lean::ir::interpreter::call (this=0x7fffffffa310, fn=..., args=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:879
+#75 0x00007ffff76d5782 in lean::ir::interpreter::eval_expr (this=0x7fffffffa310, e=..., t=lean::ir::type::Object)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:489
+#76 0x00007ffff76d6990 in lean::ir::interpreter::eval_body (this=0x7fffffffa310, b0=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:607
+#77 0x00007ffff76d98f5 in lean::ir::interpreter::stub_m (this=0x7fffffffa310, args=0x7fffffffa4e0)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:893
+#78 0x00007ffff76d999f in lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}::operator()(lean::ir::interpreter&) const (__closure=0x7fffffffa460,
+    interp=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:903
+#79 0x00007ffff76e2d6f in std::__invoke_impl<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(std::__invoke_other, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__f=...) at /usr/include/c++/11/bits/invoke.h:61
+#80 0x00007ffff76e05e4 in std::__invoke_r<lean_object*, lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&>(lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}&, lean::ir::interpreter&) (__fn=...) at /usr/include/c++/11/bits/invoke.h:142
+#81 0x00007ffff76de4cd in std::_Function_handler<lean_object* (lean::ir::interpreter&), lean::ir::interpreter::stub_m_aux(lean_object**)::{lambda(lean::ir::interpreter&)#1}>::_M_invoke(std::_Any_data const&, lean::ir::interpreter&) (__functor=..., __args#0=...) at /usr/include/c++/11/bits/std_function.h:290
+#82 0x00007ffff76de59f in std::function<lean_object* (lean::ir::interpreter&)>::operator()(lean::ir::interpreter&) const (this=0x7fffffffa460, __args#0=...)
+    at /usr/include/c++/11/bits/std_function.h:590
+#83 0x00007ffff76dc665 in lean::ir::interpreter::with_interpreter<lean_object*>(lean::environment const&, lean::options const&, lean::name const&, std::function<lean_object* (lean::ir::interpreter&)> const&) (env=..., opts=..., fn=..., f=...) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:387
+#84 0x00007ffff76d9a59 in lean::ir::interpreter::stub_m_aux (args=0x7fffffffa4e0) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:902
+#85 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x555555e84cf8, x_4=0x555555bef628, x_5=0x555555e74080, x_6=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
+#86 0x00007ffff770c8d2 in lean::lean_apply_3 (f=0x555555e85148, a1=0x555555bef628, a2=0x555555e74080, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:232
+--Type <RET> for more, q to quit, c to continue without paging--
+#87 0x00007ffff4ae2816 in l_Lean_Elab_Command_elabEvalUnsafe (x_1=0x555555e76c78, x_2=0x7ffff1f4b748, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/BuiltinCommand.c:23820
+#88 0x00007ffff770c7b9 in lean::lean_apply_3 (f=0x555555e76c38, a1=0x7ffff1f4b748, a2=0x555555e69d48, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:230
+#89 0x00007ffff4bdd73b in l_Lean_Elab_withInfoTreeContext___at___private_Lean_Elab_Command_0__Lean_Elab_Command_elabCommandUsing___spec__2 (x_1=0x555555e76c38, x_2=0x555555bd69e8,
+    x_3=0x7ffff1f4b748, x_4=0x555555e69d48, x_5=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:12628
+#90 0x00007ffff4bdf639 in l___private_Lean_Elab_Command_0__Lean_Elab_Command_elabCommandUsing (x_1=0x555555af1708, x_2=0x555555e76c78, x_3=0x7ffff2cae860, x_4=0x7ffff1f4b748,
+    x_5=0x555555e69d48, x_6=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:13145
+#91 0x00007ffff4beeda3 in l_Lean_Elab_Command_elabCommand___lambda__4 (x_1=0x555555e76c78, x_2=0x7ffff2cf7538, x_3=0x7ffff1f4b748, x_4=0x555555e69d48, x_5=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:17248
+#92 0x00007ffff770c836 in lean::lean_apply_3 (f=0x555555bd6e48, a1=0x7ffff1f4b748, a2=0x555555e69d48, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:231
+#93 0x00007ffff4bd9095 in l_Lean_withTraceNode___at_Lean_Elab_Command_runLinters___spec__11 (x_1=0x7ffff2d9c398, x_2=0x555555e76c38, x_3=0x555555bd6e48, x_4=1 '\001',
+    x_5=0x7ffff1f4b748, x_6=0x555555e69d48, x_7=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:11199
+#94 0x00007ffff4bdab91 in l_Lean_withTraceNode___at_Lean_Elab_Command_runLinters___spec__11___boxed (x_1=0x7ffff2d9c398, x_2=0x555555e76c38, x_3=0x555555bd6e48, x_4=0x3,
+    x_5=0x7ffff1f4b748, x_6=0x555555e69d48, x_7=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:11808
+#95 0x00007ffff770c987 in lean::lean_apply_3 (f=0x555555c58ea8, a1=0x7ffff1f4b748, a2=0x555555e69d48, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:233
+#96 0x00007ffff4bdb169 in l_Lean_Elab_Command_withFreshMacroScope___rarg (x_1=0x555555c58ea8, x_2=0x7ffff1f4b748, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:11946
+#97 0x00007ffff4bee4bd in l_Lean_Elab_Command_elabCommand___lambda__1 (x_1=0x555555e76c78, x_2=0x555555c58ea8, x_3=0x7ffff1f4b790, x_4=0x555555e69d48, x_5=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:17058
+#98 0x00007ffff770c836 in lean::lean_apply_3 (f=0x555555bd6d08, a1=0x7ffff1f4b790, a2=0x555555e69d48, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:231
+#99 0x00007ffff4be8be1 in l_Lean_Elab_withLogging___at_Lean_Elab_Command_elabCommand___spec__2 (x_1=0x555555bd6d08, x_2=0x7ffff1f4b790, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:15596
+#100 0x00007ffff4bef4fd in l_Lean_Elab_Command_elabCommand (x_1=0x555555e76c78, x_2=0x7ffff1f4b790, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:17401
+#101 0x00007ffff4bf3e9c in l_Lean_Elab_Command_elabCommandTopLevel___lambda__1 (x_1=0x555555e76c78, x_2=0x7ffff1f4b790, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:18861
+#102 0x00007ffff7706181 in lean::lean_apply_1 (f=0x555555bef598, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:111
+#103 0x00007ffff74018d6 in l_Lean_profileitIOUnsafe___rarg___lambda__1 (x_1=0x555555bef598, x_2=0x1) at ../build/debug/stage1/lib/temp/Lean/Util/Profile.c:544
+#104 0x00007ffff7401b70 in l_Lean_profileitIOUnsafe___rarg___lambda__1___boxed (x_1=0x555555bef598, x_2=0x1) at ../build/debug/stage1/lib/temp/Lean/Util/Profile.c:610
+#105 0x00007ffff770608d in lean::lean_apply_1 (f=0x555555e771f8, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:109
+#106 0x00007ffff762e574 in lean::apply_1 (f=0x555555e771f8, a1=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/object.h:133
+#107 0x00007ffff762dd80 in lean::lean_profileit (category=0x7ffff2d9f508, opts=0x555555e74080, fn=0x555555e771f8, decl=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/time_task.cpp:76
+#108 0x00007ffff7401a14 in l_Lean_profileitIOUnsafe___rarg (x_1=0x7ffff2d9f508, x_2=0x555555e74080, x_3=0x555555bef598, x_4=0x1, x_5=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Util/Profile.c:573
+#109 0x00007ffff4bd93da in l_Lean_profileitM___at_Lean_Elab_Command_runLinters___spec__17___rarg (x_1=0x7ffff2d9f508, x_2=0x555555e74080, x_3=0x555555e771f8, x_4=0x1,
+    x_5=0x7ffff1f4b790, x_6=0x555555e69d48, x_7=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:11274
+#110 0x00007ffff4bf81da in l_Lean_Elab_Command_elabCommandTopLevel (x_1=0x555555e76c78, x_2=0x7ffff1f4b7d8, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Command.c:19867
+#111 0x00007ffff4e8d516 in l_Lean_Elab_Frontend_elabCommandAtFrontend (x_1=0x555555e76c78, x_2=0x7ffff1f530d8, x_3=0x555555e69dc8, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:882
+#112 0x00007ffff4e90998 in l_Lean_Elab_Frontend_processCommand (x_1=0x7ffff1f530d8, x_2=0x555555e69dc8, x_3=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:1829
+#113 0x00007ffff4e91208 in l_Lean_Elab_Frontend_processCommands (x_1=0x7ffff1f530d8, x_2=0x555555e69dc8, x_3=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:1992
+#114 0x00007ffff4e915e9 in l_Lean_Elab_IO_processCommands (x_1=0x7ffff1f530d8, x_2=0x7ffff2cc1bf8, x_3=0x555555af1708, x_4=0x1)
+--Type <RET> for more, q to quit, c to continue without paging--
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:2089
+#115 0x00007ffff4e92a52 in l_Lean_Elab_runFrontend___lambda__2 (x_1=0x7ffff1f530d8, x_2=0x7ffff2cc1bf8, x_3=0x1, x_4=0x1, x_5=0x7ffff26368f8, x_6=0x7ffff1f530b8,
+    x_7=0x555555af1708, x_8=0x1, x_9=0x1) at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:2628
+#116 0x00007ffff4e93770 in lean_run_frontend (x_1=0x7ffff26368f8, x_2=0x1, x_3=0x7ffff1edc4e8, x_4=0x7ffff1f530b8, x_5=1025, x_6=0x1, x_7=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/Frontend.c:2866
+#117 0x00007ffff75a4fd2 in lean::run_new_frontend (
+    input="import Lean\n\n-- option should be ignored when evaluating a `[builtin_init]` decl\nset_option interpreter.prefer_native false\n#eval toString Lean.PrettyPrinter.formatterAttribute.defn.name\n", opts=..., file_name="../../../tests/lean/run/evalBuiltinInit.lean", main_module_name=..., trust_level=1025, ilean_file_name=...)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/util/shell.cpp:370
+#118 0x00007ffff75a6d07 in lean_main (argc=2, argv=0x7fffffffe1f8) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/util/shell.cpp:719
+#119 0x000055555555516d in main (argc=2, argv=0x7fffffffe1f8) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/shell/lean.cpp:15
+
+
+---
+
+
+stage2 compiles successfully.
+
+sb2743@dev-cpu-tcg40:/anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug$ ctest --test-dir stage2 -j32 --num-jobs 32 --output-on-failure
+Internal ctest changing into directory: /anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage2
+Test project /anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage2
+...
+1954/1954 Test #1940: leanlaketest_init .........................................   Passed  159.88 sec
+
+99% tests passed, 1 tests failed out of 1954
+
+Total Test time (real) = 1049.26 sec
+
+The following tests FAILED:
+  1198 - leanruntest_handleLocking.lean (Failed)
+--- 
+
+### Correctly changing Lean.Compiler.IR data structures
+
+@Anton Lorenzen and I have been experimenting with Lean's reference counting algorithms,
+and we're now trying to change Lean's `Compiler.IR`. In doing so, we have stage1 build failures.
+I am unsure as to whether these build failures are because we missed something in the implementation,
+or if it necessicitates a `update-stage0`. Moreover, are there any caveats in *how* we perform `update-stage0`?
+In particular, I am worried about [the issues mentioned in "Further bootstrapping complications"](https://lean-lang.org/lean4/doc/dev/bootstrap.html#further-bootstrapping-complications). 
+
+
+Here's the [change we made, and failing test cases on `stage1`](https://gist.github.com/bollu/4bec4b52a489f08c1deaeb9a4eae2c89):
+
+
+#### [Failing debug build test](https://github.com/opencompl/lean4/actions/runs/8559908974/job/23457714973#step:17:3703)
+
+```
+99% tests passed, 1 tests failed out of 1837
+
+Total Test time (real) = 1946.25 sec
+
+The following tests FAILED:
+  1127 - leanruntest_evalBuiltinInit.lean (Failed)
+```
+
+
+#### [Failing release build test](https://github.com/opencompl/lean4/actions/runs/8559908974/job/23457714340#step:17:3948)
+
+```
+99% tests passed, 2 tests failed out of 1953
+
+Total Test time (real) = 326.50 sec
+
+The following tests FAILED:
+  1127 - leanruntest_evalBuiltinInit.lean (Failed)
+  1952 - leanlaketest_toml (Failed)
+```
+
+Our baseline lean commit is `9cb114eb8389d104fd69da2d289f768979b543f5`, and here's the (two) commits
+we have on top of this: https://github.com/opencompl/lean4/commits/2024-borrowing-baseline-NOBENCH/
+
+
+
+---
+
+
+
+delta: ...1d05c2f2fd9965a66fee37297b5037d7137902b7
+---
+
+7d01e77df3412a68b9e1d2af5634022e55b06cc9: Fails
+
+---
+
+Range of commits from 2024-borrowing-benchmarking in (oldest..newest): e4adbbcbbba62d3ed36931e57d7184221f56bb25..b65d866e8e23d816ab17800afc125186e71d1530
+Upstream base of 2024-borrowing: 9cb114eb8389d104fd69da2d289f768979b543f5
+
+--
+
+
+git cherry-pick I..P
+
+---
+
+
+../stage1/lib/temp/Lean/Attributes.c:
+
+
+LEAN_EXPORT lean_object*
+l_Lean_PersistentHashMap_insert___at_Lean_registerBuiltinAttribute___spec__1(
+    lean_object* x_1, lean_object* x_2, lean_object* x_3) {
+_start: {
+  lean_object* x_4;
+  lean_object* x_5;
+  lean_object* x_6;
+  uint8_t x_14;
+  x_4 = lean_ctor_get(x_1, 0);
+  x_5 = lean_ctor_get(x_1, 1);
+  x_14 = !lean_is_exclusive(x_1);
+  if (x_14 == 0) {
+    x_6 = x_1;
+    goto block_13;
+  } else {
+    lean_object* x_15;
+    lean_object* x_16;
+    lean_object* x_17;
+    lean_inc(x_5);
+    lean_inc(x_4);
+    lean_dec(x_1);
+    x_15 = lean_ctor_get(x_1, 1);  // CRASH
+    x_16 = lean_ctor_get(x_1, 0);
+    x_17 = lean_alloc_ctor(0, 2, 0);
+    lean_ctor_set(x_17, 0, x_16);
+    lean_ctor_set(x_17, 1, x_15);
+    x_6 = x_17;
+    goto block_13;
+  }
+block_13: {
+  uint64_t x_7;
+  size_t x_8;
+  size_t x_9;
+  lean_object* x_10;
+  lean_object* x_11;
+  lean_object* x_12;
+  x_7 = l_Lean_Name_hash___override(x_2);
+  x_8 = lean_uint64_to_usize(x_7);
+  x_9 = 1;
+  x_10 =
+      l_Lean_PersistentHashMap_insertAux___at_Lean_registerBuiltinAttribute___spec__2(
+    x_4, x_8, x_9, x_2, x_3);
+  x_11 = lean_unsigned_to_nat(1u);
+  x_12 = lean_nat_add(x_5, x_11);
+  lean_dec(x_5);
+  lean_ctor_set(x_6, 1, x_12);
+  lean_ctor_set(x_6, 0, x_10);
+  return x_6;
+}
+}
+
+
+-----
+
+
+
+../stage1/lib/temp/Lean/Attributes.c:
+
+
+LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_insert___at_Lean_registerBuiltinAttribute___spec__1(lean_object* x_1, lean_object* x_2, lean_object* x_3) {
+_start:
+{
+lean_object* x_4; lean_object* x_5; lean_object* x_6; uint8_t x_14;
+x_4 = lean_ctor_get(x_1, 0);
+x_5 = lean_ctor_get(x_1, 1);
+x_14 = !lean_is_exclusive(x_1);
+if (x_14 == 0)
+{
+x_6 = x_1;
+goto block_13;
+}
+else
+{
+lean_object* x_15; lean_object* x_16; lean_object* x_17;
+lean_inc(x_5);
+lean_inc(x_4);
+lean_dec(x_1);
+x_15 = lean_ctor_get(x_1, 1); // CRASH
+x_16 = lean_ctor_get(x_1, 0);
+x_17 = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(x_17, 0, x_16);
+lean_ctor_set(x_17, 1, x_15);
+x_6 = x_17;
+goto block_13;
+}
+block_13:
+{
+uint64_t x_7; size_t x_8; size_t x_9; lean_object* x_10; lean_object* x_11; lean_object* x_12;
+x_7 = l_Lean_Name_hash___override(x_2);
+x_8 = lean_uint64_to_usize(x_7);
+x_9 = 1;
+x_10 = l_Lean_PersistentHashMap_insertAux___at_Lean_registerBuiltinAttribute___spec__2(x_4, x_8, x_9, x_2, x_3);
+x_11 = lean_unsigned_to_nat(1u);
+x_12 = lean_nat_add(x_5, x_11);
+lean_dec(x_5);
+lean_ctor_set(x_6, 1, x_12);
+lean_ctor_set(x_6, 0, x_10);
+return x_6;
+}
+}
+}
+
+
+----
+
+
+
+(venv) ➜  stage1 git:(2024-borrowing-benchmarking) lldb --  bin/lean --stats src/Lean.lean
+
+(lldb) target create "bin/lean"
+Current executable set to '/Users/sid/24/refcount/.lean4/build/debug/stage1/bin/lean' (arm64).
+(lldb) settings set -- target.run-args  "--stats" "src/Lean.lean"
+(lldb) run
+Process 3620 launched: '/Users/sid/24/refcount/.lean4/build/debug/stage1/bin/lean' (arm64)
+LEAN ASSERTION VIOLATION
+File: /Users/sid/24/refcount/.lean4/build/debug/stage1/include/lean/lean.h
+Line: 552
+i < lean_ctor_num_objs(o)
+(C)ontinue, (A)bort/exit, (S)top/trap
+S
+Process 3620 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = signal SIGABRT
+    frame #0: 0x0000000181c9511c libsystem_kernel.dylib`__pthread_kill + 8
+libsystem_kernel.dylib`:
+->  0x181c9511c <+8>:  b.lo   0x181c9513c               ; <+40>
+    0x181c95120 <+12>: pacibsp
+    0x181c95124 <+16>: stp    x29, x30, [sp, #-0x10]!
+    0x181c95128 <+20>: mov    x29, sp
+Target 0: (lean) stopped.
+(lldb) bt
+* thread #1, queue = 'com.apple.main-thread', stop reason = signal SIGABRT
+  * frame #0: 0x0000000181c9511c libsystem_kernel.dylib`__pthread_kill + 8
+    frame #1: 0x0000000181ccccc0 libsystem_pthread.dylib`pthread_kill + 288
+    frame #2: 0x0000000181bdca40 libsystem_c.dylib`abort + 180
+    frame #3: 0x000000010828d010 libleanshared.dylib`lean::debuggable_exit() at debug.cpp:78:5
+    frame #4: 0x000000010828d140 libleanshared.dylib`lean::invoke_debugger() at debug.cpp:113:13
+    frame #5: 0x000000010828d568 libleanshared.dylib`lean_notify_assert(fileName="/Users/sid/24/refcount/.lean4/build/debug/stage1/include/lean/lean.h", line=552, condition="i < lean_ctor_num_objs(o)") at debug.cpp:140:5
+    frame #6: 0x0000000107816338 libleanshared.dylib`lean_ctor_get(o=0x000000011fc8f7f0, i=1) at lean.h:552:5
+    frame #7: 0x0000000107817c84 libleanshared.dylib`l_Lean_PersistentHashMap_insert___at_Lean_registerBuiltinAttribute___spec__1(x_1=0x000000011fc8f7f0, x_2=0x000000011fc8d018, x_3=0x000000011fc8cef8) at Attributes.c:1936:8
+    frame #8: 0x0000000107818334 libleanshared.dylib`l_Lean_registerBuiltinAttribute___lambda__1(x_1=0x000000011fc8cef8, x_2=0x0000000000000001, x_3=0x0000000000000001) at Attributes.c:2160:8
+    frame #9: 0x00000001078185f0 libleanshared.dylib`l_Lean_registerBuiltinAttribute___lambda__2(x_1=0x000000011fc8cef8, x_2=0x0000000000000001, x_3=0x0000000000000001) at Attributes.c:2255:8
+    frame #10: 0x0000000107818758 libleanshared.dylib`l_Lean_registerBuiltinAttribute(x_1=0x000000011fc8cef8, x_2=0x0000000000000001) at Attributes.c:2316:8
+    frame #11: 0x0000000107821e00 libleanshared.dylib`l_List_forM___at_Lean_registerEnumAttributes___spec__4(x_1=0x000000011fc8f850, x_2=0x0000000000000001) at Attributes.c:6897:7
+    frame #12: 0x0000000107822344 libleanshared.dylib`l_Lean_registerEnumAttributes___rarg(x_1=0x000000011fc8f8b0, x_2=0x000000011fc8f898, x_3='\0', x_4=0x000000011fc8cf58, x_5=0x0000000000000001) at Attributes.c:7099:8
+    frame #13: 0x0000000107dedc74 libleanshared.dylib`l_Lean_Compiler_initFn____x40_Lean_Compiler_InlineAttrs___hyg_261_(x_1=0x0000000000000001) at InlineAttrs.c:1586:7
+    frame #14: 0x0000000107deec18 libleanshared.dylib`initialize_Lean_Compiler_InlineAttrs(builtin='\x01', w=0x0000000000000001) at InlineAttrs.c:2067:21
+    frame #15: 0x0000000105941530 libleanshared.dylib`initialize_Lean_Compiler(builtin='\x01', w=0x0000000000000001) at Compiler.c:35:7
+    frame #16: 0x00000001080d7420 libleanshared.dylib`initialize_Lean(builtin='\x01', w=0x0000000000000001) at Lean.c:62:7
+    frame #17: 0x000000010828c9d0 libleanshared.dylib`::lean_initialize() at init.cpp:31:23
+    frame #18: 0x000000010828ca48 libleanshared.dylib`lean::initializer::initializer(this=0x000000016fdfe8b7) at init.cpp:53:5
+    frame #19: 0x000000010828ca74 libleanshared.dylib`lean::initializer::initializer(this=0x000000016fdfe8b7) at init.cpp:52:28
+    frame #20: 0x00000001080f03d4 libleanshared.dylib`lean_main(argc=3, argv=0x000000016fdff228) at shell.cpp:545:23
+    frame #21: 0x0000000100003f90 lean`main(argc=3, argv=0x000000016fdff228) at lean.cpp:15:12
+    frame #22: 0x00000001819510e0 dyld`start + 2360
+
+^^^ April 4
+
+
 ---
 
 
