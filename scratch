@@ -1,6 +1,6 @@
 #### Explanation of what's going on:
 
-### stage0 lean binary:
+### building `lean4/stage0/ --g++---> build/release/stage0`:
 
 ##### prefer_native=true
 - use symbols from `libInit.a` (?)
@@ -8,22 +8,24 @@
 ##### prefer_native=false
   - ? 
 
-### stage1 lean binary:
+### building `lean4/src ---stage0---> build/release/stage1`:
+
+1. build `build/release/stage1/lib/lean/**/*.olean` with `build/release/stage0/bin/lean`. 
+
+##### if `prefer_native=true`
+- use symbols from `libInit.a` (?)
+
+##### if prefer_native=false
+- interpret IR loaded from `build/release/stage1/lib/lean/**/*.olean`. These `olean`s are built from the `stage0`compiler.
+
+
+### building `lean4/src ---stage1---> build/release/stage2`:
 
 ##### if prefer_native=true
 - use symbols from `libInit.a` (?)
 
 ##### if prefer_native=false
-- interpret IR loaded from `$BUILD_DIR/stage1/lib/lean/**/*.olean`. These `olean`s are built from the `stage0`compiler.
-
-
-### stage2 lean binary:
-
-##### if prefer_native=true
-- use symbols from `libInit.a` (?)
-
-##### if prefer_native=false
-- interpret IR loaded from `$BUILD_DIR/stage1/lib/lean/**/*.olean`. These `olean`s are built from the `stage0`compiler.
+- interpret IR loaded from `build/release/stage2/lib/lean/**/*.olean`. These `olean`s are built from the `stage1`compiler.
 
 
 
