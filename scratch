@@ -1,12 +1,21 @@
+commit 3b08bde207186595351b42d5613b8bd5ece86e49
+Author: Anton Lorenzen <anfelor@posteo.de>
+Date:   Wed Apr 3 21:29:36 2024 +0100
+
+    feat: reuse across types and handle RC of reset correctly
+
+ src/Lean/Compiler/IR/RC.lean         | 3 ++-
+ src/Lean/Compiler/IR/ResetReuse.lean | 7 ++++---
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+
+ ---
+
 ```
 b262c7fb21 feat: allow drop-guided reuse after a borrowed function call
 0746c44200 feat: correctly setup runner for stage0 bench
 3b08bde207 feat: reuse across types and handle RC of reset correctly
 b9fe13c9a9 feat: drop-guided reuse  -- upstreamed
 ```
-
-
-https://www.amazon.co.uk/Quantum-Computing-since-Democritus-Aaronson/dp/0521199565/ref=sr_1_1
 
 - Give warnings when large objects (e.g. arrays) are used nonlinearly.
 - This can be broken by closed term extraction.
