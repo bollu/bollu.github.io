@@ -1,4 +1,15 @@
+Commit to be reverted on benchmarking:
+https://github.com/opencompl/lean4/commit/0c92058737aa0893ff746175235559f749efcfbc
 
+
+ˆˆˆˆApr 5
+
+
+kinit --keychain
+ssh -K sb2743@dev-cpu-tcg40.cl.cam.ac.uk
+
+
+--- 
 
 sb2743@dev-cpu-tcg40:/anfs/bigdisc/sb2743/24-borrowing/lean4/build/debug/stage1$ gdb --args ./bin/lean ../../../tests/lean/run/evalBuiltinInit.lean
 
