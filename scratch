@@ -6,7 +6,7 @@
 - use symbols from `libleanshared.so` (?)
 
 ##### `prefer_native=false` (default)
-  - ?
+- ?
 
 ### building `lean4/src ---stage0---> build/release/stage1`:
 
@@ -22,8 +22,6 @@
 
 
 ### building `lean4/src ---stage1---> build/release/stage2`:
-
-
 - Identical to stage1, replace all occurrences: `(stage0, stage1) := (stage1, stage2)`. Parallel assignment semantics important ;) 
 
 
