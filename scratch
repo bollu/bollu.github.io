@@ -69,6 +69,14 @@ set_option interpreter.prefer_native false
 ##### IR interpreter: function loading.
 
 
+```
+#85 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x555555e84cf8, x_4=0x555555bef628, x_5=0x555555e74080, x_6=0x1)
+    at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
+#86 0x00007ffff770c8d2 in lean::lean_apply_3 (f=0x555555e85148, a1=0x555555bef628, a2=0x555555e74080, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:232
+#87 0x00007ffff4ae2816 in l_Lean_Elab_Command_elabEvalUnsafe (x_1=0x555555e76c78, x_2=0x7ffff1f4b748, x_3=0x555555e69d48, x_4=0x1)
+    at ../build/debug/stage1/lib/temp/Lean/Elab/BuiltinCommand.c:23820
+```
+
 ---
 
 
@@ -263,7 +271,6 @@ r::interpreter&)> const&) (env=..., opts=..., fn=..., f=...) at /anfs/bigdisc/sb
 #85 0x00007ffff76d9d2a in lean::ir::interpreter::stub_6_aux (x_1=0x555555e85508, x_2=0x555555e74080, x_3=0x555555e84cf8, x_4=0x555555bef628, x_5=0x555555e74080, x_6=0x1)
     at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/library/compiler/ir_interpreter.cpp:913
 #86 0x00007ffff770c8d2 in lean::lean_apply_3 (f=0x555555e85148, a1=0x555555bef628, a2=0x555555e74080, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:232
---Type <RET> for more, q to quit, c to continue without paging--
 #87 0x00007ffff4ae2816 in l_Lean_Elab_Command_elabEvalUnsafe (x_1=0x555555e76c78, x_2=0x7ffff1f4b748, x_3=0x555555e69d48, x_4=0x1)
     at ../build/debug/stage1/lib/temp/Lean/Elab/BuiltinCommand.c:23820
 #88 0x00007ffff770c7b9 in lean::lean_apply_3 (f=0x555555e76c38, a1=0x7ffff1f4b748, a2=0x555555e69d48, a3=0x1) at /anfs/bigdisc/sb2743/24-borrowing/lean4/src/runtime/apply.cpp:230
