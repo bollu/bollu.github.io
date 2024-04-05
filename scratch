@@ -4,15 +4,14 @@
 #### Explanation of what's going on:
 
 
-stage0: uses olean?
+stage0 lean binary:
+  - links in Init as libInit.a
+  - what happens when prefer_native=false?
 
+stage1 lean binary:
+  - if prefer_native=true, then picks up definitions from stdlib that come from stage1.
+  - if prefer_native=false, then picks up definitions that come from IR, which is stage0. This is stage0, since the IR is loaded from the Environment, 
 
-
-stage1: picks up defn from stage0 olean
-- lean bootstrap by default prefers to run code with the interpreter and not pick up native definitions, so that changes
-  propagate faster.
-- In our case, this fucks us over, since is uses the old interpreter (stage0 bin) to interpret the new IR (stage1 IR).
-- 
 
 
 
