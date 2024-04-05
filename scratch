@@ -1,7 +1,19 @@
 
 
 
-## Verifying that the problem is indeed to do with mismatched runtimes.
+#### Explanation of what's going on:
+
+
+stage0: uses olean?
+
+
+stage1: picks up defn from stage0 olean
+- lean bootstrap by default prefers to run code with the interpreter and not pick up native definitions, so that changes
+  propagate faster.
+- In our case, this fucks us over
+
+
+#### Verifying that the problem is indeed to do with mismatched runtimes.
 
 ```
 -- evalBuiltinInit.lean
