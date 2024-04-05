@@ -1,8 +1,19 @@
+
+
+- Teach temci to intepret lean runtime outputs.
+
+===Stuff to add to benching suite
+
+- Add Lean4 support to hx editor.
+
+===Relaxing projects
+
+
+
 Commit to be reverted on benchmarking:
 https://github.com/opencompl/lean4/commit/0c92058737aa0893ff746175235559f749efcfbc
 
-
-ˆˆˆˆApr 5
+^^^^Apr 5
 
 
 kinit --keychain
