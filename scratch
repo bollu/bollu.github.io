@@ -13,7 +13,7 @@ Date:   Wed Apr 3 21:29:36 2024 +0100
 ```
 b262c7fb21 feat: allow drop-guided reuse after a borrowed function call
 0746c44200 feat: correctly setup runner for stage0 bench
-3b08bde207 feat: reuse across types and handle RC of reset correctly
+3b08bde207 feat: reuse across types and handle RC of reset correctly --done.
 b9fe13c9a9 feat: drop-guided reuse -- done.
 ```
 
