@@ -46990,15 +46990,21 @@ speak slower than you want to.
 
 - `C – E♭ – F – G♭ – G – B♭`.
 
-##### Basic Chords
-
 
 ##### Basic Chord Progressions:
 
 - C7, F7, D7.
+- Recall seventh chord is 1, 3, 5 plus the octave key flattened .
 
 ```
 | C7 | C7 | C7 | C7 |
 | F7 | F7 | C7 | C7 |
 | G7 | F7 | C7 | C7 |
 ```
+
+
+##### Harmonizing
+
+
+- https://pianowithjonny.com/piano-lessons/3-slow-blues-piano-improv-techniques/
+- Haromize bottom 5 notes of blues scale with a higher C
