@@ -46982,3 +46982,23 @@ speak slower than you want to.
 - [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
 - [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
+
+
+# Blues Piano Improv
+
+#### Scale
+
+- `C – E♭ – F – G♭ – G – B♭`.
+
+##### Basic Chords
+
+
+##### Basic Chord Progressions:
+
+- C7, F7, D7.
+
+```
+| C7 | C7 | C7 | C7 |
+| F7 | F7 | C7 | C7 |
+| G7 | F7 | C7 | C7 |
+```
