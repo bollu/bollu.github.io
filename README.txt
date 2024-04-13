@@ -47154,6 +47154,39 @@ speak slower than you want to.
 ### Approch pattern: half step below
 
 - Approach each note with the note that is a semitone below.
+- Dmin7: C# -> D
+- Dmin7: E -> F
+- Dmin7: G -> A
+- Dmin7: B -> C
+- G7: F -> G
+- G7: A -> B
+- G7: C -> D
+- G7: E -> F
+- Cmaj7: B -> C
+- Cmaj7: D -> E
+- Cmaj7: F -> G
+- Cmaj7: A -> B
+
+### Approach pattern: chord scale above
+
+- Play C major scale, approach from above before playing note
+
+- Dmin7: E -> D
+- Dmin7: F -> E
+- Dmin7: G -> F
+- Dmin7: A -> G
+- G7: B -> A
+- G7: C -> B
+- G7: D -> C
+- G7: F -> E
+- Cmaj7: E -> D
+- Cmaj7: F -> E
+- Cmaj7: G -> F
+- Cmaj7: B -> A
+
+### Approach pattern: enclosures
+- Approach from both sides, chromatically, before playing the main note.
+- Dmin7: C# -> E -> D
 
 
 #### Blues Scale
