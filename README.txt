@@ -47226,6 +47226,9 @@ speak slower than you want to.
 - For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
 
+
+#### Melody: Embellishments
+
 ### Technique: Playing Chords as one
 - All keys must be struck at the same time.
 - How to practice this?
@@ -47254,7 +47257,6 @@ speak slower than you want to.
 - Key idea: leave out the root note, only keep 3 5 7 9.
 - 3 5 7 9 (position A)
 - 7 9 3 5 (position B) [7, 9 are octave lower]
-
 
 ### Chord voicing for bossa nova: Shell chord voicings (simple)
 
