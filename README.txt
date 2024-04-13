@@ -46988,10 +46988,14 @@ speak slower than you want to.
 
 - References: inside the score
 
-### Prelude
+##### What is a symphony?
+- a work usually consisting of multiple distinct sections or movements, often four, with the first movement in sonata form.
+- Symphonies are almost always scored for an orchestra.
+
+##### Prelude
 - Develops a singular theme.
 
-### Sonata Form
+##### Sonata Form
 
 - Exposition: two conflicting keys / two groups. First group: home tonic. Second group: different key.
   Usually `I -> V`, or `i -> V / bIII`
@@ -47004,7 +47008,7 @@ speak slower than you want to.
   This can change the entire tone of the group by going from tonic major to tonic minor.
 - Coda: closure at the recap.
 
-### What is a sonata?
+##### What is a sonata?
 
 - This is not the same as a sonata form!
 - A group of pieces called movements. Eg. moonlight sonata has three movements.
@@ -47049,70 +47053,66 @@ speak slower than you want to.
 - Stretto is the delivery of the subject that has been squeezed.
 
 
-### Hildegard von Bingen (1098-1179)
+##### Hildegard von Bingen (1098-1179)
 
-### Claudio Monteverdi (1567-1643)
+##### Claudio Monteverdi (1567-1643)
 
-### Bach (1690-1750)
+##### Bach (1690-1750)
 
-### Mozart (1756 - 1791)
+##### Mozart (1756 - 1791)
 
-### George Frideric Handel (1685-1759)
+##### George Frideric Handel (1685-1759)
 
-### Antonio Vivaldi (1680-1740)
+##### Antonio Vivaldi (1680-1740)
 
-### Beethoven (1770-1827)
+##### Beethoven (1770-1827)
 
-### Franz Joseph Haydn (1730-1809)
+##### Franz Joseph Haydn (1730-1809)
 
-### Franz Schubert (1800-1830)
+##### Franz Schubert (1800-1830)
 
-### Frederic Chopin (1810-1850)
+##### Frederic Chopin (1810-1850)
 
-### Felix Mendelssohn (1809 – 1847)
+##### Felix Mendelssohn (1809 – 1847)
 
-### Franz Liszt (1810-1890)
+##### Franz Liszt (1810-1890)
 
+##### Giuseppe Verdi (1813 – 1901)
 
-### Giuseppe Verdi (1813 – 1901)
+##### Bruckner (1825-1900)
 
-
-### Bruckner (1825-1900)
-
-### Richard Wagner (1810-1880)
+##### Richard Wagner (1810-1880)
 
 
-### Richard Strauss (1860-1940)
+##### Richard Strauss (1860-1940)
 
-### Gustav Mahler (1860-1910)
+##### Gustav Mahler (1860-1910)
 
-### Robert Schumann (1810-1850)
+##### Robert Schumann (1810-1850)
 
-### Johannes Brahms (1840-1900)
+##### Johannes Brahms (1840-1900)
 
-### Antonín Dvorak (1841 – 1904)
+##### Antonín Dvorak (1841 – 1904)
 
-### Claude Debussy (1860-1910)
+##### Claude Debussy (1860-1910)
 
-### Pyotr Ilyich Tchaikovsky (1840-1890)
+##### Pyotr Ilyich Tchaikovsky (1840-1890)
 
-### Vaughan Williams (1875-1950)
+##### Vaughan Williams (1875-1950)
 
-### Rachmaninoff (1880-1950)
+##### Rachmaninoff (1880-1950)
 
-### Ravel (1875-1935)
+##### Ravel (1875-1935)
 
+##### Igor Stravinsky (1880-1970)
 
+##### Shostakovich (1900-1975)
 
-### Igor Stravinsky (1880-1970)
+##### Sergei Rachmaninov (1873-1943)
 
-### Shostakovich (1900-1975)
+##### Leonard Bernstein (1918-1990)
 
-### Sergei Rachmaninov (1873-1943)
-
-### Leonard Bernstein (1918-1990)
-
-### Philip Glass (1930-)
+##### Philip Glass (1930-)
 
 
 
