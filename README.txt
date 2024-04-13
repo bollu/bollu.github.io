@@ -47137,13 +47137,20 @@ speak slower than you want to.
 #### Best References for theory
 
 - [Learn EVERY Chord and Chord Symbol - The 7 Systems by Musicians Inspired](https://www.youtube.com/watch?v=CyNiY1jzOuQ&t=1112s)
+- [Jazz improv with julian bradley](https://www.youtube.com/watch?v=lhNZEIFv3uk)
 
-#### Scale
+#### Jazz Chord Progression
+
+- We fix the key to be C major.
+- 2 5 1 chord progression.
+- Dmin7, G7, Cmaj7, A7
+
+#### Blues Scale
 
 - `C – E♭ – F – G♭ – G – B♭`.
 
 
-##### Basic Chord Progressions:
+##### Basic Blues Chord Progression:
 
 - C7, F7, D7.
 - Recall seventh chord is 1, 3, 5 plus the octave key flattened .
@@ -47156,7 +47163,6 @@ speak slower than you want to.
 
 
 ##### Harmonizing
-
 
 - https://pianowithjonny.com/piano-lessons/3-slow-blues-piano-improv-techniques/
 - Haromize bottom 5 notes of blues scale with a higher C
