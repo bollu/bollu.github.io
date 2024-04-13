@@ -47191,6 +47191,7 @@ speak slower than you want to.
 ### Jazz rhythm
 - (quaver (semiquaver semiquaver)) (quaver quaver)
 
+### Quickly counting intervals
 
 #### Blues Scale
 
