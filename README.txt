@@ -47141,7 +47141,7 @@ speak slower than you want to.
 - [Jazz tutorial](https://jazztutorial.com/video-library)
 - The real book. Get one in key C.
 
-#### Jazz Chord Progression
+#### Jazz Chord Progression for C major
 
 - We fix the key to be C major.
 - 2 5 1 chord progression.
@@ -47153,7 +47153,7 @@ speak slower than you want to.
 - A7 notes: A C# E G + B. Use Bb in this case as the flat 9th.
 - Recall that the 9th is taken from the root (C major), but the 9th note for the given scale.
 
-### Approch pattern: half step below
+### Melody: Approch pattern --- half step below
 
 - Approach each note with the note that is a semitone below.
 - Dmin7: C# -> D
@@ -47169,7 +47169,8 @@ speak slower than you want to.
 - Cmaj7: F -> G
 - Cmaj7: A -> B
 
-### Approach pattern / scale associated to a chord: Chordal tone + whole step
+
+### Melody: Approach pattern / scale associated to a chord: Chordal tone + whole step
 
 - For any given chord, eg. Cmaj7 = C E G B, one is allowed to use notes that are a whole step up from each of the notes.
 - This gives us the notes: C D E F# G A B C. This is the C lydian scale.
@@ -47178,7 +47179,7 @@ speak slower than you want to.
 - For G7, we get G A B C D E F G. This is the G mixolydian scale.
 - For A7, we get A B C# D E F# G A. This is the A mixolydian scale.
 
-### Approach pattern: chord scale above
+### Melody: Approach pattern --- chord scale above
 
 - Play C major scale, approach from above before playing note
 
@@ -47195,14 +47196,14 @@ speak slower than you want to.
 - Cmaj7: G -> F
 - Cmaj7: B -> A
 
-### Approach pattern: enclosures
+### Melody: Approach pattern --- enclosures
 - Approach from both sides, chromatically, before playing the main note.
 - Dmin7: C# -> E -> D
 
-### Jazz rhythm
+### Melody: Jazz rhythm
 - (quaver (semiquaver semiquaver)) (quaver quaver)
 
-### Quickly counting intervals
+### Theory: Quickly counting intervals
 - memorize: perfect 5ths
 - minor 2nd: half step
 - Major 2nd: whole step
@@ -47216,7 +47217,7 @@ speak slower than you want to.
 - minor 7th: octave - whole step
 - Major 7th: octave - half step
 
-### Walking Bass line
+### Melody: Walking Bass line
 - We want the notes to be the root note of the chord
 - For example, with the standard Dmin7, G7, Cmaj7, A7 progression, we would have:
 - Play D, Play G, Play C, Play A
@@ -47224,6 +47225,21 @@ speak slower than you want to.
 - But when we leap, we want to use notes from the chord.
 - For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
+
+### Technique: Playing Chords as one
+- All keys must be struck at the same time.
+- How to practice this?
+- First find fingers to the notes
+- Lock ones hands
+- Apply pressure from arm /wrist that goes downwards.
+
+
+### Jazz chords + Pentatonic Scale [For later]
+
+- G pentatonic sounds consonant over all 3 of Dmin7, G7, Cmaj7
+- That is, build the pentatonic scale over the 5th scale degree (since we are in C key, we will use G).
+- G pentatonic has notes: `G Bb C D F`
+
 
 #### Blues Scale
 
