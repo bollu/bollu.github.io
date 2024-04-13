@@ -47048,6 +47048,75 @@ speak slower than you want to.
 - Inversion is the delivery of the subject or countersubject in reflected notes.
 - Stretto is the delivery of the subject that has been squeezed.
 
+
+### Hildegard von Bingen (1098-1179)
+
+### Claudio Monteverdi (1567-1643)
+
+### Bach (1690-1750)
+
+### Mozart (1756 - 1791)
+
+### George Frideric Handel (1685-1759)
+
+### Antonio Vivaldi (1680-1740)
+
+### Beethoven (1770-1827)
+
+### Franz Joseph Haydn (1730-1809)
+
+### Franz Schubert (1800-1830)
+
+### Frederic Chopin (1810-1850)
+
+### Felix Mendelssohn (1809 – 1847)
+
+### Franz Liszt (1810-1890)
+
+
+### Giuseppe Verdi (1813 – 1901)
+
+
+### Bruckner (1825-1900)
+
+### Richard Wagner (1810-1880)
+
+
+### Richard Strauss (1860-1940)
+
+### Gustav Mahler (1860-1910)
+
+### Robert Schumann (1810-1850)
+
+### Johannes Brahms (1840-1900)
+
+### Antonín Dvorak (1841 – 1904)
+
+### Claude Debussy (1860-1910)
+
+### Pyotr Ilyich Tchaikovsky (1840-1890)
+
+### Vaughan Williams (1875-1950)
+
+### Rachmaninoff (1880-1950)
+
+### Ravel (1875-1935)
+
+
+
+### Igor Stravinsky (1880-1970)
+
+### Shostakovich (1900-1975)
+
+### Sergei Rachmaninov (1873-1943)
+
+### Leonard Bernstein (1918-1990)
+
+### Philip Glass (1930-)
+
+
+
+
 #### Double Fugue
 - Fugue exposes with two subjects
 
