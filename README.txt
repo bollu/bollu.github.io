@@ -47230,8 +47230,10 @@ speak slower than you want to.
 - Tension and resolution notes
 - resolution notes: root, 3rd, 5th
 - tension notes: want to resolve to the closest resolution note.
-- appogiatura: a note that is played before the resolution note, and is a half step above or below the resolution note.
--
+- appogiatura: a note that is played before the resolution note, and is a half step above or below the resolution note. Decorate resolution notes with appogiatura.
+- double appogiatura / turn: start on the resolution note, go to the note above, come back to the resolution note,
+  go to the note below, and come back to the resolution note.
+- In general, precede each resolution note with an ornament.
 
 ### Technique: Playing Chords as one
 - All keys must be struck at the same time.
