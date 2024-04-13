@@ -47256,6 +47256,10 @@ speak slower than you want to.
 
 ### Chord voicing for bossa nova: Shell chord voicings (simple)
 
+- [Beginner chord voicings for jazz piano](https://jazztutorial.com/video-library/chord-voicings/shell-voicings-lesson)
+- Distribute notes evenly
+- Prefer voices to be higher rather than lower.
+- We want the 3rd and the 7th. Fix the melody note and the chord note, and now figure out how to add the 3rd and 7th with a good spread.
 - 3rd and 7th (position A)
 - 7th and 3rd (position B)
 
