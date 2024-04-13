@@ -47143,7 +47143,18 @@ speak slower than you want to.
 
 - We fix the key to be C major.
 - 2 5 1 chord progression.
-- Dmin7, G7, Cmaj7, A7
+- Dmin7, G7, Cmaj7, A7.
+- Use extended notes, 9th.
+- Dmin7 notes: D F A C + E
+- G7 notes: G B D F + A
+- Cmaj7 notes: C E G B + D
+- A7 notes: A C# E G + B. Use Bb in this case as the flat 9th.
+- Recall that the 9th is taken from the root (C major), but the 9th note for the given scale.
+
+### Approch pattern: half step below
+
+- Approach each note with the note that is a semitone below.
+
 
 #### Blues Scale
 
