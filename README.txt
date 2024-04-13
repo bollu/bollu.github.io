@@ -47054,7 +47054,9 @@ speak slower than you want to.
 ## Concerto
 
 - A sonata for solo instrument(s).
--  We get anthesis between soloist versus orchestra, and how do we balance this?
+- We get anthesis between soloist versus orchestra, and how do we balance this?
+- Eg. orchestral introduction (ritornello / return), soloist enters, soloist climax, orhestral climax (ritornello).
+- An example is vivaldi's spring. soloist imitates birdsong. the solo section imitates different natural phenomena.
 
 
 
