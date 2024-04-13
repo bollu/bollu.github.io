@@ -47138,6 +47138,8 @@ speak slower than you want to.
 
 - [Learn EVERY Chord and Chord Symbol - The 7 Systems by Musicians Inspired](https://www.youtube.com/watch?v=CyNiY1jzOuQ&t=1112s)
 - [Jazz improv with julian bradley](https://www.youtube.com/watch?v=lhNZEIFv3uk)
+- [Jazz tutorial](https://jazztutorial.com/video-library)
+- The real book. Get one in key C.
 
 #### Jazz Chord Progression
 
