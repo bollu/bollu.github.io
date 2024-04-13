@@ -47205,6 +47205,15 @@ speak slower than you want to.
 - minor 7th: octave - whole step
 - Major 7th: octave - half step
 
+### Walking Bass line
+- We want the notes to be the root note of the chord
+- For example, with the standard Dmin7, G7, Cmaj7, A7 progression, we would have:
+- Play D, Play G, Play C, Play A
+- We can move to the notes by leaping via 3rd / 5th / octave.
+- But when we leap, we want to use notes from the chord.
+- For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
+- So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
+
 #### Blues Scale
 
 - `C – E♭ – F – G♭ – G – B♭`.
