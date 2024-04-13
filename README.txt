@@ -46984,6 +46984,54 @@ speak slower than you want to.
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
 
 
+# Classical music
+
+- References: inside the score
+
+### Prelude
+- Develops a singular theme.
+
+### Sonata Form
+
+- Exposition: two conflicting keys / two groups. First group: home tonic. Second group: different key.
+  Usually `I -> V`, or `i -> V / bIII`
+- Exposition ends with a codetta, to transition to the development. Often, the whole exposition is repeated.
+- Development: looser, more free form. Will avoid the expository keys. Unstable key.
+  Some composers might insert a new theme into the development --- an expansion of the sonata form.
+- Recapitulation: Goes back to exposition with a twist. Here, the second group *will also be in the home tonic*.
+  The transition from group 1 to group 2, that makes sure group 2 from the exposition is in the same key gives
+  a large point of interest. Note that this can be in the home tonic **major or minor**.
+  This can change the entire tone of the group by going from tonic major to tonic minor.
+- Coda: closure at the recap.
+
+### What is a sonata?
+
+- This is not the same as a sonata form!
+- A group of pieces called movements. Eg. moonlight sonata has three movements.
+- Upto two instruments. For more instrument, we call them trio, quartet, quintet, etc.
+- A full sized sontata will have four movements.
+- The first movement is usually in sonata form.
+- The second movement will be a slow movement. Can be in modified sonata form, with exposition, recap, and coda,
+  no development. Will often be ABA' movement.
+- The third movement will be a minuet or scherzo (dance).
+- The fourth movement will be lively, often in sonata or rondo form. Rondo goes round and round again.
+  Comes in episodes which are contrasting. ABACA or ABA'CA''BA'''
+
+##### Mini sonatas
+
+- Sometimes we only have three movements, which exclude the dance movement.
+
+
+##### Two other forms that might occur: Variations
+
+- Restatements of the theme.
+- Variation takes the whole structure of a theme and remakes it.
+- Variation form is cumulative. Each variation builds on the other one.
+
+##### Two other forms that might occur: Fugue
+- Bach was a master of the fugue. Well tempered Clavier. 24 preludes and fugues.
+
+
 # Blues and Jazz Piano Improv
 
 #### Best References for theory
