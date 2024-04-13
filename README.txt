@@ -46984,7 +46984,11 @@ speak slower than you want to.
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
 
 
-# Blues Piano Improv
+# Blues and Jazz Piano Improv
+
+#### Best References for theory
+
+- [Learn EVERY Chord and Chord Symbol - The 7 Systems by Musicians Inspired](https://www.youtube.com/watch?v=CyNiY1jzOuQ&t=1112s)
 
 #### Scale
 
