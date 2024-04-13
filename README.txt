@@ -47188,6 +47188,9 @@ speak slower than you want to.
 - Approach from both sides, chromatically, before playing the main note.
 - Dmin7: C# -> E -> D
 
+### Jazz rhythm
+- (quaver (semiquaver semiquaver)) (quaver quaver)
+
 
 #### Blues Scale
 
