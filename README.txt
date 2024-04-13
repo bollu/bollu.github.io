@@ -47233,6 +47233,7 @@ speak slower than you want to.
 - Lock ones hands
 - Apply pressure from arm /wrist that goes downwards.
 
+
 ### Melody: Bossa nova
 
 - [reference: jazz tutorial bossa nova](https://jazztutorial.com/video-library/jazz-piano-styles/bossa-nova-jazz-piano-lesson)
@@ -47241,10 +47242,22 @@ speak slower than you want to.
 - For any chord where the 5th is , play the root note (1) and the natural fifth (5)
 - crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5)
 - For the usual jazz chord sequence of Dmin7, G7, Cmaj7, A7, we would play:
+- To travel upward, just play 1->5. To go downward, go downward as 5->1->5 and so on.
+- So, if we hold a Cmin7 for 2 measures, we can play as (dot denotes a longer note, prime is octave higher): `1. 5 5 1. 5 5 1' 5`
 - Dmin7: D A D A D A D A
 - G7: G D G D G D G D
 - Cmaj7: C G C G C G C G
 - A7: A E A E A E A E (Can add color by playing A7b9)
+
+### Chord voicing for bossa nova: Rootless chord voicings (sophisticated)
+
+- 3 5 7 9 (position A)
+- 7 9 3 5 (position B) [7, 9 are octave lower]
+
+### Chord voicing for bossa nova: Shell chord voicings (simple)
+
+- 3rd and 7th (position A)
+- 7th and 3rd (position B)
 
 
 ### Jazz chords + Pentatonic Scale [For later]
