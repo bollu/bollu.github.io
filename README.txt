@@ -47030,6 +47030,10 @@ speak slower than you want to.
 
 ##### Two other forms that might occur: Fugue
 - Bach was a master of the fugue. Well tempered Clavier. 24 preludes and fugues.
+- A fugue has a process of development.
+- It's a discussion of a compact melodic idea, by a definite number of voices, in imitation of each other.
+- The fugues depend on each other for harmony. Horizontally, they are all self-consistent, but vertically, they intertwine to create chords.
+- This is called counterpoint.
 
 
 # Blues and Jazz Piano Improv
