@@ -47053,6 +47053,7 @@ speak slower than you want to.
 - Stretto is the delivery of the subject that has been squeezed.
 
 
+
 ##### Hildegard von Bingen (1098-1179)
 
 ##### Claudio Monteverdi (1567-1643)
