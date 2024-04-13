@@ -47233,6 +47233,19 @@ speak slower than you want to.
 - Lock ones hands
 - Apply pressure from arm /wrist that goes downwards.
 
+### Melody: Bossa nova
+
+- [reference: jazz tutorial bossa nova](https://jazztutorial.com/video-library/jazz-piano-styles/bossa-nova-jazz-piano-lesson)
+- The rhythm is the key.
+- For any chord where the 5th is natural, play the root note (1) and the natural fifth (5)
+- For any chord where the 5th is , play the root note (1) and the natural fifth (5)
+- crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5)
+- For the usual jazz chord sequence of Dmin7, G7, Cmaj7, A7, we would play:
+- Dmin7: D A D A D A D A
+- G7: G D G D G D G D
+- Cmaj7: C G C G C G C G
+- A7: A E A E A E A E (Can add color by playing A7b9)
+
 
 ### Jazz chords + Pentatonic Scale [For later]
 
