@@ -47192,6 +47192,18 @@ speak slower than you want to.
 - (quaver (semiquaver semiquaver)) (quaver quaver)
 
 ### Quickly counting intervals
+- memorize: perfect 5ths
+- minor 2nd: half step
+- Major 2nd: whole step
+- minor 3rd: whole step + half step
+- Major 3rd: two whole steps
+- fourth: perfect fifth - whole step
+- tritone: perfect fifth - half step
+- Perfect 5th: memorized
+- minor 6th: perfect 5th + half step
+- Major 6th: perfect 5th + whole step
+- minor 7th: octave - whole step
+- Major 7th: octave - half step
 
 #### Blues Scale
 
