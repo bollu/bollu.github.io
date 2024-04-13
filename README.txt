@@ -47034,6 +47034,28 @@ speak slower than you want to.
 - It's a discussion of a compact melodic idea, by a definite number of voices, in imitation of each other.
 - The fugues depend on each other for harmony. Horizontally, they are all self-consistent, but vertically, they intertwine to create chords.
 - This is called counterpoint.
+- A **fugato** is a section of music in fugue.
+- A fugue begins with an exposition.
+- The melodic idea is called as the subject.
+- The fugue begins with a single voice stating the subject.
+- Then, another voice answers in the dominant key.
+- The answer could be either the "real answer" (straight transposition), or a tonal answer (slight delta).
+- Voices are introduced in the same way: `V1: tonic subject, V2: dominant answer`, followed by `V3: tonic subject, V4: dominant answer`.
+- An episode in a fugue is when the complete subject is not being heard.
+- A canon is when different voices play the same music at different times.
+- Augmentation is the delivery of the subject or countersubject in consistently slower notes.
+- Diminution is the delivery of the subject or countersubject in consistently faster notes.
+- Inversion is the delivery of the subject or countersubject in reflected notes.
+- Stretto is the delivery of the subject that has been squeezed.
+
+#### Double Fugue
+- Fugue exposes with two subjects
+
+## Concerto
+
+- A sonata for solo instrument(s).
+-  We get anthesis between soloist versus orchestra, and how do we balance this?
+
 
 
 # Blues and Jazz Piano Improv
