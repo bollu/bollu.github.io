@@ -27762,13 +27762,6 @@ int main() {
 #### Explanation 2: posets and interval orders
 
 
-
-# Thebes
-- [BBC in our time]()
-
-# Beethoven
-- [BBC in our time]()
-
 # Neko to follow your cursor around
 
 ```
@@ -47057,22 +47050,40 @@ speak slower than you want to.
 
 
 ##### Hildegard von Bingen (1098-1179)
+- Pre Renaissance
 
 ##### Claudio Monteverdi (1567-1643)
+- Renaissance
 
 ##### Bach (1690-1750)
-
-##### Mozart (1756 - 1791)
+- Baroque
+- Baroque
 
 ##### George Frideric Handel (1685-1759)
+- Baroque
 
 ##### Antonio Vivaldi (1680-1740)
+- Baroque
 
-##### Beethoven (1770-1827)
+
+##### Mozart (1756 - 1791)
+- Classical
+
 
 ##### Franz Joseph Haydn (1730-1809)
+- Classical
+
+##### Beethoven (1770-1827)
+- Classical/Romantic
 
 ##### Franz Schubert (1800-1830)
+- Romantic
+
+##### Richard Wagner (1810-1880)
+- Romantic
+
+##### Johannes Brahms (1840-1900)
+- Romantic
 
 ##### Frederic Chopin (1810-1850)
 
@@ -47084,7 +47095,6 @@ speak slower than you want to.
 
 ##### Bruckner (1825-1900)
 
-##### Richard Wagner (1810-1880)
 
 
 ##### Richard Strauss (1860-1940)
@@ -47092,8 +47102,6 @@ speak slower than you want to.
 ##### Gustav Mahler (1860-1910)
 
 ##### Robert Schumann (1810-1850)
-
-##### Johannes Brahms (1840-1900)
 
 ##### Antonín Dvorak (1841 – 1904)
 
