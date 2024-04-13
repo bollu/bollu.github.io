@@ -47251,8 +47251,10 @@ speak slower than you want to.
 
 ### Chord voicing for bossa nova: Rootless chord voicings (sophisticated)
 
+- Key idea: leave out the root note, only keep 3 5 7 9.
 - 3 5 7 9 (position A)
 - 7 9 3 5 (position B) [7, 9 are octave lower]
+
 
 ### Chord voicing for bossa nova: Shell chord voicings (simple)
 
@@ -47260,6 +47262,7 @@ speak slower than you want to.
 - Distribute notes evenly
 - Prefer voices to be higher rather than lower.
 - We want the 3rd and the 7th. Fix the melody note and the chord note, and now figure out how to add the 3rd and 7th with a good spread.
+- If holding a chord for two beats, then on the second measure, play the fifth of the chord, and re-shell.
 - 3rd and 7th (position A)
 - 7th and 3rd (position B)
 
