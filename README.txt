@@ -47226,8 +47226,12 @@ speak slower than you want to.
 - For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
 
-
 #### Melody: Embellishments
+- Tension and resolution notes
+- resolution notes: root, 3rd, 5th
+- tension notes: want to resolve to the closest resolution note.
+- appogiatura: a note that is played before the resolution note, and is a half step above or below the resolution note.
+-
 
 ### Technique: Playing Chords as one
 - All keys must be struck at the same time.
