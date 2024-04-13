@@ -47169,6 +47169,15 @@ speak slower than you want to.
 - Cmaj7: F -> G
 - Cmaj7: A -> B
 
+### Approach pattern / scale associated to a chord: Chordal tone + whole step
+
+- For any given chord, eg. Cmaj7 = C E G B, one is allowed to use notes that are a whole step up from each of the notes.
+- This gives us the notes: C D E F# G A B C. This is the C lydian scale.
+- For the next one, Cmin7, we get C D Eb F G A Bb C. This is the C dorian scale.
+- For Dmin7, we get D E F G A B C D. This is the D dorian scale.
+- For G7, we get G A B C D E F G. This is the G mixolydian scale.
+- For A7, we get A B C# D E F# G A. This is the A mixolydian scale.
+
 ### Approach pattern: chord scale above
 
 - Play C major scale, approach from above before playing note
