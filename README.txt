@@ -17,8 +17,6 @@
 - [Neumes on wikipedia](https://en.wikipedia.org/wiki/Neume)
 
 
-
-
 # Decreasing Metric for Mutual Recursive Functions
 
 ```lean
