@@ -23,8 +23,7 @@
 - Monophonic, no harmony (chords)
 - No meter.
 - Read left to right, bottom to top. So if two notes are stacked one on top of another, we read the lower then the higher.
-
-
+- Has notation that can be decoded into modern notation fairly straightforwardly.
 
 # Decreasing Metric for Mutual Recursive Functions
 
