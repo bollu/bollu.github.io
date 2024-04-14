@@ -47335,3 +47335,10 @@ speak slower than you want to.
 
 - https://pianowithjonny.com/piano-lessons/3-slow-blues-piano-improv-techniques/
 - Haromize bottom 5 notes of blues scale with a higher C
+
+
+#### Genres of Jazz I like
+
+- [Funk jazz](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/)
+- [Bossa nova](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-bossa-nova/)
+- [Blues piano](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/blues-piano/)
