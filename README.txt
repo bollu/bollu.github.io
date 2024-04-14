@@ -47167,6 +47167,7 @@ speak slower than you want to.
 
 #### Best References for theory
 
+- [The Jazz piano site](https://www.thejazzpianosite.com/about/)
 - [Learn EVERY Chord and Chord Symbol - The 7 Systems by Musicians Inspired](https://www.youtube.com/watch?v=CyNiY1jzOuQ&t=1112s)
 - [Jazz improv with julian bradley](https://www.youtube.com/watch?v=lhNZEIFv3uk)
 - [Jazz tutorial](https://jazztutorial.com/video-library)
