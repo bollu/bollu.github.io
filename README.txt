@@ -47116,8 +47116,10 @@ speak slower than you want to.
 ##### Ravel (1875-1935)
 
 ##### Igor Stravinsky (1880-1970)
+- Modern
 
 ##### Shostakovich (1900-1975)
+- Modern
 
 ##### Sergei Rachmaninov (1873-1943)
 
