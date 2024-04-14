@@ -9,6 +9,16 @@
 - **It's useful to finish things.**
 
 
+
+# Gregorian chant and numes
+
+- [A Beginners guide to reading gregorian chant notation](https://www.ststephenvc.com/wp-content/uploads/2020/02/beginner-guide-chant.pdf)
+- [Basic gregorian chant and sight reading by sister mary demetria](https://media.musicasacra.com/books/basicgregorianchant_1960.pdf)
+- [Neumes on wikipedia](https://en.wikipedia.org/wiki/Neume)
+
+
+
+
 # Decreasing Metric for Mutual Recursive Functions
 
 ```lean
