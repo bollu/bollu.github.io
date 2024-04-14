@@ -47047,6 +47047,9 @@ speak slower than you want to.
 - Inversion is the delivery of the subject or countersubject in reflected notes.
 - Stretto is the delivery of the subject that has been squeezed.
 
+#### What is chamber music?
+
+- Music for a small space, such as a castle, which is a new venue from the church and theater.
 
 
 ##### Hildegard von Bingen (1098-1179)
@@ -47120,6 +47123,8 @@ speak slower than you want to.
 
 ##### Shostakovich (1900-1975)
 - Modern
+- Under rule of joseph stalin
+- 9th symphony was too insolent, had name dragged through mud for it.
 
 ##### Sergei Rachmaninov (1873-1943)
 
