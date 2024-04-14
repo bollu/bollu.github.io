@@ -16,6 +16,15 @@
 - [Basic gregorian chant and sight reading by sister mary demetria](https://media.musicasacra.com/books/basicgregorianchant_1960.pdf)
 - [Neumes on wikipedia](https://en.wikipedia.org/wiki/Neume)
 
+- Invented by [guido of arezzo](https://en.wikipedia.org/wiki/Guido_of_Arezzo).
+- The notation is called neumes, or "square notes".
+- 4 line staff.
+- Clefs are `C` and `F`, can be changed in the middle of a piece.
+- Monophonic, no harmony (chords)
+- No meter.
+- Read left to right, bottom to top. So if two notes are stacked one on top of another, we read the lower then the higher.
+
+
 
 # Decreasing Metric for Mutual Recursive Functions
 
