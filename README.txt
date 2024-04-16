@@ -47079,7 +47079,6 @@ speak slower than you want to.
 
 ##### Bach (1690-1750)
 - Baroque
-- Baroque
 
 ##### George Frideric Handel (1685-1759)
 - Baroque
