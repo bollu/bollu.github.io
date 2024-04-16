@@ -47139,9 +47139,25 @@ speak slower than you want to.
 
 ##### Frederic Chopin (1810-1850)
 
+- Piano virtuoso, great composer.
+- Talent as a musician was apparent at a young age. By the age of 7, was composing and performing.
+- Most well known for his work on the piano. Waltzes, Nocturnes, etc.
+- Untimely death from tuberculosis. Died in Paris.
+
 ##### Felix Mendelssohn (1809 – 1847)
+- Part of the upper class.
+- Made his musical debut at age 9, was accomplished composer by age 13.
+- Performed one of bach's pieces for the first time since his death.
+- Founded the Leipzig conservatory of music.
+- Died when he heard of the death of his sister, along with overwork.
 
 ##### Franz Liszt (1810-1890)
+- Prodigious musical talent at a young age.
+- Made his debut at the age of 9.
+- Funded by prince Nicholas, he travelled to Vienna. Here, he met Beethoven and Schubert.
+- Affairs with married noblewomen.
+- Apex was his years spend at Weimar, composed his major works.
+
 
 ##### Giuseppe Verdi (1813 – 1901)
 
