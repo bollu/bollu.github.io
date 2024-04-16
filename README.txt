@@ -47135,6 +47135,7 @@ speak slower than you want to.
 ##### Johannes Brahms (1840-1900)
 - Romantic
 - Took him 20 years to publish his 1st symphony, out of fear that it would never live up to beethoven.
+- Best known now for hungarian dances.
 
 ##### Frederic Chopin (1810-1850)
 
