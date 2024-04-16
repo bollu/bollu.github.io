@@ -47164,7 +47164,6 @@ speak slower than you want to.
 ##### Bruckner (1825-1900)
 
 
-
 ##### Richard Strauss (1860-1940)
 
 ##### Gustav Mahler (1860-1910)
@@ -47181,10 +47180,20 @@ speak slower than you want to.
 
 ##### Rachmaninoff (1880-1950)
 
-##### Ravel (1875-1935)
+##### Maurice Ravel (1875-1935)
+- Romantic impressionist composer, leading figure in Modernism.
+- Born in france, next to the french spanish border.
+- At age 14, entered the paris conservatory.
+- During WW1, applied to the military, but was declined for his small stature. Drove ambulance.
+- lived out his remaining days in Paris.
+- Contracted dementia and died 5 years later.
 
 ##### Igor Stravinsky (1880-1970)
 - Modern
+- Born in russia.
+- Father was an opera singer, mother a pianist.
+- Parents encouraged him to study law, but he met a talented composer and decided to learn music.
+- 
 
 ##### Shostakovich (1900-1975)
 - Modern
