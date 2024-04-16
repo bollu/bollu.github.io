@@ -47082,6 +47082,8 @@ speak slower than you want to.
 
 ##### George Frideric Handel (1685-1759)
 - Baroque
+- Handel's oratorio, "messaiah" is the most famous one.
+- Handel was blind for the last seven years of his life. Dictate compositions.
 
 ##### Antonio Vivaldi (1680-1740)
 - Baroque
@@ -47089,7 +47091,9 @@ speak slower than you want to.
 
 ##### Mozart (1756 - 1791)
 - Classical
-
+- Austria.
+- Child prodigy, learnt music from his father.
+- Wanted to be free of the royal patronage system, tried to strike his own path.
 
 ##### Franz Joseph Haydn (1730-1809)
 - Classical
