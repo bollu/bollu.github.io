@@ -47068,6 +47068,10 @@ speak slower than you want to.
 - Music for a small space, such as a castle, which is a new venue from the church and theater.
 
 
+### Biographies
+
+- Collect biographies from wikipedia, and "Five minute mozart".
+
 ##### Hildegard von Bingen (1098-1179)
 - Rhineland of Germany.
 - Had visons, was accepted into a monastary.
@@ -47097,18 +47101,40 @@ speak slower than you want to.
 
 ##### Franz Joseph Haydn (1730-1809)
 - Classical
+- Did not come from a musical family.
+- Notable singing abilities, travelled to Vienna to join choir.
+- Wrote a bunch of piano sonatas.
 
 ##### Beethoven (1770-1827)
 - Classical/Romantic
+- German, baptized in Bonn.
+- Father was a singer and musician, wanted his son to be a mozart as a child prodigy.
+- Father was abusive, he was an incompetent teacher for Beethoven.
+- Beethoven travelled to Vienna to study under Mozart.
+- Trip was cut short when his mother died of tuberculosis.
+- He went back to vienna around 1790, studied with Haydn. 
+- His hearing started to diminish, penned his testament.
 
 ##### Franz Schubert (1800-1830)
 - Romantic
+- Quit school.
+- Wrote "lieder" (songs), inspired by Goethe.
+- Attended funeral of Beethoven as pallbearer.
+- Died in Vienna.
+
 
 ##### Richard Wagner (1810-1880)
 - Romantic
+- Born in Leipzig during the Napoleonic wars.
+- Wagner's early idols were Beethoven and Shakespeare.
+- Most inspiring composer of the 19th century.
+- Did away with earlier french and italian styles of opera.
+- Later in life, his polemical ideas were better known than his music. 
+- Anti-semitism, adoped by Hilter and the Nazis
 
 ##### Johannes Brahms (1840-1900)
 - Romantic
+- Took him 20 years to publish his 1st symphony, out of fear that it would never live up to beethoven.
 
 ##### Frederic Chopin (1810-1850)
 
