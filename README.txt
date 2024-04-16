@@ -47193,7 +47193,12 @@ speak slower than you want to.
 - Born in russia.
 - Father was an opera singer, mother a pianist.
 - Parents encouraged him to study law, but he met a talented composer and decided to learn music.
-- 
+- Collaborated with the ballet company in paris.
+- Following WW1, began to compose in various styles and genres, shifted towards Objectivity, shun emotions of the Romantic era.
+- Was inspired by pre-romantics (Mozart, Bach, Handl).
+- Began changing composition based on his own uncommon rhythmic and harmonic style (neo-classicism).
+- Implemented the twelve-tone technique, which uses all twelve tones.
+- Moved to NYC.
 
 ##### Shostakovich (1900-1975)
 - Modern
