@@ -47069,7 +47069,10 @@ speak slower than you want to.
 
 
 ##### Hildegard von Bingen (1098-1179)
+- Rhineland of Germany.
+- Had visons, was accepted into a monastary.
 - Pre Renaissance
+- Was a great nun, who exchanged letters with kings and popes.
 
 ##### Claudio Monteverdi (1567-1643)
 - Renaissance
