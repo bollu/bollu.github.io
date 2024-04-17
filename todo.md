@@ -1,3 +1,4 @@
+- [Rendering Keenan Style geometry in blender](https://nzfeng.github.io/docs/RenderingGeometryInBlender.pdf)
 - Metric and Multidimensional Data Structures
 - Kleinrock, Queueing Systems
 - Is Parallel Programming Hard, And, If So, What Can You Do About It
