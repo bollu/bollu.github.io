@@ -1,0 +1,7 @@
+plugins:flashbake.plugins.timezone:TimeZone,flashbake.plugins.weather:Weather
+
+1-DAILY-TODO
+README.txt
+1-SCRATCH
+todo.md
+

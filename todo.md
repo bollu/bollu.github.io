@@ -1,3 +1,7 @@
+- Metric and Multidimensional Data Structures
+- Kleinrock, Queueing Systems
+- Is Parallel Programming Hard, And, If So, What Can You Do About It
+- Randomized Algorithms
 - [Agner Fog microarchitecture optimization book](https://www.agner.org/optimize/microarchitecture.pdf)
 - [The Modern Algorithmic toolbox: 2023](https://web.stanford.edu/class/cs168/index.html)
 - [Inexhaustibility: An non exhaustive treatment](Inexhaustibility: A Non-Exhaustive Treatment)
