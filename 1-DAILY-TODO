@@ -1,6 +1,18 @@
-DAILY-TODO
-----------
+## DAILY-TODO (Descending order of priority)
 
+
+- `lean-mlir`: help Tobias design simp set
+- Lise: organize 1st year review
+- AWS internship: finish cultural vistas application
+- `lean-mlir`: edit LICENSE
+- `lean-mlir`: finish FHE merging
+- FBIP: get stable benchmarking setup with @Bea
+- Joachim: finish below relation
+- FBIP: Implement new topdown algorithm
+- `lean-mlir`: finish large instcombine proof merging
+- Compilers Supervision: 4th super
+
+```spoiler More info
 #### CPGS Credits Requirements
 
 - https://www.vle.cam.ac.uk/
@@ -35,30 +47,16 @@ DAILY-TODO
 -  Intellectual property and commercialisation 
 
 
-#### Jim : AWS Start Dates
-
-#### Supervision Reports
-
-
 #### 4th Supervision
 - After the 20th of April.
 - Bottom up parsing (Tom). 
 - CPS, Defunctionalization (Mahmud). 
 - [Algorithm for defunctionalization].
-
-
-#### Chat to Lise About Year1 Review
-
-
-#### Anton + OOPSLA
+```
 
 Private
 -------
 
-#### ADHD
-
 #### Anuj Dawar
 
 #### Frex.
-
-#### Other STuff
