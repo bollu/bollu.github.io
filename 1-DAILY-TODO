@@ -1,14 +1,14 @@
 ## DAILY-TODO (Descending order of priority)
 
-- `lean-mlir`: help Tobias design simp set
 - go talk to churchill college admin for room for @arjun.
-- `Lise`: organize 1st year review
-- `AWS`: finish cultural vistas application
-- `lean-mlir`: edit LICENSE
-- `FBIP`: get stable benchmarking setup with @Bea
-- `Joachim`: finish below relation
-- `FBIP`: Implement new topdown algorithm
+- `lean-mlir`: help Tobias design simp set
 - `lean-mlir`: finish large instcombine proof merging
+- `lean-mlir`: cat herd license change
+- `fbip`: get stable benchmarking setup with @Bea
+- `AWS`: finish cultural vistas application
+- `Joachim`: finish below relation
+- `Lise`: organize 1st year review
+- `fbip`: Implement new topdown algorithm
 - `compilers super`: 4th super.
 - `complexity theory super` : 1st super.
 - organize group retrospective for end of easter term.
