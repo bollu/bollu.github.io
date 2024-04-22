@@ -47399,6 +47399,11 @@ speak slower than you want to.
 - https://pianowithjonny.com/piano-lessons/3-slow-blues-piano-improv-techniques/
 - Haromize bottom 5 notes of blues scale with a higher C
 
+##### Intervals to learn
+
+- Perfect 5th.
+- Minor 3rd: 3 half steps (makes up pentatonic scale).
+
 
 #### Genres of Jazz I like
 
