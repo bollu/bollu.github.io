@@ -47417,3 +47417,5 @@ speak slower than you want to.
 - minors: 1 2 5
 - diminished: 2
 - major: rest
+- basic: all triads: `c es g` and so on. base, 3 semitones, 4 semitones.
+- 7th chords: 
