@@ -2,7 +2,6 @@
 
 ## Descending order of priority (today)
 
-- go talk to churchill college admin for room for @arjun.
 - `lean-mlir`: finish purity-annotations
 - `fbip`: get stable benchmarking setup with @grosser
 - `lean-mlir`: help Tobias design simp set.
@@ -22,6 +21,7 @@
 - organize group retrospective for end of easter term.
 - Hoare logic and model checking course [mon/wed/fri] (CC @luisa).
 
+
 ---
 ## Future ideas
 - tree zipper for `lean-mlir` to extend SSA rewriter.
@@ -29,16 +29,14 @@
 - "cutting to the chase" for omega.
 - Bring in @henrik's proof automation into the library.
 
---- 
+---
+
+#### Done
+
+- go talk to churchill college admin for room for @arjun.
+
 
 --- 
-
-#### future ideas
-- tree zipper for `lean-mlir` to extend SSA rewriter.
-- refinement relation for `lean-mlir` to bring alive rewrites into the framework.
-- "cutting to the chase" for omega.
-- Bring in @henrik's proof automation into the library.
-
 
 
 ```spoiler More info
