@@ -47414,8 +47414,23 @@ speak slower than you want to.
 
 # All about the C minor scale
 
-- minors: 1 2 5
-- diminished: 2
-- major: rest
-- basic: all triads: `c es g` and so on. base, 3 semitones, 4 semitones.
-- 7th chords: 
+- C natural minor scale: `C D Ees F G Aes Bes`.
+- C harmonic minor scale: `C D Ees F G Aes B`.
+- C dorian scale scale:  `C D Ees F A Bes`.
+- wu tang clang cream is in dorian scale! `C D Ees F A G C (Bes C)x3 A G F Eb D Cxe`
+
+#### Natural minor scale chords
+- Learn 7th chords.
+- By default, try to use **natural minor**.
+- minor triad chords: 1 2 5
+- diminished triad chord: 2
+- major triad chords: rest, which is 3 4 6 7
+- basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
+
+
+#### Harmonic minor scale chords
+- Learn 7th chords.
+
+#### Dorian scale
+- Learn 7th chords.
+
