@@ -47434,4 +47434,3 @@ speak slower than you want to.
 
 #### Dorian scale
 - Learn 7th chords.
-
