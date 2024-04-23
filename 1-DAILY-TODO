@@ -1,21 +1,37 @@
 ## DAILY-TODO (Descending order of priority)
 
+## Descending order of priority (today)
+
 - go talk to churchill college admin for room for @arjun.
-- `lean-mlir`: finish purity-annotations.
+- `lean-mlir`: finish purity-annotations
 - `fbip`: get stable benchmarking setup with @grosser
+- `lean-mlir`: help Tobias design simp set.
+- `grosser.science` website upkeep. 
 
----
+--- 
 
-- `fbip`: Implement new topdown algorithm
+## Descending order of priority (later)
+
 - `AWS`: finish cultural vistas application.
 - `Lise`: organize 1st year review.
 - `lean-mlir`: finish large instcombine proof merging.
-- `Joachim`: finish below relation
+- `Joachim`: finish below relation.
+- `fbip`: Implement new topdown algorithm.
 - `compilers super`: 4th super.
 - `complexity theory super` : 1st super.
 - organize group retrospective for end of easter term.
-- prepare for summer internship with AWS.
-- Hoare logic and model checking.
+- Hoare logic and model checking course [mon/wed/fri] (CC @luisa).
+
+---
+## Future ideas
+- tree zipper for `lean-mlir` to extend SSA rewriter.
+- refinement relation for `lean-mlir` to bring alive rewrites into the framework.
+- "cutting to the chase" for omega.
+- Bring in @henrik's proof automation into the library.
+
+--- 
+
+--- 
 
 #### future ideas
 - tree zipper for `lean-mlir` to extend SSA rewriter.
@@ -23,8 +39,6 @@
 - "cutting to the chase" for omega.
 - Bring in @henrik's proof automation into the library.
 
-#### done
-- `lean-mlir`: help Tobias design simp set
 
 
 ```spoiler More info
