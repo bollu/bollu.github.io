@@ -47410,3 +47410,10 @@ speak slower than you want to.
 - [Funk jazz](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/)
 - [Bossa nova](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-bossa-nova/)
 - [Blues piano](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/blues-piano/)
+
+
+# All about the C minor scale
+
+- minors: 1 2 5
+- diminished: 2
+- major: rest
