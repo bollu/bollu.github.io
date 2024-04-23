@@ -1,14 +1,16 @@
 ## DAILY-TODO (Descending order of priority)
 
 - go talk to churchill college admin for room for @arjun.
-- `lean-mlir`: finish large instcombine proof merging
+- `lean-mlir`: finish purity-annotations.
 - `fbip`: get stable benchmarking setup with @grosser
-- `AWS`: finish cultural vistas application
-- `Lise`: organize 1st year review
-- `lean-mlir`: finish large instcombine proof merging
-- `lean-mlir`: help Tobias design simp set
-- `Joachim`: finish below relation
+
+---
+
 - `fbip`: Implement new topdown algorithm
+- `AWS`: finish cultural vistas application.
+- `Lise`: organize 1st year review.
+- `lean-mlir`: finish large instcombine proof merging.
+- `Joachim`: finish below relation
 - `compilers super`: 4th super.
 - `complexity theory super` : 1st super.
 - organize group retrospective for end of easter term.
@@ -16,9 +18,10 @@
 - Hoare logic and model checking.
 
 #### future ideas
-- tree zipper for `lean-mlir`
-- refinement relation for `lean-mlir`
--
+- tree zipper for `lean-mlir` to extend SSA rewriter.
+- refinement relation for `lean-mlir` to bring alive rewrites into the framework.
+- "cutting to the chase" for omega.
+- Bring in @henrik's proof automation into the library.
 
 #### done
 - `lean-mlir`: help Tobias design simp set
