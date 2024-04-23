@@ -47414,10 +47414,11 @@ speak slower than you want to.
 
 # All about the C minor scale
 
-- C natural minor scale: `C D Ees F G Aes Bes`.
+- C aeolian / natural minor scale: `C D Ees F G Aes Bes`. 
 - C harmonic minor scale: `C D Ees F G Aes B`.
 - C dorian scale scale:  `C D Ees F A Bes`.
 - wu tang clang cream is in dorian scale! `C D Ees F A G C (Bes C)x3 A G F Eb D Cxe`
+- Also consider Phrygian: `C Des Ees F G Aes Bes C`. (`Des` makes it sound "arabian".)
 
 #### Natural minor scale chords
 - Learn 7th chords.
