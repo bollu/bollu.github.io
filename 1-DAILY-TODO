@@ -12,6 +12,13 @@
 - `compilers super`: 4th super.
 - `complexity theory super` : 1st super.
 - organize group retrospective for end of easter term.
+- prepare for summer internship with AWS.
+- Hoare logic and model checking.
+
+#### future ideas
+- tree zipper for `lean-mlir`
+- refinement relation for `lean-mlir`
+-
 
 #### done
 - `lean-mlir`: help Tobias design simp set
