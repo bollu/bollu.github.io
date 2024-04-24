@@ -1371,7 +1371,7 @@ uint32_t murmur3_32(const char* key, size_t len, uint32_t seed) {
 
 uint32_t hash_t(const char *raw_input, const T *const t) {
   assert(t != nullptr);
-  return murmur3_32(raw_input + t->span.begin.si, t->span.end.si - t->span.begin.so, 42)
+  return murmur3_32(raw_input + t->span.begin.si, t->span.end.si - t->span.begin.si, 42);
 }
 
 bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
