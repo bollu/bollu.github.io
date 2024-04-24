@@ -13,7 +13,7 @@ run-builder: README.txt
 	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder | tee 1-build-log.txt
 
 copy-to-out: prism/ katex/ static/ todo.md README.txt
-	cp -r prism katex static prism/* katex/* static/* todo.md resume articles out/
+	cp -r prism katex static prism/* katex/* static/* todo.md resume out/
 
 build-website: build-builder run-builder copy-to-out
 
