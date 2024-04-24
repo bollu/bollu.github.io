@@ -15,7 +15,7 @@ run-builder: README.txt
 copy-to-out: prism/ katex/ static/ todo.md README.txt
 	mkdir -p out/static
 	cp -r prism katex static prism/* katex/* static/* todo.md resume out/
-	cp -r sheet-music/*.svg out/static/
+	cp -r sheet-music/*.cropped.svg out/static/
 
 build-website: build-builder run-builder copy-to-out
 

@@ -1665,9 +1665,8 @@ const char html_preamble[] =
     "\n"
     "h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }"
     "h1, h2 { column-span: all; }"
-    // img as a block. width: 100% makes it responsive with no fiddling
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
-    "img { display:block; width: 100%; max-width: 800px; height: auto }"
+    "img { display:block; max-width: 100%; height: auto }"
     // container
     ".container { overflow-x: auto; overflow-y: hidden; "
     "             margin-top: 0px; height: 100%; min-height: 100%;"

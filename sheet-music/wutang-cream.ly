@@ -30,3 +30,12 @@ author  = "Siddharth Bhat <siddu.druid@gmail.com>"
     \tempo 2 = 120
   }
 }
+
+\paper {
+  indent = 0\mm
+  line-width = 110\mm
+  oddHeaderMarkup = ""
+  evenHeaderMarkup = ""
+  oddFooterMarkup = ""
+  evenFooterMarkup = ""
+}
