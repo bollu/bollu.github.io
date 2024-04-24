@@ -47425,8 +47425,9 @@ speak slower than you want to.
 
 #### Wutang Clan: CREAM
 
-<img src="static/wutang-cream.cropped.svg" />
+<img src="/static/wutang-cream.cropped.svg" />
 
 #### Madoka Magica OST
-<img src="static/madoka-ost.cropped.svg" />
+
+<img src="/static/madoka-ost.cropped.svg" />
 
