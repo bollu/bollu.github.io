@@ -16,4 +16,5 @@ melody = {
 <<
   \new NoteNames { \melody }
   \melody
+  \new ChordNames { \melody }
 >>
