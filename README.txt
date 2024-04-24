@@ -204,37 +204,37 @@ Victory for the cops:
   at least half the vertices of $G$.
 - Let's consider one possible configuration where they are in a row:
 
-````
+```
   WXYZ
 1|oooo
 2|CCCC
 3|oooo
 4|oooo
-````
+```
 
 - See that this does not cut off access, since we can move from `(-, 1)` to `(-, 4)` as
   the top and bottom edges are glued. So this is useless for the cops.
 
 - Now let's try and consider a configuration where all the cops are on distinct columns:
 
-````
+```
   WXYZ
 1|Cooo
 2|oCoo
 3|ooCo
 4|oooC
-````
+```
 
 - In this case too, the graph is connected, and has a large connected component.
 - The only way the cops can cut of a region is to encircle it:
 
-````
+```
   WXYZ
 1|oooo
 2|oCCo
 3|oCCo
 4|oooo
-````
+```
 
 - In this case, the outside has `kˆ2 - k`vertices, which is larger that `kˆ2/2`:
   `kˆ2 - k = k(k -1) > k * k/2`.
@@ -264,11 +264,11 @@ Victory for the cops:
 - Define $E_G$, the system of equations next, based on $G$. 
 - For each edge, we get two variables $x[e, 0], x[e, 1]$ for each edge $e$.
 - For each vertex $v \in V$, let $e[v, 1], e[v, 2], e[v, 3], e[v, 4]$ be the edges incident on $v$.
-- We make 16 equations: $x[e[v, 1], i] + x[e[v, 2], j] + x[e[v, 3], k] + x[e[v, 4], l] = (i + j + k + l)$
-  for $i, j, k,  l \in \{ 0, 1\}$.
+- We make 16 equations: $x[e[v, 1], i] + x[e[v, 2], j] + x[e[v, 3], k] + x[e[v, 4], l] = (i + j + k + l)$ for $i, j, k,  l \in \{ 0, 1\}$.
 - Intuitively, we pick a bitstring $\vec b$, and we write the equation $\sum_j x[e[v, j], \vec b[j]] = \texttt{parity}(\vec b)$. 
 - First see that this system is satisfiable by setting $x[-, i]$ to $i$, since the RHS is given by addint $i + j + k + l$,
   so will the lhs! 
+
 $$
 \begin{aligned}
 &x[e[v, 1], i] + x[e[v, 2], j] + x[e[v, 3], k] + x[e[v, 4], l] =_? (i + j + k + l) \\
@@ -289,11 +289,8 @@ $$
 
 #### Putting the pieces together
 
-- Suppose that $G$ is the above toroidal graph such that the robber has a winning strategy for the $2k$
-  cops and robbers game played on $G$.
+- Suppose that $G$ is the above toroidal graph such that the robber has a winning strategy for the $2k$ cops and robbers game played on $G$.
 - We can use this to construct a winning strategy for the duplication in the $k$ pebble bijection game on $E_G$ and $E_{\tilde{G}}$.
- 
-
 
 # Building an ELF by hand
 
@@ -437,7 +434,7 @@ $$
 # Concrete calculation of hopf fibration
 
 - Take any point `(a, b, c, d) ∈ S3`.
-- This determines a quaternion a + bi + cj + dk`.
+- This determines a quaternion `a + bi + cj + dk`.
 - Let the rotation determined by a quaternion `q` be written as `R_q`.
 - Recall that this determines a rotation of 3 space `(b, c, d)` and angle $2 cos^{-1}(a)$.
 - Let $P_0$ be any point on `S2`, say `(1, 0, 0)`.
