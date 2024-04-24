@@ -47421,4 +47421,9 @@ speak slower than you want to.
 #### Dorian scale
 - Learn 7th chords.
 
+# Sheet Music
+
+#### Wutang Clan: CREAM
+
+<img src="./static/wutang-cream.svg" />
 
