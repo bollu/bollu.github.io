@@ -4,7 +4,7 @@
 <h3> Siddharth Bhat </h3>
 
 - [Leave me your thoughts anonymously](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](https://pixel-druid.com/sheet-music.html)
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](https://pixel-druid.com/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
@@ -47425,5 +47425,8 @@ speak slower than you want to.
 
 #### Wutang Clan: CREAM
 
-<img src="./static/wutang-cream.svg" />
+<img src="static/wutang-cream.cropped.svg" />
+
+#### Madoka Magica OST
+<img src="static/madoka-ost.cropped.svg" />
 
