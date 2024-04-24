@@ -2,22 +2,21 @@
 
 ## Descending order of priority (today)
 
-- `lean-mlir`: finish purity-annotations
-- `fbip`: get stable benchmarking setup with @grosser
-- `lean-mlir`: help Tobias design simp set.
+- `complexity theory super` : 1st super --- send out email
 - `grosser.science` website upkeep. 
+- `AWS`: finish cultural vistas application.
+- `Lise`: organize 1st year review.
 
 --- 
 
 ## Descending order of priority (later)
 
-- `AWS`: finish cultural vistas application.
-- `Lise`: organize 1st year review.
+- `lean-mlir`: finish purity-annotations
+- `lean-mlir`: help Tobias design simp set.
 - `lean-mlir`: finish large instcombine proof merging.
 - `Joachim`: finish below relation.
 - `fbip`: Implement new topdown algorithm.
-- `compilers super`: 4th super.
-- `complexity theory super` : 1st super.
+- `compilers super`: 4th super --- get students to agree on time
 - organize group retrospective for end of easter term.
 - Hoare logic and model checking course [mon/wed/fri] (CC @luisa).
 
@@ -33,7 +32,7 @@
 
 #### Done
 
-- go talk to churchill college admin for room for @arjun.
+- `fbip`: get stable benchmarking setup with @grosser
 
 
 --- 
@@ -79,6 +78,8 @@
 - Bottom up parsing (Tom). 
 - CPS, Defunctionalization (Mahmud). 
 - [Algorithm for defunctionalization].
+
+
 ```
 
 Private
