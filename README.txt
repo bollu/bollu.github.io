@@ -27,7 +27,7 @@
 
 # Decreasing Metric for Mutual Recursive Functions
 
-```lean
+```
 mutual
 def bar (fooN : Nat) (barN : Nat)  : Nat :=
   match barN with 
@@ -451,7 +451,7 @@ $$
 - The map sends a point $(w, x, y, z)$ to the point $(x/(1-w), y/(1-w), z/(1-w))$. The only singularity is at $w=1$ which we
   conveniently ignore.
 - See that this map sends circles to circles. Suppose we have the locus of points `(w, x, y, z)` where `w^2 + x^2 + y^2 + z^2 = 1`.
-- Then the length of the sterographic projection vector is `(x^2 + y^2 + z^2)/(1-w)^2`, which is `1-w^2/(1-w)^2 ??
+- Then the length of the sterographic projection vector is `(x^2 + y^2 + z^2)/(1-w)^2`, which is `1-w^2/(1-w)^2` ??
   SOMETHING IS WRONG!
 - Recall the intuition for the sterographic projection, wrt `S2` and `R3`.
 - For a point `p ∈ S2`, draw a line `l`, from the north pole `(0, 0, 1)`
@@ -678,8 +678,8 @@ I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixO
 
 > Now, I said that the outputs of a flake can be basically anything you want, but
 > by convention, there's a schema that most flakes adhere to. For instance,
-> flakes often include outputs like packages.x86_64-linux.foo as the derivation
-> for the foo package for x86_64-linux. But it's important to understand that
+> flakes often include outputs like `packages.x86_64-linux.foo` as the derivation
+> for the foo package for `x86_64-linux`. But it's important to understand that
 > this is a convention, which the nix CLI uses by default for a lot of commands.
 > The reason I consider this important to understand is because people often
 > assume flakes are some complicated thing, and that therefore flakes somehow
@@ -712,7 +712,7 @@ inductive Eg
 
 - First, some gadgets: congruence of function arguments:
 
-```lean
+```
 -- path induction
 def fun_functional (f : A → B) (x y : A) (EQ : x = y) : f x = f y := 
    Eq.recOn EQ (motive := fun k K_EQ_X => f x = f k) rfl
@@ -720,19 +720,19 @@ def fun_functional (f : A → B) (x y : A) (EQ : x = y) : f x = f y :=
 
 - Principle of explosion
 
-```lean
+```
 def false_elim (f : False) : α := False.rec f (motive := fun _ => α) 
 ```
 
 - Key idea: create a type by using the recursors of `x, y` such that 
   when `x = y` we have True and when `x <> y` we have False. 
-- Then, when given a proof that Eg.A = Eg.B`, we can go through the cases
+- Then, when given a proof that `Eg.A = Eg.B`, we can go through the cases
   and we want to produce false, we can use `Eq.rec` on this type, and produce 
   the inhabitant `True.intro` for the cases when they are equal. Then, path
   induction / the recursor for equality will give us an inhabitant of `False`,
   by promoting this to hold "in general".
 
-```lean
+```
 abbrev Eg.noConfusionType' (x y : Eg) : Prop := 
   x.casesOn (motive := fun _ => Prop)
     (y.casesOn (motive := fun _ => Prop) True False)
@@ -741,14 +741,14 @@ abbrev Eg.noConfusionType' (x y : Eg) : Prop :=
 
 - We show that this type is inhabited when `x = x`.
 
-```lean
+```
 abbrev Eg.noConfusionType'_inhabitant_rfl : Eg.noConfusionType' x x :=  
    x.casesOn True.intro True.intro
 ```
 
 - We show that if `x <> y`, then an inhabitant of `Eg.noConfusionType' x y` produces `False`.
 
-```lean
+```
 abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :=  
   match H : x with 
   | .A => 
@@ -762,7 +762,7 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 
 - How to translate the above into a raw formula?
 
-```lean
+```
   Eg.rec (motive := fun x_1 =>
     ∀ (NEQ : x_1 ≠ y) (NC : Eg.noConfusionType' x_1 y), x = x_1 → (fun x NEQ NC => False) x_1 NEQ NC)
     (fun NEQ NC H =>
@@ -790,12 +790,12 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 
 #### Minimum grid size computatation
 
-- (sum of lengths of tree edges * 2)/4
+- `(sum of lengths of tree edges * 2)/4`.
 - for an edge flap, it takes `2 * edgelen` of perimeter when unfolded.
 - for a river, it also takes `2 * riverlen` of permiter when unfolded.
 - in total, we take `sum (2 * len)` over all  edges/rivers of perimeter.
 - perimeter is `4 * square-side-len`. 
-- So we get that `square-side-len` equals (sum of lengths of tree edges * 2)/4.
+- So we get that `square-side-len` equals `(sum of lengths of tree edges * 2)/`.
 
 
 
@@ -804,7 +804,7 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 - In the folded model, pick an imaginary line on which only *valley creases* lie
 - also, all the hinge creases are perpendicular to this imaginary line.
 - A model is axial box pleated if there is an axis such that all hinge creases are 
-  orthogonal to this imaginary line
+  orthogonal to this imaginary line.
 
 
 #### Axial plus i creases
@@ -821,10 +821,10 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
             |       /
 (axial+0)---|------/-------------
          (Hinge)
-``` 
+```
+
 
 - If there is only one axis, then it is uni-axial.
-
 
 # Vibes of Weiner Processes
 
@@ -845,17 +845,6 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 - Consider IID sequences $X_1, \dots X_n$.
 - Define a continuous function $W[n](t) \equiv 1/\sqrt{n} \sum_{i=1}^{\texttt{floor}(tn)} X_i$ for $t \in [0, 1]$.
 - **Donsker's theorem**: As $n \to \infty$, $W_n$ converges ()
-
-
-#### Ito's Lemma
-
-
-
-#### Motivation 1: Use SDE to solve PDE
-#### Motivation 2: Use PDE to solve SDE
-
-
-
 
 # Forward versus backward euler
 
@@ -2128,7 +2117,7 @@ but is expected to have type
 - Define a new norm on $Y$ given by $||y||_T \equiv ||T^{-1}(y)||_X$.
 - Then this is a norm on $Y$, and we have that $||y||_Y \leq ||T|| ||y||_T$.
 - This means that sets measured with $T$ norm are larger than when measured in $Y$ norm.
-- This is because ||T(T^{-1}(y)||_Y \leq ||T|| ||T^{-1}(y)||_X$ by the defn of operator norm.
+- This is because $||T(T^{-1}(y)||_Y \leq ||T|| ||T^{-1}(y)||_X$ by the defn of operator norm.
   Now see that the RHS equals $||T|| ||y_T||$ and we get the desired inequality.
 - Thus, the identity map $I : (Y, ||\cdot||_T) \to (Y, ||\cdot||_Y)$ is bounded, since a set that is
   bounded in the $||\cdot||_T$ norm will be *smaller* in the $||\cdot||_Y$ norm, and will thus
@@ -2136,7 +2125,7 @@ but is expected to have type
 - Moreover, since $T$ is continuous, we can check that $(Y, ||\cdot||_T)$ is also a banach space,
   since a series will converge in $||\cdot||_T$ iff its preimage converges in $X$.
 - By the above lemma, this means that the two norms $||\cdot||_Y$ and $||\cdot||_T$ are equivalent.
-- So, we get the reverse inclusion, where the norm $||y||_T$ \leq K ||y||_Y$.
+- So, we get the reverse inclusion, where the norm $||y||_T \leq K ||y||_Y$.
 - But that just means that $||T^{-1}(y)|| \leq K ||y||_Y$, or that the operator $T^{-1}$ is bounded!
 
 ##### Open Mapping Theorem
@@ -2224,7 +2213,7 @@ $$
   respectively but are disjoint.
 - This means that $O_p \times O_q$ is an open set in $X \times X$ which contains $p, q$, but is disjoint
   from $\Delta$. This means that $(p, q)$ is not a limit point.
-- Thus, no point $(p, q)$ that is outside of $\DeltaS is a limit point, which means that $\Delta$
+- Thus, no point $(p, q)$ that is outside of $\Delta$ is a limit point, which means that $\Delta$
   contains all its limit points, and is thus closed.
 
 # Bounded inverse theorem
@@ -23275,7 +23264,7 @@ Tensor calculus gives a principled way to make sure that the final answers we ca
 
 ----
 
-Physicists (and people who write memory allocators) need such elaborate tracking, to keep track of what is "real" and what is "coordinate dependent", since a lot of physics involves crazy coordinate systems (https://en.wikipedia.org/wiki/Schwarzschild_metric#History), and having ways to know what things are real and what are artefacts of one's coordinate system is invaluable. For a real example, consider the case of singularities of the Schwarzschild  solution to GR, where we initially thought there were two singularities, but it later turned out there was only one "real" singularity, and the other singularity was due to a poor choice of coordinate system:
+Physicists (and people who write memory allocators) need such elaborate tracking, to keep track of what is "real" and what is "coordinate dependent", since a lot of physics involves [crazy coordinate systems](https://en.wikipedia.org/wiki/Schwarzschild_metric#History), and having ways to know what things are real and what are artefacts of one's coordinate system is invaluable. For a real example, consider the case of singularities of the Schwarzschild  solution to GR, where we initially thought there were two singularities, but it later turned out there was only one "real" singularity, and the other singularity was due to a poor choice of coordinate system:
 
 > Although there was general consensus that the singularity at r = 0 was a 'genuine' physical singularity, the nature of
 > the singularity at r = rs remained unclear. 
@@ -47418,6 +47407,7 @@ speak slower than you want to.
 - Also consider Phrygian: `C Des Ees F G Aes Bes C`. (`Des` makes it sound "arabian".)
 
 #### Natural minor scale chords
+
 - Learn 7th chords.
 - By default, try to use **natural minor**.
 - minor triad chords: 1 2 5
@@ -47425,9 +47415,10 @@ speak slower than you want to.
 - major triad chords: rest, which is 3 4 6 7
 - basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
 
-
 #### Harmonic minor scale chords
 - Learn 7th chords.
 
 #### Dorian scale
 - Learn 7th chords.
+
+
