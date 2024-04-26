@@ -1,7 +1,7 @@
 \version "2.24.3"
 
 \header {
-title = \markup { Wutang Clan - C.R.E.A.M. (C natural minor) }
+title = \markup { Fur Elise (C blues scale) }
 author  = "Siddharth Bhat <bollu@pixel-druid.com>"
 }
 
@@ -12,9 +12,14 @@ author  = "Siddharth Bhat <bollu@pixel-druid.com>"
       \voiceOne
       \key c \major
       \time 4/4
-      c d ees f4 g
-      c8 \grace bes \grace c bes8 a4
-      g4 g4 f ees4. d8 c4 c4 c
+      g'' fis g fis g
+      d f ees c
+      f, aes b d
+      g, b d es
+      c g' fis g fis g
+      d f ees c
+      f, aes c d
+      g ees d c
     }
   >>
   \layout { }

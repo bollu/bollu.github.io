@@ -1,2 +1,5 @@
 *.ogg
-
+*.pdf
+*.svg
+!*.cropped.svg
+!*.midi

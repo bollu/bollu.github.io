@@ -1,8 +1,8 @@
 \version "2.24.3"
 
 \header {
-title = \markup { Wutang Clan - C.R.E.A.M. (C harmonic minor) }
-author  = "Siddharth Bhat <siddu.druid@gmail.com>"
+title = \markup { Madoka Magica OST (C Aeolian / Natural Minor)}
+author  = "Siddharth Bhat <bollu@pixel-druid.com>"
 }
 
 \score {
