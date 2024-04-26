@@ -1,5 +1,5 @@
-*.ogg
-*.pdf
-*.svg
+*
+!makefile
+!*.ly
 !*.cropped.svg
 !*.midi
