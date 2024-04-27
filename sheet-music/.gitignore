@@ -2,4 +2,4 @@
 !makefile
 !*.ly
 !*.cropped.svg
-!*.midi
+# !*.midi

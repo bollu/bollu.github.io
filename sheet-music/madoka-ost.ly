@@ -11,19 +11,20 @@ author  = "Siddharth Bhat <bollu@pixel-druid.com>"
       \set midiInstrument = #"acoustic grand"
       \voiceOne
       c4. d ees bes c d
-      c4. d ees f ees f ees d
-      \grace {d} ees c
+      c4. d ees f4. ees d4.
+      \grace {d} ees c4.
       c d ees f g4. c
-      g4. g f ees d4. \grace {d} ees c
+      g4  f4. ees4. d4.
+      \grace {d} ees c4.
 
-      c d ees f g4. c
-      g4. g fes d4.
+      c d ees f g4. c,
+      g4  f4. ees4. d4.
       ees f g4.
 
       c d ees f g4. c
-      g4. \grace {g} ees f
-      ees4. ees f g
-      d4. d ees c
+      g4. \grace {g} aes f4.
+      ees4. \grace{ees} f g4.
+      d4. \grace{d} ees c4.
     }
   >>
   \layout { }
