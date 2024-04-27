@@ -2244,7 +2244,7 @@ $$
 - Take a vector field on $\mathbb R^2$ with $V(x, y) = (-y, x)$. This vector field
   has concentric spirals.
 - consider this vector field as a PDE, so we are looking for a function $f$
-  such that $\del f = V$.
+  such that $\nabla f = V$.
 - No such potential function can exist, because this vector field allow us to extract work.
 - Suppose such a potential exists. Then if I travel in a circle, according to the potential, net work
   is zero. But if I evaluate the integral, I will get work done. Thus, no soln exists!
@@ -47423,6 +47423,14 @@ speak slower than you want to.
 
 # Sheet Music
 
+#### C Minor Scales
+
+<img src="/static/scales.cropped.svg" />
+
+#### Bossa Nova Rhythm
+
+<img src="/static/bossa-nova.cropped.svg" />
+
 #### Wutang Clan: CREAM
 
 <img src="/static/wutang-cream.cropped.svg" />
@@ -47430,4 +47438,5 @@ speak slower than you want to.
 #### Madoka Magica OST
 
 <img src="/static/madoka-ost.cropped.svg" />
+
 
