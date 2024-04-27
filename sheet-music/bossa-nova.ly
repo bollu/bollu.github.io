@@ -6,9 +6,7 @@ author  = "Siddharth Bhat <bollu@pixel-druid.com>"
 }
 
 upper = \relative c'' {
-  \clef treble
-  \key c \major
-  \time 2/8
+  \voiceOne
   % beats on 1 (+3) 4 (+3) 7 (+4) 11 (+3) 14. draw it out, it's a pentagon.
   
   % 1 and (1 2) 
@@ -29,10 +27,8 @@ upper = \relative c'' {
   r8 r8
 }
 
-lower = \relative c {
-  \clef bass
-  \key c \major
-  \time 2/8
+lower = \relative c' {
+  \voiceTwo
   % 1 and 
   c8~c8
   % 2 and 
@@ -54,11 +50,12 @@ lower = \relative c {
 
 \score {
 
-  \new PianoStaff \with { instrumentName = "Piano" }
-  <<
+  \new Staff <<
+    \clef treble
+    \key c \major
     \time 2/8
-    \new Staff = "upper" \upper
-    \new Staff = "lower" \lower
+    \new Voice = "upper" \upper
+    \new Voice = "lower" \lower
   >>
 
   \layout { }
