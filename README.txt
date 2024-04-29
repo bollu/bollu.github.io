@@ -46099,6 +46099,10 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> A simple theory of aesthetics:
+> If the best stuff from then is still better than good stuff from now, it's art
+> If the best stuff from then is worse than bad stuff from now, it's technology
+
 - Tradition is not the worship of ashes, but the preservation of fire.
 
 - For every problem, there is a solution that is simple, elegant, and wrong.
