@@ -47441,7 +47441,31 @@ speak slower than you want to.
 
 #### Madoka Magica OST
 
-<img src="/static/madoka-ost.cropped.svg" />
+<!-- img src="/static/madoka-ost.cropped.svg" / -->
+
+```abc
+X: 1
+T: Madoka Magica (C mixolydian)
+M: 4/4
+L: 1/8
+K: Cmaj
+
+C. D E_ B_ C D
+C. D E_ f4. E_ D4.
+{D}E_ C.
+C D E_ FG4. C
+G4  f4. E_4. D4.
+{D}E_ C.
+
+C D E_ FG4. C,
+G4  f4. E_4. D4.
+E_ FG4.
+
+C D E_ FG4. C
+G4. {G} A_ F4.
+E_4. {E_}F  G4.
+D4. {D}E_ C.
+```
 
 #### Wave Teng
 
@@ -47450,10 +47474,118 @@ X: 1
 T: Wave Teng (C mixolydian)
 M: 4/4
 L: 1/8
-R: reel
 K: Cmaj
 | GGG G2 FE F F2 E C2 z | GGG G2 FE F F2 A G2 z |
 C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, z _B,2 C2 C2
 ```
 
+### Fur Elise
 
+```abc
+X: 1
+T: Fur Elise (C blues scale)
+M: 4/4
+L: 1/8
+K: Cmaj
+| G F# G F# F |
+D F E_ C | 
+f A_ B D |
+g F D E_ |
+c G F# G F# G |
+D F E_ C |
+F A_ C D |
+G E_ D C
+```
+
+### In The End
+
+```abc
+X: 1
+T: In The End (C harmonic)
+M: 4/4
+L: 1/8
+K: Cmaj
+|  C G G E_ |
+D D D D E_ |
+C G G E_ D |
+G G A_ G |
+G G A_ G |
+```
+
+
+### Breezeblocks
+
+```abc
+X: 1
+T: Breezeblocks (C Natural Minor)
+M: 4/4
+L: 1/8
+K: Cmaj
+
+
+G F E_ E_ |
+F G F_ G F E_ |
+F 
+G F_ G F |
+E_ F D E_ C |
+E_ E_ E_ | 
+{F} G G G G |
+C B_ G G |
+F G F E_ |
+F G C C |
+```
+
+### Dissolve
+
+```abc
+X: 1
+T: Dissolve (C harmonic minor)
+M: 4/4
+L: 1/8
+K: Cmaj
+
+
+G E_ C B_ |
+E_ C B_ F G |
+B_ C |
+G F G B_ G C D E_ |
+{G} B_ C |
+G G F G B_ |
+E_ C B_ G E_ F G |
+G G E_ F {F}G |
+C C C E_  F |
+C C C C E_ F A_ C |
+```
+
+
+### Carnival of Rust 
+
+```abc
+X: 1
+T: Wave Teng (C mixolydian)
+M: 4/4
+L: 1/8
+K: Cmaj
+| GGG G2 FE F F2 E C2 z | GGG G2 FE F F2 A G2 z |
+C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, z _B,2 C2 C2
+```
+
+### Gin Soaked Boy
+
+```abc
+X: 1
+T: Gin Soaked Boy (C major)
+M: 4/4
+L: 1/8
+K: Cmaj
+
+| C D G G F E F G |
+C D G G F E C |
+C D G G G F E C |
+C D F E C |
+C C C C A C E |
+C C C C A C E |
+C C C C A C E |
+C C C C a g a c
+
+```
