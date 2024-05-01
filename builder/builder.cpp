@@ -1408,39 +1408,38 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
              t->span.end.prev("```"));
 
     if (!strcmp(block->langname, "abc")) {
-      const char *open = "<div class \"abc\">";
-      const char *close = "</code></pre>";
+      const char *open = "<div class=\"abc\">";
+      const char *close = "</div>";
 
       strcpy(outs + outlen, open);
       outlen += strlen(open);
 
       // write span.
-      strncpy(outs + outlen, raw_input + span.begin.si,
-        span.nchars());
-      outs += span.nchars();
+      strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
+      outlen += span.nchars();
 
       strcpy(outs + outlen, close);
       outlen += strlen(close);
       return true;
 
+    } else {
+      // TODO: escape HTML content.
+      const char *open = "<pre><code>";
+      const char *close = "</code></pre>";
+
+      strcpy(outs + outlen, open);
+      outlen += strlen(open);
+
+      char *code_html = pygmentize(prism_ctx, raw_input, block->langname, span);
+
+      strcpy(outs + outlen, code_html);
+      outlen += strlen(code_html);
+      free(code_html);
+
+      strcpy(outs + outlen, close);
+      outlen += strlen(close);
+      return true;
     }
-
-    // TODO: escape HTML content.
-    const char *open = "<pre><code>";
-    const char *close = "</code></pre>";
-
-    strcpy(outs + outlen, open);
-    outlen += strlen(open);
-
-    char *code_html = pygmentize(prism_ctx, raw_input, block->langname, span);
-
-    strcpy(outs + outlen, code_html);
-    outlen += strlen(code_html);
-    free(code_html);
-
-    strcpy(outs + outlen, close);
-    outlen += strlen(close);
-    return true;
   }
 
   case TT::LatexInline:
@@ -1617,8 +1616,9 @@ const char html_preamble[] =
     "<head>"
     // ===viewport===
     "<meta name='viewport' content='width=device-width, initial-scale=1'>"
-    // ===script===
-    "<script src='/script/blog.js'></script>"
+    // ===abcjs===
+    "<script src='/abcjs/abcjs-basic-min.js'></script>"
+    "<link rel='stylesheet' href='/abcjs/abcjs-audio.css' >"
     // ===RSS===
     "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
@@ -1633,6 +1633,8 @@ const char html_preamble[] =
     // ===End KateX===
     "<title> A Universe of Sorts </title>"
     "<link rel='stylesheet' href='/css/stylesheet.css'>"
+    // blog script
+    "<script src='/script/blog.js'></script>"
     "</head>"
     "<body>"
     "<div class='container'>";
