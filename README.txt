@@ -47443,4 +47443,17 @@ speak slower than you want to.
 
 <img src="/static/madoka-ost.cropped.svg" />
 
+#### Wave Teng
+
+```abc
+X: 1
+T: Wave Teng (C mixolydian)
+M: 4/4
+L: 1/8
+R: reel
+K: Cmaj
+| GGG G2 FE F F2 E C2 z | GGG G2 FE F F2 A G2 z |
+ C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, z _B,2 C2 C2
+```
+
 
