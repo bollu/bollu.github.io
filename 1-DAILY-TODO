@@ -2,19 +2,17 @@
 
 ## Descending order of priority (today)
 
+- `grosser.science` website upkeep. 
 - `Lise`: organize 1st year review, write 1st year report.
 
 --- 
 
 ## Descending order of priority (later)
 
-- `lean-mlir`: finish purity-annotations
-- `lean-mlir`: help Tobias design simp set.
 - `lean-mlir`: finish large instcombine proof merging.
 - `AWS`: Waiting for cultural vistas to get back to me.
 - `Joachim`: finish below relation.
 - `fbip`: Implement new topdown algorithm.
-- `compilers super`: 4th super --- get students to agree on time
 - organize group retrospective for end of easter term.
 - Hoare logic and model checking course [mon/wed/fri] (CC @luisa).
 
@@ -29,10 +27,6 @@
 ---
 
 #### Done
-
-- `complexity theory super` : 1st super --- send out email
-- `grosser.science` website upkeep. 
-- `fbip`: get stable benchmarking setup with @grosser
 
 
 --- 
