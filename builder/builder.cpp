@@ -1401,6 +1401,30 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
 
   case TT::CodeBlock: {
     TCodeBlock *block = (TCodeBlock *)t;
+
+    // we want to ignore the first 3 ``` and the last 3 ```
+    const Span span =
+        Span(t->span.begin.next("```").next(block->langname).next("\n"),
+             t->span.end.prev("```"));
+
+    if (!strcmp(block->langname, "abc")) {
+      const char *open = "<div class \"abc\">";
+      const char *close = "</code></pre>";
+
+      strcpy(outs + outlen, open);
+      outlen += strlen(open);
+
+      // write span.
+      strncpy(outs + outlen, raw_input + span.begin.si,
+        span.nchars());
+      outs += span.nchars();
+
+      strcpy(outs + outlen, close);
+      outlen += strlen(close);
+      return true;
+
+    }
+
     // TODO: escape HTML content.
     const char *open = "<pre><code>";
     const char *close = "</code></pre>";
@@ -1408,10 +1432,6 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     strcpy(outs + outlen, open);
     outlen += strlen(open);
 
-    // we want to ignore the first 3 ``` and the last 3 ```
-    const Span span =
-        Span(t->span.begin.next("```").next(block->langname).next("\n"),
-             t->span.end.prev("```"));
     char *code_html = pygmentize(prism_ctx, raw_input, block->langname, span);
 
     strcpy(outs + outlen, code_html);
@@ -1597,6 +1617,8 @@ const char html_preamble[] =
     "<head>"
     // ===viewport===
     "<meta name='viewport' content='width=device-width, initial-scale=1'>"
+    // ===script===
+    "<script src='/script/blog.js'></script>"
     // ===RSS===
     "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
@@ -1608,128 +1630,9 @@ const char html_preamble[] =
     "<!-- The loading of KaTeX is deferred to speed up page rendering -->"
     // ===Prismjs===
     "<link rel='stylesheet' href='/prism/prism.css'>"
-    //
-    // "<script defer src='katex/katex.min.js'"
-    // "
-    // integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'"
-    // "    crossorigin='anonymous'></script>"
-    // "<script>"
-    // "    function on_katex_load() {"
-    // "        const katex_opts = ["
-    // "            {left: '$', right: '$', display: false},"
-    // "            {left: '$$', right: '$$', display: true}"
-    // "        ];"
-    // "        renderMathInElement(document.body, katex_opts);"
-    // "        let elemsInline =
-    // document.getElementsByClassName('latexinline');"
-    // //
-    // https://stackoverflow.com/questions/39959563/render-math-with-katex-in-the-browser
-    // "        for (var i = 0; i < elemsInline.length; i++)
-    // {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}" "
-    // let elemsBlock = document.getElementsByClassName('latexblock');" " for
-    // (var i = 0; i < elemsInline.length; i++)
-    // {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i),
-    // {displayMode: true});}" "    }"
-    // "</script>"
-    // "<!-- To automatically render math in text elements, include the
-    // auto-render extension: -->"
-    // "<script defer src='katex/auto-render.min.js'"
-    // "
-    // integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'"
-    // "    crossorigin='anonymous'"
-    // "    onload='on_katex_load();'></script>"
     // ===End KateX===
     "<title> A Universe of Sorts </title>"
-    "<style>"
-    "@font-face {font-family: 'Blog Mono'; src: "
-    "url('/static/iosevka-fixed-extended.ttf');}"
-    "@font-face {font-family: 'Blog Sans'; src: "
-    "url('/static/Exo2-Regular.ttf');}"
-    "@font-face {font-family: 'Blog Serif'; src: "
-    "url('/static/Revans-Regular.ttf');}"
-    // body
-    "html { font-size: 100%; min-height: 100% }"
-    "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
-    "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
-    "body {"
-    // " background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%); "
-    // " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
-    // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
-    " min-height: 100vh; " // https://stackoverflow.com/questions/3740722/min-height-does-not-work-with-body
-    " line-height: 1.5em; "
-    " color: #000000; " // tufte
-    " font-family: Blog Serif; "
-    " font-size: 12px; "
-    " margin-top: 0px; " // by default, there is a margin.
-    " max-width: 100%; overflow-x: hidden; }"
-    "\n"
-    "h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }"
-    "h1, h2 { column-span: all; }"
-    // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
-    "img { display:block; max-width: 100%; height: auto }"
-    // container
-    ".container { overflow-x: auto; overflow-y: hidden; "
-    "             margin-top: 0px; height: 100%; min-height: 100%;"
-    "             max-width: 100%; "
-    "             font-size: 18px; line-height: 1.5em; "
-    "             padding-left: 30px; padding-right: 30px; background: #FFFFFF;"
-    "}"
-    "@media (max-width: 480px) { "
-    "  .container { margin-left: 1%; margin-right: " "1%; }"
-    "  body { font-size: 30px; } "
-    " } "
-    "@media (max-width: 1024px) { "
-    " .container { margin-left: 1%; margin-right: " "1%; }"
-    "  body { font-size: 30px; }"
-    "}"
-    // desktop
-    "@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }"
-    // class for image <div>
-    ".image { }"
-    "\n"
-    "a:hover { color: #1a73e8; text-decoration: underline;  }" // hover
-    "\n"
-    "a { color: #1a73e8; text-decoration: none; }" // unvisited; default
-    "\n"
-    "a:visited { color: #1a73e8; text-decoration: none; }" // vlink
-    "\n"
-    "a:active { color: #1a73e8; text-decoration: none; }" // alink
-    "\n"
-    // code blocks, latex blocks, quote blocks
-    "\n"
-    "blockquote { margin-left: 0px; margin-right: 0px; }"
-    " pre, .latexblock, blockquote { border-left-color:#BBB;  "
-    "border-left-style: solid;"
-    "      border-left-width: 5px; }"
-    "pre, blockquote { padding-left: 10px; }"
-    "\n"
-    // monospace font
-    "pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }"
-    // pre: allow scrolling in x direction
-    "pre {  overflow-x: auto; }"
-    // padding and margin for blocks
-    ".latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; "
-    "padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
-    // latexblock should have regular line height for correct rendering.
-    ".latexblock { line-height: 1em }"
-    // overflow: latex and code block
-    "\n"
-    // inline latex: force all text to be on same line.
-    "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
-    ".inline { white-space: nowrap; background:#efefef; }"
-    // ul's for some reason are padded, and they render their bullets *outside*
-    // their area. Fix both:
-    // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
-    "ul, ol { list-style-position: inside; padding-left: 0; }"
-    "ul { list-style-type: disclosure-closed; }"
-    // RESPONSIVE
-    // " @media (max-width: 1000px) {"
-    // "    .container { max-width: 100%; padding: 0; margin-left: 10%;
-    // margin-right: 0px;" "                 padding-left: 0px; padding-right:
-    // 0px; border: none; }"
-    // "}"
-    // end style
-    "</style>"
+    "<link rel='stylesheet' href='/css/stylesheet.css'>"
     "</head>"
     "<body>"
     "<div class='container'>";
@@ -1743,6 +1646,7 @@ const char html_preamble[] =
   "        crossorigin=\"anonymous\""                                          \
   "        async>"                                                             \
   "</script>"
+
 
 
 const char html_postamble[] = "</container>"
