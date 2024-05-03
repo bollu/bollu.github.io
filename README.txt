@@ -47572,20 +47572,34 @@ C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, 
 
 ### Gin Soaked Boy
 
+##### Verse
+
 ```abc
-X: 1
 T: Gin Soaked Boy (C major)
-M: 4/4
-L: 1/8
-K: Cmaj
 
-| C D G G F E F G |
-C D G G F E C |
-C D G G G F E C |
-C D F E C |
-C C C C A C E |
-C C C C A C E |
-C C C C A C E |
-C C C C a g a c
+CD G2 G2 F E2 {F} G2 |
+w: I'm the dark- ness in the li:ght
+CD G2 G2 F E2 C2 |
+w: I'm the left ness in the right
+```
 
+##### Chorus
+
+```abc
+T: Gin Soaked Boy (C major)
+
+CD G2 GG F E2 C2 |
+w: I'm the gin in the gin soaked boy
+CD F E2 C2 |
+w: yeah the gin soaked boy
+```
+
+##### Ending
+```abc
+T: Gin Soaked Boy (C major)
+
+CD G2 GG F E2 C2 |
+w: I'm the gin in the gin soaked boy
+CD F E2 C2 |
+w: yeah the gin soaked boy
 ```
