@@ -47538,20 +47538,16 @@ F G F E_ |
 F G C C |
 ```
 
-### Dissolve
+### Dissolve (WIP)
 
 ```abc
 T: Dissolve (C harmonic minor)
-G _E C _B |
-_E C _B F G |
-_B C |
-G F G _B G C D _E |
-{G} _B C |
-G G F G _B |
-_E C _B G _E F G |
-G G _E F {F}G |
-C C C _E  F |
-C C C C _E F A_ C |
+ _B,3 C | z _E2 C2 z _B2 G F | D2 z | G4 C2 z
+w: wan-ted you to watch me dis-olve slow-ly
+_B2 G2 _B2 c2 _B2 | C2 C4 D4 _E4
+w: in a po-oo-ol slow - ly -  y - y
+C3 C G2 _B2 c2 _B2 | c'4 _B'2 G'2 _E'4 z C'2 C'2
+w: I just wan ted you to know how the chem is try 
 ```
 
 
