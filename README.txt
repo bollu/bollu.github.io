@@ -47518,49 +47518,8 @@ C C4
 w: to-night
 ```
 
-### Breezeblocks (TODO)
-
-```
-X: 1
-T: Breezeblocks (C Natural Minor)
-M: 4/4
-L: 1/8
-K: Cmaj
-G F E_ E_ |
-F G F_ G F E_ |
-F 
-G F_ G F |
-E_ F D E_ C |
-E_ E_ E_ | 
-{F} G G G G |
-C B_ G G |
-F G F E_ |
-F G C C |
-```
-
-### Dissolve (WIP)
-
-```abc
-T: Dissolve (C harmonic minor)
- _B,3 C | z _E2 C2 z _B2 G F | D2 z | G4 C2 z
-w: wan-ted you to watch me dis-olve slow-ly
-_B2 G2 _B2 c2 _B2 | C2 C4 D4 _E4
-w: in a po-oo-ol slow - ly -  y - y
-C3 C G2 _B2 c2 _B2 | c'4 _B'2 G'2 _E'4 z C'2 C'2
-w: I just wan ted you to know how the chem is try 
-```
-
-
-### Carnival of Rust 
-
-```abc
-T: Carnival of Rust
-
-```
-
 ### Gin Soaked Boy
 
-##### Verse
 
 ```abc
 T: Gin Soaked Boy (C major)
@@ -47582,4 +47541,44 @@ C z C2 z C z C2 A, C2 E z |
 w: ba ba ba ba du ba ba 
 C z C2 z C z C2 CG,A, C2 z |
 w: ba ba ba ba du ba ba ba
+```
+
+
+### Breezeblocks (WIP)
+
+```
+X: 1
+T: Breezeblocks (C Natural Minor)
+M: 4/4
+L: 1/8
+K: Cmaj
+G F E_ E_ |
+F G F_ G F E_ |
+F 
+G F_ G F |
+E_ F D E_ C |
+E_ E_ E_ | 
+{F} G G G G |
+C B_ G G |
+F G F E_ |
+F G C C |
+```
+
+### Dissolve by Absofacto (WIP)
+
+```abc
+T: Dissolve by  Absofacto (C harmonic minor)
+C2 D2  | _E2 C2 _B4 G2 F2 | _D =D4 | z G4 _D C2
+w: wan-ted you to watch me dis-ol-ve slow-ow-ly
+_B2 G2 _B2 c2 _B2 | C2 C4 D4 _E4
+w: in a po-oo-ol slow - ly -  y - y
+C3 C G2 _B2 c2 _B2 | c'4 _B'2 G'2 _E'4 z  C C'2
+w: I just wan ted you to know how the chem is try 
+```
+
+### Carnival of Rust (WIP)
+
+```
+T: Carnival of Rust
+
 ```
