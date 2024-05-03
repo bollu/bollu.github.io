@@ -47490,6 +47490,31 @@ G2 G4 _A4 G4 |
 w: It starts with why
 ```
 
+### Breaking The Habit
+
+```
+T: Breaking The Habit
+|G4 _E4 | F4 C4 | z C2 _E2  _E _E2 z D C2 |
+w: mem-ories con sume like op-en-ing the wound
+_E z  _E  _E2  z  | D2 _E2  _E C4
+w:  pick-ing-me a-part ag-ain
+|G4 _E4 | F4 C4 | z C2 _E2  _E _E2 z D C2 |
+w: you all ass-ume  I'm safe here in my room
+_E z  _E  _E2  z  | D2 _E2   F G4
+w: Unless I try to start again
+c2 c c3 | _B2 A2 F F3 | c c2 c2 _B2 A4
+w: I dont want to be the one bat-tles al-ways choose
+c2 c c3 | _B2 A2 F F3 | c c2 c2 _B2 A4
+w: Inside I re-a-lize | I'm the one con-fused
+C2 _E2 _E D2 C2 z _B, C2 C4 | _B, _E2 _E D2 C2 D4
+w: I don't know what's worth fight-ing for | or why I have to scream
+C2 _E2 _E D2 C2 z _B, C2 C4 | _B, _E2 _E D2 C2 D4
+w:I don't know why I ins-ti-gate And say what I don't mean
+C2 _E2 _E D2 C2 z _B, C2 C4 | _B, _E2 _E D2 C2 D4
+w: I don't know how I got this way I know it's not alright
+
+So, I'm breaking the habit | I'm breaking the habit tonight
+```
 
 ### Breezeblocks
 
