@@ -47512,8 +47512,10 @@ C2 _E2 _E D2 C2 z _B, C2 C4 | _B, _E2 _E D2 C2 D4
 w:I don't know why I ins-ti-gate And say what I don't mean
 C2 _E2 _E D2 C2 z _B, C2 C4 | _B, _E2 _E D2 C2 D4
 w: I don't know how I got this way I know it's not alright
-
-So, I'm breaking the habit | I'm breaking the habit tonight
+C2 C2 _E3 D2 C2 _E4 D2 | C2 _E3 F2 _E2 _E4 D2 
+w: So, I'm brea-king the ha-bit | I'm brea-king the ha-bit 
+C C4
+w: to-night
 ```
 
 ### Breezeblocks
