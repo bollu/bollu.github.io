@@ -47444,27 +47444,11 @@ speak slower than you want to.
 <!-- img src="/static/madoka-ost.cropped.svg" / -->
 
 ```abc
-X: 1
 T: Madoka Magica (C mixolydian)
-M: 4/4
-L: 1/8
-K: Cmaj
-
-C. D E_ B_ C D
-C. D E_ f4. E_ D4.
-{D}E_ C.
-C D E_ FG4. C
-G4  f4. E_4. D4.
-{D}E_ C.
-
-C D E_ FG4. C,
-G4  f4. E_4. D4.
-E_ FG4.
-
-C D E_ FG4. C
-G4. {G} A_ F4.
-E_4. {E_}F  G4.
-D4. {D}E_ C.
+(C2 z1 D) _E2 _B,2 C2 D2 | C2 z D _E2 F2 E2 D z | {D}_E2 C2 z2
+(CD_EFG2) C2 z | G  F2 _E2 D z | D_E C2  z2
+(CD_EF) G2 C2 z | G F2 _E2 D2 | _EF G2  z2
+(CDEF) G2 C2 z | (GzG_A) F2 z |  (_Ez_EF)  D2  z | (DzD_E) C2
 ```
 
 #### Wave Teng
@@ -47486,11 +47470,7 @@ w: gi- ddy up gi- ddy up ro me o```
 ### Fur Elise
 
 ```abc
-X: 1
 T: Fur Elise (C blues scale)
-M: 4/4
-L: 1/8
-K: Cmaj
 | G F# G F# F |
 D F E_ C | 
 f A_ B D |
