@@ -47472,12 +47472,16 @@ D4. {D}E_ C.
 ```abc
 X: 1
 T: Wave Teng (C mixolydian)
-M: 4/4
-L: 1/8
-K: Cmaj
-| GGG G2 FE F F2 E C2 z | GGG G2 FE F F2 A G2 z |
-C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, z _B,2 C2 C2
-```
+| GGG G2 FE F F2 E C2 z |
+w: I wan na be where the wave hits the shore
+GGG G2 FE F F2 A G2 z |
+w: Right by the sea down in El Sal va dor
+C GGG G2 FE F F2 E C2 |
+w: han ging on the beach with the one I ad- ore
+D z D_B,G, z  D_B,G, z _B,2 C2 C2 |
+w: yeah gi- ddy up gi- ddy up ro me o 
+z  D_B,G, z  D_B,G, z _B,2 C2 C2
+w: gi- ddy up gi- ddy up ro me o```
 
 ### Fur Elise
 
@@ -47538,13 +47542,7 @@ F G C C |
 ### Dissolve
 
 ```abc
-X: 1
 T: Dissolve (C harmonic minor)
-M: 4/4
-L: 1/8
-K: Cmaj
-
-
 G E_ C B_ |
 E_ C B_ F G |
 B_ C |
@@ -47561,13 +47559,8 @@ C C C C E_ F A_ C |
 ### Carnival of Rust 
 
 ```abc
-X: 1
-T: Wave Teng (C mixolydian)
-M: 4/4
-L: 1/8
-K: Cmaj
-| GGG G2 FE F F2 E C2 z | GGG G2 FE F F2 A G2 z |
-C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, z _B,2 C2 C2
+T: Carnival of Rust
+
 ```
 
 ### Gin Soaked Boy
@@ -47576,7 +47569,6 @@ C GGG G2 FE F F2 E C2 | D z D_B,G, z  D_B,G, z _B,2 C2 C2 | z  D_B,G, z  D_B,G, 
 
 ```abc
 T: Gin Soaked Boy (C major)
-
 CD G2 G2 F E2 {F} G2 |
 w: I'm the dark- ness in the li:ght
 CD G2 G2 F E2 C2 |
@@ -47587,7 +47579,6 @@ w: I'm the left ness in the right
 
 ```abc
 T: Gin Soaked Boy (C major)
-
 CD G2 GG F E2 C2 |
 w: I'm the gin in the gin soaked boy
 CD F E2 C2 |
@@ -47597,6 +47588,7 @@ w: yeah the gin soaked boy
 ##### Ending
 
 ```abc
+T: Gin Soaked Boy (C major)
 C z C2 z C z C2 A, C2 E z |
 w: ba ba ba ba du ba ba 
 C z C2 z C z C2 A, C2 A, z |
