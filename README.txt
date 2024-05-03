@@ -47492,7 +47492,7 @@ w: It starts with why
 
 ### Breaking The Habit
 
-```
+```abc
 T: Breaking The Habit
 |G4 _E4 | F4 C4 | z C2 _E2  _E _E2 z D C2 |
 w: mem-ories con sume like op-en-ing the wound
@@ -47518,9 +47518,9 @@ C C4
 w: to-night
 ```
 
-### Breezeblocks
+### Breezeblocks (TODO)
 
-```abc
+```
 X: 1
 T: Breezeblocks (C Natural Minor)
 M: 4/4
