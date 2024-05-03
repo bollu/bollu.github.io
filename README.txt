@@ -47484,16 +47484,10 @@ G E_ D C
 ### In The End
 
 ```abc
-X: 1
 T: In The End (C harmonic)
-M: 4/4
-L: 1/8
-K: Cmaj
-|  C G G E_ |
-D D D D E_ |
-C G G E_ D |
-G G A_ G |
-G G A_ G |
+|C2 G2 G2 _E2 | D2 D2 D2 D_E | C2 G2 G2 _E2 D4 |
+G2 G4 _A4 G4 | 
+w: It starts with why
 ```
 
 
