@@ -47595,11 +47595,14 @@ w: yeah the gin soaked boy
 ```
 
 ##### Ending
-```abc
-T: Gin Soaked Boy (C major)
 
-CD G2 GG F E2 C2 |
-w: I'm the gin in the gin soaked boy
-CD F E2 C2 |
-w: yeah the gin soaked boy
+```abc
+C z C2 z C z C2 A, C2 E z |
+w: ba ba ba ba du ba ba 
+C z C2 z C z C2 A, C2 A, z |
+w: ba ba ba ba du ba ba 
+C z C2 z C z C2 A, C2 E z |
+w: ba ba ba ba du ba ba 
+C z C2 z C z C2 CG,A, C2 z |
+w: ba ba ba ba du ba ba ba
 ```
