@@ -47526,8 +47526,6 @@ T: Breezeblocks (C Natural Minor)
 M: 4/4
 L: 1/8
 K: Cmaj
-
-
 G F E_ E_ |
 F G F_ G F E_ |
 F 
@@ -47544,16 +47542,16 @@ F G C C |
 
 ```abc
 T: Dissolve (C harmonic minor)
-G E_ C B_ |
-E_ C B_ F G |
-B_ C |
-G F G B_ G C D E_ |
-{G} B_ C |
-G G F G B_ |
-E_ C B_ G E_ F G |
-G G E_ F {F}G |
-C C C E_  F |
-C C C C E_ F A_ C |
+G _E C _B |
+_E C _B F G |
+_B C |
+G F G _B G C D _E |
+{G} _B C |
+G G F G _B |
+_E C _B G _E F G |
+G G _E F {F}G |
+C C C _E  F |
+C C C C _E F A_ C |
 ```
 
 
@@ -47574,21 +47572,11 @@ CD G2 G2 F E2 {F} G2 |
 w: I'm the dark- ness in the li:ght
 CD G2 G2 F E2 C2 |
 w: I'm the left ness in the right
-```
-
-##### Chorus
-
-```abc
 T: Gin Soaked Boy (C major)
 CD G2 GG F E2 C2 |
 w: I'm the gin in the gin soaked boy
 CD F E2 C2 |
 w: yeah the gin soaked boy
-```
-
-##### Ending
-
-```abc
 T: Gin Soaked Boy (C major)
 C z C2 z C z C2 A, C2 E z |
 w: ba ba ba ba du ba ba 
