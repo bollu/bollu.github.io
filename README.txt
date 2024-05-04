@@ -47239,14 +47239,28 @@ speak slower than you want to.
 - Recall that the 9th is taken from the root (C major), but the 9th note for the given scale.
 
 
-#### Harmony: Chords for all scale degrees
-- 1: Tritone
-- 2: 7th
-- 3: sharp 5th
-- 4: Tritone
-- 5: 11th
-- 6: regular
-- 7: flat 9
+#### Types of Seventh Chords
+
+#### Dominant 7th (default) `C7`: 
+- [`1, 3, 5, ♭7`](https://m.basicmusictheory.com/c-dominant-7th-chord)
+- Major triad + two semitones below octave note.
+- Used on the fifth degree of the scale. One will common see `G7`.
+- It's called dominant since it's used on the fifth scale degree.
+- The only place we can build a dominant 7th and stay within key is on the 5th.
+- `F7` adds an `Eb` which makes it bluesey, so this is useful.
+
+#### Major 7th `Cmaj7` / `C△7`: 
+- [`1, 3, 5, 7`](https://m.basicmusictheory.com/c-major-7th-chords).
+- Major triad + one semitone below octave. Seventh degree of the major scale.
+
+#### Minor 7th `Cmin7`
+- [`1, ♭3, 5, ♭7`](https://m.basicmusictheory.com/c-minor-7th-chords).
+- Lush, smooth sound.
+
+#### Diminished 7th.
+- [`1, ♭3, ♭5, ♭♭7`](https://m.basicmusictheory.com/c-diminished-7th-chord).
+
+#### Half Diminished 7th
 
 ### Melody: Approch pattern --- half step below
 
