@@ -47514,11 +47514,15 @@ _B _B _B _B |
 
 ```abc
 T: Candleburn by Rabbitology
-
-w: bap tize her bap tize her
-w: rose wat er soft daug-ht-er
-w: don't for-get to flo-ra-lize 
+   E   C    C   E   C    C
+w: bap-tize her bap tize her
+   E    C   C   E   C     C
+w: rose wat er soft daught-er
+   F     F   F   F   G  _E  C
+w: don't for-get to flo-ra-lize
+   C     _E _E _E    C  _E    _E  _E 
 w: don't vo-ca-lize the smoke in eyes
+   _B,    _B,    _B,    C
 w: don't don't don't strike
 ```
 
@@ -47527,3 +47531,6 @@ w: don't don't don't strike
 ```abc
 T: Carnival of Rust
 ```
+
+
+### Love$ick Fuck (by Mura Masa)
