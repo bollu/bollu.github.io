@@ -47480,15 +47480,50 @@ w: I just wan ted you to watch me dis ol ve slow ly
 w: in a po o l slow ly ly ly 
 ```
 
+### Rest by El Huevro
+
+```abc
+c d _e f g2 | f2 c2 f2 |
+c d _e f g2 | f2 c2 f2 |
+c d _e f g2 | f2 c2 f2 |
+c d _e f g2 | f2 c2 f2 |
+c2 c2 G2 G _A _A2 C2 C2 D2 C C2
+```
 
 ### Naruto OST Drill Remix
 
+```abc
+T: Naruto OST Drill Remix
+_B, C D _E2 D2 C2 |
+_B,2 C2 D2 _E2 F2 _E2 _F2 G2 |
+_B,2 C D _E2 D2 C2 |
+C2 F2 F4 C2 G2 F4 |
+_B2 _B3 C C4 |
 ```
+
+### Candleburn by Rabbitology
+
+```abc
+T: Candleburn by Rabbitology
+C2 C _E2 C _E2 | 
+C2 C _E2 C _E2 | 
+C2 C _E2 C _E2 | 
+C2 C _E2 C _E2 | 
+_B _B _B _B |
+```
+
+```abc
+T: Candleburn by Rabbitology
+
+w: bap tize her bap tize her
+w: rose wat er soft daug-ht-er
+w: don't for-get to flo-ra-lize 
+w: don't vo-ca-lize the smoke in eyes
+w: don't don't don't strike
 ```
 
 ### Carnival of Rust (WIP)
 
-```
+```abc
 T: Carnival of Rust
-
 ```
