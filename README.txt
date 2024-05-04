@@ -47530,6 +47530,10 @@ w: don't don't don't strike
 
 ```abc
 T: Carnival of Rust
+C2 G2 F2 G2
+w: come feel the rain
+C2 G2 GF _E _E F
+w: cause I'm thirs-ty for your love
 ```
 
 
