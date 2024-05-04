@@ -47525,6 +47525,21 @@ w: don't vo-ca-lize the smoke in eyes
    _B,2  z  _B,2  z  _B,2   C4
 w: don't don't don't strike
 
+w: catch-ing on that dis-tant lie
+w: she's got-ta be di-vi-ine
+w: then line breaks spine aches
+w: coiled snake bro-ken rope
+w: and joa-nie cho-kes
+```
+
+```
+w: well they better hope that their
+w: per-fume is stron-ger than the soul 
+```
+
+```abc
+they'll put an ap-ple in your hand
+but don't you dare 
 ```
 
 ### Carnival of Rust (WIP)
