@@ -47226,19 +47226,6 @@ speak slower than you want to.
 - [Jazz tutorial](https://jazztutorial.com/video-library)
 - The real book. Get one in key C.
 
-#### Jazz Chord Progression for C major
-
-- We fix the key to be C major.
-- 2 5 1 chord progression.
-- Dmin7, G7, Cmaj7, A7.
-- Use extended notes, 9th.
-- Dmin7 notes: D F A C + E
-- G7 notes: G B D F + A
-- Cmaj7 notes: C E G B + D
-- A7 notes: A C# E G + B. Use Bb in this case as the flat 9th.
-- Recall that the 9th is taken from the root (C major), but the 9th note for the given scale.
-
-
 #### Types of Seventh Chords
 
 #### Dominant 7th (default) `C7`: 
@@ -47261,6 +47248,14 @@ speak slower than you want to.
 - [`1, ♭3, ♭5, ♭♭7`](https://m.basicmusictheory.com/c-diminished-7th-chord).
 
 #### Half Diminished 7th
+
+#### Natural minor scale chords
+
+- Learn 7th chords.
+- By default, try to use **natural minor**.
+- minor triad chords: 1 2 5
+- major triad chords: rest, which is 3 4 6 7
+- basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
 
 ### Melody: Approch pattern --- half step below
 
@@ -47309,22 +47304,6 @@ speak slower than you want to.
 - Approach from both sides, chromatically, before playing the main note.
 - Dmin7: C# -> E -> D
 
-### Melody: Jazz rhythm
-- (quaver (semiquaver semiquaver)) (quaver quaver)
-
-### Theory: Quickly counting intervals
-- memorize: perfect 5ths
-- minor 2nd: half step
-- Major 2nd: whole step
-- minor 3rd: whole step + half step
-- Major 3rd: two whole steps
-- fourth: perfect fifth - whole step
-- tritone: perfect fifth - half step
-- Perfect 5th: memorized
-- minor 6th: perfect 5th + half step
-- Major 6th: perfect 5th + whole step
-- minor 7th: octave - whole step
-- Major 7th: octave - half step
 
 ### Melody: Walking Bass line
 - We want the notes to be the root note of the chord
@@ -47335,123 +47314,11 @@ speak slower than you want to.
 - For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
 
-#### Melody: Embellishments
-
-- Tension and resolution notes
-- resolution notes: root, 3rd, 5th
-- tension notes: want to resolve to the closest resolution note.
-- appogiatura: a note that is played before the resolution note, and is a half step above or below the resolution note. Decorate resolution notes with appogiatura.
-- double appogiatura / turn: start on the resolution note, go to the note above, come back to the resolution note,
-  go to the note below, and come back to the resolution note.
-- In general, precede each resolution note with an ornament.
-
-### Technique: Playing Chords as one
-- All keys must be struck at the same time.
-- How to practice this?
-- First find fingers to the notes
-- Lock ones hands
-- Apply pressure from arm /wrist that goes downwards.
-
-
-### Melody: Bossa nova
-
-- [reference: jazz tutorial bossa nova](https://jazztutorial.com/video-library/jazz-piano-styles/bossa-nova-jazz-piano-lesson)
-- The rhythm is the key.
-- For any chord where the 5th is natural, play the root note (1) and the natural fifth (5)
-- For any chord where the 5th is , play the root note (1) and the natural fifth (5)
-- crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5), crochet dot (1), quaver (5)
-- For the usual jazz chord sequence of Dmin7, G7, Cmaj7, A7, we would play:
-- To travel upward, just play 1->5. To go downward, go downward as 5->1->5 and so on.
-- So, if we hold a Cmin7 for 2 measures, we can play as (dot denotes a longer note, prime is octave higher): `1. 5 5 1. 5 5 1' 5`
-- Dmin7: D A D A D A D A
-- G7: G D G D G D G D
-- Cmaj7: C G C G C G C G
-- A7: A E A E A E A E (Can add color by playing A7b9)
-
 ### Chord voicing for bossa nova: Rootless chord voicings (sophisticated)
 
 - Key idea: leave out the root note, only keep 3 5 7 9.
 - 3 5 7 9 (position A)
 - 7 9 3 5 (position B) [7, 9 are octave lower]
-
-### Chord voicing for bossa nova: Shell chord voicings (simple)
-
-- [Beginner chord voicings for jazz piano](https://jazztutorial.com/video-library/chord-voicings/shell-voicings-lesson)
-- Distribute notes evenly
-- Prefer voices to be higher rather than lower.
-- We want the 3rd and the 7th. Fix the melody note and the chord note, and now figure out how to add the 3rd and 7th with a good spread.
-- If holding a chord for two beats, then on the second measure, play the fifth of the chord, and re-shell.
-- 3rd and 7th (position A)
-- 7th and 3rd (position B)
-
-
-### Jazz chords + Pentatonic Scale [For later]
-
-- G pentatonic sounds consonant over all 3 of Dmin7, G7, Cmaj7
-- That is, build the pentatonic scale over the 5th scale degree (since we are in C key, we will use G).
-- G pentatonic has notes: `G Bb C D F`
-
-
-#### Blues Scale
-
-- `C – E♭ – F – G♭ – G – B♭`.
-
-
-##### Basic Blues Chord Progression:
-
-- C7, F7, D7.
-- Recall seventh chord is 1, 3, 5 plus the octave key flattened .
-
-```
-| C7 | C7 | C7 | C7 |
-| F7 | F7 | C7 | C7 |
-| G7 | F7 | C7 | C7 |
-```
-
-
-##### Harmonizing
-
-- https://pianowithjonny.com/piano-lessons/3-slow-blues-piano-improv-techniques/
-- Haromize bottom 5 notes of blues scale with a higher C
-
-##### Intervals to learn
-
-- Perfect 5th.
-- Minor 3rd: 3 half steps (makes up pentatonic scale).
-
-
-#### Genres of Jazz I like
-
-- [Funk jazz](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/)
-- [Bossa nova](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-bossa-nova/)
-- [Blues piano](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/blues-piano/)
-
-
-# All about the C minor scale
-
-- C aeolian / natural minor scale: `C D Ees F G Aes Bes`. 
-- C harmonic minor scale: `C D Ees F G Aes B`.
-- C dorian scale scale:  `C D Ees F A Bes`.
-- wu tang clang cream is in dorian scale! `C D Ees F A G C (Bes C)x3 A G F Eb D Cxe`
-- Also consider Phrygian: `C Des Ees F G Aes Bes C`. (`Des` makes it sound "arabian".)
-
-#### Natural minor scale chords
-
-- Learn 7th chords.
-- By default, try to use **natural minor**.
-- minor triad chords: 1 2 5
-- diminished triad chord: 2
-- major triad chords: rest, which is 3 4 6 7
-- basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
-
-#### Harmonic minor scale chords
-- Learn 7th chords.
-
-
-
-
-#### Dorian scale
-- Learn 7th chords.
 
 # Sheet Music
 
