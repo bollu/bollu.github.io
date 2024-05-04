@@ -47250,7 +47250,7 @@ speak slower than you want to.
 #### Minor 2 5 1 for Jazz
 - We are playing in the key of C minor
 - we want the `ii v i` chords.
-- [Scale](https://m.basicmusictheory.com/c-minor-7th-chords)
+- [Scale chords](https://m.basicmusictheory.com/c-minor-7th-chords)
 - 2: C minor chord iiø7: `D, F, A♭, C`. Voiced as  `D, F, A♭, C`.
 - 5: C minor chord v7: `G, B♭, D, F`. Voiced as `D F G B ♭`.
 - 1: C minor chord i7: `C, E♭, G, B♭`. Voiced as `C, E♭, G, B♭`.
