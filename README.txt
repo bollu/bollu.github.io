@@ -47251,14 +47251,26 @@ speak slower than you want to.
 - We are playing in the key of C minor
 - we want the `ii v i` chords.
 - [Scale](https://m.basicmusictheory.com/c-minor-7th-chords)
-- 2: C minor chord iiø7: `D, F, A♭, C`.
-- 5: C minor chord v7: `G, B♭, D, F`.
-- 1: C minor chord i7: `C, E♭, G, B♭`.
+- 2: C minor chord iiø7: `D, F, A♭, C`. Voiced as  `D, F, A♭, C`.
+- 5: C minor chord v7: `G, B♭, D, F`. Voiced as `D F G B ♭`.
+- 1: C minor chord i7: `C, E♭, G, B♭`. Voiced as `C, E♭, G, B♭`.
 - What scale to play? consider chord + whole step, which gives us the following:
-- 2:`D E F G A♭ B♭ C D`, ie, `C D E F G A♭ B♭`  
+- 2:`D E F G A♭ B♭ C D`, ie, `C D E F G A♭ B♭` (C aeolian dominant scale / C [hindu scale](https://pianoencyclopedia.com/scales/hindu/C-hindu.html)) 
 - 5:`G A B♭ C D E F G`, ie, `C D E F G A B♭` (C mixolydian).
 - 1:`C D E♭ F G A B♭` (C natural minor).
 
+##### 2, 5, 1
+
+```
+2: D F A♭ C / C D F A♭
+C D E F G A♭ B♭ (C hindu scale)
+---
+5: D F G B♭ 
+G A B♭ C D E F G (C mixolydian)
+--
+1: C, E♭, G, B♭
+C D E♭ F G A B♭ (C natural minor).
+```
 ### Melody: Approch pattern --- half step below
 
 - Approach each note with the note that is a semitone below.
