@@ -47249,16 +47249,15 @@ speak slower than you want to.
 
 #### Minor 2 5 1 for Jazz
 - We are playing in the key of C minor
-- we want the ii v i chords.
+- we want the `ii v i` chords.
 - [Scale](https://m.basicmusictheory.com/c-minor-7th-chords)
 - 2: C minor chord iiø7: `D, F, A♭, C`.
 - 5: C minor chord v7: `G, B♭, D, F`.
 - 1: C minor chord i7: `C, E♭, G, B♭`.
-
 - What scale to play? consider chord + whole step, which gives us the following:
-- 2:`D E F G A B C D`.
-- 5:`G A B C# D E F G`
-- 1:`C D E♭ F G A B♭` (C harmonic).
+- 2:`D E F G A♭ B♭ C D`, ie, `C D E F G A♭ B♭`  
+- 5:`G A B♭ C D E F G`, ie, `C D E F G A B♭` (C mixolydian).
+- 1:`C D E♭ F G A B♭` (C natural minor).
 
 ### Melody: Approch pattern --- half step below
 
