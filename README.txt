@@ -47247,24 +47247,15 @@ speak slower than you want to.
 #### Diminished 7th.
 - [`1, ♭3, ♭5, ♭♭7`](https://m.basicmusictheory.com/c-diminished-7th-chord).
 
-#### Half Diminished 7th
-
-#### Natural minor scale chords
-
-- Learn 7th chords.
-- By default, try to use **natural minor**.
-- minor triad chords: 1 2 5
-  - major triad chords: rest, which is 3 4 6 7
-- basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
-
-#### Minor 2 5 1
+#### Minor 2 5 1 for Jazz
+- [Link](https://pianowithjonny.com/piano-lessons/minor-2-5-1-progression-5-levels-from-beginner-to-pro).
 - Play chord given by chordal tones + half step
-- 2/(Dm7):`D F A♭ C`, 5/(Gdom7):`G B D F`, 1/(Cmin7):`C♭ E G B♭`
-- 
-#### Chord Progressions
-- 
-- Cuban Style Montuno Pattern
-- Falling 6th
+- 2/(Dm7):`D F A♭ C`, 5/(Gdom7):`G B D F`, 1/(Cmin7):`C E♭ G B♭`
+- What scale to play? consider chord + whole step, which gives us the following:
+- 2:`D E F G A♭ B♭ C D`.
+- 5:`G A B C# D E F G`
+- 1:`C D E♭ F G A B♭` (C harmonic).
+
 ### Melody: Approch pattern --- half step below
 
 - Approach each note with the note that is a semitone below.
