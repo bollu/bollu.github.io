@@ -47534,6 +47534,10 @@ C2 G2 F2 G2
 w: come feel the rain
 C2 G2 GF _E _E F
 w: cause I'm thirs-ty for your love
+  _E    _E   _E D  _E    D   C    _B, C
+w: dan-cing un-der-neath the skies of lust
+ c G  _E _B, _E _B, C 
+ o o  ye-ah ye-ah yeah
 ```
 
 
