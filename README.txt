@@ -47262,8 +47262,7 @@ speak slower than you want to.
 ##### 2, 5, 1
 
 ```
-2: (alternative voicing) C D F A♭
-2: D F A♭ C
+2: C D F A♭
 C D E F G A♭ B♭ (C hindu scale)
 ---
 5: B♭ D F G
