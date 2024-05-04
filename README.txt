@@ -47250,9 +47250,11 @@ speak slower than you want to.
 #### Minor 2 5 1 for Jazz
 - [Link](https://pianowithjonny.com/piano-lessons/minor-2-5-1-progression-5-levels-from-beginner-to-pro).
 - Play chord given by chordal tones + half step
-- 2/(Dm7):`D F A♭ C`, 5/(Gdom7):`G B D F`, 1/(Cmin7):`C E♭ G B♭`
+- [2/(Dm7)](https://m.basicmusictheory.com/d-minor-7th-chords):`D F A C`, 
+  [5/(Gdom7)](https://m.basicmusictheory.com/g-dominant-7th-chord):`G B D F`,
+  [1/(Cmin7)](https://m.basicmusictheory.com/c-minor-7th-chords):`C E♭ G B♭`
 - What scale to play? consider chord + whole step, which gives us the following:
-- 2:`D E F G A♭ B♭ C D`.
+- 2:`D E F G A B C D`.
 - 5:`G A B C# D E F G`
 - 1:`C D E♭ F G A B♭` (C harmonic).
 
