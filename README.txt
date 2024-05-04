@@ -47251,9 +47251,10 @@ speak slower than you want to.
 - We are playing in the key of C minor
 - we want the ii v i chords.
 - [Scale](https://m.basicmusictheory.com/c-minor-7th-chords)
-- [2/(Dm7)](https://m.basicmusictheory.com/d-minor-7th-chords):`D F A C`, 
-  [5/(Gdom7)](https://m.basicmusictheory.com/g-dominant-7th-chord):`G B D F`,
-  [1/(Cmin7)](https://m.basicmusictheory.com/c-minor-7th-chords):`C E♭ G B♭`
+- 2: C minor chord iiø7: `D, F, A♭, C`.
+- 5: C minor chord v7: `G, B♭, D, F`.
+- 1: C minor chord i7: `C, E♭, G, B♭`.
+
 - What scale to play? consider chord + whole step, which gives us the following:
 - 2:`D E F G A B C D`.
 - 5:`G A B C# D E F G`
