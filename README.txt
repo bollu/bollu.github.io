@@ -47238,6 +47238,16 @@ speak slower than you want to.
 - A7 notes: A C# E G + B. Use Bb in this case as the flat 9th.
 - Recall that the 9th is taken from the root (C major), but the 9th note for the given scale.
 
+
+#### Harmony: Chords for all scale degrees
+- 1: Tritone
+- 2: 7th
+- 3: sharp 5th
+- 4: Tritone
+- 5: 11th
+- 6: regular
+- 7: flat 9
+
 ### Melody: Approch pattern --- half step below
 
 - Approach each note with the note that is a semitone below.
@@ -47312,6 +47322,7 @@ speak slower than you want to.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
 
 #### Melody: Embellishments
+
 - Tension and resolution notes
 - resolution notes: root, 3rd, 5th
 - tension notes: want to resolve to the closest resolution note.
@@ -47421,6 +47432,9 @@ speak slower than you want to.
 
 #### Harmonic minor scale chords
 - Learn 7th chords.
+
+
+
 
 #### Dorian scale
 - Learn 7th chords.
