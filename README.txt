@@ -47254,7 +47254,7 @@ speak slower than you want to.
 - Learn 7th chords.
 - By default, try to use **natural minor**.
 - minor triad chords: 1 2 5
-- major triad chords: rest, which is 3 4 6 7
+  - major triad chords: rest, which is 3 4 6 7
 - basic: all triads: `c es g` and so on. `base, 3 semitones, 4 semitones.`
 
 ### Melody: Approch pattern --- half step below
