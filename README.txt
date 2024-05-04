@@ -47505,24 +47505,24 @@ _B2 _B3 C C4 |
 
 ```abc
 T: Candleburn by Rabbitology
-C2 C _E2 C _E2 | 
-C2 C _E2 C _E2 | 
-C2 C _E2 C _E2 | 
-C2 C _E2 C _E2 | 
-_B _B _B _B |
+C2 C _E2 C _E2 |
+C2 C _E2 C _E2 |
+C2 C _E2 C _E2 |
+_B, z _B, z _B, z _B, |
 ```
 
 ```abc
+Q: 1/4=150
 T: Candleburn by Rabbitology
-   E   C    C   E   C    C
+   _E2   C    C   _E2   C    C
 w: bap-tize her bap tize her
-   E    C   C   E   C     C
+   _E2    C   C   _E2   C     C
 w: rose wat er soft daught-er
-   F     F   F   F   G  _E  C
+   F     F   F   F   G  _E  C2
 w: don't for-get to flo-ra-lize
-   C     _E _E _E    C  _E    _E  _E 
+   C     _E _E C   C  _E    _E  C2 
 w: don't vo-ca-lize the smoke in eyes
-   _B,    _B,    _B,    C
+   _B,2  z  _B,2  z  _B,2   C4
 w: don't don't don't strike
 ```
 
