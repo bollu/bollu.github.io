@@ -47330,7 +47330,7 @@ C D E♭ F G A B♭ (C natural minor).
 
 ### Learning Jazz Chord Voicings [Link to tutorial](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/)
 - This `melody:improv::chords:voicings`
-- Quick hack: `root + 7th` on bass, `3rd+5th+melody` note on treble.
+- **Quick hack:** `root + 7th` on bass, `3rd+5th+melody` note on treble.
 
 ### Chord voicing for bossa nova: Rootless chord voicings (sophisticated)
 
