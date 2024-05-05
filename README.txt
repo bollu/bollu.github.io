@@ -47218,6 +47218,24 @@ speak slower than you want to.
 
 # Blues and Jazz Piano Improv
 
+#### Jazz Piano: The Theoretical Minimum
+
+- [Link](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/jazz-piano-minimum-requirements/)
+- Left Hand, Bass: Walking bassline, Stride, Root notes.
+- Left Hand, Chords: Rootless, Shell, Quartal.
+- Right Hand, Melody: Scale, Improv, Licks.
+- Right Hand, Chords: Rootless, Shell, Quartal.
+- Both hands, Chords: Two handed voicings, Spread, Quartal.
+
+##### Things I need to learn
+
+- Bossa nova beat.
+- Stride piano.
+- Crafting Walking basslines.
+- Quartal Voicings
+- Two handed Voicings.
+
+
 #### Best References for theory
 
 - [The Jazz piano site](https://www.thejazzpianosite.com/about/)
