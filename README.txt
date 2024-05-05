@@ -47328,6 +47328,10 @@ C D E♭ F G A B♭ (C natural minor).
 - For example, to go from D -> G, we want to go as: `D F A`, and then at the note, transition with a whole step or a half step, so we go via `Gsharp G`.
 - So, to go from D to G in four beats, we use `D F A Gsharp`followed by the `G`.
 
+### Learning Jazz Chord Voicings [Link to tutorial](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/)
+- This `melody:improv::chords:voicings`
+- Quick hack: `root + 7th` on bass, `3rd+5th+melody` note on treble.
+
 ### Chord voicing for bossa nova: Rootless chord voicings (sophisticated)
 
 - Key idea: leave out the root note, only keep 3 5 7 9.
