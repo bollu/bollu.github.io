@@ -47235,6 +47235,19 @@ speak slower than you want to.
 - Quartal Voicings
 - Two handed Voicings.
 
+##### Walking Bass Line
+
+- Suppose we have one chord per bar, with chords `ii-v` in the two bars. 
+- Take the notes from your 7th chord, e.g. C minor ii7 `D, F, A♭, C`
+- Play the first three notes of the chord, so play `D, F, A♭`.
+- Then, for the next note, look at the next chord, e.g. C minor v7: `G, B♭, E♭,  C`.
+- We want to go to `G` next, we have one quarter note left in the bar, so play a **leading tone** to `G`.
+- Since I like bluesey, I can play `F#` from the blues scale, to anticipate the `G` in the next chord.
+- So for this bar, we play `D F A♭ F#`.
+- Play the corresponding shell voicing or melody with the right hand.
+- If we have two chords per bar, then all we get to play are `root ii`-`leading v`-`root v`-`leading i` etc.
+- To add an arpeggio, add a `853` if you want some flourish.
+
 
 #### Best References for theory
 
