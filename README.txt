@@ -46992,8 +46992,29 @@ speak slower than you want to.
 - Backward Charleston
 - T step
 
-#### Cutting Shapes
-#### Jumpstyle
+# Latte Art
+
+#### Steaming milk
+
+- Phase 1: Keep the steam tip right at the surface, need the paper ripping sound.
+- Phase 2: Insert tip deep inside, get a whirlpool to incorporate all the air.
+- Move from Phase 1 to Phase 2 when the temperature is warm.
+- If we inject too little air, then we won't have foam.
+- If we inject too much air, then the foam will be too "lumpy" to shape.
+- If we don't get a consistent whirlpool in phase 2, then milk can split into two layers.
+  What we need is the foam to be mixed up.
+- Consider getting a second pitcher to exchange milk in.
+- The correct texture is a glossy surface.
+
+#### Pouring for Heart
+
+- Base phase: First pour from a height into the center to make the milk go below the coffee.
+  **high and slow** pour.
+- Design phase: Once we are 3/4th done, bring the coffee mug as close as possible to the pouring jug,
+  will cause the foam to float on top. Tilt the cup so that the coffee is almost spilling out.
+  Shake the milk jug as you pour to make for ripples. **low and fast** pour.
+- Finish phase: As one nears the end, raise milk pitcher up again to suck the milk in and cut through. 
+  **high and slow** pour.
 
 # Big list of tmux
 
