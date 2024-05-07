@@ -66,7 +66,7 @@ root$ cd sail-src/coq-sail/src && make -j$(nproc) && make install
 
 ```
 root$ cd sail && cat INSTALL.md
-root$ cd sail && opam install sail
+root$ cd sail && make -j $(nproc) && make install
 ```
 
 
