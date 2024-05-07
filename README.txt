@@ -13,31 +13,53 @@
 
 - Since I have no idea how to use `opam`, but I do not the older Coq setup via makefiles,
   that's what I'll be using.
-- Setup the following directory structure:
+
+##### Directory Structure
 
 ```
 .
 ├── bbv -> sail-src/bbv/
 └── sail-src
-    ├── bbv
-    ├── coq-sail
-    └── sail
+    ├── bbv@master:c53d5b95c7
+    ├── coq-sail@main:843059
+    └── sail@sail2:ba9f7f1
 ```
 
-- We first build `bbv`, which is a library for bitvector theory.
-- We then build `coq-sail`.
-- Finally, we build `sail`.
+- In general, it's a welcome, pleasant surprise that everything works on tip-of-tree.
+- We first build `bbv`, which is a library for bitvector theory. We then build `coq-sail`. 
+  Finally, we build `sail`.
 - Yes, we need two copies of `bbv`. `coq-sail` uses the `bbv` from:
 
 ```
-coq-sail$ ../../bbv`
+root/sail-src/coq-sail$ ../../bbv`
+ -> root/bbv
 ```
 
 - `sail` itself, in its test suite, uses the `bbv` from:
 
 ```
+root/sail/test/coq$ ../../../bbv
+ -> root/sail-src/bbv/
+```
+
+##### Building `bbv`
 
 ```
+root$ cd bbv && make -j$(nproc) && make install
+```
+
+##### Building `bbv`
+
+```
+root$ cd sail-src/coq-sail/src && make -j$(nproc) && make install
+```
+
+##### Building `sail`
+
+```
+root$
+```
+
 
 # Gregorian chant and numes
 
