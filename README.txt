@@ -42,6 +42,14 @@ root/sail/test/coq$ ../../../bbv
  -> root/sail-src/bbv/
 ```
 
+
+#### Grabbing the right `ocaml`
+
+```
+root$ opam switch create 5.1.0
+root$ eval $(opam config env) 
+```
+
 ##### Building `bbv`
 
 ```
@@ -57,7 +65,8 @@ root$ cd sail-src/coq-sail/src && make -j$(nproc) && make install
 ##### Building `sail`
 
 ```
-root$
+root$ cd sail && cat INSTALL.md
+root$ cd sail && opam install sail
 ```
 
 
