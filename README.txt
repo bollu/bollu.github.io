@@ -69,6 +69,13 @@ root$ cd sail && cat INSTALL.md
 root$ cd sail && make -j $(nproc) && make install
 ```
 
+##### What's needed to port to Lean
+
+
+> There's quite a bit of obsolete stuff in the Coq backend at the moment that you could safely skip.
+> sail_coq_backend by default generates a shallow embedding.
+> It's probably worth looking at katamaran, though. I don't think a deep embedding is too hard,
+> it's partly just a case of deciding what the output language should look like.
 
 # Gregorian chant and numes
 
