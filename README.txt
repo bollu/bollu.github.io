@@ -9,6 +9,12 @@
 - **It's useful to finish things.**
 
 
+# Setting up SAIL for porting to Lean
+
+- Since I have no idea how to use `opam`, but I do not the older Coq setup via makefiles,
+  that's what I'll be using.
+- Setup the following directory structure:
+
 
 # Gregorian chant and numes
 
