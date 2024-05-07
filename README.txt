@@ -15,6 +15,29 @@
   that's what I'll be using.
 - Setup the following directory structure:
 
+```
+.
+├── bbv -> sail-src/bbv/
+└── sail-src
+    ├── bbv
+    ├── coq-sail
+    └── sail
+```
+
+- We first build `bbv`, which is a library for bitvector theory.
+- We then build `coq-sail`.
+- Finally, we build `sail`.
+- Yes, we need two copies of `bbv`. `coq-sail` uses the `bbv` from:
+
+```
+coq-sail$ ../../bbv`
+```
+
+- `sail` itself, in its test suite, uses the `bbv` from:
+
+```
+
+```
 
 # Gregorian chant and numes
 
