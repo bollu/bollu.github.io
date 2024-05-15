@@ -8,6 +8,10 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Most common Jazz chord changes [TODO]
+
+- [Video](https://www.youtube.com/watch?v=r9yqSVR-Yro)
+
 
 # Setting up SAIL for porting to Lean
 
