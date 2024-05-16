@@ -12,6 +12,9 @@
 
 - [Video](https://www.youtube.com/watch?v=r9yqSVR-Yro)
 
+# Making a piano arrangement of a pop song
+
+- [Video](https://www.youtube.com/watch?v=yKLB5eNnftA&t=125s)
 
 # Setting up SAIL for porting to Lean
 
