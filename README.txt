@@ -47310,6 +47310,14 @@ speak slower than you want to.
 
 # Blues and Jazz Piano Improv
 
+#### Stride Piano
+
+- [Video](https://www.youtube.com/watch?v=TbOuxeldeqA)
+- to make a stride chord, take the chord, e.g. Cminor (C Eb G). Then take the 3rd out, and put it on the top. This gives us (C G Eb).
+- Now alternate the loweer note 'C', then the other two notes `(G Eb)`. See that this will be quite large, since the `Eb` is from the next octave.
+- Do this with whatever chord progression one has.
+- I must try this with the bakemonogatari soundtrack.
+
 #### Jazz Piano: The Theoretical Minimum
 
 - [Link](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/jazz-piano-minimum-requirements/)
