@@ -15,6 +15,9 @@
 # Making a piano arrangement of a pop song
 
 - [Video](https://www.youtube.com/watch?v=yKLB5eNnftA&t=125s)
+- Stack of 5th on the bass, stack of 5ths on the treble, but starting from the 3rd of the scale.
+- Root + 5th on the bass, 3rd on the treble (open chord)
+- Modulation: Start from Dminor, go up a half step to be in (Eb major) Gminor.
 
 # Setting up SAIL for porting to Lean
 
