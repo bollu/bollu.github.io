@@ -8,11 +8,13 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Most common Jazz chord changes [TODO]
+# Piano Arrangement of Pop Songs 
+
+#### Most common Jazz chord changes
 
 - [Video](https://www.youtube.com/watch?v=r9yqSVR-Yro)
 
-# Making a piano arrangement of a pop song
+#### Making a piano arrangement of a pop song
 
 - [Video](https://www.youtube.com/watch?v=yKLB5eNnftA&t=125s)
 - Stack of 5th on the bass, stack of 5ths on the treble, but starting from the 3rd of the scale.
