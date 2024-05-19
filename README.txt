@@ -47382,11 +47382,10 @@ speak slower than you want to.
 
 #### Tritone substitution
 
-- For a given chord, say `C Eb G Bb`, we want a different chord whose 3rd and 7th are the same.
-- Key idea: a tritone (3 whole tone / 6 semitones away) works.
-- So, for example, we would pick `Gb`, whose minor 7th chord is `Gb - Bb - Db - E
-
-
+- The theory that I can find talks about major, not about minor.
+- Idea is that we want a different chord with the same 3th and 7th notes.
+- On the major scale, this is given by the chord that is a 6 semitones / 3 whole notes away (in either direction, since we have 12 notes.)
+- For example, `Gmin7` is given by `G Bb D F`
 ##### Walking Bass Line
 
 - Suppose we have one chord per bar, with chords `ii-v` in the two bars. 
