@@ -47335,6 +47335,13 @@ speak slower than you want to.
 - Two handed Voicings.
 - Creating basslines
 
+#### Interesting Basslines / Left hand patterns
+
+- Key search term: "left hand patterns".
+- Stride.
+- Walking bass line.
+- Jerry Lee Lewis left hand pattern.
+- Bumble boogie pattern.
 
 #### Creating smooth basslines with slash chords
 
