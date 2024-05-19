@@ -47382,6 +47382,9 @@ speak slower than you want to.
 
 #### Tritone substitution
 
+- For a given chord, say `C Eb G Bb`, we want a different chord whose 3rd and 7th are the same.
+- Key idea: a tritone (3 whole tone / 6 semitones away) works.
+- So, for example, we would be `Gb`. 
 
 
 ##### Walking Bass Line
