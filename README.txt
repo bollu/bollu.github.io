@@ -47366,11 +47366,9 @@ speak slower than you want to.
 
 - [Jazz Piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/barron-chord/)
 - Only useful for m7 chords, when the 11th is in the melody (the top note).
-- Left hand plays `1-5-9`.
-- Right hand plays `flat3-flat5-11`.
-- This can be conceptualised as stacking fifths on the left and right hand.
 - Left hand stacks fifths starting from 1.
-- Right hand stacks fifths, starts from flat3 (3 semitones up).
+- Right hand stacks fifths, starts from minor 3rd (3 semitones up).
+- Right hand ends on the 11th. 
 
 #### Quartal voicings (sound 'edgy')
 
