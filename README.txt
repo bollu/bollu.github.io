@@ -47327,9 +47327,25 @@ speak slower than you want to.
 - I must try this with the bakemonogatari soundtrack, particularly the song [sutekimeppou](https://www.youtube.com/watch?v=cJyPtpldb78&list=PLA0KqNE_ppfAPeYtMyt4QzyU1aB5cizrD&index=18), and [in the hall of the mountain king](https://www.youtube.com/watch?v=gSY-wD4l5DM).
 - This style is great to generate a strong bassline.
 
-#### Ragtime
 
-- 
+#### Latin Bass
+
+- [Video reference](https://www.youtube.com/watch?v=8BShjpnliKc)
+- Pick chords, e.g. `Cm7 -> Fm7 -> G7 -> Fm7 -> ... `
+- Arpeggiate the C chord. First play `1-8`, then play `3-5`. (`C-C, `Eb-G`).
+- Bass rhythm: Clave pattern. 2 bar pattern, repeated throughout the song.
+
+#### Ragtime 
+
+
+#### Walking bass
+
+- Play notes: `1, 2, 3, 5`, `8, 7, 6, 5`, `1, 5, 1, 5`
+
+#### Latin Jazz / Funk
+
+- Lots of right hand chording.
+- Bass hand plays more melody. 
 
 #### Jazz Piano: The Theoretical Minimum
 
