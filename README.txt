@@ -47318,6 +47318,22 @@ speak slower than you want to.
 
 # Blues and Jazz Piano Improv
 
+#### Jazz Piano: The Theoretical Minimum
+
+- [Link](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/jazz-piano-minimum-requirements/)
+- Left Hand, Bass: Walking bassline, Stride, Root notes.
+- Left Hand, Chords: Rootless, Shell, Quartal.
+- Right Hand, Melody: Scale, Improv, Licks.
+- Right Hand, Chords: Rootless, Shell, Quartal.
+- Both hands, Chords: Two handed voicings, Spread, Quartal.
+
+##### Things I need to learn
+
+- Bossa nova beat.
+- Crafting Walking basslines.
+- Quartal Voicings
+- Two handed Voicings.
+
 #### Stride Piano
 
 - [Video](https://www.youtube.com/watch?v=TbOuxeldeqA)
@@ -47334,35 +47350,39 @@ speak slower than you want to.
 - Pick chords, e.g. `Cm7 -> Fm7 -> G7 -> Fm7 -> ... `
 - Arpeggiate the C chord. First play `1-8`, then play `3-5`. (`C-C, `Eb-G`).
 - Bass rhythm: Clave pattern. 2 bar pattern, repeated throughout the song.
-
-#### Ragtime 
-
+- Son clave 2/3: `1rest 2 3 4rest`, `1 2rest' 2&quaver 3rest 4`.
 
 #### Walking bass
 
 - Play notes: `1, 2, 3, 5`, `8, 7, 6, 5`, `1, 5, 1, 5`
 
-#### Latin Jazz / Funk
+#### Rootless voicings
 
-- Lots of right hand chording.
-- Bass hand plays more melody. 
+- Take the `1-3-5-7`, delete the `1`, and play `7-3-5`.
+- For example, to play `C Em G Bm` in a rootless fashion, instead play `Bm Em G`.
 
-#### Jazz Piano: The Theoretical Minimum
+#### Quartal voicings
 
-- [Link](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/jazz-piano-minimum-requirements/)
-- Left Hand, Bass: Walking bassline, Stride, Root notes.
-- Left Hand, Chords: Rootless, Shell, Quartal.
-- Right Hand, Melody: Scale, Improv, Licks.
-- Right Hand, Chords: Rootless, Shell, Quartal.
-- Both hands, Chords: Two handed voicings, Spread, Quartal.
+- Literally memorization, need to know what the 4ths is for each note, just as we remember minor 3rd and perfect 5th.
+- [All perfect 4th intervals](https://www.pianoscales.org/perfect-fourth.html)
+- `C up a 4th is F`
+- `D up a 4th is `
+- `E up a 4th is A`
+- `F up a 4th is Bb`
+- `G up a 4th is C`
+- `A up a 4th is D`
+- `B up a 4th is E`
 
-##### Things I need to learn
+#### Two handed voicings
 
-- Bossa nova beat.
-- Stride piano.
-- Crafting Walking basslines.
-- Quartal Voicings
-- Two handed Voicings.
+- Left hand: `1st and 7th`, Right hand: `3rd and 5th`.
+- Left hand: `1st and 3rd/10th`, Right hand: `5th and 7th`.
+- Want melody note to be on the top of the chord.
+
+
+#### Tritone substitution
+
+
 
 ##### Walking Bass Line
 
