@@ -47354,14 +47354,25 @@ speak slower than you want to.
 
 #### Walking bass
 
+- Style of playing on the left hand.
 - Play notes: `1, 2, 3, 5`, `8, 7, 6, 5`, `1, 5, 1, 5`
 
-#### Rootless voicings
+#### Rootless voicings (lighter sound)
 
 - Take the `1-3-5-7`, delete the `1`, and play `7-3-5`.
 - For example, to play `C Em G Bm` in a rootless fashion, instead play `Bm Em G`.
 
-#### Quartal voicings
+#### Kenny Baron Chord Voicings (large, rich, good for rippling)
+
+- [Jazz Piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/barron-chord/)
+- Only useful for m7 chords, when the 11th is in the melody (the top note).
+- Left hand plays `1-5-9`.
+- Right hand plays `flat3-flat5-11`.
+- This can be conceptualised as stacking fifths on the left and right hand.
+- Left hand stacks fifths starting from 1.
+- Right hand stacks fifths, starts from flat3 (3 semitones up).
+
+#### Quartal voicings (sound 'edgy')
 
 - Literally memorization, need to know what the 4ths is for each note, just as we remember minor 3rd and perfect 5th.
 - [All perfect 4th intervals](https://www.pianoscales.org/perfect-fourth.html)
@@ -47373,7 +47384,7 @@ speak slower than you want to.
 - `A up a 4th is D`
 - `B up a 4th is E`
 
-#### Two handed voicings
+#### Two handed voicings (nice for light bass, light treble.)
 
 - Left hand: `1st and 7th`, Right hand: `3rd and 5th`.
 - Left hand: `1st and 3rd/10th`, Right hand: `5th and 7th`.
