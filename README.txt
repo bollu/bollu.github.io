@@ -47333,6 +47333,13 @@ speak slower than you want to.
 - Crafting Walking basslines.
 - Quartal Voicings
 - Two handed Voicings.
+- Creating basslines
+
+
+#### Creating smooth basslines with slash chords
+
+- [Video](https://www.youtube.com/watch?v=_GzloA_IDmk)
+- Key idea: use inversions to smoothly move notes.
 
 #### Stride Piano
 
