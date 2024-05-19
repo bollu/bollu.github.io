@@ -47385,7 +47385,9 @@ speak slower than you want to.
 - The theory that I can find talks about major, not about minor.
 - Idea is that we want a different chord with the same 3th and 7th notes.
 - On the major scale, this is given by the chord that is a 6 semitones / 3 whole notes away (in either direction, since we have 12 notes.)
-- For example, `Gmin7` is given by `G Bb D F`
+- For example, `G7` is given by `G B D F`
+- `Db7` has notes `Db F Ab B` which shares the same 3th and 7th (`B` and `F`).
+
 ##### Walking Bass Line
 
 - Suppose we have one chord per bar, with chords `ii-v` in the two bars. 
