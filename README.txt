@@ -47325,7 +47325,11 @@ speak slower than you want to.
 - Now alternate the loweer note 'C', then the other two notes `(G Eb)`. See that this will be quite large, since the `Eb` is from the next octave.
 - Do this with whatever chord progression one has.
 - I must try this with the bakemonogatari soundtrack, particularly the song [sutekimeppou](https://www.youtube.com/watch?v=cJyPtpldb78&list=PLA0KqNE_ppfAPeYtMyt4QzyU1aB5cizrD&index=18), and [in the hall of the mountain king](https://www.youtube.com/watch?v=gSY-wD4l5DM).
+- This style is great to generate a strong bassline.
 
+#### Ragtime
+
+- 
 
 #### Jazz Piano: The Theoretical Minimum
 
