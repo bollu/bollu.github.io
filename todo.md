@@ -1,3 +1,4 @@
+- [Spectral.js: Kubela Monk based library for color mixing](https://onedayofcrypto.art/)
 - [Mixbox: color mixing algorithm](https://scrtwpns.com/mixbox/)
 - [Analytical methods for dynamic simulation of non penentrating rigid bodies](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=a02843095948be29664b48c3338791ec05dcf52c)
 - [2D rigid body collision physics engine design, explained](https://www.sassnow.ski/rigid-body-collisions/1)
