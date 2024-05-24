@@ -1,3 +1,11 @@
+- [2D rigid body collision physics engine design, explained](https://www.sassnow.ski/rigid-body-collisions/1)
+
+> Collisions are violations of the pairwise non-intersection constraint between
+> bodies. Collision forces are Lagrange multipliers of these constraints.
+> Collision normals are the (normalized) partial derivatives of the constraint
+
+
+> function wrt one of the body's configurations.
 - [Rendering Keenan Style geometry in blender](https://nzfeng.github.io/docs/RenderingGeometryInBlender.pdf)
 - Metric and Multidimensional Data Structures
 - Kleinrock, Queueing Systems
