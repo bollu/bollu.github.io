@@ -1,3 +1,4 @@
+- [Group theory for physicists: lie algebras, dynkin diagrams, and so forth upto vibes](https://www.youtube.com/watch?v=lEovyfCFtBs)
 - [Spectral.js: Kubela Monk based library for color mixing](https://onedayofcrypto.art/)
 - [Mixbox: color mixing algorithm](https://scrtwpns.com/mixbox/)
 - [Analytical methods for dynamic simulation of non penentrating rigid bodies](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=a02843095948be29664b48c3338791ec05dcf52c)
