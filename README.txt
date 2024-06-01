@@ -47781,3 +47781,4 @@ w: dan-cing un-der-neath the skies of lust
 #### Pen and Ink: Texturing
 
 - [How to texture](https://www.youtube.com/watch?v=p0iaumF6Eb8)
+- [Architectural Sketching: texture](https://www.youtube.com/watch?v=zJKZhxV4W9o&list=PL-7IZmGjCRjDEVs-7jjNAepfkBp95VouI&index=3)
