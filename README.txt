@@ -47778,4 +47778,6 @@ w: dan-cing un-der-neath the skies of lust
 
 #### Berine Wrightson
 
-#### 
+#### Pen and Ink: Texturing
+
+- [How to texture](https://www.youtube.com/watch?v=p0iaumF6Eb8)
