@@ -8,6 +8,12 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Techne, Da Vinci, Michalangelo, and Art
+
+- It would probably be the case that davinci and michalangelo would be considered as engineers, not artists!
+- Fine arts today has now become a vessel for philosophy. It seems to be disconnected from [techne](https://en.wikipedia.org/wiki/Techne)
+
+
 # Piano Arrangement of Pop Songs 
 
 #### Most common Jazz chord changes
