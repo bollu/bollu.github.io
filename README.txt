@@ -47775,3 +47775,7 @@ w: dan-cing un-der-neath the skies of lust
 # Big List of Artists and Illustrators
 
 #### Franklin Booth
+
+#### Berine Wrightson
+
+#### 
