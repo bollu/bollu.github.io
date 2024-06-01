@@ -47771,3 +47771,7 @@ w: dan-cing un-der-neath the skies of lust
 ### Lovesick Fuck (by Mura Masa)
 ### Maroon 5 This Love
 ### Maroon 5 Maps
+
+# Big List of Artists and Illustrators
+
+#### Franklin Booth
