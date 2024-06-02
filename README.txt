@@ -13,6 +13,12 @@
 - It would probably be the case that davinci and michalangelo would be considered as engineers, not artists!
 - Fine arts today has now become a vessel for philosophy. It seems to be disconnected from [techne](https://en.wikipedia.org/wiki/Techne)
 
+# Notes on Copy and Patch Compilation
+
+- [Brandt Bucher: A JIT Compiler for CPython](https://www.youtube.com/watch?app=desktop&v=HxSHIpEQRjs)
+- [Copy and Patch Compilation](
+- [quenya.lean](git@github.com:bollu/quenya.lean.git)
+
 
 # Piano Arrangement of Pop Songs 
 
