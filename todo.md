@@ -1,3 +1,4 @@
+- [Cool way to draw a spiral with concentric circles made up of tilted arcs](https://x.com/AkiyoshiKitaoka/status/1798223256723587218)
 - [Group theory for physicists: lie algebras, dynkin diagrams, and so forth upto vibes](https://www.youtube.com/watch?v=lEovyfCFtBs)
 - [Spectral.js: Kubela Monk based library for color mixing](https://onedayofcrypto.art/)
 - [Mixbox: color mixing algorithm](https://scrtwpns.com/mixbox/)
