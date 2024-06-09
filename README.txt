@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Table Maker's Dilemma
+
+- [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
+
+
 # Techne, Da Vinci, Michalangelo, and Art
 
 - It would probably be the case that davinci and michalangelo would be considered as engineers, not artists!
