@@ -47364,7 +47364,10 @@ speak slower than you want to.
 #### Bird Changes
 
 - This comes from Bebop.
+- Suppose we want to play blues, so in bar 1, we want to play CMaj7, then on bar 4, we want to play F7, and then on bar 10, we want to play the 5th (G7).
 - Play descending 2-5s, to get from I to IV chord in Blues. Then repeat the same descending 2 5s to get from IV to V.
+
+- Example song: Freight Trane
 - Use stride voicings, or bud powell voicings (2/3 note voicings).
 
 #### Latin Bass
