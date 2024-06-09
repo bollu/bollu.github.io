@@ -47365,9 +47365,10 @@ speak slower than you want to.
 
 - This comes from Bebop.
 - Suppose we want to play blues, so in bar 1, we want to play CMaj7, then on bar 4, we want to play F7, and then on bar 10, we want to play the 5th (G7).
+- So we do a thing where we play the II and the V for half time (ie, in each bar, we play the II and the V of some scale).
+- Which scale do we play? We choose a descending sequence of scales: CMaj7 -> Am -> Gm -> F7 -> [F7] -> Fm7 -> Bb7 -> Em7 -> A7 -> EbM7 -> Ab7 -> [Dm7] -> [G7] -> C -> A7 -> Dm7 -> G7.
 - Play descending 2-5s, to get from I to IV chord in Blues. Then repeat the same descending 2 5s to get from IV to V.
-
-- Example song: Freight Trane
+- Example song: Freight Trane.
 - Use stride voicings, or bud powell voicings (2/3 note voicings).
 
 #### Latin Bass
