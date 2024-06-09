@@ -25,19 +25,6 @@
 - [quenya.lean](git@github.com:bollu/quenya.lean.git)
 
 
-# Piano Arrangement of Pop Songs 
-
-#### Most common Jazz chord changes
-
-- [Video](https://www.youtube.com/watch?v=r9yqSVR-Yro)
-
-#### Making a piano arrangement of a pop song
-
-- [Video](https://www.youtube.com/watch?v=yKLB5eNnftA&t=125s)
-- Stack of 5th on the bass, stack of 5ths on the treble, but starting from the 3rd of the scale.
-- Root + 5th on the bass, 3rd on the treble (open chord)
-- Modulation: Start from Dminor, go up a half step to be in (Eb major) Gminor.
-
 # Setting up SAIL for porting to Lean
 
 - Since I have no idea how to use `opam`, but I do not the older Coq setup via makefiles,
@@ -47374,6 +47361,11 @@ speak slower than you want to.
 - I must try this with the bakemonogatari soundtrack, particularly the song [sutekimeppou](https://www.youtube.com/watch?v=cJyPtpldb78&list=PLA0KqNE_ppfAPeYtMyt4QzyU1aB5cizrD&index=18), and [in the hall of the mountain king](https://www.youtube.com/watch?v=gSY-wD4l5DM).
 - This style is great to generate a strong bassline.
 
+#### Bird Changes
+
+- This comes from Bebop.
+- Play descending 2-5s, to get from I to IV chord in Blues. Then repeat the same descending 2 5s to get from IV to V.
+- Use stride voicings, or bud powell voicings (2/3 note voicings).
 
 #### Latin Bass
 
