@@ -11,7 +11,7 @@
 # Table Maker's Dilemma
 
 - [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
-
+- [Floating point computation](https://www.cl.cam.ac.uk/teaching/1011/FPComp/)
 
 # Techne, Da Vinci, Michalangelo, and Art
 
