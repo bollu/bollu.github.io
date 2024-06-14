@@ -8,9 +8,6 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Ragtime 
-
-- [tutorial video](https://www.youtube.com/watch?v=0R9xRcgmMGA)
 
 # Table Maker's Dilemma
 
@@ -21,6 +18,13 @@
 
 - It would probably be the case that davinci and michalangelo would be considered as engineers, not artists!
 - Fine arts today has now become a vessel for philosophy. It seems to be disconnected from [techne](https://en.wikipedia.org/wiki/Techne)
+
+
+# Ffmpeg one liner to re-encode mp4 so chrome can open it 
+
+```
+ffmpeg -y -i "doctor.who.2005.s14e00.the.star.beast.1080p.web.h264-hornedsplendidpuduoffocus.mkv" -ar 22050 -ab 512 -b 800k -f mp4 -strict -2 -c:a aac "OUTPUT.mp4"
+```
 
 # Notes on Copy and Patch Compilation
 
