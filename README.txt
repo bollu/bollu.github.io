@@ -47347,6 +47347,11 @@ speak slower than you want to.
 - Two handed Voicings.
 - Creating basslines
 
+#### Diminished Scale
+
+- Alternate whole and half notes.
+
+
 #### Interesting Basslines / Left hand patterns
 
 - Key search term: "left hand patterns".
