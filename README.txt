@@ -8,6 +8,10 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Ragtime 
+
+- [tutorial video](https://www.youtube.com/watch?v=0R9xRcgmMGA)
+
 # Table Maker's Dilemma
 
 - [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
