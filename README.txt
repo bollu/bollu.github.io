@@ -47039,13 +47039,20 @@ speak slower than you want to.
 
 #### Pouring for Heart
 
+##### Painting the Canvas
 - Base phase: First pour from a height into the center to make the milk go below the coffee.
-  **high and slow** pour.
-- Design phase: Once we are 3/4th done, bring the coffee mug as close as possible to the pouring jug,
+  **high and slow** pour. This paints the canvas.
+
+##### Painting the lobes of the heart
+- Pitcher touches the cup, and the spout is almost above the inside of the cup.
+- Bring the coffee mug as close as possible to the pouring jug,
   will cause the foam to float on top. Tilt the cup so that the coffee is almost spilling out.
-  Shake the milk jug as you pour to make for ripples. **low and fast** pour.
-- Finish phase: As one nears the end, raise milk pitcher up again to suck the milk in and cut through. 
-  **high and slow** pour.
+- Shake the milk jug as you pour to make for ripples. **low and fast** pour.
+- While shaking, pour "forward", so that we start making the two lobes of the heart.
+
+##### Cutting for the heart shape
+- Finish phase: As one nears the end, raise milk pitcher up again to suck the milk in and cut through forward,
+  cutting completeley, in a **high and slow** pour.
 
 # Big list of tmux
 
