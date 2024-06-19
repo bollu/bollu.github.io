@@ -46190,6 +46190,14 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> “You cannot go on 'seeing through' things for ever.
+> The whole point of seeing through something is to see something through it. 
+> It is good that the window should be transparent, because the street or garden beyond it is opaque. 
+> How if you saw through the garden too? It is no use trying to 'see through' first principles. 
+> If you see through everything, then everything is transparent. 
+> But a wholly transparent world is an invisible world. 
+> To 'see through' all things is the same as not to see.”
+
 > A simple theory of aesthetics:
 > If the best stuff from then is still better than good stuff from now, it's art
 > If the best stuff from then is worse than bad stuff from now, it's technology
