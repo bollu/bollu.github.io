@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="three.js"></script>
+    <script src="d3.js"></script>
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, 
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000);
+        
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );
+        var geometry = new THREE.BufferGeometry();
+        // create a simple square shape. We duplicate the top left and bottom right
+        // vertices because each vertex needs to appear once per triangle.
+        var vertices = new Float32Array( [
+        -1.0, -1.0,  1.0,
+        1.0, -1.0,  1.0,
+        1.0,  1.0,  1.0,
+        
+        1.0,  1.0,  1.0,
+        -1.0,  1.0,  1.0,
+        -1.0, -1.0,  1.0
+        ] );
+        
+        // itemSize = 3 because there are 3 values (components) per vertex
+        geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+        var geometry = new THREE.SphereGeometry( 5, 10, 10 );
+
+        var edges = new THREE.EdgesGeometry( geometry );
+        var line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+        scene.add( line );
+        camera.position.z = 10;
+        function animate() {
+            line.rotation.y += 0.001;
+            requestAnimationFrame( animate );
+            
+            renderer.render( scene, camera );
+        }
+        animate();
+        
+        // Our Javascript will go here.
+    </script>
+</body>
+</html>

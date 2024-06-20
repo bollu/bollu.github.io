@@ -1,0 +1,521 @@
+<!-- https://cssanimation.rocks/scroll-animations/ -->
+<!-- https://www.youtube.com/watch?v=oEq9ROl9Umk -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API -->
+<!-- https://github.com/rreusser/explorations/blob/bead4459929ee6c5f28f12f621a96ce05d90f887/components/scrollyteller.js -->
+<!-- https://rreusser.github.io/explorations/sphere-eversion/ -->
+<!DOCTYPE html><meta charset='UTF-8'>
+<html>
+<head>
+
+     <link rel="stylesheet" href="katex.min.css" 
+        integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+        crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="katex.min.js"
+        integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function on_katex_load() {
+            const katex_opts = [
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\[", right: "\\]", display: true}
+            ];
+            renderMathInElement(document.body, katex_opts);
+
+            let cards = document.getElementsByClassName("explain-card");
+            for (var i = 0; i < cards.length; i++) {
+                renderMathInElement(cards.item(i), katex_opts);
+            }
+        }
+    </script>
+
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="auto-render.min.js"
+        integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+        crossorigin="anonymous"
+        onload="on_katex_load();"></script>
+
+</head>
+<style>
+
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.explain-card {
+    z-index: 100;
+    background-color: #FFFFFF;
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+    padding: 20px;
+    max-width: 50vw;
+    position: relative;
+};
+
+.container {
+    margin: 0px;
+    width: 100%;
+    position:relative;
+    background-color: #555555 !important;
+}
+
+.marker {
+    position: relative;
+    margin: 0px;
+    width: 100%;
+    height: 1px;
+    background-color: #cfcfcf;
+}
+
+svg {
+    z-index: 0;
+    background-color: #efefef;
+};
+</style>
+    <body>
+        <h1 style="margin-bottom: 20vh"> The Laplacian </h1>
+
+    # The laplace operator and its generalization to curved spaces: Laplace Beltrami </p>
+    It's a generalization of the ordinaly laplacian to curved domains.
+    We will write \(\Delta\). (We will reserve \(\nabla^2\) for the Hessian, which is related to the laplacian)
+    Discrete laplacians reduce problems to linear algebra.
+
+    <h1> Laplacian in physics </h1>
+    <ul>
+        <li> Heat equation: \( \frac{d}{dt} u = \Delta u \): Heat at the boundary is fixed.
+            What is heat at time \( t \) </li>
+       <li> Wave equation: \(\frac{d^2u}{dt^2} = -\Delta u\): Initial values are fixed of
+           particle locations. Simulates how waves evolve over time. </li>
+       <li> Laplace equation: \(\Delta u = 0\). </li>
+    </ul>
+
+    <h1> Laplacian in \(\mathbb R^n\) </h1>
+
+    If \(u: \mathbb R^n \rightarrow \mathbb R\), then \(\Delta u = \sum_{i=1}^n \frac{\partial^2}{\partial x_i^2} u\)
+
+    <h2> In 2-D </h2>
+    If \( u: \mathbb R^2 \rightarrow \mathbb R \), then 
+        \[ \Delta u = \frac{\partial^2u}{\partial x^2}(x, y) + \frac{\partial^2 u}{\partial y^2}(x, y) \].
+    
+    <h1> Examples of computing Laplacians in 2D </h1>
+    <h2> \( u_1(x, y)  \equiv -x^2 - 2y^2 \) </h2>
+    \[
+    \begin{aligned}
+    \Delta u_1 &= \frac{\partial^2}{\partial x^2}(-x^2 - 2y^2) +
+                 \frac{\partial^2}{\partial y^2}(-x^2 - 2y^2) \\
+    & = -2 - 4 = -6 
+    \end{aligned}
+    \]
+
+    <h2>      \( u_2(x, y)  \equiv -3x^3 - 3xy^2 \) </h2>
+    \[
+
+    \begin{aligned}
+    \Delta u_2 &= \frac{\partial^2}{\partial x^2}(x^3 - 3xy^2) +
+                 \frac{\partial^2}{\partial y^2}(x^3 - 3xy^2) \\
+    & = 6x - 6x = 0 
+    \end{aligned}
+    \]
+
+    <h1> Second Derivative: Convexity </h1>
+    \( u(x) = \frac{d^2u}{dx^2} \)
+
+    Magnitude of second derivative has to do about curvature. One way to talk
+    about curvature is to build the osculating circle. 
+
+    It is not as simple as \( \kappa = u'' \): It's \( \kappa = u'' / (1 + (u')^2)^{3/2} \)
+
+    But if the first derivative is zero, then \( \kappa = u'' \)
+
+
+
+    <h1> Graph laplacian </h1>
+
+    \(G = (V, E) \). Store a value \( u_i \) at each vertex \( i \).
+    \[
+    (Lu)_i \equiv (\frac{1}{deg(i)} \sum_{(i, j) \in E} u_j) - u_i
+    \]
+
+    If the values in the nodes is the heat of each vertex, then the value of
+    the laplacian tells us if we are hotter or colder than the _average_ of
+    our neighbours.
+ 
+    Key idea: Laplacian is deviation from the local average.
+    <h1> Second derivative: Deviation from average </h1>
+    <!-- https://youtu.be/oEq9ROl9Umk?t=738 -->
+    Great animation!
+    \(u(x_0 - \epsilon)), \u(x_0), \u(x_0 + \epsilon)
+
+    <h1> Laplacian: Deviation from average </h1>
+
+    difference between value at point $x_0$ and the average
+    value in a small ball around $x_0.
+
+    \[
+    \delta (x_0) \sim \lim_{r \rightarrow 0} 1/r^2 (\frac{1}{|B_r(x_0)|}) \int_{B_r{x_0}} u(x) dx - u(x_0)
+    \] 
+
+    <h1> Heat equation </h1>    
+
+    Change in the function value is equal to the laplacian of the function: \(du/dt = \delta u\).
+    Values move to the average of nearby values, till it becomes completely constant.
+    Bumps above the surface get pushed down. Bumps below the surface get pushed up.
+
+    <h1> Laplace equation </h1>
+
+    If we run the heat equation for a very long time \( du/dt = \Delta u; \quad u|_{\partial \Omega} = g \),
+    eventually the value at any point will be equal to the average of the neighbouring values. It
+    will satisfy $\Delta u = 0$.
+
+    Such a function is called as a harmonic function. Such a function will be
+    a solution to the laplace equation.
+
+    It's a very "harmonious" situation. 
+
+    <h1> Wave equation </h1>
+
+    \[ d^u/dt^2 = \Delta u \]. The force is equal to the laplacian of the
+    displacement. If a point is above the local average, it experiences
+    a downward force. If a point is below the local average, it experiences
+    an upward force.
+
+    <!--
+    <h1> Laplacian as divergence of gradient </h1>
+    Gradient gives us steepest ascent/descent. Divergence tells us how much
+    it is expanding or contracting. Gradient followed by divergence gives us
+    positive near minima, negative near maxima.
+    
+    We can get $\Delta = *d*d$
+    -->
+
+
+    <h1> Random walks and the laplacian </h1>
+    Connects to heat kernel. 
+
+    <h1> Laplacian via Dirichlet energy </h1>
+
+    Define \( \int_\Omega |\Delta u|^2 dV \). A notion of smoothness.
+
+    We can use the laplacian to express Dirichlet energy as a quadratic form.
+
+    \( \langle \delta u, u \rangle =  \int_\Omega u \delta u dV \)
+
+
+    <h1> Properties of the laplace operator</h1>
+
+    All constant functions have 0 laplacian. Linear functions also, because
+    linear functions don't have second derivativtes. It is invariant to rigid
+    motions and isometries, because it only depends on the average geometry.
+    It's self adjoint (symmetric) and elliptic (positive definite).
+    So we have \( - \langle \Delta u, u \rangle > 0 \) [positive definite upto sign],
+    and has a unique minimizer, upto constants.
+
+    Key idea: Laplacian behaves like an almost-invertible positive definite
+    matrix.
+
+    <h1> Spectral properties </h1>
+
+    A real symmetric operator \(A\) has real eigenvalues \(\lambda_i\), orthogonal
+    eigenvectors \(e_i\).
+
+    Similarly, self-adjoint elliptic operator \(L\) on a compact domain has:
+
+    a discrete set of eigenvalues \(\lambda_i\), orthogonal eigenfunctions \)\phi_i\).
+
+    Example, second derivative on the circle \(S^1\). The eigenfunctions
+    will be sines and cosines. These provide a basis for functions on the circle
+    [Fourier basis].
+
+
+    This works for the Laplacian on any surface. Eigenfunctions of the sphere
+    are spherical harmonics! We can do the same on any surface.
+    <h1> Dirichlet energy and harmonic functions </h1>
+
+    There are many choices of how to interpolate.  We have a region \( \Omega \).
+    We know the boundary values \( g: \partial \Omega \rightarrow \mathbb R \).
+    The best choice is a constant function, but constant functions are not smooth.
+    So we can try to look for functions that are "as constant as possible".
+
+    <h1> Dirichlet energy </h1>
+
+    Measures the failure of a function to be constant. It's the integrate of the
+    norm of the gradient. So if the function does not change all that much,
+    then the integral of the norms will be small.
+
+    \[
+    E_D(u) \equiv \frac{1}{2} \int_\Omega | \nabla u |^2 dA
+    \]
+
+    It's zero for constant functions.
+    Large where the function changes rapidly.
+
+    <h1> Dirichlet Principle </h1>
+
+    How do we minimize Dirichlet energy? We can set the gradient of the dirichlet
+    energy to 0 and solve. Because Dirichlet energy is convex, we can show that
+    we have a unique minimizer.
+
+    We can show that
+
+    \[
+    E_D(u) = \int_\Omega u \nabla u dA
+    \]
+
+    Setting it to 0 gives us:
+
+    \[
+    \nabla u = 0 \text{on $\Omega$} \\
+    u = g \text{on $\partial \Omega$}
+    \]
+
+    A function \( u\) minimizes dirichlet energy iff it is a solution to the laplace equation
+
+    <h1> Conformal maps, complex functions </h1>
+
+    Functions that minimize geometry are harmonic functions.
+    They exhibit a mean value property: value at any point \( x \) is equal
+    to the average over **any** ball (not just small balls)
+
+    Maximum principle: we can have no extrema for interior points. The value
+    inside the ball cannot be larger than the values on the boundary of the ball.
+    Thus, the maxima or minima have to be on the boundary of the domain.
+
+    <!-- nice figures, need to know what those functions are --> 
+
+    <!--
+    <h1> Harmonic functions on a surface </h1>
+    -->
+
+    <h1> Poisson equation </h1>
+    Laplace equation is a stationary solution to the heat equation. What if
+    we have a heat source? \( \frac{du}{dt} = \nabla u + f \). We have some
+    boundary values (we may think of this as a heat sink), \(u = g \) on the boundary
+    \( \partial \Omega \).
+
+    <h1> Harmonic green's function </h1>
+
+    What happens to the dirac delta? We get green's function
+
+    We can convolve any function with the green's function to solve them.
+
+    Key idea: Solving a linear PDE is equivalent to convolving with the fundamental solution.
+
+    <h1> Poisson Equation: Variational perspective </h1>
+
+    Given a vector field $X$, find the potential whose gradient is $X$.
+
+    \[
+        \min_u \int_\Omega | \nabla u - X|^2
+    \]
+
+    Key idea: Use poisson equation to integrate a vector field.
+
+    <h1> Boundary conditions </h1>
+    Tricky, easy to get wrong. What kind can we have?
+    - Dirichlet boundary conditions: Values at the endpoints are fixed.
+    - Neumann boundary conditions: Boundary derivatives are fixed
+    - Mixture of data, we also have stuff that can satisfy them.
+
+    <h1> One dimensional laplace equation </h1>
+
+    Dirichlet conditions? Yes, just draw a straight line. 
+
+    Neumann conditions? No, we cannot control the derivative at both ends
+
+    <h1> 2D: Laplace equation </h1>
+
+    <h2> Dirichlet conditions </h2>
+    \[
+        \nabla u = 0 \text{ on } \Omega \\
+        u = g \text{ on } \partial \Omega
+    \]
+
+    Can we satisfy these conditions? Yes, just let the heat equation run.
+
+    <h2> Neumann conditions </h2>
+
+    Use laplace equation.
+
+    PDE may not have solutions for given boundary conditions.  
+
+    <div id="container-1" class="container">
+        <div id="marker-enter-1" class="marker"></div>
+        <div id="scroll-container-1"></div>
+        <div id="marker-exit-1" class="marker"></div>
+    </div>
+
+
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+
+    <div id="container-2" class="container"></div>
+    <div id="container-3" class="container"></div>
+
+    <script>"use strict";
+
+
+        // 'height' is the height of the container.
+        function make_container(container, container_height, render_fn) {
+            const svg = 
+                document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            container.style.height = container_height * 100 + "vh";
+            svg.setAttribute("width", "100%");
+            svg.setAttribute("height", "100vh");
+            svg.setAttribute("viewBox", "0 0 800 600");
+            svg.setAttribute("font-family", "monospace");
+            container.appendChild(svg);
+            svg.render_fn = () => { console.log(svg, "rendering fn"); };
+            svg.start_render_fn = () => { console.log(svg, "started rendering"); };
+            svg.end_render_fn = () => { console.log(svg, "ended rendering"); };
+            return svg;
+        };
+
+        function make_circle(svg) {
+            let c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            svg.appendChild(c);
+            return c;
+        }
+
+        const container_1 = document.getElementById("container-1");
+        const container_2 = document.getElementById("container-2");
+        const container_3 = document.getElementById("container-3");
+        
+        const marker_enter_1 = document.getElementById("marker-enter-1");
+        const marker_enter_2 = document.getElementById("marker-enter-2");
+        const marker_enter_3 = document.getElementById("marker-enter-3");
+
+        const marker_exit_1 = document.getElementById("marker-exit-1");
+        const marker_exit_2 = document.getElementById("marker-exit-2");
+        const marker_exit_3 = document.getElementById("marker-exit-3");
+
+
+        const svg_1 = make_container(document.getElementById("scroll-container-1"), 8);
+        const svg_2 = make_container(container_2, 4);
+        const svg_3 = make_container(container_3, 2);
+
+        function check_scroll() {
+            window.requestAnimationFrame(check_scroll);
+            const containers = [ container_1, container_2, container_3];
+            const svgs = [svg_1, svg_2, svg_3];
+            const enter_markers = [marker_enter_1, marker_enter_2, marker_enter_3];
+            const exit_markers = [marker_exit_1, marker_exit_2, marker_exit_3];
+            for(let i = 0; i < 1; ++i) {
+                // console.log("scrolling: ", containers[i], svgs[i]);
+
+                // boundingClientRect is relative to what is being seen.
+                // When it has .top > 0, it is "above".
+
+                // *(0, 0)------------*--> +x
+                // |     VIEWPORT     |
+                // |                  |
+                // |   *============* |
+                // |   | CONTAINER  | |
+                // *------------------*
+                // |   |            | 
+                // v   *============* 
+                // +y
+                //      
+
+                // When it is .top = 0, it has just filled the screen:
+                // 
+                // *(0, 0)--*=============*-*---> +x
+                // |        | CONTAINER  |  |
+                // |        |            |  |
+                // |        |            |  |
+                // |        *============*  |
+                // |           VIEWPORT     |
+                // v
+                // +y
+
+
+                // When it has top < 0, we are scrolling the container
+                //             *==========*
+                //             |CONTAINER |
+                //  *(0,0)---------------------*---> +x
+                //  |          |          |  |
+                //  |          *==========*  |
+                //  |            VIEWPORT    |
+                //  |
+                //  v
+                // +y
+
+                const viewport = { top: window.scrollY, height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) };
+                const container_rect = containers[i].getBoundingClientRect();
+                const svg_rect = svgs[i].getBoundingClientRect();
+                const enter_marker_rect = enter_markers[i].getBoundingClientRect();
+                const exit_marker_rect = exit_markers[i].getBoundingClientRect();
+
+                if (enter_marker_rect.top > 0) {
+                    svgs[i].style.position = "relative";
+                    svgs[i].style.left = "0px";
+                    svgs[i].style.top = "0px";
+                } else if (exit_marker_rect.bottom < viewport.height) {
+                    svgs[i].style.position = "relative";
+                    svgs[i].style.left = "0px";
+                    svgs[i].style.top = (container_rect.height - svg_rect.height) + "px";
+                } else {
+                    svgs[i].style.position = "fixed";
+                    svgs[i].style.top = "0px";
+                    svgs[i].style.left =  "0px";
+                    // width that we have
+                    const total = (exit_marker_rect.top - exit_marker_rect.bottom - viewport.height);
+                    const progress = 1.0 - (container_rect.bottom - viewport.height) / (container_rect.height - viewport.height);
+
+                    svgs[i].render_fn(progress);
+                }
+            }
+
+        }
+        window.onload = check_scroll;
+        
+
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        const GRAY = "#607D8B";
+
+        const BLUE = "#64B5F6";
+        const PINK = "#EC407A";
+        const GREEN = "#4CAF50";
+        const DARKORANGE = "#FF5722";
+        const DARKPINK = "#C2185B";
+        const DARKBLUE = "#283593";
+        const DARKGRAY = "#37474F";
+
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+
+        const HEAT_EQN_N_PARTICLES = 100;
+        let heat_particles = [];
+        for(let i = 0; i < HEAT_EQN_N_PARTICLES; ++i) {
+            heat_particles[i] = make_circle(svg_1);
+            heat_particles[i].r = 10;
+            heat_particles[i].cx = i*10;
+            heat_particles[i].cy = 500;
+            
+        }
+
+        svg_1.render_fn = (dt) => {
+
+        };
+
+    </script>
+
+</html>
