@@ -1,3 +1,4 @@
+- Introduction to computer music: https://cmtext.indiana.edu/index.php
 - [Chenshaw Approximation](https://en.wikipedia.org/wiki/Clenshaw_algorithm)
 - [Cool way to draw a spiral with concentric circles made up of tilted arcs](https://x.com/AkiyoshiKitaoka/status/1798223256723587218)
 - [Group theory for physicists: lie algebras, dynkin diagrams, and so forth upto vibes](https://www.youtube.com/watch?v=lEovyfCFtBs)
