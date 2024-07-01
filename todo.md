@@ -1,3 +1,4 @@
+- [Matters Computational](https://www.jjj.de/fxt/fxtbook.pdf)
 - [Automated Reasoning Lecture Notes](https://www.youtube.com/@automatedreasoning7411)
 - Binary divider: https://uomustansiriyah.edu.iq/media/lectures/5/5_2018_12_17!07_25_39_PM.pdf
 - Introduction to computer music: https://cmtext.indiana.edu/index.php
