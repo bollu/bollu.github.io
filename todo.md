@@ -1,3 +1,4 @@
+- Geometric optics to wave optics: [Huygens Principle](https://encyclopediaofmath.org/wiki/Huygens_principle)
 - Geometric Topology in Dimension 2 and 3.
 - [Matters Computational](https://www.jjj.de/fxt/fxtbook.pdf)
 - [Automated Reasoning Lecture Notes](https://www.youtube.com/@automatedreasoning7411)
