@@ -1,3 +1,5 @@
+- [Broadword algorithms: rank9 and select9](https://vigna.di.unimi.it/ftp/papers/Broadword.pdf)
+- []
 - Geometric optics to wave optics: [Huygens Principle](https://encyclopediaofmath.org/wiki/Huygens_principle)
 - Geometric Topology in Dimension 2 and 3.
 - [Matters Computational](https://www.jjj.de/fxt/fxtbook.pdf)
