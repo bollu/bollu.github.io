@@ -9,6 +9,10 @@
 - **It's useful to finish things.**
 
 
+# Martingales
+
+- [link](https://nor-blog.codeberg.page/posts/2022-12-31-probability-and-martingales/)
+
 # Table Maker's Dilemma
 
 - [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
