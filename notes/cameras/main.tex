@@ -1,0 +1,178 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{mathtools}
+
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\mono}{\inj}
+
+
+\newcommand{\sur}{\twoheadrightarrow}
+\newcommand{\epi}{\sur}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\Set}{\ensuremath{\mathbf{Set}} }
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+
+
+
+\title{Cameras, Lights}
+\author{Siddharth Bhat}
+\date{Easter 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%
+% Fundamentals of photography by CEK Mees
+
+
+% https://monoskop.org/images/b/bd/The_fundamentals_of_photography_(1921).pdf
+% physics of digital photography: andy rowlands.
+
+% https://www.pencilofrays.com/lens-design-spreadsheet/
+% % A pencul of rays.
+\chapter{Fundamentals of Photography}
+
+Exposure: Amount of light reaching per unit area of the sensor.
+
+
+Shutter speed:
+Units of time (sec). Faster shutter speed, easier to freeze action because light for a short period of time enters.
+(I like to have low shutter speed).
+
+Aperture: size of the hole. Units of f-stops. Larger the number, smaller the hole. 
+Shooting at a small f-stop like 2.8 gives us maximum separation between subject and object, blurs background by a lot.
+(Why? I guess that if f-stop is large, aperture is small, and this makes a pinhole camera.)
+Calculated by dividing focal length by the diameter of the enterance pupil. $N \equiv f / D$.
+As an example, if the focal length is $10$mm, and the diameter of the pupil is $5$mm, we would have $N = 2$, which would be 
+written as having $f$-number "$f/2$". Informally, what this gives us is the way to caclculate the diameter of the pupil,
+which is $D = f/2 = 10/2 = 5$. What a crazy setup. So, clearly, higher the $f$ number, smaller the diameter of the pupil.
+
+
+Human eye varies between $f/2.1$ and $f/8.3$, wikipedia claims.
+(I like to have low f-stop, since it gives us strong background blur and bokeh.)
+
+
+ISO: light sensitivity of sensor.
+What does ISO stand for?
+Higher ISO: allows more light, but introduces more noise.
+
+Focal length:
+Measured in units of length.
+In photography and telescopy, since object is basically infitely far away, assuming all incoming rays are parallel.
+
+% https://en.wikipedia.org/wiki/Angle_of_view_(photography)
+Field of view / Angle of vew:
+Apparently, there is some crazy theory that says that if we want a sharp image, then the image plane must be at the focal length.
+Now, for a fixed height of film-format, as we increase the length (focal length), the angle subtended, where $\tan \alpha = (d/2)/f$ decreases,
+and thus the angle $\alpha$ decreases, whcih we have a smaller angle of view.
+Thus, larger the focal length, smaller the angle/field of view.
+
+
+Focal length v/s Field of view.
+
+ISO in digital cameras: measures "speed" (in seconds) / time taken to expose a standard amount.
+
+Film speed is found from a plot of optical density vs. log of exposure for the film, known as the D–log H curve or Hurter–Driffield curve.
+There typically are five regions in the curve: the base + fog, the toe, the linear region, the shoulder, and the overexposed region.
+For black-and-white negative film, the "speed point" m is the point on the curve where density exceeds the base + fog density by 0.1 when the negative is developed so
+that a point n where the log of exposure is 1.3 units greater than the exposure at point m has a density 0.8 greater than the density at point m.
+The exposure Hm, in lux-s, is that for point m when the specified contrast condition is satisfied. The ISO arithmetic speed is determined from:
+
+Lower ISO = less light, higher ISO = more light.
+(Based on the previous two choices, I should use low ISO, since I like letting a lot of light in.)
+
+
+
+\chapter{$\alpha$6000: Modes to Use}
+
+Use S / shutter setting mode to capture motion blur based photos.
+Use A / aperture priority mode to capture portraits to setup a strong DoF / bokeh creation.
+
+
+
+
+\end{document}
