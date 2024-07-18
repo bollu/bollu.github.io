@@ -1,0 +1,90 @@
+\chapter{Linear time properties}
+\newcommand{\E}{\ensuremath{\mathsf E}}
+\newcommand{\T}{\mathcal T}
+\newcommand{\tone}{\ensuremath{\T_1}}
+\newcommand{\ttwo}{\ensuremath{\T_2}}
+\newcommand{\traces}{\mathsf{Traces}}
+\newcommand{\Traces}{\traces}
+\newcommand{\AP}{\mathsf{AP}}
+\newcommand{\MUTEX}{\mathsf{Mutex}}
+\newcommand{\mutex}{\MUTEX}
+\newcommand{\powerset}[1]{\ensuremath{2^{#1}}}
+
+\url{https://www.youtube.com/watch?v=rGDyab-T0eM&list=PLwabKnOFhE38C0o6z_bhlF_uOUlblDTjh&index=5}
+
+\begin{definition}
+An \textbf{Execution} is a possibly infinite sequence $s_1 \xrightarrow{a_1} s_2 \xrightarrow{a_2} \dots$.
+\end{definition}
+
+\begin{definition}
+A \textbf{Path} is a projection of an execution to the states. So a sequence of states $s_1, s_2, \dots$.
+\end{definition}
+
+\begin{definition}
+A \textbf{Trace} is a projection of the path to its set of atomic propositions. So a sequnce of labels $L(s_1), L(s_2), \dots$.
+\end{definition}
+
+For mathematical convenience, we rule out finite executions. One way to do this is 
+to convert all halt states into infinite loops at the halt state.
+
+\subsection{Linear Time Properties}
+
+\begin{definition}
+A \textbf{Linear Time (LT) Property} over the atomic propositions AP is a language $E$ of infinite words over an alphabet $\Sigma \equiv 2^{AP}$.
+That is, $E \subseteq {\powerset{\AP}}^\omega$.
+\end{definition}
+
+For example, the \textbf{safety} of mutual exclusion is given by $\MUTEX \equiv \{ A_0A_1A_2\dots : \forall i, \lnot (crit_1 \in A_i \land crit_2 \in A_i) \}$.
+Note that this contains seqeuences that need not be exhibited by the transition system.
+
+For another example, the \textbf{liveness} of mutual exclusion contains all infinite words is given by a formula that says ---
+if program 1 enters into the wait section $wait_1$ infinitely many times, then it enters the critical section $crit_1$ infinitely many times, as does program 2.
+Formally:
+
+\begin{align*}
+&\exists^\infty i \in \N, wait_1 \in A_i \implies \exists^\infty i \in \N, crit_1 \in A_i \and \\
+&\exists^\infty i \in \N, wait_2 \in A_i \implies \exists^\infty i \in \N, crit_2 \in A_i
+\end{align*}
+
+\subsection{When does a transition system satisfy a linear time property?}
+
+A transition system $\mathcal T$ over atomic propositions $\AP$ satisfies a linear time property $E$ iff all traces from the transtion system are contained in $E$. 
+
+\begin{align*}
+\T \models E \equiv \traces(\T) \subseteq E
+\end{align*}
+
+\subsection{Trace Inclusion}
+
+For two transition systems $\T_1$ and $\T_2$, the the following are equivalent (TFAE):
+\begin{enumerate}
+\item $\traces(\T_1) \subseteq \traces(\T_2)$.
+\item $\forall E, \T_2 \models E \implies T_1 \models E$.
+\end{enumerate}
+
+The key idea is that since $\T_2$ has richer behaviours, if $\T_2$ obeys some behavioural constraint, then so does $\T_1$, if $\T_1$'s traces are a strict subset of $\T_2$.
+See that this tells us that LTL cannot talk about hyperproperties (properties quantifying over traces), since if we could do this, we could distinguish
+between the trace sets of $\T_1$ and $\T_2$. See that (2) implies (1) is easy to see by choosing $E \equiv \traces(\ttwo)$.
+
+\subsection{Classificaiton of LT properties}
+
+Safety Properties: Nothing bad will happen
+Liveness Properties: Something good will happen
+
+\subsection{Safety Properties}
+
+\begin{enumerate}
+\item Mutual Exclusion
+\item Deadlock Freedom
+\item Every red is preceded by a yellow in a traffic light.
+\end{enumerate}
+
+See that (1), (2) are properties that are local to a single state. While the third property relates two states together.
+So, (1), (2) are called \textbf{invariants}. Formally, invariants are given by \textbf{propositional formulae} over the atomic propositions.
+
+\begin{definition}
+	Let $\E$ be an LT property over AP. The \E{} is said to be an \textbf{Invariant} if it can be characterized by a propositional formula $\phi$.
+	That is, $E = \{ A_0 A_1 \dots \in {2^{AP}}^\omega : \forall i, A_i \models \phi \}$
+\end{definition}
+
+

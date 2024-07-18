@@ -1,0 +1,96 @@
+\newcommand{\badpref}{\ensuremath{\textsf{BadPrefix}}}
+\newcommand{\badprefix}{\badpref}
+
+\newcommand{\tracesfin}{\ensuremath{\textsf{Traces}_{fin}}}
+
+\chapter{Lecture 6: Liveness \& Fairness}
+
+\begin{definition}
+$E$ is a \textbf{Safety Property} iff for all words in $T \in E^c$, there is a finite bad prefix $A_0 \dots A_n$ such that \emph{no extension}
+of this is in $E$. We write the set of bad prefixes for a safety property as $\badpref(E) \subseteq A^+$
+\end{definition}
+Formally, we write:
+
+$$
+T \models E \iff \tracesfin(T) \cap \badpref(E) = \emptyset
+$$
+
+
+we write $\badpref(E)$ to be the set of all finite words $A_1 \dots A_n \in A^+$ such that there is no extension which lives in $E$.
+
+\begin{definition}
+A \textbf{minimal bad prefix} is a bad prefix that itself contains no proper bad prefix.
+\end{definition}
+
+
+\begin{theorem}
+Every invariant $E$ defined by a propositional formula $\phi$ is a safety property.
+\end{theorem}
+\begin{proof}
+all finite words of the form $A_1 \dots A_n$ such that $A_n \not \models \phi$ is the bad prefix.
+\end{proof}
+
+\begin{definition}
+The \textbf{prefix set} of an infinite word
+$\sigma$ is the set of words
+$pref(A_1 A_2 \dots) \equiv \{ A_1 \dots A_n : \forall n \geq 0 \}$.
+\end{definition}
+
+
+\begin{definition}
+The \textbf{prefix set} of a property $E$ is the union of the prefix closures of all the words in it.  $pref(E) \equiv \bigcup_{\sigma \in E} pref(\sigma)$.
+\end{definition}
+
+\begin{definition}
+The \textbf{prefix closure} of a property $E$ is:
+$$
+pref(E) \equiv \{ \sigma \in (2^{AP})^\omega : pref(\sigma) \subseteq pref(E) \}
+$$
+\end{definition}
+
+
+\begin{theorem}
+$E$ is a safety property iff $\badpref(E) \subseteq pref(E)$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\section{Safety Property as closed sets}
+
+Let $X \equiv 2^{AP}$, our space from where we pick up events in the trace.
+Define a metric on the space of infinite sequences $X^\omega$. Given two executions $\vec x, \vec y \in X^\omega$, 
+we measure their similarity in the smallest index they differ (Idea from the paper ``LTL is Closed Under Topological Closure'').
+We define a metric with $d(\vec x, \vec x) \equiv 0$, and $d(\vec x, \vec y) = 2^{-i}$ if $i$ is the smallest index such that $\vec x[i] \neq \vec y[i]$.
+(Think why this obeys transitive).
+
+The distance between a trace $\vec x$ and a property $S \subseteq X^\omega$ is the infimum of the distances from every element in $S$: $d(x, S) \equiv \inf_{y \in S} d(x, y)$.
+Using this, we will show that safety properties correspond to closed sets, and liveness properties correspond to dense sets.
+
+\subsection{Safety Properties}
+Under this interpretation, a safety property is a closed set.
+Intuitively, we are stating that every limit point of $S$ is in $S$.
+Written differently, we are saying that $\forall \vec x \in X, d(\vec x, S) = 0 \implies \vec x \in S$. (Compare this to the closed interval $[0, 1]$ versus the open $(0, 1)$).
+Alternatively, we can think in terms of limit points. $S$ contains all its limit points.
+If we have a property $\vec x$, and we can write a sequence $\vec s_1, \vec s_2, \dots$,
+where each $s_i \in S$, and $d(s_i, \vec x) < 2^i$,
+then since $S$ is closed, we must have that $\lim_i \vec s_i = \vec x \in S$.
+From our safety interpretation, this means that $s_1$ and $\vec x$ can diverge at step $2$, but this already tells us that $\vec x$ is safe upto 2 steps.
+Similarly, $s_2$ and $\vec x$ diverge at step $4$, this tells us that $\vec x$ is safe upto 4 steps.
+Repeating this, we can see that $d(s_i, \vec x) < 2^i$ establishes that $\vec x$ is safe for $2^i$ steps,
+and thus it must be safe for all time.
+
+\subsection{Liveness Properties}
+Recall that a liveness property is that which can extend any finite trace.
+This can be seen as a \emph{denseness} condition on the set, because intuitively, every trace is arbitrarily close to the liveness property. (Think of $\mathbb Q \in \mathbb R$).
+Intuitively, suppose we have a trace $\vec x$, and let $L$ be a liveness property. Now, since every finite prefix $\vec x[:i] \in X^*$
+must be extensible to a new property $\vec l_i \in X^\omega$ such that $\vec x[:i] = \vec l[:i]$ (i.e., $d(\vec x, \vec l_i) \leq 2^{-i}$), this implies that
+in fact, the sequence $\vec l_1, \vec l_2, \vec l_3, \dots$ establishes that $\inf_i d(\vec x, \vec l_i) = 0$.
+Therefore, any property $\vec x$ is arbitrarily close to $\vec L$.
+
+\subsection{Decomposition Theorem}
+We prove in trace semantics that any property can be written as the intersection of a safety and liveness property.
+Is it true that any set of a metric space can be written as the intersection of a closed set and a dense set?
+Yes.
+For a given set $S$, let the closed set be its closure, $C_S \equiv \overline S$.
+See that $C_S$ is an overapproximation, since it has added the limit points $C - S$. See that the set of limit points has empty interior,
+so its complement will be dense. We define the dense set $D_S \equiv X - (C - S)$, or $X - \texttt{extra}$.
