@@ -1,3 +1,4 @@
+- [Disappearing Polymorph](https://en.m.wikipedia.org/w/index.php?title=Disappearing_polymorph)
 - [The NSAnimation class for describing animations in NextStep](https://developer.apple.com/documentation/appkit/nsanimation#1651628)
 - [Broadword algorithms: rank9 and select9](https://vigna.di.unimi.it/ftp/papers/Broadword.pdf)
 - Geometric optics to wave optics: [Huygens Principle](https://encyclopediaofmath.org/wiki/Huygens_principle)
