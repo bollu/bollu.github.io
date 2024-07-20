@@ -9,10 +9,6 @@
 - **It's useful to finish things.**
 
 
-# Martingales
-
-- [link](https://nor-blog.codeberg.page/posts/2022-12-31-probability-and-martingales/)
-
 # Table Maker's Dilemma
 
 - [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
@@ -33,7 +29,6 @@ ffmpeg -y -i "doctor.who.2005.s14e00.the.star.beast.1080p.web.h264-hornedsplendi
 # Notes on Copy and Patch Compilation
 
 - [Brandt Bucher: A JIT Compiler for CPython](https://www.youtube.com/watch?app=desktop&v=HxSHIpEQRjs)
-- [Copy and Patch Compilation](
 - [quenya.lean](git@github.com:bollu/quenya.lean.git)
 
 
@@ -47334,7 +47329,6 @@ speak slower than you want to.
 
 
 
-
 #### Double Fugue
 - Fugue exposes with two subjects
 
@@ -47468,6 +47462,16 @@ speak slower than you want to.
 - Play the corresponding shell voicing or melody with the right hand.
 - If we have two chords per bar, then all we get to play are `root ii`-`leading v`-`root v`-`leading i` etc.
 - To add an arpeggio, add a `853` if you want some flourish.
+
+
+#### Pedal Usage
+
+- pedal moves *opposite* to hands.
+- Foot should be down whilst hand goes up to play the next chord.
+- Hand comes down once again, plays the next chord, and then the foot goes up.
+- Pivot the pedal from the heel. For this, we need to sit far enough back away from the piano.
+- To practice, go back and forth between two chord positions --- I and V.
+
 
 
 #### Best References for theory
