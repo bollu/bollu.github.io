@@ -22097,11 +22097,6 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 
 - [link here](https://tspace.library.utoronto.ca/bitstream/1807/101595/3/Khogali_Yusra_201806_MA_thesis.pdf)
 
-# Hololive subculture
-
-- hololive artists
--
-
 # RSK correspondence for permutations
 
 ##### Tableaux
@@ -47831,3 +47826,9 @@ w: dan-cing un-der-neath the skies of lust
 
 - [How to texture](https://www.youtube.com/watch?v=p0iaumF6Eb8)
 - [Architectural Sketching: texture](https://www.youtube.com/watch?v=zJKZhxV4W9o&list=PL-7IZmGjCRjDEVs-7jjNAepfkBp95VouI&index=3)
+
+# Big List of Paintings I Enjoy
+
+##### Hiroshi Yoshida
+
+- [hisorhi yoshida](https://en.wikipedia.org/wiki/Hiroshi_Yoshida) makes beautiful paintings, including of India.
