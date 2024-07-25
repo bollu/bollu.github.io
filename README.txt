@@ -8,6 +8,25 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Proving False with partial functions even with Inhabited types 
+
+- The idea is to define an inconsistent function where `foo = !foo`.
+- Then, we case split on the value of `foo` (via LEM), and show that we get contradiction in both cases.
+- See that such a function is inhabited, and yet we get a contradiction!
+  So it's not legal to add equations for partial functions.
+
+```lean
+partial def foo (_ : Unit) : Bool := ¬ foo ()
+axiom foo_eqn : foo () = ¬ foo ()
+
+theorem false : False := by
+  have hcontra : foo () = ¬ foo () := foo_eqn
+  by_cases h : (foo ()) <;> simp [h] at hcontra
+
+/-- info: 'hfoo_false' depends on axioms: [foo_eqn, propext] -/
+#guard_msgs in #print axioms hfoo_false
+```
+
 
 # Table Maker's Dilemma
 
