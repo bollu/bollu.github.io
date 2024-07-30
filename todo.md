@@ -1,3 +1,4 @@
+- [Advanced Data analysis from an elemantary point of view](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf)
 - [Disappearing Polymorph](https://en.m.wikipedia.org/w/index.php?title=Disappearing_polymorph)
 - [The NSAnimation class for describing animations in NextStep](https://developer.apple.com/documentation/appkit/nsanimation#1651628)
 - [Broadword algorithms: rank9 and select9](https://vigna.di.unimi.it/ftp/papers/Broadword.pdf)
