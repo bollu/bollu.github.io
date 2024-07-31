@@ -1,3 +1,4 @@
+- [21 proofs of euler characteristic](https://ics.uci.edu/~eppstein/junkyard/euler/)
 - [The delta method: single statistical solution for various estimation problems](https://alexdeng.github.io/public/files/kdd2018-dm.pdf)
 - [Accounting for developers](https://docs.google.com/document/d/1HDLRa6vKpclO1JtxbGB5NeAYWf8cf1UMGy22o8OZZq4/edit)
 - [Disappearing Polymorph](https://en.m.wikipedia.org/w/index.php?title=Disappearing_polymorph)
