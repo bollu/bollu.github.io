@@ -47846,8 +47846,13 @@ w: dan-cing un-der-neath the skies of lust
 - [How to texture](https://www.youtube.com/watch?v=p0iaumF6Eb8)
 - [Architectural Sketching: texture](https://www.youtube.com/watch?v=zJKZhxV4W9o&list=PL-7IZmGjCRjDEVs-7jjNAepfkBp95VouI&index=3)
 
-# Big List of Paintings I Enjoy
+# Big List of Art and Paintings I Enjoy
 
 ##### Hiroshi Yoshida
 
 - [hisorhi yoshida](https://en.wikipedia.org/wiki/Hiroshi_Yoshida) makes beautiful paintings, including of India.
+
+#### Klimt
+
+- [Death and life](https://bluesurfart.com/collections/gustav-klimt/products/death-and-life)
+- [Judith and the head](https://upload.wikimedia.org/wikipedia/commons/9/92/Gustav_Klimt_039.jpg)
