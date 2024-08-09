@@ -8,6 +8,33 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Computing Craig Interpolants from Resolution proofs
+
+# Interpolants: Vibes
+
+- References: [Applications of craig interpolants and model checking](http://mcmil.net/pubs/TACAS05.pdf)
+- We shall explain what an interpolant in two ways.
+
+#### Implication based definition
+
+- Let $A(p, q)$ and B(q, r)$ be propositional formulae (where $p, q$ are vectors of variables) such that $A \implies B$.
+- Then, there exists a formula $C(q)$ such that $A(p, q) \implies C(q)$ and $C(q) \implies B(q, r)$.
+- So, the "crux" of why $A$ implies $B$ lies in $C$.
+- One can ask: why is this useful? and how does one compute such an object? and why does sucn an object even exist?
+
+#### Existence proof for interpolant
+
+- Choose a particular $A(p, q)$ and $B(q, r)$.
+- Let $A(p, q)$ be notation for an assignment for variable vectors $p$ and $q$ (ie, a function from variables in $p, q$
+- Let $F(A(p))$ be a formula that is true when the values of variables in $p$ is equal to $A(p)$ .
+- For example, suppose $a, b, c$ are variables, and the assignment $A(a, b, c)$ be $a \mapsto 1$, $b \mapsto 0$, and $c \mapsto 1$.
+- Then $F(A(a, b, c)) \equiv a \land \lnot b \land c$. 
+- That is, it's the formula that's true when the values of $a, b, c$ match the assignment $A(a, b, c)$.
+
+
+#### Contradiction
+
 # AWS MathFest 2024
 
 - We had an interesting question at the AWS MathFest.
