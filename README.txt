@@ -55,7 +55,8 @@
 #### Interpolant as telling us which clause is refuting
 
 - From the UNSAT perspective, we know that $(A(p, q) \land B(q, r))$ is UNSAT.
-- We can think of the interpolant $C$ as telling 
+- We can think of the interpolant $C(q)$ as telling us why the unsat happened.
+- More precisely, let's write $A(p, q) \implies C(q)$ as $\lnot C(q) \implies \lnot A(p, q)$.
 
 #### Interpolant as "forward image"
 
