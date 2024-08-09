@@ -36,7 +36,28 @@
 
 
 
-#### Contradiction
+#### Contradiction of Conjunction Viewpoint
+
+- Let $A(p, q) \land B(q, r)$ be unsatisfiable.
+- Then, interpolation implies that there exists a formula $C(q)$, such that $A(p, q) \implies C(q)$ and $C(q) \land B(q)$ is UNSAT.
+- This tells us that "unsat core" of $A$ and $B$ actually lives in $C$.
+
+##### Proof that implication interpolant implies conjunction unsat interpolant
+
+- We can phrase that $A(p, q) \land B(q, r)$ being UNSAT as saying that $\lnot (\lnot A \lor \lnot B)$ in UNSAT,
+  or that $\lnot A \lor \lnot B$ as being TAUTO, or that $A \implies \lnot B$.
+- We can apply interpolation to tell us that there is a formula such that $A(p, q) \implies C(q)$ such that $C(q) \implies \lnot B$.
+- Reversing the logic, we can see that $C(q) \and B(q, r)$ must be UNSAT.
+- Roughly, we use the fact that $A \implies B$ is a tautology implies that whenever $A$ is true, $B$ must be true. This means that $A \implies \lnot B$
+  is UNSAT, which is the same as $\lnot A \lor \lnot B$ being unsat, which is the same as $\lnot (A \land B)$ being UNSAT.
+- I would appreciate a more direct way of seeing this fact!
+
+#### Interpolant as "forward image"
+
+#### Linear time algorithm for computing interpolants
+
+- Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
+
 
 # AWS MathFest 2024
 
