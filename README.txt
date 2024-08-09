@@ -15,7 +15,7 @@
 - See that such a function is inhabited, and yet we get a contradiction!
   So it's not legal to add equations for partial functions.
 
-```lean
+```
 partial def foo (_ : Unit) : Bool := ¬ foo ()
 axiom foo_eqn : foo () = ¬ foo ()
 
@@ -386,7 +386,7 @@ $$
 $$
 
 - We make another version of the equation system, $\tilde E_G$, which is the same system, except for a fixed vertex $c$ (for contradition),
-  we change the parity of the equation to be $\sum_j x[e[c, j], \vec b[j]] = \lnot\texttt{parity(\vec b)}$.
+  we change the parity of the equation to be $\sum_j x[e[c, j], \vec b[j]] = \lnot\texttt{parity}(\vec b)$.
 - See that we perturb $16$ equations, for all possible choices of $b$ for a fixed $c$.
 - See that this set of equations is unsatisfiable. Add up all equations that only have variables of the form $x[e, 0]$.
 - The sum of all left hand sides will be double counting each variable, since we make an equation for each vertex,
@@ -47415,7 +47415,7 @@ speak slower than you want to.
 
 - [Video reference](https://www.youtube.com/watch?v=8BShjpnliKc)
 - Pick chords, e.g. `Cm7 -> Fm7 -> G7 -> Fm7 -> ... `
-- Arpeggiate the C chord. First play `1-8`, then play `3-5`. (`C-C, `Eb-G`).
+- Arpeggiate the C chord. First play `1-8`, then play `3-5`. (`C-C`, `Eb-G`).
 - Bass rhythm: Clave pattern. 2 bar pattern, repeated throughout the song.
 - Son clave 2/3: `1rest 2 3 4rest`, `1 2rest' 2&quaver 3rest 4`.
 
@@ -47856,3 +47856,4 @@ w: dan-cing un-der-neath the skies of lust
 
 - [Death and life](https://bluesurfart.com/collections/gustav-klimt/products/death-and-life)
 - [Judith and the head](https://upload.wikimedia.org/wikipedia/commons/9/92/Gustav_Klimt_039.jpg)
+
