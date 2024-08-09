@@ -11,6 +11,56 @@
 # AWS MathFest 2024
 
 - We had an interesting question at the AWS MathFest.
+- Suppose there are 31 days, and there are 31 jugglers.
+- on each day, jugglers put on a show. A show contains a set of jugglers.
+- Call a configuration of shows by jugglers *good* if no two days contain the same jugglers.
+- We are told that the initial plan is a *good* plan.
+- Now, Is it possible to always kill a juggler such that the days remain good?
+- Let's restrict to 2 jugglers and two days. Let the days be `1, 2` and jugglers be `a, b`. We can represent a 
+  good configuration as a matrix:
+
+```
+       a  b
+-----+-----
+day 1| x  o
+day 2| x  x
+```
+
+- This means that the show on day 1 has only a, and the show on day 2 has both a and b.
+- See that it is not safe for us to kill juggler `b`, because if we do so, then on both days, only juggler `a` performs.
+- See that it is safe for us to kill juggler `a`, because if we do so, then on day 1, no juggler performs, and on day 2, only juggler `b` performs
+  which was different shows.
+- In general, is it always possible to find a juggler to kill (like we found `b` in this case), given that we have `n` days and `n` jugglers?
+
+#### Proof that this is always possible
+- For a given day, interpret the "jugglers appearing on that day" as a string. So for example, day 1 is `xo` and day 2 is `xx`.
+- See that the property that we had can be rephrased by saying that the strings for all days are distinct.
+- This means that if we build an automata, then it will have unique terminal states, one for each string.
+- So, we will think of this from the point of view of nerode equivalence.
+- We have a sequence of equivalence relations on the set of days. The more of the strings we consume, the more days we can tell apart.
+- At the end, we can tell apart all the days.
+- We want to prove that one of the characters is superfluous.
+- Going back to the example:
+- Before consuming any character, we will have the equivalence classes `{day1, day2}` (no distinction).
+- After revealing the first column (ie, learning on what days the 1st juggler performs), we will have the equivalence classes `{day1, day2}`.
+  That is, we learnt nothing new.
+- After revealing the second column (ie, learning on what days the 2nd juggler performs), we will have the equivalence classes `{day1}`, `{day2}`.
+- We say that learning when juggler `a` performs did not let us distinguish any new states, so we can kill juggler `a` and still have the property
+  that at the end, we have distinguished all days.
+- In general, see that we have `n` letters. We will have states that correspond to `0` letters seen, `1` letters seen, ..., `n` letters seen.
+- See that at the final state with index `n`, all states are in their own equivalence class with `1` element.
+- So what we have is a chain of length `(n + 1)` in the lattice of partitions,
+  startig with the partition `{1...n}`, ending with the partition `{{1}, {2}, .. {n}}`.
+- However, see that this lattice only has height `n`! e.g. when `n=3`, the lattice looks as follows:
+
+```
+    {[1] [2] [3]}
+{[1] [2 3]} {[1 2] [3]} {[1 3] {2}]
+     {[1 2 3]}
+```
+
+- Thus, given a chain of length $n + 1$ in a lattice of height $n$, there must be two elements that are equal.
+- So we can find a letter (which is the transition between these two elements) to kill.
 
 
 # Proving False with partial functions even with Inhabited types 
