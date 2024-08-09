@@ -8,9 +8,6 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-
-# Computing Craig Interpolants from Resolution proofs
-
 # Interpolants: Vibes
 
 - References: [Applications of craig interpolants and model checking](http://mcmil.net/pubs/TACAS05.pdf)
