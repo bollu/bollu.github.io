@@ -52,7 +52,14 @@
   is UNSAT, which is the same as $\lnot A \lor \lnot B$ being unsat, which is the same as $\lnot (A \land B)$ being UNSAT.
 - I would appreciate a more direct way of seeing this fact!
 
+#### Interpolant as telling us which clause is refuting
+
+- From the UNSAT perspective, we know that $(A(p, q) \land B(q, r))$ is UNSAT.
+- We can think of the interpolant $C$ as telling 
+
 #### Interpolant as "forward image"
+
+- Thinking from the unsat interpolant perspective, 
 
 #### Linear time algorithm for computing interpolants
 
