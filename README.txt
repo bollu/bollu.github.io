@@ -57,7 +57,7 @@
 - Similarly, we also have $C(q) \implies B(q, r)$.
 - Putting the two together, we can see that when $M \models C(q)$, we have that $M \models B(q, r)$.
   However, since $M \not \models A \land B$, we must have that $M \not models A$, or that $A$ is false!
-- By the exact same logic, we can see that if $M \not models C(q)$ then $M \models A(p, q)$, and thus $M \not \models B(q, r)$.
+- By the exact same logic, we can see that if $M \not \models C(q)$ then $M \models A(p, q)$, and thus $M \not \models B(q, r)$.
 - Thus way, the interpolant $C(q)$ tells us whether $A$ or $B$ is causing the UNSAT for a given model!
 
 #### Interpolant as "forward image"
