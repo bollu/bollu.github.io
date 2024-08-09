@@ -10,6 +10,70 @@
 
 # Inductive Predicate as Least Fixed Point, directly
 
+```
+inductive IsEven : Nat → Prop
+| zero : IsEven 0
+| succ : ∀ n, IsEven n → IsEven (n + 2)
+
+
+def IsEvenProp (p : Nat → Prop) : Prop :=
+  p 0 ∧ (∀ n, p n → p (n + 2))
+
+theorem IsEvenPropOfIsEven : IsEvenProp IsEven := by
+  unfold IsEvenProp
+  constructor
+  · exact IsEven.zero
+  · intro n h
+    exact IsEven.succ n h
+
+/--
+least fixed point of IsEvenProp.
+See that this uses impredicativity.
+It is quantifying over all (p : Nat → Prop).
+In doing so, it is quantifying over *itself* (IsEven' : Nat → Prop).
+-/
+def IsEven' : Nat → Prop := fun n =>
+  ∀ (p : Nat → Prop) (hp : IsEvenProp p), p n
+
+theorem IsEven'_zero : IsEven' 0 := by
+  intro p hp
+  unfold IsEvenProp at hp
+  obtain ⟨h0, _hsucc⟩ := hp
+  exact h0
+
+theorem IsEven'_ind (h : IsEven' n) : IsEven' (n + 2) := by
+  intro p hp
+  unfold IsEvenProp at hp
+  obtain ⟨h0, hsucc⟩ := hp
+  apply hsucc
+  unfold IsEven' at h
+  apply h
+  unfold IsEvenProp
+  simp only
+  constructor <;> assumption
+
+
+theorem IsEvenOfIsEven' : ∀ n, IsEven' n → IsEven n := by
+  unfold IsEven'
+  intros n
+  intros h
+  specialize h IsEven IsEvenPropOfIsEven
+  exact h
+
+theorem IsEven'OfIsEven : ∀ n, IsEven n → IsEven' n := by
+  intro n
+  intros h
+  induction h
+  case zero => exact IsEven'_zero
+  case succ m heven heven' =>
+    exact IsEven'_ind heven'
+
+theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
+  intro n
+  apply Iff.intro
+  · apply IsEven'OfIsEven
+  · apply IsEvenOfIsEven'
+```
 
 # Interpolants: Vibes
 
