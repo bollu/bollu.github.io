@@ -18,7 +18,7 @@
 
 #### Implication based definition
 
-- Let $A(p, q)$ and B(q, r)$ be propositional formulae (where $p, q$ are vectors of variables) such that $A \implies B$.
+- Let $A(p, q)$ and $B(q, r)$ be propositional formulae (where $p, q$ are vectors of variables) such that $A \implies B$.
 - Then, there exists a formula $C(q)$ such that $A(p, q) \implies C(q)$ and $C(q) \implies B(q, r)$.
 - So, the "crux" of why $A$ implies $B$ lies in $C$.
 - One can ask: why is this useful? and how does one compute such an object? and why does sucn an object even exist?
@@ -47,7 +47,7 @@
 - We can phrase that $A(p, q) \land B(q, r)$ being UNSAT as saying that $\lnot (\lnot A \lor \lnot B)$ in UNSAT,
   or that $\lnot A \lor \lnot B$ as being TAUTO, or that $A \implies \lnot B$.
 - We can apply interpolation to tell us that there is a formula such that $A(p, q) \implies C(q)$ such that $C(q) \implies \lnot B$.
-- Reversing the logic, we can see that $C(q) \and B(q, r)$ must be UNSAT.
+- Reversing the logic, we can see that $C(q) \land B(q, r)$ must be UNSAT.
 - Roughly, we use the fact that $A \implies B$ is a tautology implies that whenever $A$ is true, $B$ must be true. This means that $A \implies \lnot B$
   is UNSAT, which is the same as $\lnot A \lor \lnot B$ being unsat, which is the same as $\lnot (A \land B)$ being UNSAT.
 - I would appreciate a more direct way of seeing this fact!
@@ -59,17 +59,21 @@
 - More precisely, let's write $A(p, q) \implies C(q)$ as $\lnot C(q) \implies \lnot A(p, q)$.
 - Similarly, we also have $C(q) \implies B(q, r)$.
 - Putting the two together, we can see that when $M \models C(q)$, we have that $M \models B(q, r)$.
-  However, since $M \not \models A \and B$, we must have that $M \not models A$, or that $A$ is false!
+  However, since $M \not \models A \land B$, we must have that $M \not models A$, or that $A$ is false!
 - By the exact same logic, we can see that if $M \not models C(q)$ then $M \models A(p, q)$, and thus $M \not \models B(q, r)$.
 - Thus way, the interpolant $C(q)$ tells us whether $A$ or $B$ is causing the UNSAT for a given model!
 
 #### Interpolant as "forward image"
 
-- Thinking from the unsat interpolant perspective, 
+- Thinking once again from the UNSAT perspective, suppose that we are trying to prove that all executions are good.
+- Actually, I realized I don't understand this. will come back to it.
 
 #### Linear time algorithm for computing interpolants
 
 - Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
+- The idea is to use the fact that the interpolant tells us which clause is refuting.
+- Since $C$ obeys the property that $\lnot C \implies \lnot A$ and $C \implies B$, we use this to build $C$ from the refutation proof.
+- TODO! Write the proper algorithm down here.
 
 
 # AWS MathFest 2024
