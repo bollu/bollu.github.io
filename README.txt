@@ -25,12 +25,15 @@
 
 #### Existence proof for interpolant
 
-- Choose a particular $A(p, q)$ and $B(q, r)$.
-- Let $A(p, q)$ be notation for an assignment for variable vectors $p$ and $q$ (ie, a function from variables in $p, q$
-- Let $F(A(p))$ be a formula that is true when the values of variables in $p$ is equal to $A(p)$ .
-- For example, suppose $a, b, c$ are variables, and the assignment $A(a, b, c)$ be $a \mapsto 1$, $b \mapsto 0$, and $c \mapsto 1$.
+- Choose a particular $A(p, q)$ and $B(q, r)$ such that $A(p, q) \implies B(q, r)$, We are trying to build an interpolant $C(q)$.
+- For example, suppose $a, b, c$ are variables, and the assignment $M(a, b, c)$ be $a \mapsto 1$, $b \mapsto 0$, and $c \mapsto 1$. ($M$ for model).
+- Let $F(M(a, b c)))$ be a formula that is true when the values of variables in $a$ is equal to $M(a, b, c)$.
 - Then $F(A(a, b, c)) \equiv a \land \lnot b \land c$. 
-- That is, it's the formula that's true when the values of $a, b, c$ match the assignment $A(a, b, c)$.
+- That is, it's the formula that's true when the values of $a, b, c$ match the assignment $M(a, b, c)$.
+- Now, we will try to build an interpoland $C(q)$.
+- Consider an assignment $M_q(q)$ such that for all assignments $M_p(p), M_r(r)$, we have that $M_p(p) \cup M_q(q) \cup M_r(r) \models A \implies B$.
+- That is, $M_q(q)$ is an assignment such that for any values chosen for $p, r$, $A(p, q) \implies B(q, r)$ is true.
+
 
 
 #### Contradiction
