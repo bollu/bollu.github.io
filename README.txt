@@ -27,11 +27,8 @@
 - Let $F(M(a, b c)))$ be a formula that is true when the values of variables in $a$ is equal to $M(a, b, c)$.
 - Then $F(A(a, b, c)) \equiv a \land \lnot b \land c$. 
 - That is, it's the formula that's true when the values of $a, b, c$ match the assignment $M(a, b, c)$.
-- Now, we will try to build an interpoland $C(q)$.
-- Consider an assignment $M_q(q)$ such that for all assignments $M_p(p), M_r(r)$, we have that $M_p(p) \cup M_q(q) \cup M_r(r) \models A \implies B$.
-- That is, $M_q(q)$ is an assignment such that for any values chosen for $p, r$, $A(p, q) \implies B(q, r)$ is true.
-
-
+- Now, we will try to build an interpolant $C(q)$.
+- TODO: this needs a bit more thought.
 
 #### Contradiction of Conjunction Viewpoint
 
