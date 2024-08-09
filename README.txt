@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# AWS MathFest 2024
+
+- We had an interesting question at the AWS MathFest.
+
+
 # Proving False with partial functions even with Inhabited types 
 
 - The idea is to define an inconsistent function where `foo = !foo`.
@@ -1707,16 +1712,10 @@ for i in range(1000):
 
 
 
-# Sobolev Embedding Theorem [WIP]
+# Sobolev Embedding Theorem 
 
 - Intuitive Statement: Bound on norm of derivatives gives bound on function norm
 - Intuition: On a closed compact set, function can only grow as much as the derivative lets it grow.
-
-
-# Hahn Banach Theorem [WIP]
-
-
-# Method of Characteristics [WIP]
 
 
 # Eikonal Equation [WIP]
@@ -3929,7 +3928,6 @@ Therefore, all these conditions are equivalent.
 - Suppose the two versions agree, so `[h]_S = [l]_T`.
 - Suppose we extend `h` to `h'`, to compile the language `S'` to `T`. `h'` is also written in `S`, so we have `h': S(S'→ T)`.
 - Now we can use `t` on `h'` to recieve an `S'` compiler `l' : T(S' → T)`.
-- TODO
 
 # Partial Evaluation, Chapter 1
 
