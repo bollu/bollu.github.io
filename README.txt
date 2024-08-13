@@ -162,7 +162,39 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - We now want an algorithm that gives us smaller interpolants.
 - Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
 - The idea is to use the fact that the interpolant tells us which clause is refuting.
-- So, recall from above that we have that $\lnot C(q) \implies \lnot A(p, q)$, and that $C(q) \implies \lnot B(q, r)$.
+- So, recall from above that we have that (i) $\lnot C(q) \implies \lnot A(p, q)$, and that (ii) $C(q) \implies \lnot B(q, r)$.
+- Next, see that in a resolution proof, we can walk a resolution proof "backwards" to figure out which clause
+  gave rise to a contradiction.
+- We will build a $C(q)$ by performing induction on the resolution proof, maintaining (i) and (ii) as invariants of the
+  clauses we have seen so far. 
+
+##### Using clause from $A$
+
+- If we are using a clause $A_i$ of $A$, then the associated term for the interpolant will be $I(A_i) \equiv 0$.
+  The idea is that if the UNSAT for a particular model $M$ came from $A_i$, then we must have that the interpolant $I(A_i)$ has value $0$ from the previous analysis. In this case, we know for sure that the UNSAT came from $A_i$, and thus the interpolant is just $0$.
+
+##### Using clause from $B$
+
+- By the exact same argument, if we use clause $B_i$ of $B$, then the associated term for the interpolant will be $I(B_i) \equiv 1$.
+
+
+#### Resolving, both from $A$.
+
+- Suppose we resolve two clauses $A_i, A_j$ Now, if the contradiction came from either $A_i$ or $A_j$,
+  then this part of the resolution is the cause of UNSAT, and then $I(Resolv(A_i, A_j))$ must equal $0$.
+  But if this part of the resolution is the cause of UNSAT, then we will have either $I(A_i) = 0$ or $I(A_j) = 0$.
+  In either of theses cases, we need $I(Resolv(A_i, A_j)) = 0$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(A_i) \land I(A_j)$.
+- Or, in less terse terms, "if $I(A_i)$ or $I(A_j)$ is $0$, then so is $I(Resolv(A_i, A_j))$". Convert that to a formula.
+
+#### Resolving, both from $B$.
+
+- Dually, Suppose we resolve two clauses $B_i, B_j$ Now, if the contradiction came from either $B_i$ or $B_j$,
+  then this part of the resolution is the cause of UNSAT, and then $I(Resolv(A_i, A_j))$ must equal $1$.
+  But if this part of the resolution is the cause of UNSAT, then we will have either $I(A_i) = 0$ or $I(A_j) = 0$.
+  In either of theses cases, we need $I(Resolv(A_i, A_j)) = 0$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(A_i) \land I(A_j)$.
+- Or, in less terse terms, "if $I(A_i)$ or $I(A_j)$ is $0$, then so is $I(Resolv(A_i, A_j))$". Convert that to a formula.
+
+
 
 #### Interpolant as "forward image"
 
