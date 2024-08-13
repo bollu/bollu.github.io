@@ -152,14 +152,17 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - This may not look propositional since we are quantifying over models.
 - However, the set of models is finite, so we can build a gigantic (exponential in the number of variables)
   disjunct over all models, and create a huge clause. 
+- For example, if we want to know that we are in a model $[x_1 \mapsto T, x_2 \mapsto F]$, we can literally write the
+  expression $x_1 = T \land x_2 = F$, or in more shorthand, $x_1 \land \lnot x_2$.
+- This gives us an algorithm to compute an exponential sized interpolant, so we now know that interpolants always exist!
 
 
 #### Linear time algorithm for computing interpolants
 
+- We now want an algorithm that gives us smaller interpolants.
 - Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
 - The idea is to use the fact that the interpolant tells us which clause is refuting.
-- For this proof, we will use the definition of the resolvent in the conjunction definition.
-- So, recall from above that we have that $\lnot C(q) \implies \lnot A(p, q)$, and that $C(q) \implies B(q, r)$.
+- So, recall from above that we have that $\lnot C(q) \implies \lnot A(p, q)$, and that $C(q) \implies \lnot B(q, r)$.
 
 #### Interpolant as "forward image"
 
