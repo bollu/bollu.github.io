@@ -181,18 +181,24 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 #### Resolving, both from $A$.
 
 - Suppose we resolve two clauses $A_i, A_j$ Now, if the contradiction came from either $A_i$ or $A_j$,
-  then this part of the resolution is the cause of UNSAT, and then $I(Resolv(A_i, A_j))$ must equal $0$.
-  But if this part of the resolution is the cause of UNSAT, then we will have either $I(A_i) = 0$ or $I(A_j) = 0$.
-  In either of theses cases, we need $I(Resolv(A_i, A_j)) = 0$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(A_i) \land I(A_j)$.
+  then this part of the resolution is the cause of UNSAT. 
+- Now see that $I(Resolv(A_i, A_j))$ should be $0$ if the UNSAT came from $A$, and $I(Resolve(A_i, A_j))$ should be $1$
+  if the UNSAT came from $B$.
+- But if this part of the resolution is the cause of UNSAT, then we will have either $I(A_i) = 0$ or $I(A_j) = 0$.
+  In either of theses cases, the UNSAT came from $A$.
+- So, we need $I(Resolv(A_i, A_j)) = 0$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(A_i) \land I(A_j)$.
 - Or, in less terse terms, "if $I(A_i)$ or $I(A_j)$ is $0$, then so is $I(Resolv(A_i, A_j))$". Convert that to a formula.
 
 #### Resolving, both from $B$.
 
-- Dually, Suppose we resolve two clauses $B_i, B_j$ Now, if the contradiction came from either $B_i$ or $B_j$,
-  then this part of the resolution is the cause of UNSAT, and then $I(Resolv(A_i, A_j))$ must equal $1$.
-  But if this part of the resolution is the cause of UNSAT, then we will have either $I(A_i) = 0$ or $I(A_j) = 0$.
-  In either of theses cases, we need $I(Resolv(A_i, A_j)) = 0$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(A_i) \land I(A_j)$.
-- Or, in less terse terms, "if $I(A_i)$ or $I(A_j)$ is $0$, then so is $I(Resolv(A_i, A_j))$". Convert that to a formula.
+- Suppose we resolve two clauses $B_i, B_j$ Now, if the contradiction came from either $B_i$ or $B_j$,
+  then this part of the resolution is the cause of UNSAT. 
+- Now see that $I(Resolv(B_i, B_j))$ should be $0$ if the UNSAT came from $A$, and $I(Resolve(B_i, B_j))$ should be $1$
+  if the UNSAT came from $B$.
+- But if this part of the resolution is the cause of UNSAT, then we will have either $I(B_i) = 0$ or $I(B_j) = 0$.
+  In either of theses cases, the UNSAT came from $B$.
+- So, we need $I(Resolv(B_i, B_j)) = 1$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(B_i) \lor I(B_j)$.
+- Or, in less terse terms, "if $I(B_i)$ or $I(B_j)$ is $1$, then so is $I(Resolv(B_i, B_j))$". Convert that to a formula.
 
 
 
