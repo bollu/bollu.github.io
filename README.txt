@@ -124,17 +124,18 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - By the exact same logic, we can see that if $M \not \models C(q)$ then $M \models A(p, q)$, and thus $M \not \models B(q, r)$.
 - Thus way, the interpolant $C(q)$ tells us whether $A$ or $B$ is causing the UNSAT for a given model!
 
-#### Interpolant as "forward image"
-
-- Thinking once again from the UNSAT perspective, suppose that we are trying to prove that all executions are good.
-- Actually, I realized I don't understand this. will come back to it.
 
 #### Linear time algorithm for computing interpolants
 
 - Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
 - The idea is to use the fact that the interpolant tells us which clause is refuting.
-- Since $C$ obeys the property that $\lnot C \implies \lnot A$ and $C \implies B$, we use this to build $C$ from the refutation proof.
+- For this proof, we will use the definition of the resolvent in the conjunction definition.
 - TODO! Write the proper algorithm down here.
+
+#### Interpolant as "forward image"
+
+- Thinking once again from the UNSAT perspective, suppose that we are trying to prove that all executions are good.
+- Actually, I realized I don't understand this. will come back to it.
 
 
 # AWS MathFest 2024
