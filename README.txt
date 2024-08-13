@@ -123,8 +123,35 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - So, consider a model $M$. We know that $M \lnot \model A \land B$.
 - Let's now test what value $C(q)$ ought to have given the two above constraints.
 
-##### Case 1: contradiction from clause in $A$.
+##### Case 1: contradiction from clause in $A$
+- Suppose the contradiction arose from a clause in $A$.
+- We must have $M \models A(p, q) \implies C(q)$. This imposes no conditions on $A(p, q)$ since $A(p, q)$ is false, and thus
+  the formula will be true regardless of $C(q)$.
+- We must also have $M \lnot \models C(q) \land B(q, r)$. 
+- For this to happen regardless of $B(q, r)$, we must have $C(q) = 0$ in $M$.
+- See that this also agrees with $M \models \lnot C(q) \implies \lnot A(p, q)$. 
+  So we can think of this as telling us to "label" $M$ with $C(q) = 0$ when the failure in $M \lnot \models A \land B$
+  arises from $A$.
+
 ##### Case 2: contradiction from clause in $B$.
+- Suppose the contradiction arose from a clause in $B$.
+- We must have $M \models A(p, q) \implies C(q)$. For this to be true regardless of the truth value of $\llbracket A(p, q) \rrbracket_M$, we must choose $C(q) = 1$.
+- We must also have $M \lnot \models C(q) \land B(q, r)$. This will hold because $\llbracket B(q, r) \rrbracket_M = 0$,
+  regardless of $C(q)$. 
+- See that this also agrees with $M \models C(q) \implies \lnot B(p, q)$. 
+  So we can think of this as telling us to "label" $M$ with $C(q) = 1$ when the failure in $M \lnot \models A \land B$
+  arises from $B$.
+
+##### Recipe for exponential sized $C$
+
+- Combining the two above, we can see that $C$ is really a labelling function, that labels for an UNSAT clause $A \land B$,
+  and for an arbitrary model $M$, whether $M \lnot \models A \land B$ because of $A$ or because of $B$.
+- If it's because of $A$, then $\llbracket C \rrbracket = F$, and otherwise it's because of $B$, so $\llbracket C \rrbracket_M = T$.
+- This gives us a recipe to write a $C$ down.
+- Create a clause of the form $\forall m \in M, (A(M) = 0 \implies F) \land (B(M) = 0 \implies T)$.
+- This may not look propositional since we are quantifying over models.
+- However, the set of models is finite, so we can build a gigantic (exponential in the number of variables)
+  disjunct over all models, and create a huge clause. 
 
 
 #### Linear time algorithm for computing interpolants
