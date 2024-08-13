@@ -202,8 +202,11 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 
 #### Resolving, one from $A$, one from $B$
 
-- In very similar fashion, we build a resolvent of $I(Resolv(A_i, B_j))$. 
-
+- In very similar fashion, we build a resolvent of $I(Resolv(A_i, B_j))$.
+- If we have resolved with $x \in A_i$ and $\lnot x \in B_i$, and suppose that the resolvent lead to a UNSAT.
+- Now, we see that $x = F$, then the contradiction came from $A_i$, and so we must use the interpolant $I(A_i)$ in this case.
+- Similarly, if $x = T$, then the contradiction came from $B_i$, and we must use the interpolant $I(B_j)$ in this case.
+- Putting this together, we see that we want the formula $(\lnot x \implies I(A_i)) \land (x \implies I(B_i))$.
 
 #### Interpolant as "forward image"
 
