@@ -117,6 +117,8 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 
 - From the UNSAT perspective, we know that $(A(p, q) \land B(q, r))$ is UNSAT.
 - We can think of the interpolant $C(q)$ as telling us why the unsat happened.
+- Recall that $C(q)$ is such that $A(p, q) \implies C(q)$ and $C(q) \land B(q)$ is UNSAT.
+- This means that $\lnot C(q) \implies \lnot A(p, q)$.
 - More precisely, let's write $A(p, q) \implies C(q)$ as $\lnot C(q) \implies \lnot A(p, q)$.
 - Similarly, we also have $C(q) \implies B(q, r)$.
 - Putting the two together, we can see that when $M \models C(q)$, we have that $M \models B(q, r)$.
@@ -130,7 +132,7 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - Note that this algorithm is linear in the size of the *refutation proof*, which could be exponentially large!
 - The idea is to use the fact that the interpolant tells us which clause is refuting.
 - For this proof, we will use the definition of the resolvent in the conjunction definition.
-- TODO! Write the proper algorithm down here.
+- So, recall from above that we have that $\lnot C(q) \implies \lnot A(p, q)$, and that $C(q) \implies B(q, r)$.
 
 #### Interpolant as "forward image"
 
