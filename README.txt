@@ -117,14 +117,14 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 
 - From the UNSAT perspective, we know that $(A(p, q) \land B(q, r))$ is UNSAT.
 - We can think of the interpolant $C(q)$ as telling us why the unsat happened.
-- Recall that $C(q)$ is such that $A(p, q) \implies C(q)$ and $C(q) \land B(q)$ is UNSAT.
-- This means that $\lnot C(q) \implies \lnot A(p, q)$.
-- More precisely, let's write $A(p, q) \implies C(q)$ as $\lnot C(q) \implies \lnot A(p, q)$.
-- Similarly, we also have $C(q) \implies B(q, r)$.
-- Putting the two together, we can see that when $M \models C(q)$, we have that $M \models B(q, r)$.
-  However, since $M \not \models A \land B$, we must have that $M \not \models A$, or that $A$ is false!
-- By the exact same logic, we can see that if $M \not \models C(q)$ then $M \models A(p, q)$, and thus $M \not \models B(q, r)$.
-- Thus way, the interpolant $C(q)$ tells us whether $A$ or $B$ is causing the UNSAT for a given model!
+- Recall that $C(q)$ is such that (i) $A(p, q) \implies C(q)$ and (ii) $C(q) \land B(q)$ is UNSAT.
+- (i) implies $\lnot C(q) \implies \lnot A(p, q)$.
+- (ii) implies $\lnot (C(q) \land B(q))$ is a tautology, or $\lnot C(q) \lor \lnot B(q)$, or $C(q) \implies \lnot B(q)$.
+- So, consider a model $M$. We know that $M \lnot \model A \land B$.
+- Let's now test what value $C(q)$ ought to have given the two above constraints.
+
+##### Case 1: contradiction from clause in $A$.
+##### Case 2: contradiction from clause in $B$.
 
 
 #### Linear time algorithm for computing interpolants
