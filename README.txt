@@ -200,6 +200,9 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - So, we need $I(Resolv(B_i, B_j)) = 1$. To achieve this, we set $I(Resolv(A_i, A_j)) = I(B_i) \lor I(B_j)$.
 - Or, in less terse terms, "if $I(B_i)$ or $I(B_j)$ is $1$, then so is $I(Resolv(B_i, B_j))$". Convert that to a formula.
 
+#### Resolving, one from $A$, one from $B$
+
+- In very similar fashion, we build a resolvent of $I(Resolv(A_i, B_j))$. 
 
 
 #### Interpolant as "forward image"
