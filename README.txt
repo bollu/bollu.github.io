@@ -10,7 +10,8 @@
 
 # Amelie Chords Explanation
 
-- 
+- $EGB$: 
+- $$
 
 
 # Inductive Predicate as Least Fixed Point, directly
