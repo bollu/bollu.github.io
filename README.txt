@@ -8,6 +8,14 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Skyfall Chords Explanation
+
+- I notate notes in different octaves as `C1 C2` etc.
+- I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
+
+
+#### Progression
+
 # Amelie Arpeggiation Explanation
 
 - I notate notes in different octaves as `C1 C2` etc.
