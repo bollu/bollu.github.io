@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Amelie Chords Explanation
+
+- 
+
+
 # Inductive Predicate as Least Fixed Point, directly
 
 ```
