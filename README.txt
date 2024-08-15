@@ -8,10 +8,31 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Amelie Chords Explanation
+# Amelie Arpeggiation Explanation
 
-- $EGB$: 
-- $$
+- I notate notes in different octaves as `C1 C2` etc.
+- I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
+
+#### The bass arpeggio line
+
+- (a) `(E1E2) B1 (G1E2) B1`
+- (b) `(D1D2) B1 (G1G2) B1`
+- (c) `(D1D2) B1 (F#1D2) B1`
+- (d) `(D1D2) A1 (F#1D2) A1`
+
+#### Interpretation
+
+- If we grab the notes, we see that it's:
+- (a) `E-G-B`: Major
+- (b) `D-G-B`: 1st note changed (`E` to `D`). 1st inversion of major `G-B-D`. Ambiguous in tonality, 
+- (c) `D-F#-B`: 2nd note chanted (`G` to `F#`). 2nd inversion of `B-D-F#` minor. Minor.
+- (d) `D-F#-A`: 3rd note chanted (`B` to `A`). Major. Back to happy!
+
+#### Key ideas
+
+- Change one note at a time.
+- Vary moods: major to ambiguous to minor/
+- Use no inversion on chord[0], 1st inversion on chord[1], 2nd inversion on chord[2], and no inversion (3rd inversion) on chord[3]?
 
 
 # Inductive Predicate as Least Fixed Point, directly
