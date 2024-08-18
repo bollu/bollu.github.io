@@ -16,6 +16,18 @@
 
 #### Progression
 
+# Simulating Inductives Via Coinductives (And Vice Versa)
+
+- Given inductive types, it's fairly standard to simulate coinductives by writing them
+  as an inverse limit of inductive types. For this, we need function spaces to write down the inverse limit sequence.
+
+- What about the other way round? Given a language with $\Sigma$, $\Pi$, and coinductive, how do we simulate inductive?
+
+##### Simulating List from Stream
+
+- Step 1: define `Stream a where head :: a; tail :: Stream a`.
+- Step 2: define church numerals: `zero f x = x; succ n f x = f (
+
 # Amelie Arpeggiation Explanation
 
 - I notate notes in different octaves as `C1 C2` etc.
