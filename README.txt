@@ -26,7 +26,61 @@
 ##### Simulating List from Stream
 
 - Step 1: define `Stream a where head :: a; tail :: Stream a`.
-- Step 2: define church numerals: `zero f x = x; succ n f x = f (
+- Step 2: define church numerals: 
+
+```hs
+type Church = (a -> a) -> (a -> a)
+
+zero :: Church
+zero f = id
+
+succ :: Church -> Church
+succ n f = (n f) . f
+```
+- We need one more ingredient, which is `Option a`.
+
+```
+type Tuple a b where
+  fst :: a
+  snd :: b
+
+-- Final encoding of option.
+type Option a = {b : Type} -> Tuple b (a -> b) -> b
+
+none :: Option a
+none tup = tup.fst
+
+some :: a -> Option a
+none a tup = tup.snd a
+```
+
+- We will define lists via the final encoding, and show that this type contains inhabitants.
+
+```
+-- List, final encoding.
+type List a = (b : Type) -> (hnil : b) -> (hcons : b -> a -> b)
+```
+
+- We will inhabit it as a coinductive stream of `Option`s, which are eventually `none`.
+
+- First, a coinductive predicate that the stream has only nones.
+
+```
+coinductive OnlyNone (s : Stream (Option a)) : Prop where
+  hdNone :: (hd s) = none
+  tailNone :: OnlyNone (tail s)
+```
+
+- Next, a predicate that the stream is *eventually* only nones. For this, we say that there is a number $n$ such that applying $n$
+  gives us a stream with `OnlyNone`.
+
+```
+type EventuallyNone (s : Stream (Option a)) : Prop := 
+  ∃ (n : Church), OnlyNone ((n Stream.tail) s)
+```
+
+- We now build the isomorphism from an `EventuallyNone` stream to a list:
+
 
 # Amelie Arpeggiation Explanation
 
