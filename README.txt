@@ -16,6 +16,7 @@
 
 #### Progression
 
+
 # Simulating Inductives Via Coinductives (And Vice Versa)
 
 - Given inductive types, it's fairly standard to simulate coinductives by writing them
