@@ -79,7 +79,14 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
   ∃ (n : Church), OnlyNone ((n Stream.tail) s)
 ```
 
-- We now build the isomorphism from an `EventuallyNone` stream to a list:
+- Now, one can see that a `List a` is an `EventuallyNone (Stream a)`.
+- See that one ca also define `Option a` as a `{ s : Stream a // OnlyNone s \/ OnlyNone (tail s) }`.
+- In toto, this lets us simulate inductive types inside coinductive types, by building the large object,
+  and then "cutting away" the subobject we want!
+- See that we need function spaces to get ourselves an e.g. `Option`. In general, with just products,
+  we can't get sums :)
+- In some sense, we're using functions to build the "categorical" objects (inverse limits, sums)
+  to get to the data type.
 
 
 # Amelie Arpeggiation Explanation

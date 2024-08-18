@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"files.insertFinalNewline": true,
+		"files.trimTrailingWhitespace": true,
+	},
+	"extensions": {
+		"recommendations": [
+		]
+	}
+}
