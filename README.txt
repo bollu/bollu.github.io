@@ -3,7 +3,7 @@
 </h2>
 <h3> Siddharth Bhat </h3>
 
-- [Leave me your thoughts anonymously](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
+- [Sign the Guestbook (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**

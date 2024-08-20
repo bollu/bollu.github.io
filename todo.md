@@ -1,6 +1,8 @@
 - [21 proofs of euler characteristic](https://ics.uci.edu/~eppstein/junkyard/euler/)
 - [The delta method: single statistical solution for various estimation problems](https://alexdeng.github.io/public/files/kdd2018-dm.pdf)
 - [Accounting for developers](https://docs.google.com/document/d/1HDLRa6vKpclO1JtxbGB5NeAYWf8cf1UMGy22o8OZZq4/edit)
+- [Gradual typing algorithm](https://github.com/hazelgrove/hazel/wiki/Gradual-Typing-&-Polymorphism-Papers)
+- [Printing press for single book](https://print24.com/uk/printing-products/books)
 - [Advanced Data analysis from an elemantary point of view](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf)
 - [Disappearing Polymorph](https://en.m.wikipedia.org/w/index.php?title=Disappearing_polymorph)
 - [The NSAnimation class for describing animations in NextStep](https://developer.apple.com/documentation/appkit/nsanimation#1651628)
