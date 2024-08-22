@@ -8,10 +8,23 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Skyfall Chords Explanation
+# Skyfall Analysis
 
 - I notate notes in different octaves as `C1 C2` etc.
 - I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
+
+
+# Fur Elise Analysis
+
+# Right hand for arpeggios
+
+- I've been trying to figure out how to get the right hand to be the "supporting role" when playing
+  the melody with the left hand.
+- A recent discovery: use 9ths! Play `9531` with the right hand as an arpeggio, sounds quite nice.
+- So, for Cm, here are the following:
+- Gm9: `A D Bb G`
+- Fm9: `G C Ab F`
+- Cm9: `D G Eb C`
 
 
 #### Progression
