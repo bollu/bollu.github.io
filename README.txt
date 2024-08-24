@@ -46578,6 +46578,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "If you think experts are expensive, wait and see what amateurs will cost you."
+
 > “You cannot go on 'seeing through' things for ever.
 > The whole point of seeing through something is to see something through it. 
 > It is good that the window should be transparent, because the street or garden beyond it is opaque. 
