@@ -16,6 +16,9 @@
 
 - Says that static and dynamic type systems match up, and thus
   interpolating makes sense.
+- The ur-example is `(\y y) ((\x x) 42))`.
+- This program dynamically executes and produces `42`.
+- The program `()`
 
 # Skyfall Analysis
 
