@@ -8,6 +8,12 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Lean Naming Convention for Contexts
+
+- `LocalContext` *contains* `LocalDecl`s, and is *owned* by a `Metavar`.
+- `MetavarContext` *contains* `Metavar`s, and is *owned* by a `MetaM`.
+- `TacticM` *contains* the list of goal `[goal : MVarId]`.
+
 # Skyfall Chords Explanation
 
 - I notate notes in different octaves as `C1 C2` etc.
@@ -114,6 +120,8 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
 - Change one note at a time.
 - Vary moods: major to ambiguous to minor/
 - Use no inversion on chord[0], 1st inversion on chord[1], 2nd inversion on chord[2], and no inversion (3rd inversion) on chord[3]?
+- Many thanks to [GodotMisogi](https://godot-bloggy.xyz/) for the help in figuring this stuff out,
+  he's a much better musician than I ever will be!
 
 
 # Inductive Predicate as Least Fixed Point, directly
