@@ -16,6 +16,8 @@
 
 # Fur Elise Analysis
 
+# The Gradual Guarantees
+
 # Right hand for arpeggios
 
 - I've been trying to figure out how to get the right hand to be the "supporting role" when playing
