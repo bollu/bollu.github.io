@@ -8,15 +8,18 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Fur Elise Analysis
+
 # Skyfall Analysis
 
 - I notate notes in different octaves as `C1 C2` etc.
 - I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
 
 
-# Fur Elise Analysis
-
 # The Gradual Guarantees
+
+- Says that stat
 
 # Right hand for arpeggios
 
