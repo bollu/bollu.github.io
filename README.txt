@@ -3,13 +3,10 @@
 </h2>
 <h3> Siddharth Bhat </h3>
 
-- [Leave me your thoughts anonymously](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
+- [Sign the Guestbook (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
-
-
-# Fur Elise Analysis
 
 
 # The Gradual Guarantees
@@ -79,7 +76,7 @@ c = g(b)
   a statically typed function.
 - In particular, we can state that the error arises from the *call* to the *dynamic* functions.
 
-##### Gradual guarantees:
+##### Gradual guarantees
 
 - if a program is well typed, removing types keeps the program well typed.
 - If a well typed program evaluates to a value, then removing types from this program also evaluates to the same value.
@@ -91,11 +88,11 @@ c = g(b)
 - [Refined Criteria for Gradual Typing](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SNAPL.2015.274)
 - [The ins and outs of gradual type inference](https://www.cs.umd.edu/~avik/papers/iogti.pdf)
 
-# Skyfall Analysis
+# Lean Naming Convention for Contexts
 
-- I notate notes in different octaves as `C1 C2` etc.
-- I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
-
+- `LocalContext` *contains* `LocalDecl`s, and is *owned* by a `Metavar`.
+- `MetavarContext` *contains* `Metavar`s, and is *owned* by a `MetaM`.
+- `TacticM` *contains* the list of goal `[goal : MVarId]`.
 
 # Right hand for arpeggios
 
@@ -106,9 +103,6 @@ c = g(b)
 - Gm9: `A D Bb G`
 - Fm9: `G C Ab F`
 - Cm9: `D G Eb C`
-
-
-#### Progression
 
 # Simulating Inductives Via Coinductives (And Vice Versa)
 
@@ -208,6 +202,8 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
 - Change one note at a time.
 - Vary moods: major to ambiguous to minor/
 - Use no inversion on chord[0], 1st inversion on chord[1], 2nd inversion on chord[2], and no inversion (3rd inversion) on chord[3]?
+- Many thanks to [GodotMisogi](https://godot-bloggy.xyz/) for the help in figuring this stuff out,
+  he's a much better musician than I ever will be!
 
 
 # Inductive Predicate as Least Fixed Point, directly
