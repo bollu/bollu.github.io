@@ -18,7 +18,78 @@
   interpolating makes sense.
 - The ur-example is `(\y y) ((\x x) 42))`.
 - This program dynamically executes and produces `42`.
-- The program `()`
+
+##### statically correct programm
+
+- The correctly type annotated program `(\(y : Int) y) ((\(x : Int) x) 42)`
+  will pass the type checker, and run to produce the same value `42`.
+
+```py
+# Inferred f : Int -> Any
+def f(x : Int): return x
+
+# Inferred g: Int -> Any
+def g(y): return y
+
+a = 42 # Inferred a : Int
+b = f(a) # Inferred b : Any
+b' = upcast b Int # Inferred b' : Int
+c = g(b') # Inferred c : Any
+```
+
+##### statically incorrect programm
+
+- Consider the program `(\y y) ((\(x : Bool) x) 42)`. This elaborates into:
+
+```
+# Inferred f : Bool -> Any
+def f(x : Bool): return x
+
+# Inferred g: Any -> Any
+def g(y): return y
+
+a = 42 # Inferred a : Int
+b = f(a) # Type error, f : Bool -> Any mismatch argument a : Int
+c = g(b) # See that this is type-correct, (b : Any), (g : Any -> Any)
+```
+
+##### dynamically incorrect programm
+
+- Consider the program `(\(y : Bool) y) ((\x x) 42)`. This elaborates into:
+
+```
+# Inferred f : Any -> Any
+def f(x): return x
+
+# Inferred g: Bool -> Any
+def g(y : Bool): return y
+
+a = 42 # Inferred a : Int
+b = f(a) # Inferred b : Any
+b' = upcast b Bool # dynamic error at upcast, since at runtime, (b := 42)
+c = g(b)
+```
+
+##### What have we learnt?
+
+- If we add all the types, we get a type checker that passes which accepts correct programs (fully anootated).
+- Some ways of adding type information will throw *static type errors*
+- Some ways of adding types will give us a runtime error *from upcasts*.
+- Since the upcasts are inserted "in between" calls to the statically typed functions, we never get an error *inside* 
+  a statically typed function.
+- In particular, we can state that the error arises from the *call* to the *dynamic* functions.
+
+##### Gradual guarantees:
+
+- if a program is well typed, removing types keeps the program well typed.
+- If a well typed program evaluates to a value, then removing types from this program also evaluates to the same value.
+- adding type annotations can add either static errors, or dynamic errors *from untyped code*. Typed code that passes static type checking
+  cannot create new errors dynamically.
+
+##### References
+
+- [Refined Criteria for Gradual Typing](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SNAPL.2015.274)
+- []
 
 # Skyfall Analysis
 
