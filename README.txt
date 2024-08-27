@@ -89,7 +89,7 @@ c = g(b)
 ##### References
 
 - [Refined Criteria for Gradual Typing](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SNAPL.2015.274)
-- []
+- [The ins and outs of gradual type inference](https://www.cs.umd.edu/~avik/papers/iogti.pdf)
 
 # Skyfall Analysis
 
