@@ -46659,6 +46659,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> The advantages of implicit definition over construction are
+> roughly those of theft over honest toil.
+
 > "If you think experts are expensive, wait and see what amateurs will cost you."
 
 > “You cannot go on 'seeing through' things for ever.
