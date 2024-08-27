@@ -1,3 +1,4 @@
+- [Data, Code, Decisions: decision procedures for real arithmetic](https://symbolaris.com/course/dcd/13-arithmetic.pdf)
 - [OPLSS 2012 curriculum](https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html)
 - [21 proofs of euler characteristic](https://ics.uci.edu/~eppstein/junkyard/euler/)
 - [The delta method: single statistical solution for various estimation problems](https://alexdeng.github.io/public/files/kdd2018-dm.pdf)
