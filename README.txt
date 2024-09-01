@@ -17,6 +17,8 @@
 - A poet I'm going to be picking up is A. E. Stallings.
 - [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
 - Blue Unicorn: formal poetry magazine.
+- [The HyperTexts](http://www.thehypertexts.com/About_The_Hypertexts.htm)
+- [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
 # The Gradual Guarantees
