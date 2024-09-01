@@ -94,6 +94,10 @@
 > as well as its emphasis on affect, a recoil from
 > what is cast as the arid rationalism ("scholastic" is the term one critic uses).
 
+#### II Theory over Method, or In Defense of Polemic (Tom Eyers)
+
+> What does form explain? Does form explain? 
+
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
