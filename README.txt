@@ -113,6 +113,23 @@ Triumphant antiformalism has to answer, besides, for a more
  a disused set of critica
 
 
+ To let the tools of formal literary analysis rust unburnished is to risk
+ discovering one day that our services are no longer wanted. While it is not
+ too late to recoup that fine-motor coordination between eye and hand on
+ which our guild's distinctive contributions are likely to depend, it is
+ decidedly not too soon to enter rehab and start practicing
+
+
+
+#### Narrative Networks: Bleak House and the Affor dances of Form (Carloine Levine)
+
+
+
+
+
+
+
+
 
 
 
