@@ -29,7 +29,10 @@
 
 #### Journal Articles
 
+##### EVERYBODY HATES KANT Blakean Formalism and the Symmetries of Laura Moriarty
 ##### What Is New Formalism (Marjorie Levinson)
+
+> Jonathan Loes berg's A Return to the Aesthetic and Isobel Armstrong's The Radical Aesthetic
 
 
 # The Gradual Guarantees
