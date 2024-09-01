@@ -30,6 +30,11 @@
 #### Journal Articles
 
 ##### EVERYBODY HATES KANT Blakean Formalism and the Symmetries of Laura Moriarty
+
+> New Formalist poetry has seemed interested largely in returning to
+> forms—sestina, villanelle, sonnet, and so on—that, according to
+> New Formalist poets, have fallen into disuse through decades of freeverse practice.
+
 ##### What Is New Formalism (Marjorie Levinson)
 
 > Jonathan Loes berg's A Return to the Aesthetic and Isobel Armstrong's The Radical Aesthetic
