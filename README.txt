@@ -15,10 +15,10 @@
   reddit complaining about the sorry state of contemporary poetry.
 
 - A poet I'm going to be picking up is A. E. Stallings.
+- [The society of classical poets](https://classicalpoets.org/about-us/)
 - [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
-- Blue Unicorn: formal poetry magazine.
-- [The HyperTexts](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
+- [The HyperTexts](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
 # The Gradual Guarantees
