@@ -27,6 +27,11 @@
 - [Sparks of Calliope: Informative articles and poets in the tradition](https://sparksofcalliope.com/)
 - [The fireside poets](https://en.wikipedia.org/wiki/Fireside_poets)
 
+#### Journal Articles
+
+##### What Is New Formalism (Marjorie Levinson)
+
+
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
