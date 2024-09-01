@@ -98,6 +98,24 @@
 
 > What does form explain? Does form explain? 
 
+#### Tactical Formalism: A Response to Caroline Levine
+
+
+> For some time now, a knee-jerk contempt for
+>  formal inquiry as such has, in its own turn, become as firmly established
+>  within programs of advanced training as the dogma of formalism used
+>  to be. 
+
+Triumphant antiformalism has to answer, besides, for a more
+ serious dereliction: the enervation of literary close reading in critical
+ practice. A review of the habits of literary analysis that have prevailed
+ during the last academic generation or so reveals widespread atrophy of
+ a disused set of critica
+
+
+
+
+
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
