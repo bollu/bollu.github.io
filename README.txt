@@ -20,6 +20,7 @@
 - [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
 - [The HyperTexts](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
+- [The fireside poets](https://en.wikipedia.org/wiki/Fireside_poets)
 
 # The Gradual Guarantees
 
