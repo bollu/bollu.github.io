@@ -22,6 +22,15 @@
 - [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
+#### Cool Poets (Contemporary)
+
+-  A. E. Stallings.
+
+#### Cool Poets (Older)
+
+- William Blake (Tyger)
+- Samuel Taylor Coleridge (Kublai, Khan)
+
 #### History
 
 - [Sparks of Calliope: Informative articles and poets in the tradition](https://sparksofcalliope.com/)
