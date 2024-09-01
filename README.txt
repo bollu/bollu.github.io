@@ -16,14 +16,15 @@
 
 - A poet I'm going to be picking up is A. E. Stallings.
 - [The society of classical poets](https://classicalpoets.org/about-us/)
-- [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
+- [Light: A journal of light verse](https://lightpoetrymagazine.com/)
 - [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
-- [Sparks of Calliope: Informative articles and poets in the tradition](https://sparksofcalliope.com/)
-- [The HyperTexts](http://www.thehypertexts.com/About_The_Hypertexts.htm)
+- [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
+- [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
 #### History
 
+- [Sparks of Calliope: Informative articles and poets in the tradition](https://sparksofcalliope.com/)
 - [The fireside poets](https://en.wikipedia.org/wiki/Fireside_poets)
 
 # The Gradual Guarantees
