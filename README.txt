@@ -48,6 +48,37 @@
 
 > Jonathan Loes berg's A Return to the Aesthetic and Isobel Armstrong's The Radical Aesthetic
 
+> About a quarter of the
+> studies trace the discipline's neglect of form to new historicism's alleged denunciation of form
+> as an ideological mystification.
+
+> The above distinction between two
+>  strains of new formalism translates into a
+>  practical division between (a) those who want
+>  to restore to today's reductive reinscription of
+>  historical reading its original focus on form
+>  (traced by these critics to sources founda
+>  tional for materialist critique?e.g., Hegel,
+>  Marx, Freud, Adorno, Althusser, Jameson)
+>  and (b) those who campaign to bring back a
+>  sharp demarcation between history and art,
+>  discourse and literature, with form (regarded
+>  as the condition of aesthetic experience as
+>  traced to Kant?i.e., disinterested, autotelic,
+>  playful, pleasurable, consensus-generating,
+>  and therefore both individually liberating
+>  and conducive to affective social cohesion)
+>  the prerogative of art. In short, we have a new
+>  formalism that makes a continuum with new
+>  historicism and a backlash new formalism.
+
+> I call the first kind of practice "activist formalism" (2),
+> I call the second kind "normative formalism," not because
+>  it achieves normative status but because it as
+>  signs to the aesthetic norm-setting work that
+>  is cognitive and affective and therefore also
+>  cultural-political. A
+
 
 # The Gradual Guarantees
 
