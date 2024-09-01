@@ -8,6 +8,14 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# I like New Formalism Poetry
+
+- Took a heck of a lot of searching and sheer dumb luck to name the
+  kind of poetry I was looking for. What helped was looking for threads on
+  reddit complaining about the sorry state of contemporary poetry.
+
+- A poet I'm going to be picking up is A. E. Stallings.
+- [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
 
 # The Gradual Guarantees
 
