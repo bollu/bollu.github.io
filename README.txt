@@ -94,6 +94,27 @@
 > as well as its emphasis on affect, a recoil from
 > what is cast as the arid rationalism ("scholastic" is the term one critic uses).
 
+
+>  In closing, let me cite a very different kind
+>  of essay, Elizabeth Harris Sagaser's "Flirting
+>  with Eternity: Teaching Form and Meter in a
+>  Renaissance Poetry Course." The excellence of
+>  this essay is in its hands-on approach to the
+>  problem of helping students address "basic
+>  questions such as why?politically, philosophi
+>  cally, psychologically?a culture would develop
+>  form and meter so intensely" without lapsing
+>  into an alienating technicalism (185). Because
+>  hers is a rigorously interactive notion of form
+>  ("form and meter only exist in practice?in
+>  reciting verse, listening to it, reading it, writ
+>  ing it, remembering it, teaching it" [186]),
+>  she designs exercises (recitation, memoriza
+>  tion, etc.) to counteract the reification effects
+>  of contemporary print and academic culture.
+>  Even as she stresses the acoustic, she quot
+
+
 #### II Theory over Method, or In Defense of Polemic (Tom Eyers)
 
 > What does form explain? Does form explain? 
@@ -122,6 +143,13 @@ Triumphant antiformalism has to answer, besides, for a more
 
 
 #### Narrative Networks: Bleak House and the Affor dances of Form (Carloine Levine)
+
+> Faced with a doorknob, most of us know what to do. We turn it in one direc
+ tion, and if that doesn't unlatch the door, we turn it in the other. We then use the
+ same doorknob to pull the door toward us or push it away from us. We perceive
+ what design theorists and cognitive psychologists call the doorknob's affordances.
+
+
 
 
 
