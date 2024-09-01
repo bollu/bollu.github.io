@@ -77,8 +77,22 @@
 >  it achieves normative status but because it as
 >  signs to the aesthetic norm-setting work that
 >  is cognitive and affective and therefore also
->  cultural-political. A
+>  cultural-political.
 
+> The central work of the movement as a
+> whole is rededication, a word I choose be
+> cause new formalism seeks not only to rein
+> state the problematic of form so as to recover
+> values forgotten, rejected, or vulgarized as
+> the direct or indirect consequence of new
+> historicism's dominance but also to generate
+> commitment to and community around the
+> idea of form. The language of "commitment,"
+> "conviction," "devotion," "dedication" is fre
+> quent and often focal in these essays, and it
+> points up the advocacy slant of the movement
+> as well as its emphasis on affect, a recoil from
+> what is cast as the arid rationalism ("scholastic" is the term one critic uses).
 
 # The Gradual Guarantees
 
