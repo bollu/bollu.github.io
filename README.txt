@@ -22,6 +22,16 @@
 - [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
+# Kinds of Fiction Genres I Like
+
+- hard sci fi
+- ergodic literature
+- [Weird literature](https://www.reddit.com/r/WeirdLit/)
+- Existential dread / CCRU / Nick land
+- Borgesian
+- Speculative Fiction (Imagination Machines)
+
+
 #### Cool Poets (Contemporary)
 
 -  A. E. Stallings.
