@@ -83,6 +83,41 @@ c = g(b)
 - adding type annotations can add either static errors, or dynamic errors *from untyped code*. Typed code that passes static type checking
   cannot create new errors dynamically.
 
+#### Why are the gradual guarantees useful?
+
+- If the gradual guarantees are true, then we know that we can "trust" the static types:
+  if a value `x` has type `Nat`, then at runtime, it will only be of type `Nat` (if passed an incorrect value,
+  the cast before the assignment will make sure that no non-`Nat` value flows into `x`).
+  This means that we can, for e.g., write a compiler that makes the statically typed portion of the program way faster!
+- Contrast this to the case where we run the program `(\(y : Bool) y) ((\x. x) 42)` and produce the result `42`.
+  A compiler count not produce faster code, because `y` at runtime has value `42` which is an integer, not a boolean!
+- In the neat article by Jeremy Siek on [Is typescript gradually typed](https://siek.blogspot.com/2012/10/is-typescript-gradually-typed-part-2.html),
+  he describes the academic version with gradual guarantees as "level 2", and the python/typescripe like behaviour as "level 1".
+  To quote:
+
+> level 1 gradual typing does not provide run-time support for catching broken
+> invariants, such as deriv's expectation that its arguments have type string.
+> Thus, a TypeScript programmer that really wants to enforce such an invariant
+> would need to add code to check the type of the argument, a common practice
+> today in JavaScript.
+
+> Level 2 gradual typing ensures that the value stored in a variable is
+> consistent with the variable's static type and it provides the run-time
+> checking to catch when this invariant is about to be broken. Thus, level 2
+> gradual typing removes the need for hand-written type tests. Also, level 2
+> gradual typing opens up the possibility of compiling statically-typed regions
+> of a program in a more efficient, type-specific manner. (This is an active
+> area of my current research.) The disadvantages of level 2 gradual typing are
+> the run-time overhead from cast checking and the increased implementation
+> complexity.
+
+> Level 3 gradual typing improves on level 2 by adding blame tracking, thereby
+> improving the diagnostic errors reported when a cast fails. The extra cost of
+> blame tracking is not very significant, so I would always suggest level 3
+> over level 2.
+
+
+
 ##### References
 
 - [Refined Criteria for Gradual Typing](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SNAPL.2015.274)
