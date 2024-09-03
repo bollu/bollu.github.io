@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Smullyan Writings
+
+- https://www.mit.edu/people/dpolicar/writing/prose/text/epistemologicalNightmare.html
+- https://www-cs-faculty.stanford.edu/~knuth/smullyan.html
+
 # I like New Formalism Poetry
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
