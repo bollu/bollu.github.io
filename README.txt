@@ -10,8 +10,8 @@
 
 # Smullyan Writings
 
-- https://www.mit.edu/people/dpolicar/writing/prose/text/epistemologicalNightmare.html
-- https://www-cs-faculty.stanford.edu/~knuth/smullyan.html
+#### [An Epistemological Nightmare](https://www.mit.edu/people/dpolicar/writing/prose/text/epistemologicalNightmare.html)
+#### [Planet Without Laughter](https://www-cs-faculty.stanford.edu/~knuth/smullyan.html)
 
 # I like New Formalism Poetry
 
