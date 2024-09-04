@@ -164,18 +164,6 @@ Triumphant antiformalism has to answer, besides, for a more
  same doorknob to pull the door toward us or push it away from us. We perceive
  what design theorists and cognitive psychologists call the doorknob's affordances.
 
-
-
-
-
-
-
-
-
-
-
-
-
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
