@@ -47761,7 +47761,7 @@ speak slower than you want to.
   This can change the entire tone of the group by going from tonic major to tonic minor.
 - Coda: closure at the recap.
 
-##### What is a sonata?
+##### What is a sonata? (stuff I should practice on piano!)
 
 - This is not the same as a sonata form!
 - A group of pieces called movements. Eg. moonlight sonata has three movements.
