@@ -8,9 +8,6 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-
-# The Abstract Cathedrals of out time
-
 # I like New Formalism Poetry
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
