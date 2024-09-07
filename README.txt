@@ -8,10 +8,8 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Smullyan Writings
 
-#### [An Epistemological Nightmare](https://www.mit.edu/people/dpolicar/writing/prose/text/epistemologicalNightmare.html)
-#### [Planet Without Laughter](https://www-cs-faculty.stanford.edu/~knuth/smullyan.html)
+# The Abstract Cathedrals of out time
 
 # I like New Formalism Poetry
 
