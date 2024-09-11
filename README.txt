@@ -230,8 +230,8 @@ c = g(b)
 
 - if a program is well typed, removing types keeps the program well typed.
 - If a well typed program evaluates to a value, then removing types from this program also evaluates to the same value.
-- adding type annotations can add either static errors, or dynamic errors *from untyped code*. Typed code that passes static type checking
-  cannot create new errors dynamically.
+- adding type annotations can add either static errors, or dynamic errors *from untyped code*.
+  Typed code that passes static type checking cannot create new errors dynamically.
 
 ##### References
 
