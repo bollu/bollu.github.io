@@ -17,6 +17,7 @@
 # WZ (Wilf Zeilberger) pairs
 
 - Pair of functions $F, G$ such that $F(n + 1, k) - F(n, k) = G(n, k + 1) - G(n, k)$, and $\lim_{K \to \infty} G(n, K) = 0$.
+- If $F, G$ form a WZ pair, there is a rationl function $R$ such that $G(n, k) = R(n, k) F(n, k - 1)$. $R(n, k)$ is the certificate.
 
 # Sister Celine's Algorithm
 
