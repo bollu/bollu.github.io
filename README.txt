@@ -8,6 +8,16 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Gosper's algorithm
+
+- Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k a(k)$, iff $S$ is hypergeometric.
+- 
+
+# WZ (Wilf Zeilberger) pairs
+
+- Pair of functions $F, G$ such that $F(n + 1, k) - F(n, k) = G(n, k + 1) - G(n, k)$, and $\lim_{K \to \infty} G(n, K) = 0$.
+
 # Sister Celine's Algorithm
 
 - Given a hypergeometric function $F(n, k)$, we want to find a recurrence that $F(n, k)$
