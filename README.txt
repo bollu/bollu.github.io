@@ -8,6 +8,19 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Sister Celine's Algorithm
+
+- Given a hypergeometric function $F(n, k)$, we want to find a recurrence that $F(n, k)$
+  satisfies.
+- Crucially, we want a recurrence with coefficients in $n$, but *not* in $k$.
+- So the recurrence eqn comes from the right $\mathbb Q[n, n^{-1}, S_n, S_k]$ 
+  where $S_n(F) \equiv \lambda n, k. F(n + 1, k)$, and $S_k(F) \equiv \lambda n, k. F(n, k + 1)$ (shift operators).
+- The algorithm is to guess a length of the recurrence, then write the equation e.g. $a[0][0]F(n, k) + a[0][1] F(n + 1, k) + a[1][0] F(n, k + 1) + a[1][1] F(n + 1, k + 1) = 0$.
+- We set the recurrence to zero, which gives us a polynomial of the form $p_0(n, \vec a) k^0 + p_1(n, \vec a) k^1 + \dots p_D(n, \vec a) k^d = 0$.
+- This gives a system of equations $p_i(n, \vec a) = 0$.
+- We write this as $M(n) \cdot \vec a = 0$ with coefficients for $M(n)$ in the ring $\mathbb \mathbb Q[n, n^{-1}]$. 
+- This system is solved (can be, since $\mathbb Q[n, n^{-1}]$ is a field!) giving us solutions for $\vec a$.
+
 # I like New Formalism Poetry
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
