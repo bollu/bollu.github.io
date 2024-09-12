@@ -25,6 +25,16 @@
 
 - suppose $F(n, k) = (n + 0) (n + 1) \dots (n + k - 1)$.
 - Let's guess a recurrence of the form $a[0][0] F(n, k) + a[0][1] F(n + 1, k) + a[1][0] F(n, k + 1) + a[1][1] F(n + 1, k + 1) = 0$.
+- Rewrite to $a[0][0] + a[0][1] F(n + 1, k) / F(n, k) + a[1][0] F(n, k + 1) / F(n, k) + a[1][1] F(n + 1, k + 1) / F(n, k) = 0$.
+- To evaluate $F(n + 1, k) / F(n, k)$, let's estimate with $n = 4, k = 3$.
+  This gives $(4 \cdot 5 \cdot 6 \cdot 7) / (3 \cdot 4 \cdot 5 \cdot 6) = 7 / 3 = (n + k) / n$.
+- To evaluate $F(n, k + 1) / F(n, k)$, let's estimate with $n = 4, k = 3$.
+  This gives $(4 \cdot 5 \cdot 6 \cdot 7) / (4 \cdot 5 \cdot 6) = n + k$
+- To evaluate $F(n + 1, k + 1) / F(n, k)$, let's estimate with $n = 4, k = 3$.
+  This gives $(5 \cdot 6 \cdot 7 \cdot 8)/(4 \cdot 5 \cdot 6) = 7 \cdot 8 / 4 = (n + k) (n + k + 1) / n$
+- See that this gives us a $k^2a[1][1]$ term, and no other term contributes a $k^2$, so $a[1][1] = 0$.
+- So we only need to solve the recurrence with $a[0][0], a[0][1], a[1][0]$.
+
 
 # I like New Formalism Poetry
 
