@@ -21,6 +21,11 @@
 - We write this as $M(n) \cdot \vec a = 0$ with coefficients for $M(n)$ in the ring $\mathbb \mathbb Q[n, n^{-1}]$. 
 - This system is solved (can be, since $\mathbb Q[n, n^{-1}]$ is a field!) giving us solutions for $\vec a$.
 
+#### Example: rising factorial
+
+- suppose $F(n, k) = (n + 0) (n + 1) \dots (n + k - 1)$.
+- Let's guess a recurrence of the form $a[0][0] F(n, k) + a[0][1] F(n + 1, k) + a[1][0] F(n, k + 1) + a[1][1] F(n + 1, k + 1) = 0$.
+
 # I like New Formalism Poetry
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
