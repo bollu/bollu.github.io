@@ -9,6 +9,21 @@
 - **It's useful to finish things.**
 
 
+# Software bugs are real bugs?
+
+The coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
+which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
+out that ecologists have good models for approximating the **total number of species in a habitat** from the
+**number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
+and then implements this within [AFL: american fuzzy lop](https://lcamtuf.coredump.cx/afl/). Definitely the
+most fun idea in the book by far.
+
+Also, unexpected Deluze and Guattari:
+
+> An assemblage is a group of individuals belonging to a number of different
+> species that occur together in space and time.
+For example, all birds that live on an island today form an assemblage; all plants currently on Earth form an assemblage; etc.
+
 # Gosper's algorithm
 
 - Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k a(k)$, iff $S$ is hypergeometric.
