@@ -16,13 +16,18 @@ which models the problem of "how many bugs exist in the program?" as "how many b
 out that ecologists have good models for approximating the **total number of species in a habitat** from the
 **number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
 and then implements this within [AFL: american fuzzy lop](https://lcamtuf.coredump.cx/afl/). Definitely the
-most fun idea in the book by far.
+most fun idea in the book by far. 
 
-Also, unexpected Deluze and Guattari:
+
+#### Also, unexpected Deluze and Guattari:
 
 > An assemblage is a group of individuals belonging to a number of different
 > species that occur together in space and time.
 For example, all birds that live on an island today form an assemblage; all plants currently on Earth form an assemblage; etc.
+
+#### References
+
+- https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/11-1952.1
 
 # Gosper's algorithm
 
