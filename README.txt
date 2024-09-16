@@ -9,6 +9,59 @@
 - **It's useful to finish things.**
 
 
+# The Two Modes of my Work
+
+- During my PhD, I've realized that I've needed to access two "modes",
+  and how these have shifted as I've gone from programming as a kid to
+  programming as an adult for a "job" / "research".
+
+### Mode 1: Binge Programming
+
+- This was me as a kid, all through undergrad, and the first half of grad school.
+- Essentially, programming was a video game, it was art, it was something I did obsessively till I felt "satiated".
+- Once I had reached satiation, I would drop what I was programming, and wander away for the next few days 
+  to read a book/paper, ideate, dream about the next cool feature my game needed, or study some maths.
+- This worked brilliantly as a kid, I wrote many tens of thousands of lines of code, and kept a "work life"
+  balance by just wandering away to do my thing when I was done programming for the week.
+- This worked brilliantly in undergrad, as all the projects and assignments I had were "made for success".
+  Sure, they needed thought and hard work, but all the assignments were such that after the key insight,
+  one could indeed just binge-program one's way through the solution.
+- During my undergrad internships (GSoC, Tweag, etc), I was doing "research engineering", where once again,
+  the loop of "implement a well understood algorithm from the literature" was the standard I was held to,
+  which works really well with the cycle of "wander away, read a paper, come back, binge-implement".
+
+#### Where this fails in grad school
+
+- I realized that in grad school, I was genuinely being asked to solve problems that nobody around me
+  knew how to solve. It's subtle, and *feels* extremely similar to a textbook exercise at first.
+- It only dawned on me half a year later, when we had submitted a "proof" that turned out to be incorrect,
+  that no, this was genuinely *subtle* and *hard*!
+- I could no longer spend three days cleverly thinking about a problem to find the kawaii insight that solved it.
+- I also felt that this mode of programming, when it ensured a steady rhythm, meant that I lose my "burstiness"
+  where I would stay up for days, living like a monk, just hacking on something till I brought it to life.
+- I wanted to gain that edge back, where I could justify for myself the days I would lose "wandering away"
+  once I had brought something back to life. This felt incompatible with the demands placed on me to be "regularly making progress".
+- This brings me to the other mode:
+
+### Mode 2: Persistently Showing Up To Not Solve the Problem
+
+- As the title says, one simply shows up to work everyday (no waiting for inspiration!), tries to solve the problem,
+  fails, and goes back home a little more enlightened.
+- While this has helped me make actual progress, I feel that this mode has made me lose the "spark of joy"
+  I harbor for bringing a concept from the platonic realm to life via code.
+- I noticed this when I was interning at AWS, where I was suddenly feeling much more content with the day-to-day programming,
+  something I hadn't anticipated.
+- It's because I'm back to doing easy things again! We understand how to solve the problem (more or less), and we solve it! It's great!
+
+### The Synthesis
+
+- I think what I need to do is to reclaim the joy of binge programming in academic research.
+- Furthermore, if I want to regain the "burstiness" where I can just churn out code for a week, I *must* accept
+  that this will mean that I will spend the next three days contemplating about Borges or something that's not the immediate problem.
+- I'd like to consciously make the switch, when I feel that the time is right to crank out a couple thousand lines of code,
+  by explcitly discussing this with my advisor.
+
+  
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
