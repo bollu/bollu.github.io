@@ -18,7 +18,7 @@
 - Thus, we want to expression $f(k)/f(k - 1) = q(k) / r(k)$.
 - However, we give ourselves a "fudge factor" of the form $f(k) / f(k - 1) = p(k)/p(k - 1) \cdot q(k)/r(k)$.
 
-#### Step 1: p, q, r decomposition
+### Step 1: p, q, r decomposition
 
 - We try to impose a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
   $\forall a, b, (k + a) \divides q(k) \land (k + b) \divides r(k) \implies a < b$.
@@ -43,7 +43,37 @@ while exists a, b such that q % (k + a) = 0 and r % (k + b) = 0:
   p = p * t
 ```
 
-#### Step 2: The secret function s(k)
+### Step 2: The secret function s(k)
+
+- We assume that $f(k) = S(k) - S(k - 1)$.
+- We now write $S(k) = q(k + 1)/p(k) \cdot s(k) f(k)$ for some secret function $s(k)$ to be found.
+
+##### $s(k)$ is a rational function iff $S(k)$ is
+
+- substituting in the above eqn, we get:
+
+$$
+\begin{aligned}
+s(k) &= \frac{p(k)}{q(k)} frac{S(k)}{f(k)} \\
+&= \frac{p(k)}{q(k)} \frac{S(k)}{(S(k) - S(k - 1)} \\
+&= \frac{p(k)}{q(k)} \frac{1}{(1 - (S(k - 1)/S(k))} \\
+\end{aligned}
+$$
+
+- This tells us that $s(k)$ is a rational function whenever $S(k)S is.
+
+##### Recurrence of $s(k)$
+- Substituting$S(k) = q(k + 1)/p(k) \cdot s(k) f(k)$ into $f(k) = S(k) - S(k - 1)$, we get:
+
+
+$$
+\begin{aligned}
+f(k) &= \frac{q(k+1)}{p(k)}s(k)f(k) -  \frac{q(k)}{p(k-1)}s(k-1)f(k-1) \\
+\frac{f(k)}{f(k-1)} &= \frac{q(k+1)}{p(k)}s(k)\frac{f(k)}{f(k-1) -  \frac{q(k)}{p(k-1)}s(k-1) \\
+\end{aligned}
+$$
+
+
 
 ##### References
 
