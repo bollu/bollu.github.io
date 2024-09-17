@@ -85,7 +85,8 @@ $$
 
 - A = B.
 - Concrete Mathematics.
-- BA thesis by Richard B. Reeves: gosper's algorithm - a decision procedure for partial hypergeometric sums. 
+- [BA thesis by Richard B. Reeves: gosper's algorithm - a decision procedure for partial hypergeometric sums.](https://digital.auraria.edu/work/sc/3bc51c29-17c7-43e3-8cca-89dc4613acd6)
+- [Algorithm hyper lecture notes](https://vferay.perso.math.cnrs.fr/Teaching/Stefan_Herytash_Algorithm_Hyper.pdf)
 
 # WZ (Wilf Zeilberger) pairs
 
