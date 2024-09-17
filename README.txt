@@ -9,26 +9,6 @@
 - **It's useful to finish things.**
 
 
-# Software bugs are real bugs?
-
-The coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
-which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
-out that ecologists have good models for approximating the **total number of species in a habitat** from the
-**number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
-and then implements this within [AFL: american fuzzy lop](https://lcamtuf.coredump.cx/afl/). Definitely the
-most fun idea in the book by far. 
-
-
-#### Also, unexpected Deluze and Guattari:
-
-> An assemblage is a group of individuals belonging to a number of different
-> species that occur together in space and time.
-For example, all birds that live on an island today form an assemblage; all plants currently on Earth form an assemblage; etc.
-
-#### References
-
-- https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/11-1952.1
-
 # Gosper's algorithm
 
 - Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k a(k)$, iff $S$ is hypergeometric.
@@ -40,13 +20,49 @@ For example, all birds that live on an island today form an assemblage; all plan
 
 # WZ (Wilf Zeilberger) pairs
 
-- Pair of functions $F, G$ such that $F(n + 1, k) - F(n, k) = G(n, k + 1) - G(n, k)$, and $\lim_{K \to \infty} G(n, K) = 0$.
+- Suppose we want to find a closed form for $\sum_{k=-\infty}^\infty F(n, k)$.
+- If we can show that $\sum_{k=-\infty}^{\infty} F(n, k) = \sum_{k=-\infty}^{\infty} F(n + 1, k)$, then we have that 
+  $\sum_{k=-infty}^{infty} F(n, k) = \sum_{k=-infty}^{\infty} F(0, k)$. So this will be independent of $n$, and we can 
+  find a closed form that is independent of $k$, so we can get a concrete numeric value.
+- Now, the question then becomes, how do we show that $\sum_{k=-\infty}^{\infty} F(n, k) = \sum_{k=-\infty}^{\infty} F(n + 1, k)$?
+- We can rewrite it as $\sum_{k=-\infty}^{\infty} (F(n+1, k) - F(n , k)) = 0$
+- Since we're doing wishful thinking, let's wish that the sum telescoes in $k$!
+- So we ask that there's a function $G(n, k)$, such that $F(n + 1, k) - F(n, k) = G(n, k+1) - G(n, k)$, and that 
+  $\lim_{K \to \plusminus \infty} G(K) = 0$, so $G$ vanishes at the boundary. This forces the sum to be identically zero.
+- This gives us the sum to telescope, as $\sum_{k=-\infty}^{\infty} F(n+1, k) - F(n, k) = $\sum_{k=-\infty}^{\infty} G(n, k+1) - G(n, k)$.
+- We write the RHS as lim_{M \to \infty} \sum_{k=-M}^{M} G(n, k + 1) - G(n, k)$. But that equals $\lim_{M \to \infty} (G(n, M+1) - G(n, -M))$.
+  But both these terms vanish at the limit, so we get $0 - 0 = 0$.
+- Thus, we see that we've checked that $\sum_k F(n + 1, k) - F(n, k) = 0$ by showing that $\sum_k G(n, k+1) - G(n, k)$ vanishes.
 - If $F, G$ form a WZ pair, there is a rationl function $R$ such that $G(n, k) = R(n, k) F(n, k - 1)$. $R(n, k)$ is the certificate.
+
+#### Certificate for $F, G$.
+
+- It will turn out that the $G(n, k)$ will always be of the form $G(n, k) = R(n, k) F(n, k - 1)$.
 
 ##### References
 - Generatingfunctionlogy
 - A = B
 - Concrete Mathematics
+
+
+# Software bugs are real bugs?
+
+The coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
+which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
+out that ecologists have good models for approximating the **total number of species in a habitat** from the
+**number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
+and then implements this within [AFL: american fuzzy lop](https://lcamtuf.coredump.cx/afl/). Definitely the
+most fun idea in the book by far. 
+
+#### Also, unexpected Deluze and Guattari:
+
+> An assemblage is a group of individuals belonging to a number of different
+> species that occur together in space and time.
+For example, all birds that live on an island today form an assemblage; all plants currently on Earth form an assemblage; etc.
+
+#### References
+
+- https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/11-1952.1
 
 # Sister Celine's Algorithm
 
