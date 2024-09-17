@@ -17,13 +17,33 @@
   is also a rational function. 
 - Thus, we want to expression $f(k)/f(k - 1) = q(k) / r(k)$.
 - However, we give ourselves a "fudge factor" of the form $f(k) / f(k - 1) = p(k)/p(k - 1) \cdot q(k)/r(k)$.
-- We have a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
-  $\forall a, b, (k + a) \divides q(k) \land (k + b) \divides r(k) \implies - (a + b) is nonnegative$, or $a < b$.
+
+#### Step 1: p, q, r decomposition
+
+- We try to impose a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
+  $\forall a, b, (k + a) \divides q(k) \land (k + b) \divides r(k) \implies a < b$.
+- For example, if we have $(x - 100) / (x - 1)$, then $a = -100$ is less than $b = 1$, which satisfies the condition.
 - We claim that this is always possible to achieve:
 
 ```py
+# f(k)/f(k-1) = (a1+k)(a2+k)..(am+k)z/(b1+k)(b2+k)...(bn+k)
+p = 1
+q = (a1+k)(a2+k)..(am+k)
+r = (b1+k)(b2+k)...(bn+k)
 
+while exists a, b such that q % (k + a) = 0 and r % (k + b) = 0:
+  N = a - b
+  if N < 0: break
+  # N nonnegative, so a >= b.
+  q = q / (k + a); r = r / (k + b);
+  fudge = falling_factorial(k + a, N)
+  # so 'fudge(k) = (k + a) (k + a - 1) ... (k + b + 1)'
+  # see that 't(k) / t(k - 1) = (k + a) / (k + b)',
+  # which is exactly what we cancelled from p, q.
+  p = p * t
 ```
+
+#### Step 2: The secret function s(k)
 
 ##### References
 
