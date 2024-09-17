@@ -38,7 +38,8 @@
 
 #### Certificate for $F, G$.
 
-- It will turn out that the $G(n, k)$ will always be of the form $G(n, k) = R(n, k) F(n, k - 1)$.
+- It will turn out that the $G(n, k)$ will always be of the form $G(n, k) = R(n, k) F(n, k - 1)$, since Gosper's algorithm always finds
+  such as $G(n, k)$! So, the $R(n, k)$ forms a certificate, where we check that the corresponding $G(n, k)$ obeys the two identities above.
 
 ##### References
 - Generatingfunctionlogy
