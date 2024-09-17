@@ -15,8 +15,10 @@
 - 
 
 ##### References
-- A = B
-- Concrete Mathematics
+
+- A = B.
+- Concrete Mathematics.
+- BA thesis by Richard B. Reeves: gosper's algorithm - a decision procedure for partial hypergeometric sums. 
 
 # WZ (Wilf Zeilberger) pairs
 
