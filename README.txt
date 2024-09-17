@@ -34,6 +34,7 @@
   But both these terms vanish at the limit, so we get $0 - 0 = 0$.
 - Thus, we see that we've checked that $\sum_k F(n + 1, k) - F(n, k) = 0$ by showing that $\sum_k G(n, k+1) - G(n, k)$ vanishes.
 - If $F, G$ form a WZ pair, there is a rationl function $R$ such that $G(n, k) = R(n, k) F(n, k - 1)$. $R(n, k)$ is the certificate.
+- See that we are computing an *indefinite* sum for $\sum_k F(n, k)$, like an indefinite integral.
 
 #### Certificate for $F, G$.
 
