@@ -11,8 +11,19 @@
 
 # Gosper's algorithm
 
-- Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k a(k)$, iff $S$ is hypergeometric.
-- 
+- Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k f(k)$, iff $S$ is hypergeometric.
+- Suppose $S(k)/S(k-1)$ is a rational function of $k$.
+- Then $f(k) / f(k - 1) = (S(k) - S(k - 1))/(S(k - 1) - S(k - 2)$, which equals $(S(k)/S(k - 1) - 1)/(1 - S(k-2)/S(k-1))$ which
+  is also a rational function. 
+- Thus, we want to expression $f(k)/f(k - 1) = q(k) / r(k)$.
+- However, we give ourselves a "fudge factor" of the form $f(k) / f(k - 1) = p(k)/p(k - 1) \cdot q(k)/r(k)$.
+- We have a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
+  $\forall a, b, (k + a) \divides q(k) \land (k + b) \divides r(k) \implies - (a + b) is nonnegative$, or $a < b$.
+- We claim that this is always possible to achieve:
+
+```py
+
+```
 
 ##### References
 
