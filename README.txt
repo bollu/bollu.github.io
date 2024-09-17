@@ -69,11 +69,17 @@ $$
 $$
 \begin{aligned}
 f(k) &= \frac{q(k+1)}{p(k)}s(k)f(k) -  \frac{q(k)}{p(k-1)}s(k-1)f(k-1) \\
-\frac{f(k)}{f(k-1)} &= \frac{q(k+1)}{p(k)}s(k)\frac{f(k)}{f(k-1) -  \frac{q(k)}{p(k-1)}s(k-1) \\
+\frac{p(k)}{f(k)} f(k) &= \frac{p(k)}{f(k)} \frac{q(k+1)}{p(k)}s(k)f(k) -  \frac{p(k)}{f(k)} \frac{q(k)}{p(k-1)}s(k-1)f(k-1) \\
+\dots
+p(k) = q(k + 1)s(k) - r(k) s(k - 1)
 \end{aligned}
 $$
 
+- TODO: What does this recurrence mean for GP?
 
+### Step 3: $s(k)$ is polynomial iff $S(k)$ is a rational function
+
+### Step 4: finding $s(k)$ given $p, q, r$
 
 ##### References
 
