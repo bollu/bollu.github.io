@@ -46743,6 +46743,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> this book fills a much needed gap in the literature.
+
 > The advantages of implicit definition over construction are
 > roughly those of theft over honest toil.
 
