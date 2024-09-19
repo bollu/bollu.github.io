@@ -84,7 +84,7 @@ $$
 - let $N$ be the largest natural such that $(k + \beta)$ and $(k + \beta + N)$ both occur as factors for $v(k)$ ($\beta \in \mathbb C$).
   See that $N$ always exists because $N = 0$ exists.
 - Substituting into the definition of $p(k)$ in terms of $q(k), r(k), s(k)$, we get:
-
+?
 $$
 \begin{aligned}
 p(k) &= q(k + 1)s(k) - r(k) s(k - 1) \\
@@ -92,6 +92,34 @@ p(k) &= q(k + 1)u(k)/v(k) - r(k) u(k - 1)/v(k-1) \\
 p(k)v(k)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)v(k) \\
 \end{aligned}
 $$
+
+- We know that $v$ can be made zero if its argument equals $\beta$, and $beta + N$, so we perform the followig assignments:
+- First set $k - 1 =  -\beta$ (so $v(k-1) = 0$:
+
+$$
+\begin{aligned}
+p(k)v(k)(v(k-1) \sim 0) &= q(k + 1)u(k)(v(k-1) \sim 0) - r(k) u(k - 1)v(k) \\
+0  &= - r(k) u(k - 1)v(k) \\
+0  &=  r(-\beta + 1) u(-\beta)v(-\beta + 1) \\
+\end{aligned}
+$$
+
+- Next set $k = -\beta - N$ (so $v(k) = 0$):
+
+
+$$
+p(k)(v(k) \sim 0)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)(v(k) \sim 0) \\
+0  &= q(k+1)u(k)v(k - 1) \\
+0  &= q(-\beta - N +1)u(-\beta - N)v(-\beta -N - 1) \\
+$$
+
+- Now, we must have that $u(-beta) \neq 0$, and $u(-\beta -N) \neq 0$, since $(u, v)$ have no common factors.
+- Also, $v(-\beta + 1) \neq 0$ and $v(-\beta -N - 1) \neq 0$, because $v(k)$ would otherwise have a factor of $k + \beta + N + 1$ or $k + \beta - 1$,
+  which contradicts the maximality of $N$ (??? what does this even mean?)
+- Thus, we must have $r(-\beta + 1) = 0 = q(-\beta - N + 1). 
+- But this contradicts condition (3).
+- Hence, $s(k)$ is a polynomial.
+- WTF is this proof? I see no moral of the story.
 
 ### Step 4: finding $s(k)$ given $p, q, r$
 
