@@ -79,6 +79,20 @@ $$
 
 ### Step 3: $s(k)$ is polynomial iff $S(k)$ is a rational function
 
+- We already know that $s(k)$ is a rational function.
+- For contradiction, assume $s(k) = u(k) / v(k)$ where $v(k) \neq 1$, $gcd(u(k), v(k)) = 1$ for contradiction.
+- let $N$ be the largest natural such that $(k + \beta)$ and $(k + \beta + N)$ both occur as factors for $v(k)$ ($\beta \in \mathbb C$).
+  See that $N$ always exists because $N = 0$ exists.
+- Substituting into the definition of $p(k)$ in terms of $q(k), r(k), s(k)$, we get:
+
+$$
+\begin{aligned}
+p(k) &= q(k + 1)s(k) - r(k) s(k - 1) \\
+p(k) &= q(k + 1)u(k)/v(k) - r(k) u(k - 1)/v(k-1) \\
+p(k)v(k)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)v(k) \\
+\end{aligned}
+$$
+
 ### Step 4: finding $s(k)$ given $p, q, r$
 
 ##### References
