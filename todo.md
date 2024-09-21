@@ -1,3 +1,4 @@
+- [Frank Pfenning: Constructive logic, polarization](https://www.cs.cmu.edu/~fp/courses/15317-s23/)
 - [CS257: intro to automated raesoning, stanford](https://web.stanford.edu/class/cs257/slides/Lecture_17.pdf)
 - [Data, Code, Decisions: decision procedures for real arithmetic](https://symbolaris.com/course/dcd/13-arithmetic.pdf)
 - [OPLSS 2012 curriculum](https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html)

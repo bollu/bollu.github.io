@@ -8,6 +8,26 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Nelson Oppen
+
+### Disjoint theories
+
+- Two theories are disjoint of they do not share predicates and function symbols, except for $=$.
+
+### Stably infinite thories
+
+- A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
+- EUF and arithmetic are stably infinite.
+- Bitvectors are not.
+
+#### Why BV is not stably infinite
+
+
+### Union of two consistent, disjoint, stably infinite theories is consistent.
+
+
+
+- [Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)
 
 # Gosper's algorithm
 
