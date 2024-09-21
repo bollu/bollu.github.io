@@ -206,6 +206,12 @@ For example, all birds that live on an island today form an assemblage; all plan
 - So we only need to solve the recurrence with $a[0][0], a[0][1], a[1][0]$.
 
 
+# I like piano sonatas
+
+- Turns out, sonatas [such as this one](https://www.youtube.com/watch?v=7QgT4_e8PTg&list=RDQM0Muak0fLvAQ&start_radio=1) contain clever ideas,
+  well packaged.
+- This is perfect, because it's exactly the type of thing I like to play :)
+
 # I like New Formalism Poetry
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
