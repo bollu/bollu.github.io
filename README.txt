@@ -14,17 +14,53 @@
 
 - Two theories are disjoint of they do not share predicates and function symbols, except for $=$.
 
+### Ensuring Disjointness and Purification
+
+- Transform a formula in $\Sigma_1 \cup \Sigma_2$ into an
+  equisatisfiable formula $F_1 \land F_2$ with $F_1 \in T_1$ and $F_2 \in T_2$
+- Introduce fresh symbols for shared subterms.
+- Algorithmically, to purify a formula $f(x_1, \dots)$ to be in theory $T_1$:
+
+```
+repeat until fixpoint:
+      u = gesym()
+      Purify[f(..., t, ...)] => Purify[f(..., u, ...)] /\ u = t
+```
+- Consider example:
+
+```
+x + 2 == y, f(Store(A, x, 3)[y - 2]) != f(y - x + 1)
+```
+
+- Purify, introduce new constants:
+- Purified:
+
+```
+Functions:  f(v1) != f(v2)
+Arrays:     v1 == v3[v4], v3 == Store(x, y, v5)
+Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
+```
+
 ### Stably infinite thories
 
 - A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
 - EUF and arithmetic are stably infinite.
-- Bitvectors are not.
+- Bitvectors are not stably infinite, since they don't have infinite models.
 
-#### Why BV is not stably infinite
 
+### Convex Theory
+
+- Let $F$ be a conjunctive formula.
+- Let $F \implies x_1 = y_1 \lor x_2 = y_2$.
+- Then we must have $F \implies x_1 = y_1$ or $F = x_2 = y_2$.
+- Generalize to $n$ disjuncts.
+- Inutitively, if $F$ implies a disjunction of equalities, then it implies at least one equality.
+- LIA is not convex: suppose $F = 1 \leq x \leq 2$. Then we have $F \implies x = 1 \lor x = 2$.
+  But, $F$ *does not imply* either $x = 1$ or $x = 2$.
+- Convexity reduces what we need to handle: If we want to show $x_1 = y_1 \lor x_2 = y_2$, we can 
+  try to prove each disjunct first.
 
 ### Union of two consistent, disjoint, stably infinite theories is consistent.
-
 
 
 - [Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)
