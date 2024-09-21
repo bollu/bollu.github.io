@@ -47003,6 +47003,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> There are cathedrals everywhere for those with eyes to see.
+
+
 > The advantages of implicit definition over construction are
 > roughly those of theft over honest toil.
 
