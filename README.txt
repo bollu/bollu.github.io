@@ -136,15 +136,21 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ### Thm1: Conjunct SAT iff they agree on intersection
 
 - Let $F_1$ be an $S_1$ model, and $F_1$ has variables $V_1$ (mutatis mutandis for $F_2$).
-- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that
-  $m_1|_{S_1 \cap S_2, V_1 \cap V_2}$ is isomorphic as a $S_1 \cap S_2$ model to $m_2|_{S_1 \cap S_2, V_1 \cap V_2}$.
+- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that $m_1 \sim m_2$ on $S_1 \cap S_2$
+  (i.e. $m_1|_{S_1 \cap S_2, V_1 \cap V_2}$ is isomorphic as a $S_1 \cap S_2$ model to $m_2|_{S_1 \cap S_2, V_1 \cap V_2}$).
 
 #### Proof: $F_1 \land F_2$ SAT implies existence of $m_1, m_2$
 
 - If $F_1 \land F_2$ is SAT, then there's a $S_1 U S_2$ model $M$. Let $m_1 \equiv M|_{S_1}$, (ditto $M_2$).
 - Clearly, the restriction of the large model $M$ to $S_1$ will continue to model $F_1$, and ditto $F_2$, hence done.
 
-#### Proof: Smaller models $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
+#### Proof: Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
+- Idea: embed $(m_2, S_2)$ as a submodel of $(m_1, S_1)$ via the isomorphism $h$.
+- This "just works", since they agree on the variables.
+
+#### Meditation
+- The key point is the sheaf-condition, which says that they agree on the intersection.
+- Intuitively, this shows that we can form a pushout.
 
 
 #### References
