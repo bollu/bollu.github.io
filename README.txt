@@ -136,15 +136,15 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ### Thm1: Conjunct SAT iff they agree on intersection
 
 - Let $F_1$ be an $S_1$ model, and $F_1$ has variables $V_1$ (mutatis mutandis for $F_2$).
-- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that $m_1 \sim m_2$ on $S_1 \cap S_2$
+- Claim: $F_1 \land F_2$ is satisfiable **if and only if** there exist $m_1 \models F_1$, $m_2 \models F_2$ such that $m_1 \sim m_2$ on $S_1 \cap S_2$
   (i.e. $m_1|_{S_1 \cap S_2, V_1 \cap V_2}$ is isomorphic as a $S_1 \cap S_2$ model to $m_2|_{S_1 \cap S_2, V_1 \cap V_2}$).
 
-#### Proof: $F_1 \land F_2$ SAT implies existence of $m_1, m_2$
+#### Proof (Large to small): $F_1 \land F_2$ SAT implies existence of $m_1, m_2$
 
 - If $F_1 \land F_2$ is SAT, then there's a $S_1 U S_2$ model $M$. Let $m_1 \equiv M|_{S_1}$, (ditto $M_2$).
 - Clearly, the restriction of the large model $M$ to $S_1$ will continue to model $F_1$, and ditto $F_2$, hence done.
 
-#### Proof: Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
+#### Proof (small to large gluing): Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
 - Idea: embed $(m_2, S_2)$ as a submodel of $(m_1, S_1)$ via the isomorphism $h$.
 - This "just works", since they agree on the variables.
 - Let $h$ be the iso $m_1 \sim_{S_1 \cap S_2} m_2$
@@ -160,11 +160,16 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 ### Thm2: Weaken Isomorphism To Cardinality + Equality Preservation
 
-
 - Let $F_1$ be an $S_1$ model, and $F_1$ has variables $V_1$ (mutatis mutandis for $F_2$).
-- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that:
+- Claim: $F_1 \land F_2$ is satisfiable **if an only if** there exist $m_1 \models F_1$, $m_2 \models F_2$ such that:
 - (a) $|m_1| = |m_2|$ (underlying sets have same size)
 - (b) For each variable $x, y \in V_1 \cap V_2$, we have that $m_1 \models x = y$ iff $m_2 \models x = y$.
+
+### Proof (Large to small): $M \models F_1 \land F_2$ implies existence of smaller models such that \dots
+
+- Pick $m_1 = M|_{S_1}$, $m_2 = M|_{S_2}$. Clearly, same underlying set so same cardinality, and same model, so witnesses same equalities.
+
+#### Proof (small to large gluing): Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
 
 
 
