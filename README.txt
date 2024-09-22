@@ -192,6 +192,21 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 ### Nelson Oppen Is Correct
 
+- Let $T_1$ be stably infinite $S_1$ theory (mutatis mutandis). 
+- Let $F_1$ be a $S_1$ formula with variables $V_1$ (mutatis mutandis).
+- Let $S_1 \cap S_2 = \emptyset$.
+- $F_1 \land F_2$ is $T_1 \cup T_2$ satisfiable **if and only if**:
+- There is an equivalence relation $\sim$ over $V_1 \cap V_2$ such that: $F_i \land F[\sim]$ is $T_i$ satisfiable.
+
+### Proof (large to small)
+- Pick $M_1 = M|_{S_1, V_1 \cap V_2}$ and $M_2 \equiv M|_{S_2, V_1 \cap V_2}$, $x \sim y \iff x = y$.
+
+### Proof (small to large gluing):
+
+- Suppose $\sim$ is equivalence relation such that $F_i \land F[~]$ is $T_i$ satisfiable.
+- Since $T_1$ is stably infinite, we have infinite model $M_1 \models F_1 cap F[\sim]$.
+- 
+
 #### References
 
 - [Lecture 21-2 Correctness of Nelson-Oppen by Ashutosh Gupta](https://www.youtube.com/watch?v=_hD7-12p6JA)
