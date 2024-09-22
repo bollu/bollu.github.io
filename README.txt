@@ -83,26 +83,20 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 # Nondeterministic Nelson Oppen
 
-### Reduct of a model
-
-- Let us a have a model $(M, S, T)$ where $M$ is the model, $S$ is the signature (tells us what the functions and predicates are), 
-  and $T$ is the theory (tells us what the axioms are.
-- Then, for any subset $S' \subseteq S$, it's possible to build $(M, S')$ as a reduct of $(M, S)$.
-- For example, $(Z, +, 0)$ is a reduct of $(Z, +, 0, 1, \times)$.
-
-### Nelson Oppen Combination
-
-- Take two theories $T_1, T_2$ with signatures $S_1, S_2$ such that $S_1 \cap S_2 = \emptyset$ so no common symbols.
-
-### Disjoint theories
-
-- Two theories are disjoint of they do not share predicates and function symbols, except for $=$.
 
 ### Stably infinite thories
 
 - A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
 - EUF and arithmetic are stably infinite.
 - Bitvectors are not stably infinite, since they don't have infinite models.
+
+### Converting Formula to Separate Form
+
+- Consider $1 \leq 2 \land f(x) \neq f(2) \land f(x) \neq f(1)$ in $T_E \cup T_Z$ (equality, integers).
+- Separate, introduce new variable $y = 2, z = 1$.
+- The array part becomes $f(x) \neq f(y) \land f(z) \neq f(z)$.
+- The integer part becomes $1 \leq 2 \land y = 2 \land z = 1$.
+- So, the two theories "communicate" via variables.
 
 ### Theory Solvers need to coordinate
 
@@ -118,11 +112,32 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 #### Non deterministic Nelson Oppen
 
-- Convert $F$ to $F_1 \land F_2$.
-- Guess an equivalence relation $\sim$ over $vars(F_1) \cap vars(F_2)$.
+- Take two disjoint theories $T_1, T_2$
+- That is, theories $T_1, T_2$ with signatures $S_1, S_2$ such that $S_1 \cap S_2 = \emptyset$ so no common symbols.
+- Let $F$ be a conjunction of literals from $T_1 \cup T_2$.
+- Convert $F$ to separate form: $F_1 \land F_2$.
+- Guess a coordinating. equivalence relation $\sim$ over $vars(F_1) \cap vars(F_2)$.
 - Run $DP_1(F_1 \land F[\sim])$, and $DP_2(F_1 \land F[\sim])$.
 - If both solvers are SAT, then return SAT, since we have found a common assignment.
 - Otherwise, F is UNSAT.
+- CLAIM: this is a correct algorithm!
+
+## Proof of correctness (Non-deterministic)
+
+- For the proof, we need to know the reduct of a model to a smaller signature, and the notion of a model homomorphism.
+
+### Reduct of a model
+
+- Let us a have a model $(M, S, T)$ where $M$ is the model, $S$ is the signature (tells us what the functions and predicates are), 
+  and $T$ is the theory (tells us what the axioms are.
+- Then, for any subset $S' \subseteq S$, it's possible to build $(M, S')$ as a reduct of $(M, S)$.
+- For example, $(Z, +, 0)$ is a reduct of $(Z, +, 0, 1, \times)$.
+
+### Thm1: Conjunct SAT iff they agree on intersection
+
+- Let $F_1$ be an $S_1$ model, and $F_1$ has variables $V_1$ (mutatis mutandis for $F_2$).
+- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that
+  $m_1|_{S_1 \cap S_2, V_1 \cap V_2}$ is isomorphic as a $S_1 \cap S_2$ model to $m_2|_{S_1 \cap S_2, V_1 \cap V_2}$.
 
 
 #### References
