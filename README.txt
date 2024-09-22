@@ -205,7 +205,12 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 - Suppose $\sim$ is equivalence relation such that $F_i \land F[~]$ is $T_i$ satisfiable.
 - Since $T_1$ is stably infinite, we have infinite model $M_1 \models F_1 cap F[\sim]$.
-- 
+- By downward lowenheim skolem, we have a countably infinite model $M_1$.
+- So choose $M_1, M_2$ countable, thus $|M_1| = |M_2|$.
+- Since $M_1 \models F[\sim]$ and $M_2 \models F[\sim]$, this means that $M_1(x) = M_1(x')$ if and only if $M_2(x) = M_2(x')$,
+  because $F[\sim]$ asserts that all elements in the equivalence class are equal, and elements that are not in the equvalence class are *not* equal.
+- Thus, we have that $M_1(x) = M_1(x')$ if and only if $x \sim x'$ if and only if $M_2(x) = M_2(x')$.
+- TODO: I am not totally convinced here! I need to think :)
 
 #### References
 
