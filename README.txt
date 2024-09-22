@@ -83,6 +83,17 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 # Nondeterministic Nelson Oppen
 
+### Reduct of a model
+
+- Let us a have a model $(M, S, T)$ where $M$ is the model, $S$ is the signature (tells us what the functions and predicates are), 
+  and $T$ is the theory (tells us what the axioms are.
+- Then, for any subset $S' \subseteq S$, it's possible to build $(M, S')$ as a reduct of $(M, S)$.
+- For example, $(Z, +, 0)$ is a reduct of $(Z, +, 0, 1, \times)$.
+
+### Nelson Oppen Combination
+
+- Take two theories $T_1, T_2$ with signatures $S_1, S_2$ such that $S_1 \cap S_2 = \emptyset$ so no common symbols.
+
 ### Disjoint theories
 
 - Two theories are disjoint of they do not share predicates and function symbols, except for $=$.
@@ -117,6 +128,7 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 #### References
 
 - [Lecture 21-2 Correctness of Nelson-Oppen by Ashutosh Gupta](https://www.youtube.com/watch?v=_hD7-12p6JA)
+- [Lecture notes on nelson oppen](https://rg1-teaching.mpi-inf.mpg.de/autrea2-ss18/script-1.11.pdf)
 
 
 # Gosper's algorithm
