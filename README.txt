@@ -88,7 +88,8 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 - A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
 - EUF and arithmetic are stably infinite.
-- Bitvectors are not stably infinite, since they don't have infinite models.
+- Bitvectors are not stably infinite, since they don't have infinite models. (i.e. the structure is itself finite)
+- Theory of strings of bounded length (structure is finite).
 
 ### Converting Formula to Separate Form
 
@@ -173,8 +174,23 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 #### Proof (small to large gluing): Isomorphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
 
-- Key idea:
+- Key idea: Since the models have the same cardinality, we can build the iso piecewise:
+- Let $h : m_1[V_1 \cap V_2] to m_2[V_1 \cap V_2]$ be an empty iso from the values that $V_1 \cap V_2$ take in 
+  $m_1$ to the values that $V_1 \cap V_2$ take in $m_2$.
+- Start by updating $h$ such that $h(m_1(v)) = m_2(v)$.
+- This is injective, bcause suppose $h(m_1(v)) = h(m_1(v')). Then this means that $m_2(v) = m_2(v')$, which implies $m_1(v) = m_1(v')$, and thus we are done.
+- The condition that $m_1 \models x = y$ iff $m_2 \models x = y$ ensures that $h$ remains an iso.
+- This is onto since we've exhausted every variable in $V_1 \cap V_2$.
+- Since $h$ is bijective, we have that $|m_1[V_1 \cap V_2]| = |m_2[V_2 \cap V_2]|$. Since |m_1| = |m_2|,
+  this implies that we can extend $h$ arbitrarily to a bijective function on all of $m_1, m_2$.
+- Clearly, by construction $h$ is an iso, and we thus apply previous theorm!
 
+#### Meditation
+
+- If we agree on variables, then we have the seed of an iso that witnesses that things are equal for ground formulae
+- Then since we have same cardinality, we can extend to full iso!
+
+### Nelson Oppen Is Correct
 
 #### References
 
