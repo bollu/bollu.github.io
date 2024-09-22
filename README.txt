@@ -23,6 +23,15 @@
 - But really, we can throw in any choice of encoding data we like, to give it "latent information"
 - In this way, the spatial location is baked into the feature space!
 
+
+# I Like To Play Dances, Waltzes and Ragtime
+
+- All the music I like playing has a strong rhythmic component.
+- It should have cute nuggets of ideas, like waltzes and dances.
+- Furthermore, it should have strong syncopation, like ragtime!
+- I need to explor boogie woogie.
+
+
 # Implementing Nelson Oppen
 
 ### Disjoint theories
@@ -68,14 +77,14 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
   But, $F$ *does not imply* either $x = 1$ or $x = 2$.
 - Convexity reduces what we need to handle: If we want to show $x_1 = y_1 \lor x_2 = y_2$, we can 
   try to prove each disjunct first.
-- See that in the case of LIA, If we want $A \implies B$ to be true, if we view $A, B$ as sets, then we want $\lnot A \or B$
+- See that in the case of LIA, If we want $A \implies B$ to be true, if we view $A, B$ as sets, then we want $\lnot A \lor B$
   to be the whole space, which means that $B$ covers whatever $A$ used to cover, so we need $A \subseteq B$.
 - Another way to look at the LIA thing: $A \implies B$ is us saying that $x \in A \implies x \in B$ for arbitrary $x$, and thus we need $A \subseteq B$!.
 - Let us now view this in terms of $F \implies H_1 \lor H_2$.
 - $F$ is a conjunctive formula, so it is geometricaly a convex set.
 - $H_1, H_2$ are equalities of the form $x_i = y_i$, so they are hyperplanes.
 - To have $F \implies H_1 \lor H_2$ be true, we need $F \subset H_1 \cup H_2$.
-- We now want that $F \subset H_1 \cup H_2$, which can only happen if $F \susbet H_1$ or $F \subset H_2$, since a convex set can be a subset of hyperplanes
+- We now want that $F \subset H_1 \cup H_2$, which can only happen if $F \subset H_1$ or $F \subset H_2$, since a convex set can be a subset of hyperplanes
   only if it is contained in any hyperplane! Otherwise, we can "interpolate" a point $x_1 \in H_1$ and $x_2 \in H_2$ and get a point $(x_1 + x_2) / 2$ that lies in neither.
 
 ### Convex theory w/ Non Trivial Model is Stably Infinite
@@ -168,8 +177,8 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - Let $M \equiv m_1$
 - Let $M|S_1 = m_1$
 - For $v_2 \in V_2, v \not in V_1$, define $M(v_2) \equiv h^{-1}(m_2(v_2))$.
-- For $f_2 \in S_2, f \not in S_1$, define $M(f_2, a \in m_1 , \dots, z \in m_1)$ \equiv h^{-1}(f(h(a), h(b), \dots, h(z)))$.
-- So we push  $a, \dots, z$ forward via $h$, evaluate $f_2$, then pull value back.
+- For $f_2 \in S_2, f \not in S_1$, define $M(f_2, a \in m_1 , \dots, z \in m_1) \equiv h^{-1}(f(h(a), h(b), \dots, h(z)))$.
+- So we push  $a, \cdots, z$ forward via $h$, evaluate $f_2$, then pull value back.
 
 #### Meditation
 
@@ -193,7 +202,8 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - Let $h : m_1[V_1 \cap V_2] to m_2[V_1 \cap V_2]$ be an empty iso from the values that $V_1 \cap V_2$ take in 
   $m_1$ to the values that $V_1 \cap V_2$ take in $m_2$.
 - Start by updating $h$ such that $h(m_1(v)) = m_2(v)$.
-- This is injective, bcause suppose $h(m_1(v)) = h(m_1(v')). Then this means that $m_2(v) = m_2(v')$, which implies $m_1(v) = m_1(v')$, and thus we are done.
+- This is injective, bcause suppose $h(m_1(v)) = h(m_1(v'))$. Then this means that $m_2(v) = m_2(v')$, which implies $m_1(v) = m_1(v')$,
+  and thus we are done.
 - The condition that $m_1 \models x = y$ iff $m_2 \models x = y$ ensures that $h$ remains an iso.
 - This is onto since we've exhausted every variable in $V_1 \cap V_2$.
 - Since $h$ is bijective, we have that $|m_1[V_1 \cap V_2]| = |m_2[V_2 \cap V_2]|$. Since |m_1| = |m_2|,
@@ -245,7 +255,7 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ### Step 1: p, q, r decomposition
 
 - We try to impose a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
-  $\forall a, b, (k + a) \divides q(k) \land (k + b) \divides r(k) \implies a < b$.
+  $\forall a, b, (k + a) \| q(k) \land (k + b) \| r(k) \implies a < b$.
 - For example, if we have $(x - 100) / (x - 1)$, then $a = -100$ is less than $b = 1$, which satisfies the condition.
 - We claim that this is always possible to achieve:
 
@@ -284,10 +294,12 @@ s(k) &= \frac{p(k)}{q(k)} frac{S(k)}{f(k)} \\
 \end{aligned}
 $$
 
-- This tells us that $s(k)$ is a rational function whenever $S(k)S is.
+- This tells us that $s(k)$ is a rational function whenever $S(k)$ is.
+
 
 ##### Recurrence of $s(k)$
-- Substituting$S(k) = q(k + 1)/p(k) \cdot s(k) f(k)$ into $f(k) = S(k) - S(k - 1)$, we get:
+
+Substituting $S(k) = q(k + 1)/p(k) \cdot s(k) f(k)$ into $f(k) = S(k) - S(k - 1)$, we get:
 
 
 $$
@@ -308,7 +320,8 @@ $$
 - let $N$ be the largest natural such that $(k + \beta)$ and $(k + \beta + N)$ both occur as factors for $v(k)$ ($\beta \in \mathbb C$).
   See that $N$ always exists because $N = 0$ exists.
 - Substituting into the definition of $p(k)$ in terms of $q(k), r(k), s(k)$, we get:
-?
+
+
 $$
 \begin{aligned}
 p(k) &= q(k + 1)s(k) - r(k) s(k - 1) \\
@@ -318,13 +331,13 @@ p(k)v(k)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)v(k) \\
 $$
 
 - We know that $v$ can be made zero if its argument equals $\beta$, and $beta + N$, so we perform the followig assignments:
-- First set $k - 1 =  -\beta$ (so $v(k-1) = 0$:
+- First set $k - 1 =  -\beta$ (so $v(k-1) = 0$):
 
 $$
 \begin{aligned}
 p(k)v(k)(v(k-1) \sim 0) &= q(k + 1)u(k)(v(k-1) \sim 0) - r(k) u(k - 1)v(k) \\
 0  &= - r(k) u(k - 1)v(k) \\
-0  &=  r(-\beta + 1) u(-\beta)v(-\beta + 1) \\
+0  &=  r(-\beta + 1) u(-\beta)v(-\beta + 1)
 \end{aligned}
 $$
 
@@ -332,15 +345,17 @@ $$
 
 
 $$
+\begin{aligned}
 p(k)(v(k) \sim 0)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)(v(k) \sim 0) \\
 0  &= q(k+1)u(k)v(k - 1) \\
-0  &= q(-\beta - N +1)u(-\beta - N)v(-\beta -N - 1) \\
+0  &= q(-\beta - N +1)u(-\beta - N)v(-\beta -N - 1)
+\end{aligned}
 $$
 
 - Now, we must have that $u(-beta) \neq 0$, and $u(-\beta -N) \neq 0$, since $(u, v)$ have no common factors.
 - Also, $v(-\beta + 1) \neq 0$ and $v(-\beta -N - 1) \neq 0$, because $v(k)$ would otherwise have a factor of $k + \beta + N + 1$ or $k + \beta - 1$,
   which contradicts the maximality of $N$ (??? what does this even mean?)
-- Thus, we must have $r(-\beta + 1) = 0 = q(-\beta - N + 1). 
+- Thus, we must have $r(-\beta + 1) = 0 = q(-\beta - N + 1)$. 
 - But this contradicts condition (3).
 - Hence, $s(k)$ is a polynomial.
 - WTF is this proof? I see no moral of the story.
@@ -364,9 +379,9 @@ $$
 - We can rewrite it as $\sum_{k=-\infty}^{\infty} (F(n+1, k) - F(n , k)) = 0$
 - Since we're doing wishful thinking, let's wish that the sum telescoes in $k$!
 - So we ask that there's a function $G(n, k)$, such that $F(n + 1, k) - F(n, k) = G(n, k+1) - G(n, k)$, and that 
-  $\lim_{K \to \plusminus \infty} G(K) = 0$, so $G$ vanishes at the boundary. This forces the sum to be identically zero.
-- This gives us the sum to telescope, as $\sum_{k=-\infty}^{\infty} F(n+1, k) - F(n, k) = $\sum_{k=-\infty}^{\infty} G(n, k+1) - G(n, k)$.
-- We write the RHS as lim_{M \to \infty} \sum_{k=-M}^{M} G(n, k + 1) - G(n, k)$. But that equals $\lim_{M \to \infty} (G(n, M+1) - G(n, -M))$.
+  $\lim_{K \to \pm \infty} G(K) = 0$, so $G$ vanishes at the boundary. This forces the sum to be identically zero.
+- This gives us the sum to telescope, as $\sum_{k=-\infty}^{\infty} F(n+1, k) - F(n, k) = \sum_{k=-\infty}^{\infty} G(n, k+1) - G(n, k)$.
+- We write the RHS as $lim_{M \to \infty} \sum_{k=-M}^{M} G(n, k + 1) - G(n, k)$. But that equals $\lim_{M \to \infty} (G(n, M+1) - G(n, -M))$.
   But both these terms vanish at the limit, so we get $0 - 0 = 0$.
 - Thus, we see that we've checked that $\sum_k F(n + 1, k) - F(n, k) = 0$ by showing that $\sum_k G(n, k+1) - G(n, k)$ vanishes.
 - If $F, G$ form a WZ pair, there is a rationl function $R$ such that $G(n, k) = R(n, k) F(n, k - 1)$. $R(n, k)$ is the certificate.
@@ -412,7 +427,7 @@ For example, all birds that live on an island today form an assemblage; all plan
 - The algorithm is to guess a length of the recurrence, then write the equation e.g. $a[0][0]F(n, k) + a[0][1] F(n + 1, k) + a[1][0] F(n, k + 1) + a[1][1] F(n + 1, k + 1) = 0$.
 - We set the recurrence to zero, which gives us a polynomial of the form $p_0(n, \vec a) k^0 + p_1(n, \vec a) k^1 + \dots p_D(n, \vec a) k^d = 0$.
 - This gives a system of equations $p_i(n, \vec a) = 0$.
-- We write this as $M(n) \cdot \vec a = 0$ with coefficients for $M(n)$ in the ring $\mathbb \mathbb Q[n, n^{-1}]$. 
+- We write this as $M(n) \cdot \vec a = 0$ with coefficients for $M(n)$ in the ring $\mathbb Q[n, n^{-1}]$. 
 - This system is solved (can be, since $\mathbb Q[n, n^{-1}]$ is a field!) giving us solutions for $\vec a$.
 
 #### Example: rising factorial
@@ -430,7 +445,7 @@ For example, all birds that live on an island today form an assemblage; all plan
 - So we only need to solve the recurrence with $a[0][0], a[0][1], a[1][0]$.
 
 
-# I like piano sonatas
+# I Like Piano Sonatas
 
 - Turns out, sonatas [such as this one](https://www.youtube.com/watch?v=7QgT4_e8PTg&list=RDQM0Muak0fLvAQ&start_radio=1) contain clever ideas,
   well packaged.
@@ -991,7 +1006,7 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - Recall that $C(q)$ is such that (i) $A(p, q) \implies C(q)$ and (ii) $C(q) \land B(q)$ is UNSAT.
 - (i) implies $\lnot C(q) \implies \lnot A(p, q)$.
 - (ii) implies $\lnot (C(q) \land B(q))$ is a tautology, or $\lnot C(q) \lor \lnot B(q)$, or $C(q) \implies \lnot B(q)$.
-- So, consider a model $M$. We know that $M \lnot \model A \land B$.
+- So, consider a model $M$. We know that $M \lnot \models A \land B$.
 - Let's now test what value $C(q)$ ought to have given the two above constraints.
 
 ##### Case 1: contradiction from clause in $A$
