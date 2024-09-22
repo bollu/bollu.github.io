@@ -60,9 +60,13 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - Convexity reduces what we need to handle: If we want to show $x_1 = y_1 \lor x_2 = y_2$, we can 
   try to prove each disjunct first.
 
+
 ### Union of two consistent, disjoint, stably infinite theories is consistent.
 
 
+##### References
+
+- [Simplification by cooperating decision procedures](https://dl.acm.org/doi/pdf/10.1145/357073.357079)
 - [Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)
 
 # Gosper's algorithm
