@@ -69,6 +69,18 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - We now want that $F \subset H_1 \cup H_2$, which can only happen if $F \susbet H_1$ or $F \subset H_2$, since a convex set can be a subset of hyperplanes
   only if it is contained in any hyperplane! Otherwise, we can "interpolate" a point $x_1 \in H_1$ and $x_2 \in H_2$ and get a point $(x_1 + x_2) / 2$ that lies in neither.
 
+### Convex theory w/ Non Trivial Model is Stably Infinite
+
+- Suppose a theory $T$ has a non-trivial model, and is convex.
+- Then we need to show that it's stably infinite.
+- Theory $T$ is stably infinite iff for every ground quantifier free formula $F$ that is satisfiable, there is an infinite model.
+- So we are given a ground formaul $F$ that's true in some model $M$ of $T$, and we need to show that it's true in an infinite model.
+- If the model $M$ is the trivial model $M = {*}$, then the formula $F$ must hold in a larger model (why?)
+- Suppose size of $M \geq 2$.
+- We will build an infinite model for $F$ by compactness.
+- For every $n \in N$, we know that $M^{\log_2 n}$ will have cardinality greater than or equal to $n$.
+
+
 ### Union of two consistent, disjoint, stably infinite theories is consistent.
 
 
