@@ -81,7 +81,25 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - For every $n \in N$, we know that $M^{\log_2 n}$ will have cardinality greater than or equal to $n$.
 
 
-### Union of two consistent, disjoint, stably infinite theories is consistent.
+### Theory Solvers need to coordinate
+
+- Suppose we have $F = F_1 \land F_2$
+- If either $F_1, F_2$ are are UNSAT, then $F$ is UNSAT.
+- But if both $F_1, F_2$ are SAT, not guaranteed that the whole thing is SAT.
+
+#### Coordinating Equivalence Relation
+
+- Let $S$ be a set of terms with $\sim$ an equivalence relation.
+- Then we write $F[\sim] \equiv (\land_{t \sim s} t = s) \land (\land_{t \not \sim s} t \neq s)$.
+- For elements that are not related, we force disequality!
+
+#### Non deterministic Nelson Oppen
+
+- Convert $F$ to $F_1 \land F_2$.
+- Guess an equivalence relation $\sim$ over $vars(F_1) \cap vars(F_2)$.
+- Run $DP_1(F_1 \land F[\sim])$, and $DP_2(F_1 \land F[\sim])$.
+- If both solvers are SAT, then return SAT, since we have found a common assignment.
+- Otherwise, F is UNSAT.
 
 
 ##### References
