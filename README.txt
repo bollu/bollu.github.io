@@ -145,6 +145,7 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - Clearly, the restriction of the large model $M$ to $S_1$ will continue to model $F_1$, and ditto $F_2$, hence done.
 
 #### Proof (small to large gluing): Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
+
 - Idea: embed $(m_2, S_2)$ as a submodel of $(m_1, S_1)$ via the isomorphism $h$.
 - This "just works", since they agree on the variables.
 - Let $h$ be the iso $m_1 \sim_{S_1 \cap S_2} m_2$
@@ -155,6 +156,7 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - So we push  $a, \dots, z$ forward via $h$, evaluate $f_2$, then pull value back.
 
 #### Meditation
+
 - The key point is the sheaf-condition, which says that they agree on the intersection.
 - Intuitively, this shows that we can form a pushout.
 
@@ -169,10 +171,9 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 - Pick $m_1 = M|_{S_1}$, $m_2 = M|_{S_2}$. Clearly, same underlying set so same cardinality, and same model, so witnesses same equalities.
 
-#### Proof (small to large gluing): Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
+#### Proof (small to large gluing): Isomorphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
 
-
-
+- Key idea:
 
 
 #### References
