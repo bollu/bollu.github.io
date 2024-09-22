@@ -572,6 +572,59 @@ Triumphant antiformalism has to answer, besides, for a more
  same doorknob to pull the door toward us or push it away from us. We perceive
  what design theorists and cognitive psychologists call the doorknob's affordances.
 
+# The Two Modes of my Work
+
+- During my PhD, I've realized that I've needed to access two "modes",
+  and how these have shifted as I've gone from programming as a kid to
+  programming as an adult for a "job" / "research".
+
+### Mode 1: Binge Programming
+
+- This was me as a kid, all through undergrad, and the first half of grad school.
+- Essentially, programming was a video game, it was art, it was something I did obsessively till I felt "satiated".
+- Once I had reached satiation, I would drop what I was programming, and wander away for the next few days 
+  to read a book/paper, ideate, dream about the next cool feature my game needed, or study some maths.
+- This worked brilliantly as a kid, I wrote many tens of thousands of lines of code, and kept a "work life"
+  balance by just wandering away to do my thing when I was done programming for the week.
+- This worked brilliantly in undergrad, as all the projects and assignments I had were "made for success".
+  Sure, they needed thought and hard work, but all the assignments were such that after the key insight,
+  one could indeed just binge-program one's way through the solution.
+- During my undergrad internships (GSoC, Tweag, etc), I was doing "research engineering", where once again,
+  the loop of "implement a well understood algorithm from the literature" was the standard I was held to,
+  which works really well with the cycle of "wander away, read a paper, come back, binge-implement".
+
+#### Where this fails in grad school
+
+- I realized that in grad school, I was genuinely being asked to solve problems that nobody around me
+  knew how to solve. It's subtle, and *feels* extremely similar to a textbook exercise at first.
+- It only dawned on me half a year later, when we had submitted a "proof" that turned out to be incorrect,
+  that no, this was genuinely *subtle* and *hard*!
+- I could no longer spend three days cleverly thinking about a problem to find the kawaii insight that solved it.
+- I also felt that this mode of programming, when it ensured a steady rhythm, meant that I lose my "burstiness"
+  where I would stay up for days, living like a monk, just hacking on something till I brought it to life.
+- I wanted to gain that edge back, where I could justify for myself the days I would lose "wandering away"
+  once I had brought something back to life. This felt incompatible with the demands placed on me to be "regularly making progress".
+- This brings me to the other mode:
+
+### Mode 2: Persistently Showing Up To Not Solve the Problem
+
+- As the title says, one simply shows up to work everyday (no waiting for inspiration!), tries to solve the problem,
+  fails, and goes back home a little more enlightened.
+- While this has helped me make actual progress, I feel that this mode has made me lose the "spark of joy"
+  I harbor for bringing a concept from the platonic realm to life via code.
+- I noticed this when I was interning at AWS, where I was suddenly feeling much more content with the day-to-day programming,
+  something I hadn't anticipated.
+- It's because I'm back to doing easy things again! We understand how to solve the problem (more or less), and we solve it! It's great!
+
+### The Synthesis
+
+- I think what I need to do is to reclaim the joy of binge programming in academic research.
+- Furthermore, if I want to regain the "burstiness" where I can just churn out code for a week, I *must* accept
+  that this will mean that I will spend the next three days contemplating about Borges or something that's not the immediate problem.
+- I'd like to consciously make the switch, when I feel that the time is right to crank out a couple thousand lines of code,
+  by explcitly discussing this with my advisor.
+
+  
 # The Gradual Guarantees
 
 - Says that static and dynamic type systems match up, and thus
@@ -645,6 +698,41 @@ c = g(b)
 - If a well typed program evaluates to a value, then removing types from this program also evaluates to the same value.
 - adding type annotations can add either static errors, or dynamic errors *from untyped code*.
   Typed code that passes static type checking cannot create new errors dynamically.
+
+#### Why are the gradual guarantees useful?
+
+- If the gradual guarantees are true, then we know that we can "trust" the static types:
+  if a value `x` has type `Nat`, then at runtime, it will only be of type `Nat` (if passed an incorrect value,
+  the cast before the assignment will make sure that no non-`Nat` value flows into `x`).
+  This means that we can, for e.g., write a compiler that makes the statically typed portion of the program way faster!
+- Contrast this to the case where we run the program `(\(y : Bool) y) ((\x. x) 42)` and produce the result `42`.
+  A compiler count not produce faster code, because `y` at runtime has value `42` which is an integer, not a boolean!
+- In the neat article by Jeremy Siek on [Is typescript gradually typed](https://siek.blogspot.com/2012/10/is-typescript-gradually-typed-part-2.html),
+  he describes the academic version with gradual guarantees as "level 2", and the python/typescripe like behaviour as "level 1".
+  To quote:
+
+> level 1 gradual typing does not provide run-time support for catching broken
+> invariants, such as deriv's expectation that its arguments have type string.
+> Thus, a TypeScript programmer that really wants to enforce such an invariant
+> would need to add code to check the type of the argument, a common practice
+> today in JavaScript.
+
+> Level 2 gradual typing ensures that the value stored in a variable is
+> consistent with the variable's static type and it provides the run-time
+> checking to catch when this invariant is about to be broken. Thus, level 2
+> gradual typing removes the need for hand-written type tests. Also, level 2
+> gradual typing opens up the possibility of compiling statically-typed regions
+> of a program in a more efficient, type-specific manner. (This is an active
+> area of my current research.) The disadvantages of level 2 gradual typing are
+> the run-time overhead from cast checking and the increased implementation
+> complexity.
+
+> Level 3 gradual typing improves on level 2 by adding blame tracking, thereby
+> improving the diagnostic errors reported when a cast fails. The extra cost of
+> blame tracking is not very significant, so I would always suggest level 3
+> over level 2.
+
+
 
 ##### References
 
@@ -47220,6 +47308,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 > There are cathedrals everywhere for those with eyes to see.
 
+
+> this book fills a much needed gap in the literature.
 
 > The advantages of implicit definition over construction are
 > roughly those of theft over honest toil.
