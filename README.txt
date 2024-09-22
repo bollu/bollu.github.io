@@ -8,7 +8,7 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Nelson Oppen
+# Implementing Nelson Oppen
 
 ### Disjoint theories
 
@@ -40,12 +40,6 @@ Functions:  f(v1) != f(v2)
 Arrays:     v1 == v3[v4], v3 == Store(x, y, v5)
 Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ```
-
-### Stably infinite thories
-
-- A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
-- EUF and arithmetic are stably infinite.
-- Bitvectors are not stably infinite, since they don't have infinite models.
 
 
 ### Convex Theory
@@ -81,6 +75,24 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - For every $n \in N$, we know that $M^{\log_2 n}$ will have cardinality greater than or equal to $n$.
 
 
+##### References
+
+- [Simplification by cooperating decision procedures](https://dl.acm.org/doi/pdf/10.1145/357073.357079)
+- [Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)
+
+
+# Nondeterministic Nelson Oppen
+
+### Disjoint theories
+
+- Two theories are disjoint of they do not share predicates and function symbols, except for $=$.
+
+### Stably infinite thories
+
+- A theory is stably infinite iff every satisfiable quantifier free formula is satisfiable in an infinite model.
+- EUF and arithmetic are stably infinite.
+- Bitvectors are not stably infinite, since they don't have infinite models.
+
 ### Theory Solvers need to coordinate
 
 - Suppose we have $F = F_1 \land F_2$
@@ -102,10 +114,10 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - Otherwise, F is UNSAT.
 
 
-##### References
+#### References
 
-- [Simplification by cooperating decision procedures](https://dl.acm.org/doi/pdf/10.1145/357073.357079)
-- [Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)
+- [Lecture 21-2 Correctness of Nelson-Oppen by Ashutosh Gupta](https://www.youtube.com/watch?v=_hD7-12p6JA)
+
 
 # Gosper's algorithm
 
