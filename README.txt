@@ -147,10 +147,27 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 #### Proof: Isomrphic $m_1 \models F_1$ and $m_2 \models F_2$ implies existence of large model $M \models F_1 \land F_2$
 - Idea: embed $(m_2, S_2)$ as a submodel of $(m_1, S_1)$ via the isomorphism $h$.
 - This "just works", since they agree on the variables.
+- Let $h$ be the iso $m_1 \sim_{S_1 \cap S_2} m_2$
+- Let $M \equiv m_1$
+- Let $M|S_1 = m_1$
+- For $v_2 \in V_2, v \not in V_1$, define $M(v_2) \equiv h^{-1}(m_2(v_2))$.
+- For $f_2 \in S_2, f \not in S_1$, define $M(f_2, a \in m_1 , \dots, z \in m_1)$ \equiv h^{-1}(f(h(a), h(b), \dots, h(z)))$.
+- So we push  $a, \dots, z$ forward via $h$, evaluate $f_2$, then pull value back.
 
 #### Meditation
 - The key point is the sheaf-condition, which says that they agree on the intersection.
 - Intuitively, this shows that we can form a pushout.
+
+### Thm2: Weaken Isomorphism To Cardinality + Equality Preservation
+
+
+- Let $F_1$ be an $S_1$ model, and $F_1$ has variables $V_1$ (mutatis mutandis for $F_2$).
+- Claim: $F_1 \land F_2$ is satisfiable iff there exist $m_1 \models F_1$, $m_2 \models F_2$ such that:
+- (a) $|m_1| = |m_2|$ (underlying sets have same size)
+- (b) For each variable $x, y \in V_1 \cap V_2$, we have that $m_1 \models x = y$ iff $m_2 \models x = y$.
+
+
+
 
 
 #### References
