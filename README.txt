@@ -29,7 +29,35 @@
 - All the music I like playing has a strong rhythmic component.
 - It should have cute nuggets of ideas, like waltzes and dances.
 - Furthermore, it should have strong syncopation, like ragtime!
-- I need to explor boogie woogie.
+- I need to explore other styles:
+
+
+#### Ragtime
+
+Syncopated rhythms with steady left-hand bass patterns.
+
+
+#### Boogie-Woogie
+
+Driving left-hand basslines, often with walking bass patterns and bluesy syncopation.
+
+#### Stride Piano
+Left hand alternates between bass notes and chords, creating a "striding" sound, similar to ragtime but with more harmonic freedom.
+
+
+#### Swing
+Focuses on rhythmic groove with swung eighth notes, creating a lively, bouncy feel. Lots of space for improvisation.
+
+
+#### Honky Tonk
+
+Ragtime-like piano style, typically played in bars, featuring lively rhythms and a “barroom” feel.
+
+
+#### Bebop
+
+Fast, complex, with intricate chord changes and syncopation. It emphasizes individual improvisation.
+
 
 
 # Implementing Nelson Oppen
