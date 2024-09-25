@@ -97,16 +97,12 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ### Convex Theory
 
 - Let $F$ be a conjunctive formula.
-- Let $F \implies x_1 = y_1 \lor x_2 = y_2$.
+- Let $F \implies x_1 = y_1 \lor x_2 = y_2$ (ie, the formula is a tautology, so it's true in *all* models).
 - Then we must have $F \implies x_1 = y_1$ or $F = x_2 = y_2$.
-- Generalize to $n$ disjuncts.
-- Inutitively, if $F$ implies a disjunction of equalities, then it implies at least one equality.
-- LIA is not convex: suppose $F = 1 \leq x \leq 2$. Then we have $F \implies x = 1 \lor x = 2$.
-  But, $F$ *does not imply* either $x = 1$ or $x = 2$.
-- Convexity reduces what we need to handle: If we want to show $x_1 = y_1 \lor x_2 = y_2$, we can 
-  try to prove each disjunct first.
-- See that in the case of LIA, If we want $A \implies B$ to be true, if we view $A, B$ as sets, then we want $\lnot A \lor B$
-  to be the whole space, which means that $B$ covers whatever $A$ used to cover, so we need $A \subseteq B$.
+- Inutitively, if $F$ implies a disjunction of equalities, then it implies at least one equality. (Generalize to $n$ disjuncts.)
+
+##### Convex Theory in Terms of Geometry
+
 - Another way to look at the LIA thing: $A \implies B$ is us saying that $x \in A \implies x \in B$ for arbitrary $x$, and thus we need $A \subseteq B$!.
 - Let us now view this in terms of $F \implies H_1 \lor H_2$.
 - $F$ is a conjunctive formula, so it is geometricaly a convex set.
@@ -114,6 +110,27 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 - To have $F \implies H_1 \lor H_2$ be true, we need $F \subset H_1 \cup H_2$.
 - We now want that $F \subset H_1 \cup H_2$, which can only happen if $F \subset H_1$ or $F \subset H_2$, since a convex set can be a subset of hyperplanes
   only if it is contained in any hyperplane! Otherwise, we can "interpolate" a point $x_1 \in H_1$ and $x_2 \in H_2$ and get a point $(x_1 + x_2) / 2$ that lies in neither.
+- For a (non) example, we can take $F$ a square: $x \geq 0 \land x \leq 1 \land y \geq 0 \land y \leq 1$.
+  But a point being in a square does not imply equality of the point to any coordinate!
+- So we must have a tight constraint, ie, the convex set must itself be a point.
+- If the convex set itself is a point, like $x \geq 1 \land x \leq 1 \land y \geq 1 \land y \leq 1$, then we can indeed have a 
+  disjunction of equalities it implies, and only one of these disjncts will be true!
+
+###### Non Convex Theory: LIA
+
+- For a example, we can take $F$ a square: $x \geq 0 \land x \leq 1 \land y \geq 0 \land y \leq 1$.
+  But a point being in a square in the integers does imply facts about coordinates! For example, it implies that $x = 1 \lor x = 2$.
+- However, we cannot conclude from this that "point in square implies $x = 1$" or "point in square implies $x = 2$" in *all* models
+  (ie, the two statements are not tautologies).
+- Example 2 of LIA is not convex: suppose $F = 1 \leq x \leq 2$. Then, to be convex, we have $F \implies x = 1 \lor x = 2$.
+  But, $F$ *does not imply* either $x = 1$ or $x = 2$.
+- Convexity reduces what we need to handle: If we want to show $x_1 = y_1 \lor x_2 = y_2$, we can 
+  try to prove each disjunct first.
+- Another intuition: membership in a bounded set in LIA has a finite disjunctive formula that witnesses it, by enumerating integer points
+  in the bounded set. This can be used as the disjunctive RHS.
+- But such a splitting is *necessarily* forcing a case split :)
+- On the other hand, in the case of rationals, there is no such finite disjuntive formula, so any implied equalities really do hold in all models
+  (points that are in the sets)
 
 ### Convex theory w/ Non Trivial Model is Stably Infinite
 
