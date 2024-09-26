@@ -48407,6 +48407,15 @@ speak slower than you want to.
 - Music for a small space, such as a castle, which is a new venue from the church and theater.
 
 
+### Dates
+
+- Middle aggres: 400 - 1450
+- Renaissance: 1450-1600
+- Baroque: 1600 - 1750
+- Classical: 1750 - 1820
+- Romantic: 1820 - 1900
+
+
 ### Biographies
 
 - Collect biographies from wikipedia, and "Five minute mozart".
