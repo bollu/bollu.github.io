@@ -15835,6 +15835,9 @@ y = [#]
 
 # Quotes from 'Braiding Sweetgrass'
 
+> I reserve my time for those who can talk about science, and music,
+> and literature, and art.
+
 > Listening in wild places, we are audience to conversations in a language not
 > our own
 
