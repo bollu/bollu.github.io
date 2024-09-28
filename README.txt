@@ -48406,7 +48406,6 @@ speak slower than you want to.
 
 - Music for a small space, such as a castle, which is a new venue from the church and theater.
 
-
 ### Dates
 
 - Middle aggres: 400 - 1450
@@ -48463,6 +48462,7 @@ speak slower than you want to.
 - He went back to vienna around 1790, studied with Haydn. 
 - His hearing started to diminish, penned his testament.
 
+
 ##### Franz Schubert (1800-1830)
 - Romantic
 - Quit school.
@@ -48479,6 +48479,11 @@ speak slower than you want to.
 - Did away with earlier french and italian styles of opera.
 - Later in life, his polemical ideas were better known than his music. 
 - Anti-semitism, adoped by Hilter and the Nazis
+
+##### Johann Strauss II (1825-1900)
+- Romantic
+- Austrian, composer of light music
+- "waltz king"
 
 ##### Johannes Brahms (1840-1900)
 - Romantic
