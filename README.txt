@@ -49,6 +49,8 @@
 - terraced dynamics: forte/piano contrasts.
 - music notation has been standardized (since the middle ages)
 - basso continuo: bassline. improvisation.
+- polyphonic imitation: 
+  another voice enters, singing the same song, overlapping the same melody.
 
 # I Like To Play Dances, Waltzes and Ragtime
 
