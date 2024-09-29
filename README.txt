@@ -109,6 +109,7 @@
 - Fugue has Inversion, Retrograde, Retrograde Inversion, Augmentation, Diminuition.
 - Bach, Little fugue in G minor.
 - Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back".
+- "Mozart’s melodies moved after Bach’s Baroque brilliance bloomed"
 
 
 # I Like To Play Dances, Waltzes and Ragtime
