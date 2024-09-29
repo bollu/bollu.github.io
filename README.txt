@@ -100,6 +100,15 @@
 - [Video](https://www.youtube.com/watch?v=vsGVNB4NiUY&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=10)
 - Spent latter part of life working for church.
 
+##### Major Works
+- Sacred Music
+- Concreto Grosso: 2-4 soloists, 8-20 musicians. Ritornello form, alternation between tutti and solo sessions.
+- Fugue: polyphonic composition with imitation voices.
+  Main melody in a fugue is called the subject.
+  Melodic lines are called voices, and are layered.
+- Fugue has Inversion, Retrograde, Retrograde Inversion, Augmentation, Diminuition.
+- Bach, Little fugue in G minor.
+
 
 # I Like To Play Dances, Waltzes and Ragtime
 
