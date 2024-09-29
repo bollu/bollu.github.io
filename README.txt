@@ -65,7 +65,14 @@
 - bartolomeo cristofori: inventor of piano
 - piano was a modification of the harpsichord
 - harpsichord was the main keyboard instrument, baroque era, strings plucked by quills
-- Bach: harpsichord No 1 in D minor
+- [Bach: harpsichord No 1 in D minor (beautiful harpsichord piece)](https://www.youtube.com/watch?v=XcsfDxojdV8)
+- Bach's primary instrument was the organ, and would also compose for the harpsichord.
+
+#### Opera and its components
+
+- Monody: solo song with instrumental accompaniment.
+- Camerata: Florentine writers, artists and musicians who invented opera.
+- Aria, Henry purcell, dido and aeneas, [dido's lament](https://www.youtube.com/watch?v=-H--Z9UzQYE).
 
 # I Like To Play Dances, Waltzes and Ragtime
 
