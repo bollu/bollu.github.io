@@ -39,6 +39,17 @@
 - In this way, the spatial location is baked into the feature space!
 
 
+#### Musical Ideas
+- doctrine of the affections: unity of mood
+- major and minor scales, moving to this tonal system / equal temparement.
+- In WTC / well tempered clavier, bach showed that he can write in all keys.
+- dissonant chords are allowed
+- early baroque: homophonic
+- late baroque: polyphonic.
+- terraced dynamics: forte/piano contrasts.
+- music notation has been standardized (since the middle ages)
+- basso continuo: bassline. improvisation.
+
 # I Like To Play Dances, Waltzes and Ragtime
 
 - All the music I like playing has a strong rhythmic component.
