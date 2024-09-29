@@ -111,6 +111,35 @@
 - Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back".
 - "Mozart’s melodies moved after Bach’s Baroque brilliance bloomed"
 
+### Classical Era
+- [Video](https://www.youtube.com/watch?v=2wZLKtMBILo&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=11)
+- French Revolution
+- Advances in Science
+- Industrial Revolution
+- Age of Reason
+
+##### Viennese School
+- Haydn (1730-1800)
+- Mozart (1760-1800)
+- Beethoven (1770-1830)
+
+##### Elements of Classical Style
+
+- Regular Rhymthm and meter
+- Homophonic texture
+- "folk elements"
+- Lyrical melody.
+
+##### Musical Forms: Symphony and string quartet
+
+- I: Fast. II: Slow. III: Triple meter dance, IV: Fast.
+
+##### Musical Forms: Sonata & Concerto
+
+- I: Fast, II: Slow, III: Fast
+##### Musical Forms: 
+
+
 
 # I Like To Play Dances, Waltzes and Ragtime
 
