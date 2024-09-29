@@ -18,6 +18,7 @@
 - Rising middle class.
 - Concerts from the palace to the concert hall.
 - Toccota and fugue in D minor (JS Bach).
+- Basso continuo: continuous bass line in pieces.
 
 ##### Thoughts and ideas
 - Excessively ornate, Extravagant.
@@ -46,7 +47,9 @@
 - dissonant chords are allowed
 - early baroque: homophonic
 - late baroque: polyphonic.
-- terraced dynamics: forte/piano contrasts.
+- terraced dynamics: forte/piano contrasts. Music would be either loud or soft, no inbetween, due to instrumental limitations.
+- Contrapuntal texture: Lots of little melodies running in and out of each other.
+- Mostly composed for harpsichord!
 - music notation has been standardized (since the middle ages)
 - basso continuo: bassline. improvisation.
 - polyphonic imitation: 
@@ -126,7 +129,9 @@
 ##### Elements of Classical Style
 
 - Regular Rhymthm and meter
-- Homophonic texture
+- Homophonic texture (i.e., NON contrapunctal, singular voice).
+- Call and reponse style phrasing.
+- Piano!
 - "folk elements"
 - Lyrical melody.
 
