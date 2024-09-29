@@ -8,6 +8,23 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# When to generalize an argument to a function for an inductive proof
+
+- Suppose we have a recursive function:
+
+```
+fAux x y = 
+  if (cond x y)
+  then fAux (gx x) y
+  else y
+
+let f y = fAux (hx x) (hy y)
+```
+
+- In this case, to prove anything about `f`, we should really be proving a property of `fAux x (hy y)`, by induction on `x`.
+- We need to keep `x` abstract since it changes over the course of recursive calls.
+- We can keedp `(hy y)` the same, to retain information that the argument was `(hy y)`, since it doesn't change during recursive calls.
+
 
 # Glenn Gould
 
