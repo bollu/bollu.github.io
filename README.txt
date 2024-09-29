@@ -155,6 +155,7 @@
 - Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back".
 - Unhappy childhood. Father was alcoholic, had to support his mother by performing.
 - Played piano for mozart, was invited to vienna at age 17. He was helped by the aristocracy.
+- Perfect pitch, lost hearing later in life.
 - Bridge to the romantics.
 - Moonlight sonata.
 
