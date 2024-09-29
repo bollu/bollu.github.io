@@ -8,6 +8,13 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Music Appreciation
+
+- [Lectures by Ron Schmerhorn](https://www.youtube.com/watch?v=G6XuAwMAlhg&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI)
+
+### Baroque Era
+
+- [Lec 7](https://www.youtube.com/watch?v=7-9ACm09JqY&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=7)
 
 # Butcher Group, Hopf Algebras, Range Kutta
 
