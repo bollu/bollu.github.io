@@ -144,6 +144,20 @@
 - Austrain Composer.
 - Inspired by folk, song, and dance.
 
+### Mozart
+
+- Perfect Pitch
+- Photographic memory: Wrote down a piece that was never released by the sistine chapel by just hearing it.
+- Child prodigy: touring as a child.
+
+### Beethoven
+
+- Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back".
+- Unhappy childhood. Father was alcoholic, had to support his mother by performing.
+- Played piano for mozart, was invited to vienna at age 17. He was helped by the aristocracy.
+- Bridge to the romantics.
+- Moonlight sonata.
+
 
 
 
