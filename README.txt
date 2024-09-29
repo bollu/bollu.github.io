@@ -138,7 +138,6 @@
 
 - I: Fast, II: Slow, III: Fast
 
-
 ### Haydn
 
 - Austrain Composer.
@@ -171,6 +170,11 @@
 - My personal take: mozart has a "stacatto" feel, while beethoven has a "legato" feel.
 
 
+### Ravel and Music Boxes
+- He was fascinated by music boxes and clocks.
+- Bolero: features a simple, repetitive theme that is introduced by a snare
+  drum and gradually layered with different instruments, creating an
+  ever-increasing intensity.
 
 
 # I Like To Play Dances, Waltzes and Ragtime
