@@ -8,6 +8,20 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Glenn Gould
+
+#### Why he rejected the romantic composers
+
+- The piano is a contrapunctal instrument, and it's a terrible mistake
+  of the romantics who believed that the instrument was monophonic!
+- 
+
+#### Why Mozart was a bad composer
+
+- Improv is bad, because it forces us to spend time using stock phrases.
+- This is similar to "interviews", where depth is lost due to spontaneity.
+
 # Music Appreciation
 
 - [Lectures by Ron Schmerhorn](https://www.youtube.com/watch?v=G6XuAwMAlhg&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI)
