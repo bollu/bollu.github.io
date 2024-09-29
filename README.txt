@@ -51,6 +51,21 @@
 - basso continuo: bassline. improvisation.
 - polyphonic imitation: 
   another voice enters, singing the same song, overlapping the same melody.
+- stradivarius made string instruments. Around 1000 were made, 600 exist.
+
+#### orchestra starts to take shape
+- technical improvements:
+- woodwinds: wooden flutes, oboe
+- brass: horn, trumpet (no valves yet)
+- percussion: timpani
+- 10-25 musicians are in the baroque orchestra
+- [Handel: music for the royal fireworks](https://www.youtube.com/watch?v=fNqJ8mED1VE)
+
+#### Piano
+- bartolomeo cristofori: inventor of piano
+- piano was a modification of the harpsichord
+- harpsichord was the main keyboard instrument, baroque era, strings plucked by quills
+- Bach: harpsichord No 1 in D minor
 
 # I Like To Play Dances, Waltzes and Ragtime
 
