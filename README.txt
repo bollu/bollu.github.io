@@ -80,6 +80,20 @@
 - overture: part that occurs as the intro.
 - concreto delle donne: rise of the professional female singer.
 
+#### Great figures of the time
+- Handel: Messaiah, hallelujah chorus
+- Bach: Brandenburg Concerto #5 movement 1
+- Vivaldi: 4 seasons
+
+
+### Handel (1680-1760)
+- [Video](https://www.youtube.com/watch?v=aLTDlpyReLM&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=8)
+- Late baroque
+- Born the same year as bach, but they never met.
+- Became a naturalized british subject.
+- Went blind in later life.
+- Quick temper, liked to eat!
+- 
 
 
 # I Like To Play Dances, Waltzes and Ragtime
