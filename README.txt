@@ -74,6 +74,14 @@
 - Camerata: Florentine writers, artists and musicians who invented opera.
 - Aria, Henry purcell, dido and aeneas, [dido's lament](https://www.youtube.com/watch?v=-H--Z9UzQYE).
 
+#### Opera Parts
+
+- the recitatve helps move the action forward. Spoken like dialogue.
+- overture: part that occurs as the intro.
+- concreto delle donne: rise of the professional female singer.
+
+
+
 # I Like To Play Dances, Waltzes and Ragtime
 
 - All the music I like playing has a strong rhythmic component.
