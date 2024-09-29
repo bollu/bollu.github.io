@@ -41,7 +41,8 @@
 
 
 #### Musical Ideas
-- doctrine of the affections: unity of mood
+- doctrine of the affections: Ornate and flowery writing, producing a specific emotional response.
+  This manifests as long phrases, with fewer cadences (spots where the music rests).
 - major and minor scales, moving to this tonal system / equal temparement.
 - In WTC / well tempered clavier, bach showed that he can write in all keys.
 - dissonant chords are allowed
