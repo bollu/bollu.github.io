@@ -93,7 +93,6 @@
 - Became a naturalized british subject.
 - Went blind in later life.
 - Quick temper, liked to eat!
-- 
 
 
 # I Like To Play Dances, Waltzes and Ragtime
