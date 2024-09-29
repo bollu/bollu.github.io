@@ -12,9 +12,17 @@
 
 - [Lectures by Ron Schmerhorn](https://www.youtube.com/watch?v=G6XuAwMAlhg&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI)
 
-### Baroque Era
+### Baroque Era (1600-1750)
+- [Lec 7](https://www.youtube.com/watch?v=7-9ACm09JqY&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=7).
+- Absolute monarchy, religious wars, new world (mayflower: 1620).
+- Rising middle class.
+- Concerts from the palace to the concert hall.
+- Toccota and fugue in D minor (JS Bach).
 
-- [Lec 7](https://www.youtube.com/watch?v=7-9ACm09JqY&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI&index=7)
+##### Thoughts and ideas
+- Excessively ornate, Extravagant.
+- Dichotomy of wasteful luxury and poverty.
+- Cello suite #1 -- Prelude
 
 # Butcher Group, Hopf Algebras, Range Kutta
 
