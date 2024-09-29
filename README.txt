@@ -108,7 +108,7 @@
   Melodic lines are called voices, and are layered.
 - Fugue has Inversion, Retrograde, Retrograde Inversion, Augmentation, Diminuition.
 - Bach, Little fugue in G minor.
-- Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back".
+- Mnemonic to remember that bach came first: "Bach laid the track, Beethoven brought it back". Also,
 - "Mozart’s melodies moved after Bach’s Baroque brilliance bloomed"
 
 ### Classical Era
@@ -158,6 +158,16 @@
 - Bridge to the romantics.
 - Moonlight sonata.
 
+
+### Beethoven versus mozart
+
+- [Video](https://www.youtube.com/watch?v=c6WN5Fjp0S8)
+- Mozart "sweet", beethoven "fiery".
+- Mozart had "beauty" and "perfection" in his composition. (functional programmer!)
+- Mozart composed for the harpsichord, beethoven for piano.
+- In the sonata, mozart in the development section (after the exposition section), is much more controlled than beethoven.
+  Beethoven goes farther texturally.
+- My personal take: mozart has a "stacatto" feel, while beethoven has a "legato" feel.
 
 
 
