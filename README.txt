@@ -8,6 +8,31 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Maple Leaf Rag: Chord Progression
+
+- Consider one part of maple leaf rag, which has the fun chord progression:
+
+```
+DFABb
+DFABb
+EbAbC
+EbAbC
+```
+
+- Consider an alternative. Take `CEbG`.
+- Make first inversion into `EbGC`.
+- Move down first and third note down half a semitor: `DGBb`. Notice that this is `GBbD` but as an inversion.
+- Now play:
+
+```
+DGBb
+DGBb
+EbGC
+EbGC
+```
+
+- Has a similar dissonance to assonance flavour.
+
 # When to generalize an argument to a function for an inductive proof
 
 - Suppose we have a recursive function:
