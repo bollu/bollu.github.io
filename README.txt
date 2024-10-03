@@ -33,6 +33,14 @@ EbGC
 
 - Has a similar dissonance to assonance flavour.
 
+# Ragtime Rhythm & Chords
+
+- [Video](https://www.youtube.com/watch?v=d3mU3CtBJwY)
+
+- `do da de doo de doo`
+- `doo ba daa ba doo`
+- [Chord Progression: `I I vi vi II II I I`](https://www.perfessorbill.com/ragtime12.shtml)
+
 # When to generalize an argument to a function for an inductive proof
 
 - Suppose we have a recursive function:
