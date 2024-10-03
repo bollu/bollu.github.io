@@ -10,6 +10,15 @@
 
 # Categorification of sets works because it's a presheaf on a single point
 
+- Why are sets the categorification of the naturals?
+- It's because they obey the same "free theory"!
+- We build sets as the presheaf of a single point, which means that we get all sets by
+  gluing sets freely. This is similar in spirit to how we build the natural numbers with 0 and successor.
+- However, because we are freely cocompleting the category, we get much more "free gluings": indeed, one for each diagram.
+- This means that sets have fewer "defeqs" than nats, while preseving all the same isos.
+- This is extremely useful for dependent typing, where we want to remember how we built the object,
+  so it's a *good* thing! e.g. `Sum a b` versus `a + b`: `Sum a b` is free! 
+
 # Maple Leaf Rag: Chord Progression
 
 - Consider one part of maple leaf rag, which has the fun chord progression:
