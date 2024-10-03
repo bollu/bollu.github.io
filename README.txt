@@ -8,6 +8,8 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Categorification of sets works because it's a presheaf on a single point
+
 # Maple Leaf Rag: Chord Progression
 
 - Consider one part of maple leaf rag, which has the fun chord progression:
@@ -32,6 +34,7 @@ EbGC
 ```
 
 - Has a similar dissonance to assonance flavour.
+
 
 # Ragtime Rhythm & Chords
 
