@@ -49095,6 +49095,18 @@ T: Madoka Magica (C mixolydian)
 (CDEF) G2 C2 z | (GzG_A) F2 z |  (_Ez_EF)  D2  z | (DzD_E) C2
 ```
 
+### Gynopadie No 1
+
+```abc
+F7
+C7
+F7
+C7
+
+melody:
+```
+
+
 #### Wave Teng
 
 ```abc
