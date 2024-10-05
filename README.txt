@@ -49103,7 +49103,10 @@ C7
 F7
 C7
 
-melody:
+melody: E2 G2 F2 E2 B1 A1 B1 C1 G1
+
+
+left hand: F C F C Fmaj CMaj7
 ```
 
 
