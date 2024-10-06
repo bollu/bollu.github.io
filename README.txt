@@ -8,6 +8,18 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Forward Euler as System of Linear Equations
+
+- Suppose we want to solve `df/dt = grad f` on a grid of size 3, for 5 time steps.
+- I give boundary conditions `f(x=1, t=- = 42`, and `f(x=3, t=-) = 100`, and initial condition `f(x=-, t=0) = [42, 80, 100]`.
+- The idea is to note that `df/dt = grad f` discretizes as `f(x, t+1) - f(x, t) = f(x + 1, t) - f(x, t)`.
+- This simplifies to `f(x, t+1) = f(x, t)`.
+- We also need to impose the boudary conditions.
+- We do this by writing a gigantic system of equations, of the form `A(p, q, x, t) f(x, t) - b(p, q) = 0`.
+- Here, `f(x, t)` is a `15x1` size vector. Essentially, time just becomes another dimension, and we vectorize everything to get a gigantic matrix.
+
+```
+
 # Categorification of sets works because it's a presheaf on a single point
 
 - Why are sets the categorification of the naturals?
