@@ -8,6 +8,10 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Butcher Group, Hopf Algebras, Range Kutta
+
+- https://en.wikipedia.org/wiki/Butcher_group
 # Implementing Nelson Oppen
 
 ### Disjoint theories
@@ -571,6 +575,13 @@ Triumphant antiformalism has to answer, besides, for a more
  tion, and if that doesn't unlatch the door, we turn it in the other. We then use the
  same doorknob to pull the door toward us or push it away from us. We perceive
  what design theorists and cognitive psychologists call the doorknob's affordances.
+
+# Eliminating Decision Fatigue
+
+- I've noticed that the act of taking decisions is quite complicated for me.
+- The solution has been quite easy: Wake up every day, *make a plan*.
+- Executing on a plan is easy, and isolates the act of agonizing on what to do in the day to a single focal point.
+- Also, planning out one's day just seems like a good idea in general.
 
 # The Two Modes of my Work
 
