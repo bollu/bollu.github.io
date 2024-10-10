@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Ragtime Composition
+
+- [Flounder: Ragtime Composition](https://www.youtube.com/watch?v=e8IM5-wUdng)
+
 # Forward Euler as System of Linear Equations
 
 - Suppose we want to solve `df/dt = grad f` on a grid of size 3, for 5 time steps.
