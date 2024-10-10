@@ -8,6 +8,10 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Pachabel's series
+
+- down a fourth, up a step
+- context?
 
 # Ragtime Composition
 
