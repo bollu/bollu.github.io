@@ -24,6 +24,31 @@
 - [What the bleep is ragtime](https://www.youtube.com/watch?v=OU7SFLqkHHM)
 - Ragtimify: How to turn any song into ragtime.
 
+
+#### Ragtime Chord Progressions
+
+- [Reddit thread](https://www.reddit.com/r/musictheory/comments/tij83g/what_are_some_commonly_used_chord_progressions_in/)
+- Ragtime uses fairly fancy European chord progressions. The usual primary
+  chords, secondary dominants (sometimes in a chain), diminished 7ths,
+  Neapolitan and augmented 6ths, etc.
+- One that I find very "signature ragtime" is the cadential progression V7/V -
+  V7 - I. For example, in C, that would be D7 - G7 - C, with a chromatic D7
+  rather than the diatonic Dm7.
+- Try this one. In C, C7, F, F#dim7, G7, A7, D7, G7, C
+- In Joplin's "School of Ragtime", he gives all the exercises IV - viiº7/V -
+  I64 - V7 - I
+- (In C: F - F#dim7 - C/G - G7 - C).
+  This is a pretty generic 19th-century cadence; it's also the very first chord progression shown in Czerny's "Art of Preluding".
+
+
+
+
+
+
+
+
+
+
 # Forward Euler as System of Linear Equations
 
 - Suppose we want to solve `df/dt = grad f` on a grid of size 3, for 5 time steps.
