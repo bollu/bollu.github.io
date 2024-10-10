@@ -23,10 +23,17 @@
 - [Flounder: Ragtime Composition](https://www.youtube.com/watch?v=e8IM5-wUdng)
 - [What the bleep is ragtime](https://www.youtube.com/watch?v=OU7SFLqkHHM)
 - Ragtimify: How to turn any song into ragtime.
+- Joplin: School of Ragtime.
 
+#### Ragtime course
+- [MUSC 101 music fundamentals: Spring 2012](https://people.carleton.edu/~jellinge/m101s12/Pages/16/16Ragtime/Ragtime1.html)
 
 #### Ragtime Chord Progressions
 
+- The V/V chord: The V/V chord is the "five of five" chord. Ask yourself this
+  question: If I switch to the key of the V chord, what is the V chord in that
+  key?" So instead of playing V, play V/V.
+- `C - C7/Bb - F/A - Fm/Ab - C/G - G - C` from Joplin's the entertainer.
 - [Reddit thread](https://www.reddit.com/r/musictheory/comments/tij83g/what_are_some_commonly_used_chord_progressions_in/)
 - Ragtime uses fairly fancy European chord progressions. The usual primary
   chords, secondary dominants (sometimes in a chain), diminished 7ths,
@@ -43,6 +50,15 @@
 - Recall the notation of `/`: `C/G` is a slash chord, `C` is the main chord, so we play the chord `C E G` with the right hand.
   The slash means "over top of". So in the left hand, we play the `G` note. (we play the chord on top of the bass note `G`).
 - Recall what `viiº7/V` means: We want to play the `viiº7` chord,
+
+- The chord `viiº7/V` is a diminished seventh chord built on the seventh scale degree of the dominant (V) of a key. This is known as a secondary leading-tone chord. It functions as a leading-tone chord that resolves to the dominant (V) chord, just as a viiº7 chord in a key resolves to the tonic.
+
+- Here's a breakdown of viiº7/V in the key of C major:
+
+- The dominant (V) of C major is G.
+- The viiº7 chord built on G's seventh scale degree is F#º7 (F#–A–C–E♭).
+- This F#º7 chord resolves to G major (V), leading to the tonic, C.
+
 
 
 
