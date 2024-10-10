@@ -25,10 +25,26 @@
 - Ragtimify: How to turn any song into ragtime.
 - Joplin: School of Ragtime.
 
+#### Ragtimify
+
+#### Turn Ragtime into Hip Hop
+
+- TODO
+
 #### Ragtime course
 - [MUSC 101 music fundamentals: Spring 2012](https://people.carleton.edu/~jellinge/m101s12/Pages/16/16Ragtime/Ragtime1.html)
 
 #### Ragtime Chord Progressions
+
+- [Music.se link](https://music.stackexchange.com/questions/44903/are-there-scales-and-chord-progressions-particularly-used-in-rag-music)
+- One progression very characteristic of ragtime is the so called... ragtime
+  progression (although it was used before, even in classical music, it was
+  mostly popularized in ragtime). It's made of a succession of "piggybacked"
+  secondary dominants in a succession of rising 4th intervals onto the tonic,
+  e.g., in C, in its full extension: `C - E - A - D - G - C`.
+
+- Recall what a secondary dominant is:
+
 
 - The V/V chord: The V/V chord is the "five of five" chord. Ask yourself this
   question: If I switch to the key of the V chord, what is the V chord in that
