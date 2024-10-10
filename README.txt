@@ -83,6 +83,9 @@
 - Came from operatic composers, from between baroque and classical era.
 - Traditionally used in minor. Is a predominant chord. Comes before V7.
 - It is a flat 2major triad in first inversion.
+- For example, in G minor (Bb major). Flat second is Ab. We The Ab major triad is Ab C Eb. First inversion
+  means that the third is in the bass, so we play C Eb Ab'.
+- Can play N6 V7 i.
 
 #### Augmented 6th
 
