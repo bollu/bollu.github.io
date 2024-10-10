@@ -36,6 +36,8 @@
 
 #### Ragtime Chord Progressions
 
+#### Secondary dominants
+
 - [Music.se link](https://music.stackexchange.com/questions/44903/are-there-scales-and-chord-progressions-particularly-used-in-rag-music)
 - One progression very characteristic of ragtime is the so called... ragtime
   progression (although it was used before, even in classical music, it was
@@ -43,20 +45,57 @@
   secondary dominants in a succession of rising 4th intervals onto the tonic,
   e.g., in C, in its full extension: `C - E - A - D - G - C`.
 
-- Recall what a secondary dominant is:
+- The fifth of each chord in a Major key signature can be played as a preceding
+  chord that basically builds tension and release when resolving to the
+  diatonic chord of the given key signature.
 
+- A secondary dominant is a dominant chord that resolves to any one chord in
+  the scale, other than the tonic. So V/V is a secondary dominant, but so is
+  V7/IV and so is V/ii etc.
+
+- [Music Matters YT video](https://www.youtube.com/watch?v=YVQiE441t2M) so we play a `V-I` in a different key.
+  We need the I of the secondary dominant to be a chord to the key we are in.
+
+- So for example, we can play `V/V -> V`.
+
+- There isn’t a singular secondary dominant for C major. There is a respective
+  secondary dominant for every note in the scale (besides C since that’s the
+  normal dominant). So D major (II) is the secondary dominant of G major (V), E
+  major (III) is the secondary dominant of A minor (vi), F# major (#IV) is the
+  secondary dominant of B diminished (viio) etc.
+
+- Recall what a secondary dominant is:
 
 - The V/V chord: The V/V chord is the "five of five" chord. Ask yourself this
   question: If I switch to the key of the V chord, what is the V chord in that
   key?" So instead of playing V, play V/V.
 - `C - C7/Bb - F/A - Fm/Ab - C/G - G - C` from Joplin's the entertainer.
+
+#### Reddit thread
+
 - [Reddit thread](https://www.reddit.com/r/musictheory/comments/tij83g/what_are_some_commonly_used_chord_progressions_in/)
 - Ragtime uses fairly fancy European chord progressions. The usual primary
   chords, secondary dominants (sometimes in a chain), diminished 7ths,
   Neapolitan and augmented 6ths, etc.
+
+#### Neapolitan chord (N6)
+
+- Came from operatic composers, from between baroque and classical era.
+- Traditionally used in minor. Is a predominant chord. Comes before V7.
+- It is a flat 2major triad in first inversion.
+
+#### Augmented 6th
+
+- [Music matters](https://www.youtube.com/watch?v=5PtZQEB-d7A)
+
+#### Cadential Progression
+
 - One that I find very "signature ragtime" is the cadential progression V7/V -
   V7 - I. For example, in C, that would be D7 - G7 - C, with a chromatic D7
   rather than the diatonic Dm7.
+
+### Examples from Joplin
+
 - Try this one. In C, C7, F, F#dim7, G7, A7, D7, G7, C
 - In Joplin's "School of Ragtime", he gives all the exercises IV - viiº7/V -
   I64 - V7 - I
@@ -74,9 +113,6 @@
 - The dominant (V) of C major is G.
 - The viiº7 chord built on G's seventh scale degree is F#º7 (F#–A–C–E♭).
 - This F#º7 chord resolves to G major (V), leading to the tonic, C.
-
-
-
 
 
 # Forward Euler as System of Linear Equations
