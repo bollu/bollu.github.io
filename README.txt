@@ -38,13 +38,11 @@
 - In Joplin's "School of Ragtime", he gives all the exercises IV - viiº7/V -
   I64 - V7 - I
 - (In C: F - F#dim7 - C/G - G7 - C).
-  This is a pretty generic 19th-century cadence; it's also the very first chord progression shown in Czerny's "Art of Preluding".
+- This is a pretty generic 19th-century cadence; it's also the very first chord progression shown in Czerny's "Art of Preluding".
 
-
-
-
-
-
+- Recall the notation of `/`: `C/G` is a slash chord, `C` is the main chord, so we play the chord `C E G` with the right hand.
+  The slash means "over top of". So in the left hand, we play the `G` note. (we play the chord on top of the bass note `G`).
+- Recall what `viiº7/V` means: We want to play the `viiº7` chord,
 
 
 
