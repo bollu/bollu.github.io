@@ -32,7 +32,9 @@
 - TODO
 
 #### Ragtime course
+
 - [MUSC 101 music fundamentals: Spring 2012](https://people.carleton.edu/~jellinge/m101s12/Pages/16/16Ragtime/Ragtime1.html)
+- "take out the gargbage" for the right hand melody.
 
 #### Ragtime Chord Progressions
 
