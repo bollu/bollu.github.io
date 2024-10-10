@@ -11,7 +11,18 @@
 
 # Ragtime Composition
 
+- "oompah" bass with chords on beats two and four
+- chromatic mediants
+- augmented sixth chords (a fan of Joplin will see them everywhere)
+- heavy right hand syncopation in counterpoint to steady left hand
+- tuneful melodies
+- straightforward forms: binary (simple / rounded), ternary, rondo, etc.
+- tempi typically vary from Andante to Allegro, hardly anything much slower or faster. If faster, you end up in "stride" piano territory, which is not what you are trying to accomplish.
+
+
 - [Flounder: Ragtime Composition](https://www.youtube.com/watch?v=e8IM5-wUdng)
+- [What the bleep is ragtime](https://www.youtube.com/watch?v=OU7SFLqkHHM)
+- Ragtimify: How to turn any song into ragtime.
 
 # Forward Euler as System of Linear Equations
 
