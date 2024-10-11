@@ -29,6 +29,19 @@
 - If we want to be sure that we can riemann integrate the limiting function, it's "good" if it is continuous.
 - Thus, we need to stipulate that the limit ought to be continuous, and we can get this by asking for uniform continuity.
 
+#### Think of it in a fibrational sense
+
+- Given a sequence $f_n(z) : \mathbb R \to D^1$, we can think of a product space $R \times D^1$, the cylinder.
+- Then, for each $z \in \mathbb R$ (height level set of cylinder), we get scattered points for $f_n(z)$.
+- For each $n \in \mathbb N$, we can plot $f_n(\mathbb R)$, which will give us a curve corresponding to the nth function.
+- Pointwise convergence says that for each $z \in \mathbb R$ (for each height level set), the points will converge to the limit point $f(z)$.
+- Universe convergence says that if we view the threads $f_n(\mathbb R)$ as a whole, we can make the threads through the cylinder
+  get as close to the function $f$ as we want. This is because for a given bound $\epsilon$, we can apply it uniformly at all heights $z$
+  (that's the uniform bit), so we can squeeze all the threads together to read the limit thread $L$!
+- This is nice, because by writing it as a produce space, we can visualize what both parameters $n$ and $z$ are doing.
+- The $n$ indexes the various threads, and the $z$ indexes moving through the cylinder.
+- [math.se link](https://math.stackexchange.com/questions/2223929/pointwise-and-uniform-convergence-intuition-and-examples)
+
 # Ragtime Composition
 
 - "oompah" bass with chords on beats two and four
