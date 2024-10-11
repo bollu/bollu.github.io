@@ -13,6 +13,22 @@
 - down a fourth, up a step
 - context?
 
+# Example of needing uniform convergence / troll proof of pi equals 4
+
+- The key idea is that the proof implicitly relies on switching a limit with an integral with a sleight of hand:
+- Let $b(t)$ where $t \in [0, 1]$ be a arclength parametrization of the circle's boundary.
+- Then the permiter is $P = \int_0^ b(t)$.
+- The troll proof depends on creating a sequence of functions $b_i(t)$,
+  where $\int_0^1 b_i(t) = 4$ for all $b_i$, such that $b_i \tendsto b$ pointwise, but not uniformly.
+- Intuitively, why do we need uniform convergence here 
+
+#### Another example: $x \mapsto x^n$ on $[0, 1]$
+
+- The sequence of functions converge to $f(x) = 0$ for $x < 1$ and $f(1) = 1$.
+- Every function in the sequence is continuous, but the limit function is not.
+- If we want to be sure that we can riemann integrate the limiting function, it's "good" if it is continuous.
+- Thus, we need to stipulate that the limit ought to be continuous, and we can get this by asking for uniform continuity.
+
 # Ragtime Composition
 
 - "oompah" bass with chords on beats two and four
