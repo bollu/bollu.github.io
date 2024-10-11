@@ -42,6 +42,21 @@
 - The $n$ indexes the various threads, and the $z$ indexes moving through the cylinder.
 - [math.se link](https://math.stackexchange.com/questions/2223929/pointwise-and-uniform-convergence-intuition-and-examples)
 
+
+#### Generalizing the pi troll
+
+- Given a fuction $F : [0, 1] \to R$ such that $\int_0^1 F = N$, and an arbitrary value $M$,
+  design a sequence of functions $f_i$ such that (a) $f_i$ converges pointwise to $F$, and $\int_0^1 f_i = M$.
+- The key idea of the construction is to make:
+- $f_0$ the zero function
+- $f_1$ the function that equals $F$ in $[0, 1/2]$, rescaled to make integral equal $M$, and $0$ in $[1/2, 1]$
+- $f_2$ is the function that equals $F$ in $[0, 3/4]$, rescaled to make integral equal $M$, and is $0$ in $[3/4, 1]$
+- $f_3$ is the function that equals $F$ in $[0, 7/8]$, rescaled to make integral equal $M$, and is $0$ in $[7/8, 1]$.
+- And so on.
+- Explicitly, we will have $f_1 \equiv \frac{M}{\int_0^{1/2} F} f \cdot I_{[0, 1/2]}$.
+- Explicitly, we will have $f_2 \equiv \frac{M}{\int_0^{3/4} F} f \cdot I_{[0, 3/4]}$.
+- Explicitly, we will have $f_3 \equiv \frac{M}{\int_0^{7/8} F} f \cdot I_{[0, 7/8]}$.
+
 # Ragtime Composition
 
 - "oompah" bass with chords on beats two and four
