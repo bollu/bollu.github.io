@@ -1,3 +1,5 @@
+- [Modern RL: actor critic](https://www.udemy.com/course/actor-critic-methods-from-paper-to-code-with-pytorch/?couponCode=ST14MT101024)
+- [Modern RL: deep Q](https://www.udemy.com/course/deep-q-learning-from-paper-to-code/)
 - [Frank Pfenning: Constructive logic, polarization](https://www.cs.cmu.edu/~fp/courses/15317-s23/)
 - [CS257: intro to automated raesoning, stanford](https://web.stanford.edu/class/cs257/slides/Lecture_17.pdf)
 - [Data, Code, Decisions: decision procedures for real arithmetic](https://symbolaris.com/course/dcd/13-arithmetic.pdf)
