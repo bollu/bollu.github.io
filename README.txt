@@ -13,6 +13,27 @@
 - down a fourth, up a step
 - context?
 
+# Bach style: Suspensions
+
+- When you have multiple voices, you have voices which move from one to the other.
+- If one of the voice suspends, ie, stays in the same chord while the other voices all move, it leads to a "lag", called a suspension.
+- A sus chord mimics this.
+- First, setup a pitch that is going to be suspended (eg. GEGC). Let's suspend the C.
+- The harmony moves to a different chord, say the V. Typically, this would be GBDF.
+- But we are suspending, so let's play GDFC.
+- It's interval above the bass is a 4th (G-C).
+- Finally, we resolve the suspended note into a D. 
+- In figured bass, we write this as $V_{4-3}$. The resolved pitch, $D$, is a resolution.
+- A good place to put a suspension is where a voice moves down.
+- This is where we get the `sus4` chords from.
+
+#### Rules
+- Suspension on voice moving down
+- Preparation, suspension, resolution is important. Suspension resolves a step down.
+- Suspension should occur on a beat that is stronger than a resolution.
+
+- [Reference: Write a Musical Suspension in Three Easy Steps by Brian Kehlenbach](https://www.youtube.com/watch?v=zM1LV2JZgk4)
+
 # Example of needing uniform convergence / troll proof of pi equals 4
 
 - The key idea is that the proof implicitly relies on switching a limit with an integral with a sleight of hand:
