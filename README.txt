@@ -13,6 +13,19 @@
 - down a fourth, up a step
 - context?
 
+# Bach: Art of the fugue
+
+- Book by bach on how to make a fugue
+- [How to compose a simple fugue in the style of JS bach](https://www.youtube.com/watch?v=2dOUecLLFyI)
+- When subject is in tonic, answer in dominant key.
+- We will not use an exact transposition.
+
+#### References
+
+- Harmony, counterpoint, partimento: a new method inspired by old masters by Job IJzerman.
+- The first contrapicture: Book by back
+- Fugue by ebenezer prout
+
 # Bach style: Suspensions
 
 - When you have multiple voices, you have voices which move from one to the other.
