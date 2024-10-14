@@ -22,7 +22,7 @@ D F Ab B: Ab (dim 5) [Stack of minors]
 Eb Ab C: AbM
 Fb Ab C: Abm (aug 5)
 Eb Ab C AbM
-Eb G Db: AbM: AbM7 (skip root) (sus2)
+Eb G Db: AbM: AbM7 (skip root) (sus6)
 Ab C: Ab Major 3 interval
 ```
 
