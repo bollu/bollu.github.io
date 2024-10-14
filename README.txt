@@ -18,9 +18,9 @@
 #### Weird Cool Sound Sequence:
 
 ```
-D F Ab B: Ab dim 5 6
+D F Ab B: Ab (dim 5) 6
 Eb Ab C: AbM
-Fb Ab C: Abm (Aug 5)
+Fb Ab C: Abm (aug 5)
 Eb Ab C AbM
 Eb G Db: AbM: AbM7 (skip root) (sus2)
 Ab C: Ab Major 3 interval
