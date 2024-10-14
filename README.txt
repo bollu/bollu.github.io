@@ -18,7 +18,7 @@
 #### Weird Cool Sound Sequence:
 
 ```
-D F Ab B: Ab (dim 5) 6
+D F Ab B: Ab (dim 5) [Stack of minors]
 Eb Ab C: AbM
 Fb Ab C: Abm (aug 5)
 Eb Ab C AbM
