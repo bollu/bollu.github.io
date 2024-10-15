@@ -42,6 +42,18 @@ Ab C: Ab Major 3 interval
 - When subject is in tonic, answer in dominant key.
 - We will not use an exact transposition.
 
+#### Ideas: How to Write a fugue
+
+- [Video](https://www.youtube.com/watch?v=OcTHENjsenE)
+- Start with a melodic line (e.g. E in bass)
+- Repeat melodic line (e.g. B in treble)
+- Reiterate the subject fifth higher, an answer.
+- Then go down a fifth (minor), a counter answer.
+- Switch the key.
+- Use suspensions to "reposition" voices across chords.
+- Invert the subject.
+
+
 #### References
 
 - Harmony, counterpoint, partimento: a new method inspired by old masters by Job IJzerman.
