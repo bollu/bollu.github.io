@@ -11,7 +11,18 @@
 
 # Butcher Group, Hopf Algebras, Range Kutta
 
-- https://en.wikipedia.org/wiki/Butcher_group
+- [Wiki](https://en.wikipedia.org/wiki/Butcher_group)
+- [An algebraic theory of integration methods](https://www.ams.org/journals/mcom/1972-26-117/S0025-5718-1972-0305608-0/S0025-5718-1972-0305608-0.pdf)
+
+# Transformer Architecture is based on sets, not sequences
+
+- Neat text from Francois Chollet
+- He highlights that the correct way to think of a transformer is as an architecture that attends to a set of tokens.
+- This makes it more powerful than an RNN, since we do not "bias" in any direction.
+- It does make for a wrinkle: how do we give it the positions of words in a sentence? Hence, positional encoding.
+- But really, we can throw in any choice of encoding data we like, to give it "latent information"
+- In this way, the spatial location is baked into the feature space!
+
 # Implementing Nelson Oppen
 
 ### Disjoint theories
@@ -47316,6 +47327,20 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> Akin's Laws of Spacecraft Design 2.
+> To design a spacecraft right takes an infinite amount of effort. This is why
+> it's a good idea to design them to operate when some things are wrong .
+
+> Akin's Laws of Spacecraft Design 20.
+> A bad design with a good presentation is doomed eventually. A good design with a bad presentation is doomed immediately.
+
+> Akin's Laws of Spacecraft Design  31. (Mo's Law of Evolutionary Development)
+> You can't get to the moon by climbing successively taller trees.
+
+
+
+
 
 > There are cathedrals everywhere for those with eyes to see.
 
