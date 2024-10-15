@@ -8,6 +8,16 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Applied Counterpoint Lecture Series
+
+- [Applied Counterpoint lecture series](https://www.youtube.com/watch?v=yPHC9Zf9s04&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q)
+
+# Hip hop on piano
+
+- From the ragtime book
+
+
 # Pachabel's series
 
 - down a fourth, up a step
@@ -52,6 +62,8 @@ Ab C: Ab Major 3 interval
 - Switch the key.
 - Use suspensions to "reposition" voices across chords.
 - Invert the subject.
+- Change modes! (modal imitation).
+- Raise everything by a tone / major 3rd / ...
 
 
 #### References
