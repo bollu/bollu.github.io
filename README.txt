@@ -12,6 +12,15 @@
 
 - down a fourth, up a step
 - context?
+- [An analysis of Canon in D](https://www.youtube.com/watch?v=y0h1v1c2DGI)
+- [Principles in music: The pachabel progression](https://www.youtube.com/watch?v=La2mUZNGCgg)
+- `I V vi iii IV I IV V`
+- Descend in thirds.
+- bass clef (key F# C#): `D (down 3rd →) A (up →) B F# (up) G (down →) D `
+
+# Public Domain Ragtime
+
+- [Classical Ragtime Piano](http://www.ragtimepiano.ca/)
 
 # Maple Leaf Rag
 
