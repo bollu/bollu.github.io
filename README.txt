@@ -9,7 +9,9 @@
 - **It's useful to finish things.**
 
 
-# Improvising a Canon by Peter Schubert
+# Improvising a Canon: Partimento Technique
+
+#### Writing a Fugue
 
 - [5th above: Peter Schubert](https://www.youtube.com/watch?v=n01J393WpKk)
 - [5th below: Peter Schubert](https://www.youtube.com/watch?v=nxJa9YDP3MU)
@@ -17,11 +19,18 @@
 - [three voices, part 2: Peter Schubert](https://www.youtube.com/watch?v=w664qFsO9gg)
 - [So you want to write a canon by Denis Collins](https://www.docdroid.net/B51HhbL/collins-soyouwanttowriteacanon-pdf)
 - [Renaissance improv and musicology](https://mtosmt.org/issues/mto.13.19.2/mto.13.19.2.cumming.php)
+
+#### Partimento
+
 - [Composition of Late Renaissance Stretto Canons](https://www.jstor.org/stable/41054290)
+- [Partimento Youtube lecture series](https://www.youtube.com/watch?v=hEhkIVnrL_Y&list=PLobWSVtl4OYId7BWm3UhkEX2YxHDbk7FD)
 - [Handel: Thoroughbass lessons for Princess Anne of Orange](https://nyumusic.pbworks.com/f/handel_princessAnne.pdf)
 - Giorgio Sanguinetti's The Art of Partimento.
+- [Giovani Furno's Treatise](https://partimenti.org/partimenti/collections/furno/the_method_1817.pdf)
 - CPE Bach's Essay on the True Art of Playing Keyboard Instruments.
 - [Beginner's guide to partamenti](https://partimenti.org/partimenti/about_parti/index.html)
+- [Reddit: New to partimento? Start here](https://www.reddit.com/r/partimento/comments/15xr7f4/new_to_partimento_start_here/)
+- [Book: Partimento: A Beginner Method for Classical Improvisation](https://improvingpianists.com/product/partimento-a-beginner-method-for-classical-improvisation/)
 
 
 ### Partamenti
