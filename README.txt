@@ -9,7 +9,23 @@
 - **It's useful to finish things.**
 
 
-# Improvising a Canon: Partimento Technique
+# Canon Improvisation
+
+
+#### At the fifth above
+
+- Start with a note
+- stay on the note
+- go up a third
+- go up a fifth
+- go down a second (up a sixth)
+- go down a fourth (up a fifth)
+- Add embelleshing notes.
+- Add the candence, where we terminate.
+
+#### At the fifth below
+
+# Readings on Writing Fugues and Partimento
 
 #### Writing a Fugue
 
@@ -32,42 +48,6 @@
 - [Reddit: New to partimento? Start here](https://www.reddit.com/r/partimento/comments/15xr7f4/new_to_partimento_start_here/)
 - [Book: Partimento: A Beginner Method for Classical Improvisation](https://improvingpianists.com/product/partimento-a-beginner-method-for-classical-improvisation/)
 - [Improv Planet course](https://improvplanet.thinkific.com/courses/intro)
-
-
-### Partamenti
-
-- [Wiki](https://en.wikipedia.org/wiki/Partimento)
-
-> LEVEL 1a: First Steps
-> LEARN SOME CORE PATTERNS Cadences—the “punctuation marks” of classical
-> music—occur every few measures in music of the type written by Bach, Mozart, or
-> Beethoven. The lesson “Learning Cadences” will help you develop facilty with
-> three of the most common types of cadences.
-
-> Regole (pronounced “RAY-go-lay”) is the Italian word for “rules,” but in the
-> world of partimenti it means “a book of rules.” Many of the important masters
-> wrote out rulebooks for their students. Each of them covered the basic
-> subjects (cadences, Rule of the Octave, etc.) and several of the more
-> advanced subjects. None of them covered everything, so it can be helpful to
-> read and study more than one rulebook. Of the ones on this website, the
-> clearest, easiest, and the one with written-out realizations is by Giovanni
-> Furno (Partimenti>Collections>Furno). Once you finish Furno’s Method, you
-> should proceed to study the rulebook of Giacomo Insanguine, and then the
-> rulebook of Fenaroli. Fenaroli’s is the most thorough and detailed. It can be
-> hard for a beginner, but should be easier if you have already absorbed the
-> material in Furno and Insanguine’s books.
-
-> Because sample realizations are provided in its Appendix, the Method of Furno
-> contains partimenti that are good first challenges for beginners
-
-> As you become more comfortable with simple partimenti, begin to learn the
-> typical right-hand
-> patterns of decoration laid out in Franceso Durante’s Embellished Basses
-> (Partimenti diminuiti). In imagining an ideal texture, think of Domenical
-> Scarlatti’s harpsichord sonatas, not J. S. Bach’s chorales.
-
-
-
 
 
 # Applied Counterpoint Lecture Series
