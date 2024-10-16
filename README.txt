@@ -175,12 +175,16 @@
 
 ```abc
 K:C clef=bass
+Q: 1/4=70
 [A,,A,]2 [A,c,e,]2 [E,,E,]2 [A,c,e,]2 | [A,,A,]2 [A,c,e,]2 [E,,E,]2 [A,c,e,]2
 ```
 
 - We will rock you bassline:
 
 ```abc
+K:C clef=bass
+Q: 1/4=70
+[A,,A,][A,,A,] [A,c,e,]2 [E,,E,][E,,E,] [A,c,e,]2 | [A,,A,][A,,A,] [A,c,e,]2 [E,,E,][E,,E,] [A,c,e,]2
 ```
 
 
