@@ -114,6 +114,14 @@
 
 - [Reference](https://www.youtube.com/watch?v=1DHNrAXrcPg&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=21)
 - Music Composition, Craft and Art
+- Pick a Subject + Countersubject.
+- Draw a stretto table.
+- Subject on top staff.
+- Below, copy and paste at various time and pitch intervals.
+- For the time intervals, try every upbeat.
+- For pitch, include every diatonic interval.
+- Also work out a table for the answer.
+- One more table with the inverted subject. One more table with subject plus inverted.
 
 
 # Hip hop on piano
