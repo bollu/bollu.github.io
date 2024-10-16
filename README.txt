@@ -9,6 +9,7 @@
 - **It's useful to finish things.**
 
 
+
 # Canon Improvisation
 
 
@@ -169,7 +170,11 @@
 
 # Hip hop on piano
 
-- From the ragtime book
+- From the ragtime book by scott bradlee
+
+```abc
+[A, a] | [A, C, E]
+```
 
 
 # Pachabel's series
