@@ -170,10 +170,17 @@
 
 # Hip hop on piano
 
-- From the ragtime book by scott bradlee
+- From the ragtime book by scott bradlee.
+- Basic bassline:
 
 ```abc
-[A, a] | [A, C, E]
+K:C clef=bass
+[A,,A,]2 [A,c,e,]2 [E,,E,]2 [A,c,e,]2 | [A,,A,]2 [A,c,e,]2 [E,,E,]2 [A,c,e,]2
+```
+
+- We will rock you bassline:
+
+```abc
 ```
 
 
