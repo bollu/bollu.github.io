@@ -47,6 +47,74 @@
 #### Instrumental Counterpoint
 
 - [Reference](https://www.youtube.com/watch?v=_N_NX7oxvg4&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=16)
+- Compound line: Jumping between two voices. 
+
+##### Harmonic Sketch
+
+- Find chord tones available.
+- Work out melodic line considering climax.
+
+## Intro to Fugue
+
+- [Reference](https://www.youtube.com/watch?v=vrPRANWg2mE&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=17)
+- Exposition first
+- Answer: Same theme, transposed to dominant.
+- Countersubject: Another theme, reguarly combining the first one, highliting it via contrast.
+- Once all voices have entered, exposition has ended. Now we get to episodes.
+- Fragments of subject and countersubject, with voices alternating.
+- Finally, concludes with resolution.
+- Fugues can have a stretto, an impatient interruption of the subject.
+
+## Invertible Counterpoint
+
+- [Reference](https://www.youtube.com/watch?v=fPFkk-Iuvfk&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=18)
+- A typical chart:
+
+```
+1 2 3 4 5 6 7 8: intervals between voices
+8 7 6 5 4 3 2 1: inversions
+```
+
+- Consonances stay consonant, dissonances stay dissonant.
+- The fifth changes into a fifth (perfect into dissonance).
+- So we should try to keep the fifths as passing notes.
+- Can also transport up a 12th
+
+```
+1  2   3   4 5 6 7 8 9 10 11 12
+12  11 10  9 8 7 6 4 4 3  2  1
+```
+
+- When inverting, sixth becomes 7th, so we need to be careful.
+- When transporting to 10th, imperfect consonances become perfect. So we cannot have parallel thirds
+  and sixths, since that will create parallel perfect motion when inverted.
+
+## Tonal Answer
+
+- Subject in tonic
+- Answer in voice 2 (dominant) + countersubject in voice 1 (tonic).
+- Subject in voice 3(tonic) +countersubject in voice 2. Voice 1 is now free.
+- Now alternate.
+- Then alternate, between tonic and dominant.
+- When the subject has e.g. `C -> G`, the countersubject may create `G -> D` which sounds odd.
+  Bach instead keeps it `G -> C`, subtly changing.
+- If we have a prominent `I → IV`, `I → V`, it becomes awkward.
+
+## Fugal Epiode
+
+- Two kinds
+- Kind 1: each part repeats its motive, moving step by step.
+- Kind 2: imitative.
+- Choose a motive.
+- Write out the leading line in one voice, with block chords underneath, outlining harmony.
+- If episode is imitative, distribute main motive between the parts.
+- Add secondary parts.
+
+## Composing a whole fugue
+
+- [Reference](https://www.youtube.com/watch?v=1DHNrAXrcPg&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=21)
+- Music Composition, Craft and Art
+
 
 # Hip hop on piano
 
