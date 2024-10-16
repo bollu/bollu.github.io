@@ -21,7 +21,9 @@
 - go down a second (up a sixth)
 - go down a fourth (up a fifth)
 - Add embelleshing notes.
-- Add the candence, where we terminate.
+- Add the candence, where we terminate. At the cadence, we break out of the pattern.
+  IF the right hand goes down a step, and in the middle of the measure, go up a fourth.
+  The the bass goes down a step, and then another step. This ensures that we get an interval of a fifth (?)
 
 #### At the fifth below
 
