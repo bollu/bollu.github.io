@@ -21,7 +21,7 @@
 - [Handel: Thoroughbass lessons for Princess Anne of Orange](https://nyumusic.pbworks.com/f/handel_princessAnne.pdf)
 - Giorgio Sanguinetti's The Art of Partimento.
 - CPE Bach's Essay on the True Art of Playing Keyboard Instruments.
-- [Beginner's guide to partamenti](https://partimenti.org/partimenti/about_parti/beginners_guide/index.html)
+- [Beginner's guide to partamenti](https://partimenti.org/partimenti/about_parti/index.html)
 
 
 ### Partamenti
