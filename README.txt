@@ -9,6 +9,16 @@
 - **It's useful to finish things.**
 
 
+# Improvising a Canon by Peter Schubert
+
+- [5th above: Peter Schubert](https://www.youtube.com/watch?v=n01J393WpKk)
+- [5th below: Peter Schubert](https://www.youtube.com/watch?v=nxJa9YDP3MU)
+- [three voices, part 1: Peter Schubert](https://www.youtube.com/watch?v=n01J393WpKk)
+- [three voices, part 2: Peter Schubert](https://www.youtube.com/watch?v=w664qFsO9gg)
+- [So you want to write a canon by Denis Collins](https://www.docdroid.net/B51HhbL/collins-soyouwanttowriteacanon-pdf)
+- [Renaissance improv and musicology](https://mtosmt.org/issues/mto.13.19.2/mto.13.19.2.cumming.php)
+- [Composition of Late Renaissance Stretto Canons](https://www.jstor.org/stable/41054290)
+
 # Applied Counterpoint Lecture Series
 
 - [Applied Counterpoint lecture series](https://www.youtube.com/watch?v=yPHC9Zf9s04&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q)
