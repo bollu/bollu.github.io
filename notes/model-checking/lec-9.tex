@@ -1,0 +1,44 @@
+\chapter{B\"uchi Automata 1}
+
+\section{$\omega$ regular languages}
+$\omega$ regular expressions are regexes plus the $\omega$ operator.
+
+$$L^\omega \equiv \{ w_1 w_2 \dots : \w_i \in L \forall i \geq 1 \}$$
+
+an $\omega$ regular expression is of the form $\gamma \equiv \alpha_1 \beta_1^\omega + \alpha_2 \beta_2 ^\omega + \dots + \alpha_i \beta_i ^ \omega$.
+
+The semantics is of this is going to be:
+
+$$
+L(\omega) \equiv \bigcup_{1 \leq i \leq n} L(\alpha_i) L(\beta_i)^\omega
+$$
+
+
+\begin{itemize}
+\item elements of $L \equiv (A^\star B)^\omega$ is the set of infinite words containing infinitely many $B$s.
+\item elements of $L \equiv (A^\star B)^\omega + (B^\star A)^\omega$ is the set of infinite words containing infinitely many $B$ or infinitely many $A$s.
+\item infinite words where each $A$ is followed by a letter $B$. To build this, we case split on whether $A$ occurs finitely or infinitely many times,
+ If $A$ occurs finitely many times, then $(B^\star A B)^\star B^\omega$ works.
+ If $A$ occurs infinitely many times, then $(B^\star A B) ^\omega$ works.
+\end{itemize}
+
+% use amsfonts for box, diamond.
+See that we can encode all of the usual LTL properties. Let $L$ be a language with alphabet $\Sigma$, and let us extend the regex operators with $\Box$, $\Diamond$.
+Note that we are consuming infinite words as properties, so our expressions must consume infinite words! So we shouldn't use something like $\Sigma^\star$
+since that only consumes finitely many words.
+
+\begin{itemize}
+\item Always $A$: $\Box A \equiv \llbracket A \rrbracket^\omega$.
+\item Eventually $A$: $\Diamond A \equiv \Sigma^* \llbracket A L^\omega \rrbracket$.
+\item Eventually Always $A$: $\Diamond (\Box A) \equiv \Sigma^* \llbracket A^\omega \rrbracket$.
+\item Always Eventually $A$: $\Box (\Diamond A) \equiv (\Sigma^* \llbracket A \rrbracket)^\omega$.
+\end{itemize}
+
+
+\section{automata for  $\omega$ regular languages}
+
+A natural question presents itself: can we have a notion for automata that accepts words from an $\omega$ regular language?
+Since the only extension we have made is the $\omega$ operator, if we find a clean way to handle the $\omega$ operator, then we are done!
+Recall that $A^\omega \equiv \{ w_1 w_2 \dotss : w_i \in L \forall i \geq 1 \}$.
+Intuitively, we want to say that we "accept" $w_1$, and then we "accept" $w_2$, and so on.
+
