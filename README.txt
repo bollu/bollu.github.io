@@ -13,6 +13,16 @@
 
 - [Applied Counterpoint lecture series](https://www.youtube.com/watch?v=yPHC9Zf9s04&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q)
 
+#### Fourth Species: All possible suspensions
+
+- [References](https://www.youtube.com/watch?v=4JdUVxlMq4Y&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=7)
+- 9-8 suspension (suspended note is a 9th, resolves into an 8th)
+- 7-6 suspension
+- 4-3 suspension
+- 2-3 suspension
+- 4-5 suspension
+- 7-8 suspension
+
 # Hip hop on piano
 
 - From the ragtime book
