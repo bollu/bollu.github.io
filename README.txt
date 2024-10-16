@@ -31,6 +31,7 @@
 - [Beginner's guide to partamenti](https://partimenti.org/partimenti/about_parti/index.html)
 - [Reddit: New to partimento? Start here](https://www.reddit.com/r/partimento/comments/15xr7f4/new_to_partimento_start_here/)
 - [Book: Partimento: A Beginner Method for Classical Improvisation](https://improvingpianists.com/product/partimento-a-beginner-method-for-classical-improvisation/)
+- [Improv Planet course](https://improvplanet.thinkific.com/courses/intro)
 
 
 ### Partamenti
