@@ -187,6 +187,14 @@ Q: 1/4=70
 [A,,A,][A,,A,] [A,c,e,]2 [E,,E,][E,,E,] [A,c,e,]2 | [A,,A,][A,,A,] [A,c,e,]2 [E,,E,][E,,E,] [A,c,e,]2
 ```
 
+- Hip hop bassline:
+
+```abc
+K:C clef=bass
+Q: 1/4=70
+A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]2
+```
+
 
 # Pachabel's series
 
