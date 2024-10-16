@@ -36,6 +36,18 @@
 
 - Incomplete chords allowed, don't always need 135, can have 133 or 355.
 
+#### Countrapunctal textures
+
+- [Reference](https://www.youtube.com/watch?v=nKES7bEScEI&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=15)
+- Imitative counterpoint: sketch entries first, then suspensios, then harmonies.
+- Fill in neutral lines last.
+- Allow voices to rest.
+- Look for accented passing notes.
+
+#### Instrumental Counterpoint
+
+- [Reference](https://www.youtube.com/watch?v=_N_NX7oxvg4&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=16)
+
 # Hip hop on piano
 
 - From the ragtime book
