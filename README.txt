@@ -15,6 +15,7 @@
 
 #### Fourth Species: All possible suspensions
 
+- Only minims, but with ties across all bars.
 - [References](https://www.youtube.com/watch?v=4JdUVxlMq4Y&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=7)
 - 9-8 suspension (suspended note is a 9th, resolves into an 8th)
 - 7-6 suspension
@@ -22,6 +23,18 @@
 - 2-3 suspension
 - 4-5 suspension
 - 7-8 suspension
+
+##### Fifth Species: Delayed Resolution
+
+- Can use crochets as well as minims now
+- [References](https://www.youtube.com/watch?v=ARwAkO451rs&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q&index=8)
+- When suspending, can repeat suspended note befores resolving.
+- When suspending, can go to a quick consonance before resolving.
+- When suspending, can go to a different dissonance that will resolve the same way 
+
+##### Three part writing
+
+- Incomplete chords allowed, don't always need 135, can have 133 or 355.
 
 # Hip hop on piano
 
