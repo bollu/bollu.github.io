@@ -18,6 +18,47 @@
 - [So you want to write a canon by Denis Collins](https://www.docdroid.net/B51HhbL/collins-soyouwanttowriteacanon-pdf)
 - [Renaissance improv and musicology](https://mtosmt.org/issues/mto.13.19.2/mto.13.19.2.cumming.php)
 - [Composition of Late Renaissance Stretto Canons](https://www.jstor.org/stable/41054290)
+- [Handel: Thoroughbass lessons for Princess Anne of Orange](https://nyumusic.pbworks.com/f/handel_princessAnne.pdf)
+- Giorgio Sanguinetti's The Art of Partimento.
+- CPE Bach's Essay on the True Art of Playing Keyboard Instruments.
+- [Beginner's guide to partamenti](https://partimenti.org/partimenti/about_parti/beginners_guide/index.html)
+
+
+### Partamenti
+
+- [Wiki](https://en.wikipedia.org/wiki/Partimento)
+
+> LEVEL 1a: First Steps
+> LEARN SOME CORE PATTERNS Cadences—the “punctuation marks” of classical
+> music—occur every few measures in music of the type written by Bach, Mozart, or
+> Beethoven. The lesson “Learning Cadences” will help you develop facilty with
+> three of the most common types of cadences.
+
+> Regole (pronounced “RAY-go-lay”) is the Italian word for “rules,” but in the
+> world of partimenti it means “a book of rules.” Many of the important masters
+> wrote out rulebooks for their students. Each of them covered the basic
+> subjects (cadences, Rule of the Octave, etc.) and several of the more
+> advanced subjects. None of them covered everything, so it can be helpful to
+> read and study more than one rulebook. Of the ones on this website, the
+> clearest, easiest, and the one with written-out realizations is by Giovanni
+> Furno (Partimenti>Collections>Furno). Once you finish Furno’s Method, you
+> should proceed to study the rulebook of Giacomo Insanguine, and then the
+> rulebook of Fenaroli. Fenaroli’s is the most thorough and detailed. It can be
+> hard for a beginner, but should be easier if you have already absorbed the
+> material in Furno and Insanguine’s books.
+
+> Because sample realizations are provided in its Appendix, the Method of Furno
+> contains partimenti that are good first challenges for beginners
+
+> As you become more comfortable with simple partimenti, begin to learn the
+> typical right-hand
+> patterns of decoration laid out in Franceso Durante’s Embellished Basses
+> (Partimenti diminuiti). In imagining an ideal texture, think of Domenical
+> Scarlatti’s harpsichord sonatas, not J. S. Bach’s chorales.
+
+
+
+
 
 # Applied Counterpoint Lecture Series
 
