@@ -27,6 +27,23 @@ C
 - In general, since we have 8 notes, if we start on the 1st, we will end on the 1st.
 - This will be true if we put a half step **anywhere**.
 
+#### Contrary motion
+
+- Let's now look at how this behaves with contrary motion
+
+```
+C   C : "octave"
+D   B : M6
+E   A : P4
+F   Ab : m3
+G   G  : "unison"
+------ line of symmetry
+Ab  F : M6
+A   E : P5
+B   D : m3
+C   C : "octave"
+```
+
 # Canon Improvisation
 
 
