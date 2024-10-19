@@ -9,6 +9,23 @@
 - **It's useful to finish things.**
 
 
+# Diminished Sixth Scale
+
+- `C D E F G Ab A B C`.
+- The `Ab` makes it a dimnished sixth.
+- It makes the melodic parts line up on the strong parts of the beat:
+
+```
+C D : C→C: Unison
+E F : C→E: M3
+G Ab : C→G: P5
+A B : C→A: M6
+C
+```
+
+- This gives us a nice chord if we play with the on-beat notes.
+- In general, since we have 8 notes, if we start on the 1st, we will end on the 1st.
+- This will be true if we put a half step **anywhere**.
 
 # Canon Improvisation
 
