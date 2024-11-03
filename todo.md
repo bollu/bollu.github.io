@@ -1,3 +1,4 @@
+- [Finite element method in 50 lines of MATLAB](https://www.math.hu-berlin.de/~cc/cc_homepage/download/1999-AJ_CC_FS-50_Lines_of_Matlab.pdf)
 - [Modern RL: actor critic](https://www.udemy.com/course/actor-critic-methods-from-paper-to-code-with-pytorch/?couponCode=ST14MT101024)
 - [Modern RL: deep Q](https://www.udemy.com/course/deep-q-learning-from-paper-to-code/)
 - [Frank Pfenning: Constructive logic, polarization](https://www.cs.cmu.edu/~fp/courses/15317-s23/)
