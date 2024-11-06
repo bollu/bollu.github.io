@@ -8,6 +8,41 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Propositional Proof Systems And Proof Complexity
+
+### DRUP
+
+- [Slides Merijn Heule: Proof Systems and Proof Complexity](https://www.cs.cmu.edu/~mheule/15816-f24/slides/theory.pdf)
+- Clause $C$ is implied by $\Gamma$ via UP (unit propagation) iff unit propagation can prove `UNSAT` for $\Gamma \land \not C$.
+- That is, $\Gamma \implies $C$ is a tautology, which is to say, $\lnot \Gamma \lor C$ is a tautology, or that $\lnot (\lnot \Gamma \lor C)$ is UNSAT,
+  or that $\Gamma \land \not C$ is UNSAT.
+
+#### Beyond Inference
+
+- Allow equisatisfiability, not just implication! (Can reqd equisatisfiability as `WLOG`).
+- For example, the "pure literal rule", which allows one to infer a clause `[l]` if `l` only occurs positively in all clauses!
+- Such inferences are captured by a proof system, extended resolution (Tseitin 1966):
+
+$$
+x \not \in \Gamma, \overline x \not \in \Gamma \vdash (x \lor \lnot a \lor b) \land (\lnot x \or a) \land (\lnot x \or b)
+$$
+
+- This adds the definition `x := AND(A, B)`.
+- It can be seen to do this by converting the fomula `x <-> AND(A, B)` into CNF.
+- Backward direction `AND(A, B) -> x` is !(A && B) || x` which is `!A || !B || x`.
+- Forward direction: `x -> AND(A, B)` whose contrapositive is `!(A &&B) -> !x`, which is `!(!(A && B)) || !x`, which is `(A && B) || !x`, which is
+  `(A || !x) && (B || !x)`
+- First **interference-based** proof system (WTH is interference?)
+- No known lower bounds on proof length, so crazy strong proof system.
+
+## Interference Based Proof Systems
+
+- [The Potential of Interference-Based Proof Systems](https://www.cs.utexas.edu/~marijn/publications/interference.pdf)
+
+> Interferences differ from classical inferences, which do not affect the models of a set of
+> formulas, because they only allow the derivation of formulas (conclusions) that are implied
+> by the original formulas (premises). Moreover, while inferences reason about the presence of
+> formulas (the premises), interferences can be seen as reasoning about their absence.
 
 # Diminished Sixth Scale
 
