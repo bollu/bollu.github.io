@@ -44,6 +44,15 @@ $$
 > by the original formulas (premises). Moreover, while inferences reason about the presence of
 > formulas (the premises), interferences can be seen as reasoning about their absence.
 
+#### Blocked Clause Rule
+
+- Suppose we have a CNF formula $F$ ($F$ is a set of clauses).
+- We want to add a clause $C \lor l$.
+- To preserve satisfiability, it must be that if we assign $l = T$, then all clauses in $F$ that are of the form $D \lor \lnot l$ are satisfiabile.
+- We can encode this by saying that $C \lor D$ is a tautology, because either $C$ is true, in which case we assign $l = F$, or $D$ is true, in which case we assign $l = T$.
+- Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lot \lnot l$.
+- Extending Resolution with this rule gives expoentially smaller proofs.
+
 # Diminished Sixth Scale
 
 - `C D E F G Ab A B C`.
