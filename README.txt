@@ -64,7 +64,15 @@ $$
 ### Autarkies
 
 - A partial assignment $A$ is an autarky iff every assignment touched by $A$ is satisfied by $A$.
-- Key idea: We partially evaluate the formula $F$ aainst the partial assignment (autarky) $A$. The result should not be UNSAT.
+
+#### An example: pure literals
+
+- Think of the case of a assignment $A[l] = T$ that occurs in a formula $\Gamma$ only positively. 
+- For any clause $C \in \Gamma$ such that $l \in C$, we have that $C[A] = T$, since l$ only occurs positively.
+- Thus, computing $\Gamma[A]$ will make all clauses that contain $l$ "vanish". It's as if we didn't have $l$ at all.
+- See that this is equisatisfiable with the original formala.
+- If $\Gamma$ has a satisfying assignment $A'$, then since $l$ only occurs positively, we can tweak and see that $A'[l := T]$ also makes $\Gamma$ SAT.
+  But this means that we have a satisfying assignment $A'$ for $\Gamma[l := T]$ as well
   We then remove the clauses that become SAT, and simplify the clauses as much as possible that did not become SAT.
   No clause can become UNSAT. Very natural notion!
 - Clearly, a satisfying assignment is an autarky :)
