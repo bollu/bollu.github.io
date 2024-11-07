@@ -64,9 +64,13 @@ $$
 ### Autarkies
 
 - A partial assignment $A$ is an autarky iff every assignment touched by $A$ is satisfied by $A$.
-- A satisfying assignment is an autarky :)
-- A pure literal in a formula that is monotone for that literal is an autarky (?)
-
+- Key idea: We partially evaluate the formula $F$ aainst the partial assignment (autarky) $A$. The result should not be UNSAT.
+  We then remove the clauses that become SAT, and simplify the clauses as much as possible that did not become SAT.
+  No clause can become UNSAT. Very natural notion!
+- Clearly, a satisfying assignment is an autarky :)
+- A pure literal in a formula where that literal occurs only positively is an autarky.
+- Given a formula $\Gamma$, denote $\Gamma|_\alpha$ the partial evaluation of $\Gamma$ wrt assignment $\alpha$.
+- Theorem (Monien and Speckenmeyer 1985) : If $\alpha$ is an autarky for $\Gamma$, then $\Gamma$ and $\Gamma|_\alpha$ are satisfiably equivalent.
 
 # Diminished Sixth Scale
 
