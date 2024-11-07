@@ -61,9 +61,11 @@ $$
 - Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lot \lnot l$.
 - Extending Resolution with this rule gives expoentially smaller proofs.
 
-### Autarkies
+## Autarkies
 
+- An autarky is a society that is economically independent.
 - A partial assignment $A$ is an autarky iff every assignment touched by $A$ is satisfied by $A$.
+- I guess the idea is that the literals in the autarky $A$ are independent, since they make sure that any "territory" they are a part of is completely solved by them!
 
 #### An example: pure literals
 
@@ -72,13 +74,35 @@ $$
 - Thus, computing $\Gamma[A]$ will make all clauses that contain $l$ "vanish". It's as if we didn't have $l$ at all.
 - See that this is equisatisfiable with the original formala.
 - If $\Gamma$ has a satisfying assignment $A'$, then since $l$ only occurs positively, we can tweak and see that $A'[l := T]$ also makes $\Gamma$ SAT.
-  But this means that we have a satisfying assignment $A'$ for $\Gamma[l := T]$ as well
-  We then remove the clauses that become SAT, and simplify the clauses as much as possible that did not become SAT.
-  No clause can become UNSAT. Very natural notion!
-- Clearly, a satisfying assignment is an autarky :)
-- A pure literal in a formula where that literal occurs only positively is an autarky.
-- Given a formula $\Gamma$, denote $\Gamma|_\alpha$ the partial evaluation of $\Gamma$ wrt assignment $\alpha$.
-- Theorem (Monien and Speckenmeyer 1985) : If $\alpha$ is an autarky for $\Gamma$, then $\Gamma$ and $\Gamma|_\alpha$ are satisfiably equivalent.
+  But this means that we have a satisfying assignment $A'$ for $\Gamma[l := T]$ as well!
+- On the other hand, suppose $\Gamma[l := T]$ is UNSAT. Then we wish to show that $\Gamma$ is UNSAT.
+- For contradiction, suppose that $\Gamma$ has a sastisfying assignment $C$ (for contradiction). Once again, we can tweak the assignment such that we get $C[l := T]$,
+  which will continue to be a satisfying assignment for $\Gamma$.
+- Hm, this is not a super clean proof.
+- The key idea is that we "eliminate" all clauses where $l := T$, so we do not get "half assigned" clauses we we delete $l$ by setting $l = F$.
+
+
+##### To think
+
+- How do show this by editing a resolution proof for $\Gamma$ into a resolution proof for $\Gamma[l := T]$?
+- I guess what we can do is to consider the sub-resolution graph once $l$ has been eliminated? Needs some thought.
+
+#### Extending the proof to any autarky
+
+- The key property we need is that upon using an autarky assignment, all clauses that contain *any* literals from the assignment disappear, so we get a purified
+  problem without any mention of these literals.
+
+## Conditional Autarky
+
+- An assigment $A \equiv A_{con} \sqcup A_{aut}$ is a **conditional autarky** for $\Gamma$ if $\A_{aut}$ is an autarky for $\Gamma[A_{con}]$.
+- This says that once we substitute $A_{con}$, we get an autarky $A_{aut}$.
+- We claim that $\Gamma$ and $\Gamma \land (A_{con} \implies A_{aut})$ are equisatisfiable, if $A$ is a conditional autarky.
+- Clearly, if $\Gamma \land (A_{con} \implies A_{aut})$ is SAT, then $\Gamma$ is SAT.
+- On the other side, suppose $\Gamma$ is satisfiable for assignment $B$. Two cases:
+- (a) if $A_{con}[B] = F$, then we are done, since the implication is true.
+- (b) if $A_{con}[B] = T$, then we need to show that $A_{aut}$ is SAT. But this means that we can replace $\Gamma$ with $\Gamma[A_{con}]$,
+  for which by the previous autarky argument, we can safely change the model $B$ to $B'$ to make $A_{aut}$ SAT, and this will extend to a model of $\Gamma$ (unsure).
+
 
 # Diminished Sixth Scale
 
