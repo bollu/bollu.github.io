@@ -61,6 +61,12 @@ $$
 - Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lot \lnot l$.
 - Extending Resolution with this rule gives expoentially smaller proofs.
 
+### Autarkies
+
+- A partial assignment $A$ is an autarky iff every assignment touched by $A$ is satisfied by $A$.
+- A satisfying assignment is an autarky :)
+- A pure literal in a formula that is monotone for that literal is an autarky (?)
+
 
 # Diminished Sixth Scale
 
