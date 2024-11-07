@@ -8,6 +8,14 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Boolean Reflection Design
+
+- To decide some kind of property involving free variables, we split it into two parts:
+- First, *closed term* that *interns* all free variables into an AST (makes them into bvars), so we have e.g. decidable equality on it, which is closed.
+- An *environment* that refers to the local context (i.e. the fvars), which needs to be built by metaprogramming.
+- So, for example, to implement something like `ring`, we have a part that uses `bvars` to be able to build closed terms,
+  and a decidable "isomorphism" predicate which shows that they will be equal.
+
 # Propositional Proof Systems And Proof Complexity
 
 ### DRUP
@@ -52,6 +60,7 @@ $$
 - We can encode this by saying that $C \lor D$ is a tautology, because either $C$ is true, in which case we assign $l = F$, or $D$ is true, in which case we assign $l = T$.
 - Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lot \lnot l$.
 - Extending Resolution with this rule gives expoentially smaller proofs.
+
 
 # Diminished Sixth Scale
 
