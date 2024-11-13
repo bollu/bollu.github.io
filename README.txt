@@ -12,6 +12,8 @@
 
 - TODO
 
+# Geomean
+
 
 # Setting up mosh on google cloud
 
