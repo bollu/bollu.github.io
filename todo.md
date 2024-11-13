@@ -2,6 +2,9 @@
 - [Finite element method in 50 lines of MATLAB](https://www.math.hu-berlin.de/~cc/cc_homepage/download/1999-AJ_CC_FS-50_Lines_of_Matlab.pdf)
 - [Modern RL: actor critic](https://www.udemy.com/course/actor-critic-methods-from-paper-to-code-with-pytorch/?couponCode=ST14MT101024)
 - [Modern RL: deep Q](https://www.udemy.com/course/deep-q-learning-from-paper-to-code/)
+- [A compiled implementation of strong reduction](https://ncatlab.org/ufias2012/files/strong-reduction.pdf)
+- [Little engines of proof: course on automated reasoning algorithms](https://www.csl.sri.com/~shankar/LEP.html)
+- [Principles of dependent type theory: does a lot of metatheory in rigorous fashion!](https://carloangiuli.com/courses/b619-sp24/notes.pdf)
 - [Frank Pfenning: Constructive logic, polarization](https://www.cs.cmu.edu/~fp/courses/15317-s23/)
 - [CS257: intro to automated raesoning, stanford](https://web.stanford.edu/class/cs257/slides/Lecture_17.pdf)
 - [Data, Code, Decisions: decision procedures for real arithmetic](https://symbolaris.com/course/dcd/13-arithmetic.pdf)
@@ -98,7 +101,6 @@
 - Semantic Domains and Denotational Semantics
 - W types
 - [Anti-unification](https://en.wikipedia.org/wiki/Anti-unification_(computer_science))
->>>>>>> origin/master
 - Computation and Logic: George S Boolos
 - Mathematical Methods of Classical Mechanics
 - [Low level code improvements and loop optimisations made simple](http://www.cs.fsu.edu/~engelen/cr.html)

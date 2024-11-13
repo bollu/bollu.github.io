@@ -8,6 +8,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Mechanical Theorem-Proving by Model Elimination
+
+- TODO
+
+
 # Playing Pop on the Piano
 
 - Key idea: only allowed to play chords that share at least one note.
@@ -16,8 +21,7 @@
 - Conceptualize an inversion as a slash chord, so taking `CEG` as an example, don't try and think `EGC` (this is hard),
   but rather think `E / CEG` (somehow, this is way easier!)
 - This is a good thing, but is also super super confusing when one starts out `:)`.
-
-- Thanks to Luisa!
+- Thanks to [Luisa](https://github.com/luisacicolini)!
 
 # Boolean Reflection Design
 
@@ -149,6 +153,34 @@ A   E : P5
 B   D : m3
 C   C : "octave"
 ```
+# A Prolog Technology Theorem Prover 
+
+- [References](https://www.cl.cam.ac.uk/~jrh13/slides/pttp-26jun97/slides.pdf)
+- This is used in HOL light's Meson. 
+- Model Elimination is a general proof method for first order logic.
+- PTTP: implement model elimination using MESON technology.
+
+#### Two groups of FOL solvers
+
+- Bottom up and local: Resolution, inverse method (Maslov, Dok. Akad. Nauk '64).
+- Top down and global: model elimination, tableaux. 
+- Both of these can be seen as proof search! 
+- Bottom up: start at assumptions, and derive more and more facts till we find the conclusion, or saturate.
+- Top down: start at the conclusion, work backwards, break it down into subproblems till assumptions are reached. 
+ 
+#### Advantages of bottom up procedures
+
+- Bottom up procedures compute proof at "meta level" (?) We can regard fvars as implicitly universally quantified (?)
+- So it's possible to apply subsumption to the current set of facts (recall: subsumption lets us substitute to get more precise facts).
+- In top down, fvars in different goals need to be correlated. 
+- However, top down is goal directed! 
+- they are much more economical to implement, since we only need to store the current subgoal.
+- leanTAP: tableaux prover in five lines of prolog! 
+
+# Simplex Notes
+
+- [Art of Linear Programming](https://www.youtube.com/watch?v=E72DWgKP_1Y)
+
 
 # Canon Improvisation
 
@@ -674,11 +706,6 @@ let f y = fAux (hx x) (hy y)
 - Excessively ornate, Extravagant.
 - Dichotomy of wasteful luxury and poverty.
 - Cello suite #1 -- Prelude
-
-# Butcher Group, Hopf Algebras, Range Kutta
-
-- [Wiki](https://en.wikipedia.org/wiki/Butcher_group)
-- [An algebraic theory of integration methods](https://www.ams.org/journals/mcom/1972-26-117/S0025-5718-1972-0305608-0/S0025-5718-1972-0305608-0.pdf)
 
 # Transformer Architecture is based on sets, not sequences
 
@@ -48200,6 +48227,11 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> John von Neuman,e one of the greatest mathematicians and computer scientists
+> of the 20th century, regarding the danger of mathematics driven solely by
+> internal esthetics: “There is a grave danger that the subject will develop
+> along the line of least resistance.”
+
 > Akin's Laws of Spacecraft Design 2.
 > To design a spacecraft right takes an infinite amount of effort. This is why
 > it's a good idea to design them to operate when some things are wrong .
@@ -48209,10 +48241,6 @@ let g:conjure#mapping#eval_motion = "E"
 
 > Akin's Laws of Spacecraft Design  31. (Mo's Law of Evolutionary Development)
 > You can't get to the moon by climbing successively taller trees.
-
-
-
-
 
 > There are cathedrals everywhere for those with eyes to see.
 
