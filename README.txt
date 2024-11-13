@@ -12,7 +12,13 @@
 
 - TODO
 
-# Geomean
+# Geomeans and ratios
+
+- Suppose we are benching a tool that does rewrites and SAT solving.
+- We call the rewrite times $R_i$ and the SAT solving times $S_i$.
+- Now, how does $\sum_i R_i / \sum_i S_i$ compare against $\sum_i (R_i / S_i) / N$?
+- Clearly, we can write $\sum_i R_i / \sum_i S_i$ are (\sum_i R_i / N) / (\sum_i S_i / N)$.
+- So we are asking, how does the ratio of the AMs compare to the AM of the ratio?
 
 
 # Setting up mosh on google cloud
