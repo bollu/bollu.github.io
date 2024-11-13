@@ -13,6 +13,22 @@
 - TODO
 
 
+# Setting up mosh on google cloud
+
+- Step 0: Read the [gist titled A beginner's guide to setup Mosh roaming terminal on Mac to access Google Cloud Compute Engine instance](https://gist.github.com/marcwjj/d86bc137a302b50d8c0f1b5af5fd19d5)
+
+- Step 1: Get the `gcloud` command from the UI by clicking
+- Step 2: run the `gcloud` command with `--dry-run` to see what SSH command is run:
+```
+$ gcloud compute ssh --zone "europe-west1-b" "instance-20241102-191016" --project "even-card-249812" --dry-run
+```
+
+- Step 2: Setup a firewall rule on gcloud that enables all traffic from
+```
+```
+mosh --ssh="/usr/bin/ssh -i /Users/bollu/.ssh/google_compute_engine" bollu@34.79.28.126
+```
+
 # Playing Pop on the Piano
 
 - Key idea: only allowed to play chords that share at least one note.
