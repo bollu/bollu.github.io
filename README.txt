@@ -13,6 +13,8 @@
 - Key idea: only allowed to play chords that share at least one note.
 - In some cases, permissible to play a chord that is at a distance of 1 (semi)tone away.
 - This forces one to know how to play all inversions of I, IV, V, i, VI, vi!
+- Conceptualize an inversion as a slash chord, so taking `CEG` as an example, don't try and think `EGC` (this is hard),
+  but rather think `E / CEG` (somehow, this is way easier!)
 - This is a good thing, but is also super super confusing when one starts out `:)`.
 
 - Thanks to Luisa!
