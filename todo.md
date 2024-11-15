@@ -1,3 +1,4 @@
+- [Niri: Scrollable Tiling window manager for wayland, eyecandy!](https://github.com/YaLTeR/niri)
 - [Good mathlib project: Hilbert 10th is diophantine](https://www.math.umd.edu/~laskow/Pubs/713/Diophantine.pdf)
 - [Finite element method in 50 lines of MATLAB](https://www.math.hu-berlin.de/~cc/cc_homepage/download/1999-AJ_CC_FS-50_Lines_of_Matlab.pdf)
 - [Modern RL: actor critic](https://www.udemy.com/course/actor-critic-methods-from-paper-to-code-with-pytorch/?couponCode=ST14MT101024)
