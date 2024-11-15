@@ -12,6 +12,10 @@
 
 - TODO
 
+# Shostaks Algorithm
+
+https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
+
 # Geomeans and ratios
 
 - Suppose we are benching a tool that does rewrites and SAT solving.
