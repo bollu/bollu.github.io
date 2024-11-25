@@ -1,3 +1,4 @@
+- [Cari Institute of Aesthetics: Website with all kinds of aesthetic styles](https://cari.institute/aesthetics/paperback-chic)
 - [Low dimensional topology and knot theory @ oxford](https://courses.maths.ox.ac.uk/course/view.php?id=741)
 - [Niri: Scrollable Tiling window manager for wayland, eyecandy!](https://github.com/YaLTeR/niri)
 - [Good mathlib project: Hilbert 10th is diophantine](https://www.math.umd.edu/~laskow/Pubs/713/Diophantine.pdf)
