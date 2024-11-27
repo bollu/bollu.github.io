@@ -16,6 +16,11 @@
 
 https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
+# CD/CL, Core Algorithm
+
+- First, define a UIP node to be a node $l$ such that all paths $P$ in the graph such that $P[0]$ is the latest
+  decision variable and $P[-1]$ is the
+
 # Geomeans and ratios
 
 - Suppose we are benching a tool that does rewrites and SAT solving.
