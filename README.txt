@@ -10,7 +10,7 @@
 
 # Mechanical Theorem-Proving by Model Elimination
 
-- TODO
+- A simplified format for the model elimination procedure
 
 # Shostaks Algorithm For Combining Decision Procedures
 
@@ -19,10 +19,63 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 # First UIP / Dominators in a DAG
 
 ```py
+def domtree(dag : Dict[int, int], sink : int) -> int:
+  node2parents, time2node = toposort(dat)
+  frontier = set([sink])
+  seen = set (frontier)
+  time = n-1
+  while len(frontier) != 1:
+    w = time2node[time]
+    # Node is not in the frontier.
+    if w not in frontier: continue
+    # Node is in the frontier, expand it.
+    del frontier[w]
+    # add the nodes that we have not seen.
+    # but do we even care?
+    wps = [p for p not in seen for p in node2parents[w]]
+    seen.add(wps)
+    frontier.add(wps)
+
+  assert len(frontier) == 1
+  return list(frontier)[0]
+
+  # Unreachable, since at the end, we will reach a state where we have
 ```
 
-- First, define a UIP node to be a node $l$ such that all paths $P$ in the graph such that $P[0]$ is the latest
-  decision variable and $P[-1]$ is the
+
+# PTTP: A Prolog Technology Theorem Prover
+
+- PTTP and Linked Inference
+- [References](https://www.cl.cam.ac.uk/~jrh13/slides/pttp-26jun97/slides.pdf)
+- [Meson algorithm HOL light](https://www.cl.cam.ac.uk/~jrh13/hol-light/HTML/MESON.html)
+- [Meson.ml(https://github.com/jrh13/hol-light/blob/master/meson.ml)
+- This is used in HOL light's Meson.
+- Model Elimination is a general proof method for first order logic.
+- PTTP: implement model elimination using MESON technology.
+
+
+
+#### Two groups of FOL solvers
+
+- Bottom up and local: Resolution, inverse method (Maslov, Dok. Akad. Nauk '64).
+- Top down and global: model elimination, tableaux.
+- Both of these can be seen as proof search!
+- Bottom up: start at assumptions, and derive more and more facts till we find the conclusion, or saturate.
+- Top down: start at the conclusion, work backwards, break it down into subproblems till assumptions are reached.
+
+#### Advantages of bottom up procedures
+
+- Bottom up procedures compute proof at "meta level" (?) We can regard fvars as implicitly universally quantified (?)
+- So it's possible to apply subsumption to the current set of facts (recall: subsumption lets us substitute to get more precise facts).
+- In top down, fvars in different goals need to be correlated.
+- However, top down is goal directed!
+- they are much more economical to implement, since we only need to store the current subgoal.
+- leanTAP: tableaux prover in five lines of prolog!
+
+# Simplex Notes
+
+- [Art of Linear Programming](https://www.youtube.com/watch?v=E72DWgKP_1Y)
+
 
 # Geomeans and ratios
 
@@ -198,39 +251,6 @@ A   E : P5
 B   D : m3
 C   C : "octave"
 ```
-# PTTP: A Prolog Technology Theorem Prover
-
-- PTTP and Linked Inference
-- [References](https://www.cl.cam.ac.uk/~jrh13/slides/pttp-26jun97/slides.pdf)
-- [Meson algorithm HOL light](https://www.cl.cam.ac.uk/~jrh13/hol-light/HTML/MESON.html)
-- [Meson.ml(https://github.com/jrh13/hol-light/blob/master/meson.ml)
-- This is used in HOL light's Meson. 
-- Model Elimination is a general proof method for first order logic.
-- PTTP: implement model elimination using MESON technology.
-
-
-
-#### Two groups of FOL solvers
-
-- Bottom up and local: Resolution, inverse method (Maslov, Dok. Akad. Nauk '64).
-- Top down and global: model elimination, tableaux. 
-- Both of these can be seen as proof search! 
-- Bottom up: start at assumptions, and derive more and more facts till we find the conclusion, or saturate.
-- Top down: start at the conclusion, work backwards, break it down into subproblems till assumptions are reached. 
- 
-#### Advantages of bottom up procedures
-
-- Bottom up procedures compute proof at "meta level" (?) We can regard fvars as implicitly universally quantified (?)
-- So it's possible to apply subsumption to the current set of facts (recall: subsumption lets us substitute to get more precise facts).
-- In top down, fvars in different goals need to be correlated. 
-- However, top down is goal directed! 
-- they are much more economical to implement, since we only need to store the current subgoal.
-- leanTAP: tableaux prover in five lines of prolog! 
-
-# Simplex Notes
-
-- [Art of Linear Programming](https://www.youtube.com/watch?v=E72DWgKP_1Y)
-
 
 # Canon Improvisation
 
