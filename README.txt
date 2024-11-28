@@ -40,6 +40,9 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - Step 5: We can break down the permutation automata into finite simple groups if we want, but nah.
 
 #### Step 1
+- We start with an automata $M$ with $n$ states, and we want to build an $M'$ with $(n-1)$ states plus a permutation reset automata.
+- We're going to use a permutation reset automata to keep track of the state we are *not* in.
+- We have an automata $M$
 
 
 #### References
