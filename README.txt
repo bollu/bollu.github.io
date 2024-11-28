@@ -16,6 +16,42 @@
 
 https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
+# Krohn Rhodes Theorem: Proof
+
+#### References
+- [Thomas Kern](https://www.youtube.com/watch?v=3b1YRqDQ25w)
+
+# Quantifier Elimination for Real Closed Fields
+
+#### Why do we need `<=`?
+
+- For a quick intution, suppose we want to know if `∃ x, ax^2 + bx + c = 0`.
+- We know that this is true only when `b^2 - 4ac >= 0`.
+- Bu this needs us to have the `>=` symbol.
+- If we try to define it, then we can do `x >= y := ∃ s, x = y + s^2`,
+  but this now costs us a quantifier! So we cannot do quantifier elimination for this.
+
+#### Why do we need `<=`, example 2
+
+- Consider the question `∃ x, x^2 = y`.
+- The answer is literally `y >= 0`, which needs  a `>=`.
+
+#### Real Closed Fields
+
+- `(R, +, -, 0, 1, <=)`
+- By the usual reduction, we need to be able to eliminate
+  `∃ x, p(x, y0, ... yn) = 0 /\ q(x, y0, ..., yn) != 0 /\ r(x, y0, ... yn) >= 0 /\ s(x, y0, ... yn) <= 0`.
+
+#### Sturm's Theorem / Sturm Sequences
+
+- Let `p0 = p`.
+- Let `p1 = p'`.
+- Let `p2 = - (p0 % p1)`. (It can't be `p1 % p0` since `deg(p1) < deg(p0)`).
+- Let `V(x)` be the number of sign alternations when we plug in `X`.
+- Then `V(a) - V(b)` is the number of distinct real roots of `p` between `a` and `b`.
+
+
+
 # Quantifier Elimination For Algebraically Closed Fields
 
 - `(C, +, ., 0, 1)`.
@@ -27,6 +63,19 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - In general, we can convert stuff into `f = 0` or `f != 0`.
 - If we have many polynomials `f1(x, y0, ... yn) = 0, f2 (x, y0, ... yn) = 0, ... fi (x, y0, ... yn) = 0`,
   then we can find the greatest common factor of these, where we treat them as polynomials in `x` with coefficients in `C[y0, ... yn]`.
+- Call this as `p` for the greatest common factor of `f1, ... fi`. So we now write this as `p = 0`.
+- To combine `f(x, y0, ... yn) != 0` with `f2(x, y0, ... yn) != 0`, we just say that their product is not equal to zero.
+  Call the combined polynomial `q`.
+- So, after the redn, we are trying to solve, `∃ x, P(x) = 0 /\ Q(x) != 0`.
+- That is, is there a root of `P` that is not a root of `Q`.
+- Let's suppose we can factorize these, so then we are checking:
+
+```
+∃ x, a(x - r0)^e0 (x - ri)^ei /\ b(x - s0)^f0 (x - sj)^fj
+```
+
+- If `p` divides q^(deg p)`, where `p` is considered a polynomial in `x`, then every root of `q` is a root of `p`?
+- Of course, the question is, why does this suffice?
 
 #### References
 
