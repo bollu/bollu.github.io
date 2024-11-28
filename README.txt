@@ -78,7 +78,19 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 ##### Reset automata
 
 - If we do a reset before or after a permutation, it'll change what happens!
-- So, our reset automata will need to know the current state of the permutation automation, plus the original state space.
+- The states of the reset automata is states of original automata
+- Now, let's design the transtion map. Recall that this needs to be a reset automata.
+- The invariant we will maintain is as follows: If we first change the state to the state of the reset automata,
+  and we then apply the permutation map, we will reach the corresponding state in the original permutation-reset automata $M$.
+- We start with the initial state of $M$.
+- As input, it will receive both the original input, as well as the current state of the permutation automata (cascade)
+- Key idea: if it receives $a$, since $a$ is a permutation, the permutation automata will compose the action of $a$, so we keep the (original) initial state.
+- If it receives a $b$, $b$ is a reset, where we should reset to state 1.
+  We want to change to a state such that when we run the permutation automata's $f$ on it, we will reach a $b$.
+  So we set the transition map to $\delta(-, (b, f)) = f^{-1}(1)$
+- Clearly, if we start at $f^{-1}(1)$, and we run $f$ on it, then we get to $1$!
+- So the genius is to use the automata to keep track of "runs", where the resets destroy the state,
+  and the permutations compose the state together.
 
 
 - We're going to use a permutation reset automata to keep track of the state we are *not* in.
