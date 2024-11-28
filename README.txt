@@ -63,7 +63,23 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 #### Step 2: Recurse!
 - Nothing much to be said.
 
-#### Step 3: Break down Permutation into Permutation and Pure Reset
+#### Step 3: Break down Permutation-Reset into Permutation and Pure Reset
+
+##### Permutation automata
+
+- Take a permutation reset automata.
+- `a(0) = 1`, `a(1) = 2`, and `a(2) = 0`. `b(0) = b(1) = b(2) = 1`. So this is a permutation reset automata.
+- We will build two automata: first an automata $P$ that is pure permutations. The alphabet is the same,
+  and its state space is the symmetric group of the original state space.
+- In this case, the state space of $P$ is $S_3$. It's going to accumulate the permutations we have seen so far.
+- For transition, if we see $a$, since it is a permutation, we compose $a_M$ to our current state. $\delta_P(f, a) = a_M \circ f$.
+- For transition, If we see $b$, since it is not a permutation, we don't do anything. $\delta_P(f, b) = f$.
+
+##### Reset automata
+
+- If we do a reset before or after a permutation, it'll change what happens!
+- So, our reset automata will need to know the current state of the permutation automation, plus the original state space.
+
 
 - We're going to use a permutation reset automata to keep track of the state we are *not* in.
 - We have an automata $M$
