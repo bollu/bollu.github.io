@@ -16,10 +16,31 @@
 
 https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
+# Quantifier Elimination For Algebraically Closed Fields
+
+- `(C, +, ., 0, 1)`.
+- First reduction, see what we only need to eliminate existentials, since we can convert `∀x,P(x)` into `!(∃x, !P(x))`.
+- Next, we write P(x) is disjunctive normal form, so we get `∃x, P1(x) \/ P2(x) \/ ... Pn(x)`, where each `Pi` is CNF.
+- Now, this can be rewritten as `(∃ x1, P1(x1)) \/ (∃x2, P2(x2)) \/ ...`.
+- So, we really just need to solve `∃ xi, Pi(xi)` where `Pi` is a conjunction of atomic predicates.
+- Now, we have an equation like `p(x, y) = q(x, y)`, but this is ofc the same as `p(x, y) - q(x, y) = 0`.
+- In general, we can convert stuff into `f = 0` or `f != 0`.
+- If we have many polynomials `f1(x, y0, ... yn) = 0, f2 (x, y0, ... yn) = 0, ... fi (x, y0, ... yn) = 0`,
+  then we can find the greatest common factor of these, where we treat them as polynomials in `x` with coefficients in `C[y0, ... yn]`.
+
+#### References
+
+- [Thomas Kern](https://www.youtube.com/watch?v=08MnOhK01IA)
+
+
+
+
 # First UIP / Dominators in a DAG
 
+#### Immediate dominator in a DAG
+
 ```py
-def domtree(dag : Dict[int, int], sink : int) -> int:
+def idom(dag : Dict[int, int], sink : int) -> int:
   node2parents, time2node = toposort(dat)
   frontier = set([sink])
   seen = set (frontier)
