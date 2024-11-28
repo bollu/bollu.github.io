@@ -31,7 +31,6 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 #### Proof Sketch
 
-- Adapted from "algebraic theory of automata by Ginsburg
 - Step 1: Break down truncated run map of arbitrary automata with $n$ states into a cascade
   of a permutation reset automata (called $B$, for banned) and an $n-1$ state automaton $M'$.
 - Step 2: recurse, till we get a 2-state automata. Now, all 2-state automata are permutation reset automata, so done!
@@ -61,6 +60,7 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
   Using this, we can reconstruct the original automata $M$ with $B$ and $M'$.
 
 #### Step 2: Recurse!
+
 - Nothing much to be said.
 
 #### Step 3: Break down Permutation-Reset into Permutation and Pure Reset
@@ -92,12 +92,14 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - So the genius is to use the automata to keep track of "runs", where the resets destroy the state,
   and the permutations compose the state together.
 
+#### Step 4: Break down Reset Automata into 1-bit Reset Automata
 
-- We're going to use a permutation reset automata to keep track of the state we are *not* in.
-- We have an automata $M$
+- Isn't this literally just building memory by writing stuff in binary?
 
 
 #### References
+
+- Proof adapted from "algebraic theory of automata" by Ginsburg
 - [Thomas Kern: Regular Languages and Model Theory 28: The Krohn-Rhodes Theorem](https://www.youtube.com/watch?v=3b1YRqDQ25w)
 
 # Quantifier Elimination for Real Closed Fields
