@@ -33,14 +33,38 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 - Adapted from "algebraic theory of automata by Ginsburg
 - Step 1: Break down truncated run map of arbitrary automata with $n$ states into a cascade
-  of a permutation reset automata and an $n-1$ state automaton.
+  of a permutation reset automata (called $B$, for banned) and an $n-1$ state automaton $M'$.
 - Step 2: recurse, till we get a 2-state automata. Now, all 2-state automata are permutation reset automata, so done!
 - Step 3: Break apart the permutation reset automata into pure permutation + pure reset automata.
 - Step 4: Break down the reset map for reset automata into a composition of the 1-bit-memory automata.
 - Step 5: We can break down the permutation automata into finite simple groups if we want, but nah.
 
 #### Step 1
-- We start with an automata $M$ with $n$ states, and we want to build an $M'$ with $(n-1)$ states plus a permutation reset automata.
+- We start with an automata $M$ with $n$ states, and we want to write it as $B$, a permutation reset automata,
+  and a new $(n-1)$ state automata $M'$.
+- The automata $B$ keeps track of which state of $M$ **we are not in** at this moment in time!
+- We set the initial state of $B$ to be a state that is different from the initial state of $M$.
+- Now, for the alphabets, we want to make sure that $B$ moves to a state that $M$ does not move to!
+- For any alphabet $a$, if the map $a_M : S(M) \to S(M)$ (the action of $a$ on $M$) does not have full image,
+  then set $a_B$ to be that state that is not in the image! This is a reset map, and clearly maintains the banned invariant.
+- Otherwise, the map $a_M$ must be a permutation (surjective = injective on endomorphism of finite set),
+  and so we can set $b_M \equiv a_M$, since the transitoin map will map banned states to banned states.
+- Great, we now need to design $M'$, which somehow uses the information of $B$ to do what $M$ used to to.
+- The idea is to relabel the original states of $M$, minus the banned state $B$.
+- $M'$ is an automata in the casecade, because it will have both the original alphabet $a_M$, as well as the output of $B$,
+  where the output of $B$ is the current state of $B$.
+- The input to $M'$ is going to be the input of $M$ and the output of $B$.
+- So if we are in state $m' \in [0, n-1)$, and the output of $B$ is $b \in [0, n)$, and we get alphabet $a$,
+  we create a new state `m = m' >= b ? m' + 1 : m'`.
+- In some sense, since we build $B$ by "crossing out" a state in $M$,
+  all we need to do in $M'$ is to relabel the states of $M$, by forgetting the state labaled by $B$.
+  Using this, we can reconstruct the original automata $M$ with $B$ and $M'$.
+
+#### Step 2: Recurse!
+- Nothing much to be said.
+
+#### Step 3: Break down Permutation into Permutation and Pure Reset
+
 - We're going to use a permutation reset automata to keep track of the state we are *not* in.
 - We have an automata $M$
 
