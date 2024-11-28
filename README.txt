@@ -19,7 +19,7 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 # Krohn Rhodes Theorem: Proof
 
 #### References
-- [Thomas Kern](https://www.youtube.com/watch?v=3b1YRqDQ25w)
+- [Thomas Kern: Regular Languages and Model Theory 28: The Krohn-Rhodes Theorem](https://www.youtube.com/watch?v=3b1YRqDQ25w)
 
 # Quantifier Elimination for Real Closed Fields
 
@@ -116,9 +116,20 @@ D30(x) # NEW
 - We now get lower and upper bounds on `x`, and we get divisbility constraints.
 - The inequality `12z + 24 < x + 6y` gives a lower bound: `12z + 24 - 6y < x`.
 - the other two inequalities give an upper bound: `x < 60z - 45y` and `x < 60y + 90z - 30z`.
+- We can't directly enumerate this list, since the list's length is symbolic (depends on values of `y` and `z`).
+- Finally, for the divisibility, we want numbers with these particular remainders.
+- The chinese remainder theorem will tell us that such a number will occur in a consecutive set of `lcm(20, 18, 30)` numbers!
+- Finally, what do we do with the minus sign?
+- We can always change the minus to a plus, in an inequality: `-y < 0` if `y > 0`.
+- For divisibility, to check `D18(12x + 24 -6y + 7 + 6z)`, we write it as `(18 - 6) y`, i.e. `12y`.
 
+#### Other Considerations
+- If we have multiple lower bounds, then we make the search from all lower bounds.
+- If we no lower bounds, we start from zero.
+- If we have no divisibility constraint, then we can do fourier motzkin? [Question: Why can't I think of it as modulo by zero? Aha, I can, but the LCM will be infinity]
 
-
+#### References
+- [Regular Languages and Model Theory: 22, Quantifier Elimination in Presburger Arithmetic](https://www.youtube.com/watch?v=0rci7wvc7J4)
 
 # Quantifier Elimination For Algebraically Closed Fields
 
