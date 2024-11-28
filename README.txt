@@ -12,11 +12,14 @@
 
 - TODO
 
-# Shostaks Algorithm
+# Shostaks Algorithm For Combining Decision Procedures
 
 https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
-# CD/CL, Core Algorithm
+# First UIP / Dominators in a DAG
+
+```py
+```
 
 - First, define a UIP node to be a node $l$ such that all paths $P$ in the graph such that $P[0]$ is the latest
   decision variable and $P[-1]$ is the
@@ -195,12 +198,17 @@ A   E : P5
 B   D : m3
 C   C : "octave"
 ```
-# A Prolog Technology Theorem Prover 
+# PTTP: A Prolog Technology Theorem Prover
 
+- PTTP and Linked Inference
 - [References](https://www.cl.cam.ac.uk/~jrh13/slides/pttp-26jun97/slides.pdf)
+- [Meson algorithm HOL light](https://www.cl.cam.ac.uk/~jrh13/hol-light/HTML/MESON.html)
+- [Meson.ml(https://github.com/jrh13/hol-light/blob/master/meson.ml)
 - This is used in HOL light's Meson. 
 - Model Elimination is a general proof method for first order logic.
 - PTTP: implement model elimination using MESON technology.
+
+
 
 #### Two groups of FOL solvers
 
@@ -48269,7 +48277,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
->
+> "can you keep a secret father?" Priest says "yes son", and the
+> heretic replies "so can I."
 
 > John von Neuman,e one of the greatest mathematicians and computer scientists
 > of the 20th century, regarding the danger of mathematics driven solely by
