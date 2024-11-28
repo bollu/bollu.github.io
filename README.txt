@@ -18,6 +18,30 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 # Krohn Rhodes Theorem: Proof
 
+- Recall writing an automata as semigroup and so on.
+- A character is a permutation if its action on the state space is a permutation.
+- A character is a reset if its action on the state space is a constant function.
+- Permutation automata: all characters are permutations, so we can undo any sequence of characters.
+- Reset automata: all characters are resets, but this is too boring! So all characters are resets, or identity.
+  See that this acts like *memory* ! Since we can hold onto to information we had.
+- The one bit memory automaton has 3 inputs, $0, 1, e$ where the state does what you'd expect: when $0$, state goes to $s_0$,
+  when input is $1$, state goes to $s_1$, and $e$ keeps it the same state.
+- We can write any auomata as a cascade of permutation and reset.
+- So we can have things like $f(x, g(x, h(x)), h(x))$, where automata read inputs from before them.
+
+#### Proof Sketch
+
+- Adapted from "algebraic theory of automata by Ginsburg
+- Step 1: Break down truncated run map of arbitrary automata with $n$ states into a cascade
+  of a permutation reset automata and an $n-1$ state automaton.
+- Step 2: recurse, till we get a 2-state automata. Now, all 2-state automata are permutation reset automata, so done!
+- Step 3: Break apart the permutation reset automata into pure permutation + pure reset automata.
+- Step 4: Break down the reset map for reset automata into a composition of the 1-bit-memory automata.
+- Step 5: We can break down the permutation automata into finite simple groups if we want, but nah.
+
+#### Step 1
+
+
 #### References
 - [Thomas Kern: Regular Languages and Model Theory 28: The Krohn-Rhodes Theorem](https://www.youtube.com/watch?v=3b1YRqDQ25w)
 
