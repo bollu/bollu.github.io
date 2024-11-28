@@ -50,6 +50,22 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - Let `V(x)` be the number of sign alternations when we plug in `X`.
 - Then `V(a) - V(b)` is the number of distinct real roots of `p` between `a` and `b`.
 
+# Quantifier Elimination for Presburger Arithmetic
+
+- We start with `(N, +)`.
+- However, see that in the first order theory, we can talk about e.g. `x >= y` as `∃z, x + z = y`.
+- so, we need to add this `>=` symbol into the theory when we try to do QE.
+- Furthermore, we also add in `0, 1`.
+- Finally, we add in the divisibility predicate, where `Dn(x)` is true iff `n` divides `x`.
+
+#### Do we really need to add the divisiblity predicate? Can't we get it from the other ones?
+
+- Answer: yes we do!
+- Key idea: the other predicates, of equality and disequality, give, for any variable `x`,
+  either a finite set of solutions or a cofinite set of solutions (complement is fiinite).
+- However, divisibility by `2` is neither finite nor cofinite!
+  Thus, it is an extra predicate we need to add into the theory to make it work :)
+
 
 
 # Quantifier Elimination For Algebraically Closed Fields
