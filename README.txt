@@ -68,11 +68,11 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 #### Keeping Only Positive Predicates
 
-- In this theory, we can always convert negations of predicates into purely positive predicates:
+- In this theory, we can always convert negations of predicates into a disjunct of purely positive predicates:
 - `x != y` becomes `x < y \/ x > y`.
 - `!D3(x)` becomes `D3(x + 1) \/ D3(x + 2)`, which is pretty interesting:
    we are writing `x != 0 (mod 3)` as `(x = 1 (mod 3)) \/ (x = 2 (mod 3))`.
-- Similarly
+- Finally, we can write `!(x < y)` as `x = y \/ x > y`.
 
 #### General Enough Specific Example
 
@@ -83,6 +83,40 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
   D2 (3x + 2y + 1) /\
   D3 (5x + z)
 ```
+
+- From this, we want to extract out a finite list of candidates for `x`.
+- So, we create a disjunction where we convert the `∃ x` into `(x = v1 /\ P) \/ (x = v2 /\ P) ... \/ (x = vN /\ P)`.
+- First, we normalize the inequalities to make the coefficient of `x` to be `30`.
+- For `f < g`, we can simply rescale as `kf < kg`.
+- For divisibility, we can write `n | x` as `kn | kx`, or in our notation, `Dn(x)` becomes `Dkn(kx)`.
+
+```
+∃ x,
+30x + 45y < 60z
+30x + 30z < 60y + 90z
+12z + 24 < 30x + 6y
+D20 (30x + 20y + 10)
+D18 (30x + 6z)
+```
+
+- Next, we want to say that there exists an `x` that is divisible by `30`, instead of having `30x`.
+- This now becomes:
+
+
+```
+∃ x,
+x + 45y < 60z
+x + 30z < 60y + 90z
+12z + 24 < x + 6y
+D20 (x + 20y + 10)
+D18 (x + 6z)
+D30(x) # NEW
+```
+
+- We now get lower and upper bounds on `x`, and we get divisbility constraints.
+- The inequality `12z + 24 < x + 6y` gives a lower bound: `12z + 24 - 6y < x`.
+- the other two inequalities give an upper bound: `x < 60z - 45y` and `x < 60y + 90z - 30z`.
+
 
 
 
