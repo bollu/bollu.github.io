@@ -29,11 +29,13 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - We throw in the third, which is `C`.
 - We then add build the augmented sixth interval with `Ab` as the lower pitch,
   giving us `F#`.
-- Now, it is popular wisdom that a sixth comes with a fourth
-  (with the idea that we resolve the `4 → 3` and `6 → 5`),
-  giving us the `D`.
-- This builds the full cord, `Ab D F# C`,
-  which desperately wants to resolve to ``
+- Now, it is popular wisdom that a sixth comes with a fourth (the `D` wrt `Ab`),
+  with the idea that we resolve the `1 3 4 6 → 1 3 5`.
+- However, the actual resolution in the book is more interesting:
+  We have `Ab D F# C → G D G B`, where the `D` does not "actually move",
+  the `F# → G`, and the `C → B`, and `Ab → G`.
+  Note that this is pretty genius, because it only moves by a single semitone.
+- The `Ab ⇒ G` changes the chord, while the other two notes resolve.
 
 
 
