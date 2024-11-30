@@ -24,6 +24,17 @@ https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 - Luisa's instruction: Think of this the other way round: Note that we see an `F#`,
   which we recognize as the 7th scale degree of the Gminor scale.
 - Now, what is `Ab D F# C` in `Gm`? That's the question we try to answer.
+- This is a **french sixth** or **augmented sixth**
+- We start with `Ab`, which is the sixth in the scale degree.
+- We throw in the third, which is `C`.
+- We then add build the augmented sixth interval with `Ab` as the lower pitch,
+  giving us `F#`.
+- Now, it is popular wisdom that a sixth comes with a fourth
+  (with the idea that we resolve the `4 → 3` and `6 → 5`),
+  giving us the `D`.
+- This builds the full cord, `Ab D F# C`,
+  which desperately wants to resolve to ``
+
 
 
 # Krohn Rhodes Theorem: Proof
