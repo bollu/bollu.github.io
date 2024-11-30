@@ -16,6 +16,16 @@
 
 https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
+# Partimento Chord Progression Theory
+
+- consider the ones in the key of C minor.
+- The chord that corresponds to `Ab` is given as `D F# C`.
+- Luisa's insight: Consider the 5th, which is `Gm`. It's 7th scale degree is `F#`.
+- Luisa's instruction: Think of this the other way round: Note that we see an `F#`,
+  which we recognize as the 7th scale degree of the Gminor scale.
+- Now, what is `Ab D F# C` in `Gm`? That's the question we try to answer.
+
+
 # Krohn Rhodes Theorem: Proof
 
 - Recall writing an automata as semigroup and so on.
