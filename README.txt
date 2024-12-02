@@ -14,7 +14,7 @@
 
 # Shostaks Algorithm For Combining Decision Procedures
 
-https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
+- https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 # Partimento Chord Progression Theory
 
