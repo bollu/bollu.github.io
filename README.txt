@@ -16,6 +16,10 @@
 
 - https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
+# Realistic Realisability by Amal Ahmed
+
+- https://www.youtube.com/watch?v=FtdSqzN6xVQ&list=PL9-ncTy2ag0EKhopsrqWWwTO7sjKw1wrg&index=14
+
 # Partimento Chord Progression Theory
 
 - consider the ones in the key of C minor.
