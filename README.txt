@@ -20,6 +20,13 @@
 
 - https://www.youtube.com/watch?v=FtdSqzN6xVQ&list=PL9-ncTy2ag0EKhopsrqWWwTO7sjKw1wrg&index=14
 
+# Ragtime Theory
+
+- [John Valerio: Stride and Swing Piano](https://www.reddit.com/r/pianolearning/comments/118i5oj/comment/j9hbnta/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- Left hand: four beats per measure, alternate bass note and chord.
+- right hand: plays melodies at twice the speed of the left.
+- Right hand is grouped into *additive rhythms*: `3+2+3`, or `3+3+3`.
+
 # Partimento Chord Progression Theory
 
 - consider the ones in the key of C minor.
