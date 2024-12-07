@@ -35,6 +35,25 @@
 - Also, chords built on flat-VI, either as triads or as augmented 6th chords.
 - This can be seen as dominant 7th chords build on the flat-VI note of the major scale degree.
 
+# Using `reduceBool` and `ofReduceBool` in Lean
+
+
+```
+import Lean
+open Lean
+
+abbrev foo.aux : Bool := decide (true = true)
+
+#check @of_decide_eq_true
+
+theorem foo : true = true := @of_decide_eq_true (p := true = true) (inst := inferInstance) 
+  (@Lean.ofReduceBool foo.aux _ (by rfl))
+
+-- tactic 'rfl' failed ...
+theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inferInstance) 
+  (@Lean.ofReduceBool _ _ (by rfl))
+```
+
 # Partimento Chord Progression Theory
 
 - consider the ones in the key of C minor.
