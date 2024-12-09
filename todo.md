@@ -1,3 +1,4 @@
+- [The theory and technique of electronic music](https://msp.ucsd.edu/techniques.htm)
 - Best dictionary: Webster's Unabridged 1913
 _ Furoshiki: Wrapping objects with reusable cloth as a gift: Wrapping with Fabric: Your Complete Guide to Furoshiki-The Japanese Art of Wrapping
 - [Cari Institute of Aesthetics: Website with all kinds of aesthetic styles](https://cari.institute/aesthetics/paperback-chic)
