@@ -295,7 +295,7 @@ D30(x) # NEW
 ∃ x, a(x - r0)^e0 (x - ri)^ei /\ b(x - s0)^f0 (x - sj)^fj
 ```
 
-- If `p` divides q^(deg p)`, where `p` is considered a polynomial in `x`, then every root of `q` is a root of `p`?
+- If `p` divides `q^(deg p)`, where `p` is considered a polynomial in `x`, then every root of `q` is a root of `p` ?
 - Of course, the question is, why does this suffice?
 
 #### References
@@ -373,7 +373,7 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 - Suppose we are benching a tool that does rewrites and SAT solving.
 - We call the rewrite times $R_i$ and the SAT solving times $S_i$.
 - Now, how does $\sum_i R_i / \sum_i S_i$ compare against $\sum_i (R_i / S_i) / N$?
-- Clearly, we can write $\sum_i R_i / \sum_i S_i$ are (\sum_i R_i / N) / (\sum_i S_i / N)$.
+- Clearly, we can write $\sum_i R_i / \sum_i S_i$ are $(\sum_i R_i / N) / (\sum_i S_i / N)$.
 - So we are asking, how does the ratio of the AMs compare to the AM of the ratio?
 - The interesting property
 
@@ -426,7 +426,7 @@ mosh --ssh="/usr/bin/ssh -i /Users/bollu/.ssh/google_compute_engine" bollu@34.79
 
 - [Slides Merijn Heule: Proof Systems and Proof Complexity](https://www.cs.cmu.edu/~mheule/15816-f24/slides/theory.pdf)
 - Clause $C$ is implied by $\Gamma$ via UP (unit propagation) iff unit propagation can prove `UNSAT` for $\Gamma \land \not C$.
-- That is, $\Gamma \implies $C$ is a tautology, which is to say, $\lnot \Gamma \lor C$ is a tautology, or that $\lnot (\lnot \Gamma \lor C)$ is UNSAT,
+- That is, $\Gamma \implies C$ is a tautology, which is to say, $\lnot \Gamma \lor C$ is a tautology, or that $\lnot (\lnot \Gamma \lor C)$ is UNSAT,
   or that $\Gamma \land \not C$ is UNSAT.
 
 #### Beyond Inference
@@ -441,7 +441,7 @@ $$
 
 - This adds the definition `x := AND(A, B)`.
 - It can be seen to do this by converting the fomula `x <-> AND(A, B)` into CNF.
-- Backward direction `AND(A, B) -> x` is !(A && B) || x` which is `!A || !B || x`.
+- Backward direction `AND(A, B) -> x` is `!(A && B) || x` which is `!A || !B || x`.
 - Forward direction: `x -> AND(A, B)` whose contrapositive is `!(A &&B) -> !x`, which is `!(!(A && B)) || !x`, which is `(A && B) || !x`, which is
   `(A || !x) && (B || !x)`
 - First **interference-based** proof system (WTH is interference?)
