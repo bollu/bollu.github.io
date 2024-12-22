@@ -70,6 +70,7 @@
 - String Solvers.
 - Shannon encoding for solving XOR constraints.
 - Cone of Influence based pruning.
+- HOL light: 
 
 #### Cambridge Vibes: Lectures and Reports
 
@@ -148,7 +149,7 @@
 - Joplin used chromatically altered chords.
 - Most commonly, a minor triad on top of a IV
 - Also, chords built on flat-VI, either as triads or as augmented 6th chords.
-- This can be seen as dominant 7th chords build on the flat-VI note of the major scale degree.
+- This can be seen as dominant 7th chords build on the  flat-VI note of the major scale degree.
 
 # Using `reduceBool` and `ofReduceBool` in Lean
 
@@ -477,10 +478,6 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 - However, top down is goal directed!
 - they are much more economical to implement, since we only need to store the current subgoal.
 - leanTAP: tableaux prover in five lines of prolog!
-
-# Simplex Notes
-
-- [Art of Linear Programming](https://www.youtube.com/watch?v=E72DWgKP_1Y)
 
 
 # Geomeans and ratios
