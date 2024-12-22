@@ -54,8 +54,10 @@
 #### Optics and Photography
 
 - Classic Geometric Optics
-- Exposure
 - [bollu/optics]
+- Exposure
+- Aperture
+- Darktable user manual
 
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
