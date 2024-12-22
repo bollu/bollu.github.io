@@ -20,7 +20,7 @@
 - Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
   through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
 
-#### Resolution and SAT solvers
+#### Resolution and UNSAT proof calculi
 
 - [resolution is refutation complete, a clean proof]
 - [superposition calculus]
@@ -31,11 +31,31 @@
 - [the DRAT proof format]
 - [the LRAT proof format]
 
+#### Bitblasting and decision procedures for bitvectors 
+
+- [Bitwuzla sources]
+- [Presburger arithmetic and bitvector theory]
+- [Craig interpolation]
+- [Interpolant based model checking]
+- [leanprover/lean4]
+- [bollu/minisat]
+
+
 #### Other Decision Procedures
 
 - [Tarski's quantifier elimination for real closed fields]
 - [Cylindrical algebraic decomposition for deciding real closed fields]
 - [A survey of p-adic decision procedures]
+- [Safety, Liveness, and all that]
+- [Deciding the word problem for buchi automata]
+- [opencompl/lean-mlir]
+
+
+#### Optics and Photography
+
+- Classic Geometric Optics
+- Exposure
+- [bollu/optics]
 
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
