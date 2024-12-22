@@ -127,6 +127,15 @@
 - Learn engineering drawing
 - Get good at blues scale playing and counterpoint composition + improv.
 
+# Darktable "Workflow"
+
+- workflow in quotes because it's designed by autists, of whom I am also one.
+
+
+#### Darkroom Shortcuts
+- space: next image
+- backspace: previous image
+- tab: toggle fullscreen
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
 
