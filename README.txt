@@ -34,10 +34,13 @@
 #### Bitblasting and decision procedures for bitvectors 
 
 - [Bitwuzla sources]
+- [Nelson Oppen, Convex Theories, and Infinite Stability]
+- [Implementing Nelson Oppen, fast]
 - [Presburger arithmetic and bitvector theory]
 - [Craig interpolation]
 - [Interpolant based model checking]
 - [leanprover/lean4]
+- the MiniSAT paper and the correctness of CD/CL algorithms
 - [bollu/minisat]
 
 
@@ -50,6 +53,20 @@
 - [Deciding the word problem for buchi automata]
 - [opencompl/lean-mlir]
 
+#### The 'To Read' List of Decision Procedures
+
+- When working at AWS, I got to talk to lots of fantastic folks who gave me lots of pointers to 
+  really interesting ideas, many of which I'm yet to read. 
+- Adapt SAT based sudoku solvers to use color constraints: ...
+- Inspiration: [Video of solving a suduko-like with a single solution](TODO).
+
+#### Cambridge Vibes: Lectures and Reports
+
+- [Descriptive Complexity](TODO)
+- [Denotational Semantics by Meven](TODO). 
+  I loved the course, but I only attended sporadically. 
+  Asking meven questions was always enlightening, and I learnt a lot from the many hallway conversations
+  I've had with him, including a clarification of what the hell proof by reflection does.
 
 #### Optics and Photography
 
@@ -57,7 +74,26 @@
 - [bollu/optics]
 - Exposure
 - Aperture
+- What the heck is ISO?
 - Darktable user manual
+- Amazing blog that explains what DOF does with same pictures taken with all the different settings.
+- Many thanks to [Anton Lydike](), [Luisa Cicolini](), and [Sahiti Chedalavada]()
+  for the various conversations about this. 
+
+
+#### Music and Composition
+
+- [History of the Piano]
+- []
+
+
+#### Books I got for friends
+
+- [Pattern Magic]
+- [This is how you lose the time war]
+
+#### Fiction
+
 
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
