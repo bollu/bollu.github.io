@@ -52,13 +52,24 @@
 - [Safety, Liveness, and all that]
 - [Deciding the word problem for buchi automata]
 - [opencompl/lean-mlir]
+- [Computational Algebraic Number Theory]
+- [Knots and Links]
+- [The SnapPy project for 3-manifold algorithms]. In reading this,
+  I realized that I need to know a lot of 3-manifold theory,
+  so a current medium-to-long-term wishlist maths is to study
+  Thurston's [geometry and topology of 3-manifolds]().
+  To be extremeley honest, if it is possible, I am tempted to spend a semester at the
+  Indian Institute of Science reading through the book with [Siddhartha Gadgil's] supervision,
+  if he's interested to let me take this on.
 
 #### The 'To Read' List of Decision Procedures
 
 - When working at AWS, I got to talk to lots of fantastic folks who gave me lots of pointers to 
   really interesting ideas, many of which I'm yet to read. 
-- Adapt SAT based sudoku solvers to use color constraints: ...
-- Inspiration: [Video of solving a suduko-like with a single solution](TODO).
+- Model based algorithms for UNSAT of LIA: Cutting to the chase.
+- String Solvers.
+- Shannon encoding for solving XOR constraints.
+- Cone of Influence based pruning.
 
 #### Cambridge Vibes: Lectures and Reports
 
@@ -67,6 +78,19 @@
   I loved the course, but I only attended sporadically. 
   Asking meven questions was always enlightening, and I learnt a lot from the many hallway conversations
   I've had with him, including a clarification of what the hell proof by reflection does.
+- To write my first year report, I wound up doing quite a bit of survey on verified compliation,
+  proof by reflection, and decision procedures. I'm going to only list the most salient bits here.
+- CakeML
+- ACL2 and its proof by computation, *without* dependent type theory. Also, [Shilpi Goel's]() thesis
+  on this is freaking excellent. 
+- Proof by Reflection in HOL/Light.
+
+#### Projects for Master Students at Cambridge
+
+- `A=B`:
+- Solving Exists-Forall problems for synthesis.
+- Adapt SAT based sudoku solvers to use color constraints: ...
+  Inspiration: [Video of solving a suduko-like with a single solution](TODO).
 
 #### Optics and Photography
 
@@ -84,16 +108,23 @@
 #### Music and Composition
 
 - [History of the Piano]
-- []
+- [Fux: Counterpoint]
+- [Open Music Theory]
+- [Ragtime music theory]
+- [Partimento for renaissance style italian music improvisation]
+- [Literally everything that Glenn Gould has ever said], since I consider the man to be a genius.
+- Orbifolds for representing the space of scales: The tonnetz
+- More writing by [orbifold guy]
+- Fun fact, the [French Sixth] has a heck of a history.
 
-
-#### Books I got for friends
-
-- [Pattern Magic]
-- [This is how you lose the time war]
 
 #### Fiction
 
+#### Plans for Next Year
+
+- Take number fields course
+- Learn engineering drawing
+- Get good at blues scale playing and counterpoint composition + improv.
 
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
