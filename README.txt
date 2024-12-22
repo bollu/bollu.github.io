@@ -10,6 +10,33 @@
 
 # Stuff I learnt in 2024
 
+- Quick TL;DR of the year: My [research group](TODO) moved from Edinburgh to Cambridge,
+  so I was looking forward to lots of courses to take! 
+- I'd also settled in on an area I wanted to work on for my PhD,
+  which was to design, implement, and verify the correctness of decicision procedures for the [Lean](TODO)
+  theorem prover, which guides much of the reading I've done.
+- Early in the year, I wanted to correctly understand photography from first principles, so a lot of reading
+  around light and optics are because of this.
+- Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
+  through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
+
+#### Resolution and SAT solvers
+
+- [resolution is refutation complete, a clean proof]
+- [superposition calculus]
+- [hyper-resolution]
+- [Interference based theorem proving]
+- [lower bounds on resolution proofs]
+- [No known lower bounds on extended resolution proofs]
+- [the DRAT proof format]
+- [the LRAT proof format]
+
+#### Other Decision Procedures
+
+- [Tarski's quantifier elimination for real closed fields]
+- [Cylindrical algebraic decomposition for deciding real closed fields]
+- [A survey of p-adic decision procedures]
+
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
 
