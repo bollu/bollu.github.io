@@ -8,17 +8,16 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Mechanical Theorem-Proving by Model Elimination
+# Stuff I learnt in 2024
+
+
+# Mechanical Theorem-Proving by Model Elimination  [WIP]
 
 - A simplified format for the model elimination procedure
 
-# Shostaks Algorithm For Combining Decision Procedures
+# Shostaks Algorithm For Combining Decision Procedures [WIP]
 
 - https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
-
-# Realistic Realisability by Amal Ahmed
-
-- https://www.youtube.com/watch?v=FtdSqzN6xVQ&list=PL9-ncTy2ag0EKhopsrqWWwTO7sjKw1wrg&index=14
 
 # Ragtime Theory
 
