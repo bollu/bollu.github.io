@@ -20,19 +20,18 @@
 - Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
   through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
 
-#### Resolution and UNSAT proof calculi
+#### Resolution, UNSAT proof calculi, Bitlasting
 
-- [resolution is refutation complete, a clean proof]
-- [superposition calculus]
-- [hyper-resolution]
+- [Resolution is refutation complete, a clean proof](https://arxiv.org/pdf/cs/0606084).
+  The proof is purely constructive, and 
+- Hyper-resolution: This is a cool proof system that is stronger than resolution, and whose
+  completeness properties implies theorems like the nullstellensatz! I learnt
+  of this from [Semantical Completeness Theorems in Logic and Algebra](https://web.archive.org/web/20170814075124id_/http://www.ams.org/journals/proc/1980-079-01/S0002-9939-1980-0560591-4/S0002-9939-1980-0560591-4.pdf).
 - [Interference based theorem proving]
 - [lower bounds on resolution proofs]
 - [No known lower bounds on extended resolution proofs]
 - [the DRAT proof format]
 - [the LRAT proof format]
-
-#### Bitblasting and decision procedures for bitvectors 
-
 - [Bitwuzla sources]
 - [Nelson Oppen, Convex Theories, and Infinite Stability]
 - [Implementing Nelson Oppen, fast]
@@ -70,11 +69,11 @@
 - String Solvers.
 - Shannon encoding for solving XOR constraints.
 - Cone of Influence based pruning.
-- HOL light: 
+- HOL light has many algorithms that I'd never heard of before, including 
 
 #### Cambridge Vibes: Lectures and Reports
 
-- [Descriptive Complexity](TODO)
+- [Descriptive Complexity](https://www.cl.cam.ac.uk/~ad260/talks/caleidoscope1.pdf)
 - [Denotational Semantics by Meven](TODO). 
   I loved the course, but I only attended sporadically. 
   Asking meven questions was always enlightening, and I learnt a lot from the many hallway conversations
