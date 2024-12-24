@@ -90,8 +90,10 @@
 #### Projects for Master Students at Cambridge
 
 - `A=B`:
-- Solving Exists-Forall problems for synthesis.
-- Adapt SAT based sudoku solvers to use color constraints: ...
+- [Solving Exists-Forall problems with Yikes](https://yices.csl.sri.com/papers/smt2015.pdf):
+  We'll be using the algorithm to implement a formally verified version of John Reghr's
+  recent work via [HYDRA: synthesizing peephole rewrites](https://users.cs.utah.edu/~regehr/generalization-oopsla24.pdf)
+- Adapt SAT based sudoku solvers to use [color constraints](http://www.taupierbw.be/SudokuCoach/SC_SimpleColoring.shtml)
   Inspiration: [Video of solving a suduko-like with a single solution](TODO).
 
 #### Optics and Photography
