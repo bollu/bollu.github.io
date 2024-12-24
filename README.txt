@@ -109,9 +109,14 @@
 
 #### Music and Composition
 
-- [A Natural History of the Piano]
-- [Fux: Study of Counterpoint]
-- [Open Music Theory]
+- [A Natural History of the Piano](https://www.goodreads.com/book/show/12811728-a-natural-history-of-the-piano),
+  which is a funny, pop book on the history of both the instruments and the artists.
+  I enjoyed reading it, since I definitely was unaware of a bunch of the history of the invention of the piano.
+- [Johann Joseph Fux: Study of Counterpoint](https://en.wikipedia.org/wiki/Johann_Joseph_Fux), 
+  which provides a socratic description of how to compose in counterpoint.
+  I'm still working through the book, but doing the exercises has been a blast so far.
+- [Open Music Theory](https://viva.pressbooks.pub/openmusictheory/),
+  an open textbook for 
 - [Ragtime music theory]
 - [Partimento for renaissance style italian music improvisation]
 - [Literally everything that Glenn Gould has ever said], since I consider the man to be a genius.
@@ -164,9 +169,18 @@ in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact
 - [Poetry by Vladimir Nabakov](https://www.poetryfoundation.org/poets/vladimir-nabokov).
   I really enjoy his poetry, since it's generally clever, witty, short, and rhymes,
   which makes it perfectly the type of thing I want to memorize. An example poem
-  of his, which I did memorize (thereby completing a life mission of memorizing poetry):
+  of his, "To the Grapefruit" which I did memorize (thereby completing a life mission of memorizing poetry):
 
-> 
+> To the Grapefruit by Vladmir Nabokov
+>
+>
+>
+>
+>
+>
+>
+>
+
 
 #### Other Reading
 
