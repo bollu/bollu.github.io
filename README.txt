@@ -1,9 +1,8 @@
-<h2> A Universe of Sorts
+<h1> A Universe of Sorts (Siddharth Bhat)
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="/static/banner.png">
-</h2>
-<h3> Siddharth Bhat </h3>
+</h1>
 
-- [Sign the Guestbook (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
+- [Sign the Guestbook / Write me a Message (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
@@ -100,6 +99,7 @@
 
 #### Optics and Photography
 
+My friend, [Anton Lydike](https://antonlydike.de/)
 - Classic Geometric Optics
 - [bollu/optics]
 - [Understanding Shutterspeed: Action, Low-Light and Creative Photography]
@@ -125,7 +125,10 @@ through no fault of hers. This led me to read quite a lot of compositional theor
   I'm still working through the book, but doing the exercises has been a blast so far.
 - [Open Music Theory](https://viva.pressbooks.pub/openmusictheory/),
   an open textbook for 
-- [Ragtime music theory]()
+- [Ragtime music theory](https://music.stackexchange.com/questions/44903/are-there-scales-and-chord-progressions-particularly-used-in-rag-music) appears to be much less well-developed.
+  I would **love** to have pointers on this, since I feel that even today, 
+  I cannot personally compose something as genius as [Maple Leaf Rag by Scott Joplin](https://www.youtube.com/watch?v=KYnR1zl7kFg),
+  as it's super harmonically dense. If someone has pointers, please drop me a message!
 - [Harmony, Counterpoint, Partimento: A New Method Inspired by Old Masters](https://global.oup.com/academic/product/harmony-counterpoint-partimento-9780190695019), where Partimento is a technique that's used to improvise in the old Renaissance style. I've been having a lot of fun studying and practiscing partimento theory.
 - [Literally everything that Glenn Gould has ever said](https://www.youtube.com/watch?v=Zf9pG_ZR0kA&list=PLfDJsIxawPH5w9nWWn0hiqV9BZqPbCORC), since I consider the man to be a genius.
   He was a strange musical savant, who had lots of entertaining opinions, such as the fact that "Mozart became a bad composer because he was so good at improvisation!"
