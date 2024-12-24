@@ -121,6 +121,18 @@
 
 
 #### Poetry
+
+- I spent a bunch of time this year trying to find poetry that I actually liked,
+  or to give up on the aesthetic project known as liking poetry.
+- I started from what I knew I actually liked, such as Shelley and Tennyson,
+  and then attempted to speedrun the next couple centuries of poetry history.
+- To do this, I would up watching lectures and performing background reading on literary critism.
+- In particular, the lecture series [Introduction to the theory of literature by Paul H Fry](https://www.youtube.com/watch?v=4YY4CTSQ8nY&list=PLD00D35CBC75941BD) was instrumental in this.
+- The lecture series covers the evolution of literature, poetry, and critiques of these by their respective communities.
+- This actually gave me lenses to understand why I should even bother caring about Auden, for example.
+- Paradoxically, this and surrounding reading made me *dislike* modernists even more --- 
+  A single useful article was [What is New formalism](https://www.jstor.org/stable/25501722) by Marjorie Levinson,
+  which 
 - [Rebel Angels: 25 Poets of the New Formalism]
 - [Poems by A.E. Stallings]
 - [One Robe, One Bowl: The Zen Poetry of Ryokan]
