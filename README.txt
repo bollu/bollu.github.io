@@ -113,7 +113,7 @@
 
 #### Music and Composition
 
-Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
+Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini](https://github.com/luisacicolini)) mysteriously got me back to playing the piano 
 through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
 
 
@@ -141,6 +141,10 @@ the [twelve tone theory by Schoenberg](https://en.wikipedia.org/wiki/Twelve-tone
 While I'm not a huge fan of the music, I can at the very least, understand what it's trying to do now! 
 
 #### Shakespeare
+
+I've always wanted to enjoy Shakespeare's works,
+and school sadly failed to impart any enjoyment of this to me.
+
 
 #### Poetry
 
