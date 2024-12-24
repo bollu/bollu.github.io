@@ -126,7 +126,10 @@
 - [One Robe, One Bowl: The Zen Poetry of Ryokan]
 
 #### Other Reading
-- [A Year in the Life of a Shinto Shrine]
+
+- A Year in the Life of a Shinto Shrine:
+  Really meditative book on an american family that goes and lives at a shinto shrine.
+  I only half-completed it, but I really did enjoy the meditative pace of the book.
 - [Imaginary Museums: Stories]
 - [The Name Of The Rose by Umberto Eco]
 - [Serendipities: Language And Lunacy by Umberto Eco]
