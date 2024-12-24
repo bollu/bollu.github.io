@@ -17,8 +17,6 @@
   theorem prover, which guides much of the reading I've done.
 - Early in the year, I wanted to correctly understand photography from first principles, so a lot of reading
   around light and optics are because of this.
-- Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
-  through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
 
 #### Resolution, UNSAT proof calculi, Bitlasting
 
@@ -115,6 +113,10 @@
 
 #### Music and Composition
 
+Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini]()) mysteriously got me back to playing the piano 
+through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
+
+
 - [A Natural History of the Piano](https://www.goodreads.com/book/show/12811728-a-natural-history-of-the-piano),
   which is a funny, pop book on the history of both the instruments and the artists.
   I enjoyed reading it, since I definitely was unaware of a bunch of the history of the invention of the piano.
@@ -123,13 +125,22 @@
   I'm still working through the book, but doing the exercises has been a blast so far.
 - [Open Music Theory](https://viva.pressbooks.pub/openmusictheory/),
   an open textbook for 
-- [Ragtime music theory]
-- [Partimento for renaissance style italian music improvisation]
-- [Literally everything that Glenn Gould has ever said], since I consider the man to be a genius.
-- Orbifolds for representing the space of scales: The tonnetz
-- More writing by [orbifold guy]
-- Fun fact, the [French Sixth] has a heck of a history.
+- [Ragtime music theory]()
+- [Harmony, Counterpoint, Partimento: A New Method Inspired by Old Masters](https://global.oup.com/academic/product/harmony-counterpoint-partimento-9780190695019), where Partimento is a technique that's used to improvise in the old Renaissance style. I've been having a lot of fun studying and practiscing partimento theory.
+- [Literally everything that Glenn Gould has ever said](https://www.youtube.com/watch?v=Zf9pG_ZR0kA&list=PLfDJsIxawPH5w9nWWn0hiqV9BZqPbCORC), since I consider the man to be a genius.
+  He was a strange musical savant, who had lots of entertaining opinions, such as the fact that "Mozart became a bad composer because he was so good at improvisation!"
 
+
+Toward this time, I also got interested in explanations of Jazz (a)tonality,
+so I went and asked [Alan Blackwell](https://www.cl.cam.ac.uk/~afb21/), who is a Professor of Interdisciplinary Design
+about where I could study such a theory. He pointed me to work by Dmitri Tymoczko,
+called [The Geometry of Musical Chords](https://dmitri.mycpanel.princeton.edu/files/publications/science.pdf),
+where one uses orbifolds to represent the [tonnetz](https://en.wikipedia.org/wiki/Tonnetz).
+This also led me into reading more about atonal music composition, and in particular,
+the [twelve tone theory by Schoenberg](https://en.wikipedia.org/wiki/Twelve-tone_technique).
+While I'm not a huge fan of the music, I can at the very least, understand what it's trying to do now! 
+
+#### Shakespeare
 
 #### Poetry
 
