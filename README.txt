@@ -17,14 +17,22 @@
 - Early in the year, I wanted to correctly understand photography from first principles, so a lot of reading
   around light and optics are because of this.
 
-#### Resolution, UNSAT proof calculi, Bitlasting
+### Resolution, UNSAT proof calculi, Bitlasting
+
+Much of this stuff was learnt in many discussions with my friend,
+[Henrik Boving](https://github.com/hargonix),
+and I had a lot of fun studying the theory of SAT solving
+and their UNSAT proofs.
+
+#### UNSAT proofs
 
 - [Resolution is refutation complete, a clean proof](https://arxiv.org/pdf/cs/0606084).
-  The proof is purely constructive, and 
+  The proof is purely constructive, and gives a nice intuition for how resolution "works".
 - Hyper-resolution: This is a cool proof system that is stronger than resolution, and whose
   completeness properties implies theorems like the nullstellensatz! I learnt
   of this from [Semantical Completeness Theorems in Logic and Algebra](https://web.archive.org/web/20170814075124id_/http://www.ams.org/journals/proc/1980-079-01/S0002-9939-1980-0560591-4/S0002-9939-1980-0560591-4.pdf).
-- [Interference based theorem proving]
+- [The Potential of Interference-Based Proof Systems](https://www.cs.utexas.edu/~marijn/publications/interference.pdf)
+  by Merijn Heule and Benjamin Kiesl.  
 - [lower bounds on resolution proofs]
 - [No known lower bounds on extended resolution proofs]
 - [the DRAT proof format]
@@ -33,11 +41,15 @@
 - [Nelson Oppen, Convex Theories, and Infinite Stability]
 - [Implementing Nelson Oppen, fast]
 - [Presburger arithmetic and bitvector theory]
+
+##### Interpolation and Model Checking
+
 - [Craig interpolation]
 - [Interpolant based model checking]
-- [leanprover/lean4]
-- the MiniSAT paper and the correctness of CD/CL algorithms
-- [bollu/minisat]
+
+##### Writing a SAT solver 
+
+The MiniSAT paper and the correctness of CD/CL algorithms. [bollu/minisat]
 
 
 #### Other Decision Procedures
@@ -60,13 +72,16 @@
 
 #### The 'To Read' List of Decision Procedures
 
-- When working at AWS, I got to talk to lots of fantastic folks who gave me lots of pointers to 
-  really interesting ideas, many of which I'm yet to read. 
-- Model based algorithms for UNSAT of LIA: Cutting to the chase.
-- String Solvers.
-- Shannon encoding for solving XOR constraints.
-- Cone of Influence based pruning.
-- HOL light has many algorithms that I'd never heard of before, including 
+When working at AWS,
+I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
+many of which I'm yet to read. I list them down here:
+
+- Model based algorithms for UNSAT of LIA: [Cutting to the chase](https://leodemoura.github.io/files/cutsat-jar2013.pdf).
+- [String Solvers](https://z3string.github.io/) for solving string constraints.
+  I started reading the theoretical landscape here, and it seems to be super weird ---
+  in particular, we don't even seem to have a clear computability theoretic understanding of strings plus integer solvers!
+- [Shannon encoding for solving XOR constraints]()
+- [Automating decidability of linear integer arithmetic with divisiblity constraints with Grobner Basis](https://www.cl.cam.ac.uk/~jrh13/papers/divisibility.pdf). More generally, HOL light has *lots* of solvers that we need to steal into Lean!
 
 #### Cambridge Vibes: Lectures and Reports
 
@@ -147,6 +162,12 @@ While I'm not a huge fan of the music, I can at the very least, understand what 
 
 I've always wanted to enjoy Shakespeare's works,
 and school sadly failed to impart any enjoyment of this to me.
+This year, I got two opportunities to learn more about Shakespeare.
+Firstly, there is [Shakespeare in the summer], ..
+Secondly, I watched the [Shakespeare lectures](https://www.youtube.com/watch?v=A0mFFJJLM2M&list=PLLDI7v5IxQYWolfIt1vY6R7BffGhQrbro)
+by [Marjorie Garber](https://en.wikipedia.org/wiki/Marjorie_Garber)
+with my ex-partner [Sahiti](https://itihas.review/archive) still-amazing-friend,
+which was a blast, since they're way better at this language stuff than I am!
 
 
 #### Poetry
