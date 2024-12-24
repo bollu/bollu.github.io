@@ -73,17 +73,19 @@
 
 #### Cambridge Vibes: Lectures and Reports
 
-- [Descriptive Complexity](https://www.cl.cam.ac.uk/~ad260/talks/caleidoscope1.pdf)
-- [Denotational Semantics by Meven](TODO). 
-  I loved the course, but I only attended sporadically. 
+- [Descriptive Complexity](https://www.cl.cam.ac.uk/~ad260/talks/caleidoscope1.pdf),
+  a course taught by [Anuj Dawar](https://www.cst.cam.ac.uk/people/ad260),
+  about capturing the power of different complexity classes by different logics.
+  It was a really cool course, and I learnt a bunch of uses for game semantics from it!
+  I would love to spend more time thinking about this stuff.
+- [Denotational Semantics](https://www.cl.cam.ac.uk/teaching/2324/DenotSem/) by [Meven Lennon-Bertrand](https://www.meven.ac/).
+  I loved the course, but I only attended sporadically. I've seen the material before, so I wanted to take it for review.
   Asking meven questions was always enlightening, and I learnt a lot from the many hallway conversations
   I've had with him, including a clarification of what the hell proof by reflection does.
 - To write my first year report, I wound up doing quite a bit of survey on verified compliation,
-  proof by reflection, and decision procedures. I'm going to only list the most salient bits here.
-- CakeML
-- ACL2 and its proof by computation, *without* dependent type theory. Also, [Shilpi Goel's]() thesis
-  on this is freaking excellent. 
-- Proof by Reflection in HOL/Light.
+  proof by reflection, and decision procedures. I'm going to only list the most salient bits here:
+  (i) CakeML, (ii) ACL2 and its proof by computation, *without* dependent type theory. Also, [Shilpi Goel's]() thesis
+  on this is freaking excellent, and (iii) proof by Reflection in HOL/Light.
 
 #### Projects for Master Students at Cambridge
 
