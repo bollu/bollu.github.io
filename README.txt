@@ -97,8 +97,8 @@
 
 - Classic Geometric Optics
 - [bollu/optics]
-- Exposure
-- Aperture
+- [Understanding Shutterspeed: Action, Low-Light and Creative Photography]
+- [Understanding Exposure: How to Shoot Great Photographs with a Film or Digital Camera]
 - What the heck is ISO?
 - Darktable user manual
 - Amazing blog that explains what DOF does with same pictures taken with all the different settings.
@@ -108,8 +108,8 @@
 
 #### Music and Composition
 
-- [History of the Piano]
-- [Fux: Counterpoint]
+- [A Natural History of the Piano]
+- [Fux: Study of Counterpoint]
 - [Open Music Theory]
 - [Ragtime music theory]
 - [Partimento for renaissance style italian music improvisation]
@@ -119,7 +119,16 @@
 - Fun fact, the [French Sixth] has a heck of a history.
 
 
-#### Fiction
+#### Poetry
+- [Rebel Angels: 25 Poets of the New Formalism]
+- [Poems by A.E. Stallings]
+- [One Robe, One Bowl: The Zen Poetry of Ryokan]
+
+#### Other Reading
+- [A Year in the Life of a Shinto Shrine]
+- [Imaginary Museums: Stories]
+- [The Name Of The Rose by Umberto Eco]
+- [Serendipities: Language And Lunacy by Umberto Eco]
 
 
 #### Plans for Next Year
@@ -49947,6 +49956,13 @@ speak slower than you want to.
 - Do this with whatever chord progression one has.
 - I must try this with the bakemonogatari soundtrack, particularly the song [sutekimeppou](https://www.youtube.com/watch?v=cJyPtpldb78&list=PLA0KqNE_ppfAPeYtMyt4QzyU1aB5cizrD&index=18), and [in the hall of the mountain king](https://www.youtube.com/watch?v=gSY-wD4l5DM).
 - This style is great to generate a strong bassline.
+
+
+#### Twelve bar blues conceptualization
+
+- Start with four copies of `I`. This will logarithmically decrease.
+- Next time, two copies of `IV`, two copies of `I`.
+- Next time, One `V`, one `IV`, two copies of `I`.
 
 #### Bird Changes
 
