@@ -122,20 +122,51 @@
 
 #### Poetry
 
-- I spent a bunch of time this year trying to find poetry that I actually liked,
-  or to give up on the aesthetic project known as liking poetry.
-- I started from what I knew I actually liked, such as Shelley and Tennyson,
-  and then attempted to speedrun the next couple centuries of poetry history.
-- To do this, I would up watching lectures and performing background reading on literary critism.
-- In particular, the lecture series [Introduction to the theory of literature by Paul H Fry](https://www.youtube.com/watch?v=4YY4CTSQ8nY&list=PLD00D35CBC75941BD) was instrumental in this.
-- The lecture series covers the evolution of literature, poetry, and critiques of these by their respective communities.
-- This actually gave me lenses to understand why I should even bother caring about Auden, for example.
-- Paradoxically, this and surrounding reading made me *dislike* modernists even more --- 
-  A single useful article was [What is New formalism](https://www.jstor.org/stable/25501722) by Marjorie Levinson,
-  which 
+I spent a bunch of time this year trying to find poetry that I actually liked,
+or to give up on the aesthetic project known as liking poetry.
+I started from what I knew I actually liked, such as Shelley and Tennyson,
+and then attempted to speedrun the next couple centuries of poetry history.
+To do this, I would up watching lectures and performing background reading on literary critism.
+In particular, the lecture series [Introduction to the theory of literature by Paul H Fry](https://www.youtube.com/watch?v=4YY4CTSQ8nY&list=PLD00D35CBC75941BD) was instrumental in this.
+The lecture series covers the evolution of literature, poetry, and critiques of these by their respective communities.
+This actually gave me lenses to understand why I should even bother caring about Auden, for example.
+Paradoxically, this and surrounding reading made me *dislike* modernists even more --- 
+A single useful article was [What is New formalism](https://www.jstor.org/stable/25501722) by Marjorie Levinson,
+which lays out the new formalism manifesto, which made me realize why I dislike most of the formalist 20th century poetry
+in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact like:
+
 - [Rebel Angels: 25 Poets of the New Formalism]
-- [Poems by A.E. Stallings]
+- Poems by [A.E. Stallings](https://www.poetryfoundation.org/poets/ae-stallings) and in particular, 
+  [Ajar](https://poetrysociety.org/poems-essays/in-their-own-words/a-e-stallings-on-ajar):
+
+> Ajar by A. E. Stallings
+> The washing-machine door broke.     We hand-washed for a week.
+> Left in the tub to soak,     the angers began to reek,
+> And sometimes when we spoke,     you said we shouldn't speak.
+>
+> Pandora was a bride; the     gods gave her a jar
+> But said don't look inside.     You know how stories are—
+> The can of worms denied?     It's never been so far.
+> 
+> Whatever the gods forbid,     it's sure someone will do,
+> And so Pandora did,     and made the worst come true.
+> She peeked under the lid,     and out all trouble flew:
+>
+> Sickness, war, and pain,     nerves frayed like fretted rope,
+> Every mortal bane     with which Mankind must cope.
+> The only thing to remain,     lodged in the mouth, was Hope.
+> 
+> Or so the tale asserts—     and who am I to deny it?
+> Yes, out like black-winged birds     the woes flew and ran riot,
+> But I say that the woes were words,     and the only thing left was quiet.
+
 - [One Robe, One Bowl: The Zen Poetry of Ryokan]
+- [Poetry by Vladimir Nabakov](https://www.poetryfoundation.org/poets/vladimir-nabokov).
+  I really enjoy his poetry, since it's generally clever, witty, short, and rhymes,
+  which makes it perfectly the type of thing I want to memorize. An example poem
+  of his, which I did memorize (thereby completing a life mission of memorizing poetry):
+
+> 
 
 #### Other Reading
 
