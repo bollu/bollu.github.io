@@ -89,12 +89,16 @@
 
 #### Projects for Master Students at Cambridge
 
-- `A=B`:
+- [`A=B`](https://www2.math.upenn.edu/~wilf/AeqB.html) is a decision procedure for deciding equalities of combinatorial
+  recurrences. I'm supervising [Ben Przybocki](https://github.com/bprzybocki), who's implementing
+  [Sister Celine's algorithm in Lean](https://github.com/bprzybocki/celine/blob/master/Celine/PolynomialComputable.lean).
 - [Solving Exists-Forall problems with Yikes](https://yices.csl.sri.com/papers/smt2015.pdf):
   We'll be using the algorithm to implement a formally verified version of John Reghr's
   recent work via [HYDRA: synthesizing peephole rewrites](https://users.cs.utah.edu/~regehr/generalization-oopsla24.pdf)
-- Adapt SAT based sudoku solvers to use [color constraints](http://www.taupierbw.be/SudokuCoach/SC_SimpleColoring.shtml)
-  Inspiration: [Video of solving a suduko-like with a single solution](TODO).
+- Adapt SAT based sudoku solvers to use [color constraints](http://www.taupierbw.be/SudokuCoach/SC_SimpleColoring.shtml).
+  Humans who solve sudoku have come up with a paradigm shift, where one can use colors to make certain 'symmetry arguments'.
+  I would be interested to extend a CDCL SAT solver to propagate such color constraints!
+  The inspiration: [The Miracle Sudoku, of solving a suduko-like with a single solution](https://www.youtube.com/watch?v=yKf9aUIxdb4).
 
 #### Optics and Photography
 
