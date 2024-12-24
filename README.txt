@@ -122,23 +122,19 @@
 #### Fiction
 
 
-
-
 #### Plans for Next Year
 
-- Take number fields course
-- Learn engineering drawing
-- Get good at blues scale playing and counterpoint composition + improv.
-
-# Darktable "Workflow"
-
-- workflow in quotes because it's designed by autists, of whom I am also one.
-
-
-#### Darkroom Shortcuts
-- space: next image
-- backspace: previous image
-- tab: toggle fullscreen
+- Take the number fields course at Cambridge,
+  since in trying to read the textbook 'computational algebraic number theory',
+  I realized that I know less algebraic number theory than I would have liked.
+- Learn engineering drawing: This has been a lifelong goal,
+  since I really enjoy architecture,
+  but this was boosted up the priority list when I asked [Keenan Crane](https://www.cs.cmu.edu/~kmcrane/)
+  how to learn to make pictures like his, and he recommended that I pick up engineering drawing.
+- Get good at blues scale playing and counterpoint composition + improv:
+  I find counterpoint to be really really satisfying to listen to,
+  so I'd like to spend some serious time getting good at improvising counterpoint!
+  Apparently, mozart used to be able to do it, so why not me `:)`.
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
 
