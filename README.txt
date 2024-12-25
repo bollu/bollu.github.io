@@ -32,7 +32,8 @@ and their UNSAT proofs.
   completeness properties implies theorems like the nullstellensatz! I learnt
   of this from [Semantical Completeness Theorems in Logic and Algebra](https://web.archive.org/web/20170814075124id_/http://www.ams.org/journals/proc/1980-079-01/S0002-9939-1980-0560591-4/S0002-9939-1980-0560591-4.pdf).
 - [The Potential of Interference-Based Proof Systems](https://www.cs.utexas.edu/~marijn/publications/interference.pdf)
-  by Merijn Heule and Benjamin Kiesl.  
+  by Merijn Heule and Benjamin Kiesl. This is a really interesting paper,
+  which explains how 
 - [lower bounds on resolution proofs]
 - [No known lower bounds on extended resolution proofs]
 - [the DRAT proof format]
