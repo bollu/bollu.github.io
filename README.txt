@@ -70,34 +70,45 @@ only after all of its children are.
 
 #### Other Decision Procedures
 
-- [Tarski's quantifier elimination for real closed fields]
-- [Cylindrical algebraic decomposition for deciding real closed fields]
-- [A survey of p-adic decision procedures]
-- [Safety, Liveness, and all that]
-- [Deciding the word problem for buchi automata]
-- [opencompl/lean-mlir]
-- [Computational Algebraic Number Theory]
-- [Knots and Links]
-- [The SnapPy project for 3-manifold algorithms]. In reading this,
-  I realized that I need to know a lot of 3-manifold theory,
-  so a current medium-to-long-term wishlist maths is to study
-  Thurston's [geometry and topology of 3-manifolds]().
-  To be extremeley honest, if it is possible, I am tempted to spend a semester at the
-  Indian Institute of Science reading through the book with [Siddhartha Gadgil's] supervision,
-  if he's interested to let me take this on.
+There are many more decision procedures I want to learn,
+mostly coming from algebraic number theory, algebraic geometry, and 3-manifold theory.
+Many of these are not critical to my day-to-day for the next year,
+but I consider it important that I know them, and so I list them out here.
 
-#### The 'To Read' List of Decision Procedures
+A good reference for some of the algebraic and number theoretic ones is 
+[Computational Algebraic number Theory] by Henri Cohen.
+
+
+[The SnapPy project for 3-manifold algorithms] has lots of super interesting
+algorithms for deciding facts about 3-manifolds.
+Since knots can be identified with their knot-complement, and apparently,
+the knot complement can be given a 3-manifold structure, it also provides decision procedures for knot.
+
+I realized that I need to know a lot of 3-manifold theory,
+so a current medium-to-long-term wishlist maths is to study
+Thurston's [geometry and topology of 3-manifolds]().
+To be extremeley honest, if it is possible, I am tempted to spend a semester at the
+Indian Institute of Science reading through the book with [Siddhartha Gadgil's] supervision,
+if he's interested to let me take this on.
 
 When working at AWS,
 I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
 many of which I'm yet to read. I list them down here:
 
+- [Tarski's quantifier elimination for real closed fields]
+- [Cylindrical algebraic decomposition for deciding real closed fields]
+- [A survey of p-adic decision procedures]
 - Model based algorithms for UNSAT of LIA: [Cutting to the chase](https://leodemoura.github.io/files/cutsat-jar2013.pdf).
 - [String Solvers](https://z3string.github.io/) for solving string constraints.
   I started reading the theoretical landscape here, and it seems to be super weird ---
   in particular, we don't even seem to have a clear computability theoretic understanding of strings plus integer solvers!
 - [Shannon encoding for solving XOR constraints]()
 - [Automating decidability of linear integer arithmetic with divisiblity constraints with Grobner Basis](https://www.cl.cam.ac.uk/~jrh13/papers/divisibility.pdf). More generally, HOL light has *lots* of solvers that we need to steal into Lean!
+
+A good reference for at least some of these appear to be the course called
+[Little Engines of Proof].
+
+
 
 #### Cambridge Vibes: Lectures and Reports
 
