@@ -141,17 +141,31 @@ A good reference for at least some of these appear to be the course called
 
 #### Optics and Photography
 
-My friend, [Anton Lydike](https://antonlydike.de/)
-- Classic Geometric Optics
-- [bollu/optics]
-- [Understanding Shutterspeed: Action, Low-Light and Creative Photography]
-- [Understanding Exposure: How to Shoot Great Photographs with a Film or Digital Camera]
-- What the heck is ISO?
-- Darktable user manual
-- Amazing blog that explains what DOF does with same pictures taken with all the different settings.
-- Many thanks to [Anton Lydike](), [Luisa Cicolini](), and [Sahiti Chedalavada]()
-  for the various conversations about this. 
+My friend, [Anton Lydike](https://antonlydike.de/) has been encouraging me to pick up photography,
+so I wound up doing that this year.
+I first began by learning about shutter speed and exposure, by reading the books
+(i) Understanding Shutterspeed: Action, Low-Light and Creative Photography, and
+(ii)Understanding Exposure: How to Shoot Great Photographs with a Film or Digital Camera.
 
+
+However, it wasn't clear to me that I actually understood what was going on,
+so I wound up writing a raytracing simulation for classic geometric optics to understand these phenomena,
+over at [bollu/optics](https://github.com/bollu/optics).
+
+TODO: embed videos here
+
+It was a really good exercise to both refresh my memory of raymarching,
+but also to setup scenes where I could understand what e.g. focal length and aperture did to the final image,
+as a function of incoming light waves. I'd highly recommend such an exercise to get a felt sense.
+
+
+Next, to learn how to actually edit photographs,
+I've been reading the [darktable user manual], which has lots of good information about the algorithms used for image processing.
+I enjoy their random asides, such as the whole tirade about [scene referred versus display referred workflows].
+TL;DR: Display referred assumes that light intensity can be normalized between $[0, 1]$ *before* starting processing.
+On the other hand, Scene referred only normalizes at the end, and thus light intensity live in $[0, \infty)$.
+I don't understand at all why the normalization is incorrect, so if someone wants to educate me,
+please do leave a comment below. Even so, I enjoy the sheer opinionatedness of it all.
 
 #### Music and Composition
 
