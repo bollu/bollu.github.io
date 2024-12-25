@@ -45,12 +45,21 @@ and their UNSAT proofs.
 
 ##### Interpolation and Model Checking
 
-- [Craig interpolation]
+I found the idea of interpolation based model checking to be extremely cool.
+The vibes are that if we know that 
+- [Craig interpolation](https://pixel-druid.com/articles/interpolants-vibes.html)
+  is a fundamental technique, which when given 
 - [Interpolant based model checking]
 
 ##### Writing a SAT solver 
 
-The MiniSAT paper and the correctness of CD/CL algorithms. [bollu/minisat]
+I've been implementing a SAT solver over at
+[`bollu/casette`](https://github.com/bollu/CASette/blob/master/minisat/minisat.cpp)
+by following the [MiniSAT paper](https://github.com/bollu/CASette/blob/master/minisat/minisat.pdf),
+and it's been super educational. 
+
+In general, it turns that implementing the core of a CDCL based, incremenetal SAT solver doesn't need too much!
+It needs some careful data structure engineering for doing efficient trail management and unit propagation,
 
 
 #### Other Decision Procedures
