@@ -60,7 +60,13 @@ and it's been super educational.
 
 In general, it turns that implementing the core of a CDCL based, incremenetal SAT solver doesn't need too much!
 It needs some careful data structure engineering for doing efficient trail management and unit propagation,
+but other than that, the rest is quite straightforward.
 
+I wasn't able to find a correctness proof for the calculation of the first UIP in the MiniSAT paper,
+so I wound up writing the prof down. The key insight is that given a DAG with a source vertex,
+the dominator of the sink vertex can be found by visiting nodes in *reverse* BFS order.
+The key invariant is that when visiting nodes in reverse BFS order, a node $p$ (parent) is visited
+only after all of its children are.
 
 #### Other Decision Procedures
 
