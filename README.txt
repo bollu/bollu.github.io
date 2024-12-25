@@ -279,6 +279,19 @@ in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact
 >
 
 
+Next year, I want to continue my quest of reading more "epic poetry".
+I read the divine comedy and Beowulf last year, and found it to be a lot of fun.
+This year, I have some more listed out, from different cultures.
+I don't know if I'll be able to find translations, but that's half the fun!
+
+- Tain bo Cuailnge
+- The Mabinogion
+- Grettis Saga
+- Beowulf: R.M. Liuzza
+- Kavevala
+- Nibelungenlied
+
+
 #### Other Reading
 
 - A Year in the Life of a Shinto Shrine:
@@ -302,6 +315,22 @@ in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact
   I find counterpoint to be really really satisfying to listen to,
   so I'd like to spend some serious time getting good at improvising counterpoint!
   Apparently, mozart used to be able to do it, so why not me `:)`.
+
+#### What does the year feel like?
+
+Overall, it was a really fulfilling year.
+I found out what I really want to do for my PhD, for real for real this time:
+Implement and verify decision procedures. 
+It fits exactly the kind of person I am: I enjoy thinking deeply about algorithms and proofs,
+and implementing kawaii cores with lots of surrounding heuristics to make stuff go fast!
+I'm super excited for 2025, because I feel like I've finally found product-market fit for my problem statement.
+
+It was a sad year too, 'cause I broke up with my long term partner.
+I'm optimistic that we'll remain best friends, as we were before we began dating,
+and I wanna see what they do next. 
+
+Cheers, and let me know what I should read, try, and do for next year.
+After all, New Year's resolutions are still a day or two away!
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
 
