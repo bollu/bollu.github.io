@@ -95,8 +95,8 @@ When working at AWS,
 I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
 many of which I'm yet to read. I list them down here:
 
-- [Tarski's quantifier elimination for real closed fields]
-- [Cylindrical algebraic decomposition for deciding real closed fields]
+- [Tarski's quantifier elimination for real closed fields],
+- [Cylindrical algebraic decomposition for deciding real closed fields]()
 - [A survey of p-adic decision procedures]
 - Model based algorithms for UNSAT of LIA: [Cutting to the chase](https://leodemoura.github.io/files/cutsat-jar2013.pdf).
 - [String Solvers](https://z3string.github.io/) for solving string constraints.
