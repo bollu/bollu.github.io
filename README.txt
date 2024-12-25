@@ -204,11 +204,22 @@ While I'm not a huge fan of the music, I can at the very least, understand what 
 I've always wanted to enjoy Shakespeare's works,
 and school sadly failed to impart any enjoyment of this to me.
 This year, I got two opportunities to learn more about Shakespeare.
-Firstly, there is [Shakespeare in the summer], ..
+
+
+Firstly, there is [Shakespeare in the summer],
+which is a local cambridge theater event where lots of shakespeare plays are put up by theater troupes.
+My friend, [John Mark Poole] took me to a bunch of these, and kindly explained to me both the historical context,
+as well as gave me a sense of how I ought to watch, compare, and contrast the different interpretations of the same play.
+I had a lot of fun with this, and I can definitely say that I enjoy shakespeare now. 
+
+
 Secondly, I watched the [Shakespeare lectures](https://www.youtube.com/watch?v=A0mFFJJLM2M&list=PLLDI7v5IxQYWolfIt1vY6R7BffGhQrbro)
 by [Marjorie Garber](https://en.wikipedia.org/wiki/Marjorie_Garber)
-with my ex-partner [Sahiti](https://itihas.review/archive) still-amazing-friend,
-which was a blast, since they're way better at this language stuff than I am!
+with my ex-partner [Sahiti](https://itihas.review/archive) and still-amazing-friend,
+which was a blast, since they're way better at this language stuff than I am.
+I personally found watching different interpretations of Macbeth to be super interesting,
+since Macbeth can be played as either tragic or as malevolent,
+and this totally changes the tenor and arc of the entire story.
 
 
 #### Poetry
