@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   line-height: 1.5em;
   color: #000000;
-  font-family: Blog Serif;
+  font-family: 'Blog Sans';
   font-size: 12px;
   margin-top: 0px;
   max-width: 100%;
@@ -37,7 +37,7 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Blog Mono', monospace;
+  font-family: 'Blog Serif', serif;
 }
 
 h1, h2 {
