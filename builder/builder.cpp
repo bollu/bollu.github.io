@@ -1681,9 +1681,10 @@ const char html_preamble[] =
 
 
 
-const char html_postamble[] = "</container>"
-                              "</body>"
-                              "</html>";
+#define html_postamble \
+   "</container>" \
+   "</body>" \
+   "</html>"
 
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
@@ -2002,8 +2003,35 @@ int main(int argc, char **argv) {
       continue;
     }
 
+    outlen += sprintf(outbuf + outlen, "<div id=\"footer\">");
+
+    if (ix_start > 1) {
+      int ix = ix_start - 1;
+      while(ix >= 0 && !is_h1(ts[ix])) { ix--; } 
+      if (ix >= 0  && is_h1(ts[ix])) {
+        THeading *prev = (THeading *)ts[ix];
+        outlen += sprintf(outbuf + outlen, "<a class=\"footer-item\" href=\"%s.html\"> Newer </a>",
+            mkHeadingURL(raw_input, prev));
+      }
+    } 
+    outlen += sprintf(outbuf + outlen,
+         "  ৪ <a href=\"/\" class=\"footer-item\"> Blog </a>  ৪  ");
+
+    if (ix_h1 < ts.size() - 1) {
+      int ix = ix_start +1;
+      while(ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
+      if (ix < (ll) ts.size() && is_h1(ts[ix])) {
+        THeading *next = (THeading *)ts[ix];
+        outlen += sprintf(outbuf + outlen, "<a class=\"footer-item\" href=\"%s.html\"> Older </a>", 
+            mkHeadingURL(raw_input, next));
+      }
+    }
+
+    outlen += sprintf(outbuf + outlen, "</div>");
+
+
     outlen += sprintf(outbuf + outlen, utterances_preamble);
-    outlen += sprintf(outbuf + outlen, "%s", html_postamble);
+    outlen += sprintf(outbuf + outlen, html_postamble);
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];

@@ -179,3 +179,15 @@ br {
   content: ""; /* clears default height */
   margin-top: 0; /* change this to whatever height you want it */
 }
+
+#footer {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer .footer-item {
+  padding-left: 1em;
+  padding-right: 1em;
+}
