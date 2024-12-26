@@ -1,5 +1,9 @@
 .PHONY: clean serve run-builder copy-to-out netlify
 
+
+serve: build-website
+	cd out && python3 -m http.server
+
 netlify: build/builder
 	netlify deploy --build 
 
@@ -7,9 +11,6 @@ netlify-prod: build/builder
 	netlify deploy --build --prod
 
 build-website: run-builder copy-to-out
-
-serve: build-website
-	cd out && python3 -m http.server
 
 clean:
 	rm -rf out

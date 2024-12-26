@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   line-height: 1.5em;
   color: #000000;
-  font-family: 'Blog Sans';
+  font-family: 'Blog Serif';
   font-size: 12px;
   margin-top: 0px;
   max-width: 100%;
@@ -77,8 +77,8 @@ img {
 
 @media (max-width: 1024px) {
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    max-width: 650px;
+    margin: 30px auto 0px auto;
   }
 
   body {
@@ -88,8 +88,8 @@ img {
 
 @media (min-width: 1024px) {
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    max-width: 650px;
+    margin: 30px auto 0px auto;
   }
 }
 
@@ -169,4 +169,11 @@ ol {
 
 ul {
   list-style-type: disclosure-closed;
+}
+
+/* https://stackoverflow.com/a/31633969/5305365 */
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 0; /* change this to whatever height you want it */
 }
