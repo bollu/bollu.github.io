@@ -315,6 +315,32 @@ void printf_err_span(Span span, const char *raw_input, const char *fmt, ...) {
   va_end(args);
 }
 
+// Print the line, while coloring spans with [delim...delim].
+void fprintf_line_marking_delimited_same_open_closed(FILE *f, const L l, const char delim, const char *raw_input) {
+
+    int i = l.si;
+    for (; i >= 1 && raw_input[i - 1] != '\n'; i--) { }
+
+    fprintf(f, "%4lld>", l.line);
+    bool inside = false;
+    string squiggle;
+    for (; raw_input[i] != '\0' && raw_input[i] != '\n'; ++i) {
+      if (raw_input[i] == delim) { inside = !inside; }
+
+      squiggle += (inside || raw_input[i] == delim) ? '^' : ' ';
+      fputc(raw_input[i], f);
+
+    }
+
+    fputc('\n', f);
+    fprintf(f, "%4lld>%s\n", l.line, squiggle.c_str());
+
+}
+
+void printf_line_marking_delimited_same_open_closed(const L l, const char delim, const char *raw_input) {
+  fprintf_line_marking_delimited_same_open_closed(stderr, l, delim, raw_input);
+}
+
 // T type, optional string data.
 struct T {
   TT ty = TT::Undefined;
@@ -503,6 +529,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
       // TODO: add color to the line!
       printf_err_span(Span(lbegin, lcur), s,
                 "inline latex block not allowed to be on two different lines.");
+      printf_line_marking_delimited_same_open_closed(lbegin, '$', s);
       assert(false && "inline latex block on two different lines.");
     }
 
