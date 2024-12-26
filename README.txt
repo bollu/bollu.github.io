@@ -1,5 +1,5 @@
+<img style="width: 3em" src="/static/banner.png">
 <h1> A Universe of Sorts (Siddharth Bhat)
-<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="/static/banner.png">
 </h1>
 
 - [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
