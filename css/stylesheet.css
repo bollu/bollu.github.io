@@ -27,9 +27,9 @@ html, body {
 
 body {
   min-height: 100vh;
-  line-height: 1.5em;
+  /* line-height: 1.5em; */
   color: #000000;
-  font-family: Blog Serif;
+  font-family: 'Blog Serif';
   font-size: 12px;
   margin-top: 0px;
   max-width: 100%;
@@ -37,7 +37,8 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Blog Mono', monospace;
+  font-family: 'Blog Serif', serif;
+  line-height: 1.1em;
 }
 
 h1, h2 {
@@ -57,8 +58,9 @@ img {
   height: 100%;
   min-height: 100%;
   max-width: 100%;
-  font-size: 18px;
-  line-height: 1.5em;
+  font-size: 1.5em;
+  /* line-height: 1.5em; */
+  line-height: 1.1em;
   padding-left: 30px;
   padding-right: 30px;
   background: #FFFFFF;
@@ -77,8 +79,8 @@ img {
 
 @media (max-width: 1024px) {
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    max-width: 650px;
+    margin: 30px auto 0px auto;
   }
 
   body {
@@ -88,8 +90,8 @@ img {
 
 @media (min-width: 1024px) {
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    max-width: 800px;
+    margin: 30px auto 0px auto;
   }
 }
 
@@ -146,7 +148,7 @@ pre {
 }
 
 .latexblock {
-  line-height: 1em
+  line-height: 1em;
 }
 
 pre,
@@ -169,4 +171,11 @@ ol {
 
 ul {
   list-style-type: disclosure-closed;
+}
+
+/* https://stackoverflow.com/a/31633969/5305365 */
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 0; /* change this to whatever height you want it */
 }

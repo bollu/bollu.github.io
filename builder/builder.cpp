@@ -911,11 +911,7 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
     Logger logger;
     logger.print(cerr);
     cerr << "tokenizeBlock->Code(" << lbegin << ")\n";
-    cerr << "LLLL\n";
-
     lcur = lcur.next("```");
-
-    cerr << "XXXX\n";
 
 
     const int LANG_NAME_SIZE = 20;
@@ -1425,7 +1421,9 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   }
 
   case TT::LineBreak: {
-    outs[outlen] = ' '; outlen++;
+    const char *br = "<br/>";
+    strcpy(outs + outlen, br);
+    outlen += strlen(br);
     return true;
   }
 
@@ -1569,6 +1567,7 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     for (T *t : group->items) {
       toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
     }
+    outlen += sprintf(outs + outlen, "</span>");
     return true;
   }
 
@@ -1626,6 +1625,7 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<blockquote>");
     for (auto it : tq->items) {
       toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
+      outlen += sprintf(outs + outlen, "<br/>");
     }
     outlen += sprintf(outs + outlen, "</blockquote>");
     return true;
