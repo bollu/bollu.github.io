@@ -27,7 +27,7 @@ html, body {
 
 body {
   min-height: 100vh;
-  line-height: 1.5em;
+  /* line-height: 1.5em; */
   color: #000000;
   font-family: 'Blog Serif';
   font-size: 12px;
@@ -57,8 +57,9 @@ img {
   height: 100%;
   min-height: 100%;
   max-width: 100%;
-  font-size: 18px;
-  line-height: 1.5em;
+  font-size: 1.5em;
+  /* line-height: 1.5em; */
+  line-height: 1.1em;
   padding-left: 30px;
   padding-right: 30px;
   background: #FFFFFF;
@@ -88,7 +89,7 @@ img {
 
 @media (min-width: 1024px) {
   .container {
-    max-width: 650px;
+    max-width: 800px;
     margin: 30px auto 0px auto;
   }
 }
