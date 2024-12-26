@@ -43,7 +43,7 @@ and their UNSAT proofs.
 ##### Interpolation and Model Checking
 
 I found the idea of interpolation based model checking to be extremely cool.
-The vibes are that if we know that 
+
 - [Craig interpolation](https://pixel-druid.com/articles/interpolants-vibes.html)
   is a fundamental technique, which when given 
 - [Interpolant based model checking](https://people.eecs.berkeley.edu/~alanmi/courses/2007_290N/papers/inter_mcmillan_cav03.pdf),
@@ -59,9 +59,11 @@ I've been implementing a SAT solver over at
 by following the [MiniSAT paper](https://github.com/bollu/CASette/blob/master/minisat/minisat.pdf),
 and it's been super educational. 
 
+
 In general, it turns that implementing the core of a CDCL based, incremenetal SAT solver doesn't need too much!
 It needs some careful data structure engineering for doing efficient trail management and unit propagation,
 but other than that, the rest is quite straightforward.
+
 
 I wasn't able to find a correctness proof for the calculation of the first UIP in the MiniSAT paper,
 so I wound up writing the prof down. The key insight is that given a DAG with a source vertex,
@@ -69,12 +71,14 @@ the dominator of the sink vertex can be found by visiting nodes in *reverse* BFS
 The key invariant is that when visiting nodes in reverse BFS order, a node $p$ (parent) is visited
 only after all of its children are.
 
+
 #### Other Decision Procedures
 
 There are many more decision procedures I want to learn,
 mostly coming from algebraic number theory, algebraic geometry, and 3-manifold theory.
 Many of these are not critical to my day-to-day for the next year,
 but I consider it important that I know them, and so I list them out here.
+
 
 A good reference for some of the algebraic and number theoretic ones is 
 [Computational Algebraic number Theory] by Henri Cohen.
@@ -108,7 +112,6 @@ many of which I'm yet to read. I list them down here:
 
 A good reference for at least some of these appear to be the course
 [Little Engines of Proof](https://www.csl.sri.com/users/shankar/LEP.html).
-
 
 
 #### Cambridge Vibes: Lectures and Reports
@@ -155,9 +158,11 @@ over at [bollu/optics](https://github.com/bollu/optics).
 
 TODO: embed videos here
 
+
 It was a really good exercise to both refresh my memory of raymarching,
 but also to setup scenes where I could understand what e.g. focal length and aperture did to the final image,
 as a function of incoming light waves. I'd highly recommend such an exercise to get a felt sense.
+
 
 
 Next, to learn how to actually edit photographs,
@@ -205,6 +210,7 @@ While I'm not a huge fan of the music, I can at the very least, understand what 
 I've always wanted to enjoy Shakespeare's works,
 and school sadly failed to impart any enjoyment of this to me.
 This year, I got two opportunities to learn more about Shakespeare.
+
 
 
 Firstly, there is [Shakespeare in the summer],
@@ -295,12 +301,12 @@ I don't know if I'll be able to find translations, but that's half the fun!
 
 #### Other Reading
 
-- A Year in the Life of a Shinto Shrine:
+- [A Year in the Life of a Shinto Shrine](https://www.goodreads.com/book/show/194854.A_Year_in_the_Life_of_a_Shinto_Shrine):
   Really meditative book on an american family that goes and lives at a shinto shrine.
   I only half-completed it, but I really did enjoy the meditative pace of the book.
-- [Imaginary Museums: Stories]
-- [The Name Of The Rose by Umberto Eco]
-- [Serendipities: Language And Lunacy by Umberto Eco]
+- [Imaginary Museums: Stories](https://softskull.com/books/imaginary-museums/)
+- [The Name Of The Rose by Umberto Eco](https://en.wikipedia.org/wiki/The_Name_of_the_Rose)
+- [Serendipities: Language And Lunacy by Umberto Eco](https://en.wikipedia.org/wiki/Serendipities)
 
 
 #### Plans for Next Year

@@ -1626,6 +1626,7 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<blockquote>");
     for (auto it : tq->items) {
       toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
+      outlen += sprintf(outs + outlen, "<br/>");
     }
     outlen += sprintf(outs + outlen, "</blockquote>");
     return true;
