@@ -61,6 +61,7 @@ using ll = long long;
 static const ll MAX_CHARS = 1e9;
 
 
+
 // indent for logging to tell which function is calling what.
 struct Logger {
   static int G_LOG_INDENT;
@@ -95,6 +96,7 @@ ll hashstr(const char *s, const ll len) {
   }
   return h;
 }
+
 
 enum class TT {
   Comment,
@@ -1188,8 +1190,9 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
     duk_pop(katex_ctx);
     // reload katex context.
     katex_ctx = load_katex();
+    // vim -c "call cursor(19, 11)"
+    assert(false && "unable to compile latex span");
     return {false, nullptr};
-    assert(false && "unable to compile katex");
   }
 }
 

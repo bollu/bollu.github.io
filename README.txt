@@ -2,7 +2,7 @@
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="/static/banner.png">
 </h1>
 
-- [Sign the Guestbook / Write me a Message (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
+- [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
@@ -753,7 +753,7 @@ mosh --ssh="/usr/bin/ssh -i /Users/bollu/.ssh/google_compute_engine" bollu@34.79
 - Such inferences are captured by a proof system, extended resolution (Tseitin 1966):
 
 $$
-x \not \in \Gamma, \overline x \not \in \Gamma \vdash (x \lor \lnot a \lor b) \land (\lnot x \or a) \land (\lnot x \or b)
+x \not \in \Gamma, \overline x \not \in \Gamma \vdash (x \lor \lnot a \lor b) \land (\lnot x \lor a) \land (\lnot x \lor b)
 $$
 
 - This adds the definition `x := AND(A, B)`.
@@ -779,7 +779,7 @@ $$
 - We want to add a clause $C \lor l$.
 - To preserve satisfiability, it must be that if we assign $l = T$, then all clauses in $F$ that are of the form $D \lor \lnot l$ are satisfiabile.
 - We can encode this by saying that $C \lor D$ is a tautology, because either $C$ is true, in which case we assign $l = F$, or $D$ is true, in which case we assign $l = T$.
-- Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lot \lnot l$.
+- Interestingly, see that $C \lor D$ is a resolvent at $l$ of $C \lor l$ with $D \lnot \lnot l$.
 - Extending Resolution with this rule gives expoentially smaller proofs.
 
 ## Autarkies
@@ -791,7 +791,7 @@ $$
 #### An example: pure literals
 
 - Think of the case of a assignment $A[l] = T$ that occurs in a formula $\Gamma$ only positively. 
-- For any clause $C \in \Gamma$ such that $l \in C$, we have that $C[A] = T$, since l$ only occurs positively.
+- For any clause $C \in \Gamma$ such that $l \in C$, we have that $C[A] = T$, since $l$ only occurs positively.
 - Thus, computing $\Gamma[A]$ will make all clauses that contain $l$ "vanish". It's as if we didn't have $l$ at all.
 - See that this is equisatisfiable with the original formala.
 - If $\Gamma$ has a satisfying assignment $A'$, then since $l$ only occurs positively, we can tweak and see that $A'[l := T]$ also makes $\Gamma$ SAT.
@@ -815,7 +815,7 @@ $$
 
 ## Conditional Autarky
 
-- An assigment $A \equiv A_{con} \sqcup A_{aut}$ is a **conditional autarky** for $\Gamma$ if $\A_{aut}$ is an autarky for $\Gamma[A_{con}]$.
+- An assigment $A \equiv A_{con} \sqcup A_{aut}$ is a **conditional autarky** for $\Gamma$ if $A_{aut}$ is an autarky for $\Gamma[A_{con}]$.
 - This says that once we substitute $A_{con}$, we get an autarky $A_{aut}$.
 - We claim that $\Gamma$ and $\Gamma \land (A_{con} \implies A_{aut})$ are equisatisfiable, if $A$ is a conditional autarky.
 - Clearly, if $\Gamma \land (A_{con} \implies A_{aut})$ is SAT, then $\Gamma$ is SAT.
@@ -1131,7 +1131,7 @@ Ab C: Ab Major 3 interval
 - Let $b(t)$ where $t \in [0, 1]$ be a arclength parametrization of the circle's boundary.
 - Then the permiter is $P = \int_0^ b(t)$.
 - The troll proof depends on creating a sequence of functions $b_i(t)$,
-  where $\int_0^1 b_i(t) = 4$ for all $b_i$, such that $b_i \tendsto b$ pointwise, but not uniformly.
+  where $\int_0^1 b_i(t) = 4$ for all $b_i$, such that $b_i \to b$ pointwise, but not uniformly.
 - Intuitively, why do we need uniform convergence here 
 
 #### Another example: $x \mapsto x^n$ on $[0, 1]$
@@ -1290,7 +1290,6 @@ Ab C: Ab Major 3 interval
 - We do this by writing a gigantic system of equations, of the form `A(p, q, x, t) f(x, t) - b(p, q) = 0`.
 - Here, `f(x, t)` is a `15x1` size vector. Essentially, time just becomes another dimension, and we vectorize everything to get a gigantic matrix.
 
-```
 
 # Categorification of sets works because it's a presheaf on a single point
 
@@ -1592,6 +1591,7 @@ repeat until fixpoint:
       u = gesym()
       Purify[f(..., t, ...)] => Purify[f(..., u, ...)] /\ u = t
 ```
+
 - Consider example:
 
 ```
@@ -1606,7 +1606,6 @@ Functions:  f(v1) != f(v2)
 Arrays:     v1 == v3[v4], v3 == Store(x, y, v5)
 Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 ```
-
 
 ### Convex Theory
 
