@@ -20,7 +20,7 @@
 ### Resolution, UNSAT proof calculi, Bitlasting
 
 Much of this stuff was learnt in many discussions with my friend,
-[Henrik Boving](https://github.com/hargonix),
+[Henrik Böving](https://github.com/hargonix),
 and I had a lot of fun studying the theory of SAT solving
 and their UNSAT proofs.
 
