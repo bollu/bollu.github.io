@@ -33,15 +33,12 @@ and their UNSAT proofs.
   of this from [Semantical Completeness Theorems in Logic and Algebra](https://web.archive.org/web/20170814075124id_/http://www.ams.org/journals/proc/1980-079-01/S0002-9939-1980-0560591-4/S0002-9939-1980-0560591-4.pdf).
 - [The Potential of Interference-Based Proof Systems](https://www.cs.utexas.edu/~marijn/publications/interference.pdf)
   by Merijn Heule and Benjamin Kiesl. This is a really interesting paper,
-  which explains how 
-- [lower bounds on resolution proofs]
-- [No known lower bounds on extended resolution proofs]
-- [the DRAT proof format]
-- [the LRAT proof format]
-- [Bitwuzla sources]
-- [Nelson Oppen, Convex Theories, and Infinite Stability]
-- [Implementing Nelson Oppen, fast]
-- [Presburger arithmetic and bitvector theory]
+  which explains how proof systems that involve rules with the *global* set of clauses, that can "interfere"
+  with each other can give rise to more powerful proof systems.
+- [Lower bounds on resolution proofs](https://cs.stackexchange.com/a/124485/122524), [No known lower bounds on extended resolution proofs](https://dl.acm.org/doi/pdf/10.1145/1008335.1008338).
+- I read quite a lot of the source code of [Bitwuzla](https://github.com/bitwuzla/bitwuzla),
+  a state of the art SMT solver for bitvectors, arrays, uninterpreted functions,
+  and used its encodings for the formally verified bitblasting circuits in Lean.
 
 ##### Interpolation and Model Checking
 
@@ -49,7 +46,11 @@ I found the idea of interpolation based model checking to be extremely cool.
 The vibes are that if we know that 
 - [Craig interpolation](https://pixel-druid.com/articles/interpolants-vibes.html)
   is a fundamental technique, which when given 
-- [Interpolant based model checking]
+- [Interpolant based model checking](https://people.eecs.berkeley.edu/~alanmi/courses/2007_290N/papers/inter_mcmillan_cav03.pdf),
+  which is a *really cool* paper that showed for the first time how one can use interpolants to compute inductive
+  invariants for model checking. I found the idea to be super clever, 
+  and also the idea of using interpolation as an "extrapolation" between the current step and the next step
+  was super kawaii.
 
 ##### Writing a SAT solver 
 
@@ -86,7 +87,7 @@ the knot complement can be given a 3-manifold structure, it also provides decisi
 
 I realized that I need to know a lot of 3-manifold theory,
 so a current medium-to-long-term wishlist maths is to study
-Thurston's [geometry and topology of 3-manifolds]().
+Thurston's [geometry and topology of 3-manifolds](https://www.math.unl.edu/~jkettinger2/thurston.pdf).
 To be extremeley honest, if it is possible, I am tempted to spend a semester at the
 Indian Institute of Science reading through the book with [Siddhartha Gadgil's] supervision,
 if he's interested to let me take this on.
@@ -95,18 +96,18 @@ When working at AWS,
 I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
 many of which I'm yet to read. I list them down here:
 
-- [Tarski's quantifier elimination for real closed fields],
-- [Cylindrical algebraic decomposition for deciding real closed fields]()
+- Tarski's quantifier elimination for real closed fields
+- Cylindrical algebraic decomposition for deciding real closed fields
 - [A survey of p-adic decision procedures]
 - Model based algorithms for UNSAT of LIA: [Cutting to the chase](https://leodemoura.github.io/files/cutsat-jar2013.pdf).
 - [String Solvers](https://z3string.github.io/) for solving string constraints.
   I started reading the theoretical landscape here, and it seems to be super weird ---
   in particular, we don't even seem to have a clear computability theoretic understanding of strings plus integer solvers!
-- [Shannon encoding for solving XOR constraints]()
+- Shannon encoding for solving XOR constraints
 - [Automating decidability of linear integer arithmetic with divisiblity constraints with Grobner Basis](https://www.cl.cam.ac.uk/~jrh13/papers/divisibility.pdf). More generally, HOL light has *lots* of solvers that we need to steal into Lean!
 
-A good reference for at least some of these appear to be the course called
-[Little Engines of Proof].
+A good reference for at least some of these appear to be the course
+[Little Engines of Proof](https://www.csl.sri.com/users/shankar/LEP.html).
 
 
 
