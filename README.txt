@@ -15,11 +15,11 @@
   which was to design, implement, and verify the correctness of decicision procedures for the [Lean](https://github.com/leanprover/lean4)
   theorem prover, which guides much of the reading I've done.
 
-### Resolution, UNSAT proof calculi, Bitlasting
+## Resolution, UNSAT proof calculi, Bitlasting
 
 Much of this stuff was learnt in many discussions with my friend,
-[Henrik Böving](https://github.com/hargonix),
-and I had a lot of fun studying the theory of SAT solving
+[Henrik Böving](https://github.com/hargonix).
+I had a lot of fun studying the theory of SAT solving
 and their UNSAT proofs.
 
 #### UNSAT proofs
@@ -78,14 +78,10 @@ Many of these are not critical to my day-to-day for the next year,
 but I consider it important that I know them, and so I list them out here.
 
 A good reference for some of the algebraic and number theoretic ones is 
-[Computational Algebraic number Theory] by Henri Cohen.
-
-
-[The SnapPy project for 3-manifold algorithms] has lots of super interesting
-algorithms for deciding facts about 3-manifolds.
+[Computational Algebraic number Theory](https://link.springer.com/book/10.1007/978-3-662-02945-9) by Henri Cohen.
+[The SnapPy project for 3-manifold algorithms](https://snappy.computop.org/) has lots of super interesting algorithms for deciding facts about 3-manifolds.
 Since knots can be identified with their knot-complement, and apparently,
 the knot complement can be given a 3-manifold structure, it also provides decision procedures for knot.
-
 I realized that I need to know a lot of 3-manifold theory,
 so a current medium-to-long-term wishlist maths is to study
 Thurston's [geometry and topology of 3-manifolds](https://www.math.unl.edu/~jkettinger2/thurston.pdf).
@@ -126,8 +122,7 @@ A good reference for at least some of these appear to be the course
   I've had with him, including a clarification of what the hell proof by reflection does.
 - To write my first year report, I wound up doing quite a bit of survey on verified compliation,
   proof by reflection, and decision procedures. I'm going to only list the most salient bits here:
-  (i) CakeML, (ii) ACL2 and its proof by computation, *without* dependent type theory. Also, [Shilpi Goel's]() thesis
-  on this is freaking excellent, and (iii) proof by Reflection in HOL/Light.
+  (i) CakeML, (ii) ACL2 and its proof by computation, *without* dependent type theory. 
 
 #### Projects for Master Students at Cambridge
 
@@ -142,7 +137,7 @@ A good reference for at least some of these appear to be the course
   I would be interested to extend a CDCL SAT solver to propagate such color constraints!
   The inspiration: [The Miracle Sudoku, of solving a suduko-like with a single solution](https://www.youtube.com/watch?v=yKf9aUIxdb4).
 
-#### Optics and Photography
+## Optics and Photography
 
 My friend, [Anton Lydike](https://antonlydike.de/) has been encouraging me to pick up photography,
 so I wound up doing that this year.
@@ -157,26 +152,11 @@ over at [bollu/optics](https://github.com/bollu/optics).
 It was a really good exercise to both refresh my memory of raymarching,
 but also to setup scenes where I could understand what e.g. focal length and aperture did to the final image,
 as a function of incoming light waves. I'd highly recommend such an exercise to get a felt sense.
-Videos of the simulation below:
-
-##### Defocusing when object is not on focal plane
-
-<video width="480" height="320" controls="controls">
-<source src="https://github.com/bollu/optics/assets/1694861/bc70df51-4724-4f25-8c6b-1f9950616c68" type="video/mp4">
-</video>
-
-##### Aperture size versus sharpness for depth of field
-
-<video width="480" height="320" controls="controls">
-<source src="https://github.com/bollu/optics/assets/1694861/bd09661a-69e9-4ec4-af6a-e924e2a4eee0" type="video/mp4">
-</video>
-
-
-##### Thin Lens versus Thick lens and parallelism of points at infinity
-
-<video width="480" height="320" controls="controls">
-<source src="https://github.com/bollu/optics/assets/1694861/9a92637d-a93e-4017-bbb8-7e15d039a9f2" type="video/mp4">
-</video>
+The simulation was written in C++, with [raylib](https://www.raylib.com/) as the GUI library.
+Raylib's a blast to work with, and was super enjoyable to write code in!
+However, I think I like [egui](https://github.com/emilk/egui) better, 
+cause it's just much more fun to write Rust, and it's API is so much more ergonomic.
+Regardless, [Link to the simluation video](https://www.youtube.com/embed/videoseries?si=HaAfWrnUsrXNzhYT&amp;list=PL_lmHTgqbbe-wLss60niRBz6MKTI5o-Lw).
 
 
 Next, to learn how to actually edit photographs,
@@ -189,7 +169,7 @@ please do leave a comment below. Even so, I enjoy the sheer opinionatedness of i
 
 Anyway, I [plug my DeviantArt here, so give a follow if you like!](https://www.deviantart.com/b011u)
 
-#### Music and Composition
+## Music and Composition
 
 Unexpectedly, in the middle of a year, a friend ([Luisa Cicolini](https://github.com/luisacicolini)) mysteriously got me back to playing the piano 
 through no fault of hers. This led me to read quite a lot of compositional theory, music history, and counterpoint.
@@ -221,7 +201,35 @@ This also led me into reading more about atonal music composition, and in partic
 the [twelve tone theory by Schoenberg](https://en.wikipedia.org/wiki/Twelve-tone_technique).
 While I'm not a huge fan of the music, I can at the very least, understand what it's trying to do now! 
 
-#### Shakespeare
+#### Monodrone
+
+In a fit of insanity, I decided that I wanted to precisely understand how a tracker
+such as [MilkyTracker](https://milkytracker.org/) worked, so I decided to write one myself.
+However, I hate debugging off-by-one-errors, and so, I decided to formally verify the whole thing in Lean instead.
+This lead to [bollu/monodrone](https://github.com/bollu/monodrone/tree/the-enemy), where the core
+tracker data structure was written in [pure lean4](https://github.com/bollu/monodrone/blob/8040de7f7e6b8c2c63d5873f46e74a6012d81931/Monodrone.lean),
+with a [rust ffi](https://github.com/bollu/monodrone/blob/8040de7f7e6b8c2c63d5873f46e74a6012d81931/src/monodroneffi.rs),
+and a [cargo build script](https://github.com/bollu/monodrone/blob/8040de7f7e6b8c2c63d5873f46e74a6012d81931/build.rs) to smash Rust and Lean together,
+and a egui-based UI for rendering.
+This was quite fun, and I managed to snipe a friend, [Sébastien Michelland](https://silent-tower.net/)
+to write an alternative [Coq formalization](https://github.com/bollu/monodrone/blob/the-enemy/the-enemy/Sequencer.v) that he felt was more elegant.
+
+Moreover, I wound up extending it with a [chord recognition algorithm](https://github.com/bollu/monodrone/blob/master/src/chords.rs),
+since I was trying to think about chord inversions and extensions in the process of getting back to piano.
+This was a wild ride, because it seems that the state of the art is to make
+[gigantic tables ala `Music21`](https://github.com/cuthbertLab/music21/blob/e05fc53dfef7b2c9ac974c0cacb8b85e9c4d4605/music21/chord/tables.py),
+which is based on [Neo Riemannian / Tonnetz based](https://en.wikipedia.org/wiki/Neo-Riemannian_theory) chord naming conventions,
+or to use atonal music theory [See Alan forte: The structure of atonal music](https://ianring.com/musictheory/scales/#primeform).
+I disliked both ideas, and instead just wrote something that brute forces all possibilities and ranks the outcomes based on a vibes-guided heuristic.
+It works well enough that I'm happy with it!
+
+The funny thing was, while I did this purely for recreation, having thought about deciding the
+overlapping of 1D contiguous segments of notes turned out to be exactly what AWS wanted me to do,
+except one replaced "notes" with "memory regions"! This just got me even more convinced that no
+screwing around with code is ever wasted.
+
+
+## Shakespeare
 
 I've always wanted to enjoy Shakespeare's works,
 and school sadly failed to impart any enjoyment of this to me.
@@ -242,7 +250,7 @@ and this totally changes the tenor and arc of the entire story.
 Overall, I'm really happy that I learnt how to enjoy Shakespeare this year,
 and I'm looking forward to continue to engage with more of the canon next year.
 
-#### Poetry
+## Poetry
 
 I spent a bunch of time this year trying to find poetry that I actually liked,
 or to give up on the aesthetic project known as liking poetry.
@@ -330,7 +338,7 @@ I don't know if I'll be able to find translations, but that's half the fun!
 [Kavevala, which is finnish epic poetry](https://en.wikipedia.org/wiki/Kalevala),
 and [Nibelungenlied, an epic poem in High German](https://en.wikipedia.org/wiki/Nibelungenlied).
 
-#### Other Reading
+## Other Reading
 
 - [A Year in the Life of a Shinto Shrine](https://www.goodreads.com/book/show/194854.A_Year_in_the_Life_of_a_Shinto_Shrine):
   Really meditative book on an american family that goes and lives at a shinto shrine.
@@ -354,7 +362,7 @@ and [Nibelungenlied, an epic poem in High German](https://en.wikipedia.org/wiki/
   Once again, horrible story, would recommend.
 
 
-#### Plans for Next Year
+## Plans for Next Year
 
 - Implement all the decision procedures! 
   But really, I want to polish up Lean's bitvecotr support till we have formally verified versions
@@ -374,7 +382,7 @@ and [Nibelungenlied, an epic poem in High German](https://en.wikipedia.org/wiki/
   so I'd like to spend some serious time getting good at improvising counterpoint!
   Apparently, mozart used to be able to do it, so why not me `:)`.
 
-#### What does the year feel like?
+## What does the year feel like?
 
 Overall, it was a really fulfilling year.
 I found out what I really want to do for my PhD, for real for real this time:
