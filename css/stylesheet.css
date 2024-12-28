@@ -72,9 +72,6 @@ img {
     margin-right: 1%;
   }
 
-  body {
-    font-size: 30px;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -83,9 +80,6 @@ img {
     margin: 30px auto 0px auto;
   }
 
-  body {
-    font-size: 30px;
-  }
 }
 
 @media (min-width: 1024px) {

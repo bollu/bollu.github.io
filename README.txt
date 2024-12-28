@@ -15,7 +15,7 @@
   which was to design, implement, and verify the correctness of decicision procedures for the [Lean](https://github.com/leanprover/lean4)
   theorem prover, which guides much of the reading I've done.
 
-## Resolution, UNSAT proof calculi, Bitlasting
+## Resolution, UNSAT proof calculi, Bibtlasting
 
 Much of this stuff was learnt in many discussions with my friend,
 [Henrik Böving](https://github.com/hargonix).
@@ -72,25 +72,15 @@ only after all of its children are.
 
 #### Other Decision Procedures
 
-There are many more decision procedures I want to learn,
-mostly coming from algebraic number theory, algebraic geometry, and 3-manifold theory.
-Many of these are not critical to my day-to-day for the next year,
-but I consider it important that I know them, and so I list them out here.
-
-A good reference for some of the algebraic and number theoretic ones is 
-[Computational Algebraic number Theory](https://link.springer.com/book/10.1007/978-3-662-02945-9) by Henri Cohen.
-[The SnapPy project for 3-manifold algorithms](https://snappy.computop.org/) has lots of super interesting algorithms for deciding facts about 3-manifolds.
-Since knots can be identified with their knot-complement, and apparently,
-the knot complement can be given a 3-manifold structure, it also provides decision procedures for knot.
-I realized that I need to know a lot of 3-manifold theory,
-so a current medium-to-long-term wishlist maths is to study
-Thurston's [geometry and topology of 3-manifolds](https://www.math.unl.edu/~jkettinger2/thurston.pdf).
-To be extremeley honest, if it is possible, I am tempted to spend a semester at the
-Indian Institute of Science reading through the book with [Siddhartha Gadgil's](https://math.iisc.ac.in/~gadgil/) supervision,
-if he's interested to let me take this on.
-
-When working at AWS, I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
-many of which I'm yet to read. I list them down here:
+When interning at AWS, I got to talk to lots of fantastic folks,
+including [Shilpi Goel](https://scholar.google.com/citations?user=M0pZM9wAAAAJ&hl=en),
+[Jim Grundy](https://www.linkedin.com/in/jim-grundy-b050b21),
+[Leonardo De Moura](https://leodemoura.github.io/),
+[Kim Morisson](https://github.com/kim-em),
+[Nathan Wetzler](https://scholar.google.com/citations?user=bq5khYQAAAAJ&hl=en),
+[John Harrison](https://www.cl.cam.ac.uk/~jrh13/) and many others,
+who gave me lots of pointers to really interesting ideas many of which I'm yet to read.
+I list them down here:
 
 - Tarski's quantifier elimination for real closed fields
 - Cylindrical algebraic decomposition for deciding real closed fields.
@@ -108,6 +98,24 @@ many of which I'm yet to read. I list them down here:
 
 A good reference for at least some of these appear to be the course
 [Little Engines of Proof](https://www.csl.sri.com/users/shankar/LEP.html).
+
+There are many more decision procedures I want to learn,
+mostly coming from algebraic number theory, algebraic geometry, and 3-manifold theory.
+Many of these are not critical to my day-to-day for the next year,
+but I consider it important that I know them, and so I list them out here.
+
+A good reference for some of the algebraic and number theoretic ones is 
+[Computational Algebraic number Theory](https://link.springer.com/book/10.1007/978-3-662-02945-9) by Henri Cohen.
+[The SnapPy project for 3-manifold algorithms](https://snappy.computop.org/) has lots of super interesting algorithms for deciding facts about 3-manifolds.
+Since knots can be identified with their knot-complement, and apparently,
+the knot complement can be given a 3-manifold structure, it also provides decision procedures for knot.
+I realized that I need to know a lot of 3-manifold theory,
+so a current medium-to-long-term wishlist maths is to study
+Thurston's [geometry and topology of 3-manifolds](https://www.math.unl.edu/~jkettinger2/thurston.pdf).
+To be extremeley honest, if it is possible, I am tempted to spend a semester at the
+Indian Institute of Science reading through the book with [Siddhartha Gadgil's](https://math.iisc.ac.in/~gadgil/) supervision,
+if he's interested to let me take this on.
+
 
 #### Cambridge Vibes: Lectures and Reports
 
