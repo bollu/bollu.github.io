@@ -3,19 +3,17 @@
 </h1>
 
 - [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a>
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
 # Stuff I learnt in 2024
 
-- Quick TL;DR of the year: My [research group](TODO) moved from Edinburgh to Cambridge,
+- Quick TL;DR of the year: My [research group](https://grosser.science/) moved from Edinburgh to Cambridge,
   so I was looking forward to lots of courses to take! 
 - I'd also settled in on an area I wanted to work on for my PhD,
-  which was to design, implement, and verify the correctness of decicision procedures for the [Lean](TODO)
+  which was to design, implement, and verify the correctness of decicision procedures for the [Lean](https://github.com/leanprover/lean4)
   theorem prover, which guides much of the reading I've done.
-- Early in the year, I wanted to correctly understand photography from first principles, so a lot of reading
-  around light and optics are because of this.
 
 ### Resolution, UNSAT proof calculi, Bitlasting
 
@@ -42,15 +40,16 @@ and their UNSAT proofs.
 
 ##### Interpolation and Model Checking
 
-I found the idea of interpolation based model checking to be extremely cool.
+I found he idea of interpolation based model checking to be extremely cool.
 
 - [Craig interpolation](https://pixel-druid.com/articles/interpolants-vibes.html)
-  is a fundamental technique, which when given 
+  is a fundamental technique, which when given formulae $A$ and $B$ such that $A \implies B$,
+  builds a new formula $C$ such that $A \implies C$ and $C \implies B$,
+  furthermore, $C$ has variables that occur only in both $A$ and $B$.
 - [Interpolant based model checking](https://people.eecs.berkeley.edu/~alanmi/courses/2007_290N/papers/inter_mcmillan_cav03.pdf),
   which is a *really cool* paper that showed for the first time how one can use interpolants to compute inductive
   invariants for model checking. I found the idea to be super clever, 
-  and also the idea of using interpolation as an "extrapolation" between the current step and the next step
-  was super kawaii.
+  and also the idea of using interpolation as an "extrapolation" between the current step and the next step was super kawaii.
 
 ##### Writing a SAT solver 
 
@@ -63,7 +62,6 @@ and it's been super educational.
 In general, it turns that implementing the core of a CDCL based, incremenetal SAT solver doesn't need too much!
 It needs some careful data structure engineering for doing efficient trail management and unit propagation,
 but other than that, the rest is quite straightforward.
-
 
 I wasn't able to find a correctness proof for the calculation of the first UIP in the MiniSAT paper,
 so I wound up writing the prof down. The key insight is that given a DAG with a source vertex,
@@ -79,7 +77,6 @@ mostly coming from algebraic number theory, algebraic geometry, and 3-manifold t
 Many of these are not critical to my day-to-day for the next year,
 but I consider it important that I know them, and so I list them out here.
 
-
 A good reference for some of the algebraic and number theoretic ones is 
 [Computational Algebraic number Theory] by Henri Cohen.
 
@@ -93,26 +90,28 @@ I realized that I need to know a lot of 3-manifold theory,
 so a current medium-to-long-term wishlist maths is to study
 Thurston's [geometry and topology of 3-manifolds](https://www.math.unl.edu/~jkettinger2/thurston.pdf).
 To be extremeley honest, if it is possible, I am tempted to spend a semester at the
-Indian Institute of Science reading through the book with [Siddhartha Gadgil's] supervision,
+Indian Institute of Science reading through the book with [Siddhartha Gadgil's](https://math.iisc.ac.in/~gadgil/) supervision,
 if he's interested to let me take this on.
 
-When working at AWS,
-I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
+When working at AWS, I got to talk to lots of fantastic folks who gave me lots of pointers to really interesting ideas,
 many of which I'm yet to read. I list them down here:
 
 - Tarski's quantifier elimination for real closed fields
-- Cylindrical algebraic decomposition for deciding real closed fields
-- [A survey of p-adic decision procedures]
+- Cylindrical algebraic decomposition for deciding real closed fields.
+- [Quantifier Elimination in p-adic Fields](https://academic.oup.com/comjnl/article-pdf/36/5/419/1105591/360419.pdf),
+  which surveys decision procedures for deciding the first-order field theory of the p-adics.
 - Model based algorithms for UNSAT of LIA: [Cutting to the chase](https://leodemoura.github.io/files/cutsat-jar2013.pdf).
 - [String Solvers](https://z3string.github.io/) for solving string constraints.
   I started reading the theoretical landscape here, and it seems to be super weird ---
   in particular, we don't even seem to have a clear computability theoretic understanding of strings plus integer solvers!
 - Shannon encoding for solving XOR constraints
-- [Automating decidability of linear integer arithmetic with divisiblity constraints with Grobner Basis](https://www.cl.cam.ac.uk/~jrh13/papers/divisibility.pdf). More generally, HOL light has *lots* of solvers that we need to steal into Lean!
+- [Automating decidability of linear integer arithmetic with divisiblity constraints with Grobner Basis](https://www.cl.cam.ac.uk/~jrh13/papers/divisibility.pdf).
+  More generally, HOL light has *lots* of solvers that we need to steal into Lean!
+- [Exists-forall solvers](https://yices.csl.sri.com/papers/smt2015.pdf) by model-based generalization.
+- [Reed Muller expansion and XOR-based normal forms](https://www.physics.dcu.ie/~bl/digi/unitd19.pdf)
 
 A good reference for at least some of these appear to be the course
 [Little Engines of Proof](https://www.csl.sri.com/users/shankar/LEP.html).
-
 
 #### Cambridge Vibes: Lectures and Reports
 
@@ -147,31 +146,48 @@ A good reference for at least some of these appear to be the course
 
 My friend, [Anton Lydike](https://antonlydike.de/) has been encouraging me to pick up photography,
 so I wound up doing that this year.
-I first began by learning about shutter speed and exposure, by reading the books
-(i) Understanding Shutterspeed: Action, Low-Light and Creative Photography, and
-(ii)Understanding Exposure: How to Shoot Great Photographs with a Film or Digital Camera.
+I first began by learning about shutter speed and exposure, by reading the books:
 
+- Understanding Shutterspeed: Action, Low-Light and Creative Photography, and
+- Understanding Exposure: How to Shoot Great Photographs with a Film or Digital Camera.
 
 However, it wasn't clear to me that I actually understood what was going on,
 so I wound up writing a raytracing simulation for classic geometric optics to understand these phenomena,
 over at [bollu/optics](https://github.com/bollu/optics).
-
-TODO: embed videos here
-
-
 It was a really good exercise to both refresh my memory of raymarching,
 but also to setup scenes where I could understand what e.g. focal length and aperture did to the final image,
 as a function of incoming light waves. I'd highly recommend such an exercise to get a felt sense.
+Videos of the simulation below:
 
+##### Defocusing when object is not on focal plane
+
+<video width="480" height="320" controls="controls">
+<source src="https://github.com/bollu/optics/assets/1694861/bc70df51-4724-4f25-8c6b-1f9950616c68" type="video/mp4">
+</video>
+
+##### Aperture size versus sharpness for depth of field
+
+<video width="480" height="320" controls="controls">
+<source src="https://github.com/bollu/optics/assets/1694861/bd09661a-69e9-4ec4-af6a-e924e2a4eee0" type="video/mp4">
+</video>
+
+
+##### Thin Lens versus Thick lens and parallelism of points at infinity
+
+<video width="480" height="320" controls="controls">
+<source src="https://github.com/bollu/optics/assets/1694861/9a92637d-a93e-4017-bbb8-7e15d039a9f2" type="video/mp4">
+</video>
 
 
 Next, to learn how to actually edit photographs,
-I've been reading the [darktable user manual], which has lots of good information about the algorithms used for image processing.
+I've been reading the [darktable user manual](https://docs.darktable.org/usermanual/4.0/en/), which has lots of good information about the algorithms used for image processing.
 I enjoy their random asides, such as the whole tirade about [scene referred versus display referred workflows].
 TL;DR: Display referred assumes that light intensity can be normalized between $[0, 1]$ *before* starting processing.
 On the other hand, Scene referred only normalizes at the end, and thus light intensity live in $[0, \infty)$.
 I don't understand at all why the normalization is incorrect, so if someone wants to educate me,
 please do leave a comment below. Even so, I enjoy the sheer opinionatedness of it all.
+
+Anyway, I [plug my DeviantArt here, so give a follow if you like!](https://www.deviantart.com/b011u)
 
 #### Music and Composition
 
@@ -187,14 +203,14 @@ through no fault of hers. This led me to read quite a lot of compositional theor
   I'm still working through the book, but doing the exercises has been a blast so far.
 - [Open Music Theory](https://viva.pressbooks.pub/openmusictheory/),
   an open textbook for 
-- [Ragtime music theory](https://music.stackexchange.com/questions/44903/are-there-scales-and-chord-progressions-particularly-used-in-rag-music) appears to be much less well-developed.
-  I would **love** to have pointers on this, since I feel that even today, 
+- [Ragtime music theory](https://music.stackexchange.com/questions/44903/are-there-scales-and-chord-progressions-particularly-used-in-rag-music)
+  appears to be much less well-developed.
+  I would **love** to have pointers on how to compose ragtime, since I feel that even today, 
   I cannot personally compose something as genius as [Maple Leaf Rag by Scott Joplin](https://www.youtube.com/watch?v=KYnR1zl7kFg),
   as it's super harmonically dense. If someone has pointers, please drop me a message!
 - [Harmony, Counterpoint, Partimento: A New Method Inspired by Old Masters](https://global.oup.com/academic/product/harmony-counterpoint-partimento-9780190695019), where Partimento is a technique that's used to improvise in the old Renaissance style. I've been having a lot of fun studying and practiscing partimento theory.
 - [Literally everything that Glenn Gould has ever said](https://www.youtube.com/watch?v=Zf9pG_ZR0kA&list=PLfDJsIxawPH5w9nWWn0hiqV9BZqPbCORC), since I consider the man to be a genius.
   He was a strange musical savant, who had lots of entertaining opinions, such as the fact that "Mozart became a bad composer because he was so good at improvisation!"
-
 
 Toward this time, I also got interested in explanations of Jazz (a)tonality,
 so I went and asked [Alan Blackwell](https://www.cl.cam.ac.uk/~afb21/), who is a Professor of Interdisciplinary Design
@@ -210,24 +226,21 @@ While I'm not a huge fan of the music, I can at the very least, understand what 
 I've always wanted to enjoy Shakespeare's works,
 and school sadly failed to impart any enjoyment of this to me.
 This year, I got two opportunities to learn more about Shakespeare.
-
-
-
-Firstly, there is [Shakespeare in the summer],
-which is a local cambridge theater event where lots of shakespeare plays are put up by theater troupes.
-My friend, [John Mark Poole] took me to a bunch of these, and kindly explained to me both the historical context,
+Firstly, there was [Shakespeare in the summer](https://cambridgeshakespeare.com/faqs/),
+which is a Cambridge event where lots of shakespeare plays are put up by theater troupes.
+My friend, John Mark Poole, took me to a bunch of these, and kindly explained to me both the historical context,
 as well as gave me a sense of how I ought to watch, compare, and contrast the different interpretations of the same play.
-I had a lot of fun with this, and I can definitely say that I enjoy shakespeare now. 
-
-
+I had a lot of fun with this, and I can definitely say that I enjoy shakespeare now!
 Secondly, I watched the [Shakespeare lectures](https://www.youtube.com/watch?v=A0mFFJJLM2M&list=PLLDI7v5IxQYWolfIt1vY6R7BffGhQrbro)
 by [Marjorie Garber](https://en.wikipedia.org/wiki/Marjorie_Garber)
-with my ex-partner [Sahiti](https://itihas.review/archive) and still-amazing-friend,
+with my ex-partner-and-still-amazing-friend [Sahiti](https://itihas.review/archive),
 which was a blast, since they're way better at this language stuff than I am.
 I personally found watching different interpretations of Macbeth to be super interesting,
 since Macbeth can be played as either tragic or as malevolent,
 and this totally changes the tenor and arc of the entire story.
 
+Overall, I'm really happy that I learnt how to enjoy Shakespeare this year,
+and I'm looking forward to continue to engage with more of the canon next year.
 
 #### Poetry
 
@@ -244,7 +257,7 @@ A single useful article was [What is New formalism](https://www.jstor.org/stable
 which lays out the new formalism manifesto, which made me realize why I dislike most of the formalist 20th century poetry
 in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact like:
 
-- [Rebel Angels: 25 Poets of the New Formalism]
+- [Rebel Angels: 25 Poets of the New Formalism](https://en.wikipedia.org/wiki/Rebel_Angels:_25_Poets_of_the_New_Formalism)
 - Poems by [A.E. Stallings](https://www.poetryfoundation.org/poets/ae-stallings) and in particular, 
   [Ajar](https://poetrysociety.org/poems-essays/in-their-own-words/a-e-stallings-on-ajar):
 
@@ -269,35 +282,53 @@ in the first place! Anyway, I wound up collecting a bunch of poetry I do in fact
 > Yes, out like black-winged birds     the woes flew and ran riot,
 > But I say that the woes were words,     and the only thing left was quiet.
 
-- [One Robe, One Bowl: The Zen Poetry of Ryokan]
+- [One Robe, One Bowl: The Zen Poetry of Ryokan](https://terebess.hu/zen/mesterek/robe.pdf)
+
+
+> The theif left it behind—
+> the moon
+> At the window
+
+> Today’s begging is finished; at the crossroads
+> I wander by the side of Hachiman Shrine
+> Talking with some children.
+> Last year, a foolish monk;
+> This year, no change!
+
+> Twilight, --- the only conversation
+> on this hill
+> Is the wind blowing through the pines
+
 - [Poetry by Vladimir Nabakov](https://www.poetryfoundation.org/poets/vladimir-nabokov).
   I really enjoy his poetry, since it's generally clever, witty, short, and rhymes,
   which makes it perfectly the type of thing I want to memorize. An example poem
   of his, "To the Grapefruit" which I did memorize (thereby completing a life mission of memorizing poetry):
 
 > To the Grapefruit by Vladmir Nabokov
+> Resplendent fruit, so weightly and so glossy,
+> exactly like a full-blown moon you shine;
+> hermetic vessel of unsweet ambrosia
+> and aromatic coolness of white wine.
 >
->
->
->
->
->
->
->
+> The lemon is the pride of Syracuse,
+> Mignon yields to the orange's delights,
+> but you alone are fit to quench the Muse
+> when,thirsty, she has come down from her heights.
 
+I memorized "To the grapefruit" as a personal challenge to myself,
+and that was a really fun exercise! I'm glad that it's now with me, forever.
+It feels similar to learning proofs, to be honest, and I seem to bring it out and turn it in my mind
+as often as I do a pretty proof. I'm considering memorizing ["Lilith"](https://ruverses.com/vladimir-nabokov/lilith/6253/) next,
+and I'm open to suggestions for somewhat-short, rhyming poems that are very, very clever.
 
 Next year, I want to continue my quest of reading more "epic poetry".
 I read the divine comedy and Beowulf last year, and found it to be a lot of fun.
 This year, I have some more listed out, from different cultures.
 I don't know if I'll be able to find translations, but that's half the fun!
-
-- Tain bo Cuailnge
-- The Mabinogion
-- Grettis Saga
-- Beowulf: R.M. Liuzza
-- Kavevala
-- Nibelungenlied
-
+[Tain bo Cuailnge](https://en.wikipedia.org/wiki/T%C3%A1in_B%C3%B3_C%C3%BAailnge), aka the irish illiad,
+[Beowulf: A new verse translation by R.M. Liuzza](https://goodreads.com/book/show/19185.Beowulf__Broadview_Literary_Texts_Series_),
+[Kavevala, which is finnish epic poetry](https://en.wikipedia.org/wiki/Kalevala),
+and [Nibelungenlied, an epic poem in High German](https://en.wikipedia.org/wiki/Nibelungenlied).
 
 #### Other Reading
 
@@ -307,10 +338,28 @@ I don't know if I'll be able to find translations, but that's half the fun!
 - [Imaginary Museums: Stories](https://softskull.com/books/imaginary-museums/)
 - [The Name Of The Rose by Umberto Eco](https://en.wikipedia.org/wiki/The_Name_of_the_Rose)
 - [Serendipities: Language And Lunacy by Umberto Eco](https://en.wikipedia.org/wiki/Serendipities)
+- [Man and his symbols: Jung](https://en.wikipedia.org/wiki/Man_and_His_Symbols).
+  I reread parts of this book most years, and this year was no exception.
+  I wound up returning to it because of the [weird studies podcast](https://www.weirdstudies.com/)
+  discussions on Tarot. I like living life based on vibes, and so Jung is peak how-to-live-by-vibes.
+- [Suture](https://www.goodreads.com/en/book/show/57136856-suture) disturbing, well written body horror.
+- [Brothers Karamazov by Dostovyesky](https://en.wikipedia.org/wiki/The_Brothers_Karamazov),
+  which I bounced off of halfway, because it felt like it couldn't decide if it was a philosophy book or a novel.
+- [Marco Valdo by Italo Calvino](https://en.wikipedia.org/wiki/Marcovaldo),
+  which felt like invisible-cities-lite, with short slice of life stories, all of them surreal.
+- [The Divine Farce](https://www.goodreads.com/book/show/6693658-the-divine-farce),
+  which explores the meaning of life in the most horrible parable possible.
+- [A short stay in hell](https://www.goodreads.com/book/show/13456414-a-short-stay-in-hell),
+  which is a meditation on what the Library of Babel would be like if meted out as punishment.
+  Once again, horrible story, would recommend.
 
 
 #### Plans for Next Year
 
+- Implement all the decision procedures! 
+  But really, I want to polish up Lean's bitvecotr support till we have formally verified versions
+  of the commonly used tools in the LLVM community, following which I shall write either solvers
+  for LIA, or for strings.
 - Take the number fields course at Cambridge,
   since in trying to read the textbook 'computational algebraic number theory',
   I realized that I know less algebraic number theory than I would have liked.
@@ -318,6 +367,8 @@ I don't know if I'll be able to find translations, but that's half the fun!
   since I really enjoy architecture,
   but this was boosted up the priority list when I asked [Keenan Crane](https://www.cs.cmu.edu/~kmcrane/)
   how to learn to make pictures like his, and he recommended that I pick up engineering drawing.
+  A cambridge professor, [Nathan Crilly](https://www-edc.eng.cam.ac.uk/people/nc266.html),
+  kindly offered to help me self-study, so that's what I'll be doing!
 - Get good at blues scale playing and counterpoint composition + improv:
   I find counterpoint to be really really satisfying to listen to,
   so I'd like to spend some serious time getting good at improvising counterpoint!
@@ -333,8 +384,8 @@ and implementing kawaii cores with lots of surrounding heuristics to make stuff 
 I'm super excited for 2025, because I feel like I've finally found product-market fit for my problem statement.
 
 It was a sad year too, 'cause I broke up with my long term partner.
-I'm optimistic that we'll remain best friends, as we were before we began dating,
-and I wanna see what they do next. 
+I'm optimistic that we'll remain close friends, as we were before we began dating,
+and I am super excited to see what they do next!
 
 Cheers, and let me know what I should read, try, and do for next year.
 After all, New Year's resolutions are still a day or two away!
