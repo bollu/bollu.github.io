@@ -48980,7 +48980,7 @@ let g:conjure#mapping#eval_motion = "E"
 > "can you keep a secret father?" Priest says "yes son", and the
 > heretic replies "so can I."
 
-> John von Neuman,e one of the greatest mathematicians and computer scientists
+> John von Neumann, one of the greatest mathematicians and computer scientists
 > of the 20th century, regarding the danger of mathematics driven solely by
 > internal esthetics: “There is a grave danger that the subject will develop
 > along the line of least resistance.”
