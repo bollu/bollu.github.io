@@ -12,7 +12,7 @@
 - Quick TL;DR of the year: My [research group](https://grosser.science/) moved from Edinburgh to Cambridge,
   so I was looking forward to lots of courses to take! 
 - I'd also settled in on an area I wanted to work on for my PhD,
-  which was to design, implement, and verify the correctness of decicision procedures for the [Lean](https://github.com/leanprover/lean4)
+  which was to design, implement, and verify the correctness of decision procedures for the [Lean](https://github.com/leanprover/lean4)
   theorem prover, which guides much of the reading I've done.
 
 ## Resolution, UNSAT proof calculi, Bitlasting
