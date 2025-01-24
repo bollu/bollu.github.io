@@ -7,6 +7,31 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Wisdom of Critial Pair Theory
+
+Old rules:
+
+```
+(twoPow w i) * x = x <<< i
+x * (twoPow w i) = x <<< i
+twoPow w i * twoPow w j = twoPow w (i + j)
+```
+- Leads to non-confluence, `twoPow w i * twoPow w j` becomes:
+- (a) `twoPow w (i + j)`
+- (b) `twoPow w i <<< j`
+- (c) `twoPow w j <<< i`
+
+> "When you have a non confluent simp set identify the problematic left hand side and come up with a new rule to join the divergence".
+
+
+New rules:
+
+```
+BitVec.twoPow x * y = y <<< x
+x * BitVec.twoPow y = x <<< y
+(BitVec.twoPow x) <<< y = BitVec.twoPow (x + y)
+```
+
 # Stuff I learnt in 2024
 
 - Quick TL;DR of the year: My [research group](https://grosser.science/) moved from Edinburgh to Cambridge,
