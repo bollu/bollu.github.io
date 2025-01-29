@@ -7,6 +7,12 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Experimental Evaluation Setup I'm Happy With
+
+- Write all data into sqlite database files.
+- Use sqlite database file to be crash-tolerant.
+- View sqlite database quickly using visidata.
+
 # Wisdom of Critial Pair Theory
 
 Old rules:
