@@ -1,3 +1,6 @@
+#import "@preview/ctheorems:1.1.3": *
+#show: thmrules
+
 By default, all $k = overline(k)$ and $text("char")(k) = 0$.
 
 == Affine $n$ space
