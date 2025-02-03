@@ -48704,6 +48704,53 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet
 
+#### Egg Curry
+
+- 4 to 6 eggs say
+- Cook the eggs by placing them in water & boiling the water for about 20 to 25 mts.
+- use 3 medium sized onions. Slice each longitudanlly into 6 big slices.
+- cook the onions alone by adding little water, salt, turmeric, and a few crushed pepper corns (8 to 10)
+- Add a small piece of ginger (small square pieces) if you have.
+- Now you should add the masala (ideally done by grinding roasted coriander, jeera, red chillies and coconut) [Ajjis masala powder has them all].
+  So you may use 3 to 4 spoons of the powder and add them on the onions.
+- also some coconut milk.
+- add water to  form a thick gravy on the onions. Also place all the cooked eggs in the onion pan after scoring the eggs longitudanlly.
+- peel a few garlic cloves (3 to 4) and crush them alongwith some jeera seeds if you have; otherwise use them alone.
+- bring the pan to a boil and on boiling add the crushed garlic.
+- you may add a spoon of butter or ghee finally and also bunch of karipatta leaves if available.
+
+#### Methi Baath 
+
+- Rice - 1 cup (approx 200 gms maybe)
+- Tomatoes- 3 ripe ones medium sized
+- Methi leaves- 3 to 4 bunches (300 to 400 gms maybe)
+- Onion- 3 medium sized
+- Green chillies-3
+- Pepper corns, Cinnamon, 3 cloves
+- Slice the onions diagonally into thin pieces. Also same with the tomatoes. Also the green chillies.
+- Cut the methi leaves into small pieces after washing them.
+- Clean the white  rice and soak in 2 cups of water for about 30 mts or so. ( Doesn't matter if it is less or more)
+- Take a pan. Add some oil, coconut or any other cooking. Add few cinnamon pieces and few cloves, and few crushed pepper corns (8 to 10). 
+- Heat the pan when the cloves swelling, add green chillies first. Saute. Then
+  add the onions. Saute till translucent till nice smell starts to emante. Next
+  add tomatoes and saute for a few mts till they blend.
+- add 2 spoons of garam masala. One spoon red chillie powder. I tsp salt.
+- Add methi leaves. Saute for few minutes till they blend into the onion and tomatoes
+- add few pieces of jaggery or few spoons 1 or 2 spoons of jaggery powder. 
+- take all the rice from the water and add it to the pan. Add 1 or 2 spoons of ghee and saute the rice for 1 or 2 minutes, after which add the water
+- add salt. mix it all and check the taste. Add more garam masala if needed!
+- close the pressure cooker and bring one hiss.
+- Methi baath is now ready for consumption! Eat alongside fryums and enjoy the rice baath :)
+
+#### Brinjal / Vaangi Baath
+
+- Here you can use 3 brinjals, 3 onions, 3 green chillies and 3 tomatoes for 1 cup of rice 
+- Cut the brinjal into big square pieces.
+- Frying them nicely till their colour change will take a little time, close to 10 minutes.
+- You can use some tamarind juice or few spoons of lemon juice for some additional taste. Also the jaggery.
+- Water is always 2 cups for 1 cup rice. That's the thumb rule even with any amount of vegetables.
+- Also a spoon of jaggery.
+
 #### A Simple Stew
 
 - chop onions
