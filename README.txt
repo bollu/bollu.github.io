@@ -2770,8 +2770,17 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - Let us have a transition system with $T(s, s')$ be the transition relation, $I$ b the initial condition, and $F$ the failure property.
   So the system is safe if no $T$-reachable state from the initial state satisfies $F$.
 - We will build a SAT formula where a satisfying assignment is a path to the failure.
-
-
+- Let $t_0(s_0) \equiv I(s_0)$, $t_1(s_0, s_1) \equiv I(s_0) \land  T(s_0, s_1)$, and so on, with $t_{i+1} \equiv t_i \land T(s_i, s_{i+1})$.
+- Suppose we show that $t_0 \land F(s_0)$ is UNSAT. This tells us that we do not fail in zero steps.
+- Suppose we show $\forall s_1, t_1(s_0, s_1) \land F(s_1)$ is UNSAT. This tells us that we do not fail at depth 1 for all possible reachable states.
+- Suppose we show $\forall s_1 s_2, t_2(s_0, s_1, s_2) \land F(s_2)$ is UNSAT. That is, we prove $\forall s_1 s_2, (I(s_0) \land T(s_0, s_1)) \land (T(s_1, s_2) \land F(s_2))$ is UNSAT.
+- If we think of the first part as $P \equiv I(s_0) \land T(s_0, s_1)$, and the second part as $Q \equiv T(s_1, s_2) \land F(s_2)$, then the common variables of $P$ and $Q$ is exactly $s_1$, which represents the state $s_1$. In general, it will be the propositional variables used to *represent* $s_1$.
+- Since $P \land Q$ is UNSAT, we know that there is no counter-example of length $k$. So, we compute interpolant $P'(s_2)$.
+- Since $P'$ is an interpolant, we know that $P \models P'$, which is to say, $I \land T(s_0, s_1) \models P'(s_1)$. This means that $P'$ is true of all states that are reachable in one step!
+- In this sense, $P'$ is an overapproximation of the forward image of $I$ (of 1 step), which is $I \land T(s_0, s_1)$.
+- Furthermore, we know that $P' \land Q$ is UNSAT, which means that $\forall s_1 s_2, P'(s_1) \land T(s_1, s_2) \land F(s_2)$ is UNSAT, we know that no state statisfying $P'$
+  can reach a bad state in $(k-1)$ steps.
+- This over-approximate image can be **iterated** to compute an over-approximsation of the reachable states.
 
 # AWS MathFest 2024
 
