@@ -2781,6 +2781,7 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - Furthermore, we know that $P' \land Q$ is UNSAT, which means that $\forall s_1 s_2, P'(s_1) \land T(s_1, s_2) \land F(s_2)$ is UNSAT, we know that no state statisfying $P'$
   can reach a bad state in $(k-1)$ steps.
 - This over-approximate image can be **iterated** to compute an over-approximsation of the reachable states.
+- [McMillan Applications of Craig Interpolation in Model Checking](https://mcmil.net/pubs/TACAS05.pdf)
 
 # AWS MathFest 2024
 
