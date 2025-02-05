@@ -13,6 +13,10 @@
 - Use sqlite database file to be crash-tolerant.
 - View sqlite database quickly using visidata.
 
+# Tree Interpolants
+
+= [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
+
 # Wisdom of Critial Pair Theory
 
 Old rules:
