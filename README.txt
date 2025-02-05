@@ -2762,6 +2762,14 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - Actually, I realized I don't understand this. will come back to it.
 
 
+#### McMillan Viewpoint
+
+- [Notes from McMillan](https://www.cs.sfu.ca/~ter/old-CMPT477-777-fall2016/CMPT477-777-fall2016/Plan_Reading_files/14c-Interpolation-based-MC.pdf)
+- If $P$ and $Q$ are inconsistent, then there is a $P'$ is their shared language such that $P \models P'$ and $P' \and Q$ is inconsistent.
+- $P'$ is an abstraction of $P$ from the viewpoint of $Q$. $P'$ summaries and translates into the shared language, why $P$ is inconsistent with $Q$.
+
+
+
 # AWS MathFest 2024
 
 - We had an interesting question at the AWS MathFest.
