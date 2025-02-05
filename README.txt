@@ -2767,6 +2767,9 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 - [Notes from McMillan](https://www.cs.sfu.ca/~ter/old-CMPT477-777-fall2016/CMPT477-777-fall2016/Plan_Reading_files/14c-Interpolation-based-MC.pdf)
 - If $P$ and $Q$ are inconsistent, then there is a $P'$ is their shared language such that $P \models P'$ and $P' \and Q$ is inconsistent.
 - $P'$ is an abstraction of $P$ from the viewpoint of $Q$. $P'$ summaries and translates into the shared language, why $P$ is inconsistent with $Q$.
+- Let us have a transition system with $T(s, s')$ be the transition relation, $I$ b the initial condition, and $F$ the failure property.
+  So the system is safe if no $T$-reachable state from the initial state satisfies $F$.
+- We will build a SAT formula where a satisfying assignment is a path to the failure.
 
 
 
