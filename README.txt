@@ -7,15 +7,18 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+
 # Experimental Evaluation Setup I'm Happy With
 
-- Write all data into sqlite database files.
-- Use sqlite database file to be crash-tolerant.
-- View sqlite database quickly using visidata.
+- Use python as a lightweight scripting language, with `asyncio` for spawning many processes.
+- Use `logging` to log info, and use python's inbuilt logger to write to a log file as well as stdout/stderr.
+- Write all data into sqlite database files, and use sqlite database file to be crash-tolerant, to keep track of how many tasks have finished.
+- View sqlite database quickly using `visidata` in the command line, and load into further processing scripts via `duckdb`.
 
 # Tree Interpolants
 
-= [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
+- [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
 
 # Wisdom of Critial Pair Theory
 
