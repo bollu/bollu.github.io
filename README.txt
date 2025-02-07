@@ -8,7 +8,6 @@
 - **It's useful to finish things.**
 
 
-
 # Experimental Evaluation Setup I'm Happy With
 
 - Use python as a lightweight scripting language, with `asyncio` for spawning many processes.
