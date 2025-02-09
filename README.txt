@@ -48731,6 +48731,23 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet
 
+#### Ciambelline al vino: red wine and aniseed biscuits
+
+- [Alternative Recipe Link](https://www.crumbsonthetable.co.uk/ciambelline-al-vino-red-wine-and-aniseed-biscuits/)
+- 500 g di farina
+- 100 ml di olio
+- 100 ml di vino 
+- una bustina di lievito Angelo
+- 150 g  zucchero + lo zucchero (se di canna vengono)
+- che serve all' esterno dopo aver formato  i tarallucci Cottura a 180 C gradi
+-  2-3 level teaspoons aniseed (I use the full tablespoon)
+-  2-3 level teaspoons fennel seed (I use the full tablespoon)
+
+For rolling the ciambelline before baking:
+
+- About 100ml (scant ½ cup) red wine
+- 200g (1 cup) sugar, ideally coarse-grained sugar (e.g., granulated rather than caster sugar)
+
 #### Egg Curry
 
 - 4 to 6 eggs say
