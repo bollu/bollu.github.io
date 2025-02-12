@@ -48731,6 +48731,15 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet
 
+#### Kerala Parota
+
+- Requires maida, butter, water and pinch of salt.
+- Make dough using maida, butter and water.
+- Roll the dough like a long snake..
+- Roll it next like chakkuli :)
+- Then use a pin roller aka chapathi board to make a roti out of it.
+- Next put it on the heated greased tawa. Heat  roti well on either sides and remove it when done. 
+
 #### Ciambelline al vino: red wine and aniseed biscuits
 
 - [Alternative Recipe Link](https://www.crumbsonthetable.co.uk/ciambelline-al-vino-red-wine-and-aniseed-biscuits/)
