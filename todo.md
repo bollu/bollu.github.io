@@ -1,3 +1,4 @@
+- [Sacks: Higher Recursion Theory](https://projecteuclid.org/eBooks/perspectives-in-logic/Higher-Recursion-Theory/toc/pl/1235422631)
 - [Geometry and topology of 3 manifolds: PDFs](https://library.slmath.org/nonmsri/gt3m/PDF/1.pdf)
 - [The theory and technique of electronic music](https://msp.ucsd.edu/techniques.htm)
 - Best dictionary: Webster's Unabridged 1913
