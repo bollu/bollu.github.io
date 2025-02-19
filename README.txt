@@ -262,6 +262,8 @@ through no fault of hers. This led me to read quite a lot of compositional theor
   I would **love** to have pointers on how to compose ragtime, since I feel that even today, 
   I cannot personally compose something as genius as [Maple Leaf Rag by Scott Joplin](https://www.youtube.com/watch?v=KYnR1zl7kFg),
   as it's super harmonically dense. If someone has pointers, please drop me a message!
+- [Ragtime Writing](https://old.reddit.com/r/ragtime/comments/1iciyft/how_to_improve_writing_ragtime_pieces/)
+- Scott Joplin wrote ragtime exercises called "School of Ragtime".
 - [Harmony, Counterpoint, Partimento: A New Method Inspired by Old Masters](https://global.oup.com/academic/product/harmony-counterpoint-partimento-9780190695019), where Partimento is a technique that's used to improvise in the old Renaissance style. I've been having a lot of fun studying and practiscing partimento theory.
 - [Literally everything that Glenn Gould has ever said](https://www.youtube.com/watch?v=Zf9pG_ZR0kA&list=PLfDJsIxawPH5w9nWWn0hiqV9BZqPbCORC), since I consider the man to be a genius.
   He was a strange musical savant, who had lots of entertaining opinions, such as the fact that "Mozart became a bad composer because he was so good at improvisation!"
