@@ -14,8 +14,10 @@
 
 # I dislike Dadaism
 
-- Anti WW1
+- Anti WW1.
 - Uses nonsense, irrationality.
+- Anti-art.
+- [Dada Manifesto](https://writing.upenn.edu/library/Tzara_Dada-Manifesto_1918.pdf)
 
 # I Like Surrealism
 
