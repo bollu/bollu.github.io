@@ -7,6 +7,21 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# I Dislike Abstract Expressionism
+
+- Censorship post WW2 & mc-carthyism led to people wanting to create abstractions
+
+# I dislike Dadaism
+
+- Anti WW1
+- Uses nonsense, irrationality.
+
+# I Like Surrealism
+
+- Even though this was post WW1!
+
+
 # I Like Art Nouveau
 
 - [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
@@ -18,6 +33,7 @@
 - Looks like stuff designed by elves.
 - Klimt, with gold foil, "cellular" looking blobs, japanese inspired perspectives.
   [Judith and the head of Holofernes](https://news.artnet.com/art-world/gustav-klimt-best-works-ranked-2592960)
+
 
 # Experimental Evaluation Setup I'm Happy With
 
