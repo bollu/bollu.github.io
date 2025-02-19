@@ -37,6 +37,14 @@
   [Judith and the head of Holofernes](https://news.artnet.com/art-world/gustav-klimt-best-works-ranked-2592960)
 
 
+# Bebop Scale
+
+-  Flat sixth.
+- In the normal major scale, if we travel downward, we get non chord tones on our down beats (1 3 5 7).
+  For example, with `C`, we get `C(good)`, `B`, `A(?)`, `G`, `F(BAD)`, `E`, `D(BAD)`, `C`. 
+- The bebop scale fixed this by adding a chromatic passing note, giving us `C(good)`, `B`, `A(?)`, `Ab`, `G(good)`, `F`, `E(good)`, `D`.
+- C minor bebop scale:
+
 # Experimental Evaluation Setup I'm Happy With
 
 - Use python as a lightweight scripting language, with `asyncio` for spawning many processes.
