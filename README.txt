@@ -7,6 +7,17 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# I Like Art Nouveau
+
+- [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
+- [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"
+- decorative, decorative arts. Wanted to take art and make it applied.
+- pantheistic approach to nature.
+- Break from the past.
+- Inspired also by Japanese and Islamic art.
+- Looks like stuff designed by elves.
+- Klimt, with gold foil, "cellular" looking blobs, japanese inspired perspectives.
+  [Judith and the head of Holofernes](https://news.artnet.com/art-world/gustav-klimt-best-works-ranked-2592960)
 
 # Experimental Evaluation Setup I'm Happy With
 
