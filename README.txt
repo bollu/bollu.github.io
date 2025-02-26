@@ -7,19 +7,21 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# The Various Integer Rounding Modes
 
-# I Dislike Abstract Expressionism
 
-- Censorship post WW2 & mc-carthyism led to people wanting to create abstractions
+#### Abstract Expressionism
 
-# I dislike Dadaism
+- Censorship post WW2 & mc-carthyism led to people wanting to create abstractions.
+
+#### Dadaism
 
 - Anti WW1.
 - Uses nonsense, irrationality.
 - Anti-art.
 - [Dada Manifesto](https://writing.upenn.edu/library/Tzara_Dada-Manifesto_1918.pdf)
 
-# I Like Surrealism
+#### I Like Surrealism
 
 - Even though this was post WW1!
 
