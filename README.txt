@@ -8,6 +8,16 @@
 - **It's useful to finish things.**
 
 
+# Tree Interpolants [Short]
+
+- [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
+
+# Aczel Trees [Short]
+
+- Can be used to show that Choice implies proof irrelevance.
+- [References](https://www.ps.uni-saarland.de/~smolka/drafts/icl2021.pdf)
+
+
 # I Dislike Abstract Expressionism
 
 - Censorship post WW2 & mc-carthyism led to people wanting to create abstractions
@@ -52,9 +62,41 @@
 - Write all data into sqlite database files, and use sqlite database file to be crash-tolerant, to keep track of how many tasks have finished.
 - View sqlite database quickly using `visidata` in the command line, and load into further processing scripts via `duckdb`.
 
-# Tree Interpolants
+# Pop Piano Accompaniment
 
-- [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
+
+#### Using Sus chords
+
+- Consider using Sus2/Sus4 chords!
+- For sus2, move the third one note down: `CEG` to `CDG`.
+
+#### Fireflies
+
+- Technique: play root note in the bass, then alternate on 5th and octave higher.
+
+#### [Four Part Harmony](https://www.youtube.com/watch?v=GoUQ_WHCe48)
+
+- Perfect cadence: V I
+- Plagal Cadence: IV I
+- Imperfect cadence: x V
+- Interrupted: V VI
+
+#### Rhythms
+
+- [18 rhythms you should know](https://www.youtube.com/watch?v=ZROR_E5bFEI)
+
+- [Pop Clave: Shape of You](https://www.youtube.com/watch?v=NYydGXANHJMf)
+- [Tresillo: Clocks]() 3-3-2
+- [Charleston]()
+
+#### Arpeggiation techniques
+
+- [YT](https://www.youtube.com/watch?v=NYydGXANHJM)
+
+# Pop Piano Covers I Admire
+
+- [Owl City by Pianella Piano](https://www.youtube.com/watch?v=LRhGs8pHSh0&list=PLrXCURCvaqryvr3Q208kEIfLH4Z4A3CGW&index=6)
+
 
 # Wisdom of Critial Pair Theory
 
