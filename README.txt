@@ -9,6 +9,10 @@
 
 # The Various Integer Rounding Modes
 
+# Algebra With Dependent Types
+
+- [Link](https://www.paultaylor.eu/prafm/html/s80.html)
+
 
 #### Abstract Expressionism
 
