@@ -50871,3 +50871,7 @@ w: dan-cing un-der-neath the skies of lust
 - [Death and life](https://bluesurfart.com/collections/gustav-klimt/products/death-and-life)
 - [Judith and the head](https://upload.wikimedia.org/wikipedia/commons/9/92/Gustav_Klimt_039.jpg)
 
+# Big List of Decision Procedures Research Questions
+
+- Normalization procedure for the mathlib theory of affine spaces plus their functions!
+
