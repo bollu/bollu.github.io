@@ -14,6 +14,7 @@
 - [Link](https://www.paultaylor.eu/prafm/html/s80.html)
 
 
+
 #### Abstract Expressionism
 
 - Censorship post WW2 & mc-carthyism led to people wanting to create abstractions.
