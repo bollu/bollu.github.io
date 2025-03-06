@@ -9,10 +9,27 @@
 
 # The Various Integer Rounding Modes
 
-# Algebra With Dependent Types
+# Mnemonic for Italian Prepositions
 
-- [Link](https://www.paultaylor.eu/prafm/html/s80.html)
+- di-a-da-in-con-su-per-tra-fra 
 
+- *di:* of
+- *a:* to
+- *da:* from
+
+
+- *in:* in
+- *con:* with
+
+
+- *su:* on
+- *per:* for
+
+
+- *tra:* between
+- *fra:* between
+
+# Weird Art Movements in the 20th Century
 
 
 #### Abstract Expressionism
