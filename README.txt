@@ -892,6 +892,14 @@ $ gcloud compute ssh --zone "europe-west1-b" "instance-20241102-191016" --projec
 mosh --ssh="/usr/bin/ssh -i /Users/bollu/.ssh/google_compute_engine" bollu@34.79.28.126
 ```
 
+- Step 5: Setting up SCP on google cloud:
+
+```
+gcloud compute scp --zone "europe-west1-b" --project "even-card-249812" \
+   instance-20241102-191016:/home/bollu/lean-mlir/bv-evaluation/mar-5-night.sqlite3 \
+   mar-5-night-instcombine.sqlite3
+```
+
 # Playing Pop on the Piano
 
 - Key idea: only allowed to play chords that share at least one note.
