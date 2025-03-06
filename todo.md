@@ -1,3 +1,4 @@
+- [Rewrite Systems and Automated Theorem Proving](https://www.tcs.ifi.lmu.de/lehre/ws-2024-25/atp_de.html)
 - [Intro to Flow Matching](https://diffusion.csail.mit.edu/)
 - [Joint Winners Of Hugo And Nebula](https://en.m.wikipedia.org/wiki/List_of_joint_winners_of_the_Hugo_and_Nebula_awards)
 - [Sacks: Higher Recursion Theory](https://projecteuclid.org/eBooks/perspectives-in-logic/Higher-Recursion-Theory/toc/pl/1235422631)
