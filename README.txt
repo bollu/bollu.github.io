@@ -9,6 +9,16 @@
 
 # The Various Integer Rounding Modes
 
+TODO
+
+# Check Lean Discrimination Tree Indexing
+
+use:
+
+```
+#discr_tree_simp_key extractLsb'_eq_self
+```
+
 # Mnemonic for Italian Prepositions
 
 - di-a-da-in-con-su-per-tra-fra 
