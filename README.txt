@@ -21,20 +21,26 @@ use:
 
 # Mnemonic for Italian Prepositions
 
-- di-a-da-in-con-su-per-tra-fra 
+- `di-a-da-in-con-su-per-tra-fra `
+
+#### di-a-da (hindi song)
 
 - *di:* of
 - *a:* to
 - *da:* from
 
+#### in-con
 
 - *in:* in
 - *con:* with
 
+#### su-per!
 
 - *su:* on
 - *per:* for
 
+
+#### tra-fra
 
 - *tra:* between
 - *fra:* between
