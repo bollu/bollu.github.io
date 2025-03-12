@@ -49195,6 +49195,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> The torment of precautions often exceeds the dangers to be avoided.
+> It is sometimes better to abandon one's self to destiny.
+
 > "can you keep a secret father?" Priest says "yes son", and the
 > heretic replies "so can I."
 
