@@ -49195,6 +49195,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> “Make mistakes of ambition and not mistakes of sloth.” — Machiavelli
+
+
 > "Your worst sin is that you have destroyed and betrayed yourself for nothing".-Fyodor Dostoevsky
 
 > The torment of precautions often exceeds the dangers to be avoided.
