@@ -7,14 +7,13 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Tree Interpolants [Short]
+# Projective Varieties are Complete
 
-- [Link to tree interpolation](https://bkragl.github.io/papers/lpar2013-slides.pdf)
-
-# Aczel Trees [Short]
-
-- Can be used to show that Choice implies proof irrelevance.
-- [References](https://www.ps.uni-saarland.de/~smolka/drafts/icl2021.pdf)
+- A Variety $X$ is complete iff for all other varieties $Y$, the projection map $X \times Y \to Y$ is closed.
+- Intuitively, given equations of the form $f(x, y) = 0$ cutting a closed subset of $X \times Y$,
+  one can always 'eliminate' the dependency on $y$ to get a new equation $g(y) = 0$.
+- Alternatively, we can write down the image as $\{ y | \exists x, f(x, y)  = 0 \}$.
+- So we are told that we can quantifier eliminate
 
 # Check Lean Discrimination Tree Indexing
 
