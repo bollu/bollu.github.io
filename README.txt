@@ -13,7 +13,13 @@
 - Intuitively, given equations of the form $f(x, y) = 0$ cutting a closed subset of $X \times Y$,
   one can always 'eliminate' the dependency on $y$ to get a new equation $g(y) = 0$.
 - Alternatively, we can write down the image as $\{ y | \exists x, f(x, y)  = 0 \}$.
-- So we are told that we can quantifier eliminate
+- So we are told that we can quantifier eliminate to get a different equation $\{ y | g(y) = 0 \}$
+  (mild lie, we need a family of equations $g_i$ and whatnot, but still, that's the idea.
+
+#### Proof strategy
+
+- We will show that $\mathbb P^n$ is complete, which will imply that a projective variety $X$ is complete,
+  by including it
 
 # Check Lean Discrimination Tree Indexing
 
