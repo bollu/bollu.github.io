@@ -29,6 +29,16 @@ use:
 #discr_tree_simp_key extractLsb'_eq_self
 ```
 
+# Joke Definition of Metatheorem
+
+> A metatheorem is a theorem that can become false when you add another axiom!
+
+Recall that adding an axiom can never disprove previous theorems,
+since all previous theorems rely on existing axioms that are unchanged by the
+addition of a new theorem. In contrast, a metatheorem is a theorem about a formal system,
+and can become false if another axiom is added to the system, since e.g. some syntactic
+property of the axiom system may no longer hold (think: subformula property).
+
 # Mnemonic for Italian Prepositions
 
 - `di-a-da-in-con-su-per-tra-fra `
