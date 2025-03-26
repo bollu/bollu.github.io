@@ -48868,7 +48868,17 @@ things on architecture I wish to read and/or have read:
 
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
-# Recipes Cheat Sheet
+# Recipes Cheat Sheet / Big List of Recipes
+
+#### Ajji's Sambar Powder
+
+- 3 tsps of coriander
+- 1 tsp jeera
+- 1 tsp methi
+- 3 red chillies
+- Some karipatta leaves
+- Few pieces of coconut (you can use dry coconut if available)
+
 
 #### Kerala Parota
 
