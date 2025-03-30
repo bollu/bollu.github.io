@@ -48880,6 +48880,21 @@ things on architecture I wish to read and/or have read:
 - Few pieces of coconut (you can use dry coconut if available)
 
 
+#### Dosa-style Pancake
+
+
+- 1 cup rawa
+- 1/2 cup curd
+- Onion green chillies mustard
+- 1tsp baking soda
+- Add 1 cup water to the rawa. Mix well.
+- Next add the curds. mix well.
+- Add salt. Also green chillies and onions to be added( small sq cuts) make a mustard seasoning and add it after it cools.
+- Check consistency, should reach dosa consistency.
+- Finally add the soda.
+- Heat the seasoning tawa with 1 spoon oil and pour one ladle. After few minutes tilt and have it chill for a bit.
+
+
 #### Kerala Parota
 
 - Requires maida, butter, water and pinch of salt.
