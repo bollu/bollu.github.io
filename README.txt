@@ -7,12 +7,12 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Covering Spaces for Monoids
+
 # The Metamathematical implications of the Strong Church Turing Thesis
 
 - Thanks to Ben Przybocki, Meven, Arthur, and Anand for this enlightening fireside chat!
-
-I realized that my beliefs about computation and mathematics can be cleanly put as follows:
-
+- I realized that my beliefs about computation and mathematics can be cleanly put as follows:
 - Axiom: Strong Church Turing thesis: Computation everywhere "is the same".
 - Axiom: Platonic realm: Mathematical objects "exist" out there.
 - Given these two axioms, one must conclude that if one runs a physical computer to,
