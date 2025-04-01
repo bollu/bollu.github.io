@@ -15,7 +15,9 @@
   See that each state "locally" looks like the bouquet (potentially unfolded).
 - See that if we take a string, then that is a path in the bouquet, and the "path lift",
   starting at the initial state (the basepoint of the automata) gives us the final state.
-- See that this immediately implies that monodromy
+- See that this immediately also gives us monodromy like behaviour via path lifting.
+- See that from monodromy, we can view automata morphisms as covering spaces morphisms.
+- TODO: Think about [Nielsen Transformations](https://en.wikipedia.org/wiki/Nielsen_transformation) in this context.
 
 # The Metamathematical implications of the Strong Church Turing Thesis
 
