@@ -7,7 +7,15 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Covering Spaces for Monoids
+# Covering Spaces for Automata
+
+- Idea: think of the alphabet as a bouquet,
+  with one petal for each letter in the alphabet.
+- Now, an automaton is a covering space of this bouquet!
+  See that each state "locally" looks like the bouquet (potentially unfolded).
+- See that if we take a string, then that is a path in the bouquet, and the "path lift",
+  starting at the initial state (the basepoint of the automata) gives us the final state.
+- See that this immediately implies that monodromy
 
 # The Metamathematical implications of the Strong Church Turing Thesis
 
