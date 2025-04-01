@@ -7,6 +7,23 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# The Metamathematical implications of the Strong Church Turing Thesis
+
+- Thanks to Ben Przybocki, Meven, Arthur, and Anand for this enlightening fireside chat!
+
+I realized that my beliefs about computation and mathematics can be cleanly put as follows:
+
+- Axiom: Strong Church Turing thesis: Computation everywhere "is the same".
+- Axiom: Platonic realm: Mathematical objects "exist" out there.
+- Given these two axioms, one must conclude that if one runs a physical computer to,
+  for example, find proofs of consistency of ZFC in ZFC, and it *actually halts* in the real world,
+  then we know *for certain*, in the mathematical world, that ZFC is inconsistent!
+- In broader terms, computation "in the real world" enjoys a "transfer principle",
+  where it behaves the same way also in the platonic universe.
+- Another way of thinking about it: Computation is absolute, and must behave "similarly"
+  in all realities, including all *mathematical* realities.
+  Thus, any model of mathematics that induces strange computational principles that deviate from the real world can be ruled out!
+
 # Projective Varieties are Complete
 
 - A Variety $X$ is complete iff for all other varieties $Y$, the projection map $X \times Y \to Y$ is closed.
