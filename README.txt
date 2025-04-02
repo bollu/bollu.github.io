@@ -34,6 +34,24 @@
   in all realities, including all *mathematical* realities.
   Thus, any model of mathematics that induces strange computational principles that deviate from the real world can be ruled out!
 
+# The Metaphysical Horizon
+
+- Idea told to me by Dr. Alistair Lockhart at Churchill College, Cambridge.
+- Humans are cognitive subjects, perceiving an unfathomed cosmos that surrounds them.
+- Cultural activities (including science) are cultutal activities that are cognitive attempts to understand the cosmos.
+- Since the culture (including science) is public, everyday items of human life are connected to the cosmos
+  in the same way religious symbols are.
+- 
+
+#### References
+
+
+- Spiritual, but nort religious: Understanind Unchurched America
+- The interpretation of Cultures
+- The Sense of the Horizon
+- Feeling and Form
+- Philosophy in a new Key: A Study in the Symbolism of Reason, Rite, and Art.
+
 # Projective Varieties are Complete
 
 - A Variety $X$ is complete iff for all other varieties $Y$, the projection map $X \times Y \to Y$ is closed.
@@ -48907,6 +48925,21 @@ things on architecture I wish to read and/or have read:
 - Few pieces of coconut (you can use dry coconut if available)
 
 
+#### Dosa-style Pancake
+
+
+- 1 cup rawa
+- 1/2 cup curd
+- Onion green chillies mustard
+- 1tsp baking soda
+- Add 1 cup water to the rawa. Mix well.
+- Next add the curds. mix well.
+- Add salt. Also green chillies and onions to be added( small sq cuts) make a mustard seasoning and add it after it cools.
+- Check consistency, should reach dosa consistency.
+- Finally add the soda.
+- Heat the seasoning tawa with 1 spoon oil and pour one ladle. After few minutes tilt and have it chill for a bit.
+
+
 #### Kerala Parota
 
 - Requires maida, butter, water and pinch of salt.
@@ -49283,6 +49316,8 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> "Your job, throughout your entire life, is to disappoint as many people as it takes to avoid disappointing yourself."
 
 > “Make mistakes of ambition and not mistakes of sloth.” — Machiavelli
 
