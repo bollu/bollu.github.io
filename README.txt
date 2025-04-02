@@ -41,12 +41,21 @@
 - Cultural activities (including science) are cultutal activities that are cognitive attempts to understand the cosmos.
 - Since the culture (including science) is public, everyday items of human life are connected to the cosmos
   in the same way religious symbols are.
-- 
+
+> From this point of view,
+> learning is more important than knowing,
+> and the creation of a work of art is more important
+> than the appreciation of it when it is finished.
+
+
+> All are to be thought of, not merely in terms of the artist,
+> the thinker, and the reformer, but in terms of those hints and implications
+> upon the horizon of present experience that serve as incitements to advance.
 
 #### References
 
 
-- Spiritual, but nort religious: Understanind Unchurched America
+- Spiritual, but not religious: Understanind Unchurched America
 - The interpretation of Cultures
 - The Sense of the Horizon
 - Feeling and Form
