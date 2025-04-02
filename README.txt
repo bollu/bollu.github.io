@@ -52,6 +52,15 @@
 > the thinker, and the reformer, but in terms of those hints and implications
 > upon the horizon of present experience that serve as incitements to advance.
 
+
+> Horizon facts are those whose connection with the fully experienced is clear enough,
+> but not their connection with what may yet be exeperienced (and is not yet).
+> They are such aspects of the real world which attract the the attention of an
+> imaginative scientist, and, as it will be argued later, of all artists.
+> They are of all kinds: The implication of a dream, the unsolved mathematical problem,
+> the new light on a chair, and the attractiveness of some situation never felt before.
+
+
 #### References
 
 
