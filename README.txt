@@ -60,7 +60,6 @@
 > They are of all kinds: The implication of a dream, the unsolved mathematical problem,
 > the new light on a chair, and the attractiveness of some situation never felt before.
 
-
 #### References
 
 
