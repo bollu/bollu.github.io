@@ -7,6 +7,14 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Ragtime Chord Progression
+
+- Major chord progression: [III7] [VI7] [II7] [V7] I
+- For C major, this is: [E7] [A7] [D7] [G7] [C].
+- Alternative, minor: [vi] [ii] [V7] I
+- For C, this is: [Am] [Dm] [G7] [C].
+
+
 # Covering Spaces for Automata
 
 - Idea: think of the alphabet as a bouquet,
