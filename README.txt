@@ -115,19 +115,19 @@ property of the axiom system may no longer hold (think: subformula property).
 
 #### di-a-da (hindi song)
 
-- *di:* of
-- *a:* to
-- *da:* from
+- *di:* of. Tre litre di vino [Three liters of wine.]
+- *a:* to??? restare a letto [to stay in bed.]
+- *da:* from. da dove vieni? [Are you from rome]
 
 #### in-con
 
-- *in:* in
-- *con:* with
+- *in:* in [in spagna]
+- *con:* with [latte con zucchero]
 
 #### su-per!
 
-- *su:* on
-- *per:* for
+- *su:* on. Un ponte sul fiume [the bridge on the river]
+- *per:* for??? Dictionary is a mess.
 
 
 #### tra-fra
