@@ -113,6 +113,31 @@ property of the axiom system may no longer hold (think: subformula property).
 
 - `di-a-da-in-con-su-per-tra-fra `
 
+
+> “Di is ‘of’, a is ‘to’,
+> Da means ‘from’, that’s true.
+> In is ‘in’, and con is ‘with’,
+> Su is ‘on’—as on a cliff.
+> Per is ‘for’, or purpose-bound,
+> Tra/fra are ‘between’ or ‘round’.
+
+#### Rhyming examples
+
+- Di-a-da (hindi song), in-con, su-per, tra-fra.
+- Di(of): La casa di Gianni è blu. (Gianni's house is blue)
+- A(to): Vado a scuola alle due (I go to school at 2)
+- Da(from): Vengo da Roma, e tu? (I come from Rome, and you?)
+- In(in): Sono in cucina, non più (I'm in the kitchen, no more)
+- Con(with): Parlo con Marco al bambù (I talk with Marco at the bamboo)
+- Su(on): Il libro è su quella gru (the book is on that crane)
+- Per(for): Questo è per te, è un debut (This is for you, it's a debut)
+- Tra/fra(between): Tra/fra le nuvole, non è blu (Between the clouds, it's not blue)
+
+
+
+### Sentence Examples
+
+
 #### di-a-da (hindi song)
 
 - *di:* of. Tre litre di vino [Three liters of wine.]
