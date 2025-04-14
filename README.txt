@@ -121,11 +121,27 @@ property of the axiom system may no longer hold (think: subformula property).
 > Per is ‘for’, or purpose-bound,
 > Tra/fra are ‘between’ or ‘round’.
 
+#### Poem Example
+
+
+- [[Di]] mattina presto, il canto [[di]] un gallo, ([[Of]] early morning, the song [[of]] a rooster)
+- Mi sveglia [[a]] valle, vicino al ruscello. (Wakes me [[at]] the valley, near the stream)
+- Cammino [[da]] casa con passo leggero, (I walk [[from]] home with a light step)
+- Entro [[in]] piazza col cuore sincero. (I enter [[in]] the square with a sincere heart)
+- Parlo [[con]] Gina che cuoce il ragù, (I speak [[with]] Gina who’s cooking ragù)
+- Seduto [[su]] legno, nel sole laggiù. (Seated [[on]] wood, in the sun down below)
+- Un dono [[per]] te, un sorriso gentile, (A gift [[for]] you, a kind little smile)
+- [[Tra]] case antiche, [[fra]] vigne tranquille. ([[Between]] old houses, [[among]] quiet vines)
+
+
+
+
+
 #### Rhyming examples
 
 - Di-a-da (hindi song), in-con, su-per, tra-fra.
 - Di(of): La casa di Gianni è blu. (Gianni's house is blue)
-- A(to): Vado a scuola alle due (I go to school at 2)
+- A(at): Vado a scuola alle due (I go to school at 2)
 - Da(from): Vengo da Roma, e tu? (I come from Rome, and you?)
 - In(in): Sono in cucina, non più (I'm in the kitchen, no more)
 - Con(with): Parlo con Marco al bambù (I talk with Marco at the bamboo)
