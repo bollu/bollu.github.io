@@ -14,7 +14,7 @@
   We use `Fin n` to represent variables, and thus our environments
   exactly correspond to the number of variables.
 
-```lean
+```
 namespace Nat
 inductive NatExpr (n : Nat) : Type
 | var : (v : Fin n) → NatExpr n
