@@ -123,7 +123,6 @@ property of the axiom system may no longer hold (think: subformula property).
 
 #### Poem Example
 
-
 - [[Di]] mattina presto, il canto [[di]] un gallo, ([[Of]] early morning, the song [[of]] a rooster)
 - Mi sveglia [[a]] valle, vicino al ruscello. (Wakes me [[at]] the valley, near the stream)
 - Cammino [[da]] casa con passo leggero, (I walk [[from]] home with a light step)
@@ -132,10 +131,6 @@ property of the axiom system may no longer hold (think: subformula property).
 - Seduto [[su]] legno, nel sole laggiù. (Seated [[on]] wood, in the sun down below)
 - Un dono [[per]] te, un sorriso gentile, (A gift [[for]] you, a kind little smile)
 - [[Tra]] case antiche, [[fra]] vigne tranquille. ([[Between]] old houses, [[among]] quiet vines)
-
-
-
-
 
 #### Rhyming examples
 
