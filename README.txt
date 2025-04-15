@@ -65,6 +65,9 @@ def BVExpr.eval {natEnv : Fin n → Nat} (bvEnv : BVEnv bvCard natEnv) :
 end BV
 ```
 
+- What's the general algorithm here? Given typing rules, how does one
+  write down the corresponding intrinsically well-typed AST?
+
 
 # Ragtime Chord Progression
 
