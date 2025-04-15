@@ -7,6 +7,65 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Building Defeq ASTs for Dependently Typed Terms
+
+- First, consider an AST for natural numbers, which keeps track of
+  the number of variables a `n : Nat`.
+  We use `Fin n` to represent variables, and thus our environments
+  exactly correspond to the number of variables.
+
+```lean
+namespace Nat
+inductive NatExpr (n : Nat) : Type
+| var : (v : Fin n) → NatExpr n
+| add : NatExpr n → NatExpr n → NatExpr n
+
+def NatExpr.eval (e : NatExpr n) (env : Fin n → Nat) : Nat :=
+  match e with
+  | .var v => env v
+  | .add e1 e2 => NatExpr.eval e1 env + NatExpr.eval e2 env
+
+inductive NatPredicate (n : Nat) : Type
+| eq : NatExpr n → NatExpr n → NatPredicate n
+
+def NatPredicate.eval (env : Fin n → Nat) : NatPredicate n → Prop
+  | .eq e1 e2 => NatExpr.eval e1 env = NatExpr.eval e2 env
+
+def NatPredicate.decide : NatPredicate n → Bool := sorry
+
+theorem NatPredicate.decide_iff_eval (p : NatPredicate n) :
+  (∀ (env : Fin n → Nat), p.eval env) ↔
+  (p.decide = true) := sorry
+end Nat
+```
+
+- Now, we want to do the same with bitvectors. How does this work?
+
+```
+namespace BV
+open Nat
+
+abbrev BVTyCtx (natCard : Nat) (bvCard : Nat) : Type :=
+  Fin bvCard → NatExpr natCard
+
+inductive BVExpr (ctx : BVTyCtx natCard bvCard) : (NatExpr natCard) → Type
+| var (v : Fin bvCard) : BVExpr ctx (ctx v)
+| add (a : BVExpr ctx w) (b : BVExpr ctx w) : BVExpr ctx w
+| append (a : BVExpr ctx v) (b : BVExpr ctx w) : BVExpr ctx (.add v w)
+
+abbrev BVEnv (tyCtx : BVTyCtx natCard bvCard) (natEnv : Fin natCard → Nat) :=
+  (v : Fin bvCard) → BitVec ((tyCtx v).eval natEnv)
+
+def BVExpr.eval {natEnv : Fin n → Nat} (bvEnv : BVEnv bvCard natEnv) :
+  BVExpr bvCard w → BitVec (w.eval natEnv)
+| .var v => bvEnv v
+| .add a b => a.eval bvEnv + b.eval bvEnv
+| .append a b => a.eval bvEnv ++ b.eval bvEnv
+
+end BV
+```
+
+
 # Ragtime Chord Progression
 
 - Major chord progression: [III7] [VI7] [II7] [V7] I
