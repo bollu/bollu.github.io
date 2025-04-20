@@ -183,6 +183,17 @@ property of the axiom system may no longer hold (think: subformula property).
 > Per is ‘for’, or purpose-bound,
 > Tra/fra are ‘between’ or ‘round’.
 
+#### From Tutorial
+
+- "di:" "of" (and sometimes "from").
+- "a": which means "at, to, & in".
+- "da": "from".
+- "in": "in" and sometimes "to".
+- "su": "on"
+
+
+
+
 #### Poem Example
 
 - [[Di]] mattina presto, il canto [[di]] un gallo, ([[Of]] early morning, the song [[of]] a rooster)
