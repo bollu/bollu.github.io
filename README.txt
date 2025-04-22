@@ -183,6 +183,12 @@ property of the axiom system may no longer hold (think: subformula property).
 > Per is ‘for’, or purpose-bound,
 > Tra/fra are ‘between’ or ‘round’.
 
+#### Examples from Life
+
+- Pan di stelle (bread of stars)
+- Vengo da Roma, e tu? (I come from Rome, and you?)
+- a: at, to, in
+
 #### From Tutorial
 
 - "di:" "of" (and sometimes "from").
