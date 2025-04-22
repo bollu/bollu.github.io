@@ -777,7 +777,14 @@ After all, New Year's resolutions are still a day or two away!
 #### Harmonization With Respect to Example
 
 - [Bare Necessities](https://www.youtube.com/watch?v=WOd9op3KVMA&list=PLhzf8PAKXeAmpZ8938U52tj60uoPdKSTa)
-- harmonize with respect to 6ths.
+- harmonize with respect to 6ths. (e.g. to play $A$, play a $C$ below it as well).
+- Next, when playing e.g. `F`, play an `Eb` (the 7th) below it.
+- Ragtime ornament: To play `Bb D F` when playing `F`, flatten the third, giving `Db G`, and then play what
+  we wanted to start with `D F`. So we play `Db G` followed by `D F`.
+  This plays well when we want to play the 6th (i.e. the `G` over the `Bb`).
+- Can add a sixth to a major chord, so when playing F major (`F A C`), can add a `D`.
+- Harmonize with the third of the chord.
+- To play `G`, walk up chord tones, so can play `D G`, `Eb G`, `E G` to walk up.
 
 #### Harmony
 - I, IV, V7
