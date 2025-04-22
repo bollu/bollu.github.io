@@ -785,6 +785,9 @@ After all, New Year's resolutions are still a day or two away!
 - Can add a sixth to a major chord, so when playing F major (`F A C`), can add a `D`.
 - Harmonize with the third of the chord.
 - To play `G`, walk up chord tones, so can play `D G`, `Eb G`, `E G` to walk up.
+- March style left hand chords:
+  In 4 quarter beats, play root note (A), play chord above (CEA), play 3rd, but play it below the root note (C),
+  then play chord again (CEA).
 
 #### Harmony
 - I, IV, V7
