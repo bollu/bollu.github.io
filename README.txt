@@ -777,7 +777,10 @@ After all, New Year's resolutions are still a day or two away!
 #### Harmonization With Respect to Example
 
 - [Mary Had a Little Lamb: Forward Rag Roll](https://www.youtube.com/watch?v=XEh613qjnXg)
-- [Bare Necessities](https://www.youtube.com/watch?v=WOd9op3KVMA&list=PLhzf8PAKXeAmpZ8938U52tj60uoPdKSTa)
+- [Learn to Play ragtime](https://pianowithjonny.com/piano-lessons/learn-to-play-ragtime-piano-in-7-easy-steps/)
+- Good ragtime ornament: To go to `C Eb G`, play the Ddim first, with `D Ab`, which resolves to `Eb G`.
+  see that `D = Ebb`, which is the flat third, and `G = Ab`, which is the 6th of the C minor scale.
+  This gives me more reason to like `Ddim`!
 - harmonize with respect to 6ths. (e.g. to play $A$, play a $C$ below it as well).
 - Next, when playing e.g. `F`, play an `Eb` (the 7th) below it.
 - Ragtime ornament: To play `Bb D F` when playing `F`, flatten the third, giving `Db G`, and then play what
