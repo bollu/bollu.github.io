@@ -776,6 +776,7 @@ After all, New Year's resolutions are still a day or two away!
 
 #### Harmonization With Respect to Example
 
+- [Mary Had a Little Lamb: Forward Rag Roll](https://www.youtube.com/watch?v=XEh613qjnXg)
 - [Bare Necessities](https://www.youtube.com/watch?v=WOd9op3KVMA&list=PLhzf8PAKXeAmpZ8938U52tj60uoPdKSTa)
 - harmonize with respect to 6ths. (e.g. to play $A$, play a $C$ below it as well).
 - Next, when playing e.g. `F`, play an `Eb` (the 7th) below it.
@@ -788,6 +789,7 @@ After all, New Year's resolutions are still a day or two away!
 - March style left hand chords:
   In 4 quarter beats, play root note (A), play chord above (CEA), play 3rd, but play it below the root note (C),
   then play chord again (CEA).
+
 
 #### Harmony
 - I, IV, V7
