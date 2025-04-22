@@ -774,6 +774,11 @@ After all, New Year's resolutions are still a day or two away!
 - right hand: plays melodies at twice the speed of the left.
 - Right hand is grouped into *additive rhythms*: `3+2+3`, or `3+3+3`.
 
+#### Harmonization With Respect to Example
+
+- [Bare Necessities](https://www.youtube.com/watch?v=WOd9op3KVMA&list=PLhzf8PAKXeAmpZ8938U52tj60uoPdKSTa)
+- harmonize with respect to 6ths.
+
 #### Harmony
 - I, IV, V7
 - dim7th, secondary dominant
