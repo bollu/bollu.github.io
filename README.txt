@@ -7,6 +7,10 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Partimeto Tutorials
+
+- [On Improvising / Composing Figuration Preludes: Partimenti and Exercises](https://www.youtube.com/watch?v=OcTHENjsenE)
+
 # Building Defeq ASTs for Dependently Typed Terms
 
 - First, consider an AST for natural numbers, which keeps track of
