@@ -49114,6 +49114,21 @@ things on architecture I wish to read and/or have read:
 - Then use a pin roller aka chapathi board to make a roti out of it.
 - Next put it on the heated greased tawa. Heat  roti well on either sides and remove it when done. 
 
+#### Banana Bread
+
+- 2 cups (250g) all-purpose flour (spooned & leveled)
+- 1 teaspoon baking soda
+- 1/4 teaspoon salt
+- 1/2 teaspoon ground cinnamon
+- 1/2 cup (8 Tbsp; 113g) unsalted butter, softened to room temperature
+- 3/4 cup (150g) packed light or dark brown sugar
+- 2 large eggs, at room temperature
+- 1/3 cup (80g) plain yogurt or sour cream, at room temperature
+- 1 and 1/2 cups (345g) mashed bananas (about 4 medium or 3 large ripe bananas)
+- 1 teaspoon pure vanilla extract
+- optional: 3/4 cup (100g) chopped walnuts
+
+
 #### Ciambelline al vino: red wine and aniseed biscuits
 
 - [Alternative Recipe Link](https://www.crumbsonthetable.co.uk/ciambelline-al-vino-red-wine-and-aniseed-biscuits/)
