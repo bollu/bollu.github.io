@@ -3120,7 +3120,7 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 #### McMillan Viewpoint
 
 - [Notes from McMillan](https://www.cs.sfu.ca/~ter/old-CMPT477-777-fall2016/CMPT477-777-fall2016/Plan_Reading_files/14c-Interpolation-based-MC.pdf)
-- If $P$ and $Q$ are inconsistent, then there is a $P'$ is their shared language such that $P \models P'$ and $P' \and Q$ is inconsistent.
+- If $P$ and $Q$ are inconsistent, then there is a $P'$ is their shared language such that $P \models P'$ and $P' \land Q$ is inconsistent.
 - $P'$ is an abstraction of $P$ from the viewpoint of $Q$. $P'$ summaries and translates into the shared language, why $P$ is inconsistent with $Q$.
 - Let us have a transition system with $T(s, s')$ be the transition relation, $I$ b the initial condition, and $F$ the failure property.
   So the system is safe if no $T$-reachable state from the initial state satisfies $F$.
@@ -49079,6 +49079,16 @@ things on architecture I wish to read and/or have read:
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
 # Recipes Cheat Sheet / Big List of Recipes
+
+#### Mango Curry
+
+- Cut mangoes into cubes
+- Heat oil, tons of mustard seeds, hing (asaefoedita), tons of curry leaves, kashmiri chillies.
+- Heat a *small* amount of ginger garlic paste and a *bunch* of curry powder.
+- add finely chopped onion, simmer till carmelized.
+- Add in mango pulp, water, jaggery, and tamarind, cinnamon powder, pepper to taste.
+- Let simmer for ~20min, adjust jaggery.
+- Serve!
 
 #### Ajji's Sambar Powder
 
