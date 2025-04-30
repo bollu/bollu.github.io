@@ -49507,6 +49507,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "A single act of careleness leads to the eternal loss of beauty."
+
 > "Your job, throughout your entire life, is to disappoint as many people as it takes to avoid disappointing yourself."
 
 > “Make mistakes of ambition and not mistakes of sloth.” — Machiavelli
