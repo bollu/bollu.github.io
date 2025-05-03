@@ -49565,7 +49565,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 - For every problem, there is a solution that is simple, elegant, and wrong.
 
+> If it's worth doing, it's worth doing well.
 > If it's worth doing, it's worth overdoing.
+> If it's worth doing, it's worth doing badly.
 
 > We treated science like it’s a weak-link problem where progress depends on
 > the quality of our worst work. But science is a strong-link problem: progress
