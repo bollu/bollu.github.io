@@ -10,7 +10,10 @@
 # Partimeto Tutorials
 
 - [On Improvising / Composing Figuration Preludes: Partimenti and Exercises](https://www.youtube.com/watch?v=OcTHENjsenE)
--
+
+# Magic Circle Explanation
+
+- https://www.youtube.com/watch?v=J7GHTfXaz2E
 
 # Building Defeq ASTs for Dependently Typed Terms
 
