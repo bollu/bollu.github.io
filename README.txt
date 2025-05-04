@@ -7,13 +7,16 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Magic Circle Amigurimi Explanation
+
+- [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
+- The question is, why does this work, and why do we need the twist?
+
+
 # Partimeto Tutorials
 
 - [On Improvising / Composing Figuration Preludes: Partimenti and Exercises](https://www.youtube.com/watch?v=OcTHENjsenE)
-
-# Magic Circle Explanation
-
-- https://www.youtube.com/watch?v=J7GHTfXaz2E
 
 # Building Defeq ASTs for Dependently Typed Terms
 
