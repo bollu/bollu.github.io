@@ -10,6 +10,26 @@
 
 # Notes on CwFs and categorical NbE
 
+#### Fibered versus Indexed
+
+- Fibered: `TM -> M`.
+- Indexed: `(p : M) -> TpM`.
+
+
+#### Categories with Families
+
+- `Ty: Ctx^op -> Set` (map a context to the set of valid types in that context).
+- `Tm : (Γ : Ctx^op) -> Ty Γ -> Set` (map a type to the set of inhabitants).
+- Most syntactic way of talking about categories.
+
+#### Comprehension Categories
+
+- `Ctx` is a category of contexts.
+- `Ty` is the category of types, which is fibered over the category of contexts.
+- Most semantic way of talking about categories.
+
+#### Paper References
+
 - [For the Metatheory of Type Theory, Internal Sconing Is Enough](https://drops.dagstuhl.de/storage/00lipics/lipics-vol260-fscd2023/LIPIcs.FSCD.2023.18/LIPIcs.FSCD.2023.18.pdf)
 - [Semantic Analysis of Normalisation by Evaluation for Typed Lambda Calculus](https://arxiv.org/pdf/2207.08777)
 
