@@ -8,19 +8,15 @@
 - **It's useful to finish things.**
 
 
+# Notes on CwFs and categorical NbE
+
+- [For the Metatheory of Type Theory, Internal Sconing Is Enough](https://drops.dagstuhl.de/storage/00lipics/lipics-vol260-fscd2023/LIPIcs.FSCD.2023.18/LIPIcs.FSCD.2023.18.pdf)
+- [Semantic Analysis of Normalisation by Evaluation for Typed Lambda Calculus](https://arxiv.org/pdf/2207.08777)
+
 # Magic Circle Amigurimi Explanation
 
 - [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
 - The question is, why does this work, and why do we need the twist?
-
-# Notes on CwFs and categorical NbE
-
-- [For the Metatheory of Type Theory, Internal Sconing Is Enough](https://drops.dagstuhl.de/storage/00lipics/lipics-vol260-fscd2023/LIPIcs.FSCD.2023.18/LIPIcs.FSCD.2023.18.pdf)
-
-
-# Partimeto Tutorials
-
-- [On Improvising / Composing Figuration Preludes: Partimenti and Exercises](https://www.youtube.com/watch?v=OcTHENjsenE)
 
 # Building Defeq ASTs for Dependently Typed Terms
 
