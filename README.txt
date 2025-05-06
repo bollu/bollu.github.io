@@ -38,6 +38,13 @@
 - [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
 - The question is, why does this work, and why do we need the twist?
 
+# The Euclidean Definitions of The Functions div and mod
+
+
+- [Paper](https://dl.acm.org/doi/pdf/10.1145/128861.128862) that explains
+  `sdiv`, `tdiv`, `fdiv`, and `ediv`.
+
+
 # Building Defeq ASTs for Dependently Typed Terms
 
 - First, consider an AST for natural numbers, which keeps track of
