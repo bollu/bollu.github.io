@@ -8,6 +8,10 @@
 - **It's useful to finish things.**
 
 
+# Language Reactor
+
+- Plugin to get italian on YT videos.
+
 # Notes on CwFs and categorical NbE
 
 #### Fibered versus Indexed
