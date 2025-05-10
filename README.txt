@@ -50422,8 +50422,14 @@ speak slower than you want to.
 - [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
 
 # Big list of shuffle dancing
-- [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
 
+#### Insta Reels
+
+- [Front, Back, Front, Open](https://www.instagram.com/reel/DJQavDQtG3f/?utm_source=ig_web_copy_link)
+
+#### List of Moves
+
+- [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
 - Running man
 - Charleston
 - Backward Charleston
