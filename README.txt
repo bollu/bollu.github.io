@@ -14,6 +14,8 @@
 
 # Italian two letter words
 
+- chi: who
+- dio: god
 - Bee
 - Bra
 - Ida
@@ -120,7 +122,6 @@
 - bé
 - cab
 - che
-- chi
 - cip
 - co'
 - coi
