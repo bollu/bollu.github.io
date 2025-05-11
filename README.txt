@@ -14,13 +14,25 @@
 
 # Italian words of less than or equal to three letters
 
+### Recall Prepositions
+
+- di: from (Io sono di Roma: I am from rome)
+- a: to/at (Io vado a Roma: I go to rome)
+- da: by (Studio da solo: I study alone)
+- in: in (sono in casa: I am in home)
+- con: with (latte con zucchero: milk with sugar)
+- su: on (la foto su la scrivania: the photo on the desk)
+- per for (questo è per te: this is for you)
+
+### Essential Core (Grammar, Pronouns, Key Verbs & Conjunctions)
+
 - a : to / at
 - è : is (he/she/it)
 - il : the (masculine singular)
 - la : the (feminine singular) / her / it
 - non : not / no
 - che : that / what / who / which
-- si : himself / herself / itself / themselves / one
+- si : himself / herself / itself / themselves / one (impersonal)
 - un : a / one (masculine)
 - per : for / through
 - con : with
@@ -30,302 +42,147 @@
 - ha : has (he/she/it)
 - le : the (feminine plural) / them (feminine)
 - da : from / by
-- mi : me (reflexive/indirect/direct object - *this was not in original list, but 'me' was*)
 - me : me (stressed pronoun)
-- ti : you (object)
-- te : you (object, stressed)
+- ti : you (object pronoun, atonic)
+- te : you (stressed object pronoun)
 - ci : us / there
-- lo : the (masculine before s+cons etc.) / him / it
-- tu : you (subject)
+- lo : the (masculine singular before s+consonant, z, etc.) / him / it
+- tu : you (subject pronoun, singular informal)
 - lui : he / him
-- lei : she / her / you (formal)
+- lei : she / her / you (formal singular)
 - noi : we / us
-- voi : you (plural)
-- fa : does / makes (he/she/it) / fa (musical note)
-- va : goes (he/she/it)
-- sa : knows (he/she/it)
-- so : know (I)
-- sta : is / stays (he/she/it)
-- sto : stay (I)
-- dà : gives (he/she/it)
+- voi : you (plural/formal singular in some regions)
 - del : of the (contracted)
 - al : to the (contracted)
 - nel : in the (contracted)
 - sul : on the (contracted)
 - una : a / one (feminine)
 - uno : a / one (masculine)
-- gli : the (masculine plural) / to him / to them
-- ed : and (before vowel)
-- ad : to (before vowel)
+- gli : the (masculine plural before vowel, s+cons, etc.) / to him / to them
 - se : if / whether
+- dei : of the (contracted, plural)
+- ai : to the (contracted, plural)
+- dal : from the (contracted, plural)
+- nei : in the (contracted, plural)
+- sui : on the (contracted, plural)
+- col : with the (contracted)
+- coi : with the (contracted)
+- co' : with the (contracted, less common form)
+
+### Highly Frequent & Everyday Words (Common Verbs, Nouns, Adjectives, Adverbs, Interjections)
+
+- fa : does / makes (he/she/it) [fare]
+- va : goes (he/she/it)
+- sa : knows (he/she/it) [sapere]
+- so : know (I) [sapere]
+- sta : is / stays (he/she/it)
+- sto : stay (I)
+- dà : gives (he/she/it) [dare]
+- sei : six / are (you, singular informal)
+- fai : do / make (you, singular informal)
+- amo : I love
+- era : was (he/she/it, imperfect) / era (time period)
+- ero : was (I, imperfect)
+- fui : was (I, past historic)
+- fu : was (he/she/it, past historic)
+- sia : may be / be it (subjunctive)
+- sii : be! (imperative, singular informal)
+- mio : my (masculine singular)
+- mia : my (feminine singular)
+- tuo : your (masculine singular, informal)
+- tua : your (feminine singular, informal)
+- suo : his / her / its (masculine singular)
+- sua : his / her / its (feminine singular)
+- sé : himself / herself / itself / themselves (reflexive stressed)
 - sì : yes
 - no : no
-- più : more
 - poi : then
 - qui : here
 - qua : here
 - ora : hour / now
-- sé : himself / herself / itself / themselves
-- mio : my (masculine singular)
-- mia : my (feminine singular)
-- tuo : your (masculine singular)
-- tua : your (feminine singular)
-- suo : his / her / its (masculine singular)
-- sua : his / her / its (feminine singular)
-- dei : of the (contracted)
-- ai : to the (contracted)
-- dal : from the (contracted)
-- nei : in the (contracted)
-- sui : on the (contracted)
-- col : with the (contracted)
-- coi : with the (contracted)
-- co' : with the (contracted)
 - mai : never
-- via : street / way
-- tre : three
-- due : two
-- chi : who
-- son : I am / they are (archaic/poetic for sono)
-- sei : six / are (you)
-- fai : do / make (you)
-- amo : I love / fish hook (primarily "I love")
-- ami : you love / you loved / fish hooks
-- ama : he/she/it loves
-- era : was (he/she/it) / era
-- eri : were (you)
-- ero : was (I)
-- fui : was (I, past historic)
-- fu : was (he/she/it, past historic)
-- sia : may be (he/she/it) / be it
-- sii : be! (you singular imperative)
+- via : street / way / away!
 - ben : well
 - mal : bad / evil
 - ah : ah!
 - oh : oh!
 - eh : eh!
 - beh : well...
-- Po : Po (river)
-- dio : god
-- dì : day (archaic/poetic)
-- fra : among / between / brother (monk)
-- tra : among / between
-- ore : hours
-- cui : whose / whom / which
-- dir : to say / to tell
-- far : to do / to make
-- don : gift / Don (title)
 - mo' : now (colloquial)
-- po' : a little
-- han : have (they, archaic)
-- lor : their / them (archaic)
-- san : Saint
+- po' : a little (colloquial for 'poco')
+- ehi : hey!
+- chi : who
+- tre : three
+- due : two
+- dio : god
+- ore : hours
+- cui : whose / whom / which (relative pronoun)
+- dir : to say / to tell (infinitive, often as "il dire") [dire]
+- far : to do / to make (infinitive, often as "il fare")
+- don : gift / Don (title)
+- san : Saint (before consonant)
 - re : king / re (musical note)
 - do : I give / do (musical note)
-- ve : you (plural object, atonic/archaic tonic)
-- mo : now / way (colloquial short for 'adesso' or 'modo')
-- de : of (archaic)
-- or : now (archaic) / or (before vowel, same as 'o')
-- od : or (before vowel)
-- et : and (latin, used in some contexts)
-- ex : ex / former
-- bar : bar
+- ve : you (plural object pronoun, atonic)
+
+### Common & Widely Understood Words
+- bar : bar (cafe/pub)
 - sud : south
 - blu : blue
+- bus : bus
 - gas : gas
 - oro : gold
 - sci : ski
 - tè : tea
 - ago : needle
 - ala : wing
-- ali : wings
 - ape : bee
-- api : bees
-- bel : beautiful (masculine before vowel)
-- bei : beautiful (masculine plural)
 - eco : echo
 - ego : ego
-- gol : goal
-- neo : mole / neo- (prefix)
+- gol : goal (sports)
+- neo : mole (on skin) / neo- (prefix)
 - oca : goose
-- pro : pro
-- pub : pub
-- rum : rum
-- sol : sun (poetic) / sol (musical note)
-- sub : sub- (prefix) / diver
-- usa : uses (he/she/it)
+- pro : pro (in favor of)
+- sol : sun (poetic) / G (musical note)
+- sub : diver / sub- (prefix)
+- usa : uses (he/she/it uses)
 - uso : use / custom / I use
-- uva : grape / grapes
-- vai : go (you)
+- uva : grape / grapes (collective)
 - zoo : zoo
 - zia : aunt
 - zio : uncle
-- mie : my (feminine plural)
-- tue : your (feminine plural)
-- sue : his / her / its (feminine plural)
-- ehi : hey!
 - ira : wrath
 - est : east
 - eta : age
-- oli : oils
-- omo : man (archaic/poetic) / homo- (prefix)
-- pan : bread (pane, poetic/regional) / pan- (prefix)
-- osa : dares (he/she/it)
-- osi : dare (you)
-- oso : daring / I dare
-- fan : fan (supporter)
 - fon : hair dryer
-- gin : gin
-- gru : crane
-- gnu : gnu
-- ida : Ida (name)
-- ivo : Ivo (name)
-- leo : Leo (name)
-- lia : Lia (name)
-- pio : pious (masculine singular)
-- pia : pious (feminine singular)
-- pie : pious (feminine plural)
-- pii : pious (masculine plural)
-- rio : creek / stream
-- rom : Rom (ethnic group)
-- vai : go (you imperative)
-- fin : end / until (archaic)
-- ode : ode
-- odi : you hate / odes
-- odo : I hear
-- ori : golds (plural)
-- psi : psi (Greek letter/psychology)
-- pst : pst! (interjection)
-- pus : pus
-- tac : tac! (sound/touch)
-- tir : truck
-- ton : tuna / ton (weight)
-- uni : university (short) / uni- (prefix)
-- bah : bah!
-- bip : beep
-- bis : encore / second time
-- boa : boa / buoy
-- bue : ox
-- cip : chirp
-- fez : fez
-- gai : joyful (masculine plural)
-- hoc : hoc (latin, as in 'ad hoc')
-- ics : X (letter)
-- lai : laments (archaic)
-- lux : lux (unit of illuminance)
-- mao : mao (collar style)
-- mar : sea (poetic/archaic)
-- men : less (archaic form of meno)
-- obi : obi (sash)
-- ohm : ohm (unit of resistance)
-- ola : wave (as in stadium) / hello (Spanish context, but can be used playfully)
-- par : par / equal
-- pax : peace (latin)
-- quo : quo (latin, as in 'status quo')
-- sic : sic (latin, thus)
-- sin : bosom (poetic/archaic) / sine (math) / until (archaic)
-- tek : teak (wood)
-- tic : tic (nervous)
-- tot : so many (latin, used in Italian) / (part of 'totale')
-- uau : wow!
-- udi : heard (he/she/it, past historic of udire)
-- uhm : uhm (interjection)
-- umo : humor (colloquial short for umore) / prefix
-- vin : wine (archaic/poetic for vino)
-- vip : VIP (person)
-- vis : force (legal, latin)
-- yak : yak (animal)
-- yen : yen (currency)
-- zar : czar
-- zen : Zen
-- zii : uncles
-- zie : aunts
-- zip : zip / zipper
-- Zoe : Zoe (name)
-- Ido : Ido (name) / I reconcile (verb, rare)
-- Isa : Isa (name)
-- Iva : Iva (name)
-- Lea : Lea (name)
-- Lu : Lu (place name/name)
-- Nus : Nus (place name)
-- Ome : Ome (place name)
-- Ra : Ra (Egyptian god)
-- Rho : Rho (place name/Greek letter)
-- Teo : Teo (name)
-- Ugo : Ugo (name)
-- Vò : Vò (place name / I go - archaic verb form)
-- Bra : Bra (town in Italy / garment)
-- afa : sultriness
-- aga : aga (title)
-- agi : ease (plural, literary)
-- aia : threshing floor / chicken coop
-- aie : threshing floors / chicken coops
-- aio : tutor (archaic)
-- alt : halt!
-- ani : anuses
-- ano : anus
-- ara : altar / he/she/it ploughs
-- are : are (unit of area)
-- ari : ares (unit of area, plural) / you plough
-- ava : grandmother (archaic)
-- ave : hail (archaic Latin greeting)
-- avi : ancestors
-- avo : grandfather (archaic)
-- bai : bay horses (plural)
-- bé : drink! (imperative of bere, archaic/regional)
-- bo : bo! (interjection, like 'dunno')
-- boe : boas / buoys (plural)
-- bui : dark (plural)
-- ca : ca (archaic for 'casa' or 'circa')
-- dia : may he/she/it give (subjunctive)
-- duo : duo
-- eia : eia! (archaic interjection)
-- erg : erg (unit of energy)
-- evi : ages / eras (archaic plural)
-- evo : age / era (archaic singular)
-- fio : fee / son (archaic)
-- geo : geo- (prefix, sometimes used standalone for geography subject)
-- idi : Ides (Latin, as in Ides of March)
-- ifa : hypha (botany)
-- ife : hyphae (botany)
-- ile : ileum (anatomy)
-- ili : ilia (plural of ilium bone, anatomy)
-- ilo : hilum (botany/anatomy)
-- ima : lowest (feminine singular of imo, archaic)
-- imo : lowest / bottom (archaic)
-- ire : to go (infinitive, archaic)
-- ivi : there (adverb, archaic)
-- ohe : ohe! (interjection, calling out)
-- ohi : ohi! (interjection, surprise/pain)
-- ove : where (conjunction/adverb, archaic)
-- ozi : idleness (plural, literary)
-- pi : pi (Greek letter / mathematical constant)
-- pur : although / even if (conjunction)
-- ras : ras (Ethiopian title)
-- rea : guilty (feminine singular)
-- ree : guilty (feminine plural)
-- rei : guilty (masculine plural) / culprits (plural)
-- reo : guilty (masculine singular) / culprit
-- ria : creeks (plural)
-- rii : creeks (plural)
-- tam : tam-tam (drum)
-- tao : Tao (philosophy)
-- tap : tap (dance/faucet - more English context for faucet)
-- tau : tau (Greek letter)
-- uhi : uhi! (interjection of pain/complaint)
-- uri : aurochs (plural, extinct wild ox)
-- uro : aurochs (singular)
-- use : may use (he/she/it, subjunctive of usare)
-- usi : customs / habits / you use
-- uve : grapes (plural, less common than 'uva' for grapes in general)
-- yin : yin (philosophy)
-- zag : zag (as in zig-zag)
-- zig : zig (as in zig-zag)
-- bi : bi- (prefix)
-- hm : hm (interjection)
-- id : id (psychology, Latin)
-- ud : oud (musical instrument)
-- uh : uh! (interjection)
+- gin : gin (drink)
+- gru : crane (machine/bird)
+- ics : X (the letter)
+- mie : my (feminine plural)
+- tue : your (feminine plural, informal)
+- sue : his / her / its (feminine plural)
+- ali : wings
+- api : bees
+- bel : beautiful (masculine singular, before consonant)
+- bei : beautiful (masculine plural)
+- oli : oils
+- omo- : omo- (prefix, e.g., omosessuale)
+- pan- : pan- (prefix, e.g., panitaliano)
+- osa : dares (he/she/it dares)
+- osi : dare (you dare, singular informal)
+- oso : daring / I dare
+- son : sound / bran
 
+### Moderately Frequent or More Context-Specific Words
+
+- alt : halt! (command)
+- ara : altar / (he/she/it) ploughs
+- bai : bay horses (plural)
+- bue : ox
+- bui : dark (plural adjective)
+- dia : may (he/she/it) give (subjunctive)
+- use : may (he/she/it) use (subjunctive of usare)
+- usi : customs / habits / (you) use
 
 # Notes on CwFs and categorical NbE
 
