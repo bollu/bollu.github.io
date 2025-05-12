@@ -18,11 +18,11 @@
 
 - di: from (Io sono di Roma: I am from rome)
 - a: to/at (Io vado a Roma: I go to rome)
-- da: by (Studio da solo: I study alone)
+- da: by (: Stand by me)
 - in: in (sono in casa: I am in home)
 - con: with (latte con zucchero: milk with sugar)
 - su: on (la foto su la scrivania: the photo on the desk)
-- per for (questo è per te: this is for you)
+- per for (morire per te: Die for you)
 
 ### Essential Core (Grammar, Pronouns, Key Verbs & Conjunctions)
 
