@@ -18,7 +18,7 @@
 
 - di: from (Io sono di Roma: I am from rome)
 - a: to/at (Io vado a Roma: I go to rome)
-- da: by (: Stand by me)
+- da: by/from/since (Studio da solo: I study alone)
 - in: in (sono in casa: I am in home)
 - con: with (latte con zucchero: milk with sugar)
 - su: on (la foto su la scrivania: the photo on the desk)
