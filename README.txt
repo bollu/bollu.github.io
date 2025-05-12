@@ -50599,6 +50599,10 @@ speak slower than you want to.
 
 - [Front, Back, Front, Open](https://www.instagram.com/reel/DJQavDQtG3f/?utm_source=ig_web_copy_link)
 
+#### Cutting Shapes
+
+- These are the moves I like best, where we move around quickly
+
 #### List of Moves
 
 - [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
@@ -50608,6 +50612,11 @@ speak slower than you want to.
 - T step
 
 # Latte Art
+
+#### Stuff I've figured out
+
+- Dip steaming wand in at the top, get air in 6-8 times, then push down to
+  incorporate and mix till it gets warm.
 
 #### Steaming milk
 
