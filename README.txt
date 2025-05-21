@@ -8,6 +8,26 @@
 - **It's useful to finish things.**
 
 
+# Certifying Hardware Model Checking by Emily Zhengqi Yu
+
+> An illustration of this is demonstrated by IC3/PDR and interpolationbased
+> model checking, which offer inductive invariants that can be utilized
+> directly as certificates due to their algorithmic properties. Conversely,
+> other techniques like k-induction do not possess such feature. More
+> specifically, temporal induction, also referred to as k-induction, is a
+> powerful model checking technique that operates through two primary stages.
+> Firstly, a bounded model checking check is carried out to verify whether the
+> property holds from initialization for a set number of k time steps.
+> Subsequently, the inductive step is executed to confirm that if the property
+> holds consecutively for k steps, it will continue to hold for the successor
+> states.
+
+# Formal Verification of Multiplier Circuits using Computer Algebra
+
+> We show how the polynomial calculus can be instantiated to yield a
+> practical algebraic calculus (PAC).
+
+
 # Language Reactor
 
 - Plugin to get italian on YT videos.
