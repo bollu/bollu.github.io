@@ -398,7 +398,7 @@ Ie, we have a "diamond" of 1s:
 +---------
 ```
 
-- If we add up each of the x axes first, we see that it adds up to `-infinity, so then when we
+- If we add up each of the x axes first, we see that it adds up to `-infinity`, so then when we
   add up the sums, we get `-infinity`.
 - On the other hand, each of the y axes has infinitey many `*`s (1s) if we start adding from the bottom,
   so they will "wash over" the finite number of blank spaces (-1s), meaning that each y axis
