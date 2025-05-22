@@ -3,16 +3,95 @@
 </h1>
 
 - [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@pixel-druid.com'> `bollu@pixel-druid.com` </a> / [Book a 15 minute Chat with me](https://calendly.com/bollu)
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html)
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html) / [Photography](https://nx72119.your-storageshare.de/apps/photos/albums/Portfolio)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Big list of Italian Learning
 
-# Language Reactor
+- Plugin to get italian on YT videos: Language Reactor
 
-- Plugin to get italian on YT videos.
+## Mnemonic for Italian Prepositions
 
-# Italian words of less than or equal to three letters
+- `di-a-da-in-con-su-per-tra-fra `
+
+
+> “Di is ‘of’, a is ‘to’,
+> Da means ‘from’, that’s true.
+> In is ‘in’, and con is ‘with’,
+> Su is ‘on’—as on a cliff.
+> Per is ‘for’, or purpose-bound,
+> Tra/fra are ‘between’ or ‘round’.
+
+#### Examples from Life
+
+- Pan di stelle (bread of stars)
+- Vengo da Roma, e tu? (I come from Rome, and you?)
+- a: at, to, in
+
+#### From Tutorial
+
+- "di:" "of" (and sometimes "from").
+- "a": which means "at, to, & in".
+- "da": "from".
+- "in": "in" and sometimes "to".
+- "su": "on"
+
+
+
+
+#### Poem Example
+
+- [[Di]] mattina presto, il canto [[di]] un gallo, ([[Of]] early morning, the song [[of]] a rooster)
+- Mi sveglia [[a]] valle, vicino al ruscello. (Wakes me [[at]] the valley, near the stream)
+- Cammino [[da]] casa con passo leggero, (I walk [[from]] home with a light step)
+- Entro [[in]] piazza col cuore sincero. (I enter [[in]] the square with a sincere heart)
+- Parlo [[con]] Gina che cuoce il ragù, (I speak [[with]] Gina who’s cooking ragù)
+- Seduto [[su]] legno, nel sole laggiù. (Seated [[on]] wood, in the sun down below)
+- Un dono [[per]] te, un sorriso gentile, (A gift [[for]] you, a kind little smile)
+- [[Tra]] case antiche, [[fra]] vigne tranquille. ([[Between]] old houses, [[among]] quiet vines)
+
+#### Rhyming examples
+
+- Di-a-da (hindi song), in-con, su-per, tra-fra.
+- Di(of): La casa di Gianni è blu. (Gianni's house is blue)
+- A(at): Vado a scuola alle due (I go to school at 2)
+- Da(from): Vengo da Roma, e tu? (I come from Rome, and you?)
+- In(in): Sono in cucina, non più (I'm in the kitchen, no more)
+- Con(with): Parlo con Marco al bambù (I talk with Marco at the bamboo)
+- Su(on): Il libro è su quella gru (the book is on that crane)
+- Per(for): Questo è per te, è un debut (This is for you, it's a debut)
+- Tra/fra(between): Tra/fra le nuvole, non è blu (Between the clouds, it's not blue)
+
+
+
+### Sentence Examples
+
+
+#### di-a-da (hindi song)
+
+- *di:* of. Tre litre di vino [Three liters of wine.]
+- *di:* of (Mostra del fromaggio = Mostra de il fromaggio = monster of the cheese)
+- *a:* to
+- *da:* from
+
+#### in-con
+
+- *in:* in [in spagna]
+- *con:* with [latte con zucchero]
+
+#### su-per!
+
+- *su:* on. Un ponte sul fiume [the bridge on the river]
+- *per:* for??? Dictionary is a mess.
+
+
+#### tra-fra
+
+- *tra:* between
+- *fra:* between
+
+## Italian words of less than or equal to three letters
 
 ### Recall Prepositions
 
@@ -290,6 +369,40 @@ end BV
 - Alternative, minor: [vi] [ii] [V7] I
 - For C, this is: [Am] [Dm] [G7] [C].
 
+=======
+# Example of Non Commuting Summation
+
+Consider the 2D region:
+
+
+```
+|...
+|1  1  1  1  1
+|1  1  1  1 -1
+|1  1  1 -1 -1
+|1  1 -1 -1 -1
+|1 -1 -1 -1 -1 ...
++---------
+```
+
+Ie, we have a "diamond" of 1s:
+
+
+```
+|...
+|* * * * *
+|* * *
+|* * *
+|* *
+|*
++---------
+```
+
+- If we add up each of the x axes first, we see that it adds up to `-infinity, so then when we
+  add up the sums, we get `-infinity`.
+- On the other hand, each of the y axes has infinitey many `*`s (1s) if we start adding from the bottom,
+  so they will "wash over" the finite number of blank spaces (-1s), meaning that each y axis
+
 
 # Covering Spaces for Automata
 
@@ -385,87 +498,8 @@ addition of a new theorem. In contrast, a metatheorem is a theorem about a forma
 and can become false if another axiom is added to the system, since e.g. some syntactic
 property of the axiom system may no longer hold (think: subformula property).
 
-# Mnemonic for Italian Prepositions
-
-- `di-a-da-in-con-su-per-tra-fra `
-
-
-> “Di is ‘of’, a is ‘to’,
-> Da means ‘from’, that’s true.
-> In is ‘in’, and con is ‘with’,
-> Su is ‘on’—as on a cliff.
-> Per is ‘for’, or purpose-bound,
-> Tra/fra are ‘between’ or ‘round’.
-
-#### Examples from Life
-
-- Pan di stelle (bread of stars)
-- Vengo da Roma, e tu? (I come from Rome, and you?)
-- a: at, to, in
-
-#### From Tutorial
-
-- "di:" "of" (and sometimes "from").
-- "a": which means "at, to, & in".
-- "da": "from".
-- "in": "in" and sometimes "to".
-- "su": "on"
-
-
-
-
-#### Poem Example
-
-- [[Di]] mattina presto, il canto [[di]] un gallo, ([[Of]] early morning, the song [[of]] a rooster)
-- Mi sveglia [[a]] valle, vicino al ruscello. (Wakes me [[at]] the valley, near the stream)
-- Cammino [[da]] casa con passo leggero, (I walk [[from]] home with a light step)
-- Entro [[in]] piazza col cuore sincero. (I enter [[in]] the square with a sincere heart)
-- Parlo [[con]] Gina che cuoce il ragù, (I speak [[with]] Gina who’s cooking ragù)
-- Seduto [[su]] legno, nel sole laggiù. (Seated [[on]] wood, in the sun down below)
-- Un dono [[per]] te, un sorriso gentile, (A gift [[for]] you, a kind little smile)
-- [[Tra]] case antiche, [[fra]] vigne tranquille. ([[Between]] old houses, [[among]] quiet vines)
-
-#### Rhyming examples
-
-- Di-a-da (hindi song), in-con, su-per, tra-fra.
-- Di(of): La casa di Gianni è blu. (Gianni's house is blue)
-- A(at): Vado a scuola alle due (I go to school at 2)
-- Da(from): Vengo da Roma, e tu? (I come from Rome, and you?)
-- In(in): Sono in cucina, non più (I'm in the kitchen, no more)
-- Con(with): Parlo con Marco al bambù (I talk with Marco at the bamboo)
-- Su(on): Il libro è su quella gru (the book is on that crane)
-- Per(for): Questo è per te, è un debut (This is for you, it's a debut)
-- Tra/fra(between): Tra/fra le nuvole, non è blu (Between the clouds, it's not blue)
-
-
-
-### Sentence Examples
-
-
-#### di-a-da (hindi song)
-
-- *di:* of. Tre litre di vino [Three liters of wine.]
-- *a:* to??? restare a letto [to stay in bed.]
-- *da:* from. da dove vieni? [Are you from rome]
-
-#### in-con
-
-- *in:* in [in spagna]
-- *con:* with [latte con zucchero]
-
-#### su-per!
-
-- *su:* on. Un ponte sul fiume [the bridge on the river]
-- *per:* for??? Dictionary is a mess.
-
-
-#### tra-fra
-
-- *tra:* between
-- *fra:* between
 
 # Weird Art Movements in the 20th Century
-
 
 #### Abstract Expressionism
 
