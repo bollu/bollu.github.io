@@ -7,6 +7,12 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Example of Pairwise Independent But Not 3-wise Independent
+
+- Consider `(x, y, x xor y)`.
+- Any two are completely independent, if `x, y` are sampled IID.
+- But given any two, the third is determined.
+
 # Big list of Italian Learning
 
 - Plugin to get italian on YT videos: Language Reactor
