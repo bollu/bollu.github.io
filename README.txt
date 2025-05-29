@@ -539,6 +539,9 @@ property of the axiom system may no longer hold (think: subformula property).
 - Use `logging` to log info, and use python's inbuilt logger to write to a log file as well as stdout/stderr.
 - Write all data into sqlite database files, and use sqlite database file to be crash-tolerant, to keep track of how many tasks have finished.
 - View sqlite database quickly using `visidata` in the command line, and load into further processing scripts via `duckdb`.
+- To ensuire that scripting does not go stale, have two modes of the script: One that can perform a 'test run'
+  of 10-20 rows that produces the data, and hook the 'test run' mode into CI.
+- Write a `makefile` and a `README.txt` that explains how to run the script.
 
 # Pop Piano Accompaniment
 
