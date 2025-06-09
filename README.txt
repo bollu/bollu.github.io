@@ -18111,6 +18111,7 @@ y = [#]
 
 # Quotes from 'Braiding Sweetgrass'
 
+
 > I reserve my time for those who can talk about science, and music,
 > and literature, and art.
 
@@ -49789,6 +49790,8 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> "Politics is the art of the posible."
 
 > "A single act of careleness leads to the eternal loss of beauty."
 
