@@ -31,6 +31,7 @@
 
 #### Examples from Life
 
+- I think I love you / malate per tu: sick for you.
 - Pan di stelle (bread of stars)
 - Vengo da Roma, e tu? (I come from Rome, and you?)
 - a: at, to, in
