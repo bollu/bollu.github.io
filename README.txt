@@ -7,7 +7,50 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Example of Pairwise Independent But Not 3-wise Independent
+# Transitioning from Major to Minor chord
+
+- I figured this out when messing about with writing something in Dmajor, which is not
+  a scale I use often, but was inspired to use since I want to get better at using scales-with-sharps,
+  and it's my girlfriend's favourite scale.
+
+- To go from CM to Cm, perform the following sequence: `CM, AbM, Fm, Cm`.
+
+```abc
+X:1
+T:CM to Cm
+M:4/4
+L:1/4
+K:C
+"CM"[C,E,G,C]4 | "AbM"[Ab,C,Eb,Ab]4 | "Fm"[F,Ab,C,F]4 | "Cm"[C,Eb,G,C]4 |
+```
+
+
+- To go from Cm to CM, perform the following sequence using the flat7: `Cm, BbM, FM, CM`.
+
+```abc
+X:1
+T:Cm to CM via flat7
+M:4/4
+L:1/4
+K:C
+"Cm"[C,Eb,G,C]4 | "BbM"[B,,D,F,Bb]4 | "FM"[F,A,C,F]4 | "CM"[C,E,G,C]4 |
+```
+
+- Generally, use the flat6 or flat7 chord for modulation!
+
+
+- Alternative modulation from Cm to CM using flat6 (Ab):
+
+```abc
+X:1
+T:Cm to CM via flat6
+M:4/4
+L:1/4
+K:C
+"Cm"[C,Eb,G]4 | "Ab"[Ab,C,Eb]4 | "G"[G,B,D]4 | "C"[C,E,G]4 |
+```
+
+
 
 # Certifying Hardware Model Checking by Emily Zhengqi Yu
 
