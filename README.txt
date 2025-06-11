@@ -91,12 +91,39 @@ K:C
 
 - Plugin to get italian on YT videos: Language Reactor
 
+
+## Essere Conjugations
+
+- io sono
+- tu sei
+- lui/lei è
+- noi siamo
+- voi siete
+- loro sono
+
+## Avere Conjugations
+
+- io ho
+- tu hai
+- lui/leo ha
+- noi abbiamo
+- voi avete
+- loro hanno
+
+## Stare Conjugatiions
+
+- io sto
+- tu stai
+- lu/lei sta
+- noi staiamo
+- voi state
+- loro stanno
+
 ## Mnemonic for Italian Pronous
 
 - Noi [We] : "No, it's not just 'I,' that's plain to see, When it means WE, say NOI with glee!"
 - Voi	[You all]: "When YOU ALL speak with a single VOICE, VOI is the pronoun, make that choice!"
 - Loro [They]: "Like noble LORDs and ladies, from a tale of yore, LORO means THEY, and nothing more!"
-
 
 
 ## Mnemonic for Italian Prepositions
