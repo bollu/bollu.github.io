@@ -93,9 +93,10 @@ K:C
 
 ## Mnemonic for Italian Pronous
 
-- Noi [We] : "No, not just I... WE!" / "WE make NOIse."
-- Voi	[You all]	: "YOU ALL go on a VOYage." / "Raise VOIce, YOU ALL."
-- Loro [They]: "When talking 'bout THEM, to and fro, The word for THEY is LORO, you know!"
+- Noi [We] : "No, it's not just 'I,' that's plain to see, When it means WE, say NOI with glee!"
+- Voi	[You all]: "When YOU ALL speak with a single VOICE, VOI is the pronoun, make that choice!"
+- Loro [They]: "Like noble LORDs and ladies, from a tale of yore, LORO means THEY, and nothing more!"
+
 
 
 ## Mnemonic for Italian Prepositions
