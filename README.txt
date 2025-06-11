@@ -91,6 +91,13 @@ K:C
 
 - Plugin to get italian on YT videos: Language Reactor
 
+## Mnemonic for Italian Pronous
+
+- Noi [We] : "No, not just I... WE!" / "WE make NOIse."
+- Voi	[You all]	: "YOU ALL go on a VOYage." / "Raise VOIce, YOU ALL."
+- Loro [They]: "When talking 'bout THEM, to and fro, The word for THEY is LORO, you know!"
+
+
 ## Mnemonic for Italian Prepositions
 
 - `di-a-da-in-con-su-per-tra-fra `
