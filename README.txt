@@ -408,6 +408,8 @@ K:C
 
 - [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
 - The question is, why does this work, and why do we need the twist?
+- The magic loop is the same as a [noose knot](https://www.animatedknots.com/noose-knot),
+  except we are making the noose around an *existing loop*.
 
 # The Euclidean Definitions of The Functions div and mod
 
