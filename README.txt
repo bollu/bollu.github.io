@@ -16,7 +16,7 @@
   This says that the image of $F_i$ lives in $F_{i+1}$.
 - Furthermore, each $F_i \subseteq P$ (they are all subsets of the safety property).
 
-#### Main Loop
+## Main Loop: $F[2]$
 
 - First, establish that $F[1] = I$ and $F[1] = P$.
 - This involves check that $F[0]$ is safe, $F[1]$ is safe, and that the image of $F[0]$ is in $F[1]$.
@@ -24,9 +24,20 @@
 - Clearly, $F[2]$ is safe by construction, and that $F[1]$ contains $F[2]$.
   We now try to show that the image of $F[1]$ is in $F[2]$.
 - So, we try to prove that $\delta(F[1]) \subseteq F[2]$.
-- If this is not the case, we then find a state $x \in F[1]$ such that $\delta(x) \not \in F[2]$.
+
+### $\delta(F[1]) \subseteq F[2]$
+
+- Hurray, we know that the image of $F[1]$ is safe.
+  Since $F[1] = P$ and $F[2] = P$, we are done.
+
+
+### $\delta(F[1]) \subsetneq F[2]$
+
+- we then find a state $x \in F[1]$ such that $\delta(x) \not \in F[2]$.
 - We think of this as a "bad subset", given by $B \equiv \{x\}$.
-  We try to show that the complement of $B$, $G \equiv S - B$ is an inductivr invariant.
+  We try to show that the complement of $B$, $G \equiv S - B$ is an inductive invariant.
+
+## Recursiing on $F[1]$.
 
 ## $F[1]$ with $G$ as an invariant.
 
@@ -47,8 +58,11 @@
 - Thus, we now start checking $F[0]$ with $G$ as an invariant.
 
 
-## $F[0]$ with $G$ as an invariant.
+### $F[0]$
 
+- We now try to show that $G$ is an invariant for $F[0]$.
+
+### $F[0]$ with $G$ as an invariant.
 
 
 # Transitioning from Major to Minor chord
