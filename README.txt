@@ -7,6 +7,50 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# IC3 Invariants
+
+- Maintain a set of frames $F_i$.
+- Each $F_i$ witnesses that all vertices in all $i$-length paths from the initial state are safe.
+- Furthermore, each $F_i \subseteq F_{i+1}$, so they are a sequence of larger and larger sets of states.
+- Also, $\delta(F_i) \subseteq F_{i+1}$, where $\delta$ is the transition relation.
+  This says that the image of $F_i$ lives in $F_{i+1}$.
+- Furthermore, each $F_i \subseteq P$ (they are all subsets of the safety property).
+
+#### Main Loop
+
+- First, establish that $F[1] = I$ and $F[1] = P$.
+- This involves check that $F[0]$ is safe, $F[1]$ is safe, and that the image of $F[0]$ is in $F[1]$.
+- We will now try to establish a new $F_2$. Start by setting $F_2 := P$.
+- Clearly, $F[2]$ is safe by construction, and that $F[1]$ contains $F[2]$.
+  We now try to show that the image of $F[1]$ is in $F[2]$.
+- So, we try to prove that $\delta(F[1]) \subseteq F[2]$.
+- If this is not the case, we then find a state $x \in F[1]$ such that $\delta(x) \not \in F[2]$.
+- We think of this as a "bad subset", given by $B \equiv \{x\}$.
+  We try to show that the complement of $B$, $G \equiv S - B$ is an inductivr invariant.
+
+## $F[1]$ with $G$ as an invariant.
+
+- If we manage to show that $\delta(F[1] \cap G) \subseteq G$, we know that $G$
+  excludes the bad state for transitions from $F[1]$.
+- We would now ideally like to update $F[1] \equiv F[1] \cap G$.
+- See that this will still keep $F[1] \subseteq P$, since we just made the state smaller.
+- However, we may have lost either $F[0] \subseteq F[1]$, or $\delta(F[0]) \subseteq F[1]$.
+- To check these, we need to recurse, and check that $F[0] \subseteq F[1]$ and $\delta(F[0]) \subseteq F[1]$.
+  We add these as new obligations to be checked.
+- How does this happen??
+
+## $F[1]$ with $G$ not an invariant.
+
+- If we do not manage to show that $\delta(F[1] \cap G) \subseteq G$ then we can enter into $G$
+  from $F[1]$ in one step. We now try to see if we can enter into $G$ from $F[0]$,
+  which should be easier, because $F[0]$ is smaller than $F[1]$.
+- Thus, we now start checking $F[0]$ with $G$ as an invariant.
+
+
+## $F[0]$ with $G$ as an invariant.
+
+
+
 # Transitioning from Major to Minor chord
 
 - I figured this out when messing about with writing something in Dmajor, which is not
