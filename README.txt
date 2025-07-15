@@ -20,22 +20,47 @@
 
 - First, establish that $F[1] = I$ and $F[1] = P$.
 - This involves check that $F[0]$ is safe, $F[1]$ is safe, and that the image of $F[0]$ is in $F[1]$.
-- We will now try to establish a new $F_2$. Start by setting $F_2 := P$.
-- Clearly, $F[2]$ is safe by construction, and that $F[1]$ contains $F[2]$.
-  We now try to show that the image of $F[1]$ is in $F[2]$.
+- We will now try to establish a new $F_2$. Start by setting $F_2 := P$, the full safety property.
+- Clearly, $F[2]$ is safe by construction, and that $F[2]$ contains $F[1]$.
+  We now try to show that the image of $F[1]$ is in $F[2]$
+  (i.e. everything from $F[1]$ in one step is safe.)
 - So, we try to prove that $\delta(F[1]) \subseteq F[2]$.
 
 ### $\delta(F[1]) \subseteq F[2]$
 
 - Hurray, we know that the image of $F[1]$ is safe.
-  Since $F[1] = P$ and $F[2] = P$, we are done.
-
+- In this particular case, we are done, since $F[1] = P = F[2]$.
+- What now in general? TODO.
 
 ### $\delta(F[1]) \subsetneq F[2]$
 
-- we then find a state $x \in F[1]$ such that $\delta(x) \not \in F[2]$.
-- We think of this as a "bad subset", given by $B \equiv \{x\}$.
-  We try to show that the complement of $B$, $G \equiv S - B$ is an inductive invariant.
+- we have found a bad $x \in F[1]$ (called the counterexample to induction / CTI)
+  with the property that $\delta(x) \not \in P$ (that is, it is unsafe).
+- This could be two 'kinds' of badness: either (a) it is a 'real bad state',
+  since we know that $F[1]$ contains $\delta(I)$, or (b) it is a 'hallucinated bad state',
+  which is bcause $F[1]$ is an overapprpximation of 1-step reachability.
+- Either way, we try to find a previous frame $F[-i]$ which can inductively keep $x$ out.
+- So, we try to find the largest? smallest? (TODO: unsure) $i$ such that
+  $\delta(F[-i] - {x}) \subseteq S - {x}$. That is, the transition from $F[-i]$
+  without $x$ remains without $x$. This makes $S - x$ an inductive property *relative* to $F[-i]$.
+
+#### Unable to find a CTI invariant $F[-i]$
+
+- Suppose we are unable to establish that even $\delta(F[0] - {x}) \subseteq S - {x}$.
+- This means that we reach $x$ from $F[0]$ in one step, and we know that $x$ transitions to a bad state in one step.
+- Thus, we have found a bona-fide counter-example.
+- TODO: what happens if $x \in F[0]$, but $\delta(F[0])$ does not contain $x$?
+
+#### Finding CTI invariant $F[-i]$
+
+- Suppose we find that at state $F[-i]$, we can keep $x$ out inductively.
+  That is to say, it is true that $\delta(F[-i] - {x}) \subseteq S - {x}$.
+- We now refine $F[-i] \leftarrow F[-i] - \{x\}$. (forget about generalization for now).
+- We now need to make sure that this refinement does not violate the invariant
+  that $F[-i]$ contains the image of $F[-i-1]$.
+
+
+
 
 ## Recursiing on $F[1]$.
 
