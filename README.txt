@@ -7,6 +7,13 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
+
+- Keep the git tag of the artifact. Keep bumping this up every time.
+- Merge this tag into main repeatedly. This ensures that the main branch
+  has the commit of the artifact, and that this commit is never lost.
+
 # IC3 Invariants
 
 - Maintain a set of frames $F_i$.
