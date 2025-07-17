@@ -75,7 +75,16 @@
 
 ### (A.NotSubset.FoundIndIvariant) Exists $i$ such that $s \not \in \delta(F[i] - s)$
 
-- FOOTNOTE: Prove that the $i \geq k-2$.
+#### If we find such an $i$, then $i \geq k - 2$ or larger.
+
+- Proof by contradiction. First suppose $i = k - 2$, similar proof holds if $i < k - 2$ with some index juggling.
+- Thus, we have that $s \in \delta(F[k-2] - s)$.
+- Thus, there is some predecessor $t \in F[k-2]$ such that $t \neq s$ and $\delta(t) = s$.
+- Then, $s$ must be a $F[k-1]$ state (each $F[k-1]$ is a overappox. of image of $F[k-2]$).
+- Thus $\delta(s)$ must be in $F[k]$, which contradicts the fact that $F[k]$ is safe!
+
+#### Continuing exposition: Found $i$ such that $s \not \in \delta(F[i] - s)$
+
 - Let $G \equiv \mathcal{U} - s$ be the good set, where $\mathcal{U}$ is the universe of all states.
 - We have found some $i$ such that $s \not \in \delta(F[i] - s)$.
 - Now, since each $F[j \leq i] \subseteq F[i]$, we know that $\delta(F[j] - s) \subseteq \delta(F[i] - s)$,
@@ -86,7 +95,7 @@
 - FOOTNOTE: the good set $G$ may be a relative invariant for higher $j' > i$, so in practice,
   we try to push $G$ as far along as it will go.
 
-### (A.NotSubset.FoundIndIvariantGeneralized) Exists $i$ such that $s \not \in \delta(F[i] - s)$, but generalized
+### (A.NotSubset.FoundIndIvariantGeneralized) Found $i$ such that $s \not \in \delta(F[i] - s)$, but generalized
 
 - If we feel fancy, we can generalize the good set $G$ to a smaller $G' \subseteq G$,
   which is still a relative invariant.
