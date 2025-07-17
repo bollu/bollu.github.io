@@ -60,8 +60,41 @@
 - In this case, we have found a state $s \in F[k]$ such that $\delta(F[k]) \not in P$.
 - This state has a path of length *1* that violates $P$.
 - We now try to find the largest $i$ in $0 \leq i \leq k$, such that $\not s$ is inductive relative to it?
-- That is, what is the latest timestep at which we can ban state $s$ forever? We want to check
-  that $s \not \in F[i] \implies s \not in \delta(F[i])$.
+- TODO: why do we want the largest $i$ and not the smallest $i$?
+- That is, what is the latest timestep at which we can ban state $s$ forever?
+- Logically, we want to check that $\lnot s \and F \and T \implies \lnot s'$.
+- As sets, we want to check that $s \not in \delta(F[i] - s)$.
+
+### (A.NotSubset.NoIndInvariant) No $i$ such that $s \not \in \delta(F[i] - s)$
+
+- Suppose no such $i$ exists. Therefore, in particular, this does not work for $i = 0$.
+- This tells us that $s \in \delta(F[0]=I - s)$, and that therefore, $s$ is reachable from $I$ in one step.
+- We are done, we have found a path from $I$ to $s$ in 1 step, where $s$ is bad.
+- Output `BAD`.
+
+### (A.NotSubset.FoundIndIvariant) Exists $i$ such that $s \not \in \delta(F[i] - s)$
+
+- FOOTNOTE: Prove that the $i \geq k-2$.
+- Now that we have such an $i$, first notice that $s \not in F[i]$, because $s$ is a bad state, while every state in $F[i]$ is good.
+  So, if we define the good set $G \equiv \mathcal{U} - s$, we can add $G$ to $F[i]$.
+- So we update $F[i] \leftarrow G :: F[i]$.
+- Moreover, since we know that $F[0 \leq j \leq i]$ are overapproximations of $j$ step reachability,
+  an we know that $s$ was only reachable at state $i+1$, we can adjoin $G$ to every $F[0 \leq j \leq i]$.
+- Finally, since we know that this is an inductive invariant relative to %F[i]$,
+  we can also adjoin $F[i+1] \leftarrow G :: F[i+1]$.
+- This now cuts away the state $s$ from the frames, by the addition of the good set $G$ such that $s \not in G$.
+- FOOTNOTE: the good set $G$ may be a relative invariant for higher $j' > i$, so in practice,
+  we try to push $G$ as far along as it will go.
+
+### (A.NotSubset.FoundIndIvariantGeneralized) Exists $i$ such that $s \not \in \delta(F[i] - s)$
+
+- If we feel fancy, we can generalize the good set $G$ to a smaller $G' \subseteq G$,
+  which is still a relative invariant.
+- That is: $\delta(F[i] \cap G) \subseteq G$.
+- We now claim that we can refine $F[0 \leq j \leq i] \leftarrow G :: F[j]$.
+-
+
+
 
 ## Main Loop: $F[2]$
 
