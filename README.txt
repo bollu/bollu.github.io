@@ -78,9 +78,12 @@
 - Now that we have such an $i$, first notice that $s \not in F[i]$, because $s$ is a bad state, while every state in $F[i]$ is good.
   So, if we define the good set $G \equiv \mathcal{U} - s$, we can add $G$ to $F[i]$.
 - So we update $F[i] \leftarrow G :: F[i]$.
-- Moreover, since we know that $F[0 \leq j \leq i]$ are overapproximations of $j$ step reachability,
-  an we know that $s$ was only reachable at state $i+1$, we can adjoin $G$ to every $F[0 \leq j \leq i]$.
-- Finally, since we know that this is an inductive invariant relative to %F[i]$,
+- We also kow that since $s$ is bad, it cannot be in the inital state, and thus $I \subseteq G$,
+  so we can update $F[0] \leftarrow G :: F[0]$.
+- Moreover, since we know that $F[0 \leq j \leq i] \subseteq F[i]$,
+  since $s \not \in \delta(F[i] - s)$, we also cannot have $s \not \in \delta(F[j] - s)$,
+  as $F[j] - s \subseteq F[i] - s$.
+- Finally, since we know that this is an inductive invariant relative to $F[i]$,
   we can also adjoin $F[i+1] \leftarrow G :: F[i+1]$.
 - This now cuts away the state $s$ from the frames, by the addition of the good set $G$ such that $s \not in G$.
 - FOOTNOTE: the good set $G$ may be a relative invariant for higher $j' > i$, so in practice,
@@ -90,84 +93,29 @@
 
 - If we feel fancy, we can generalize the good set $G$ to a smaller $G' \subseteq G$,
   which is still a relative invariant.
-- That is: $\delta(F[i] \cap G) \subseteq G$.
+- That is: $I \subseteq G$, and $\delta(F[i] \cap G) \subseteq G$.
 - We now claim that we can refine $F[0 \leq j \leq i] \leftarrow G :: F[j]$.
--
+- Why? We can prove this by induction. First, by assumption, we know that $I \subseteq G$ (by defn of being relative invariant),
+  so it is safe to update $F[0] \leftarrow G :: F[0]$.
+- Now, exactly as previously, for all $j \leq i$, since $F[j] \subseteq F[i]$,
+  we must have that $\delta(F[j] \cap G) \subseteq \delta(F[i] \cap G) \subseteq G$,
+  and since we already know that $F[0]$ can be refined to $F[0] \cap G$,
+  we can propagate this forward, and update every $F[j] \leftarrow G :: F[j]$.
 
+### A.NotSubset.FoundIndInvariantGeneralized.Continue: Is $i = k - 1$ or $i = k$?
 
-
-## Main Loop: $F[2]$
-
-- First, establish that $F[1] = I$ and $F[1] = P$.
-- This involves check that $F[0]$ is safe, $F[1]$ is safe, and that the image of $F[0]$ is in $F[1]$.
-- We will now try to establish a new $F_2$. Start by setting $F_2 := P$, the full safety property.
-- Clearly, $F[2]$ is safe by construction, and that $F[2]$ contains $F[1]$.
-  We now try to show that the image of $F[1]$ is in $F[2]$
-  (i.e. everything from $F[1]$ in one step is safe.)
-- So, we try to prove that $\delta(F[1]) \subseteq F[2]$.
-
-### $\delta(F[1]) \subseteq F[2]$
-
-- Hurray, we know that the image of $F[1]$ is safe.
-- In this particular case, we are done, since $F[1] = P = F[2]$.
-- What now in general? TODO.
-
-### $\delta(F[1]) \subsetneq F[2]$
-
-- we have found a bad $x \in F[1]$ (called the counterexample to induction / CTI)
-  with the property that $\delta(x) \not \in P$ (that is, it is unsafe).
-- This could be two 'kinds' of badness: either (a) it is a 'real bad state',
-  since we know that $F[1]$ contains $\delta(I)$, or (b) it is a 'hallucinated bad state',
-  which is bcause $F[1]$ is an overapprpximation of 1-step reachability.
-- Either way, we try to find a previous frame $F[-i]$ which can inductively keep $x$ out.
-- So, we try to find the largest? smallest? (TODO: unsure) $i$ such that
-  $\delta(F[-i] - {x}) \subseteq S - {x}$. That is, the transition from $F[-i]$
-  without $x$ remains without $x$. This makes $S - x$ an inductive property *relative* to $F[-i]$.
-
-#### Unable to find a CTI invariant $F[-i]$
-
-- Suppose we are unable to establish that even $\delta(F[0] - {x}) \subseteq S - {x}$.
-- This means that we reach $x$ from $F[0]$ in one step, and we know that $x$ transitions to a bad state in one step.
-- Thus, we have found a bona-fide counter-example.
-- TODO: what happens if $x \in F[0]$, but $\delta(F[0])$ does not contain $x$?
-
-#### Finding CTI invariant $F[-i]$
-
-- Suppose we find that at state $F[-i]$, we can keep $x$ out inductively.
-  That is to say, it is true that $\delta(F[-i] - {x}) \subseteq S - {x}$.
-- We now refine $F[-i] \leftarrow F[-i] - \{x\}$. (forget about generalization for now).
-- We now need to make sure that this refinement does not violate the invariant
-  that $F[-i]$ contains the image of $F[-i-1]$.
-
-
-
-
-## Recursiing on $F[1]$.
-
-## $F[1]$ with $G$ as an invariant.
-
-- If we manage to show that $\delta(F[1] \cap G) \subseteq G$, we know that $G$
-  excludes the bad state for transitions from $F[1]$.
-- We would now ideally like to update $F[1] \equiv F[1] \cap G$.
-- See that this will still keep $F[1] \subseteq P$, since we just made the state smaller.
-- However, we may have lost either $F[0] \subseteq F[1]$, or $\delta(F[0]) \subseteq F[1]$.
-- To check these, we need to recurse, and check that $F[0] \subseteq F[1]$ and $\delta(F[0]) \subseteq F[1]$.
-  We add these as new obligations to be checked.
-- How does this happen??
-
-## $F[1]$ with $G$ not an invariant.
-
-- If we do not manage to show that $\delta(F[1] \cap G) \subseteq G$ then we can enter into $G$
-  from $F[1]$ in one step. We now try to see if we can enter into $G$ from $F[0]$,
-  which should be easier, because $F[0]$ is smaller than $F[1]$.
-- Thus, we now start checking $F[0]$ with $G$ as an invariant.
-
-
-### $F[0]$
-
-- We now try to show that $G$ is an invariant for $F[0]$.
-
-### $F[0]$ with $G$ as an invariant.
+- Suppose $i = k$ or $i = k - 1$. In this case, we will have conjoined a good set $G$ to $F[k]$.
+  Subsequent queries either show that $\delta(F[k]) \subseteq P$, or found a different counterexample than $s \in F[k]$,
+  since we know that $s \not \in G$ and $F[k] \subseteq G$.
+- It is possible that $i < k-1$, so $s$ is still an $F[k]$ state that we have not successfully banned.
+- Consider: Why is $\lnot s$ inductive relative to $F[i]$, but not relative to $F[k]$?
+- There must be a predecessor $t \neq s$ such that \delta(t) = s$,
+  and $t \not in F[i]$, $t \in F[i+1]$, so that $s = \delta(t) \in \delta(F[i+1])$.
+- If $i = 0$, then $t$ may have an $I$ state as a predecessor, in which case we have found a bad path (?).
+- On the other hand, if $i > 0$, then because each $F[j]$ is an overapproxmation of $j$ step reachability,
+  $G \equiv \mathcal{U} - t$ must be relative to at least $F[i-1]$? (TODO: think??)
+- So, we recur on $t$, and we treat $t$ as a bad state which we are trying to ban from $F[i]$, eliminating $t$ at $F[i+1]$.
+- We keep recursing until we manage to show that $\lnot s$ is in fact inductive relative to $F[k]$.
 
 
 # Transitioning from Major to Minor chord
