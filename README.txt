@@ -37,24 +37,31 @@
 - Optimisitcally, we want to set $F[k+1] = P$, the full safety property (largest overapproximation available).
 - We check if $\delta(F[k]) \subseteq P$.
 
-### Yes, $\delta(F[k]) \subseteq P$
+### (A.Subset) Yes, $\delta(F[k]) \subseteq P$
 
 - We already know that $F[k] \subseteq P$, and now since $\delta(F[k]) \subseteq P$,
   we can set $F[k+1] = P$.
 
-## (A.A) Shrink Overapproximations
+## (A.Subset.Shrink) Shrink Overapproximations
 
 - We know that a frame $F[i]$ is comprised of its clauses $c[i][1], c[i][2], \dots$.
 - The set of $x \in F[i]$ is given by the intersection of the sets $x \in c[i][1]$ and  $x \in c[i][2]$ and $x \in c[i][3]$ and so on.
 - Thus, each clause $c[i][l]$ can be thought of as a superset of $F[i]$, where $F[i] \subseteq c[i][l]$, and $F[i] = \cap_l c[i][l]$.
-- For every bad region $B \subsetneq F[i]$ (which is to be thought of as the region banned by a clause $c$ in the formula)
-  ($0 \leq i \leq k$), if $B \subsetneq \delta(F[i])$, then we can shrink $F[i+1]$ by the set $B$ as well,
-  so we add $c$ into $F[i+1]$.
-- TODO: think of $B$ as the "vanishing" set $V(c)$?
--
+- Now, for every $i$ in $0 \leq i \leq k$ (we will be indexing into $i+1$, so $i$ only goes upto $k$):
+- For every over-approximate good region $c[i][l] \in F[i]$, we see if $\delta(F[i]) \subseteq c[i][l]$.
+  (So we check the formula $F[i] \land T \implies c[i][l]$).
+- If this is the case, then we intersect $F[i+1]$ with $c[i][l]$, so we add a cons-cell $F[i+1] \leftarrow c[i][l] :: F[i+1]$.
+- At the end of (A.A), we have shrunk the frames as much as possible, given the information we have at the current point in time.
+- If we find that any of the $F[i] = F[i+1]$, we are done, an we have found an inductive invariant.
 
 
-### No, $\delta(F[k]) \subsetneq P$
+### (A.NotSubset) No, $\delta(F[k]) \subsetneq P$
+
+- In this case, we have found a state $s \in F[k]$ such that $\delta(F[k]) \not in P$.
+- This state has a path of length *1* that violates $P$.
+- We now try to find the largest $i$ in $0 \leq i \leq k$, such that $\not s$ is inductive relative to it?
+- That is, what is the latest timestep at which we can ban state $s$ forever? We want to check
+  that $s \not \in F[i] \implies s \not in \delta(F[i])$.
 
 ## Main Loop: $F[2]$
 
