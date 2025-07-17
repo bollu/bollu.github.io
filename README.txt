@@ -16,12 +16,45 @@
 
 # IC3 Invariants
 
+- We exposit based on 'SAT based model checking without unrolling', while following
+  intuitions from IC3: where monolithic and incremental meet.
+
 - Maintain a set of frames $F_i$.
 - Each $F_i$ witnesses that all vertices in all $i$-length paths from the initial state are safe.
 - Furthermore, each $F_i \subseteq F_{i+1}$, so they are a sequence of larger and larger sets of states.
 - Also, $\delta(F_i) \subseteq F_{i+1}$, where $\delta$ is the transition relation.
   This says that the image of $F_i$ lives in $F_{i+1}$.
 - Furthermore, each $F_i \subseteq P$ (they are all subsets of the safety property).
+- Finally, we have that $I \subseteq F[0]$, so 0-step reachability is an overapproxiomation of the initial state.
+
+### Algorithmic Loop
+
+## Major Iteration (k > 0)
+
+## (A) Introduce New Frame
+
+- We want to create a frame $F[k+1]$ that is an overapproxiation of $k+1$ step reachability.
+- Optimisitcally, we want to set $F[k+1] = P$, the full safety property (largest overapproximation available).
+- We check if $\delta(F[k]) \subseteq P$.
+
+### Yes, $\delta(F[k]) \subseteq P$
+
+- We already know that $F[k] \subseteq P$, and now since $\delta(F[k]) \subseteq P$,
+  we can set $F[k+1] = P$.
+
+## (A.A) Shrink Overapproximations
+
+- We know that a frame $F[i]$ is comprised of its clauses $c[i][1], c[i][2], \dots$.
+- The set of $x \in F[i]$ is given by the intersection of the sets $x \in c[i][1]$ and  $x \in c[i][2]$ and $x \in c[i][3]$ and so on.
+- Thus, each clause $c[i][l]$ can be thought of as a superset of $F[i]$, where $F[i] \subseteq c[i][l]$, and $F[i] = \cap_l c[i][l]$.
+- For every bad region $B \subsetneq F[i]$ (which is to be thought of as the region banned by a clause $c$ in the formula)
+  ($0 \leq i \leq k$), if $B \subsetneq \delta(F[i])$, then we can shrink $F[i+1]$ by the set $B$ as well,
+  so we add $c$ into $F[i+1]$.
+- TODO: think of $B$ as the "vanishing" set $V(c)$?
+-
+
+
+### No, $\delta(F[k]) \subsetneq P$
 
 ## Main Loop: $F[2]$
 
