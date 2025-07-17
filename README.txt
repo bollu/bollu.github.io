@@ -57,7 +57,7 @@
 
 ### (A.NotSubset) No, $\delta(F[k]) \subsetneq P$
 
-- In this case, we have found a state $s \in F[k]$ such that $\delta(F[k]) \not in P$.
+- In this case, we have found a state $s \in F[k]$ such that $\delta(s) \not in P$.
 - This state has a path of length *1* that violates $P$.
 - We now try to find the largest $i$ in $0 \leq i \leq k$, such that $\not s$ is inductive relative to it?
 - TODO: why do we want the largest $i$ and not the smallest $i$?
@@ -69,45 +69,50 @@
 
 - Suppose no such $i$ exists. Therefore, in particular, this does not work for $i = 0$.
 - This tells us that $s \in \delta(F[0]=I - s)$, and that therefore, $s$ is reachable from $I$ in one step.
-- We are done, we have found a path from $I$ to $s$ in 1 step, where $s$ is bad.
+- We are done, we have found a path from $I$ to $s$ in 1 step, where $\delta(s)$ is bad,
+  so we have found a 2-step path from $I$ to a bad state.
 - Output `BAD`.
 
 ### (A.NotSubset.FoundIndIvariant) Exists $i$ such that $s \not \in \delta(F[i] - s)$
 
 - FOOTNOTE: Prove that the $i \geq k-2$.
-- Now that we have such an $i$, first notice that $s \not in F[i]$, because $s$ is a bad state, while every state in $F[i]$ is good.
-  So, if we define the good set $G \equiv \mathcal{U} - s$, we can add $G$ to $F[i]$.
-- So we update $F[i] \leftarrow G :: F[i]$.
-- We also kow that since $s$ is bad, it cannot be in the inital state, and thus $I \subseteq G$,
-  so we can update $F[0] \leftarrow G :: F[0]$.
-- Moreover, since we know that $F[0 \leq j \leq i] \subseteq F[i]$,
-  since $s \not \in \delta(F[i] - s)$, we also cannot have $s \not \in \delta(F[j] - s)$,
-  as $F[j] - s \subseteq F[i] - s$.
-- Finally, since we know that this is an inductive invariant relative to $F[i]$,
-  we can also adjoin $F[i+1] \leftarrow G :: F[i+1]$.
+- Let $G \equiv \mathcal{U} - s$ be the good set, where $\mathcal{U}$ is the universe of all states.
+- We have found some $i$ such that $s \not \in \delta(F[i] - s)$.
+- Now, since each $F[j \leq i] \subseteq F[i]$, we know that $\delta(F[j] - s) \subseteq \delta(F[i] - s)$,
+  so we know that $s \not \in \delta(F[j] - s)$ for all $j \leq i$.
+- Also, since we know that this is an inductive invariant relative to $F[i]$,
+  we can **also adjoin** $F[i+1] \leftarrow G :: F[i+1]$.
 - This now cuts away the state $s$ from the frames, by the addition of the good set $G$ such that $s \not in G$.
 - FOOTNOTE: the good set $G$ may be a relative invariant for higher $j' > i$, so in practice,
   we try to push $G$ as far along as it will go.
 
-### (A.NotSubset.FoundIndIvariantGeneralized) Exists $i$ such that $s \not \in \delta(F[i] - s)$
+### (A.NotSubset.FoundIndIvariantGeneralized) Exists $i$ such that $s \not \in \delta(F[i] - s)$, but generalized
 
 - If we feel fancy, we can generalize the good set $G$ to a smaller $G' \subseteq G$,
   which is still a relative invariant.
 - That is: $I \subseteq G$, and $\delta(F[i] \cap G) \subseteq G$.
 - We now claim that we can refine $F[0 \leq j \leq i] \leftarrow G :: F[j]$.
-- Why? We can prove this by induction. First, by assumption, we know that $I \subseteq G$ (by defn of being relative invariant),
-  so it is safe to update $F[0] \leftarrow G :: F[0]$.
+- Why? We can prove this by induction.
+- First, by assumption, we know that $I \subseteq G$ (why??) (I think, we need to check this when
+  building a relative invariant). so it is safe to update $F'[0] \leftarrow G :: F[0]$.
 - Now, exactly as previously, for all $j \leq i$, since $F[j] \subseteq F[i]$,
-  we must have that $\delta(F[j] \cap G) \subseteq \delta(F[i] \cap G) \subseteq G$,
-  and since we already know that $F[0]$ can be refined to $F[0] \cap G$,
-  we can propagate this forward, and update every $F[j] \leftarrow G :: F[j]$.
+  we must have that $\delta(F[j] \cap G) \subseteq \delta(F[i] \cap G) \subseteq G$
+- since $F[0]$ can be refined to $F'[0] \equiv F[0] \cap G$,
+  we must have that $\delta(F'[0]) = \delta(F[0] \cap G) \subseteq G$,
+  and so we can refine $F'[1] \equiv F[1] \cap G$.
+  Continuing this way, we see that for all $j \leq i$, the refinement holds.
+- Now, we want to see if this $F[i]$ refinement actually bans the state $s$ at $F[k]$.
 
-### A.NotSubset.FoundIndInvariantGeneralized.Continue: Is $i = k - 1$ or $i = k$?
+### A.NotSubset.FoundIndInvariantGeneralized.CutOutS: $i = k - 1$ or $i = k$, so we cut out $s$ from $F[k]$
 
 - Suppose $i = k$ or $i = k - 1$. In this case, we will have conjoined a good set $G$ to $F[k]$.
   Subsequent queries either show that $\delta(F[k]) \subseteq P$, or found a different counterexample than $s \in F[k]$,
   since we know that $s \not \in G$ and $F[k] \subseteq G$.
-- It is possible that $i < k-1$, so $s$ is still an $F[k]$ state that we have not successfully banned.
+
+### A.NotSubset.FoundIndInvariantGeneralized.RecurseToCutOutS: $i < k - 1$, so we recurse.
+
+- It is possible that $i < k-1$, so $s$ is still an $F[k]$ state that we have not successfully banned,
+  but we have banned it from $F[i]$. (TODO: Why is this even useful?)
 - Consider: Why is $\lnot s$ inductive relative to $F[i]$, but not relative to $F[k]$?
 - There must be a predecessor $t \neq s$ such that \delta(t) = s$,
   and $t \not in F[i]$, $t \in F[i+1]$, so that $s = \delta(t) \in \delta(F[i+1])$.
