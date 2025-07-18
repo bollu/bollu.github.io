@@ -7,6 +7,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Fairness And Justice
+
+- Unconditional fairness: `□ ◇ crit`. It is the case that we enter the critical section infinitely often.
+- Conditional fairness: `□ ◇ wait -> □ ◇ crit`. If we wait infinitely often, then we enter the critical section infinitely often.
+- Justice : `◇ □ wait ->  □ ◇ crit`. If at some time, we wait forever (eventually forever wait), then we enter the critical section infinitely often.
 
 # Feynmann on Worthwhile Problems
 
