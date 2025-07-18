@@ -7,6 +7,27 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Feynmann on Worthwhile Problems
+
+- [Reference](http://genius.cat-v.org/richard-feynman/writtings/letters/problems)
+
+> I have worked on innumerable problems that you would call humble, but which I
+> enjoyed and felt very good about because I sometimes could partially succeed.
+
+
+> No problem is too small or too trivial if we can really do something about it.
+
+
+> You say you are a nameless man. You are not to your wife and to your child. You
+> will not long remain so to your immediate colleagues if you can answer their
+> simple questions when they come into your office. You are not nameless to me.
+> Do not remain nameless to yourself – it is too sad a way to be.
+
+# Typing the Futurama Projections
+
+https://gist.github.com/sciolizer/a081f8e51659205a6004766b11496829
+
 # Transitioning from Major to Minor chord
 
 - I figured this out when messing about with writing something in Dmajor, which is not
@@ -49408,6 +49429,21 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+#### Chocolate Brownies
+
+- 170 grams (3/4 cup) butter, melted
+- 200 grams (1 cup) caster sugar or granulated sugar
+- 90 grams (1/2 cup) brown sugar
+- 2 teaspoons vanilla extract
+- 4 large eggs
+- 40 grams (1/2 cup) cocoa powder, sifted
+- 70 grams (1/2 cup) plain flour or all purpose flour
+- Pinch of salt
+- 75 grams (1/2 cup) chocolate chips, optional
+- melt butter and chocolate, let it cool.
+- oven: 180C / 160fan / gas4
+- bake for 30min.
+
 #### Mango Curry
 
 - Cut mangoes into cubes
@@ -49635,6 +49671,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Blend
 - Salt
 - Add more water (300ml).
+
 
 # History Cheat Sheet
 
