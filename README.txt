@@ -24,9 +24,129 @@
 > simple questions when they come into your office. You are not nameless to me.
 > Do not remain nameless to yourself – it is too sad a way to be.
 
-# Typing the Futurama Projections
+# Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
-https://gist.github.com/sciolizer/a081f8e51659205a6004766b11496829
+- Keep the git tag of the artifact. Keep bumping this up every time.
+- Merge this tag into main repeatedly. This ensures that the main branch
+  has the commit of the artifact, and that this commit is never lost.
+
+# IC3 Invariants
+
+- We exposit based on 'SAT based model checking without unrolling', while following
+  intuitions from IC3: where monolithic and incremental meet.
+
+- Maintain a set of frames $F_i$.
+- Each $F_i$ witnesses that all vertices in all $i$-length paths from the initial state are safe.
+- Furthermore, each $F_i \subseteq F_{i+1}$, so they are a sequence of larger and larger sets of states.
+- Also, $\delta(F_i) \subseteq F_{i+1}$, where $\delta$ is the transition relation.
+  This says that the image of $F_i$ lives in $F_{i+1}$.
+- Furthermore, each $F_i \subseteq P$ (they are all subsets of the safety property).
+- Finally, we have that $I \subseteq F[0]$, so 0-step reachability is an overapproxiomation of the initial state.
+
+### Algorithmic Loop
+
+## Major Iteration (k > 0)
+
+## (A) Introduce New Frame
+
+- We want to create a frame $F[k+1]$ that is an overapproxiation of $k+1$ step reachability.
+- Optimisitcally, we want to set $F[k+1] = P$, the full safety property (largest overapproximation available).
+- We check if $\delta(F[k]) \subseteq P$.
+
+### (A.Subset) Yes, $\delta(F[k]) \subseteq P$
+
+- We already know that $F[k] \subseteq P$, and now since $\delta(F[k]) \subseteq P$,
+  we can set $F[k+1] = P$.
+
+## (A.Subset.Shrink) Shrink Overapproximations
+
+- We know that a frame $F[i]$ is comprised of its clauses $c[i][1], c[i][2], \dots$.
+- The set of $x \in F[i]$ is given by the intersection of the sets $x \in c[i][1]$ and  $x \in c[i][2]$ and $x \in c[i][3]$ and so on.
+- Thus, each clause $c[i][l]$ can be thought of as a superset of $F[i]$, where $F[i] \subseteq c[i][l]$, and $F[i] = \cap_l c[i][l]$.
+- Now, for every $i$ in $0 \leq i \leq k$ (we will be indexing into $i+1$, so $i$ only goes upto $k$):
+- For every over-approximate good region $c[i][l] \in F[i]$, we see if $\delta(F[i]) \subseteq c[i][l]$.
+  (So we check the formula $F[i] \land T \implies c[i][l]$).
+- If this is the case, then we intersect $F[i+1]$ with $c[i][l]$, so we add a cons-cell $F[i+1] \leftarrow c[i][l] :: F[i+1]$.
+- At the end of (A.A), we have shrunk the frames as much as possible, given the information we have at the current point in time.
+- If we find that any of the $F[i] = F[i+1]$, we are done, an we have found an inductive invariant.
+
+
+### (A.NotSubset) No, $\delta(F[k]) \subsetneq P$
+
+- In this case, we have found a state $s \in F[k]$ such that $\delta(s) \not in P$.
+- This state has a path of length *1* that violates $P$.
+- We now try to find the largest $i$ in $0 \leq i \leq k$, such that $\not s$ is inductive relative to it?
+- TODO: why do we want the largest $i$ and not the smallest $i$?
+- That is, what is the latest timestep at which we can ban state $s$ forever?
+- Logically, we want to check that $\lnot s \and F \and T \implies \lnot s'$.
+- As sets, we want to check that $s \not in \delta(F[i] - s)$.
+
+### (A.NotSubset.NoIndInvariant) No $i$ such that $s \not \in \delta(F[i] - s)$
+
+- Suppose no such $i$ exists. Therefore, in particular, this does not work for $i = 0$.
+- This tells us that $s \in \delta(F[0]=I - s)$, and that therefore, $s$ is reachable from $I$ in one step.
+- We are done, we have found a path from $I$ to $s$ in 1 step, where $\delta(s)$ is bad,
+  so we have found a 2-step path from $I$ to a bad state.
+- Output `BAD`.
+
+### (A.NotSubset.FoundIndIvariant) Exists $i$ such that $s \not \in \delta(F[i] - s)$
+
+#### If we find such an $i$, then $i \geq k - 2$ or larger.
+
+- Proof by contradiction. First suppose $i = k - 2$, similar proof holds if $i < k - 2$ with some index juggling.
+- Thus, we have that $s \in \delta(F[k-2] - s)$.
+- Thus, there is some predecessor $t \in F[k-2]$ such that $t \neq s$ and $\delta(t) = s$.
+- Then, $s$ must be a $F[k-1]$ state (each $F[k-1]$ is a overappox. of image of $F[k-2]$).
+- Thus $\delta(s)$ must be in $F[k]$, which contradicts the fact that $F[k]$ is safe!
+
+#### Continuing exposition: Found $i$ such that $s \not \in \delta(F[i] - s)$
+
+- Let $G \equiv \mathcal{U} - s$ be the good set, where $\mathcal{U}$ is the universe of all states.
+- We have found some $i$ such that $s \not \in \delta(F[i] - s)$.
+- Now, since each $F[j \leq i] \subseteq F[i]$, we know that $\delta(F[j] - s) \subseteq \delta(F[i] - s)$,
+  so we know that $s \not \in \delta(F[j] - s)$ for all $j \leq i$.
+- Also, since we know that this is an inductive invariant relative to $F[i]$,
+  we can **also adjoin** $F[i+1] \leftarrow G :: F[i+1]$.
+- This now cuts away the state $s$ from the frames, by the addition of the good set $G$ such that $s \not in G$.
+- FOOTNOTE: the good set $G$ may be a relative invariant for higher $j' > i$, so in practice,
+  we try to push $G$ as far along as it will go.
+
+### (A.NotSubset.FoundIndIvariantGeneralized) Found $i$ such that $s \not \in \delta(F[i] - s)$, but generalized
+
+- If we feel fancy, we can generalize the good set $G$ to a smaller $G' \subseteq G$,
+  which is still a relative invariant.
+- That is: $I \subseteq G$, and $\delta(F[i] \cap G) \subseteq G$.
+- We now claim that we can refine $F[0 \leq j \leq i] \leftarrow G :: F[j]$.
+- Why? We can prove this by induction.
+- First, by assumption, we know that $I \subseteq G$ (why??) (I think, we need to check this when
+  building a relative invariant). so it is safe to update $F'[0] \leftarrow G :: F[0]$.
+- Now, exactly as previously, for all $j \leq i$, since $F[j] \subseteq F[i]$,
+  we must have that $\delta(F[j] \cap G) \subseteq \delta(F[i] \cap G) \subseteq G$
+- since $F[0]$ can be refined to $F'[0] \equiv F[0] \cap G$,
+  we must have that $\delta(F'[0]) = \delta(F[0] \cap G) \subseteq G$,
+  and so we can refine $F'[1] \equiv F[1] \cap G$.
+  Continuing this way, we see that for all $j \leq i$, the refinement holds.
+- Now, we want to see if this $F[i]$ refinement actually bans the state $s$ at $F[k]$.
+
+### A.NotSubset.FoundIndInvariantGeneralized.CutOutS: $i = k - 1$ or $i = k$, so we cut out $s$ from $F[k]$
+
+- Suppose $i = k$ or $i = k - 1$. In this case, we will have conjoined a good set $G$ to $F[k]$.
+  Subsequent queries either show that $\delta(F[k]) \subseteq P$, or found a different counterexample than $s \in F[k]$,
+  since we know that $s \not \in G$ and $F[k] \subseteq G$.
+
+### A.NotSubset.FoundIndInvariantGeneralized.RecurseToCutOutS: $i < k - 1$, so we recurse.
+
+- It is possible that $i < k-1$, so $s$ is still an $F[k]$ state that we have not successfully banned,
+  but we have banned it from $F[i]$. (TODO: Why is this even useful?)
+- Consider: Why is $\lnot s$ inductive relative to $F[i]$, but not relative to $F[k]$?
+- There must be a predecessor $t \neq s$ such that \delta(t) = s$,
+  and $t \not in F[i]$, $t \in F[i+1]$, so that $s = \delta(t) \in \delta(F[i+1])$.
+- If $i = 0$, then $t$ may have an $I$ state as a predecessor, in which case we have found a bad path (?).
+- On the other hand, if $i > 0$, then because each $F[j]$ is an overapproxmation of $j$ step reachability,
+  $G \equiv \mathcal{U} - t$ must be relative to at least $F[i-1]$? (TODO: think??)
+- So, we recur on $t$, and we treat $t$ as a bad state which we are trying to ban from $F[i]$, eliminating $t$ at $F[i+1]$.
+- We keep recursing until we manage to show that $\lnot s$ is in fact inductive relative to $F[k]$.
+
 
 # Transitioning from Major to Minor chord
 
@@ -111,6 +231,41 @@ K:C
 # Big list of Italian Learning
 
 - Plugin to get italian on YT videos: Language Reactor
+
+
+## Essere Conjugations
+
+- io sono
+- tu sei
+- lui/lei è
+- noi siamo
+- voi siete
+- loro sono
+
+## Avere Conjugations
+
+- io ho
+- tu hai
+- lui/leo ha
+- noi abbiamo
+- voi avete
+- loro hanno
+
+## Stare Conjugatiions
+
+- io sto
+- tu stai
+- lu/lei sta
+- noi staiamo
+- voi state
+- loro stanno
+
+## Mnemonic for Italian Pronous
+
+- Noi [We] : "No, it's not just 'I,' that's plain to see, When it means WE, say NOI with glee!"
+- Voi	[You all]: "When YOU ALL speak with a single VOICE, VOI is the pronoun, make that choice!"
+- Loro [They]: "Like noble LORDs and ladies, from a tale of yore, LORO means THEY, and nothing more!"
+
 
 ## Mnemonic for Italian Prepositions
 
@@ -394,6 +549,8 @@ K:C
 
 - [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
 - The question is, why does this work, and why do we need the twist?
+- The magic loop is the same as a [noose knot](https://www.animatedknots.com/noose-knot),
+  except we are making the noose around an *existing loop*.
 
 # The Euclidean Definitions of The Functions div and mod
 
@@ -471,7 +628,6 @@ end BV
 - Alternative, minor: [vi] [ii] [V7] I
 - For C, this is: [Am] [Dm] [G7] [C].
 
-=======
 # Example of Non Commuting Summation
 
 Consider the 2D region:
