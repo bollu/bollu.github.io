@@ -11,7 +11,11 @@
 
 - I realized that the branch of statistics I need is 'sampling theory',
   which explains how to estimate parameters from populations by means of polling / sampling,
-  exactly what we do with our experiments.
+  exactly what we do with our experiments. The following books seems super pertinent:
+
+- "Sampling: Design and Analysis" by Sharon L. Lohr.
+  Is in-depth, and has nice examples. Not particularly rigorous.
+- "Sampling Techniques - William G. Cochran": Classic, rigorous, dry.
 
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
