@@ -27,6 +27,28 @@
 
 - [Part III: Introduction to networking and systems measurements](https://www.cl.cam.ac.uk/teaching/2425/L50/)
 
+# Fairness And Justice
+
+- Unconditional fairness: `□ ◇ crit`. It is the case that we enter the critical section infinitely often.
+- Conditional fairness: `□ ◇ wait -> □ ◇ crit`. If we wait infinitely often, then we enter the critical section infinitely often.
+- Justice : `◇ □ wait ->  □ ◇ crit`. If at some time, we wait forever (eventually forever wait), then we enter the critical section infinitely often.
+
+# Feynmann on Worthwhile Problems
+
+- [Reference](http://genius.cat-v.org/richard-feynman/writtings/letters/problems)
+
+> I have worked on innumerable problems that you would call humble, but which I
+> enjoyed and felt very good about because I sometimes could partially succeed.
+
+
+> No problem is too small or too trivial if we can really do something about it.
+
+
+> You say you are a nameless man. You are not to your wife and to your child. You
+> will not long remain so to your immediate colleagues if you can answer their
+> simple questions when they come into your office. You are not nameless to me.
+> Do not remain nameless to yourself – it is too sad a way to be.
+
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
 - Keep the git tag of the artifact. Keep bumping this up every time.
@@ -631,7 +653,6 @@ end BV
 - Alternative, minor: [vi] [ii] [V7] I
 - For C, this is: [Am] [Dm] [G7] [C].
 
-=======
 # Example of Non Commuting Summation
 
 Consider the 2D region:
@@ -49589,6 +49610,21 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+#### Chocolate Brownies
+
+- 170 grams (3/4 cup) butter, melted
+- 200 grams (1 cup) caster sugar or granulated sugar
+- 90 grams (1/2 cup) brown sugar
+- 2 teaspoons vanilla extract
+- 4 large eggs
+- 40 grams (1/2 cup) cocoa powder, sifted
+- 70 grams (1/2 cup) plain flour or all purpose flour
+- Pinch of salt
+- 75 grams (1/2 cup) chocolate chips, optional
+- melt butter and chocolate, let it cool.
+- oven: 180C / 160fan / gas4
+- bake for 30min.
+
 #### Mango Curry
 
 - Cut mangoes into cubes
@@ -49816,6 +49852,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Blend
 - Salt
 - Add more water (300ml).
+
 
 # History Cheat Sheet
 
