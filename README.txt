@@ -18,6 +18,15 @@
   Is in-depth, and has nice examples. Not particularly rigorous.
 - "Sampling Techniques 3rd edition - William G. Cochran": Classic, rigorous, dry.
 
+#### Books on Explicit Benchmarking
+
+- The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling
+- [Understanding Software Dynamics](https://www.oreilly.com/library/view/understanding-software-dynamics/9780137589692/)
+
+#### Cambridge Course
+
+- [Part III: Introduction to networking and systems measurements](https://www.cl.cam.ac.uk/teaching/2425/L50/)
+
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
 - Keep the git tag of the artifact. Keep bumping this up every time.
