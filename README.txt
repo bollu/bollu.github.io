@@ -7,6 +7,11 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Sampling Theory Reading List
+
+- I realized that the branch of statistics I need is 'sampling theory',
+  which explains how to estimate parameters from populations by means of polling / sampling,
+  exactly what we do with our experiments.
 
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
