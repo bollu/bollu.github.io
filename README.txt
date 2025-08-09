@@ -49610,6 +49610,10 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Vibe Baking
+
+- 1tbsp ~ 25g
+
 #### Chocolate Brownies
 
 - 170 grams (3/4 cup) butter, melted
