@@ -49610,6 +49610,11 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Pasta Dough
+
+- For 6 people, 500g of flour, 4 eggs.
+- Key idea: A good mix must never stick to your fingers.
+
 ### Vibe Baking
 
 - 1tbsp ~ 25g
