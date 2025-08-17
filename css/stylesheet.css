@@ -37,6 +37,7 @@ body {
   padding-bottom: 0px;
   max-width: 100%;
   overflow-x: hidden;
+  background: #ffffff;
 }
 
 h1, h2, h3, h4, h5 {
@@ -70,7 +71,7 @@ img {
   line-height: 1.1em;
   padding-left: 30px;
   padding-right: 30px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 @media (max-width: 480px) {
