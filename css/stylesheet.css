@@ -32,13 +32,20 @@ body {
   font-family: 'Blog Serif';
   font-size: 12px;
   margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   max-width: 100%;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Blog Serif', serif;
-  line-height: 1.1em;
+  line-height: 1em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 h1, h2 {
