@@ -181,7 +181,8 @@ ol {
 }
 
 ul {
-  list-style-type: disclosure-closed;
+  list-style-type: kannada;
+  font-color: #0f0f0f;
 }
 
 /* https://stackoverflow.com/a/31633969/5305365 */
@@ -205,3 +206,4 @@ br {
 
 blockquote {
   padding-left: 0.2em;
+}
