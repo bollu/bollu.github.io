@@ -78,7 +78,6 @@ img {
     margin-left: 1%;
     margin-right: 1%;
   }
-
 }
 
 @media (max-width: 1024px) {
@@ -94,6 +93,17 @@ img {
     max-width: 800px;
     margin: 30px auto 0px auto;
   }
+}
+
+.container * {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .image {}
@@ -192,3 +202,6 @@ br {
   padding-left: 1em;
   padding-right: 1em;
 }
+
+blockquote {
+  padding-left: 0.2em;
