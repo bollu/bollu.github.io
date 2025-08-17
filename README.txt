@@ -103,7 +103,7 @@
 - We now try to find the largest $i$ in $0 \leq i \leq k$, such that $\not s$ is inductive relative to it?
 - TODO: why do we want the largest $i$ and not the smallest $i$?
 - That is, what is the latest timestep at which we can ban state $s$ forever?
-- Logically, we want to check that $\lnot s \and F \and T \implies \lnot s'$.
+- Logically, we want to check that $\lnot s \land F \land T \implies \lnot s'$.
 - As sets, we want to check that $s \not in \delta(F[i] - s)$.
 
 ### (A.NotSubset.NoIndInvariant) No $i$ such that $s \not \in \delta(F[i] - s)$
@@ -164,7 +164,7 @@
 - It is possible that $i < k-1$, so $s$ is still an $F[k]$ state that we have not successfully banned,
   but we have banned it from $F[i]$. (TODO: Why is this even useful?)
 - Consider: Why is $\lnot s$ inductive relative to $F[i]$, but not relative to $F[k]$?
-- There must be a predecessor $t \neq s$ such that \delta(t) = s$,
+- There must be a predecessor $t \neq s$ such that $\delta(t) = s$,
   and $t \not in F[i]$, $t \in F[i+1]$, so that $s = \delta(t) \in \delta(F[i+1])$.
 - If $i = 0$, then $t$ may have an $I$ state as a predecessor, in which case we have found a bad path (?).
 - On the other hand, if $i > 0$, then because each $F[j]$ is an overapproxmation of $j$ step reachability,
