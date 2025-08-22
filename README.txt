@@ -50062,6 +50062,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "Write values as verbs, not adjectives: protect, provide, build, teach, create."
+
 > "Politics is the art of the posible."
 
 > "A single act of careleness leads to the eternal loss of beauty."
