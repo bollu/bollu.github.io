@@ -7,6 +7,13 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# AI Models Water Usage
+
+- [Measuring env impact of AI inference](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference)
+
+#### Data Center Water Usage
+- [Google: Our Commitment to Climate Conscious Data Center Cooling](https://blog.google/outreach-initiatives/sustainability/our-commitment-to-climate-conscious-data-center-cooling/)
+
 # Sampling Theory Reading List
 
 - I realized that the branch of statistics I need is 'sampling theory',
