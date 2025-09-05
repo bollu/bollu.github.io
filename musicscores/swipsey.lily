@@ -1,4 +1,16 @@
 \version "2.24.0"
+\layout {
+  \context {
+    \Score
+    % show measure number every measure
+    \override BarNumber.break-visibility = ##(#t #t #t)
+    \override BarNumber.self-alignment-X = #CENTER
+    \override BarNumber.padding = #1
+    \override BarNumber.stencil = #(make-stencil-boxer 0.1 0.25 ly:text-interface::print)
+  }
+}
+
+
 
 \score {
   \new PianoStaff <<
