@@ -51830,3 +51830,12 @@ w: dan-cing un-der-neath the skies of lust
 
 - Normalization procedure for the mathlib theory of affine spaces plus their functions!
 
+# Big List of Fitness 
+
+#### Protein & Supplements
+
+- creatine, protein powder from bulk
+- protein per day, when bulking: 1.6g per kg of body weight.
+- For weight ~55kg, this is 88g of protein per day.
+- protein per day, when staying stable: 1.2g per kg of body weight
+
