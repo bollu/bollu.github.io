@@ -49617,6 +49617,10 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Focaccia
+
+- For 6 people: 250 g of flour, 2.5 tbsp olive oil, 150-200 ml water.
+
 ### Pasta Dough
 
 - For 6 people, 500g of flour, 4 eggs.
