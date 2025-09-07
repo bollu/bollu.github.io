@@ -49620,6 +49620,15 @@ things on architecture I wish to read and/or have read:
 ### Focaccia
 
 - For 6 people: 250 g of flour, 2.5 tbsp olive oil, 150-200 ml water.
+- Trick: Add flour, then add salt and yeast in *separate* corners.
+  This ensures that salt does not kill yeast.
+- Make a hole in the middle, pour *lukewarm* water (to activate yeast) and olive oil.
+- Let dough rise for a couple hours.
+- Oil the pan so that the bottom becomes crisp when ovening.
+- Spread the dough in the pan, make holes with your fingers.
+- Add rosemary, salt on top.
+- Oven temp: 220C / 200 fan / gas 7. 
+- Bake for 20min.
 
 ### Pasta Dough
 
