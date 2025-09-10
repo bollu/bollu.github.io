@@ -3,16 +3,8 @@
 </h1>
 
 - [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@fastmail.com'> `bollu@fastmail.com` </a> / [Book a 15 minute Chat with me](https://calendly.com/bollu)
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html) / [Photography](https://nx72119.your-storageshare.de/apps/photos/albums/Public%20Pictures)
-- <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
-- **It's useful to finish things.**
-
-# AI Models Water Usage
-
-- [Measuring env impact of AI inference](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference)
-
-#### Data Center Water Usage
-- [Google: Our Commitment to Climate Conscious Data Center Cooling](https://blog.google/outreach-initiatives/sustainability/our-commitment-to-climate-conscious-data-center-cooling/)
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html) / [Photography](https://nx72119.your-storageshare.de/apps/photos/albums/Public%20Pictures) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
+- Motto: **It's useful to finish things.**
 
 # Sampling Theory Reading List
 
