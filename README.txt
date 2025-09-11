@@ -50074,6 +50074,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "Everything's high risk if you're a p*ssy"
+
 > "Write values as verbs, not adjectives: protect, provide, build, teach, create."
 
 > "Politics is the art of the posible."
