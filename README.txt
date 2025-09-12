@@ -6,6 +6,12 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html) / [Photography](https://nx72119.your-storageshare.de/apps/photos/albums/Public%20Pictures) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - Motto: **It's useful to finish things.**
 
+# MLIR UnSchool 2025
+
+### Formal Verification for ZK proofs
+
+### Solvers for SDMBs and Sub-polyhedral domains
+
 # Sampling Theory Reading List
 
 - I realized that the branch of statistics I need is 'sampling theory',
@@ -50074,7 +50080,7 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
-> "Everything's high risk if you're a p*ssy"
+> "Everything's high risk if you're a pussy"
 
 > "Write values as verbs, not adjectives: protect, provide, build, teach, create."
 
