@@ -54,15 +54,9 @@ but I want to reality-check this assumption.
 ==== Post-Phd Option: Starting a Verification Company
 
 The way I frame the problem for starting a company that deploys verification
-is to ask: #quote[Who is deathly afraid of their code being incorrect?]
+is to ask: _Who is deathly afraid of their code being incorrect?_
 
-In theory, having correct code is a force multiplier when working on
-complicated software such as compilers.
-In practice, fuzz testing and weaker forms of static analysis
-is extremely effective for weeding out bugs.
-
-Most obviously,
-hardware companies care deeply about getting their hardware right,
+Hardware companies care deeply about getting their hardware right,
 as tapeouts cost millions.
 However, this space is quite saturated.
 
@@ -72,14 +66,16 @@ While important, it's not clear to me how much of their need for verification is
 for *appearances*, and how much is legitimate.
 It may well be that we provide a luxury service of *appearing trustworthy*, ala #link("https://jepsen.io/")[Jepsen]
 
-Furthermore, databases are another domain where people are paranoid about getting
+Databases are another domain where people are paranoid about getting
 their code right, and formal verification is routinely deployed in this space to ensure
 correctness.
 
-As a case study, Google seem to guard then nonlinear ILP solver in OR-TOOLS,
-so this seems to be an interesting case where having good tech actually makes a difference.
-Similarly, hardware companies carefully guard their secret sauce of model checkers,
-place and route algorithms, and so on.
+In theory, having correct code is a force multiplier when working on
+complicated software such as compilers.
+In practice, fuzz testing and weaker forms of static analysis
+is extremely effective for weeding out bugs.
+I could imagine that automated reasoning is useful for *debugging* crazy hardware and software,
+such as (a) Cerebras, (b) TOSA floating point specification, (c) tiling schemes, etc.
 
 A lot of the market is about appearances,
 so our technological choices must be guided by such considerations.
@@ -88,11 +84,8 @@ However, having the core solver be written in Rust/Lean,
 and being able to *interface* with code written in Python would be fantastic,
 due to the large user base available.
 
-FV seems useful for e.g. the TOSA folk, who seem to care about getting their
-semantics right.
 
-I could imagine that formal verification is useful for *debugging* crazy hardware,
-such as Cerebras.
-
-
-
+// As a case study, Google seem to guard then nonlinear ILP solver in OR-TOOLS,
+// so this seems to be an interesting case where having good tech actually makes a difference.
+// Similarly, hardware companies carefully guard their secret sauce of model checkers,
+// place and route algorithms, and so on.
