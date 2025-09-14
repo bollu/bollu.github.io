@@ -35,12 +35,18 @@ and in parallel, wait for the global talent visa to come through either route
 
 ==== Post-Phd Option: Work At Interesting Places
 
-Jobs in descending order of preference.
+Highest impact is to be had in the following areas: AI for maths, neurosymbolic reasoning,
+accelerating AI inference, testing and verification of large, distributed systems.
+Automated reasoning technology is now mature enough to be used to verify large systems.
+I still think that interactive theorem proving still has too much overhead (2-10x for serious systems).
+However, ITP as a *platform* for neurosymbolic reasoning seems to be the clear way forward.
+I would like to work at places that take advantage of this.
+
 I'm looking for roles that are well-paid,
 and can sponsor a Skilled Worker Visa if needed.
 Apple _(Cam)_ / AWS _(Cam)_ / ARM _(Cam)_ / AMD _(Cam)_ / Intel _(Cam? London Flexible?)_ /
 DeepMind _(London Flexible)_ / Antithesis _(London Flexible)_ / OpenAI _(?)_ / Jane Street _(London Flexible)_ /
-FAANG _(London Flexible)_ 
+FAANG _(London Flexible)_
 
 There seem to be sufficiently many people in the compilers space who would hire me,
 but I want to reality-check this assumption.
