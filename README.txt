@@ -6,11 +6,10 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [DeviantArt](https://www.deviantart.com/b011u) / [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Sheet music](/articles/sheet-music.html) / [Photography](https://nx72119.your-storageshare.de/apps/photos/albums/Public%20Pictures) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - Motto: **It's useful to finish things.**
 
-# MLIR UnSchool 2025
 
-### Formal Verification for ZK proofs
+#  Liouville's Number: Proving Transcendence
 
-### Solvers for SDMBs and Sub-polyhedral domains
+- 
 
 # Sampling Theory Reading List
 
@@ -28,9 +27,23 @@
 - The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling
 - [Understanding Software Dynamics](https://www.oreilly.com/library/view/understanding-software-dynamics/9780137589692/)
 
+
 #### Cambridge Course
 
 - [Part III: Introduction to networking and systems measurements](https://www.cl.cam.ac.uk/teaching/2425/L50/)
+
+### Email from Mate Soos:
+
+I use ulimit to limit each process's memory etc limits. I make sure none of them can use more memory than K, where the CPU has at least B*K memory, where B is the number of processes I will be running on the CPU. I make sure the CPU has at least B cores. Not threads, cores. I make sure that I do the copying of all data to the local HDD of the machine before I start the process. I run all processes under /usr/bin/time -v and write its output to a separate file with `-o FILE` and save, and pare it. It tells me about max memory usage, USER and SYSTEM time, wallclock time, memory pages etc. This is essential data, and can be fully relied on. I build all my systems to have a single binary. If you have multiple binaries that call each other, you are gonna be in a world of pain and have to use runlim: https://fmv.jku.at/runlim/ it's good but annoying to use. I make sure my systems are useable, single binary, no shell script or stuff like that. Then I don't have to use runlim. In general, if you control what you are running, you can make your life a lot easier. I then get all the data off the system to my local machine, and process it with a python script into a CSV which I then import into an SQL database.
+
+
+I then query this SQL database to generate gnuplot files, and to [generate summarized data](https://github.com/meelgroup/ganak/tree/master/scripts/data)
+
+get_data.py gets the data from the files, create_graphs_ganak.py generates graphs, summarised tables, jupyter notebook, etc. Note that I used to write bash scripts. I'm actually okay at bash scripting, but python is a LOT more robust and a LOT easier to maintain and improve. Don't forget to add lots of checking and error-outs and asserts into that script, so you don't accidentally parse wrong data.
+
+Even if you do all the above, there'll be variation. Quite a bit of it, maybe up to 5-10% in some cases, on a single file. That's life. Computers have CPU power limits and dynamic clocks and sleep states and shared CPU caches, and other processes running and network latency etc. If you are not prepared to deal with that, then you are gonna be sad. You need to run at least 400 instances every time and then the variation evens out.
+
+In general, if you are spending more than 5 minutes to schedule a cluster run, or you are spending more than 5 minutes getting the data and crunching it from the cluster, you are doing it wrong. You should dedicate at least a 2-3 days to writing the initial scripts, and examining failures, etc. Then keep improving the script every time. Every single time. Just spend 10-20 minutes improving it when you do a run and want more data, more summaries, better tables, etc. I once saw a PhD student spending 8h hand-crunching the data after a cluster run, and he only got about 3-4 data points. I sometimes do 30-40 cluster runs in a week, and get 40+ data points from each. It would have taken the guy a year what took me about 1 hour. Then they are surprised they can't win a competition, even though they spent weeks on the cluster data. It turns out, it's not how much you work, it's how efficiently you work. 
 
 # Fairness And Justice
 
