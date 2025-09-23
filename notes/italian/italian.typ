@@ -9,11 +9,14 @@
 
 == Lesson 1
 
+We learn the basic constructs of #emph[Italian].
 Italian is a *positional* language, so positions of words in a sentence matter.
 Most basic sentence construction is #defn[ *SVO* : Subject + Verb + Object],
-where #defn[*Subject* : Article + Noun + Adjective].
+where #defn[*Subject* : (Definite/Indefinite)Article + Noun + Adjective],
+and adverbs fit on the verb.
 
-Nouns have suffixes that indicate their gender and their number:
+
+#emph[Nouns have suffixes] that indicate their gender and their number:
 #table(columns: (10em, 10em, 10em),
 stroke: none,
 fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
@@ -51,11 +54,12 @@ table.header[*Verb*][*Person*][*Example*],
 [Avere], [Loro (They)], [hanno (have)]
 )
 
-== Lesson 2 
+== Lesson 2 (Definite Articles)
 
 
-The general pattern for modifying a noun for marking gender/number is:
-#todo[what is this called?]
+The general pattern for modifying a noun for marking gender/number.
+This is called #emph[conjugation]
+#todo[Ask Martina that this is indeed called conjugation.]
 
 #table(columns: (10em, 5em, 5em),
 stroke: none,
@@ -69,7 +73,7 @@ table.header[*Gender*][*Singular*][*Plural*],
 
 === Definite articles / Articolo Determinativi (the)
 
-The definite article is used to refer to specific nouns.
+We learn the #emph[definite articles], which are used to refer to specific nouns.
 The consstruction depends on gender as well as the first letter of the noun.
 
 #table(columns: (5em, 5em, 15em, 15em),
@@ -89,10 +93,10 @@ table.header[*Gender*][*Number*][*1st Letter*][*Example Definite Article*],
 )
 
 
-== Lesson 3
+== Lesson 3 (Indefinite Articles)
 // 5 June
 
-Indefinite articles (a, an, some) are used to refer to non-specific nouns.
+We learn #emph[Indefinite articles] (a, an, some) are used to refer to non-specific nouns.
 Note that in English, we can only say "a dog", we cannot say "a dogs".
 It's the same as in Italian, where we only have indefinite articles for the singular nouns. Thus, the indefinite article depends on the gender of the noun and the first letter of the noun.
 
@@ -107,9 +111,10 @@ table.header[*Gender*][*1st Letter*][*Example Indefinite Article*],
 [Femminile] ,[consonant (normal)], [*una* chiesa],
 )
 
-== Lesson 4
+== Lesson 4 (Conjugation for Regular Verb Forms)
+// 14 June
 
-We learn the verb forms for `-are`, `-ere` and `-ire`.
+We learn the #emph[conjugation for regular verb forms] for `-are`, `-ere` and `-ire`.
 
 #table(columns: (5em, 10em, 10em, 10em),
 stroke: none,
@@ -123,3 +128,95 @@ table.header[*Pronoun*][*Parl`-are`*][*Cred`-ere`*][*Dorm`-ire`*],
 [Voi] ,[parl-#emph[ate]], [cred-#emph[ete]], [dorm-#emph[ite]],
 [Loro] ,[parl-ono], [cred-ono], [dorm-ono],
 )
+
+
+== Lesson 5 (Modal Verbs)
+// 19 June
+
+A #emph[modal verb] is a verb that is used with another verb to express ability, necessity, permission, or possibility. The most common modal verbs in Italian are
+#defn[volere (to want)], #defn[potere (can/to be able to)], and 
+#defn[dovere (must/to have to)]. 
+#todo[what makes it a modality?]
+
+#table(columns: (5em, 10em, 10em, 10em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Pronoun*][*Vol`-ere`*][*Pot`-ere`*][*Dov`-ere`*],
+[(Meaning)] , [(to want)], [(to be able to)], [(to have to)],
+[Io] , [voglio], [posso], [devo],
+[Tu] , [vuoi] , [puoi], [devi],
+[Lui/Lei] , [vuole], [puo], [deve],
+[Noi] , [vogliamo] , [possiamo], [dobbiamo],
+[Voi] ,[volete], [potete], [dovete],
+[Loro] ,[vogiono], [possono], [devono],
+)
+
+=== New Words
+
+#defn[andare (to go)], #defn[venire (to come)], #defn[dare (to give)], #defn[fare (to do/make)]
+
+
+== Lesson 6 (Pronouns) #todo[Ask Martina]
+// 24 June
+
+In this lesson, we will learn about #emph[pronouns].
+When we think about pronouns, we need to know:
+(a) #emph[direct] / #emph[indirect] objects,
+(b) #emph[reflexive] pronouns, 
+(c) #emph[transitive] verbs and (d) #emph[intransitive] verbs.
+
+=== Reflexive Pronouns
+
+A #emph[reflexive pronoun]
+is a pronoun that refers back to the subject of the sentence.
+See that the reflexive pronoun must occur with a subject pronoun
+(e.g. I eat #emph[myself]).
+
+
+#table(columns: (15em, 15em, 15em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Subject Pronoun*][*Object Pronoun*][*Reflexive Variant*],
+[I],  [Me],  [Myself],
+[#emph[I] eat an apple], [bear eats #emph[me]], [I eat #emph[myself]],
+[you],  [you],  [yourself],
+[#emph[you] eat an apple], [bear eats #emph[you]], [you eat #emph[yourself]],
+[he], [him], [himself],
+[#emph[he] eats an apple], [bear eats #emph[him]], [he eats #emph[himself]],
+[it], [it], [itself],
+[#emph[it] eats an apple], [bear eats #emph[it]], [it eats #emph[itself]],
+[they], [them], [themselves],
+[#emph[they] eat an apple], [bear eats #emph[them]], [they eat #emph[themselves]],
+
+)
+=== Direct and Indirect Objects #todo[get a precise defn.]
+
++ I #defn[(subject)] read a book #defn[(direct object)].
++ I #defn[(subject)] read luisa #defn[(indirect object)] a book #defn[(direct object)].
+
+=== Transitive and Intransitive Verbs
+
++ #defn[Intransitive verb] is a verb that #emph[does not] take a direct object.
++ A #defn[Transitive verb] is a verb that #emph[does take] a direct object.
+
+Both transitive and intransitive verbs can sometimes #todo[(is it sometimes? is it always? if it is not always, what is an example of such a verb?)] take an indirect object.
+
+== Lesson 7 (Question Words)
+// September 23
+
+
+#table(columns: (7em, 15em, 15em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*English*][*Italian*][*Example Sentence*],
+[When], [Quando], [#todo[sentence]],
+[Where], [Dove], [#todo[sentence]],
+[Who], [Chi], [#todo[sentence]],
+[How], [Come], [#todo[sentence]],
+[Why], [Perche], [#todo[sentence]],
+[What], [Che cosa], [#todo[sentence]],
+[Which], [Quale], [#todo[sentence]],
+)
+
+== Lesson 8 (Simple Future)
+// September 23
