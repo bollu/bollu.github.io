@@ -187,7 +187,20 @@ table.header[*Subject Pronoun*][*Object Pronoun*][*Reflexive Variant*],
 [#emph[it] eats an apple], [bear eats #emph[it]], [it eats #emph[itself]],
 [they], [them], [themselves],
 [#emph[they] eat an apple], [bear eats #emph[them]], [they eat #emph[themselves]],
+)
 
+==== Example Use of Reflexive Verb With Reflexive Pronoun #defn[Svegliarsi (to wake oneself up)]:
+
+#table(columns: (7em, 15em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Pronoun*][*Conjugation*],
+[Io], [mi sveglio],
+[Tu], [ti svegli], 
+[Lui/Lei], [si sveglia],
+[Noi], [ci svegliamo],
+[Voi], [vi svegliate],
+[Loro], [si svegliano],
 )
 === Direct and Indirect Objects #todo[get a precise defn.]
 
@@ -200,6 +213,26 @@ table.header[*Subject Pronoun*][*Object Pronoun*][*Reflexive Variant*],
 + A #defn[Transitive verb] is a verb that #emph[does take] a direct object.
 
 Both transitive and intransitive verbs can sometimes #todo[(is it sometimes? is it always? if it is not always, what is an example of such a verb?)] take an indirect object.
+
+=== Big Table
+
+
+#table(columns: (7em, 7em, 7em, 7em, 7em, 7em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[][*Subject Pronoun*][*Object Direct Pronoun*][*Reflexive Pronoun*][*Indirect Strong*][*Indirect Weak*],
+[I],  [I],  [I], [Myself], [#todo[Me]], [To Me],
+[I],  [Io],  [Mi], [Mi], [Mi], [(a) me],
+[You],  [You],  [You], [Yourself], [#todo[You]], [To You],
+[You],  [Tu],  [Ti], [Ti], [Ti], [(a) te],
+[He],  [He],  [Him], [Himself], [#todo[Him]], [To Him],
+[He], [Lui], [Lo], [Si], [Si], [(a) lui],
+[She], [Lei], [La], [Si], [Si], [(a) lei],
+[We], [Noi], [Ci], [Ci], [Ci], [(a) noi],
+[Y'all], [Voi], [Vi], [Vi], [Vi], [(a) voi],
+[They], [Loro], [Li], [Si], [Si], [(a) loro],
+)
+
 
 == Lesson 7 (Question Words)
 // September 23
@@ -217,6 +250,11 @@ table.header[*English*][*Italian*][*Example Sentence*],
 [What], [Che cosa], [#todo[sentence]],
 [Which], [Quale], [#todo[sentence]],
 )
+
+== Interlude: Celebrate!
+
+This suffices our basic grammar for beginner-speaking.
+At this point, it is worth it to learn vocabulary and practice speaking.
 
 == Lesson 8 (Simple Future)
 // September 23
