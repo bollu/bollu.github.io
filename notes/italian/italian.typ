@@ -1,7 +1,7 @@
-#let defn(term) = 
-  box(fill: rgb("#EAF2F5"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
-#let todo(term) = 
-  box(fill: rgb("#FFCDD2"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
+#let defn(term) = box(fill: rgb("#EAF2F5"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
+#let todo(term) = box(fill: rgb("#FFCDD2"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
+// material orange: #FFE0B2
+#let emph(term) = box(fill: rgb("#FFe0B2"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
 
 = Basic Italian Grammar (Complete for Beginner-Speaking)
 
@@ -105,4 +105,21 @@ table.header[*Gender*][*1st Letter*][*Example Indefinite Article*],
 [Maschile] , [s+cons / z / p + cons / y / x], [*uno* zucchero, *uno* spazio],
 [Femminile] , [vocale] , [*un'* amica],
 [Femminile] ,[consonant (normal)], [*una* chiesa],
+)
+
+== Lesson 4
+
+We learn the verb forms for `-are`, `-ere` and `-ire`.
+
+#table(columns: (5em, 10em, 10em, 10em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Pronoun*][*Parl`-are`*][*Cred`-ere`*][*Dorm`-ire`*],
+[(Meaning)] , [(to speak)], [(to believe)], [(to sleep)],
+[Io] , [parl-o], [cred-o], [dorm-o],
+[Tu] , [parl-i] , [cred-i], [dorm-i],
+[Lui/Lei] , [parl-#emph[a]], [cred-#emph[e]], [dorm-#emph[e]],
+[Noi] , [parl-iamo] , [cred-iamo], [dorm-iamo],
+[Voi] ,[parl-#emph[ate]], [cred-#emph[ete]], [dorm-#emph[ite]],
+[Loro] ,[parl-ono], [cred-ono], [dorm-ono],
 )
