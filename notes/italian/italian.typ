@@ -1,15 +1,15 @@
 
 #let defn(term) = box(fill: rgb("#EAF2F5"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
 
-== Basic Italian Grammar (Complete for Beginner-Speaking)
+= Basic Italian Grammar (Complete for Beginner-Speaking)
 
 // https://docs.google.com/spreadsheets/d/1fPsEuRvMUclkjSagu3c0dgl7ogw2avZHlOvwYnkQgAI/edit?gid=0#gid=0
 
-==== Lesson 1
+== Lesson 1
 
 Italian is a *positional* language, so positions of words in a sentence matter.
-Most basic sentence construction is #defn[ **SVO:** Subject + Verb + Object],
-where a subject is #defn[Article + Noun + Adjective].
+Most basic sentence construction is #defn[ *SVO* : Subject + Verb + Object],
+where #defn[*Subject* : Article + Noun + Adjective].
 
 Nouns have suffixes that indicate their gender and their number:
 #table(columns: (10em, 10em, 10em),
@@ -48,3 +48,5 @@ table.header[*Verb*][*Person*][*Example*],
 [Avere], [Voi (Y'all)], [avete (have)],
 [Avere], [Loro (They)], [hanno (have)]
 )
+
+== Lesson 2
