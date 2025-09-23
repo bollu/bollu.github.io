@@ -1,0 +1,50 @@
+
+#let defn(term) = box(fill: rgb("#EAF2F5"), inset: 0.5pt, outset: 2pt, radius: 4pt)[~#term]
+
+== Basic Italian Grammar (Complete for Beginner-Speaking)
+
+// https://docs.google.com/spreadsheets/d/1fPsEuRvMUclkjSagu3c0dgl7ogw2avZHlOvwYnkQgAI/edit?gid=0#gid=0
+
+==== Lesson 1
+
+Italian is a *positional* language, so positions of words in a sentence matter.
+Most basic sentence construction is #defn[ **SVO:** Subject + Verb + Object],
+where a subject is #defn[Article + Noun + Adjective].
+
+Nouns have suffixes that indicate their gender and their number:
+#table(columns: (10em, 10em, 10em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Gender*][*Number*][*Noun*],
+[Masculine], [Singular], [Ragazzo],
+[Feminine],  [Singular], [Ragazza],
+[Masculine],  [Plural], [Ragazzi],
+[Feminine],  [Plural], [Ragazze],
+)
+
+
+Basic verbs are essere (to be), avere (to have), mangiare (to eat).
+Conjugations of essere and avere are:
+// TODO: move these tables to be adjacent to each other.
+#table(columns: (5em, 7em, 10em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Verb*][*Person*][*Example*],
+[Essere], [Io (I)], [sono (am)],
+[Essere], [Tu (You)], [sei (are)],
+[Essere], [Lui/Lei (He/She)], [è (is)],
+[Essere], [Noi (We)], [siamo (are)],
+[Essere], [Voi (Y'all)], [siete (are)],
+[Essere], [Loro (They)], [sono (are)]
+)
+#table(columns: (5em, 7em, 10em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Verb*][*Person*][*Example*],
+[Avere], [Io (I)], [ho (have)],
+[Avere], [Tu (You)], [hai (have)],
+[Avere], [Lui/Lei (He/She)], [ha (has)],
+[Avere], [Noi (We)], [abbiamo (have)],
+[Avere], [Voi (Y'all)], [avete (have)],
+[Avere], [Loro (They)], [hanno (have)]
+)
