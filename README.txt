@@ -3,7 +3,7 @@
 <h3> Siddharth Bhat</h3>
 </h1>
 
-- [Write me a Note Please (Anonymously if you like!)](https://www.admonymous.co/bollu) / Email me:  <a href='mailto:bollu@fastmail.com'> `bollu@fastmail.com` </a> / [Book a 15 minute Chat with me](https://calendly.com/bollu)
+- [Get in touch (Anonymously)](https://www.admonymous.co/bollu) / Email:  <a href='mailto:bollu@fastmail.com'> `bollu@fastmail.com` </a> / [Grab a video call](https://calendly.com/bollu)
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Photography](https://nx72119.your-storageshare.de/apps/photos/public/3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - Motto: **It's useful to finish things.**
 
