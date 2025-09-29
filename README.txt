@@ -8,9 +8,17 @@
 - Motto: **It's useful to finish things.**
 
 
-<img style="width: 100%; display: block" src="/static/sid-bubble.jpg">
+<img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Sampling Theory Reading List
+# Hensel Lifting and Hensel's Lemma
+
+- Quick review of [Hensel Lifting](https://kconrad.math.uconn.edu/blurbs/gradnumthy/hensel.pdf)
+  based on Kconrad's notes.
+- Let $f \in Z_p[X]$, and let $k \in Z_p$ such that $f(k) \equiv_{p} 0$, and $f'(k) \neq 0$.
+  Then, there is a unqiue $r \in Z_p$ such that $f(r) = 0$, and $r \equiv_{p} a$.
+
+
+# How To Benchmark
 
 - I realized that the branch of statistics I need is 'sampling theory',
   which explains how to estimate parameters from populations by means of polling / sampling,
