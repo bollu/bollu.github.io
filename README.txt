@@ -17,6 +17,12 @@
 - Let $f \in Z_p[X]$, and let $k \in Z_p$ such that $f(k) \equiv_{p} 0$, and $f'(k) \neq 0$.
   Then, there is a unqiue $r \in Z_p$ such that $f(r) = 0$, and $r \equiv_{p} a$.
 
+#### Induction
+
+#### Hensel Lifts for Continuous Functions
+
+- The above hensel's lemma only applies to polynomials, but we can extend it to continuous functions. Paper by [Kaneko and Thomas Stoll](https://hal.science/hal-03283477v1/document)
+
 
 # How To Benchmark
 
