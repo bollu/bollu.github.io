@@ -835,7 +835,7 @@ property of the axiom system may no longer hold (think: subformula property).
 
 - [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
 
-<img class="marginleft" src="/static/art-nouveau/klimt.jpg" />
+<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
 
 XXXX
 
