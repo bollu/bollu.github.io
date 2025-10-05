@@ -833,13 +833,13 @@ property of the axiom system may no longer hold (think: subformula property).
 
 # I Like Art Nouveau
 
-- [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
+<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
 
 <img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
 
-XXXX
+<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
 
-
+- [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
 - [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"
 - decorative, decorative arts. Wanted to take art and make it applied.
 - pantheistic approach to nature.
