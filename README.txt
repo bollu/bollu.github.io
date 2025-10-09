@@ -23,6 +23,13 @@
 
 - The above hensel's lemma only applies to polynomials, but we can extend it to continuous functions. Paper by [Kaneko and Thomas Stoll](https://hal.science/hal-03283477v1/document)
 
+# Spaced Repetition for Learning Italian
+
+- I've had mixed success with Anki with using spaced repetition for learning Italian.
+
+- [This is the best tutorial on writing Anki prompts I've stumbled upon](https://andymatuschak.org/prompts/),
+  which explains how to write prompts by using cooking as an example activity.
+  It even highlights some mistakes that I was making, such as adding mnemonics in the *questions* (not the answers).
 
 # How To Benchmark
 
