@@ -10,18 +10,21 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Hensel Lifting and Hensel's Lemma
+# Using Diminished Chords
 
-- Quick review of [Hensel Lifting](https://kconrad.math.uconn.edu/blurbs/gradnumthy/hensel.pdf)
-  based on Kconrad's notes.
-- Let $f \in Z_p[X]$, and let $k \in Z_p$ such that $f(k) \equiv_{p} 0$, and $f'(k) \neq 0$.
-  Then, there is a unqiue $r \in Z_p$ such that $f(r) = 0$, and $r \equiv_{p} a$.
+- Recall: diminished chord is made up entirely of minor 3rds, so `C Eb Gb A` is a `Cdim` chord.
+- Technique 1 (Suspended Diminished) : If we are going to play eg `C` chord for a long time, then throw in a `Cdim` in the middle.
+  So, play `C E G`, `C Eb Gb Ab`, `C E G`.
+- Technique 2 (Drop in Diminished): For stride piano, before playing the 2 chord, a `Dm` or a `Dm7`,
+  use the diminished chord up a half step to drop into the `Dm` chord, which is `Eb Gb A C`.
+  So we play `Eb Gb A C`, followed by `D F A (C)`.
+- Technique 3 (Lift in Diminished): We come from the other direction.
+  Go down a half step from `C` to get `Bdim`, which is `B D F Ab`, before playing `C E G`.
+- Technique 4 (Coloring Dominant): Play diminished half step up from the root of the V chord.
+  So, if we are playing `G7` (the 5 chord in `C`), play `Abdim`, which is `Ab B D F`.
+  This gives us a `G7b9` chord, which is a nice tension chord.
+  This gives a nice tension before resolving to the `C` chord.
 
-#### Induction
-
-#### Hensel Lifts for Continuous Functions
-
-- The above hensel's lemma only applies to polynomials, but we can extend it to continuous functions. Paper by [Kaneko and Thomas Stoll](https://hal.science/hal-03283477v1/document)
 
 # Spaced Repetition for Learning Italian
 
