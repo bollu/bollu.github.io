@@ -74,26 +74,34 @@ img {
   background: #ffffff;
 }
 
+.marginpicright {
+  float: right;
+  max-width: 200px;
+}
+
 @media (max-width: 480px) {
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
+
 }
 
 @media (max-width: 1024px) {
   .container {
     max-width: 650px;
-    margin: 30px auto 0px auto;
+    margin: 80px auto 0px auto;
   }
+
 
 }
 
 @media (min-width: 1024px) {
   .container {
     max-width: 800px;
-    margin: 30px auto 0px auto;
+    margin: 80px auto 0px auto;
   }
+
 }
 
 .container * {

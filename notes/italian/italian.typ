@@ -204,8 +204,24 @@ table.header[*Pronoun*][*Conjugation*],
 )
 === Direct and Indirect Objects #todo[get a precise defn.]
 
+Note that an indirect object is always preceded by a preposition (e.g. to, for).
+
 + I #defn[(subject)] read a book #defn[(direct object)].
-+ I #defn[(subject)] read luisa #defn[(indirect object)] a book #defn[(direct object)].
++ I #defn[(subject)] read a book #defn[(direct object)] to luisa #defn[(indirect object)].
+
+==== Direct Object Pronouns Table
+
+table.header[][*Subject Pronoun*][*Object Direct Pronoun*],
+[I], [I], [Me],
+[I], [Io], [Mi],
+[You], [Tu], [Ti],
+[He], [Lui], [Lo],
+[She], [Lei], [La],
+[We], [Noi], [Ci],
+[Y'all], [Voi], [Vi]
+[They], [Loro], [Li/Le]
+)
+
 
 === Transitive and Intransitive Verbs
 
@@ -233,6 +249,8 @@ table.header[][*Subject Pronoun*][*Object Direct Pronoun*][*Reflexive Pronoun*][
 [They], [Loro], [Li], [Si], [Si], [(a) loro],
 )
 
+In normal convo, always use the weak form of indirect object pronouns.
+
 
 == Lesson 7 (Question Words)
 // September 23
@@ -249,7 +267,14 @@ table.header[*English*][*Italian*][*Example Sentence*],
 [Why], [Perche], [#todo[sentence]],
 [What], [Che cosa], [#todo[sentence]],
 [Which], [Quale], [#todo[sentence]],
+[How Many], [Quanto], [#todo[sentence]],
 )
+
+== Lesson 7.5 (Prepositions)
+// TODO
+
+We will drop a big table of prepositions here.
+Prepositions in italian can combine with the definite articles to form contractions.
 
 == Interlude: Celebrate!
 
@@ -258,3 +283,96 @@ At this point, it is worth it to learn vocabulary and practice speaking.
 
 == Lesson 8 (Simple Future)
 // September 23
+
+
+== Vocabulary
+
+#table(columns: (15em, 15em),
+stroke: none,
+fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
+table.header[*Italian*][*English*],
+[Qualcuno], [Someone],
+[Qualcosa], [Something],
+[Questo], [This],
+[Quello], [That],
+[Qui], [Here],
+[Ci], [There],
+[Adesso], [Now],
+[Quindi], [Then/So],
+[Sempre], [Always],
+[Mai], [Never],
+[Anche], [Also/Too],
+[Ma], [But],
+[Perche], [Because/Why],
+[O], [Or],
+[Oggi], [Today],
+[Domani], [Tomorrow],
+[Ieri], [Yesterday],
+[Settimana], [Week],
+[Mese], [Month],
+[Anno], [Year],
+[Tempo], [Time],
+[Primavera], [Spring], 
+[Estate], [Summer],
+[Inverno], [Winter],
+[Autunno], [Fall],
+[Mattina], [Morning],
+[Pomeriggio], [Afternoon],
+[Sera], [Evening],
+[Notte], [Night],
+[Colazione], [Breakfast],
+[Pranzo], [Lunch],
+[Cena], [Dinner],
+[Insieme], [Together],
+[Sapere], [To know (a fact)],
+[Ricordare], [To remember],
+[Capire], [To understand],
+[Vedere], [To see],
+[Guardare], [To watch/look at],
+[Ascoltare], [To listen to],
+[Sentire], [To hear/feel],
+[Parlare], [To speak/talk],
+[Chiamare], [To call],
+[Domandare], [To ask],
+[Rispondere], [To answer],
+[Leggere], [To read],
+[Scrivere], [To write],
+[Studiare], [To study],
+[Imparare], [To learn],
+[Insegnare], [To teach],
+[Giocare], [To play (a game)],
+[Suonare], [To play (an instrument)],
+[Viaggiare], [To travel],
+[Comprare], [To buy],
+[Vendere], [To sell],
+[Pagare], [To pay],
+[Costare], [To cost],
+[Dare], [To give],
+[Ricevere], [To receive],
+[Prendere], [To take],
+[Fare], [To do/make],
+[Andare], [To go],
+[Venire], [To come],
+[Stare], [To stay/be],
+[Mettere], [To put/place],
+[Trovare], [To find],
+[Lasciare], [To leave (something/someone)],
+[Portare], [To bring/carry],
+[Svegliarsi], [To wake oneself up],
+[Alzarsi], [To get oneself up (out of bed)],
+[Diversi], [To have fun/enjoy oneself],
+[Chiedere], [To ask (a question)],
+[Rispondere], [To answer (a question)],
+[Come], [How],
+[Quando], [When],
+[Dove], [Where],
+[Chi], [Who],
+[Che cosa], [What],
+[Quale], [Which],
+[Perche], [Why],
+[Triste], [Sad],
+[Felice], [Happy],
+[Stanco], [Tired],
+[Malato], [Sick],
+[Dormo], [Sleepy],
+)
