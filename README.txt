@@ -10,6 +10,14 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# ICFP information
+
+### Career Advice
+
+- **Anil:** Make money in industry, don't inflate your lifestyle, return to academia when bubble bursts.
+
+
+
 # Using Diminished Chords
 
 - Recall: diminished chord is made up entirely of minor 3rds, so `C Eb Gb A` is a `Cdim` chord.
