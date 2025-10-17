@@ -10,12 +10,43 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# ICFP information
+# Non Linear Theory of 2-adics does not mix with bitwise operations
 
-### Career Advice
+- We know that the first order theory of the 2-adics as a field (so with `+`, `-`, `*`, `/`, 0, 1)
+  is decidable.
+- A natural question is: what if we add bitwise operations such as `AND`, `OR`, `XOR`?
+- We first show that if we have bitwise `AND` (henceforth, `&&`), then we can define the set of natural numbers `N` inside the 2-adics.
 
-- **Anil:** Make money in industry, don't inflate your lifestyle, return to academia when bubble bursts.
+#### 2-adics with AND is undecidable
 
+- Key idea: a natural number is a number `x` whose 2-adic expansion becomes eventually all zeroes.
+- This is the same as having some bitmask `M = ..0001111..1` such that `x & M = x`.
+- For every such bitmask `M`, see that `M + 1 = P` is a power of 2.
+- We can check if a number is a power of 2 with the bit-fiddling trick: `P & (P - 1) = 0`.
+- Thus, we can write `x ∈ N` iff `∃ M, P : (M + 1 = P) ∧ (P & (P - 1) = 0) ∧ (x & M = x)`.
+- This makes the natural numbers definable in the existential theory of the 2-adics with `&&`.
+
+#### 2-adics with OR is undecidable
+
+- Recall that `!x = -1 - x`, which means bitwise NOT is definable in the 2-adics.
+- **Proof:** See that `x + !x = -1` since `-1` is the all-ones string, and in `!x + x`, at every bit location, either `x[1] = 1` and `!x[1] = 0`,
+  or vice versa. This means that `x + !x = x || !x = -1`.
+- Now, since `x && y = !(!x || !y)`, we can define `&&` in terms of `||` and `!`.
+- Thus, if `||` is definable, then so is `&&`, and 2-adics with AND is undecidable as above.
+
+#### 2-adics with XOR is undecidable
+
+- Recall that `x + y = (x XOR y) + 2 * (x AND y)`.
+- **Proof:** This can be seen by thinking about the addition of numbers. We compute the carry bits as `2 (x AND y)`, and
+  we compute the bits in the current place as `x XOR y`. We add these two up to get `x + y`.
+- This means that `x AND y = ((x + y) - (x XOR y)) / 2`.
+- Since the 2-adics are a field, we can divide by 2.
+- Alternatively, we can perform division by two by using an existential quantifier.
+
+# Succinct Explanation of the Blossom Algorithm
+
+
+- Thanks to Anton Lorenzen for the explanation!
 
 
 # Using Diminished Chords
