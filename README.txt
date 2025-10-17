@@ -16,6 +16,8 @@
   is decidable.
 - A natural question is: what if we add bitwise operations such as `AND`, `OR`, `XOR`?
 - We first show that if we have bitwise `AND` (henceforth, `&&`), then we can define the set of natural numbers `N` inside the 2-adics.
+- If `N` is definable, then we can encode [Hilbert's 10th problem](https://en.wikipedia.org/wiki/Hilbert%27s_tenth_problem) in our fragment, as it asks if there exists a natural number solution to a multivariate polynomial equation with integer coefficients.
+- This can be written as `∃ x1, x2, ..., xn ∈ N : P(x1, x2, ..., xn) = 0`, where we encode `x ∈ N` using our definition of `N` in the 2-adics.
 
 #### 2-adics with AND is undecidable
 
@@ -24,7 +26,8 @@
 - For every such bitmask `M`, see that `M + 1 = P` is a power of 2.
 - We can check if a number is a power of 2 with the bit-fiddling trick: `P & (P - 1) = 0`.
 - Thus, we can write `x ∈ N` iff `∃ M, P : (M + 1 = P) ∧ (P & (P - 1) = 0) ∧ (x & M = x)`.
-- This makes the natural numbers definable in the existential theory of the 2-adics with `&&`.
+- This makes the natural numbers definable in the existential theory of the 2-adics with `&&`,
+  and hence we can encode Hilbert's 10th problem as above, which is undecidable.
 
 #### 2-adics with OR is undecidable
 
