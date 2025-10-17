@@ -42,6 +42,31 @@
 - This means that `x AND y = ((x + y) - (x XOR y)) / 2`.
 - Since the 2-adics are a field, we can divide by 2.
 - Alternatively, we can perform division by two by using an existential quantifier.
+- So given a predicate `∀ x, P(x/2)`, we can replace this with `∀ x y, 2*y = x → P(y)`.
+- Thus, if `XOR` is definable, then so is `AND`, and 2-adics with XOR is undecidable as above.
+
+
+#### 2-adics with other boolean functions.
+
+- Recall that there are 16 boolean functions on 2 bits.
+- We use the [table from wolfram mathworld](https://mathworld.wolfram.com/BooleanFunction.html).
+- `F[0](x, y) := 0` is all zeroes, which adds no expressive power.
+- `F[1](x, y) := x & y` is AND, which is undecidable as above.
+- `F[2](x, y) := x & !y` is undecidable since we can get AND by `x AND y = F[2](x, !y)`.
+- `F[3](x, y) := x` is projection, which adds no expressive power.
+- `F[4](x, y) := !x & y` is undecidable since we can get AND by `x AND y = F[4](!x, y)`.
+- `F[5](x, y) := y` is projection, which adds no expressive power.
+- `F[6](x, y) := x XOR y` is undecidable as above.
+- `F[7](x, y) := x OR y` is undecidable as above.
+- `F[8](x, y) := !(x OR y)` is undecidable since we can get OR by `x OR y = !F[8](x, y)`.
+- `F[9](x, y) := !(x XOR y)` is undecidable since we can get XOR by `x XOR y = !F[9](x, y)`.
+- `F[10](x, y) := !y` adds no expressive power.
+- `F[11](x, y) := x OR !y` is undecidable since we can get OR by `x OR y = F[11](x, !y)`.
+- `F[12](x, y) := !x` adds no expressive power.
+- `F[13](x, y) := !x OR y` is undecidable since we can get OR by `x OR y = F[13](!x, y)`.
+- `F[14](x, y) := !(x & y)` is undecidable since we can get AND by `x AND y = !F[14](x, y)`.
+- `F[15](x, y) := 1` is all ones, which adds no expressive power.
+- Thus, all boolean functions except projections and constants lead to undecidability when added to the 2-adics.
 
 # Succinct Explanation of the Blossom Algorithm
 
