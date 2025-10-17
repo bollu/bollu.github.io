@@ -14,7 +14,9 @@
 
 - We know that the first order theory of the 2-adics as a field (so with `+`, `-`, `*`, `/`, 0, 1)
   is decidable.
-- A natural question is: what if we add bitwise operations such as `AND`, `OR`, `XOR`?
+- This decidability result is classical [Diophantine Problems Over Local Fields: III. Decidable Fields](https://www.jstor.org/stable/1970476).
+- More recently, there is even a quantifier elimination result for the 2-adics as a field, via a cylindrical algebraic decomposition: [Quantifier elimination in p-adic fields](https://academic.oup.com/comjnl/article-abstract/36/5/419/392350?redirectedFrom=PDF).
+- A natural question is: what if we add bitwise operations such as `AND`, `OR`, `XOR` to the 2-adics, interpreted as infinite streams of bitvectors? Does the theory remain decidable?
 - We first show that if we have bitwise `AND` (henceforth, `&&`), then we can define the set of natural numbers `N` inside the 2-adics.
 - If `N` is definable, then we can encode [Hilbert's 10th problem](https://en.wikipedia.org/wiki/Hilbert%27s_tenth_problem) in our fragment, as it asks if there exists a natural number solution to a multivariate polynomial equation with integer coefficients.
 - This can be written as `∃ x1, x2, ..., xn ∈ N : P(x1, x2, ..., xn) = 0`, where we encode `x ∈ N` using our definition of `N` in the 2-adics.
