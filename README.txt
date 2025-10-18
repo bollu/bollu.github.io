@@ -10,6 +10,11 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Multi-Width Bitvectors with Append
+
+- In discussing with davean, I realized that a good way to think about BVs with append
+
+
 # Non Linear Theory of 2-adics does not mix with bitwise operations
 
 - We know that the first order theory of the 2-adics as a field (so with `+`, `-`, `*`, `/`, 0, 1)
