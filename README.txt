@@ -10,9 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Multi-Width Bitvectors with Append
+# Multi-Width Bitvectors with Append: Using Fundamental Domains?
 
-- In discussing with davean, I realized that a good way to think about BVs with append
+- In discussing with davean, I realized that a good way to think about multi-width BVs is to have a "base length",
+  and to write all widths as multiples of this length.
+- For now, let's assume we have a base length `w`. Then if we have `a b : BV w`, we see that `a ++ b` will be `BV 2w`.
+- When we write FSMs for `a` and `b`, we can do our width-encoding trick, but crucially, we can build FSMs that actually output `a*` and `b*`.
+- So, in some sense, we view the normal BVs as the "fundamental domain", and we allow infinite concatenations of these fundamental domains.
+- We can keep track of which fundamental domain we are in, and when we concatenate BV expressions, we only move a constant distance away from the fundamental domain
+  (since the stx tree is constant). This should let us grab the bits we need!
+- This may need us to encode widths as "unary-with-$-symbol", so width 3 is encoded as `000$11`, where `$` is a separator for the last 1 bit.
 
 
 # Non Linear Theory of 2-adics does not mix with bitwise operations
