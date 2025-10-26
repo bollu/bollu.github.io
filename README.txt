@@ -50329,7 +50329,6 @@ let g:conjure#mapping#eval_motion = "E"
 > -- Confucius
 
 
-
 >  "Think of yourself as dead. You have lived your life. Now, take what's left
 >  and live it properly." - Marcus Aurelius
 
