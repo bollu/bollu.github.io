@@ -19,7 +19,7 @@
 - So, in some sense, we view the normal BVs as the "fundamental domain", and we allow infinite concatenations of these fundamental domains.
 - We can keep track of which fundamental domain we are in, and when we concatenate BV expressions, we only move a constant distance away from the fundamental domain
   (since the stx tree is constant). This should let us grab the bits we need!
-- This may need us to encode widths as "unary-with-$-symbol", so width 3 is encoded as `000$11`, where `$` is a separator for the last 1 bit.
+- This may need us to encode widths as "unary-with-#-symbol", so width 3 is encoded as `000#11`, where `#` is a separator for the last 1 bit.
 
 
 # Non Linear Theory of 2-adics does not mix with bitwise operations
