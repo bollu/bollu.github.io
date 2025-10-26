@@ -50203,6 +50203,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "If a "religion" is defined to be a system of ideas that contains unprovable statements, then Gödel taught us that mathematics is not only a religion, it is the only religion that can prove itself to be one ~ Bertrand Russell"
+
 > "Everything's high risk if you're a pussy"
 
 > "Write values as verbs, not adjectives: protect, provide, build, teach, create."
@@ -50213,27 +50215,27 @@ let g:conjure#mapping#eval_motion = "E"
 
 > "Your job, throughout your entire life, is to disappoint as many people as it takes to avoid disappointing yourself."
 
-> “Make mistakes of ambition and not mistakes of sloth.” — Machiavelli
+> "Make mistakes of ambition and not mistakes of sloth." ~ Machiavelli
 
 
-> "Your worst sin is that you have destroyed and betrayed yourself for nothing".-Fyodor Dostoevsky
+> "Your worst sin is that you have destroyed and betrayed yourself for nothing" ~ Fyodor Dostoevsky
 
 > The torment of precautions often exceeds the dangers to be avoided.
 > It is sometimes better to abandon one's self to destiny.
 
 > “If you want to go fast, go alone. If you want to go far, go together.”
 
-> "can you keep a secret father?" Priest says "yes son", and the
-> heretic replies "so can I."
+> "can you keep a secret, father?" The heretic says to the inquistion's priest as he is being tortured.
+> "yes son" says the priest, to which the heretic replies: "so can I."
 
 > John von Neumann, one of the greatest mathematicians and computer scientists
 > of the 20th century, regarding the danger of mathematics driven solely by
-> internal esthetics: “There is a grave danger that the subject will develop
-> along the line of least resistance.”
+> internal esthetics: "There is a grave danger that the subject will develop
+> along the line of least resistance."
 
 > Akin's Laws of Spacecraft Design 2.
 > To design a spacecraft right takes an infinite amount of effort. This is why
-> it's a good idea to design them to operate when some things are wrong .
+> it's a good idea to design them to operate when some things are wrong.
 
 > Akin's Laws of Spacecraft Design 20.
 > A bad design with a good presentation is doomed eventually. A good design with a bad presentation is doomed immediately.
@@ -50243,7 +50245,6 @@ let g:conjure#mapping#eval_motion = "E"
 
 > There are cathedrals everywhere for those with eyes to see.
 
-
 > this book fills a much needed gap in the literature.
 
 > The advantages of implicit definition over construction are
@@ -50251,17 +50252,17 @@ let g:conjure#mapping#eval_motion = "E"
 
 > "If you think experts are expensive, wait and see what amateurs will cost you."
 
-> “You cannot go on 'seeing through' things for ever.
+> "You cannot go on 'seeing through' things for ever.
 > The whole point of seeing through something is to see something through it. 
 > It is good that the window should be transparent, because the street or garden beyond it is opaque. 
 > How if you saw through the garden too? It is no use trying to 'see through' first principles. 
 > If you see through everything, then everything is transparent. 
 > But a wholly transparent world is an invisible world. 
-> To 'see through' all things is the same as not to see.”
+> To 'see through' all things is the same as not to see."
 
 > A simple theory of aesthetics:
-> If the best stuff from then is still better than good stuff from now, it's art
-> If the best stuff from then is worse than bad stuff from now, it's technology
+> If the best stuff from then is still better than good stuff from now, it's art.
+> If the best stuff from then is worse than bad stuff from now, it's technology.
 
 - Tradition is not the worship of ashes, but the preservation of fire.
 
