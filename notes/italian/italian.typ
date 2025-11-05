@@ -59,7 +59,6 @@ table.header[*Verb*][*Person*][*Example*],
 
 The general pattern for modifying a noun for marking gender/number.
 This is called #emph[conjugation]
-#todo[Ask Martina that this is indeed called conjugation.]
 
 #table(columns: (10em, 5em, 5em),
 stroke: none,
@@ -136,7 +135,6 @@ table.header[*Pronoun*][*Parl`-are`*][*Cred`-ere`*][*Dorm`-ire`*],
 A #emph[modal verb] is a verb that is used with another verb to express ability, necessity, permission, or possibility. The most common modal verbs in Italian are
 #defn[volere (to want)], #defn[potere (can/to be able to)], and 
 #defn[dovere (must/to have to)]. 
-#todo[what makes it a modality?]
 
 #table(columns: (5em, 10em, 10em, 10em),
 stroke: none,
@@ -203,6 +201,9 @@ table.header[*Pronoun*][*Conjugation*],
 [Loro], [si svegliano],
 )
 === Direct and Indirect Objects #todo[get a precise defn.]
+
++ A direct object is a response to the question "what?" or "whom?" after the verb.
++ An indirect object is a response to the question "to whom?" or "for whom?" after the verb.
 
 Note that an indirect object is always preceded by a preposition (e.g. to, for).
 
