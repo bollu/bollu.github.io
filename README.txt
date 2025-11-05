@@ -10,6 +10,11 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Durable Execution
+
+- I learnt of this concept from [absurd.sql](https://lucumr.pocoo.org/2025/11/3/absurd-workflows/),
+  and is precisely the vocabulary that I have been looking for.
+
 # Multi-Width Bitvectors with Append: Using Fundamental Domains?
 
 - In discussing with davean, I realized that a good way to think about multi-width BVs is to have a "base length",
@@ -20,6 +25,7 @@
 - We can keep track of which fundamental domain we are in, and when we concatenate BV expressions, we only move a constant distance away from the fundamental domain
   (since the stx tree is constant). This should let us grab the bits we need!
 - This may need us to encode widths as "unary-with-#-symbol", so width 3 is encoded as `000#11`, where `#` is a separator for the last 1 bit.
+
 
 
 # Non Linear Theory of 2-adics does not mix with bitwise operations
