@@ -14,6 +14,13 @@
 
 - I learnt of this concept from [absurd.sql](https://lucumr.pocoo.org/2025/11/3/absurd-workflows/),
   and is precisely the vocabulary that I have been looking for.
+- I am considering using SQLite for this, as it's the perfect simple backend for the scale of tasks that I have
+  (~60,000 to 100,000 jobs, each taking a minute or two).
+- However, SQLite doesn't seem to be able to represent queues as well as postgres does, which is a bit unfortunate.
+
+#### Queues Via Postgres
+
+- [This is stolen from this article](https://web.archive.org/web/20190530143429/https://www.2ndquadrant.com/en/blog/what-is-select-skip-locked-for-in-postgresql-9-5/), and are my notes.
 
 # Multi-Width Bitvectors with Append: Using Fundamental Domains?
 
