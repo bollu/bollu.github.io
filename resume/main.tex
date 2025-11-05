@@ -52,24 +52,20 @@
 
 \section{Skills}
 
-I'm an expert in formal verification, optimizing compilers, and AI4maths.
+I'm an expert in formal verification, compilers for imperative and functional programming languages, and AI4Maths.
 
-\textbf{Functional Programming \& Formal Verification:}
-Since my teens, I’ve worked on functional programming.
-At Tweag, I implemented WebAssembly GC and runtime for \textbf{Asterius}, a Haskell→Wasm compiler later merged into GHC.
-I’m the \#2 contributor to Asterius and among the top 20 contributors to \textbf{Lean}, co-author of the \textit{Lean4 Metaprogramming Book}, and one of the top two contributors to its bitvector theory.
-I developed much of the correctness theory for Lean’s bitblaster (\texttt{bv\_decide}).
+\textbf{Formal Verification of Compiler IRs:}
+I am in the top 20 contributors to the Lean theorem prover overall, and one the top two contributors of the Lean bitvector theory.
+I'm an author of the Lean4 metaprogramming book and has written a large part of the necessary theorems for proving
+Lean's bitblaster (\texttt{bv\_decide}) correct.
+I've led the \texttt{lean-mlir} project, which aims to provide a framework for formally verifying optimizations in MLIR.
+I have given over five talks talks at the LLVM developer meeting on formal semantics for LLVM, MLIR, and verifying optimizations in MLIR.
 
-\textbf{Compilers \& HPC:}
-Deep experience in compilers and high-performance computing.
-I contributed 121 patches to \textbf{Polly}, LLVM’s polyhedral loop optimizer, making me its \#3 contributor.
-My work enabled GPU code generation for real-world climate models (e.g., COSMO).
-I also mentored students via Google Summer of Code (2016).
+\textbf{Loop Optimization \& HPC:} I have a lot of experience in loop optimization, via working on Polly, LLVM's polyhedral loop optimizer. Polly was the first to create a framework for loop analysis and optimisation that brought mathematical research ideas in polyhedral compilation to real-world ideas. Technical successors of Polly that use many of its innovations are used to accelerate large machine learning models today. I have 121 commits in Polly, making me the \#3 contributor to the Polly loop optimizer. Thanks to my work, the Polly loop optimizer gained the ability to perform high-performance GPU code generation for realistic climate models, including the dynamical core of COSMO, Switzerland's official climate model maintained by the MeteoSwiss, Switzerland's Federal Office of Meteorology and Climatology. I then continued to oversee the Polly project and has even mentored students working on the Polly project as a Google Summer of Code mentor in 2016.
 
-\textbf{AI for Maths:}
-My goal is scalable AI for theorem proving—since only search scales.
-At Microsoft Research (2023), I applied RL to proof repair in \textbf{F*} (“Towards Neural Synthesis for SMT-Assisted Proof-Oriented Programming,” ICSE’25, best paper).
-I also studied scaling decision procedures for symbolic problems such as geometry vs. neural approaches.
+\textbf{Compilers for Functional Languages:} I am the \#2 contributor to Asterius a Haskell $\to$ WebAssembly compiler, where I worked on re-implementing a Haskell-style generational GC on top of the WASM GC. My contributions were merged into Asterius, which was eventually merged upstream into the Glasgow Haskell Compiler. I am also the primary author of the Lean programming language's LLVM backend, and have written papers on designing MLIR based IRs for quantum programming and Lean's untyped compiler IR.
+
+\textbf{AI for Maths:} I have expertise in integrating the bitter lesson into interactive theorem proving contexts, and believe that neurosymbolic approaches such as AlphaProof will get us to much better proof automation than what we have at present. Toward this, during an internship at Microsoft Research in 2023, I worked on reinforcement-learning based approaches for correcting incorrect proofs in the F* proof assistant ("Towards neural synthesis for SMT-assisted proof-oriented programming"@ICSE 2025, best paper). Similarly, I have helped established stronger baselines for AI based geometric theorem proving, by showing that symbolic methods, when used well, go head-to-head with state of the art AI based systems.
 
 \section{Education}
 \cventry{PhD}{University of Cambridge}{}{}{}{(2024 - Ongoing)}.
@@ -121,7 +117,6 @@ Shiven Sinha, Ameya Prabhu, Ponnurangam Kumaraguru, \textit{Siddharth Bhat}, Mat
 \cvitem{\href{https://github.com/coq/coq/issues?&q=author\%3Abollu}{Rocq}}{Submitted issues, bug-fixes, helped improve developer documentation.}
 \cvitem{\href{https://github.com/vellvm/vellvm/issues?&q=author\%3Abollu}{VE-LLVM}}{Collaboration with VE-LLVM, a formal semantics of the LLVM compiler toolchain in Coq} 
 \cvitem{\href{https://polly.llvm.org/}{Polly}}{Implementing support for Fortran, added unified memory abilities to the CUDA backend within Polly, a polyhedral loop optimiser for LLVM. \href{https://reviews.llvm.org/p/bollu/}{(Link to commits)}}
-
 
 \cvitem{\href{https://github.com/symengine/symengine.hs}{Symengine.hs}}{GSoC 2016. Haskell bindings to SymEngine, a C++ symbolic manipulation library.}
 
