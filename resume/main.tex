@@ -52,12 +52,11 @@
 
 \section{Skills}
 
-I'm an expert in formal verification, compilers for imperative and functional programming languages, and AI4Maths.
-
-\textbf{Formal Verification of Compiler IRs:}
+\textbf{Formally Verified Decision Procedures for Compiler IRs:}
 I am in the top 20 contributors to the Lean theorem prover overall, and one of the top two contributors of the Lean bitvector theory.
 I'm an author of the Lean4 metaprogramming book and have written a large part of the necessary theorems for proving
-Lean's bitblaster (\texttt{bv\_decide}) correct.
+Lean's bitblasting decision procedure, (\texttt{bv\_decide}) correct.
+I have published new, formally verified decision procedures for parametric bitvector theory.
 I've led the \texttt{lean-mlir} project, which aims to provide a framework for formally verifying optimizations in MLIR.
 I have given over five talks at the LLVM developer meeting on formal semantics for LLVM, MLIR, and verifying optimizations in MLIR.
 
@@ -65,13 +64,14 @@ I have given over five talks at the LLVM developer meeting on formal semantics f
 
 \textbf{Compilers for Functional Languages:} I am the \#2 contributor to Asterius a Haskell $\to$ WebAssembly compiler, where I worked on re-implementing a Haskell-style generational GC on top of the WASM GC. My contributions were merged into Asterius, which was eventually merged upstream into the Glasgow Haskell Compiler. I am also the primary author of the Lean programming language's LLVM backend, and have written papers on designing MLIR based IRs for quantum programming and Lean's untyped compiler IR.
 
+
 \textbf{AI for Maths:} I have expertise in integrating the bitter lesson into interactive theorem proving contexts, and believe that neurosymbolic approaches such as AlphaProof will get us to much better proof automation than what we have at present. Toward this, during an internship at Microsoft Research in 2023, I worked on reinforcement-learning based approaches for correcting incorrect proofs in the F* proof assistant ("Towards neural synthesis for SMT-assisted proof-oriented programming"@ICSE 2025, best paper). Similarly, I have helped establish stronger baselines for AI based geometric theorem proving, by showing that symbolic methods, when used well, go head-to-head with state of the art AI based systems.
 
 \section{Education}
 \cventry{PhD}{University of Cambridge}{}{}{}{(2024 - Ongoing)}.
 \cventry{PhD}{University of Edinburgh (\textit{moved to Cambridge})}{}{}{}{(2022 - 2024)}.
 \cventry{Master by Research}{International Institute of Information Technology Hyderabad India}{}{}{}{(2020 - 2021)}.
-\cventry{Undergraduate}{International Institute of Information Technology Hyderabad India}{}{}{}{2015 - 2020}.
+\cventry{B.Tech}{International Institute of Information Technology Hyderabad India}{}{}{}{2015 - 2020}.
 
 
 \section{Publications}
@@ -122,13 +122,13 @@ Shiven Sinha, Ameya Prabhu, Ponnurangam Kumaraguru, \textit{Siddharth Bhat}, Mat
 
 \cvitem{\href{https://github.com/vispy/vispy/commits?author=bollu}{VisPy}}{GSoC 2015. Rewrote scene graph for performance. Added visuals, high level API for easy use of plotting. Implemented auto-resizing with \textbf{Cassowary}, a linear optimisation library.}
 
-\cvitem{Rust}{Contributed to the Rust compiler and ecosystem. Found compiler errors, fixed libraries. Was part of \href{https://github.com/PistonDevelopers}{\emph{Piston}}, group of Rust programmers that experimented with writing game engines.}
+\cvitem{Rust}{Contributed to the Rust compiler and ecosystem. Found compiler errors, fixed libraries. Was part of \href{https://github.com/PistonDevelopers}{\emph{Piston}}, group of Rust programmers who experimented with writing game engines.}
 
 \cvitem{Haskell}{Contributed to the Haskell ecosystem. Reported and fixed bugs in \emph{stack}, \emph{stackage}, \emph{diagrams}, \emph{GHC}, etc. \href {https://phabricator.haskell.org/p/bollu/}{(Link to GHC commits).}}
 
 \cvitem{PLUTO}{Source to Source C optimiser for loop nests. Improved the PLUTO API that had gone out of sync with master. Discovered bugs in PLUTO for diamond tiling transforms}
 
-\cvitem{\href{http://mcl.csa.iisc.ac.in/polymage.html}{PolyMage}}{DSL compiler than generates C code. Uses \textbf{Polyhedral Compilation} Extended the compiler to add stencils, time iterated-stencils.}
+\cvitem{\href{http://mcl.csa.iisc.ac.in/polymage.html}{PolyMage}}{DSL compiler that generates C code. Uses \textbf{Polyhedral Compilation} Extended the compiler to add stencils, time iterated-stencils.}
 
 
 \cvitem{\href{https://github.com/hrydgard/ppsspp/commits?author=bollu}{PPSSPP}}{C++ open source PSP emulator. Wrote most of the touch handling code. Implemented atomic locks for audio performance.}
@@ -143,7 +143,7 @@ Shiven Sinha, Ameya Prabhu, Ponnurangam Kumaraguru, \textit{Siddharth Bhat}, Mat
 
 \cvitem{\href{https://github.com/bollu/lean-to}{{\footnotesize Lean-to}}}{Jupyter kernel for the Lean4 proof assistant.}
 
-\cvitem{\href{http://github.com/bollu/simplexhc}{Simplexhc}}{A custom compiler for a subset of Haskell. The goal is to try and apply \emph{polyhedral compilation} ideas to compile a lazy, pure, functional programming language. with LLVM as a backend.
+\cvitem{\href{http://github.com/bollu/simplexhc}{Simplexhc}}{A custom compiler for a subset of Haskell. The goal is to try and apply \emph{polyhedral compilation} ideas to compile a lazy, pure, functional programming language with LLVM as a backend.
 Has \textbf{64 stars} on github.}
 
 
@@ -157,7 +157,7 @@ Has \textbf{64 stars} on github.}
 \cvitem{\href{http://github.com/bollu/timi}{TIMi}}{A visual interpreter of the \textbf{template instantiation machine} to understand evaluation of lazy functional languages. \textbf{51} stars on github.}
 
 \subsection{Miscellaneous}
-\cvitem{\href{https://github.com/bollu/barvinok/blob/master/slides.pdf}{Barvinok}}{Talk at ETH Zurich: Slides describing the barvinok algorithm to count lattice points in polyhedra}
+\cvitem{\href{https://github.com/bollu/barvinok/blob/master/slides.pdf}{Barvinok}}{Talk at ETH Zurich: Slides describing the Barvinok algorithm to count lattice points in polyhedra}
 
 \cvitem{\footnotesize \href{https://confengine.com/user/siddharth-bhat}{FunctionalConf '19}}{Talk on implementing embedded probabilistic programming languages in Haskell  \href{https://github.com/bollu/functionalconf-2019-slides-probabilistic-programming}{(Slides)}}
 
