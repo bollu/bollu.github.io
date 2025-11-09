@@ -1,6 +1,9 @@
-.PHONY: main.pdf
-main.pdf: *.tex
-	latexmk -pdf -shell-escape main.tex && latexmk -c
+.PHONY: full-siddharth-bhat.pdf
 
-watch: *.tex
-	latexmk -pdf -pvc main.tex && latexmk -c
+full-siddharth-bhat.pdf: full-siddharth-bhat.tex
+	latexmk -pdf -shell-escape $< && latexmk -c
+
+# Clean auxiliary files
+clean:
+	latexmk -C
+
