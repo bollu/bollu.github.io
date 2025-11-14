@@ -10,6 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+
+# How to Improve Evalauation Metrics
+
+- Create a histogram to burn down on.
+- When you start, you will probably make it via just printing errors, sorted in say lex order.
+- This will be too large. Therefore, you will now collapse these into larger equivalence classes, giving you a rougher
+  partition of the error space, with a smaller number of buckets.
+- The difficulty is to find the sweet spot between too coarse and too fine in the number of buckets.
+- Great, now that you have the histogram, you can now start working on the largest buckets first.
+
 # Durable Execution
 
 - I learnt of this concept from [absurd.sql](https://lucumr.pocoo.org/2025/11/3/absurd-workflows/),
@@ -17,6 +27,7 @@
 - I am considering using SQLite for this, as it's the perfect simple backend for the scale of tasks that I have
   (~60,000 to 100,000 jobs, each taking a minute or two).
 - However, SQLite doesn't seem to be able to represent queues as well as postgres does, which is a bit unfortunate.
+
 
 #### Queues Via Postgres
 
