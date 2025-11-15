@@ -10,6 +10,10 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# What angles have sines and cosines as radicals?
+
+TODO figures out. eg cos(54)
+
 
 # How to Improve Evalauation Metrics
 
@@ -19,6 +23,7 @@
   partition of the error space, with a smaller number of buckets.
 - The difficulty is to find the sweet spot between too coarse and too fine in the number of buckets.
 - Great, now that you have the histogram, you can now start working on the largest buckets first.
+
 
 # Durable Execution
 
