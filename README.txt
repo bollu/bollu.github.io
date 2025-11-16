@@ -19,7 +19,13 @@
 - Now, add accidentals when moving with the right hand, before reaching a note.
 - Once we can do this with the right hand, also add accidentals to the left hand.
 - Try switching between left and and right hand being the "leader".
+
 - [Reference: How to Improvise a Two-Part Invention - YouTube](https://www.youtube.com/watch?v=5kNNVNx9TnY)
+- [Graham Buckland: Composer on Composing Renaissance](https://www.youtube.com/watch?v=B-NX8qIiaZE)
+
+# Improvise Polyphony in four voices
+
+- [How to improvise polyphony in four voices according to Santa María](https://www.youtube.com/watch?v=vpfoiwU4rDI)
 
 
 
