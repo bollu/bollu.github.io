@@ -28,7 +28,8 @@
 - The key idea is that we want to write four voices as 2+2 voices.
 - Now, we are interested in "close imitation", where the second voice comes in shortly after the subject.
 - There are two key factors: The pitch interval and the time interval.
-- An example working close imitation is with pitch:4th, time:1
+- An example working close imitation is with pitch:4th, time:1.
+- 
 - [How to improvise polyphony in four voices according to Santa María](https://www.youtube.com/watch?v=vpfoiwU4rDI)
 
 
