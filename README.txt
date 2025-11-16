@@ -10,9 +10,17 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# What angles have sines and cosines as radicals?
+# Improvising Two Part Invention
 
-TODO figures out. eg cos(54)
+- Practice moving with a distance of 3rd and 6th between the two voices.
+- First practice 3ds and 6th separately. So practice playing a song together with all thirds.
+- Then practice playing a song together with all sixths.
+- Next, learn to combine thirds and sixths. So switch between 3rds and 6ths at appropriate places.
+- Now, add accidentals when moving with the right hand, before reaching a note.
+- Once we can do this with the right hand, also add accidentals to the left hand.
+- Try switching between left and and right hand being the "leader".
+- [Reference: How to Improvise a Two-Part Invention - YouTube](https://www.youtube.com/watch?v=5kNNVNx9TnY)
+
 
 
 # How to Improve Evalauation Metrics
