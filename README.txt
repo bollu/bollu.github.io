@@ -25,6 +25,7 @@
 - Permutation (rotation)  is invertible, and distributes over addition (?!) and multiplication (?!).
   (I guess this makes intuitive sense, since it's a reindexing, but it's still at least a bit surprising.)
 - mutiplication and permutation preserve similarity.
+- This gives us a flexible algebraic system to compute with.
 - [Stanford Seminar: computing with high dimensional vectors](https://www.youtube.com/watch?v=zUCoxhExe0o)
 
 
