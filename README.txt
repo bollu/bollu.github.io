@@ -10,6 +10,24 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Computing with High Dimensional Vectors
+
+- Choose binary vectors.
+- Lemma 1 (Johnson Lidenstrauss): any n points in high dimensional space can be embedded into O(log n / eps^2) dimensions
+  with (1 +/- eps) distortion of distances.
+- Lemma 2: Randomly chosen vectors are approximately orthogonal with high probability.
+- multiplication is chosen to be XOR.
+- Addition is chosen to be bitwise addition of components, followed by MAJORITY
+   (keep components that are 1 in at least half the vectors).
+- Addition creates vectors that are similar to input vectors.
+- Multiplication creates vectors that are dissimilar to input vectors.
+- Multiplication is invertible (XOR), and distributes over addition(?!).
+- Permutation (rotation)  is invertible, and distributes over addition (?!) and multiplication (?!).
+  (I guess this makes intuitive sense, since it's a reindexing, but it's still at least a bit surprising.)
+- mutiplication and permutation preserve similarity.
+- [Stanford Seminar: computing with high dimensional vectors](https://www.youtube.com/watch?v=zUCoxhExe0o)
+
+
 # Improvising Two Part Invention
 
 - Practice moving with a distance of 3rd and 6th between the two voices.
@@ -51,11 +69,7 @@
 - I am considering using SQLite for this, as it's the perfect simple backend for the scale of tasks that I have
   (~60,000 to 100,000 jobs, each taking a minute or two).
 - However, SQLite doesn't seem to be able to represent queues as well as postgres does, which is a bit unfortunate.
-
-
-#### Queues Via Postgres
-
-- [This is stolen from this article](https://web.archive.org/web/20190530143429/https://www.2ndquadrant.com/en/blog/what-is-select-skip-locked-for-in-postgresql-9-5/), and are my notes.
+- [To read: Queues via Postgres](https://web.archive.org/web/20190530143429/https://www.2ndquadrant.com/en/blog/what-is-select-skip-locked-for-in-postgresql-9-5/), and are my notes.
 
 # Multi-Width Bitvectors with Append: Using Fundamental Domains?
 
