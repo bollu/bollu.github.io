@@ -10,6 +10,12 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Modify simo
+
+- tell compiler to add a profileItM at the simpproc macro
+- instead, unify all the rules as a single simpproc rule, 
+  and match with pattern matching.
+
 # Computing with High Dimensional Vectors
 
 - Choose binary vectors.
