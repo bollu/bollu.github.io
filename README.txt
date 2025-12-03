@@ -50272,6 +50272,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> “We Shall Build Good Ships Here; At A Profit If We Can, At A Loss If We Must, But Always Good Ships.” ~ Collis Potter Huntington
+
 > "If a "religion" is defined to be a system of ideas that contains unprovable statements, then Gödel taught us that mathematics is not only a religion, it is the only religion that can prove itself to be one ~ Bertrand Russell"
 
 > "Everything's high risk if you're a pussy"
