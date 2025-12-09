@@ -10,11 +10,24 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Modify simo
 
-- tell compiler to add a profileItM at the simpproc macro
-- instead, unify all the rules as a single simpproc rule, 
-  and match with pattern matching.
+# Farkas Lemma
+
+- [Reference: Advanced Algorithms by Michael X Goemans](https://dspace.mit.edu/bitstream/handle/1721.1/49420/6-854JFall2001/NR/rdonlyres/Electrical-Engineering-and-Computer-Science/6-854JFall2001/FD15AC29-4D14-4733-832C-5626A8B1366E/0/lect9_19.pdf)
+
+#### Statement
+
+- Either $Ax = b$, $x \geq 0$ has a solution, or
+- There exists $y$ such that $A^T y \geq 0$, and $y^T b < 0$. (separating hyperplane).
+
+#### Why both cannot occur at the same time
+
+
+
+#### Proof 
+
+
+
 
 # Computing with High Dimensional Vectors
 
