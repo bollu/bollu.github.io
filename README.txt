@@ -45,7 +45,6 @@
 
 
 
-
 # Computing with High Dimensional Vectors
 
 - Choose binary vectors.
