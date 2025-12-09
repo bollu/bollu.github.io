@@ -43,8 +43,6 @@
 #### Farkas as Interpolant
 
 
-
-
 # Computing with High Dimensional Vectors
 
 - Choose binary vectors.
