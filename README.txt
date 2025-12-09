@@ -22,9 +22,26 @@
 
 #### Why both cannot occur at the same time
 
+- See that $y^T Ax = y^T b$, so if $y^T A \geq 0$, and there is a solution vector $x \geq 0$ such that $Ax = b$,
+  then $y^T b = y^T (Ax) = (y^T A) x \geq 0$.
+- This contradicts $y^T b < 0$.
+
+#### Geometric Proof
+
+##### Geometric Lemma
+
+- Let $K$ be a closed covex nonempty set in $R^n$.
+- Let $b \in R^n$, $b \not \in K$.
+- Define a projection $p_b$ of $b$ onto $K$ as the point $x \in K$ such that  $||b - x||$ is minimized. 
+- Then, for all $z \in K$, $(b - p_b)^T (z - p_b) \leq 0$.
+- That is, for any point outside the convex set, the vector pointing to the point outside makes a non-acute angle
+  with any vector pointing from the projection to a point in the convex set.
+
+#### Proof of Farkas Lemma
 
 
-#### Proof 
+#### Farkas as Interpolant
+
 
 
 
