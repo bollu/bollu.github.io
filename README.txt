@@ -25,6 +25,20 @@ E
 ```
 
 
+- Similarly, on bar 34, we have, in the treble clef of the piano:
+
+```
+G(5)|     |G(5)|     |    |
+F   |     |    |     |F(5)|
+E(4)|     |E(4)|     |    |E(4)    
+D   |     |    |     |    |
+C(2)|     |    |     |    |
+B   |     |    |     |C(2)|
+A(1)| A(1)|    | A(1)|    |
+       
+```
+
+
 # Farkas Lemma
 
 - [Reference: Advanced Algorithms by Michael X Goemans](https://dspace.mit.edu/bitstream/handle/1721.1/49420/6-854JFall2001/NR/rdonlyres/Electrical-Engineering-and-Computer-Science/6-854JFall2001/FD15AC29-4D14-4733-832C-5626A8B1366E/0/lect9_19.pdf)
