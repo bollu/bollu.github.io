@@ -16,27 +16,34 @@
 - In the treble clef, bar 2, for piano, see the following 
 
 ```
-A  A
-E  
-   D
-     C
-       A
-         G
+A   |    |G(5)|    |G(5)|                               
+G(5)|    |    |    |    |    |
+F   |    |    |    |    |    | 
+E(3)|    |E(3)|    |    |    |
+D(3)|    |    |    |D(3)|    |
+C(2)|    |    |    |    |C(2)|
+B   |    |    |    |    |    |   
+A(1)|A(1)|    |A(1)|    |    |
 ```
+
+- Here, we pick a chord `A-C-E-G`, pick a sus2 note `D`, and then fill in the gaps with `G` and `A` again.
 
 
 - Similarly, on bar 34, we have, in the treble clef of the piano:
 
 ```
 G(5)|     |G(5)|     |    |
-F   |     |    |     |F(5)|
-E(4)|     |E(4)|     |    |E(4)    
+F(4)|     |    |     |F(4)|
+E(3)|     |E(3)|     |    |E(5)    
 D   |     |    |     |    |
 C(2)|     |    |     |    |
 B   |     |    |     |C(2)|
 A(1)| A(1)|    | A(1)|    |
-       
 ```
+
+- Conceptually, we play `1-35-24-5`.
+- One way to think about this is that we play `135`, and then we fill in the gaps `24`.
+- We round the fill-in-the-gaos with a `1-*-3` pattern.
 
 
 # Farkas Lemma
