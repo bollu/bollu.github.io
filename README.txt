@@ -10,6 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Modular Arithmetic Decision Procedure
+
+
+- [Modular Arithmetic Decision Procedure by Domagoj and Madanlal](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2005-114.pdf)
+- For bounded integers, actually just perform the hensel lifting. Can handle polynomial fragment. 
+- I am not sure why this is supposed to be better than just performing a bit-encoding followed by bitblasting,
+  by deriving the width bounds.
+- I suppose the idea is that if the system is linear, then linear algebra can help us find the seed solution,
+  and lifts should also be faster?
+
 # Nobody's Fault but Mine Piano Chord Voicings
 
 
