@@ -1,3 +1,4 @@
+- [Jerry Coker: Patterns for Jazz](https://www.thetrumpetblog.com/wp-content/uploads/2019/09/Jerry-Coker-Patterns-For-Jazz.pdf)
 - [Jazz Standard Repertoire](https://standardrepertoire.com/)
 - [Rewrite Systems and Automated Theorem Proving](https://www.tcs.ifi.lmu.de/lehre/ws-2024-25/atp_de.html)
 - [Intro to Flow Matching](https://diffusion.csail.mit.edu/)

@@ -65,8 +65,9 @@
 
 - Write Italian A2 Exam.
 - Get a Global Talent Visa.
-- Learn Playing Synth Bass.
 - Learn some dance form properly (tap? polka?).
+- [Learn Jazz Piano](https://www.youtube.com/watch?v=RiCQYWPEhjc&t=941s), and
+  relatedly, learn playing good basslines on the piano. [Walk that bass](https://www.youtube.com/watch?v=O2OiircgoRg&t=625s) is a fantastic resource. [How to practice bass lines](https://www.youtube.com/watch?v=KaShTQ-OHqM).
 
 
 # Modular Arithmetic Decision Procedure
