@@ -14,6 +14,13 @@
 
 #### Decision Procedures
 
+- Learnt a lot about the Bitwuzla architecture by porting its algorithms to Lean.
+- Developed a decision procedure for parametric single width and multi-width bitvectors,
+  read most of the literature on bitvector decision procedures in the process.
+- Learnt about K-induction, IC3, and Spacer "for real", though I haven't implemented them.
+  IC3 in particular is super duper neat.
+- Really understood floating point, as we've started porting symfpu to lean.
+
 #### Photography & Travel
 
 - I've kept practising phtography, and being an academic is great for visiting strange new places to take pictures of!
@@ -36,11 +43,25 @@
 #### Fiction Reading
 
 - Subscribed to Clarkesworld, so I read a bunch of great science fiction.
-- Totally loved
+- Totally loved 
+- *Love in the time of Cholera*
+- *Pale Fire*
 
 #### Italian
 
+- Been learning Italian, as Luisa's family don't speak english, and it's her native language.
+- This is the most brutal thing I've done in a fair while,
+  since it's not a 3 month project, but a years-long project.
+- Conjugations are a pain, but vocab is surprisingly "easy", as long as you're not ashamed to repeatedly
+  as for words that you think you're supposed to know.
+
 #### Piano
+
+- Learnt a bunch of ragtime, though I still can't play swipsey cakewalk all that well.
+- Started mixing in modes, I typically switch between dorian and the harmonic minor scales, as well as the major and minor blues.
+
+
+#### Life Admin
 
 
 
