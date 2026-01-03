@@ -10,6 +10,41 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Stuff I learnt in 2025 
+
+#### Decision Procedures
+
+#### Photography & Travel
+
+- I've kept practising phtography, and being an academic is great for visiting strange new places to take pictures of!
+- I got to photograph one of my closest friends' wedding, which was a lot of fun (and a bit stressful!)
+- I'm now pretty competent at using [darktable](https://www.darktable.org/).
+  I'm hoping to get to contribute to darktable sometime in 2026, but we'll see how that goes!
+
+#### Grant Writing
+
+- I spent more than an epsilon amount of time writing grants in 2025, and I've gotten a lot better at it,
+  both at what is expected, as well as the actual writing.
+- Takeaway 1: Always delegate your work packages such that even on the day of submission,
+  it is defensible that you've "done the work" (at least to prototype stage).
+- Takeaway 2: Schedule padding time for projects, and word them such that
+  the vision is clear, while leaving room for people to adjust for interests in life based on circumstances.
+- Typically, most of the time seems to go into the careful description of the high level idea,
+  which make or break the proposal. The actual WPs themselves, while important,
+  are much less critical to the success of the proposal.
+
+#### Fiction Reading
+
+- Subscribed to Clarkesworld, so I read a bunch of great science fiction.
+- Totally loved
+
+#### Italian
+
+#### Piano
+
+
+
+
 # Modular Arithmetic Decision Procedure
 
 
