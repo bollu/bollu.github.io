@@ -61,9 +61,12 @@
 - Started mixing in modes, I typically switch between dorian and the harmonic minor scales, as well as the major and minor blues.
 
 
-#### Life Admin
+#### Goals for 2026
 
-
+- Write Italian A2 Exam.
+- Get a Global Talent Visa.
+- Learn Playing Synth Bass.
+- Learn some dance form properly (tap? polka?).
 
 
 # Modular Arithmetic Decision Procedure
