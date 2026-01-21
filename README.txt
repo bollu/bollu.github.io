@@ -17,6 +17,10 @@
 - [McCoy Voicing](https://www.youtube.com/shorts/tpyL1z6z9L0)
 https://www.youtube.com/shorts/5BpfgEVP0HE
 
+#### Jazz Piano Fundamentals Book
+
+- [Website](https://jeremysiskind.com/jazz-piano-fundamentals-main-page/)
+
 # Stuff I learnt in 2025 
 
 #### Decision Procedures
