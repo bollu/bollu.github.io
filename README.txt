@@ -20,6 +20,7 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 #### Jazz Piano Fundamentals Book
 
 - [Website](https://jeremysiskind.com/jazz-piano-fundamentals-main-page/)
+- unit 7: BLUES!
 
 # Stuff I learnt in 2025 
 
