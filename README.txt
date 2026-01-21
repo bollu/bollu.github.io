@@ -12,7 +12,8 @@
 
 # Charles Performs: Jazz Examples
 
-- [Honeysuckle shape](https://www.youtube.com/shorts/nC_sHxJEOv4)
+#### [Honeysuckle shape](https://www.youtube.com/shorts/nC_sHxJEOv4)
+- In FM, play `F3 A2 C3 E3 D2`
 - [McCoy Voicing](https://www.youtube.com/shorts/tpyL1z6z9L0)
 https://www.youtube.com/shorts/5BpfgEVP0HE
 
