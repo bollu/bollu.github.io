@@ -24,7 +24,8 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - I want to learn how to play funk covers (eg. sharp 9, james brown covers)
 - sharp9s are used in funk a lot.
 
-- [minor ii V i](https://jeremysiskind.com/jazzfundamentals2/unit3/)
+- [minor ii V i scale](https://jeremysiskind.com/jazzfundamentals2/unit3/)
+- [improvising over minor ii V i](https://jeremysiskind.com/jazzfundamentals2/unit4/)
 
 # Stuff I learnt in 2025 
 
