@@ -41,6 +41,12 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 
 - https://jeremysiskind.com/jazzfundamentals2/unit9/ (going deeper on closed position voicings)
 - https://jeremysiskind.com/jazzfundamentals2/unit10/ (improvising with closed position voicings)
+- drop 2 voicings for "hardly" (https://jeremysiskind.com/jazzfundamentals2/unit10/)
+
+#### ballads
+
+- example ballad: misty
+- ballad basics (https://jeremysiskind.com/jazzfundamentals2/unit10/)
 
 
 # Stuff I learnt in 2025 
