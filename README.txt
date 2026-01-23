@@ -51,6 +51,8 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 #### solo piano devices: left hand shuttle
 
 - https://jeremysiskind.com/jazzfundamentals2/unit11/
+- kenny barron pattern
+- peace piece vamp chords
 
 
 # Stuff I learnt in 2025 
