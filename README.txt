@@ -33,6 +33,7 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - [minor ii V i scale](https://jeremysiskind.com/jazzfundamentals2/unit3/): played over *harmonic* minor, pick every alternate note.
 - [improvising over minor ii V i](https://jeremysiskind.com/jazzfundamentals2/unit4/). Use blues scale.
 - Use harmonic minor for ii and V, and use melodic minor for i chord (recall in jazz, melodic minor is only for ascending, i.e. major + lowered 3rd).
+- [Modal blues](https://jeremysiskind.com/jpf3/unit10home/)
 
 #### bepop scale and harmonization (book 2 unit 8)
 
