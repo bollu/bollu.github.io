@@ -29,10 +29,19 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - Use harmonic minor for ii and V, and use melodic minor for i chord (recall in jazz, melodic minor is only for ascending, i.e. major + lowered 3rd).
 
 #### bepop scale and harmonization (book 2 unit 8)
+
 - https://jeremysiskind.com/jazzfundamentals2/unit8/. Alternate between tonic 6th and diminished seventh chords.
 
 #### rhythm changes (book 2 unit 8)
+
 - https://jeremysiskind.com/jazzfundamentals2/unit8/
+- subgenre based on "I got rhythm" chord changes  
+
+#### improvising with closed position voicings
+
+- https://jeremysiskind.com/jazzfundamentals2/unit9/ (going deeper on closed position voicings)
+- https://jeremysiskind.com/jazzfundamentals2/unit10/ (improvising with closed position voicings)
+
 
 # Stuff I learnt in 2025 
 
