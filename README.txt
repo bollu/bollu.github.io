@@ -32,11 +32,6 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 
 - https://jeremysiskind.com/jazzfundamentals2/unit8/. Alternate between tonic 6th and diminished seventh chords.
 
-#### rhythm changes (book 2 unit 8)
-
-- https://jeremysiskind.com/jazzfundamentals2/unit8/
-- subgenre based on "I got rhythm" chord changes  
-
 #### improvising with closed position voicings
 
 - https://jeremysiskind.com/jazzfundamentals2/unit9/ (going deeper on closed position voicings)
