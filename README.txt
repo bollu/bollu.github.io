@@ -48,6 +48,10 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - example ballad: misty
 - ballad basics (https://jeremysiskind.com/jazzfundamentals2/unit10/)
 
+#### solo piano devices: left hand shuttle
+
+- https://jeremysiskind.com/jazzfundamentals2/unit11/
+
 
 # Stuff I learnt in 2025 
 
