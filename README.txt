@@ -20,10 +20,16 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 #### Jazz Piano Fundamentals Book
 
 - [Website](https://jeremysiskind.com/jazz-piano-fundamentals-main-page/)
-- unit 7: BLUES!
-- I want to learn how to play funk covers (eg. sharp 9, james brown covers)
-- sharp9s are used in funk a lot.
 
+##### altered dominants 
+
+- [altered dominants 1: sharp 9 use for 'feeling good' funk](https://jeremysiskind.com/jazz-piano-fundamentals-unit-ten/)
+- [altered domnants 2](https://jeremysiskind.com/jazz-piano-fundamentals-unit-eleven/)
+- [improvising over altered dominants](https://jeremysiskind.com/jazz-piano-fundamentals-unit-twelve/)
+
+##### minor 2 5 1 and blues scales
+
+- unit 7: BLUES!
 - [minor ii V i scale](https://jeremysiskind.com/jazzfundamentals2/unit3/): played over *harmonic* minor, pick every alternate note.
 - [improvising over minor ii V i](https://jeremysiskind.com/jazzfundamentals2/unit4/). Use blues scale.
 - Use harmonic minor for ii and V, and use melodic minor for i chord (recall in jazz, melodic minor is only for ascending, i.e. major + lowered 3rd).
