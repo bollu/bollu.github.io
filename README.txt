@@ -27,6 +27,8 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - [altered domnants 2](https://jeremysiskind.com/jazz-piano-fundamentals-unit-eleven/)
 - [improvising over altered dominants](https://jeremysiskind.com/jazz-piano-fundamentals-unit-twelve/)
 
+##### Altered scale
+
 ##### minor 2 5 1 and blues scales
 
 - unit 7: BLUES!
