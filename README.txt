@@ -41,6 +41,7 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 
 - https://jeremysiskind.com/jazzfundamentals2/unit8/.
   Alternate between tonic 6th and diminished seventh chords. use closed position voicings.
+  How to harmonize  bebop scale. Play inversions of major 6th and diminished 7th chords.
 
 #### improvising with closed position voicings
 
