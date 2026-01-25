@@ -40,13 +40,12 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 
 #### Bepop & improvising with closed position voicings
 
+- [Book 2](https://jeremysiskind.com/jazzfundamentals2/)
 - [Book 2, Unit 8 - Closed Position Voicings Basics by Jeremy Siskind](https://www.youtube.com/watch?v=1BU16_t74BA&t=635s)
   Alternate between tonic 6th and diminished seventh chords. use closed position voicings.
   How to harmonize  bebop scale. Play inversions of major 6th and diminished 7th chords.
-- [Book 2, Unit 8](https://jeremysiskind.com/jazzfundamentals2/unit8/)
-- [Book 2, unit 10](https://jeremysiskind.com/jazzfundamentals2/unit10/)
-- [video: Unit 8, closed poisition voicing basics](https://jeremysiskind.com/jazzfundamentals2/unit8/)
-- [going deeper on closed position voicings](https://www.youtube.com/watch?v=Uxby2w-M4pM)
+- [Book 2, Unit 8, closed poisition voicing basics](https://www.youtube.com/watch?v=1BU16_t74BA)
+- [Book 2, Unit 9: More Closed Position Voicings](https://www.youtube.com/watch?v=Uxby2w-M4pM)
 - [Jazz Fundamentals, volume 2, unit 10: improvising with closed position voicings](https://www.youtube.com/watch?v=d8vzKoANiGk)
 - [Jazz Fundamentals Volume 2, Unit 10: drop 2 voicings](https://www.youtube.com/watch?v=dQxD0vvRVm8)
 - [Jazz Fundamentals Volume 2, Unit 10: Scale Patterns for Bepop](left hand shuttle)
