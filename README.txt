@@ -39,7 +39,8 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 
 #### bepop scale and harmonization (book 2 unit 8)
 
-- https://jeremysiskind.com/jazzfundamentals2/unit8/. Alternate between tonic 6th and diminished seventh chords.
+- https://jeremysiskind.com/jazzfundamentals2/unit8/.
+  Alternate between tonic 6th and diminished seventh chords. use closed position voicings.
 
 #### improvising with closed position voicings
 
