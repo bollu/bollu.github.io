@@ -10,6 +10,8 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Durable Execution in Lean 
+
 # Charles Performs: Jazz Examples
 
 #### [Honeysuckle shape](https://www.youtube.com/shorts/nC_sHxJEOv4)
@@ -62,6 +64,8 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - [Book 2, Unit 11: Left hand shuttle](https://jeremysiskind.com/jazzfundamentals2/unit11/)
 - kenny barron pattern
 - peace piece vamp chords
+
+
 
 
 # Stuff I learnt in 2025 
