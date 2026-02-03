@@ -26,7 +26,7 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 ##### altered dominants 
 
 - [altered dominants 1: sharp 9 use for 'feeling good' funk](https://jeremysiskind.com/jazz-piano-fundamentals-unit-ten/)
-- [altered domnants 2](https://jeremysiskind.com/jazz-piano-fundamentals-unit-eleven/)
+- [altered domnants 2 + tritone substitution](https://jeremysiskind.com/jazz-piano-fundamentals-unit-eleven/)
 - [improvising over altered dominants](https://jeremysiskind.com/jazz-piano-fundamentals-unit-twelve/)
 
 ##### Altered scale
