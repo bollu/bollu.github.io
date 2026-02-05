@@ -36,6 +36,13 @@
 - The notes in the scale that are not in the chord are `D F Bb`.
 - No way to make the semitone steps even :(
 
+# Playing over a ii V I with a 3rd scale.
+
+- For a Dm Gdom7 Cm7, play
+- Fmaj7 over Dm7
+- Bdim7 over G7
+- Em7 over Cm7
+
 
 
 
