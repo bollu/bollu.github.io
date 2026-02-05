@@ -44,6 +44,14 @@
 - Em7 over Cm7
 
 
+# Flipped Enclosure Piano Voicings
+
+- To play a note, play an enclosure that is diatonic above and chromatic below.
+  So in GM, to play G, play `A F# G`.
+- Moreover, when playing a sequence, if the sequence goes down, then play the enclosure in an increasing way,
+  and vice versa. This creates a jumping sound.
+
+
 
 
 # Charles Performs: Jazz Examples
