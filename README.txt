@@ -10,7 +10,34 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Durable Execution in Lean 
+# A different derivation of the bepop notes
+
+### Major C bebop
+
+- In the key of C, first play the major 6th. This gives us `C E G A`.
+- Now, play the notes that are in the scale but were not played, which gives us `D F B`.
+- To make the semitone steps even, we add a `Ab`, which gives `D (Eb E) F (F# G) Ab (A Bb) B`.
+- This gives us the bepop scale, which takes all the notes `C E G A` and adds the `D F Ab B` to it.
+
+### Harmonic Minor C bebop
+
+- I don't know if this will work.
+- The full harmonic minor scale is `C D Eb F G Ab B`.
+- The sixth chord is `C Eb G Ab`.
+- The notes in the scale that are not in the chord are `D F B`.
+- To make the semitone steps even, we add `E` and `Bb`, which gives us `D (Eb E) F (F# G) Ab (A Bb) B`.
+- Doesn't really change much?
+
+
+### Melodic Minor C bebop
+
+- The full melodic minor scale is `C D Eb F G Ab Bb`.
+- The sixth chord is `C Eb G Ab`.
+- The notes in the scale that are not in the chord are `D F Bb`.
+- No way to make the semitone steps even :(
+
+
+
 
 # Charles Performs: Jazz Examples
 
