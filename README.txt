@@ -21,9 +21,10 @@
 
 #### Shell Voicings and Even More Simple Chord Progression
 
+- [Improv Lounge Jazz Level 2](https://www.youtube.com/watch?v=n7vmaiBZ6I4)
 - 4 2 5 1: FM7 DM7 GM7 CM7 (all white keys)
 - Play shell voicings, where we play the notes surrounding the root note (B D E G for CMaj7).
-- 7 3 6 2 5 1:  Bm7 Em7 Am7 Dm7 G7 CM7 (all white keys)
+- 4 7 3 6 2 5 1: Fm7  Bm7 Em7 Am7 Dm7 G7 CM7 (all white keys)
 - B is like the F# of the blues, it's what makes it 'jazzy'?
 
 
