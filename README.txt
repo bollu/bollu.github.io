@@ -10,6 +10,13 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Lounge Jazz
+
+- Cocktail Jazz common chord progression: i vi ii V (Cmaj7 Am7/Adom7 Dm7 G7 [G7b9] Cmaj7)
+- For more sophistication, can throw in the ii V of the current `ii` chord.
+  This gives `Dm` (ii of C) `G7` (V of C) [Em7 (`ii` of Dm) A7 (`V` of `Dm`)] `Dm7` [flair `C#Dim`] `Dm7` `G7` `Cmaj7`. 
+
+
 # A different derivation of the bepop notes
 
 ### Major C bebop
