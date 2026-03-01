@@ -21,11 +21,19 @@
 
 #### Shell Voicings and Even More Simple Chord Progression
 
+### Left Hand
+
 - [Improv Lounge Jazz Level 2](https://www.youtube.com/watch?v=n7vmaiBZ6I4)
 - 4 2 5 1: FM7 DM7 GM7 CM7 (all white keys)
 - Play shell voicings, where we play the notes surrounding the root note (B D E G for CMaj7).
 - 4 7 3 6 2 5 1: Fm7  Bm7 Em7 Am7 Dm7 G7 CM7 (all white keys)
+- Voicing: 4:`F A C E`, 7:`F A B D`, 3:`E G B D`, 6:`E G A C`, 2:`D F A C`, 5:`D F G B`, 1:`C E G B`.
+- Double strides: 4 2 5 1.
 - B is like the F# of the blues, it's what makes it 'jazzy'?
+
+### Right Hand
+
+- 3rds and 5ths and octave distances on RH.
 
 
 #### Bepop Style (C6 [CEGA] + Ddim[DFAbB])
