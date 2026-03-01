@@ -18,6 +18,15 @@
 - For more sophistication, can throw in the ii V of the current `ii` chord.
   This gives `Dm` (ii of C) `G7` (V of C) [Em7 (`ii` of Dm) A7 (`V` of `Dm`)] `Dm7` [flair `C#Dim`] `Dm7` `G7` `Cmaj7`.
 
+
+#### Shell Voicings and Even More Simple Chord Progression
+
+- 4 2 5 1: FM7 DM7 GM7 CM7 (all white keys)
+- Play shell voicings, where we play the notes surrounding the root note (B D E G for CMaj7).
+- 7 3 6 2 5 1:  Bm7 Em7 Am7 Dm7 G7 CM7 (all white keys)
+- B is like the F# of the blues, it's what makes it 'jazzy'?
+
+
 #### Bepop Style (C6 [CEGA] + Ddim[DFAbB])
 
 - [Using the 'bepop' technique to play endless lounge music with two chords](https://www.youtube.com/watch?v=HHMpJKdsPls)
