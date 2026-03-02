@@ -10,6 +10,14 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Jazz Piano Block Chords Melody Playing
+
+- [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
+# Jazz Piano Bossa Nova Playing
+
+
+
+
 # Lounge Jazz
 
 #### Basic Chord Progression
