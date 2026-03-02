@@ -13,6 +13,7 @@
 # Jazz Piano Block Chords Melody Playing
 
 - [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
+- 
 # Jazz Piano Bossa Nova Playing
 
 
