@@ -15,7 +15,9 @@
 - [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
 - This is the style I like, it sound 'crunchy' due to the blockiness of the chords.
 - [Intro to Block Chords](https://www.youtube.com/watch?v=7dohizUym0M),
-  [Minor Block Chords / Barris Harris Method](https://www.youtube.com/watch?v=FGGrHIljeAc)
+- [Minor Block Chords / Barris Harris Method](https://www.youtube.com/watch?v=FGGrHIljeAc).
+  Alternate between inversions of `C Em G A` and `D F A C`.
+  Play in locked hands style, hands always touching. Melody note on the outside.
 
 
 # Jazz Piano Bossa Nova Playing
