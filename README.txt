@@ -32,7 +32,7 @@
 - Only uses essential tones. Learn inversions of these
   (Type A: 3rd in bass) followed by (Type B: 7th in treble, 7th-3rd),
   When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
-  This leads to a smooth ascent 
+  This leads to a smooth ascent.
 
 # Playing Pieces on Piano
 
