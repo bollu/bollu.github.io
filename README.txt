@@ -10,9 +10,9 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Jazz Piano - Bill Evans Like Playing
+# Bill Evans: Danny Boy (Solo Version
 
-- [John Colonna](https://www.youtube.com/watch?v=LaA23S_a5lY) has lots of videos about this.
+- [Yt video with transcription](https://www.youtube.com/watch?v=B4vumyjk0X8)
 
 
 # Jazz Piano Block Chords Melody Playing
