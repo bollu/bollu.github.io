@@ -34,6 +34,30 @@
   When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
   This leads to a smooth ascent.
 
+## Thickened Line Voicings
+
+- Kinds of voicings that are useful to enforcing a melody.
+
+#### Closed Position / Shearing Voicing
+
+- The melody notes are bottom and top.
+- Use "mary had a little lamb" to play this.
+- Play on the bepop scale
+
+#### Drop 2 Voicings
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the second note from the top *down* an ocatve.
+- These are 'lighter' sounding than closed position voicings.
+
+#### Drop 3 Voicings (Can Learn Later)
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the third note from the top *down* an ocatve.
+- Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
+
+
+
 # Playing Pieces on Piano
 
 - Try to play the melody with just your 4th and 5th fingers (maybe use 3 if you really need to). This frees up
