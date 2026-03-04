@@ -21,6 +21,12 @@
 - play Dmajor(DΔ), Ddom7(1st inversion), Dm7(2nd inversion), Dmajor7(3rd inversion),
   Dmin7(1st inversion).
 
+# Playing Pieces on Piano
+
+
+- Try to play the melody with just your 4th and 5th fingers (maybe use 3 if you really need to). This frees up
+  the thumb, index, and 3rd to play chords and rhythms.
+
 # Jazz Piano Block Chords Melody Playing
 
 - [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
