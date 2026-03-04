@@ -13,6 +13,7 @@
 # Bill Evans: Danny Boy (Solo Version
 
 - [Yt video with transcription](https://www.youtube.com/watch?v=B4vumyjk0X8)
+- [Rolling Piano Chords](https://www.youtube.com/watch?v=wPkuiXpFTFQ)
 
 
 # Jazz Piano Block Chords Melody Playing
