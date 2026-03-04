@@ -10,6 +10,11 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Jazz Piano - Bill Evans Like Playing
+
+- [John Colonna](https://www.youtube.com/watch?v=LaA23S_a5lY) has lots of videos about this.
+
+
 # Jazz Piano Block Chords Melody Playing
 
 - [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
@@ -20,7 +25,6 @@
   Play in locked hands style, hands always touching. Melody note on the outside.
 
 
-# Jazz Piano Bossa Nova Playing
 
 
 
