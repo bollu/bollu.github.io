@@ -34,7 +34,6 @@
   When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
   This leads to a smooth ascent.
 
-
 ## Thickened Line Voicings
 
 - Kinds of voicings that are useful to enforcing a melody.
