@@ -10,19 +10,31 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Bill Evans: Danny Boy (Solo Version
-
-- [Yt video with transcription](https://www.youtube.com/watch?v=B4vumyjk0X8)
-- [Rolling Piano Chords](https://www.youtube.com/watch?v=wPkuiXpFTFQ)
-
 # Learning all 7th inversions
 
 - Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
 - play Dmajor(DΔ), Ddom7(1st inversion), Dm7(2nd inversion), Dmajor7(3rd inversion),
   Dmin7(1st inversion).
 
-# Playing Pieces on Piano
+# Big List of Jazz Voicings
 
+- [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
+- don't want doublings (same note played twice, lower and higher).
+  Can be using the fingers to play more colorful tones,
+  also, it shuts down the resonance of a sound.
+- Some use doublings on purpose, but we avoid them.
+- Don't want to just have a stack of thirds, sounds a litle less sophisticated.
+- We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
+- The essential tones are te 3rd and the 7th.
+
+#### Shell Voicing
+
+- Only uses essential tones. Learn inversions of these
+  (Type A: 3rd in bass) followed by (Type B: 7th in treble, 7th-3rd),
+  When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
+  This leads to a smooth ascent 
+
+# Playing Pieces on Piano
 
 - Try to play the melody with just your 4th and 5th fingers (maybe use 3 if you really need to). This frees up
   the thumb, index, and 3rd to play chords and rhythms.
