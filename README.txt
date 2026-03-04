@@ -26,6 +26,8 @@
 - See that we can think of the block chords as being drawn from the bebop scale!
   For example, `C E G A` comes from `C (D) E (F) G (Ab) A`!
   So, this also avoids the 'dissonance' of 'C E G B'.
+- [Play dimished chords](https://www.youtube.com/watch?v=Ge6HqCvzscw) and play in contrary motion
+  on the right hand side.
 
 # Lounge Jazz
 
