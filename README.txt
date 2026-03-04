@@ -23,11 +23,9 @@
 - [Minor Block Chords / Barris Harris Method](https://www.youtube.com/watch?v=FGGrHIljeAc).
   Alternate between inversions of `C Em G A` and `D F A C`.
   Play in locked hands style, hands always touching. Melody note on the outside.
-
-
-
-
-
+- See that we can think of the block chords as being drawn from the bebop scale!
+  For example, `C E G A` comes from `C (D) E (F) G (Ab) A`!
+  So, this also avoids the 'dissonance' of 'C E G B'.
 
 # Lounge Jazz
 
