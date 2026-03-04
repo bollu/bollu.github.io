@@ -27,36 +27,47 @@
 - We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
 - The essential tones are te 3rd and the 7th.
 
-#### Shell Voicing
+#### Type A/B Voicings
 
 - Only uses essential tones. Learn inversions of these
-  (Type A: 3rd in bass) followed by (Type B: 7th in treble, 7th-3rd),
+  (Type A: 3rd below) followed by (Type B: 7th below).
   When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
   This leads to a smooth ascent.
+
 
 ## Thickened Line Voicings
 
 - Kinds of voicings that are useful to enforcing a melody.
 
-#### Closed Position / Shearing Voicing
+#### Thickened Line: Closed Position / Shearing Voicing
 
 - The melody notes are bottom and top.
 - Use "mary had a little lamb" to play this.
 - Play on the bepop scale
 
-#### Drop 2 Voicings
+#### Thickcened Line: Drop 2 Voicings
 
 - Start with a closed position voicing, get rid of the lowest/bottom note,
   and move the second note from the top *down* an ocatve.
 - These are 'lighter' sounding than closed position voicings.
 
-#### Drop 3 Voicings (Can Learn Later)
+#### Thickcened Line: Drop 3 Voicings (Can Learn Later)
 
 - Start with a closed position voicing, get rid of the lowest/bottom note,
   and move the third note from the top *down* an ocatve.
 - Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
 
+#### Modal: So What Voicing
 
+- Pick a mode, say, D dorian.
+- In modal jazz, all notes are 'equal' (so there is no 'essential tones', or 'chord and non chord tones').
+- Play 3rd or 4th intervals *from the mode*.
+- Stack 4th, 4th, 4th, and 3rd from within the mode. 5 notes in total.
+- For example, in D dorian, we can play `low:D G C F E`, which is `3rd 4th 4th 4th 3rd` from the mode.
+- Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
+- These two make the classic 'so-what' call and response pattern:
+  `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
+- 
 
 # Playing Pieces on Piano
 
