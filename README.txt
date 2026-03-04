@@ -15,6 +15,11 @@
 - [Yt video with transcription](https://www.youtube.com/watch?v=B4vumyjk0X8)
 - [Rolling Piano Chords](https://www.youtube.com/watch?v=wPkuiXpFTFQ)
 
+# Learning all 7th inversions
+
+- Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
+- play Dmajor(DΔ), Ddom7(1st inversion), Dm7(2nd inversion), Dmajor7(3rd inversion),
+  Dmin7(1st inversion).
 
 # Jazz Piano Block Chords Melody Playing
 
