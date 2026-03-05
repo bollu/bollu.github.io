@@ -33,6 +33,7 @@
   (Type A: 3rd below) followed by (Type B: 7th below).
   When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
   This leads to a smooth ascent.
+- NOTE: sounds crazy dissonant?
 
 ## Thickened Line Voicings
 
