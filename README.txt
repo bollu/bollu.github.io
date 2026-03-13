@@ -10,6 +10,10 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Kenny Baron Vocicing
+
+- Can see it as playing EbM on top of Fm.
+
 # Learning all 7th inversions
 
 - Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
