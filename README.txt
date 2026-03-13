@@ -14,6 +14,14 @@
 
 - Can see it as playing EbM on top of Fm.
 
+# Altered Scale For Dominant Chords
+
+- Think of G, with flat 9 and sharp 11.
+- This gives us a G, Ab, Bb, B, C#, D, E, F.
+- G°7 layer: G, Bb, Db, E (that's 1, #9, #11, 13)
+- Ab°7 layer: Ab, B, D, F (that's b9, 3, 5, b7)
+- But Db is a tritone away from G, 
+
 # Learning all 7th inversions
 
 - Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
