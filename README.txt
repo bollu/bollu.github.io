@@ -10,6 +10,8 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Randomized SharpSAT
+
 # Kenny Baron Vocicing
 
 - Can see it as playing EbM on top of Fm.
