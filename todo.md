@@ -1,3 +1,4 @@
+- [An introduction to o-minimal geometry](https://perso.univ-rennes1.fr/michel.coste/polyens/OMIN.pdf)
 - TASI lectures: Lectures for early grad physics students on Ads/CfT and similar ideas.
 - [Mission Command: Command and Control of Army Forces](https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN34403-ADP_6-0-000-WEB-3.pdf)
 - [Jerry Coker: Patterns for Jazz](https://www.thetrumpetblog.com/wp-content/uploads/2019/09/Jerry-Coker-Patterns-For-Jazz.pdf)
