@@ -12,6 +12,18 @@
 
 # Randomized SharpSAT
 
+- First idea: take random assignments, and use this to estimate total number of models.
+- Next idea: take deterministic partial assignments, then extend these partial assignments randomly. This will use the randomness on a 'smaller domain',
+  and exploits linearity of expectation.
+- Next refinement: A partial assignment is just a predicate $A$ that we adjoin to our formula.
+  Therefore, can we randomly pick such an $A$, such that if we can estimate $|M \models \phi \land A|$, we can estimate $|M \models \phi|$?
+  Yes, pick symmetric $A$ that cut down the number of models by a factor of 2 in expectation. For example, pick $A$ to be something like $x_i = x_j$.
+- More generally, can pick $x_i = x_j$ with probability 1/2, and $x_i = \neg x_j$ with probability 1/2, and this will give us the same guarantee.
+- This can be written as $x_i \oplus x_j = b$, where $b$ is a random bit.
+- So, pick $\{ A_k \}$ of the form $x_i \oplus x_j = b$, and then estimate $|M \models \phi \land_k A_k|$ for the full set $A_k$ by random sampling.
+  This gives us an estimate of $|M \models \phi|$ as $2^k * |M \models \phi \land A_k|$!
+- Why does this work so well in practice? I don't know! I should read Kuldeep Meel's paper to find out.
+
 # Kenny Baron Vocicing
 
 - Can see it as playing EbM on top of Fm.
