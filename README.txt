@@ -24,9 +24,6 @@
   This gives us an estimate of $|M \models \phi|$ as $2^k * |M \models \phi \land A_k|$!
 - Why does this work so well in practice? I don't know! I should read Kuldeep Meel's paper to find out.
 
-# Kenny Baron Vocicing
-
-- Can see it as playing EbM on top of Fm.
 
 # Altered Scale For Dominant Chords
 
@@ -93,12 +90,6 @@
 - Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
 - These two make the classic 'so-what' call and response pattern:
   `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
-- 
-
-# Playing Pieces on Piano
-
-- Try to play the melody with just your 4th and 5th fingers (maybe use 3 if you really need to). This frees up
-  the thumb, index, and 3rd to play chords and rhythms.
 
 # Jazz Piano Block Chords Melody Playing
 
@@ -116,14 +107,14 @@
 
 # Lounge Jazz
 
-#### Basic Chord Progression
+## Basic Chord Progression
 
 - Cocktail Jazz common chord progression: i vi ii V (Cmaj7 Am7/Adom7 Dm7 G7 [G7b9] Cmaj7)
 - For more sophistication, can throw in the ii V of the current `ii` chord.
   This gives `Dm` (ii of C) `G7` (V of C) [Em7 (`ii` of Dm) A7 (`V` of `Dm`)] `Dm7` [flair `C#Dim`] `Dm7` `G7` `Cmaj7`.
 
 
-#### Shell Voicings and Even More Simple Chord Progression
+## Shell Voicings and Even More Simple Chord Progression
 
 ### Left Hand
 
@@ -139,8 +130,7 @@
 
 - 3rds and 5ths and octave distances on RH.
 
-
-#### Bepop Style (C6 [CEGA] + Ddim[DFAbB])
+## Bepop Style (C6 [CEGA] + Ddim[DFAbB])
 
 - [Using the 'bepop' technique to play endless lounge music with two chords](https://www.youtube.com/watch?v=HHMpJKdsPls)
 
@@ -187,16 +177,7 @@
   and vice versa. This creates a jumping sound.
 
 
-
-
-# Charles Performs: Jazz Examples
-
-#### [Honeysuckle shape](https://www.youtube.com/shorts/nC_sHxJEOv4)
-- In FM, play `F3 A2 C3 E3 D2`
-- [McCoy Voicing](https://www.youtube.com/shorts/tpyL1z6z9L0)
-https://www.youtube.com/shorts/5BpfgEVP0HE
-
-#### Jazz Piano Fundamentals Book
+# Jazz Piano Fundamentals Book
 
 - [Website](https://jeremysiskind.com/jazz-piano-fundamentals-main-page/)
 
@@ -241,8 +222,6 @@ https://www.youtube.com/shorts/5BpfgEVP0HE
 - [Book 2, Unit 11: Left hand shuttle](https://jeremysiskind.com/jazzfundamentals2/unit11/)
 - kenny barron pattern
 - peace piece vamp chords
-
-
 
 
 # Stuff I learnt in 2025 
