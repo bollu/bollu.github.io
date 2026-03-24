@@ -10,6 +10,13 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Half-Whole Tone Scale As Interlaced Diminished Chords.
+
+- Take two diminished chords: `C Eb F# A`, and `Db E G Bb`.
+- Interlacing these, we get `C Db Eb E F# G A Bb`, which is the half-tone whole tone scale.
+- So, if you know your diminshed chords (which you do, to play joplin and evans),
+  then you can easily get the half-whole tone scale, which is super useful for playing over dominant chords.
+
 # Randomized SharpSAT
 
 - First idea: take random assignments, and use this to estimate total number of models.
