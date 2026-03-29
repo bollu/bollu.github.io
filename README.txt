@@ -17,9 +17,9 @@
 - Pedal every single breat
 
 
+### Misty
 
-### [1-4 Smooth Jazz Ballad Trick](https://www.youtube.com/watch?v=1pof4638AVU)
-- Misty
+- [Video](https://www.youtube.com/watch?v=ynzV9_WARVU)
 
 ## Repeated Quarer Note Ballads
 
