@@ -10,6 +10,14 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Jazz Ballad Genre
+
+## Stride Ballads
+
+- [Three Essential Ballad Styles by Jeremy Siskind](youtube.com/watch?v=QBRae05tDnA&t=543sff)
+
+## Repeated Quarer Note Ballads
+
 # Half-Whole Tone Scale As Interlaced Diminished Chords.
 
 - Take two diminished chords: `C Eb F# A`, and `Db E G Bb`.
