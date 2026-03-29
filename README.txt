@@ -10,6 +10,8 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Prenex Normal Form
+
 # Jazz Ballad Genre Howtos
 
 ### [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
