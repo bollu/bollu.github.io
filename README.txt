@@ -10,11 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Jazz Ballad Genre
+# Jazz Ballad Genre Licks
 
-## Stride Ballads
+### [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
 
-- [Three Essential Ballad Styles by Jeremy Siskind](youtube.com/watch?v=QBRae05tDnA&t=543sff)
+- Pedal every single breat
+
+
+
+### [1-4 Smooth Jazz Ballad Trick](https://www.youtube.com/watch?v=1pof4638AVU)
+- Misty
 
 ## Repeated Quarer Note Ballads
 
