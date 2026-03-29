@@ -16,7 +16,7 @@
 
 - Pedal every single breat
 
-# Stride Ideas
+### Stride Ideas
 
 - [Video](https://www.reddit.com/r/JazzPiano/comments/jht3a5/7_ways_to_modernize_stride_piano_jeremy_siskind/)
 - Alternate walking tenths and striding
@@ -25,6 +25,8 @@
 ### Misty
 
 - [Video](https://www.youtube.com/watch?v=ynzV9_WARVU)
+
+### [No More Boring Ballads](https://www.youtube.com/watch?v=9RPyE8xHzQI)
 
 ## Repeated Quarer Note Ballads
 
