@@ -10,12 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Jazz Ballad Genre Licks
+# Jazz Ballad Genre Howtos
 
 ### [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
 
 - Pedal every single breat
 
+# Stride Ideas
+
+- [Video](https://www.reddit.com/r/JazzPiano/comments/jht3a5/7_ways_to_modernize_stride_piano_jeremy_siskind/)
+- Alternate walking tenths and striding
 
 ### Misty
 
