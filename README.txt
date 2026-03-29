@@ -20,6 +20,7 @@
 
 - [Video](https://www.reddit.com/r/JazzPiano/comments/jht3a5/7_ways_to_modernize_stride_piano_jeremy_siskind/)
 - Alternate walking tenths and striding
+- [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
 
 ### Misty
 
