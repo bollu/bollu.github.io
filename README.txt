@@ -12,6 +12,8 @@
 
 # Jazz Ballad Genre Howtos
 
+### [Stompin At The Savoy](https://www.youtube.com/watch?v=o_wRbLLOFio&list=RDo_wRbLLOFio&start_radio=1)
+
 ### [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
 
 - Pedal every single breat
