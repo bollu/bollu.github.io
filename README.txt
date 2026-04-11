@@ -50193,6 +50193,22 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Challah
+
+#### Ingredients
+
+- 500g strong white bread flour
+- 70g caster sugar
+- 7g sachet fast-action dried yeast
+- 2 eggs beaten
+- 70ml sunflower oil
+- 1 tbsp poppy seeds
+
+#### Recipe
+- Mix yeast, sugar, water, leave for 10min.
+
+
+
 ### Focaccia
 
 - For 6 people: 250 g of flour, 2.5 tbsp olive oil, 150-200 ml water.
