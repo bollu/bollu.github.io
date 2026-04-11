@@ -50197,14 +50197,18 @@ things on architecture I wish to read and/or have read:
 
 #### Ingredients
 
-- 500g strong white bread flour
-- 70g caster sugar
-- 7g sachet fast-action dried yeast
-- 2 eggs beaten
-- 70ml sunflower oil
-- 1 tbsp poppy seeds
+- flour 150g
+- 1/2 tbsp dry yeast
+- 1/2 egg
+- 2 tbsp honey 
+- 5 tbsp oil 
+- 1/2 tsp poppy
+- 1/2 tbsp egg wash / egg glaze
+- 180 degree C for 1hr
+
 
 #### Recipe
+
 - Mix yeast, sugar, water, leave for 10min.
 
 
