@@ -22,6 +22,7 @@
 - Also consider the failure case where you run out of disk space when writing a WAL.
 - Aries tutorial: https://yashagw.github.io/blog/db-recovery/
 - [Database design and implementation](https://simpledb-java.netlify.app/database-design-and-implementation.pdf)
+- [State Machine Replication](https://en.wikipedia.org/wiki/State_machine_replication)
 
 
 # Proof of Godel Incompleteness from Turing Machines
