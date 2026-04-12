@@ -12,11 +12,11 @@
 
 # Proof of Godel Incompleteness from Turing Machines
 
-### Proof starting from completeness
-
 - Suppose theory T is complete and consistent.
 - Then T gives us a halting oracle, since T 'knows' whether a turing machine `M` halts or does not halt.
-- This gives us contradiction, as halting oracle cannot exist.
+- The idea is that when we are given a TM `M` and an input `x`, we can write down the statment
+   "M halts on input x" as an arithmetic statement and then ask T whether this statement is true or false.
+- This gives us contradiction, as halting oracle cannot exist via halting problem reduction.
 
 # Jazz: Only Rhythm Matters
 
