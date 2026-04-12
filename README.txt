@@ -30,6 +30,8 @@
 - [Video](https://www.youtube.com/watch?v=-rFaso7RxDY)
 - Swell principle: Give it a breathing feeling. 
   Alternate 10th and 7th when playing II V I. So play 1-10, 1-7, and so o.
+- [Block chords: play 10ths](https://www.youtube.com/watch?v=Debp6I51kkI),
+  note that's 10th away on the LH.
 
 
 # Half-Whole Tone Scale As Interlaced Diminished Chords.
