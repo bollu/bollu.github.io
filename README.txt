@@ -12,9 +12,9 @@
 
 # Multiversion Concurrency Control
 
-- [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control)
-- [Refs and Transactions](https://clojure.org/reference/refs)
-- [Linked load store conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional)
+- [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control).
+- [Refs and Transactions](https://clojure.org/reference/refs).
+- [Linked load store conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional).
 
 # Proof of Godel Incompleteness from Turing Machines
 
