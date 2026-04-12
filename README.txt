@@ -10,7 +10,7 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Two proofs of Godel Incompleteness from Turing Machines
+# Proof of Godel Incompleteness from Turing Machines
 
 ### Proof starting from completeness
 
@@ -18,14 +18,11 @@
 - Then T gives us a halting oracle, since T 'knows' whether a turing machine `M` halts or does not halt.
 - This gives us contradiction, as halting oracle cannot exist.
 
-### Proof starting from consistency
+# Jazz: Only Rhythm Matters
 
-- Suppose theory T is consistent.
-- Then, consider the sentence 'S := T is inconsistent'
-- Consider if T can prove S.
-- if T can prove S, then by soundness, S is true, so T is inconsistent, which is a contradiction.
-- if T cannot prove S, then we know that S is not provable.
-  Therefore, consider `not S  := T is consistent`.
+- Thelonious monk: Rhythm-A-Ning 
+- Thelonious monk: Straight, No Chaser
+
 
 # Jazz Ballad Genre Howtos
 
