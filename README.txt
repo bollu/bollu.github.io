@@ -15,6 +15,14 @@
 - [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control).
 - [Refs and Transactions](https://clojure.org/reference/refs).
 - [Linked load store conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional).
+- WAL: write ahead log for DBs.
+- Key point: KV store has fixed size txn, but RDBMS does not.
+- On the other hand, a DB will need to write down both what the txn will do, as well as how to revert this txn.
+  So there is ARIES, and a do-undo log.
+- Also consider the failure case where you run out of disk space when writing a WAL.
+- Aries tutorial: https://yashagw.github.io/blog/db-recovery/
+- [Database design and implementation](https://simpledb-java.netlify.app/database-design-and-implementation.pdf)
+
 
 # Proof of Godel Incompleteness from Turing Machines
 
@@ -23,7 +31,6 @@
 - The idea is that when we are given a TM `M` and an input `x`, we can write down the statment
    "M halts on input x" as an arithmetic statement and then ask T whether this statement is true or false.
 - This gives us contradiction, as halting oracle cannot exist via halting problem reduction.
-
 
 
 # Jazz: Only Rhythm Matters
