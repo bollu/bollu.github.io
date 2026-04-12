@@ -10,6 +10,12 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Multiversion Concurrency Control
+
+- [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control)
+- [Refs and Transactions](https://clojure.org/reference/refs)
+- [Linked load store conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional)
+
 # Proof of Godel Incompleteness from Turing Machines
 
 - Suppose theory T is complete and consistent.
