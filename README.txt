@@ -18,33 +18,19 @@
    "M halts on input x" as an arithmetic statement and then ask T whether this statement is true or false.
 - This gives us contradiction, as halting oracle cannot exist via halting problem reduction.
 
+
+
 # Jazz: Only Rhythm Matters
 
 - Thelonious monk: Rhythm-A-Ning 
 - Thelonious monk: Straight, No Chaser
 
+# Lounge Jazz Left Hand
 
-# Jazz Ballad Genre Howtos
+- [Video](https://www.youtube.com/watch?v=-rFaso7RxDY)
+- Swell principle: Give it a breathing feeling. 
+  Alternate 10th and 7th when playing II V I. So play 1-10, 1-7, and so o.
 
-### [Stompin At The Savoy](https://www.youtube.com/watch?v=o_wRbLLOFio&list=RDo_wRbLLOFio&start_radio=1)
-
-### [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
-
-- Pedal every single breat
-
-### Stride Ideas
-
-- [Video](https://www.reddit.com/r/JazzPiano/comments/jht3a5/7_ways_to_modernize_stride_piano_jeremy_siskind/)
-- Alternate walking tenths and striding
-- [Stride Ballad](https://www.youtube.com/watch?v=0AlytwggJHU)
-
-### Misty
-
-- [Video](https://www.youtube.com/watch?v=ynzV9_WARVU)
-
-### [No More Boring Ballads](https://www.youtube.com/watch?v=9RPyE8xHzQI)
-
-## Repeated Quarer Note Ballads
 
 # Half-Whole Tone Scale As Interlaced Diminished Chords.
 
