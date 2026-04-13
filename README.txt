@@ -10,8 +10,9 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Multiversion Concurrency Control
+# DB and DistSys Reading
 
+- [CMU Databases: BusTub](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html)
 - [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control).
 - [Refs and Transactions](https://clojure.org/reference/refs).
 - [Linked load store conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional).
