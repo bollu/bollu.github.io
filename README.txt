@@ -25,6 +25,10 @@
 - [Database design and implementation](https://simpledb-java.netlify.app/database-design-and-implementation.pdf)
 - [State Machine Replication](https://en.wikipedia.org/wiki/State_machine_replication)
 
+# How to write four chord loops
+
+- https://www.youtube.com/watch?v=K-XSTSnqXxo
+
 
 # Proof of Godel Incompleteness from Turing Machines
 
