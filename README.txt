@@ -10,6 +10,12 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Playing Funk Piano
+
+- [groovewindow](https://www.youtube.com/watch?v=V2DiOkLrKvw)
+
+
+
 # DB and DistSys Reading
 
 - [CMU Databases: BusTub](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html)
@@ -24,11 +30,6 @@
 - Aries tutorial: https://yashagw.github.io/blog/db-recovery/
 - [Database design and implementation](https://simpledb-java.netlify.app/database-design-and-implementation.pdf)
 - [State Machine Replication](https://en.wikipedia.org/wiki/State_machine_replication)
-
-# Playing Solo Jazz Piano By Jeremy Siskind
-
-- [Videos here](https://jeremysiskind.com/psjpvideos/)
-
 
 # Proof of Godel Incompleteness from Turing Machines
 
