@@ -50701,6 +50701,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> [Seikilos epitaph](https://en.wikipedia.org/wiki/Seikilos_epitaph)
+> As long as you live, let the world see you, and don't make yourself miserable; life is short, and Time demands his due
+
 > "Art is any science with more than seven variables" ~ EJ Jordan
 
 > “We Shall Build Good Ships Here; At A Profit If We Can, At A Loss If We Must, But Always Good Ships.” ~ Collis Potter Huntington
