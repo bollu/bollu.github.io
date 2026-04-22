@@ -12,6 +12,7 @@
 
 # Playing Funk Piano
 
+- https://www.youtube.com/watch?v=b0Zbla4Tsfs
 - [groovewindow](https://www.youtube.com/watch?v=V2DiOkLrKvw)
 - [funk piano lesso straight 16ths](https://www.youtube.com/watch?v=CbdUDa6uhWs)
 
