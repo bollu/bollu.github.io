@@ -15,8 +15,6 @@
 - [groovewindow](https://www.youtube.com/watch?v=V2DiOkLrKvw)
 - [funk piano lesso straight 16ths](https://www.youtube.com/watch?v=CbdUDa6uhWs)
 
-
-
 # DB and DistSys Reading
 
 - [CMU Databases: BusTub](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html)
