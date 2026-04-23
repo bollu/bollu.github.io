@@ -12,6 +12,7 @@
 
 # Playing Funk Piano
 
+- [Groove window piano funk groove](https://www.youtube.com/watch?v=P_eEnt3pbNI&list=PLiTb84jJJ9MxcxlvQlsoRNAiVFS2M3VBc&index=14)
 - [Funk Chords: Top 5](https://www.youtube.com/watch?v=b0Zbla4Tsfs)
 - [groovewindow](https://www.youtube.com/watch?v=V2DiOkLrKvw)
 - [funk piano lesson: straight 16ths](https://www.youtube.com/watch?v=CbdUDa6uhWs)
