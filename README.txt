@@ -50216,6 +50216,36 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Khinkhali 
+
+- Makes ~9 dumplings.
+
+##### Dough
+
+- Flour: 150 g
+- Water: 70 ml
+- Egg: ~30 g (1 egg)
+- Olive oil: 2tsp
+- Salt to taste
+
+###### Filling
+
+- Ground beef: 270 g
+- Onion, minced: ~45 g (small onion, or ~1/4 large)
+- Salt: ~1.5 tsp
+- Black pepper: ~1/3 tsp
+- ~ 50ml broth (see below).
+
+###### Method
+
+- Mix flour and salt. Well in the middle, whisk in egg, water, and oil.
+  Knead until smooth and elastic. Rest covered 30 min.
+- Mix beef, onion, salt, pepper.
+- Start broth with water, beef stock, salt.
+- Add broth into the filling till filling is a little runny.
+- Roll dough thin, cut large m circles, dollop of filling, gather and pinch into pleats.
+- Boil for 10-min minutes Once they float, simmer 2-4 min. Serve with butter.
+
 ### Challah
 
 #### Ingredients
