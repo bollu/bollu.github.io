@@ -64,13 +64,11 @@
 - Summertime (song in Am)
 - Georgia on my mind (Fmaj)
 - Tennessee Waltz
-- At last
-- Sunny
-- That's life
-- Nobody knows you when you're down and out
 - Autumn Leaves
 - Misty
 - Fly me to the moon
+- All the things you are
+- Stella by starlight
 
 
 
