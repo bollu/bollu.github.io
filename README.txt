@@ -47,6 +47,14 @@
 - Am: A (bass); 7 9 3 5 (G B C E)
 - Can just alternate E7alt and Am on Cmin scale / blues.
 
+### More Jazz Chords ii V I vi
+
+- Dm7: D (bass); F A C E (3 5 7 9) [play on D dorian]
+- Gdom7:   G(bass); F A B E  [play on G mixolydian]
+- Cma7:   C (bass); E G B D [C ionian]
+- A7alt:  A (bass); G C C# F (7, #9, 3, #5) (A Bb C C# Eb F# G): 9th and 5th are altered in both directions
+- Play major blues scale on top of this. 
+
 ### Repretoire (Must)
 
 - [15 bar songs must know](https://www.youtube.com/watch?v=l1ua8QhoCg4&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-&index=4)
