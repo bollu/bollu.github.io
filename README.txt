@@ -168,7 +168,7 @@
 - [Play dimished chords](https://www.youtube.com/watch?v=Ge6HqCvzscw) and play in contrary motion
   on the right hand side.
 
-# Lounge Jazz
+# Lounge Jazz / Bar Piano 
 
 ## Basic Chord Progression
 
@@ -176,6 +176,16 @@
 - For more sophistication, can throw in the ii V of the current `ii` chord.
   This gives `Dm` (ii of C) `G7` (V of C) [Em7 (`ii` of Dm) A7 (`V` of `Dm`)] `Dm7` [flair `C#Dim`] `Dm7` `G7` `Cmaj7`.
 - [Christian Fuchs](https://www.youtube.com/watch?v=Wf2RrrVOCbM)
+- [Christian Fuchs, Bar Piano Course](https://www.youtube.com/watch?v=EvBFmC3K8Ug&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-)
+
+### Basic Chord Progressions And Voicings
+
+- Cmaj: C (bass); 3 5 7 9 (E G B D)
+- Am: A (bass); 7 9 3 5 (G B C E)
+- Fmaj: F (bass); 3 5 7 9 (A C E G)
+- Cmaj:  C (bass); 7 9 3 5 (B D E G)
+- Fmaj: F (bass); 3 5 7 9 (A C E G) 
+
 
 
 ## Shell Voicings and Even More Simple Chord Progression
