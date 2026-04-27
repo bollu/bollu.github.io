@@ -27,6 +27,40 @@
   then using the rest of the notes in my right hand to be chord tones.
 - [Cool chord progression that enables linear motion of left hand bassline](https://www.youtube.com/watch?v=-27nHg-uhSE)
 
+# Lounge Jazz / Bar Piano Ala Christian Fuchs
+
+## Basic Chord Progression
+
+- [Christian Fuchs](https://www.youtube.com/watch?v=Wf2RrrVOCbM)
+- [Christian Fuchs, Bar Piano Course](https://www.youtube.com/watch?v=EvBFmC3K8Ug&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-)
+
+### Basic Chord Progressions And Voicings
+
+- Cmaj: C (bass); 3 5 7 9 (E G B D)
+- Am: A (bass); 7 9 3 5 (G B C E)
+- Fmaj: F (bass); 3 5 7 9 (A C E G)
+- Cmaj:  C (bass); 7 9 3 5 (B D E G)
+- Fmaj: F (bass); 3 5 7 9 (A C E G) 
+- Cmaj:  C (bass); 3 5 7 9 (E G B D)
+- Bm7b5: B (bass); A B D F (b7, 1, 3, 5) [half diminished chord]
+- E7alt: E (bass); Ab C D G (major 3rd, sharp 5, 7, sharp 9) [dom7, like the 5 in blues]. This resolves to minor in 1.
+- Am: A (bass); 7 9 3 5 (G B C E)
+- Can just alternate E7alt and Am on Cmin scale / blues.
+
+### Repretoire (Must)
+
+- [15 bar songs must know](https://www.youtube.com/watch?v=l1ua8QhoCg4&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-&index=4)
+- Misty
+- Let it be
+- Georgia on my mind
+- Fly me to the moon
+- Autumn Leaves
+- Tennessee Waltz
+- Nobody knows you when you're down and out
+
+
+
+
 
 # WAL and ARIES
 
@@ -167,46 +201,6 @@
   So, this also avoids the 'dissonance' of 'C E G B'.
 - [Play dimished chords](https://www.youtube.com/watch?v=Ge6HqCvzscw) and play in contrary motion
   on the right hand side.
-
-# Lounge Jazz / Bar Piano 
-
-## Basic Chord Progression
-
-- Cocktail Jazz common chord progression: i vi ii V (Cmaj7 Am7/Adom7 Dm7 G7 [G7b9] Cmaj7)
-- For more sophistication, can throw in the ii V of the current `ii` chord.
-  This gives `Dm` (ii of C) `G7` (V of C) [Em7 (`ii` of Dm) A7 (`V` of `Dm`)] `Dm7` [flair `C#Dim`] `Dm7` `G7` `Cmaj7`.
-- [Christian Fuchs](https://www.youtube.com/watch?v=Wf2RrrVOCbM)
-- [Christian Fuchs, Bar Piano Course](https://www.youtube.com/watch?v=EvBFmC3K8Ug&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-)
-
-### Basic Chord Progressions And Voicings
-
-- Cmaj: C (bass); 3 5 7 9 (E G B D)
-- Am: A (bass); 7 9 3 5 (G B C E)
-- Fmaj: F (bass); 3 5 7 9 (A C E G)
-- Cmaj:  C (bass); 7 9 3 5 (B D E G)
-- Fmaj: F (bass); 3 5 7 9 (A C E G) 
-
-
-
-## Shell Voicings and Even More Simple Chord Progression
-
-### Left Hand
-
-- [Improv Lounge Jazz Level 2](https://www.youtube.com/watch?v=n7vmaiBZ6I4)
-- 4 2 5 1: FM7 DM7 GM7 CM7 (all white keys)
-- Play shell voicings, where we play the notes surrounding the root note (B D E G for CMaj7).
-- 4 7 3 6 2 5 1: Fm7  Bm7 Em7 Am7 Dm7 G7 CM7 (all white keys)
-- Voicing: 4:`F A C E`, 7:`F A B D`, 3:`E G B D`, 6:`E G A C`, 2:`D F A C`, 5:`D F G B`, 1:`C E G B`.
-- Double strides: 4 2 5 1.
-- B is like the F# of the blues, it's what makes it 'jazzy'?
-
-### Right Hand
-
-- 3rds and 5ths and octave distances on RH.
-
-## Bepop Style (C6 [CEGA] + Ddim[DFAbB])
-
-- [Using the 'bepop' technique to play endless lounge music with two chords](https://www.youtube.com/watch?v=HHMpJKdsPls)
 
 
 # A different derivation of the bepop notes
