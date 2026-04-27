@@ -50,13 +50,17 @@
 ### Repretoire (Must)
 
 - [15 bar songs must know](https://www.youtube.com/watch?v=l1ua8QhoCg4&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-&index=4)
-- Misty
-- Let it be
-- Georgia on my mind
-- Fly me to the moon
-- Autumn Leaves
+- [A touch of blusey](https://www.youtube.com/watch?v=1CL5X9uPjYc&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-&index=6)
+- Summertime (song in Am)
+- Georgia on my mind (Fmaj)
 - Tennessee Waltz
+- At last
+- Sunny
+- That's life
 - Nobody knows you when you're down and out
+- Autumn Leaves
+- Misty
+- Fly me to the moon
 
 
 
