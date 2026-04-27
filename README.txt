@@ -49,10 +49,12 @@
 
 ### More Jazz Chords ii V I vi
 
-- Dm7: D (bass); F A C E (3 5 7 9) [play on D dorian]
+- Dm7: D (bass); F A C E (3 5 7 9) [play on D dorian]. Climb to have the top note be 9th (accentuated note).
 - Gdom7:   G(bass); F A B E  [play on G mixolydian]
-- Cma7:   C (bass); E G B D [C ionian]
-- A7alt:  A (bass); G C C# F (7, #9, 3, #5) (A Bb C C# Eb F# G): 9th and 5th are altered in both directions
+- Cma7:   C (bass); E G B D [C ionian]. Always end on the B, not on the C (end on the 7th!)
+- A7alt:  A (bass); G C C# F (7, #9, 3, #5) (A Bb C C# Eb F# G): 9th and 5th are altered in both directions. Drone with the A note.
+  Play the tension notes
+- Dm7: End on this.
 - Play major blues scale on top of this. 
 
 ### Repretoire (Must)
