@@ -10,14 +10,22 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Errichto Expected Value
+
+- [Video 1](https://www.youtube.com/watch?v=U_h3IjreRek)
+- [Video 2](https://www.youtube.com/watch?v=HDk6zQw0Rdo)
+
 # Playing Funk Piano
 
 - [Groove window piano funk groove](https://www.youtube.com/watch?v=P_eEnt3pbNI&list=PLiTb84jJJ9MxcxlvQlsoRNAiVFS2M3VBc&index=14)
 - [Funk Chords: Top 5](https://www.youtube.com/watch?v=b0Zbla4Tsfs)
 - [groovewindow](https://www.youtube.com/watch?v=V2DiOkLrKvw)
 - [funk piano lesson: straight 16ths](https://www.youtube.com/watch?v=CbdUDa6uhWs)
+- The key technique I needed to have is to be able to play all notes with my pinky / 4th finger,
+  then using the rest of the notes in my right hand to be chord tones.
 
-# DB and DistSys Reading
+
+# WAL and ARIES
 
 - [CMU Databases: BusTub](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html)
 - [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control).
