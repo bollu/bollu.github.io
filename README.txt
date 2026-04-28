@@ -36,6 +36,7 @@
 
 ### Basic Chord Progressions And Voicings
 
+- Play A minor blues scale on top of these.
 - Cmaj: C (bass); 3 5 7 9 (E G B D)
 - Am: A (bass); 7 9 3 5 (G B C E)
 - Fmaj: F (bass); 3 5 7 9 (A C E G)
