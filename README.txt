@@ -24,6 +24,8 @@
 
 - This was pretty mind blowing, but [go watch the video](https://www.youtube.com/watch?v=rEdtUOGCCnU) by open studio, where he argues
   that it's *groove* that matters.
+- Rhythm-A-Ning & Straight, No Chaser recommenations for songs to play.
+
 
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
 
