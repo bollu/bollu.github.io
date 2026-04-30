@@ -58,6 +58,7 @@
 - Dm7: End on this.
 - Play major blues scale on top of this. 
 
+
 ### Repretoire (Must)
 
 - [15 bar songs must know](https://www.youtube.com/watch?v=l1ua8QhoCg4&list=PLLSuwesi2CZLj36d44GBdEbEeUhGDoP7-&index=4)
@@ -71,6 +72,9 @@
 - All the things you are
 - Stella by starlight
 
+### Magic Voicing System By Frank Mantooth
+
+- [Link to Open Studio video by Adam](https://www.youtube.com/watch?v=fTHhp_2Q-fc)
 
 
 
