@@ -10,13 +10,6 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Errichto Expected Value
-
-- [Video 1](https://www.youtube.com/watch?v=U_h3IjreRek)
-- [Video 2](https://www.youtube.com/watch?v=HDk6zQw0Rdo)
-
-
-
 # Playing Funk Piano
 
 - [Groove window piano funk groove](https://www.youtube.com/watch?v=P_eEnt3pbNI&list=PLiTb84jJJ9MxcxlvQlsoRNAiVFS2M3VBc&index=14)
@@ -26,6 +19,11 @@
 - The key technique I needed to have is to be able to play all notes with my pinky / 4th finger,
   then using the rest of the notes in my right hand to be chord tones.
 - [Cool chord progression that enables linear motion of left hand bassline](https://www.youtube.com/watch?v=-27nHg-uhSE)
+
+#### Notes don't matter
+
+- This was pretty mind blowing, but [go watch the video](https://www.youtube.com/watch?v=rEdtUOGCCnU) by open studio, where he argues
+  that it's *groove* that matters.
 
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
 
