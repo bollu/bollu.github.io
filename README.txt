@@ -10,6 +10,15 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Reflections on Task Creation
+
+#### Big Task, Mini Checkpoints
+
+- It's important to work on something large, to feel cool psychologically.
+- However, it's impossible to work on large problems, so it's important to learn how to *chunk* large problems
+  into smaller problems.
+
+
 # Playing Funk Piano
 
 - [Groove window piano funk groove](https://www.youtube.com/watch?v=P_eEnt3pbNI&list=PLiTb84jJJ9MxcxlvQlsoRNAiVFS2M3VBc&index=14)
