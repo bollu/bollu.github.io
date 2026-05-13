@@ -17,6 +17,7 @@
 - It's important to work on something large, to feel cool psychologically.
 - However, it's impossible to work on large problems, so it's important to learn how to *chunk* large problems
   into smaller problems.
+- The small chunks need to be *fun*, which is completely uncorrelated with *important*.
 
 
 # Playing Funk Piano
