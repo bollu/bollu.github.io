@@ -10,6 +10,11 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# FPSanitizer
+
+- [Key Idea](https://cp4space.hatsya.com/2026/05/03/schanuels-conjecture-and-the-semantics-of-fpsan/)
+
+
 # Reflections on Task Creation
 
 #### Big Task, Mini Checkpoints
