@@ -50264,6 +50264,27 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet / Big List of Recipes
 
+### Rava Dosa
+
+- 1/2 cup rava (semolina)
+- 1/2 cup rice flour
+- 1/4 cup all purpose flour
+- 2 1/2 cups water
+- 1 tbsp curd (optional)
+- cumin, pepper, salt (must have all three for flavour).
+- cover and rest for 20minutes.
+- Hot pan, reduce temp, spill rava dosa batter, pour a bit of oil on the edges, wait till edge crisps up.
+
+### Dhokla 
+
+- 1 cup besan (gram flour / chickpea flour)
+- 2 tbsp semolina
+- 1 tbsp lemon juice, 1tsp baking soda (for fluffiness)
+- 1/2 cup water
+- 1 tbsp oil
+- turmeric, ginger, asefodita, salt, sugar, green chillies, coriander leaves.
+- make smooth batter.
+
 ### Khinkhali 
 
 - Makes ~9 dumplings.
