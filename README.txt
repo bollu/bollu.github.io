@@ -50284,6 +50284,7 @@ things on architecture I wish to read and/or have read:
 - 1 tbsp oil
 - turmeric, ginger, asefodita, salt, sugar, green chillies, coriander leaves.
 - make smooth batter.
+- Steam or microwave.
 
 ### Khinkhali 
 
