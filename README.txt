@@ -44,6 +44,13 @@
 
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
 
+## The Most Satisfying Chord Progression by Christian Fuchs
+
+- [Video](https://www.youtube.com/watch?v=ffKAD9ZFHgo&t=4s)
+- Key idea: play 251-251-251 of the form `Dm7 G7sus4 Cmaj` (251)
+- Then, treat `Cmaj` as if it were the `2`, to play `Cmaj - Fmaj - Bm7b5`.
+- Finally, treat `Bm7b5` as if it were the `2`, to play `Bm7b5 - E7alt - Am`.
+
 ## Basic Chord Progression
 
 - [Christian Fuchs](https://www.youtube.com/watch?v=Wf2RrrVOCbM)
