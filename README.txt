@@ -10,6 +10,16 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# The Most Satisfying Chord Progression by Christian Fuchs
+
+- [Video](https://www.youtube.com/watch?v=ffKAD9ZFHgo&t=4s)
+- RH plays Am blues (A C Eb E G), with drone, with the `A` on top with below the below.
+- For some crunch, use `G` as the top note.
+- Key idea: play 251-251-251 of the form `Dm7 G7sus4 Cmaj` (251)
+- Then, treat `Cmaj` as if it were the `2`, to play `Cmaj - Fmaj - Bm7b5`.
+- Finally, treat `Bm7b5` as if it were the `2`, to play `Bm7b5 - E7alt - Am`. (Bm7b5 is half-dim).
+- Can play `E7alt` as `E7sus4 -> E7`.
+
 # FPSanitizer
 
 - [Key Idea](https://cp4space.hatsya.com/2026/05/03/schanuels-conjecture-and-the-semantics-of-fpsan/)
@@ -44,12 +54,6 @@
 
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
 
-## The Most Satisfying Chord Progression by Christian Fuchs
-
-- [Video](https://www.youtube.com/watch?v=ffKAD9ZFHgo&t=4s)
-- Key idea: play 251-251-251 of the form `Dm7 G7sus4 Cmaj` (251)
-- Then, treat `Cmaj` as if it were the `2`, to play `Cmaj - Fmaj - Bm7b5`.
-- Finally, treat `Bm7b5` as if it were the `2`, to play `Bm7b5 - E7alt - Am`.
 
 ## Basic Chord Progression
 
