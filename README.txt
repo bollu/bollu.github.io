@@ -20,6 +20,11 @@
 - Finally, treat `Bm7b5` as if it were the `2`, to play `Bm7b5 - E7alt - Am`. (Bm7b5 is half-dim).
 - Can play `E7alt` as `E7sus4 -> E7`.
 
+
+# Boogie Woogie in a Minor Key
+
+- [Boogie Woogie in A minor by Henri Herbert](https://www.youtube.com/watch?v=HrWIxP8Pxdg)
+
 # FPSanitizer
 
 - [Key Idea](https://cp4space.hatsya.com/2026/05/03/schanuels-conjecture-and-the-semantics-of-fpsan/)
