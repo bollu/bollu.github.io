@@ -10,6 +10,10 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Misty, Bar Piano Version by Christian Fuchs
+
+- [Video](hhttps://www.youtube.com/watch?v=1PyOO-M5zsA&t=775s)
+
 # The Most Satisfying Chord Progression by Christian Fuchs
 
 - [Video](https://www.youtube.com/watch?v=ffKAD9ZFHgo&t=4s)
