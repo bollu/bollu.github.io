@@ -10,6 +10,39 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Sid's Paper Writing Guide
+
+## Abstract
+
+## Introduction
+
+## Technical Writing
+
+## Conclusion
+
+## Evaluation (Writing)
+
+- Phrase as research questions.
+- Each research question should have a Yes/No answer.
+- Figure out what data to gather to answer research question.
+- Break down how datasets were gathered, what tools are being run.
+- Compare, and write an analysis per research question.
+
+## Evaluation (Scripting)
+
+- script everything, have scripts generate `plot.tex`, `plot.pdf` and `plot.jpeg`.
+- Write scripts that run tools. The tools that are run should print easily parseable stdout,
+  return success/failure with exit code, and report errors into stderr.
+  The script captures all the output as a jsonl log.
+- The aggregation is performed at plotting time, where the jsonl files are aggregated
+  into a a final tabulated data. Use `polars` since it's not slop, and use `matplotlib` since it is slop, but
+  supports all kinds of crazy layout that no "nice" API can enable you to do.
+- take geomean for aggregating times.
+- report speedups and slowdowns as ratios, as ratio of geomean = geomean of ratio.
+  Also, it's not confusing as *percentage speedup* which is a crazy concept that no one should use.
+
+
+
 # Misty, Bar Piano Version by Christian Fuchs
 
 - [Video](hhttps://www.youtube.com/watch?v=1PyOO-M5zsA&t=775s)
