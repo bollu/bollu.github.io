@@ -41,6 +41,12 @@
 - report speedups and slowdowns as ratios, as ratio of geomean = geomean of ratio.
   Also, it's not confusing as *percentage speedup* which is a crazy concept that no one should use.
 
+# Quant Dev Role Prep
+
+- [Performance Analysis and Tuning on Modern CPUs](https://github.com/dendibakh/perf-book/releases/tag/2.0_release)
+- [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+- [c++23 the complete guide](https://www.josuttis.com/)
+
 
 
 # Misty, Bar Piano Version by Christian Fuchs
