@@ -51174,7 +51174,6 @@ let g:conjure#mapping#eval_motion = "E"
 > earth is spherical is just as wrong as thinking the earth is flat, then your
 > view is wronger than both of them put together.
 
-
 > "Ethereum has said they're moving from Proof of Work to Stake; I'm not
 > surprised, given the Ethereum developers seem to abhor Work in all of its
 > forms, including making progress on Ethereum itself"
