@@ -10,6 +10,11 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Near-term projects to build
+
+- fpsan but with bitblasting.
+- sharp-sat based IOOPT tool for I/O complexity.
+
 # Sid's Paper Writing Guide
 
 ## Abstract
@@ -46,6 +51,7 @@
 - [Performance Analysis and Tuning on Modern CPUs](https://github.com/dendibakh/perf-book/releases/tag/2.0_release)
 - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - [c++23 the complete guide](https://www.josuttis.com/)
+
 
 
 
