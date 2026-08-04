@@ -10,10 +10,10 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# Near-term projects to build
+# PROBABILISTIC LOGICS AND THE SYNTHESIS OF RELIABLE ORGANISMS FROM UNRELIABLE COMPONENTS
 
-- fpsan but with bitblasting.
-- sharp-sat based IOOPT tool for I/O complexity.
+- [Link](https://static.ias.edu/pitp/archive/2012files/Probabilistic_Logics.pdf)
+
 
 # Sid's Paper Writing Guide
 
