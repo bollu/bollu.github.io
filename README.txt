@@ -10,10 +10,15 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# PROBABILISTIC LOGICS AND THE SYNTHESIS OF RELIABLE ORGANISMS FROM UNRELIABLE COMPONENTS
 
-- [Link](https://static.ias.edu/pitp/archive/2012files/Probabilistic_Logics.pdf)
+# Jazzy blues improv
 
+- Use the locked hands / block chords / barry harris
+- freely combine major and minor sounds, with a tonal center around A and C.
+- Bend almost all notes, keeping in mind that `Ab -> A`, `C# ->D/C` depending on the situation,
+  `Bb -> A`, `Eb -> D/E`, `F# -> F`, and that other runs are possible.
+- In the right hand side, use diminsheds! they sound really cool, and you can just play major chords
+- `BbM` sounds really cool on the left hand.
 
 # Sid's Paper Writing Guide
 
@@ -51,8 +56,6 @@
 - [Performance Analysis and Tuning on Modern CPUs](https://github.com/dendibakh/perf-book/releases/tag/2.0_release)
 - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - [c++23 the complete guide](https://www.josuttis.com/)
-
-
 
 
 # Misty, Bar Piano Version by Christian Fuchs
