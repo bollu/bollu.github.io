@@ -14,6 +14,8 @@
 
 - Suppose we want to play the `D-G-C` `ii V I` chord progression.
 - For G, we can use notes from the altered scale.
+- This can be thought of as playing `Ab melodic minor` scale, starting from `G`.
+- Recall that melodic minor = major scale with flattened 3rd.
 
 # Jazzy blues improv
 
