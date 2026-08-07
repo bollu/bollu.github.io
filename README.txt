@@ -10,6 +10,10 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# How to learn the altered scale
+
+- Suppose we want to play the `D-G-C` `ii V I` chord progression.
+- For G, we can use notes from the altered scale.
 
 # Jazzy blues improv
 
@@ -220,15 +224,6 @@
 - So, pick $\{ A_k \}$ of the form $x_i \oplus x_j = b$, and then estimate $|M \models \phi \land_k A_k|$ for the full set $A_k$ by random sampling.
   This gives us an estimate of $|M \models \phi|$ as $2^k * |M \models \phi \land A_k|$!
 - Why does this work so well in practice? I don't know! I should read Kuldeep Meel's paper to find out.
-
-
-# Altered Scale For Dominant Chords
-
-- Think of G, with flat 9 and sharp 11.
-- This gives us a G, Ab, Bb, B, C#, D, E, F.
-- The C# and 
-- G°7 layer: G, Bb, Db, E (that's 1, #9, #11, 13)
-- Ab°7 layer: Ab, B, D, F (that's b9, 3, 5, b7)
 
 # Learning all 7th inversions
 
