@@ -16,6 +16,21 @@
 - For G, we can use notes from the altered scale.
 - This can be thought of as playing `Ab melodic minor` scale, starting from `G`.
 - Recall that melodic minor = major scale with flattened 3rd.
+- Alternatively, think in terms of "right hand chords available".
+   The left hand plays the shell,
+  given by `B-F` (3rd and 7th). Right hand can play:
+- C#/D♭ major (D♭–F–A♭): gives ♭5, ♭7, ♭9
+- E♭ major (E♭–G–B♭): gives ♭13, root, ♯9
+- A♭ minor (A♭–C♭–E♭): gives ♭9, 3, ♭13
+- B♭ minor (B♭–D♭–F): gives ♯9, ♭5, ♭7
+
+# Higher Alterations (when is 9th, 11th, 13th available)
+
+- We stop at 13th, since we get `1-3-5-7-9-11-13` which is 7 notes, so we've run past everything
+  by the time we get to 13th.
+- We need to know when the 9th, 11th, and 13th are available.
+- 9th is always available.
+- 11th only over minor, clashes over major.
 
 # Jazzy blues improv
 
