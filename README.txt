@@ -31,6 +31,7 @@
 - We need to know when the 9th, 11th, and 13th are available.
 - 9th is always available.
 - 11th only over minor, clashes over major.
+- Also consider playing with the 5 (#5, b5)
 
 # Jazzy blues improv
 
