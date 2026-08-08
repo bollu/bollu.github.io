@@ -24,6 +24,7 @@
 - A♭ minor (A♭–C♭–E♭): gives ♭9, 3, ♭13
 - B♭ minor (B♭–D♭–F): gives ♯9, ♭5, ♭7
 
+
 # Higher Alterations (when is 9th, 11th, 13th available)
 
 - We stop at 13th, since we get `1-3-5-7-9-11-13` which is 7 notes, so we've run past everything
@@ -32,6 +33,10 @@
 - 9th is always available.
 - 11th only over minor, clashes over major.
 - Also consider playing with the 5 (#5, b5)
+
+# Spread Voicing Techniques By Kent Hewitt
+
+- [Spread Voicings](https://www.youtube.com/watch?v=bJ_j7oHIiiw&list=PLFuMibnl_h5YWUjPD_ra893i4jzgomZQU&index=4)
 
 # Jazzy blues improv
 
