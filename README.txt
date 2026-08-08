@@ -36,7 +36,9 @@
 
 # Spread Voicing Techniques By Kent Hewitt
 
-- [Spread Voicings](https://www.youtube.com/watch?v=bJ_j7oHIiiw&list=PLFuMibnl_h5YWUjPD_ra893i4jzgomZQU&index=4)
+- [Spread Voicings Video](https://www.youtube.com/watch?v=bJ_j7oHIiiw&list=PLFuMibnl_h5YWUjPD_ra893i4jzgomZQU&index=4)
+- Start with block chords.
+- Move the notes down an octave, arpeggiate.
 
 # Jazzy blues improv
 
