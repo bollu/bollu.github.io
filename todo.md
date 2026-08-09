@@ -155,7 +155,6 @@ _ Furoshiki: Wrapping objects with reusable cloth as a gift: Wrapping with Fabri
 - [ITMO algorithms and data structures: has advanced algorithms!](https://www.youtube.com/watch?v=oWgLjhM-6XE&list=PLrS21S1jm43igE57Ye_edwds_iL7ZOAG4)
 - [AM GM inequality: moments](https://www.youtube.com/watch?v=XJ3643WhKjY)
 - What would a visual editor like ableton for APL look like?
->>>>>>> e8f8ace824107d51a5cd10c799ec07261027b4be
 - [Choices of representations for names](https://jesper.sikanda.be/posts/1001-syntax-representations.html)
 - [Computational geometry video lectures by Philipp Kindermann](https://www.youtube.com/c/PhilippKindermann/playlists)
 - [Largest list of CP topics ever](https://codeforces.com/blog/entry/95106)
