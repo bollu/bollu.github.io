@@ -800,7 +800,7 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
 - [Light is beautiful: blog of a demoscener](http://lousodrome.net/blog/light/)
 - [Revision 2020 threeway battle](https://gargaj.tumblr.com/post/615750987019436032/a-breakdown-of-the-revision-2020-threeway-battle)
 - [mercury.sexy](http://mercury.sexy/)
-- [`hg_sdf: library for signed distance fields(http://mercury.sexy/hg_sdf/)
+- [`hg_sdf`: library for signed distance fields(http://mercury.sexy/hg_sdf/)
 - [On the building blocks of mathematical logic](https://writings.stephenwolfram.com/data/uploads/2020/12/Schonfinkel-OnTheBuildingBlocksOfMathematicalLogic.pdf)
 - [Dependent linear type theory](https://ncatlab.org/nlab/show/dependent+linear+type+theory)
 - [HoTT in Agda](https://www.cs.bham.ac.uk/~mhe/HoTT-UF-in-Agda-Lecture-Notes/HoTT-UF-Agda.html)
