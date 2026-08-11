@@ -50889,6 +50889,10 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> a statistician frustrated by how “everyone wants to be a theorist”
+> writes that “mathematical theory is not critical to the development of machine learning.
+> But scientific inquiry is ~ [Reflections After Refereeing Papers for NIPS](https://www.icts.res.in/sites/default/files/seminar%20doc%20files/1995-breiman.pdf)
+
 > [Seikilos epitaph](https://en.wikipedia.org/wiki/Seikilos_epitaph)
 > As long as you live, let the world see you, and don't make yourself miserable; life is short, and Time demands his due
 
