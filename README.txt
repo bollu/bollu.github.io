@@ -10,6 +10,14 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# Mean, Variance And Everything Else As Geometry
+
+- [Video](https://www.youtube.com/watch?v=h4QF-2YiM88)
+- Space of vectors, where random varibles are vectors with coefficients given by the realization,
+  and the all-ones vector is the RV $1$.
+- Inner product given by $\langle X, Y \rangle = E[XY]$.
+- This gives $\langle X, 1 \rangle = E[X]$.
+
 # How to learn the altered scale
 
 - Suppose we want to play the `D-G-C` `ii V I` chord progression.
