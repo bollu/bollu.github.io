@@ -18,6 +18,12 @@
 - Inner product given by $\langle X, Y \rangle = E[XY]$.
 - This gives $\langle X, 1 \rangle = E[X]$.
 
+# Ito's Lemma, Ito Integrals, Geometrically And Handwavily
+
+- [Roman Paolucci: Ito's Lemmas](https://www.youtube.com/watch?v=TgBzqdN24fo)
+- [Roman Paolucci: Ito Integration](https://www.youtube.com/watch?v=dUvZ8m3QpeI)
+
+
 # How to learn the altered scale
 
 - Suppose we want to play the `D-G-C` `ii V I` chord progression.
