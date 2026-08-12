@@ -25,7 +25,7 @@
 - B♭ minor (B♭–D♭–F): gives ♯9, ♭5, ♭7
 
 
-# Higher Alterations (when is 9th, 11th, 13th available)
+#### Higher Alterations (when is 9th, 11th, 13th available)
 
 - We stop at 13th, since we get `1-3-5-7-9-11-13` which is 7 notes, so we've run past everything
   by the time we get to 13th.
@@ -34,11 +34,15 @@
 - 11th only over minor, clashes over major.
 - Also consider playing with the 5 (#5, b5)
 
-# Spread Voicing Techniques By Kent Hewitt
+# How to Interpret Variance and Mean Geometrically
 
-- [Spread Voicings Video](https://www.youtube.com/watch?v=bJ_j7oHIiiw&list=PLFuMibnl_h5YWUjPD_ra893i4jzgomZQU&index=4)
-- Start with block chords.
-- Move the notes down an octave, arpeggiate.
+- [Random Variables Are Just Right Triangles](https://www.youtube.com/watch?v=h4QF-2YiM88)
+- Consider a vector space of random variables.
+- Then, the vector $1$ is the constant random variable $1$.
+- Expectation is the projection onto the vector $1$.
+- Now, the orthogonal component is a zero mean random variable,
+  and the variance is the squared length of this orthogonal component!
+
 
 # Jazzy blues improv
 
