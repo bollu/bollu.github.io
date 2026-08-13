@@ -1,0 +1,82 @@
+% One-page CV -- COMPILERS track (LLVM, MLIR, polyhedral, codegen, runtimes).
+% Content is a selection from full-siddharth-bhat.md; style lives in cvstyle.sty.
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{cvstyle}
+
+\begin{document}
+\cvheader
+
+\section{Summary}
+Compiler engineer and researcher (PhD, Cambridge) with a decade of performance-critical \cpp{}
+inside production compilers and low-level runtimes.
+\#3 contributor to \textbf{Polly}, LLVM's polyhedral loop optimizer (121 commits, 6000 LoC of
+\cpp{} to LLVM, Fortran support and unified-memory CUDA codegen);
+primary author of \textbf{Lean's LLVM backend}, lowering an IR through instruction selection and
+code generation down to native machine code;
+\#2 contributor to \textbf{Asterius}, a Haskell$\to$WebAssembly compiler whose runtime work was
+merged into GHC.
+Five talks at LLVM developer meetings on IR design, dominance, side-effect modelling and
+optimization verification.
+Comfortable reasoning about the machine underneath the language --- cache behaviour, memory
+models, SIMD, assembly --- and optimizing hot code to that level.
+Fluent in \cpp{}, Lean, Haskell, Rust, Rocq.
+
+\section{Expertise}
+\begin{records}
+\item \textbf{Loop optimization \& HPC (\cpp{}, LLVM, CUDA):} \#3 contributor to Polly ---
+GPU code generation for Fortran workloads, unified-memory support in the CUDA backend,
+polyhedral scheduling; tiling patterns and stencil optimization in PolyMage, PLUTO and ISL
+(SC 2017); LLVM GSoC mentor (2016, 2018).
+\item \textbf{Backends \& runtimes:} primary author of Lean's LLVM backend; reimplemented the
+GHC runtime on top of WebAssembly for Asterius (merged upstream into GHC); lock-free atomic
+synchronization for real-time audio in the PPSSPP \cpp{} emulator; rewrote a raytracer in Haskell
+to match hand-tuned \cpp{} (Haskell Exchange '20).
+\item \textbf{IR design \& semantics (MLIR):} led \texttt{lean-mlir}, formal semantics for MLIR
+with machine-checked peephole rewriting (ITP 2024); designed SSA-based IRs for functional
+(CGO 2022) and quantum (CC 2021) compilation; verified translation validation for rewrites at
+arbitrary bitwidth.
+\end{records}
+
+\section{Selected Publications}
+\begin{pubs}
+\pub{Verifying Peephole Rewriting in SSA Compiler IRs}{\me, Alex Keizer, Chris Hughes, Andres Goens, Tobias Grosser}{ITP 2024}
+\pub{Lambda the Ultimate SSA: optimizing functional programs in SSA}{\me, Tobias Grosser}{CGO 2022}
+\pub{Guided Equality Saturation}{Thomas Koehler, Andres Goens, \me, Tobias Grosser, Phil Trinder, Michel Steuwer}{POPL 2024}
+\pub{QSSA: an SSA-based IR for Quantum Computing}{Anurudh Peduri, \me, Tobias Grosser}{CC 2021}
+\pub{Optimizing Geometric Multigrid Computation using a DSL Approach}{Vinay Vasista, Kumudha KN, \me, Uday Bondhugula}{Supercomputing (SC) 2017}
+\pub{Certified Decision Procedures for Width-Independent Bitvector Predicates}{\me, L\'eo Stefanesco, Chris Hughes, Tobias Grosser}{OOPSLA 2025}
+\pub{Interactive Bit Vector Reasoning using Verified Bitblasting}{Henrik B\"oving, \me, Alex Keizer, Luisa Cicolini, Abdalrhman Mohamed, L\'eo Stefanesco, Josh Clune, Clark Barrett, Tobias Grosser}{OOPSLA 2025}
+\end{pubs}
+\vspace{1pt}
+Full list (14 papers, incl.\ POPL, ICML, ICSE best paper, NeurIPS) on
+\href{https://scholar.google.com/citations?user=7Irb-OUAAAAJ&hl=en}{Google Scholar}.
+
+\section{Software}
+\proj{Polly (LLVM)}{https://polly.llvm.org/}{\#3 contributor to LLVM's polyhedral loop optimizer: 121 commits, 6000 LoC, Fortran support and unified-memory CUDA codegen.}
+\proj{Lean 4}{https://github.com/leanprover/lean4/pulls?q=author\%3Abollu}{primary author of the LLVM backend (instruction selection, codegen); top-20 contributor overall.}
+\proj{Asterius / GHC}{https://github.com/tweag/asterius/commits?author=bollu}{\#2 contributor to this Haskell$\to$WebAssembly compiler; reimplemented the GHC runtime on WASM, later merged into GHC proper.}
+\proj{lean-mlir}{https://github.com/opencompl/lean-mlir}{formal semantics for MLIR in Lean 4, with verified peephole rewriting.}
+\proj{PLUTO \& PolyMage}{http://mcl.csa.iisc.ac.in/polymage.html}{loop-nest optimizers: found and fixed diamond-tiling bugs in PLUTO, added stencil and time-iterated-stencil support to PolyMage.}
+\proj{Simplexhc}{http://github.com/bollu/simplexhc}{a compiler for a lazy functional language applying polyhedral ideas to an LLVM backend.}
+
+\section{Experience}
+\role{Sep--Nov '24}{Amazon Web Services, Automated Reasoning Group, Austin}{Research Intern}{Deciding memory non-interference in \texttt{lnsym}, a Lean-based ARM symbolic simulator; large-scale symbolic execution and its performance.}
+\role{Jul--Sep '23}{Microsoft Research, Redmond}{Research Intern}{Retrieval-augmented proof synthesis for the \fstar{} proof assistant (ICSE 2025 best paper).}
+\role{May--Jul '19}{Tweag.io, Paris}{Research Intern}{Re-implemented portions of the GHC runtime for \href{https://github.com/tweag/asterius/commits?author=bollu}{Asterius} (Haskell, C, WASM).}
+\role{Summer '18}{Google Summer of Code, Polly Labs}{Mentor}{Enabling Polly's loop optimizations in Chapel.}
+\role{Mar--Dec '17}{ETH Zurich, Scalable Parallel Computing}{Research Intern}{CUDA code generation in Polly for Fortran loop nests.}
+\role{May--Jul '16}{IISc Bangalore}{Research Intern}{PolyMage DSL compiler; tiling patterns and stencil optimization; contributions to ISL and PLUTO.}
+
+\section{Talks at LLVM Developer Meetings}
+\href{https://www.youtube.com/watch?v=WtsInfbzxjs}{How to trust your peephole rewrites: automatically verifying them for arbitrary width} (EuroLLVM '25)
+$\cdot$ \href{https://www.youtube.com/watch?v=4lh2NnLOxvQ}{lean-mlir: verifying peephole optimizations in MLIR} (LLVM Dev '24)
+$\cdot$ \href{https://www.youtube.com/watch?v=VJORFvHJKWE}{(Correctly) extending dominance to MLIR regions} (LLVM Dev '23)
+$\cdot$ \href{https://www.youtube.com/watch?v=6bDKasLZyxU}{MLIR side-effect modelling} (LLVM Dev '23)
+$\cdot$ \href{https://www.youtube.com/watch?v=cyMQbZ0B84Q}{MLIR for functional programming} (EuroLLVM '22).\par
+
+\section{Education}
+\edu{PhD, Computer Science}{University of Cambridge; transferred from University of Edinburgh}{2022--2026 (writing up)}
+\edu{MS, Computer Science}{IIIT Hyderabad, India}{2020--2021}
+\edu{BTech, Computer Science}{IIIT Hyderabad, India}{2015--2020}
+
+\end{document}

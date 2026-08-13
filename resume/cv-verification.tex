@@ -1,0 +1,79 @@
+% One-page CV -- FORMAL VERIFICATION track (Lean, SMT/QF_BV, Rocq, compiler proofs).
+% Content is a selection from full-siddharth-bhat.md; style lives in cvstyle.sty.
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{cvstyle}
+
+\begin{document}
+\cvheader
+
+\section{Summary}
+PhD researcher (Cambridge) in formally verified decision procedures and mechanical theorem
+proving in Lean, with a focus on compiler verification.
+Co-developer of \bvdecide{}, Lean's verified-bitblasting bitvector solver
+(\textbf{5th at SMT-COMP 2025}, \qfbv{} division), and author of the first sound-and-complete,
+machine-checked decision procedures for \emph{parametric} (width-independent) bitvector
+theories.
+\textbf{\#2 contributor to Lean's bitvector theory} and a top-20 contributor to the prover
+itself; coauthor of the \emph{Lean 4 Metaprogramming Book}.
+Led \texttt{lean-mlir}, a formal semantics for MLIR in Lean that machine-checks real LLVM
+peephole rewrites at arbitrary bitwidth.
+Fluent in Lean, Rocq, \fstar{}, \cpp{}, Haskell, Rust.
+
+\section{Expertise}
+\begin{records}
+\item \textbf{SMT \& decision procedures (\qfbv{}):} co-developed \bvdecide{} (verified
+bitblasting, AIG + CaDiCaL certificate checking) --- 5th at SMT-COMP 2025; published
+sound-and-complete procedures for multi-width parametric bitvectors via principled reductions;
+current work on mechanized floating-point bitblasting.
+\item \textbf{Compiler verification:} \texttt{lean-mlir} --- denotational semantics for MLIR
+dialects in Lean 4, with verified peephole rewriting over SSA regions (ITP 2024); verified
+dominance and side-effect modelling for MLIR; collaboration with VE-LLVM on Rocq semantics for
+LLVM; \texttt{PolyIR}, a formal specification of polyhedral programs (ETH Zurich).
+\item \textbf{Proof engineering \& automation:} tactics and elaboration in Lean 4 (author of the
+tactics and embedded-DSL chapters of the Lean 4 Metaprogramming Book); tactics for deciding
+memory non-interference in a Lean-based ARM symbolic simulator (AWS Automated Reasoning Group);
+retrieval-augmented proof synthesis for \fstar{} (ICSE 2025 best paper).
+\end{records}
+
+\section{Selected Publications}
+\begin{pubs}
+\pub{Towards Mechanized Floating Point Bitblasting}{\me, Abdalrhman Mohamed, Tobias Grosser}{POPL 2027 (under review)}
+\pub{Sound and Complete Solving for Multi-Width Parametric Bitvectors via Principled Reductions}{\me, L\'eo Stefanesco, Tobias Grosser}{OOPSLA 2026 (accepted, minor revisions)}
+\pub{Certified Decision Procedures for Width-Independent Bitvector Predicates}{\me, L\'eo Stefanesco, Chris Hughes, Tobias Grosser}{OOPSLA 2025}
+\pub{Interactive Bit Vector Reasoning using Verified Bitblasting}{Henrik B\"oving, \me, Alex Keizer, Luisa Cicolini, Leon Frenot, Abdalrhman Mohamed, L\'eo Stefanesco, Harun Khan, Josh Clune, Clark Barrett, Tobias Grosser}{OOPSLA 2025}
+\pub{Verifying Peephole Rewriting in SSA Compiler IRs}{\me, Alex Keizer, Chris Hughes, Andres Goens, Tobias Grosser}{ITP 2024}
+\pub{Towards Neural Synthesis for SMT-Assisted Proof-Oriented Programming}{Saikat Chakraborty, Gabriel Ebner, \me, Sarah Fakhoury, Shuvendu Lahiri, Nikhil Swamy}{ICSE 2025 (best paper)}
+\pub{Rewriting Optimization Problems into Disciplined Convex Programming Form}{Ramon Fernandez Mir, \me, Andres Goens, Tobias Grosser}{CICM 2024}
+\end{pubs}
+\vspace{1pt}
+Full list (14 papers, incl.\ POPL, CGO, ICML, NeurIPS, SC) on
+\href{https://scholar.google.com/citations?user=7Irb-OUAAAAJ&hl=en}{Google Scholar}.
+
+\section{Software}
+\proj{Lean 4}{https://github.com/leanprover/lean4/pulls?q=author\%3Abollu}{co-developed the verified bitblasting theory behind \bvdecide{}; \#2 contributor to the bitvector library; primary author of Lean's LLVM backend.}
+\proj{lean-mlir}{https://github.com/opencompl/lean-mlir}{formal semantics for MLIR in Lean 4, with machine-checked peephole rewriting over SSA regions.}
+\proj{Lean 4 Metaprogramming Book}{https://github.com/arthurpaulino/lean4-metaprogramming-book}{authored the chapters on tactics and on metaprogramming for embedded DSLs.}
+\proj{Rocq / VE-LLVM}{https://github.com/vellvm/vellvm/issues?\&q=author\%3Abollu}{issues, bug fixes and developer documentation for Rocq; collaboration on VE-LLVM's formal semantics of the LLVM toolchain.}
+\proj{PolyIR}{http://github.com/bollu/polyir}{a formal specification of polyhedral programs, for verifying loop transformations.}
+
+\section{Experience}
+\role{Sep--Nov '24}{Amazon Web Services, Automated Reasoning Group, Austin}{Research Intern}{Tactics for proving memory non-interference in \texttt{lnsym}, a Lean-based ARM symbolic simulator.}
+\role{Jul--Sep '23}{Microsoft Research, Redmond}{Research Intern}{Retrieval-augmented theorem proving for the \fstar{} proof assistant; ICSE 2025 best paper.}
+\role{Summer '18}{ETH Zurich, Switzerland}{Research Intern}{Formal verification of polyhedral compilation (\texttt{PolyIR}).}
+\role{May--Jul '19}{Tweag.io, Paris}{Research Intern}{Re-implemented portions of the GHC runtime for Asterius, a Haskell$\to$WebAssembly compiler.}
+\role{Mar--Dec '17}{ETH Zurich, Scalable Parallel Computing}{Research Intern}{GPU code generation in Polly, LLVM's polyhedral loop optimizer (\#3 contributor overall).}
+
+\section{Selected Talks}
+\href{https://www.youtube.com/watch?v=WtsInfbzxjs}{How to trust your peephole rewrites: automatically verifying them for arbitrary width} (EuroLLVM '25)
+$\cdot$ \href{https://www.youtube.com/watch?v=4lh2NnLOxvQ}{lean-mlir: a workbench for formally verifying peephole optimizations in MLIR} (LLVM Dev '24)
+$\cdot$ \href{https://www.youtube.com/watch?v=VJORFvHJKWE}{(Correctly) extending dominance to MLIR regions} (LLVM Dev '23)
+$\cdot$ \href{https://www.youtube.com/watch?v=6bDKasLZyxU}{MLIR side-effect modelling} (LLVM Dev '23).\par
+
+\section{Education \& Awards}
+\edu{PhD, Computer Science}{University of Cambridge; transferred from University of Edinburgh}{2022--2026 (writing up)}
+\edu{MS / BTech, Computer Science}{IIIT Hyderabad, India}{2015--2021}
+\vspace{2pt}
+\skillline{Awards}{5th place, SMT-COMP 2025 (\qfbv{}) $\cdot$ Best paper, ICSE 2025 $\cdot$
+\href{https://www.renaissancephilanthropy.org/mathbench-towards-evaluating-natural-language-proofs}{Renaissance Philanthropy AI for Maths} grant, 1 of 30 funded from 280+ applicants}
+
+\end{document}

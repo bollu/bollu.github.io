@@ -1,0 +1,101 @@
+% cvstyle.sty -- shared style for the specialized one-page CVs.
+%
+% Design goals, in order:
+%   1. Density: every record is ONE line with a fixed field order, so both the
+%      source and the extracted PDF text parse cleanly (for humans and for LLMs).
+%   2. Legibility at 9pt: XCharter has a large x-height and sturdy stems, so it
+%      stays readable when packed.
+%   3. Minimality: no rules, no colour, no icons. Structure comes entirely from
+%      vertical rhythm and from weight/case contrast in a single serif family.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cvstyle}[2026/08/13 dense one-page CV style]
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.05cm,top=0.95cm,bottom=0.8cm]{geometry}
+
+% ---- Fonts -------------------------------------------------------------------
+% One serif family throughout: XCharter (Bitstream Charter) for text, its real
+% small caps for headings, newtxtt for code. No sans anywhere.
+\usepackage[scaled=1.0]{XCharter}
+\usepackage[charter,vvarbb,scaled=1.0]{newtxmath}
+\usepackage[scaled=0.94]{newtxtt}
+\usepackage{microtype}
+
+% ---- Vertical rhythm ---------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{titlesec}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}     % let microtype absorb bad lines
+\linespread{1.02}
+
+% Section header: bold, letterspaced small caps. No rule -- the space above the
+% header is what separates sections, so it is deliberately generous.
+% (titlesec's before-code must be a command that *takes* the title, not `#1`.)
+\newcommand{\cvsectitle}[1]{\textls[110]{#1}}
+\titleformat{\section}
+  {\bfseries\scshape\small}{}{0pt}
+  {\cvsectitle}
+\titlespacing*{\section}{0pt}{9pt plus 2pt minus 1pt}{2pt}
+
+% Links are functional but invisible: black, unboxed.
+\usepackage[colorlinks=true,allcolors=black,pdfborder={0 0 0}]{hyperref}
+
+% ---- Record macros -----------------------------------------------------------
+% One call = one record, fixed field order. Keep descriptions to a single clause.
+
+% \who{name}{contact line 1}{contact line 2}
+\newcommand{\who}[3]{%
+  {\bfseries\LARGE\textls[50]{#1}}\\[3pt]
+  {\small #2}\\[1pt]
+  {\small #3}\par\vspace{1pt}}
+
+% \tagline{one-sentence positioning statement} -- optional, under the name.
+\newcommand{\tagline}[1]{\vspace{2pt}{\small #1}\par}
+
+% \role{dates}{org, location}{title}{what you did}
+\newcommand{\role}[4]{\textbf{#1}\hspace{0.6em}\textbf{#2} --- \textit{#3}. #4\par\vspace{1pt}}
+
+% \edu{degree}{institution}{dates}
+\newcommand{\edu}[3]{\textbf{#1}, #2 \hfill #3\par}
+
+% \pub{title}{authors}{venue year}
+\newcommand{\pub}[3]{\item #1. #2. \textit{#3}.}
+
+% \proj{name}{url}{what it is / what you did}
+\newcommand{\proj}[3]{\textbf{\href{#2}{#1}}: #3\par}
+
+% \skillline{label}{comma-separated list}
+\newcommand{\skillline}[2]{\textbf{#1:} #2\par}
+
+\newenvironment{records}
+  {\begin{itemize}[leftmargin=1.1em,itemsep=1pt,topsep=2pt,parsep=0pt,
+                   label=\textendash]}
+  {\end{itemize}}
+\newenvironment{pubs}
+  {\begin{enumerate}[leftmargin=1.5em,itemsep=1pt,topsep=2pt,parsep=0pt,
+                     font=\scriptsize]}
+  {\end{enumerate}}
+
+% ---- Shared shorthands -------------------------------------------------------
+\newcommand{\qfbv}{\texttt{QF\_BV}}
+\newcommand{\bvdecide}{\texttt{bv\_decide}}
+\newcommand{\fstar}{F$^\ast$}
+% Charter's `+' carries wide side bearings, so a bare "C++" reads as "C + +".
+\newcommand{\cpp}{\mbox{C\kern-0.07em$+$\kern-0.11em$+$}}
+\newcommand{\me}{\textit{Siddharth Bhat}}
+
+% ---- Header block used by all three CVs --------------------------------------
+\newcommand{\cvheader}{%
+  \who{Siddharth Bhat}
+    {\href{mailto:siddharth.bhat@cl.cam.ac.uk}{siddharth.bhat@cl.cam.ac.uk} $\cdot$
+     +44 7442 785227 $\cdot$
+     \href{https://pixel-druid.com}{pixel-druid.com} $\cdot$
+     Churchill College, Cambridge, UK}
+    {\href{https://github.com/bollu}{github.com/bollu} $\cdot$
+     \href{https://www.linkedin.com/in/siddharth-bhat-388b60104/}{linkedin.com/in/siddharth-bhat} $\cdot$
+     \href{https://scholar.google.com/citations?user=7Irb-OUAAAAJ&hl=en}{Google Scholar}}}
+
+\endinput

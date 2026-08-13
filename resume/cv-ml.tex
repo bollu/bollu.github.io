@@ -1,0 +1,81 @@
+% One-page CV -- MACHINE LEARNING track (AI for maths, neural theorem proving, evaluation,
+% and the systems/GPU work that supports it).
+% Content is a selection from full-siddharth-bhat.md; style lives in cvstyle.sty.
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{cvstyle}
+
+\begin{document}
+\cvheader
+
+\section{Summary}
+PhD researcher (Cambridge) working at the intersection of machine learning and formal
+mathematics: neural proof synthesis, benchmark and evaluation design, and the symbolic
+machinery that makes model output checkable.
+Built the retrieval-augmented proof-synthesis pipeline for the \fstar{} proof assistant at
+Microsoft Research (\textbf{ICSE 2025 best paper}); first-authored work on
+\textbf{dataset defects and evaluation failures in Lean theorem-proving benchmarks}
+(ICML 2026); showed that a classical symbolic method beats AlphaGeometry on IMO geometry
+(NeurIPS 2024 MATH-AI).
+Awarded a \href{https://www.renaissancephilanthropy.org/mathbench-towards-evaluating-natural-language-proofs}{Renaissance Philanthropy AI for Maths}
+grant (1 of 30 groups funded from 280+ applicants).
+Underneath the ML: a decade of performance-critical \cpp{}/CUDA in production compilers ---
+\#3 contributor to LLVM's polyhedral loop optimizer, primary author of Lean's LLVM backend.
+Fluent in Python/PyTorch, Lean, \cpp{}, CUDA, Haskell, Rust.
+
+\section{Expertise}
+\begin{records}
+\item \textbf{Neural theorem proving \& RL (PyTorch):} designed and ran the RAG + RL pipeline
+that trains models to generate \fstar{} proofs, combining language-model inference with
+SMT-backed symbolic search (Microsoft Research; ICSE 2025 best paper); ongoing work on proof
+automation for Lean.
+\item \textbf{Evaluation \& benchmarks:} first-author study of dataset defects, contamination
+and evaluation failures across Lean theorem-proving benchmarks (ICML 2026); established
+stronger symbolic baselines for AI geometry systems, showing Wu's method rivals silver
+medalists and lifts AlphaGeometry past gold (NeurIPS 2024 MATH-AI); co-developer of the verified
+solver that such benchmarks use as a proof checker.
+\item \textbf{Representation learning \& NLP:} first-author work modelling word embeddings as
+tuples of feature probabilities (RepL4NLP 2020); embedding pipelines (\texttt{word2vec},
+\texttt{GloVe}, \texttt{fasttext}) as a researcher and as a TA for \emph{Natural Language:
+Applications}.
+\item \textbf{Systems for ML (\cpp{}, CUDA, LLVM/MLIR):} \#3 contributor to Polly, LLVM's
+polyhedral loop optimizer --- GPU code generation and unified-memory support for
+compute-intensive loop nests; stencil and tiling optimization in PolyMage/PLUTO (SC 2017);
+MLIR-based compiler backends targeting accelerators.
+\end{records}
+
+\section{Selected Publications}
+\begin{pubs}
+\pub{Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving}{Pawan Sasanka Ammanamanchi, \me, Stella Biderman}{ICML 2026}
+\pub{Towards Neural Synthesis for SMT-Assisted Proof-Oriented Programming}{Saikat Chakraborty, Gabriel Ebner, \me, Sarah Fakhoury, Sakina Fatima, Shuvendu Lahiri, Nikhil Swamy}{ICSE 2025 (best paper)}
+\pub{Verifying Wu's Method can Boost Symbolic AI to Rival Silver Medalists and AlphaGeometry to Outperform Gold Medalists at IMO Geometry}{Shiven Sinha, Ameya Prabhu, Ponnurangam Kumaraguru, \me, Matthias Bethge}{NeurIPS 2024 Workshop MATH-AI}
+\pub{Word Embeddings as Tuples of Feature Probabilities}{\me, Alok Debnath, Souvik Banerjee, Manish Shrivastava}{RepL4NLP 2020}
+\pub{Certified Decision Procedures for Width-Independent Bitvector Predicates}{\me, L\'eo Stefanesco, Chris Hughes, Tobias Grosser}{OOPSLA 2025}
+\pub{Interactive Bit Vector Reasoning using Verified Bitblasting}{Henrik B\"oving, \me, Alex Keizer, Abdalrhman Mohamed, L\'eo Stefanesco, Josh Clune, Clark Barrett, Tobias Grosser}{OOPSLA 2025}
+\pub{Optimizing Geometric Multigrid Computation using a DSL Approach}{Vinay Vasista, Kumudha KN, \me, Uday Bondhugula}{Supercomputing (SC) 2017}
+\end{pubs}
+\vspace{1pt}
+Full list (14 papers, incl.\ POPL, OOPSLA, CGO, ITP) on
+\href{https://scholar.google.com/citations?user=7Irb-OUAAAAJ&hl=en}{Google Scholar}.
+
+\section{Experience}
+\role{Jul--Sep '23}{Microsoft Research, Redmond}{Research Intern}{Built a retrieval-augmented RL pipeline for automated theorem proving: PyTorch models generating \fstar{} proofs, paired with SMT-assisted search. ICSE 2025 best paper.}
+\role{Sep--Nov '24}{Amazon Web Services, Automated Reasoning Group, Austin}{Research Intern}{Deciding memory non-interference in a Lean-based ARM symbolic simulator; large-scale symbolic execution.}
+\role{May--Jul '19}{Tweag.io, Paris}{Research Intern}{Re-implemented portions of the GHC runtime for Asterius, a Haskell$\to$WebAssembly compiler.}
+\role{Mar--Dec '17}{ETH Zurich, Scalable Parallel Computing}{Research Intern}{CUDA code generation in Polly for compute-intensive Fortran loop nests.}
+\role{May--Jul '16}{IISc Bangalore}{Research Intern}{PolyMage, a DSL compiler for data-parallel stencil computation; tiling patterns, ISL and PLUTO.}
+
+\section{Software}
+\proj{Lean 4}{https://github.com/leanprover/lean4/pulls?q=author\%3Abollu}{co-developed \bvdecide{}, the verified bitvector solver (5th at SMT-COMP 2025) used as a proof checker; primary author of Lean's LLVM backend.}
+\proj{Polly (LLVM)}{https://polly.llvm.org/}{\#3 contributor to LLVM's polyhedral loop optimizer: 121 commits, 6000 LoC \cpp{}, GPU codegen and unified memory.}
+\proj{lean-mlir}{https://github.com/opencompl/lean-mlir}{formal semantics for MLIR in Lean 4, machine-checking compiler rewrites.}
+\proj{Lean 4 Metaprogramming Book}{https://github.com/arthurpaulino/lean4-metaprogramming-book}{authored the chapters on tactics and on metaprogramming for embedded DSLs.}
+
+\section{Education \& Awards}
+\edu{PhD, Computer Science}{University of Cambridge; transferred from University of Edinburgh}{2022--2026 (writing up)}
+\edu{MS / BTech, Computer Science}{IIIT Hyderabad, India (coursework in NLP and deep learning)}{2015--2021}
+\vspace{2pt}
+\skillline{Awards}{Renaissance Philanthropy AI for Maths grant (1 of 30 from 280+ applicants)
+$\cdot$ Best paper, ICSE 2025 $\cdot$ 5th place, SMT-COMP 2025 (\qfbv{})
+$\cdot$ Google Summer of Code student '15, mentor '16 and '18}
+
+\end{document}
