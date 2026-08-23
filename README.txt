@@ -30,6 +30,12 @@
 > “When we gather, we often make the mistake of conflating category with purpose. ”
 
 
+> “We were expecting our first child. My girlfriends offered to throw a shower
+> for me. Like most people, we didn’t spend any time thinking about why we were
+> having a baby shower. It wasn’t the first one we’d had in our circle of
+> friends, and it wouldn’t be the last. It was almost becoming a routine—that
+> great enemy of meaningful gathering.”
+
 
 #### Reading: Philosophy of Hosting
 
