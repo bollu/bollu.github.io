@@ -12,13 +12,23 @@
 
 # The Art of Gathering
 
-# Big List of Hosting 20 people events
+# Big List of Hosting 20 People For Wine And Cheese
+
+#### Cooking
 
 - 1.5 big aperol spritz bottles more than suffices.
 - 3 baguettes, crisps.
 - Some cheeses, ask people to bring more wine and cheese.
 
 - Book: Alison Roman, Nothing Fancy
+
+
+## The Art Of Gathering by Priya Parker
+
+> “The book club was organized to get us to read a book together.”
+> “This is the circular logic that guides the planning of many of our gatherings.”
+> “When we gather, we often make the mistake of conflating category with purpose. ”
+
 
 
 #### Reading: Philosophy of Hosting
@@ -35,6 +45,8 @@
 - Victor Turner, The Ritual Process
 - Georg Simmel, The Sociology of Sociability
 - Ivan Illich, Tools for Conviviality
+
+
 
 
 
