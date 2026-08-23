@@ -43,6 +43,21 @@
 > my clients has collected the data to back it up.”
 
 > https://en.wikipedia.org/wiki/Ichi-go_ichi-e
+> treasuring the unrepeatable nature of a moment.
+
+
+> “A good gathering purpose should also be disputable”.
+> “A disputable purpose, on the other hand, begins to be a decision filter. If
+> you commit to a purpose of your wedding as a ceremonial repayment of your
+> parents for all they have done for you as you set off to build your own family,
+> that is disputable, and it will immediately help you make choices. That one
+> remaining seat will go to your parents’ long-lost friend, not your estranged
+> college buddy. If, on the other hand, you commit to the equally valid purpose
+> of a wedding as a melding of a new couple with the tribe of people with whom
+> they feel the most open, that, too, is disputable, and it implies clear and
+> different answers. The parents’ friend may have to stand down for the college
+> buddy.”
+
 
 
 
