@@ -96,6 +96,14 @@
 > once told him, “If everyone is family, no one is family.” It is blood that
 > makes a tribe, a border that makes a nation”
 
+#### Number of people
+
+Number of poeple are “6, 12 to 15, 30, and 150”.
+Groups of 6 is great for intimacy.
+12 to 15 is large enough for a quotient of mystery and intrugue. 12 apostles,
+12 knights of the round table. 30 has a party vibe and energy to it.
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
