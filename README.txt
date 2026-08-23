@@ -59,7 +59,20 @@
 > buddy.”
 
 
+> “Gathering well isn’t a chill activity”
+> “But modesty can also derive from the idea that people don’t want to be
+> imposed on. This hesitancy, which permeates many gatherings, doesn’t consider
+> that you may be doing your guests a favor by having a focus.”
 
+> “The Golden Retriever Festival in Scotland, which attracts hundreds of dogs and
+> their owners, has an admirably clear, if cosmically inconsequential, purpose:
+> to pay tribute to Lord Tweedmouth, the nineteenth-century nobleman responsible
+> for developing that breed”
+
+
+> “Make purpose your bouncer. Let it decide what goes into your gathering and
+> what stays out. When in doubt about any element, even the smallest detail, hark
+> back to that purpose and decide in accordance with it”
 
 #### Reading: Philosophy of Hosting
 
