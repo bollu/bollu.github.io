@@ -119,6 +119,10 @@ Groups of 6 is great for intimacy.
 > ebbing energy, and spice up the night”
 
 
+> “If you are going to create a kingdom for an hour or a day, rule it—and rule
+> it with generosity”
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
