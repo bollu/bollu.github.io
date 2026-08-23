@@ -10,6 +10,36 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
+# The Art of Gathering
+
+# Big List of Hosting 20 people events
+
+- 1.5 big aperol spritz bottles more than suffices.
+- 3 baguettes, crisps.
+- Some cheeses, ask people to bring more wine and cheese.
+
+- Book: Alison Roman, Nothing Fancy
+
+
+#### Reading: Philosophy of Hosting
+
+- Brillat-Savarin, The Physiology of Taste
+- How to Do It, or The Lively Art of Entertaining
+- An Alphabet for Gourmets (1949)
+- Martha Stewart, Entertaining (1982)
+- Margaret Visser, The Rituals of Dinner (1991)
+- Priya Parker, The Art of Gathering (2018)
+
+#### Reading: Philosophy of Ritual And Gathering
+
+- Victor Turner, The Ritual Process
+- Georg Simmel, The Sociology of Sociability
+- Ivan Illich, Tools for Conviviality
+
+
+
+
+
 # Mean, Variance And Everything Else As Geometry
 
 - [Video](https://www.youtube.com/watch?v=h4QF-2YiM88)
@@ -22,6 +52,7 @@
 
 - [Roman Paolucci: Ito's Lemmas](https://www.youtube.com/watch?v=TgBzqdN24fo)
 - [Roman Paolucci: Ito Integration](https://www.youtube.com/watch?v=dUvZ8m3QpeI)
+
 
 
 # How to learn the altered scale
