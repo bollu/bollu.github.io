@@ -122,6 +122,9 @@ Groups of 6 is great for intimacy.
 > “If you are going to create a kingdom for an hour or a day, rule it—and rule
 > it with generosity”
 
+“A gathering run on generous authority is run with a strong, confident hand,
+but it is run selflessly, for the sake of others. Generous authority is
+imposing in a way that serves your guests”
 
 #### Reading: Philosophy of Hosting
 
