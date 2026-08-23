@@ -37,6 +37,15 @@
 > great enemy of meaningful gathering.”
 
 
+> “Specificity is a crucial ingredient. The more focused and particular a
+> gathering is, the more narrowly it frames itself and the more passion it
+> arouses. I have discovered this anecdotally through my own work, but one of
+> my clients has collected the data to back it up.”
+
+> https://en.wikipedia.org/wiki/Ichi-go_ichi-e
+
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
