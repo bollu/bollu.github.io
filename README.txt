@@ -133,6 +133,13 @@ Groups of 6 is great for intimacy.
 > the feeling”
 
 
+> “Jefferson got rid of this tradition, declaring, “At public ceremonies, to
+> which the government invites the presence of foreign ministers and their
+> families, a convenient seat or station will be provided for them, with any
+> other strangers invited and the families of the national ministers, each taking
+> place as they arrive, and without any precedence.” Seating”
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
