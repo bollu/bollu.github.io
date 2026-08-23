@@ -85,6 +85,17 @@
 > exclusion, and I often violate my own rule”
 
 
+> “That’s why so many of our gatherings end up being hijacked in the name of
+> politeness. But here is what the skilled gatherer must know: in trying not to
+> offend, you fail to protect the gathering itself and the people in it. I have
+> learned that far too often in the name of inclusion and generosity—two values I
+> care about deeply—we fail to draw boundaries about who belongs and why. Of
+> course, if inclusion is the purpose and identity of the gathering, a porous
+> boundary is fine, even perhaps necessary. But gatherings with many other,
+> wholly admirable purposes can suffer from over-inclusion. Barack Obama’s aunt
+> once told him, “If everyone is family, no one is family.” It is blood that
+> makes a tribe, a border that makes a nation”
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
