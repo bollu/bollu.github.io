@@ -74,6 +74,17 @@
 > what stays out. When in doubt about any element, even the smallest detail, hark
 > back to that purpose and decide in accordance with it”
 
+#### Chapter 2, Part 1: The Who
+
+> “Inviting people is easy. Excluding people can be hard. “The more the
+> merrier,” we are told from childhood. “The more souls, the more joy,” the
+> Dutch say. “The more fools there are, the more we laugh,” the French declare.
+> At the risk of dissenting from millennia of advice along these lines, let me
+> say this: You will have begun to gather with purpose when you learn to
+> exclude with purpose. When you learn to close doors. I take no pleasure in
+> exclusion, and I often violate my own rule”
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
