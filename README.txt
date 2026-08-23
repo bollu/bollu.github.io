@@ -104,6 +104,21 @@ Groups of 6 is great for intimacy.
 12 knights of the round table. 30 has a party vibe and energy to it.
 
 
+#### Density of people
+
+- Dinner party: Sophisticated (20 sq ft), Lively  (15 sq ft)
+- Cocktail party: Sophisticated (12 sq ft), Lively (10 sq ft), Hot (8 sq ft).
+- Extremely poor source is [apartment therapy](https://www.apartmenttherapy.com/party-architecture-density-how-to-plan-a-party-5359).
+
+#### Chapter 3: Don't be a Chill Host
+
+- "Chill" is selfishness disguised as kindness.
+
+> “game of Werewolf, a dynamic, intense group game invented by a Russian
+> psychology professor that could bond the seated guests, reverse the tide of
+> ebbing energy, and spice up the night”
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
