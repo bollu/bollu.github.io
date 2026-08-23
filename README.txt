@@ -140,6 +140,8 @@ Groups of 6 is great for intimacy.
 > place as they arrive, and without any precedence.” Seating”
 
 
+
+
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
