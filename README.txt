@@ -100,6 +100,7 @@
 ## THE SOCIOLOGY OF SOCIABILITY
 
 
+
 ## Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
