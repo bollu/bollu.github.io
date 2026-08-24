@@ -162,7 +162,14 @@ Groups of 6 is great for intimacy.
 
 > Organize Last Call.
 > ring a cowbell
-
+> Reentry, as the term is used in conflict resolution, refers to helping
+> someone who has gone through an intense experience within the bubble of a
+> dialogue return to their original context. The term is also used for
+> circumstances such as soldiers returning from war or prisoners finishing
+> their sentences. Yet even the most ordinary comings-together of people have
+> an element of reentry. As a host, you can help your guests think about what
+> they would like to take with them as they go back into the world, given what
+> they have experienced with you. 
 
 
 #### Realness can be designed
