@@ -149,6 +149,7 @@ Groups of 6 is great for intimacy.
 
 > Your gathering begins at the moment your guests first learn of it.
 > 90 percent of what makes a gathering successful is put in place beforehand.
+> "Community Table" as a name for a shared gathering with food.
 
 
 #### Reading: Philosophy of Hosting
