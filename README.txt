@@ -153,6 +153,11 @@ Groups of 6 is great for intimacy.
 > “In some ways, this should be obvious. Being vulnerable with people makes
 > them feel for you”.
 > No ideas, only experiences. 
+> “Which parts of your life have been a waste of time”
+> “At each 15 Toasts since, I almost always say something like “Tell us
+> something that would surprise us,” or “Leave your successes at the door,” or
+> “There’s no need to slip in an accomplishment.”
+
 
 #### Realness can be designed
 
