@@ -99,6 +99,13 @@
 
 ## THE SOCIOLOGY OF SOCIABILITY
 
+Interesting argument, that sociability is where it's all about 'form', not content.
+So, it's gauche to bring in 'content' such as personal wealth, or personal happiness.
+
+An example of how sociability is about form is an example of decoultage,
+where a woman feels more comfortable wearing decoultage at a *larger* group,
+since she is lesser herself, and more a player of the game.
+
 
 
 ## Reading: Philosophy of Hosting
