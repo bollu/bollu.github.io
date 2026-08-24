@@ -23,7 +23,7 @@
 - Recipe Book: Alison Roman, Nothing Fancy
 
 
-## The Art Of Gathering by Priya Parker
+## THE ART OF GATHERING BY PRIYA PARKER
 
 ### Be Specific In Why We Gather
 
@@ -95,6 +95,10 @@
 - ring a cowbell.
 - Thank people as the second to last thing.
 - Every event should have a zenith (eg dessert) that allows people to leave after.
+
+
+## THE SOCIOLOGY OF SOCIABILITY
+
 
 ## Reading: Philosophy of Hosting
 
