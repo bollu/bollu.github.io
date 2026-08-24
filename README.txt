@@ -151,6 +151,14 @@ Groups of 6 is great for intimacy.
 > 90 percent of what makes a gathering successful is put in place beforehand.
 > "Community Table" as a name for a shared gathering with food.
 
+#### Realness can be designed
+
+> Everyone opens with a toast, about what ''the good life' means to them.
+
+> Under the Chatham House Rule, anyone who comes to a meeting is free to use
+> information from the discussion, but is not allowed to reveal who made any
+> particular comment
+
 
 #### Reading: Philosophy of Hosting
 
