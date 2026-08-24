@@ -20,189 +20,94 @@
 - 3 baguettes, crisps.
 - Some cheeses, ask people to bring more wine and cheese.
 
-- Book: Alison Roman, Nothing Fancy
+- Recipe Book: Alison Roman, Nothing Fancy
 
 
 ## The Art Of Gathering by Priya Parker
 
-> “The book club was organized to get us to read a book together.”
-> “This is the circular logic that guides the planning of many of our gatherings.”
-> “When we gather, we often make the mistake of conflating category with purpose. ”
+### Be Specific In Why We Gather
 
+- "The book club was organized to get us to read a book together.
+  This is the circular logic that guides the planning of many of our gatherings."
+  When we gather, we often make the mistake of **conflating category with purpose**.
+- "routine - that great enemy of meaningful gathering". Name meetings with specificity.
+  The more focused and particular a gathering is,
+  the more narrowly it frames itself and the more passion it arouses.
+- Werewolf /mafia.
+- the Latitude society in SF: "you couldn’t pour yourself a drink; someone had to pour it for you".
+- Everyone opens with a toast, about what ''the good life' means to them.
+- Under the Chatham House Rule, anyone who comes to a meeting is free to use
+  information from the discussion, but is not allowed to reveal who made any
+  particular comment
+- "Community Table" as a name for a shared gathering with food.
+- When asking people to speak, as them to speak with no ideas, only experiences. 
+- Some other ideas: "Which parts of your life have been a waste of time”.
+- [Ichi-go Ichi-e](https://en.wikipedia.org/wiki/Ichi-go_ichi-e), about treasuring the unrepeatable nature of a moment.
+- “A good gathering purpose should also be disputable”.
+  “A disputable purpose, on the other hand, begins to be a decision filter. If
+  you commit to a purpose of your wedding as a ceremonial repayment of your
+  parents for all they have done for you as you set off to build your own family,
+  that is disputable, and it will immediately help you make choices. That one
+  remaining seat will go to your parents’ long-lost friend, not your estranged
+  college buddy. If, on the other hand, you commit to the equally valid purpose
+  of a wedding as a melding of a new couple with the tribe of people with whom
+  they feel the most open, that, too, is disputable, and it implies clear and
+  different answers. The parents’ friend may have to stand down for the college
+  buddy.”
+- “The Golden Retriever Festival in Scotland, which attracts hundreds of dogs and
+  their owners, has an admirably clear, if cosmically inconsequential, purpose:
+  to pay tribute to Lord Tweedmouth, the nineteenth-century nobleman responsible
+  for developing that breed”.
+- “Make purpose your bouncer. Let it decide what goes into your gathering and
+  what stays out. When in doubt about any element, even the smallest detail, hark
+  back to that purpose and decide in accordance with it”.
 
-> “We were expecting our first child. My girlfriends offered to throw a shower
-> for me. Like most people, we didn’t spend any time thinking about why we were
-> having a baby shower. It wasn’t the first one we’d had in our circle of
-> friends, and it wouldn’t be the last. It was almost becoming a routine—that
-> great enemy of meaningful gathering.”
+#### Don't be a Chill Host
 
+- “Gathering well isn’t a chill activity”.
+- "Chill" is selfishness disguised as kindness.
+- “If you are going to create a kingdom for an hour or a day, rule it—and rule it with generosity”
+- “A gathering run on generous authority is run with a strong, confident hand,
+  but it is run selflessly, for the sake of others. Generous authority is
+  imposing in a way that serves your guests”
+- “To protect your guests in this way can be challenging, because the anger of
+  the shushed is concentrated, while the gratitude of the protected is diffuse.
+  Anyone who has ever moderated a panel—that most lamentable of gatherings—knows
+  the feeling”
 
-> “Specificity is a crucial ingredient. The more focused and particular a
-> gathering is, the more narrowly it frames itself and the more passion it
-> arouses. I have discovered this anecdotally through my own work, but one of
-> my clients has collected the data to back it up.”
+#### Who And How Many To Invite
 
-> https://en.wikipedia.org/wiki/Ichi-go_ichi-e
-> treasuring the unrepeatable nature of a moment.
-
-
-> “A good gathering purpose should also be disputable”.
-> “A disputable purpose, on the other hand, begins to be a decision filter. If
-> you commit to a purpose of your wedding as a ceremonial repayment of your
-> parents for all they have done for you as you set off to build your own family,
-> that is disputable, and it will immediately help you make choices. That one
-> remaining seat will go to your parents’ long-lost friend, not your estranged
-> college buddy. If, on the other hand, you commit to the equally valid purpose
-> of a wedding as a melding of a new couple with the tribe of people with whom
-> they feel the most open, that, too, is disputable, and it implies clear and
-> different answers. The parents’ friend may have to stand down for the college
-> buddy.”
-
-
-> “Gathering well isn’t a chill activity”
-> “But modesty can also derive from the idea that people don’t want to be
-> imposed on. This hesitancy, which permeates many gatherings, doesn’t consider
-> that you may be doing your guests a favor by having a focus.”
-
-> “The Golden Retriever Festival in Scotland, which attracts hundreds of dogs and
-> their owners, has an admirably clear, if cosmically inconsequential, purpose:
-> to pay tribute to Lord Tweedmouth, the nineteenth-century nobleman responsible
-> for developing that breed”
-
-
-> “Make purpose your bouncer. Let it decide what goes into your gathering and
-> what stays out. When in doubt about any element, even the smallest detail, hark
-> back to that purpose and decide in accordance with it”
-
-#### Chapter 2, Part 1: The Who
-
-> “Inviting people is easy. Excluding people can be hard. “The more the
-> merrier,” we are told from childhood. “The more souls, the more joy,” the
-> Dutch say. “The more fools there are, the more we laugh,” the French declare.
-> At the risk of dissenting from millennia of advice along these lines, let me
-> say this: You will have begun to gather with purpose when you learn to
-> exclude with purpose. When you learn to close doors. I take no pleasure in
-> exclusion, and I often violate my own rule”
-
-
+> “Inviting people is easy. Excluding people can be hard. 
 > “That’s why so many of our gatherings end up being hijacked in the name of
-> politeness. But here is what the skilled gatherer must know: in trying not to
-> offend, you fail to protect the gathering itself and the people in it. I have
-> learned that far too often in the name of inclusion and generosity—two values I
-> care about deeply—we fail to draw boundaries about who belongs and why. Of
-> course, if inclusion is the purpose and identity of the gathering, a porous
-> boundary is fine, even perhaps necessary. But gatherings with many other,
-> wholly admirable purposes can suffer from over-inclusion. Barack Obama’s aunt
-> once told him, “If everyone is family, no one is family.” It is blood that
-> makes a tribe, a border that makes a nation”
+> politeness. It is blood that makes a tribe, a border that makes a nation”
 
-#### Number of people
-
-Number of poeple are “6, 12 to 15, 30, and 150”.
-Groups of 6 is great for intimacy.
-12 to 15 is large enough for a quotient of mystery and intrugue. 12 apostles,
-12 knights of the round table. 30 has a party vibe and energy to it.
-
-
-#### Density of people
-
+- Number of poeple are “6, 12 to 15, 30, and 150”.
+- Groups of 6 is great for intimacy.
+- 12 to 15 is large enough for a quotient of mystery and intrugue. 12 apostles,
+  12 knights of the round table. 30 has a party vibe and energy to it.
 - Dinner party: Sophisticated (20 sq ft), Lively  (15 sq ft)
 - Cocktail party: Sophisticated (12 sq ft), Lively (10 sq ft), Hot (8 sq ft).
 - Extremely poor source is [apartment therapy](https://www.apartmenttherapy.com/party-architecture-density-how-to-plan-a-party-5359).
 
-#### Chapter 3: Don't be a Chill Host
+#### How To Close
 
-- "Chill" is selfishness disguised as kindness.
+- Organize Last Call.
+- ring a cowbell.
+- Thank people as the second to last thing.
+- Every event should have a zenith (eg dessert) that allows people to leave after.
 
-> “game of Werewolf, a dynamic, intense group game invented by a Russian
-> psychology professor that could bond the seated guests, reverse the tide of
-> ebbing energy, and spice up the night”
-
-
-> “If you are going to create a kingdom for an hour or a day, rule it—and rule
-> it with generosity”
-
-> “A gathering run on generous authority is run with a strong, confident hand,
-> but it is run selflessly, for the sake of others. Generous authority is
-> imposing in a way that serves your guests”
-
-
-> “To protect your guests in this way can be challenging, because the anger of
-> the shushed is concentrated, while the gratitude of the protected is diffuse.
-> Anyone who has ever moderated a panel—that most lamentable of gatherings—knows
-> the feeling”
-
-
-> “Jefferson got rid of this tradition, declaring, “At public ceremonies, to
-> which the government invites the presence of foreign ministers and their
-> families, a convenient seat or station will be provided for them, with any
-> other strangers invited and the families of the national ministers, each taking
-> place as they arrive, and without any precedence.” Seating”
-
-
-#### Rules for gatherings
-
-> the Latitude society in SF: “you couldn’t pour yourself a drink; someone had to pour it for you”
-
-
-#### Never Start a Funeral with Logistics
-
-> Your gathering begins at the moment your guests first learn of it.
-> 90 percent of what makes a gathering successful is put in place beforehand.
-> "Community Table" as a name for a shared gathering with food.
-> “In some ways, this should be obvious. Being vulnerable with people makes
-> them feel for you”.
-> No ideas, only experiences. 
-> “Which parts of your life have been a waste of time”
-> “At each 15 Toasts since, I almost always say something like “Tell us
-> something that would surprise us,” or “Leave your successes at the door,” or
-> “There’s no need to slip in an accomplishment.”
-
-#### Why Closings Matter
-
-> Organize Last Call.
-> ring a cowbell
-> Reentry, as the term is used in conflict resolution, refers to helping
-> someone who has gone through an intense experience within the bubble of a
-> dialogue return to their original context. The term is also used for
-> circumstances such as soldiers returning from war or prisoners finishing
-> their sentences. Yet even the most ordinary comings-together of people have
-> an element of reentry. As a host, you can help your guests think about what
-> they would like to take with them as they go back into the world, given what
-> they have experienced with you. 
-> “you should never end a gathering with logistics, and that includes thank-yous”.
-> Thank people as the second to last thing.
-> Every event should have a zenith (eg dessert)
-> that allows people to leave after.
-
-
-#### Realness can be designed
-
-> Everyone opens with a toast, about what ''the good life' means to them.
-
-> Under the Chatham House Rule, anyone who comes to a meeting is free to use
-> information from the discussion, but is not allowed to reveal who made any
-> particular comment
-
-
-#### Reading: Philosophy of Hosting
+## Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
-- How to Do It, or The Lively Art of Entertaining
 - An Alphabet for Gourmets (1949)
 - Martha Stewart, Entertaining (1982)
 - Margaret Visser, The Rituals of Dinner (1991)
-- Priya Parker, The Art of Gathering (2018)
 
-#### Reading: Philosophy of Ritual And Gathering
+## Reading: Philosophy of Ritual And Gathering
 
 - Victor Turner, The Ritual Process
 - Georg Simmel, The Sociology of Sociability
 - Ivan Illich, Tools for Conviviality
-
-
-
-
 
 
 
