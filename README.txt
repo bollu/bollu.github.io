@@ -158,6 +158,9 @@ Groups of 6 is great for intimacy.
 > something that would surprise us,” or “Leave your successes at the door,” or
 > “There’s no need to slip in an accomplishment.”
 
+#### Why Closings Matter
+
+
 
 #### Realness can be designed
 
