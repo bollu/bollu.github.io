@@ -148,6 +148,7 @@ Groups of 6 is great for intimacy.
 #### Never Start a Funeral with Logistics
 
 > Your gathering begins at the moment your guests first learn of it.
+> 90 percent of what makes a gathering successful is put in place beforehand.
 
 
 #### Reading: Philosophy of Hosting
