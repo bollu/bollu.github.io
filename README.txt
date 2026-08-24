@@ -141,7 +141,6 @@ Groups of 6 is great for intimacy.
 
 
 
-
 #### Reading: Philosophy of Hosting
 
 - Brillat-Savarin, The Physiology of Taste
