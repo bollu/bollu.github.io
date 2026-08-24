@@ -140,6 +140,15 @@ Groups of 6 is great for intimacy.
 > place as they arrive, and without any precedence.” Seating”
 
 
+#### Rules for gatherings
+
+> the Latitude society in SF: “you couldn’t pour yourself a drink; someone had to pour it for you”
+
+
+#### Never Start a Funeral with Logistics
+
+> Your gathering begins at the moment your guests first learn of it.
+
 
 #### Reading: Philosophy of Hosting
 
