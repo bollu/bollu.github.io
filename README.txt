@@ -106,6 +106,8 @@ An example of how sociability is about form is an example of decoultage,
 where a woman feels more comfortable wearing decoultage at a *larger* group,
 since she is lesser herself, and more a player of the game.
 
+## DECIPHERING A MEAL BY MARY DOUGLAS
+
 
 
 ## Reading: Philosophy of Hosting
