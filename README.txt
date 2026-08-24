@@ -170,6 +170,10 @@ Groups of 6 is great for intimacy.
 > an element of reentry. As a host, you can help your guests think about what
 > they would like to take with them as they go back into the world, given what
 > they have experienced with you. 
+> “you should never end a gathering with logistics, and that includes thank-yous”.
+> Thank people as the second to last thing.
+> Every event should have a zenith (eg dessert)
+> that allows people to leave after.
 
 
 #### Realness can be designed
