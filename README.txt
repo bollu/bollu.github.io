@@ -20,6 +20,7 @@
 - 3 baguettes, crisps.
 - Some cheeses, ask people to bring more wine and cheese.
 
+- background music: search Spotify for “italian cooking music”
 - Recipe Book: Alison Roman, Nothing Fancy
 
 
@@ -106,7 +107,8 @@ An example of how sociability is about form is an example of decoultage,
 where a woman feels more comfortable wearing decoultage at a *larger* group,
 since she is lesser herself, and more a player of the game.
 
-## DECIPHERING A MEAL BY MARY DOUGLAS
+
+
 
 
 
