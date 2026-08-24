@@ -160,6 +160,9 @@ Groups of 6 is great for intimacy.
 
 #### Why Closings Matter
 
+> Organize Last Call.
+> ring a cowbell
+
 
 
 #### Realness can be designed
