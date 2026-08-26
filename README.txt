@@ -126,6 +126,11 @@ since she is lesser herself, and more a player of the game.
 - Ivan Illich, Tools for Conviviality
 
 
+# Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
+
+- [Video](https://www.youtube.com/watch?v=a5WhMqNkuZ0&list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
+- [Playlist](https://www.youtube.com/playlist?list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
+
 
 # Mean, Variance And Everything Else As Geometry
 
