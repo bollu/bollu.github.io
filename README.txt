@@ -9,6 +9,74 @@
 
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
+ 
+# Big List of Funk Jazz Standards
+
+- [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
+- Vamp: repeating pattern with chromaticism (by eg side slipping).
+- Use dorian, myxolydian modes.
+- Rhythmically interesting.
+- Bassline is most important part.
+
+#### Rhythm
+
+- Slower tempo.
+- 16th notes (1-e-and-a, 2-e-and-a)
+- Backbeat, so snare on 2 & 4
+- Emphasis on "The One" 
+- Strong 'downbeat' feel on 1, 2 and 4
+- use of syncopation.
+
+#### Left Hand
+
+- Bassline that hits the root note strongly on beat 1
+- Use 16th note feel
+- Use syncopation
+- The 2nd and 4th 16notes give the 16th note feel, since 1st and 3rd 16th notes sound like 8ths.
+  This also makes it sound syncopated.
+
+#### Right Hand
+
+- Use 16th note feel 
+- Use syncopation
+
+#### Most Common Standards
+
+- Superstition — Stevie Wonder
+- Chameleon — Herbie Hancock / The Headhunters
+- Watermelon Man — Herbie Hancock
+- What's Going On — Marvin Gaye
+- I Wish — Stevie Wonder
+- Brick House — Commodores
+- Pick Up the Pieces — Average White Band
+- Get Down On It — Kool & The Gang
+- Cissy Strut — The Meters
+- Give It to Me Baby — Rick James
+- Get Up (I Feel Like Being a) Sex Machine — James Brown
+- Get Up Offa That Thing — James Brown
+- Flash Light — Parliament
+- Freedom Jazz Dance — Eddie Harris (Real Book standard)
+
+#### Standards
+
+- The Chicken — Pee Wee Ellis (via The J.B.'s / Jaco Pastorius)
+- Mister Magic — Grover Washington Jr.
+- Too High — Stevie Wonder
+- Tutu — Miles Davis / Marcus Miller
+- Cold Duck Time — Eddie Harris
+- Some Skunk Funk — The Brecker Brothers
+- Red Baron — Billy Cobham
+- Thank You (Falettinme Be Mice Elf Agin) — Sly & The Family Stone
+- If You Want Me to Stay — Sly & The Family Stone
+- Shakey Ground — The Temptations
+- Pass the Peas — The J.B.'s
+
+
+
+
+
+
+
 
 # Big List of Hosting 20 People For Wine And Cheese
 
