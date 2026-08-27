@@ -10,8 +10,6 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
 
-# The Art of Gathering
-
 # Big List of Hosting 20 People For Wine And Cheese
 
 #### Cooking
@@ -128,6 +126,7 @@ since she is lesser herself, and more a player of the game.
 
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
+- [Jazz Piano Site Jazz Standards Sheet Music](https://www.thejazzpianosite.com/jazz-piano-lessons/the-basics/jazz-piano-sheet-music/)
 - [Video](https://www.youtube.com/watch?v=a5WhMqNkuZ0&list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 - [Playlist](https://www.youtube.com/playlist?list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 
@@ -139,9 +138,6 @@ since she is lesser herself, and more a player of the game.
   and the all-ones vector is the RV $1$.
 - Inner product given by $\langle X, Y \rangle = E[XY]$.
 - This gives $\langle X, 1 \rangle = E[X]$.
-
-# Ito's Lemma, Ito Integrals, Geometrically And Handwavily
-
 - [Roman Paolucci: Ito's Lemmas](https://www.youtube.com/watch?v=TgBzqdN24fo)
 - [Roman Paolucci: Ito Integration](https://www.youtube.com/watch?v=dUvZ8m3QpeI)
 
