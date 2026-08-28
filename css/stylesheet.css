@@ -249,20 +249,21 @@ blockquote {
   padding-left: 0.2em;
 }
 
-/* === homepage filter: topic bubbles + done/draft toggle === */
+/* === homepage filter: article/scratch toggle === */
 
 #filter-bar {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
+/* minimal tab-style buttons: a colored line under the selected one. */
 #filter-bar .pill {
   font-family: 'Blog Serif', serif;
   font-size: 0.85em;
-  background: #ffffff;
+  background: none;
   color: #000000;
-  border: 1px solid #bbb;
-  border-radius: 999px;
+  border: none;
+  border-bottom: 2px solid #cccccc;
   padding: 0.15em 0.8em;
   margin-right: 0.3em;
   cursor: pointer;
@@ -270,14 +271,12 @@ blockquote {
 }
 
 #filter-bar .pill:hover {
-  border-color: #1a73e8;
   color: #1a73e8;
 }
 
 #filter-bar .pill.is-active {
-  background: #1a73e8;
-  border-color: #1a73e8;
-  color: #ffffff;
+  color: #1a73e8;
+  border-bottom-color: #1a73e8;
 }
 
 #post-list .post-row.hidden {
