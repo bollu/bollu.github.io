@@ -323,3 +323,35 @@ blockquote {
   color: #b3261e;
   font-style: italic;
 }
+
+.container .article-meta-biglist {
+  color: #1a73e8;
+  font-style: italic;
+}
+
+/* the big-list section above the post list */
+#big-lists {
+  margin-top: 1em;
+  line-height: 2em;
+  text-align: left; /* the container justifies; pills must not spread. */
+}
+
+#big-lists .big-lists-label {
+  color: #777;
+  padding-right: 0.3em;
+}
+
+#big-lists .pill {
+  font-family: 'Blog Serif', serif;
+  font-size: 0.85em;
+  border: 1px solid #bbb;
+  border-radius: 999px;
+  padding: 0.15em 0.8em;
+  margin-right: 0.3em;
+  line-height: 1.4em;
+  white-space: nowrap;
+}
+
+#big-lists .pill:hover {
+  border-color: #1a73e8;
+}

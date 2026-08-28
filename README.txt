@@ -13,7 +13,7 @@
 # Big List of Funk Jazz Standards
 
 ```meta
-status: draft
+status: big-list
 created: 2026-08-28
 last-edited: 2026-08-28
 ```
@@ -87,7 +87,7 @@ last-edited: 2026-08-28
 # Big List of Hosting 20 People For Wine And Cheese
 
 ```meta
-status: draft
+status: big-list
 created: 2026-08-23
 last-edited: 2026-08-26
 ```
@@ -349,7 +349,7 @@ last-edited: 2026-08-08
 # Misty, Bar Piano Version by Christian Fuchs
 
 ```meta
-status: draft
+status: done
 created: 2026-07-01
 last-edited: 2026-07-01
 ```
@@ -376,7 +376,7 @@ last-edited: 2026-06-29
 # Boogie Woogie in a Minor Key
 
 ```meta
-status: draft
+status: done
 created: 2026-06-29
 last-edited: 2026-06-29
 ```
@@ -386,7 +386,7 @@ last-edited: 2026-06-29
 # FPSanitizer
 
 ```meta
-status: draft
+status: done
 created: 2026-06-03
 last-edited: 2026-06-03
 ```
@@ -531,7 +531,7 @@ last-edited: 2026-04-12
 # Jazz: Only Rhythm Matters
 
 ```meta
-status: draft
+status: done
 created: 2026-04-12
 last-edited: 2026-04-12
 ```
@@ -602,7 +602,7 @@ last-edited: 2026-03-04
 # Big List of Jazz Voicings
 
 ```meta
-status: draft
+status: big-list
 created: 2026-03-04
 last-edited: 2026-03-24
 ```
@@ -1147,7 +1147,7 @@ last-edited: 2025-10-17
 # Succinct Explanation of the Blossom Algorithm
 
 ```meta
-status: draft
+status: done
 created: 2025-10-17
 last-edited: 2025-10-17
 ```
@@ -1509,7 +1509,7 @@ last-edited: 2025-06-03
 # Big list of Italian Learning
 
 ```meta
-status: draft
+status: big-list
 created: 2025-05-22
 last-edited: 2025-07-18
 ```
@@ -1851,7 +1851,7 @@ last-edited: 2025-07-18
 # The Euclidean Definitions of The Functions div and mod
 
 ```meta
-status: draft
+status: done
 created: 2025-05-06
 last-edited: 2025-05-06
 ```
@@ -2232,7 +2232,7 @@ last-edited: 2025-02-26
 # Pop Piano Covers I Admire
 
 ```meta
-status: draft
+status: done
 created: 2025-02-26
 last-edited: 2025-02-26
 ```
@@ -3568,7 +3568,7 @@ last-edited: 2024-10-15
 # Public Domain Ragtime
 
 ```meta
-status: draft
+status: done
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -5472,7 +5472,7 @@ theorem false : False := by
 # Table Maker's Dilemma
 
 ```meta
-status: draft
+status: done
 created: 2024-06-09
 last-edited: 2024-06-09
 ```
@@ -5483,7 +5483,7 @@ last-edited: 2024-06-09
 # Techne, Da Vinci, Michalangelo, and Art
 
 ```meta
-status: draft
+status: done
 created: 2024-06-01
 last-edited: 2024-06-14
 ```
@@ -5507,7 +5507,7 @@ ffmpeg -y -i "doctor.who.2005.s14e00.the.star.beast.1080p.web.h264-hornedsplendi
 # Notes on Copy and Patch Compilation
 
 ```meta
-status: draft
+status: done
 created: 2024-06-02
 last-edited: 2024-07-20
 ```
@@ -5893,7 +5893,7 @@ $$
 # Building an ELF by hand
 
 ```meta
-status: draft
+status: done
 created: 2024-02-12
 last-edited: 2024-02-12
 ```
@@ -6058,7 +6058,7 @@ last-edited: 2024-01-31
 # Why FOL models must be nonempty
 
 ```meta
-status: draft
+status: done
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
@@ -7345,7 +7345,7 @@ for i in range(1000):
 # BOSCC Vectorization
 
 ```meta
-status: draft
+status: done
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7355,7 +7355,7 @@ last-edited: 2023-05-19
 # Autodiff
 
 ```meta
-status: draft
+status: done
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7421,7 +7421,7 @@ last-edited: 2023-05-19
 # Sobolev Embedding Theorem 
 
 ```meta
-status: draft
+status: done
 created: 2024-08-08
 last-edited: 2024-08-08
 ```
@@ -7433,7 +7433,7 @@ last-edited: 2024-08-08
 # Eikonal Equation [WIP]
 
 ```meta
-status: done
+status: draft
 created: 2023-05-19
 last-edited: 2023-09-22
 ```
@@ -7733,7 +7733,7 @@ but is expected to have type
 # Big list of elf file munging / linker / ABI
 
 ```meta
-status: draft
+status: big-list
 created: 2023-03-28
 last-edited: 2023-05-31
 ```
@@ -8964,7 +8964,7 @@ by { dsimp, refl }
 # Big list of GNU Binutils
 
 ```meta
-status: draft
+status: big-list
 created: 2023-01-01
 last-edited: 2023-03-27
 ```
@@ -9018,7 +9018,7 @@ K refl = refl
 # Linear vs uniqueness types
 
 ```meta
-status: draft
+status: done
 created: 2022-11-24
 last-edited: 2022-11-24
 ```
@@ -9430,7 +9430,7 @@ X1 - Χ[f]1- -> Ο1
 # Dimensions versus units
 
 ```meta
-status: draft
+status: done
 created: 2022-10-27
 last-edited: 2022-10-27
 ```
@@ -9563,7 +9563,7 @@ last-edited: 2023-04-02
 # Allegories and Categories
 
 ```meta
-status: draft
+status: done
 created: 2022-09-28
 last-edited: 2022-09-28
 ```
@@ -10800,7 +10800,7 @@ told another time. 10/10
 # Naming left closed, right open with start/stop
 
 ```meta
-status: draft
+status: done
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -11559,7 +11559,7 @@ q a a         q b b
 # Parabolic dynamics and renormalization
 
 ```meta
-status: draft
+status: done
 created: 2022-06-26
 last-edited: 2022-06-26
 ```
@@ -11657,7 +11657,7 @@ last-edited: 2023-04-02
 # TLDP pages for bash conditionals
 
 ```meta
-status: draft
+status: done
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11667,7 +11667,7 @@ last-edited: 2022-10-13
 # Remainder, Modulo
 
 ```meta
-status: draft
+status: done
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11794,7 +11794,7 @@ T(a) type
 # Testing infra in Lean4
 
 ```meta
-status: draft
+status: done
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11921,7 +11921,7 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 # Big list of lean tactics
 
 ```meta
-status: draft
+status: big-list
 created: 2022-06-27
 last-edited: 2023-04-02
 ```
@@ -12004,7 +12004,7 @@ last-edited: 2023-04-02
 # Fungrim
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12031,7 +12031,7 @@ last-edited: 2023-04-02
 # Homotopy continuation
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12042,7 +12042,7 @@ last-edited: 2022-05-30
 # Relationship between linearity and contradiction
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12539,7 +12539,7 @@ last-edited: 2022-05-30
 # Why a sentinel of `-1` is sensible
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12710,7 +12710,7 @@ last-edited: 2022-08-22
 # Better `man` Pages via `info`
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12763,7 +12763,7 @@ last-edited: 2022-05-30
 # Patat
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12795,7 +12795,7 @@ last-edited: 2022-05-30
 # Mitchell-Bénabou language
 
 ```meta
-status: draft
+status: done
 created: 2022-05-30
 last-edited: 2022-09-28
 ```
@@ -12895,7 +12895,7 @@ where
 # Big list of Lean4 TODOS
 
 ```meta
-status: draft
+status: big-list
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -12934,7 +12934,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 # Big List of Lean4 FAQ
 
 ```meta
-status: draft
+status: big-list
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -13411,7 +13411,7 @@ last-edited: 2022-09-28
 # wegli: Neat tool for semantically grepping C++
 
 ```meta
-status: draft
+status: done
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13651,7 +13651,7 @@ last-edited: 2022-04-03
 # Remez Algorithm
 
 ```meta
-status: draft
+status: done
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13821,7 +13821,7 @@ void editor_state_backspace_char(EditorState& s) {
 # XOR and AND relationship
 
 ```meta
-status: draft
+status: done
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -13831,7 +13831,7 @@ last-edited: 2022-02-03
 # Geometry of complex integrals
 
 ```meta
-status: draft
+status: done
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -13904,7 +13904,7 @@ last-edited: 2022-05-30
 # Fundamental theorem of homological algebra [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -14109,7 +14109,7 @@ E ->>B <--       g~
 # How ideals recover factorization [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-01-28
 last-edited: 2022-05-30
 ```
@@ -14392,7 +14392,7 @@ last-edited: 2022-05-30
 # Proof that $Spec(R)$ is a sheaf [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-02-06
 ```
@@ -14436,7 +14436,7 @@ last-edited: 2022-02-06
 # Projections onto convex sets
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2026-08-28
 ```
@@ -14447,7 +14447,7 @@ last-edited: 2026-08-28
 # BGFS algorithm for unconstrained nonlinear optimization
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2022-02-06
 ```
@@ -14457,7 +14457,7 @@ last-edited: 2022-02-06
 # LM algorithm for nonlinear least squares
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2022-02-06
 ```
@@ -15051,7 +15051,7 @@ last-edited: 2023-04-02
 # LispWorks config
 
 ```meta
-status: draft
+status: done
 created: 2022-01-02
 last-edited: 2022-01-02
 ```
@@ -15309,7 +15309,7 @@ last-edited: 2021-12-28
 # Lazy reversible computation?
 
 ```meta
-status: draft
+status: done
 created: 2021-12-28
 last-edited: 2021-12-28
 ```
@@ -15319,7 +15319,7 @@ last-edited: 2021-12-28
 # Theorem coverage as an analogue to code coverage
 
 ```meta
-status: draft
+status: done
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -15468,7 +15468,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 # Coloring `cat` output with `supercat`
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15489,7 +15489,7 @@ last-edited: 2021-12-26
 # Monads mnemonic
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15563,7 +15563,7 @@ last-edited: 2022-05-30
 # Undefined behaviour is like compactification [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -16021,7 +16021,7 @@ last-edited: 2022-05-30
 # Dropping into tty on manjaro/GRUB
 
 ```meta
-status: draft
+status: done
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -16190,7 +16190,7 @@ last-edited: 2021-11-18
 # Hip-Hop and Shakespeare
 
 ```meta
-status: draft
+status: done
 created: 2021-11-18
 last-edited: 2021-11-18
 ```
@@ -16271,7 +16271,7 @@ last-edited: 2022-05-30
 # `fd` for `find`
 
 ```meta
-status: draft
+status: done
 created: 2021-11-11
 last-edited: 2021-11-11
 ```
@@ -16676,7 +16676,7 @@ last-edited: 2022-05-30
 # Counter-intuitive linearity of expectation [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -16992,7 +16992,7 @@ last-edited: 2022-05-30
 # HPNDUF - Hard problems need design up front!
 
 ```meta
-status: draft
+status: done
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17766,7 +17766,7 @@ last-edited: 2022-05-30
 # McKay's proof of Cauchy's theorem for groups [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -17783,7 +17783,7 @@ last-edited: 2022-05-30
 # ncdu for disk space measurement
 
 ```meta
-status: draft
+status: done
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17795,7 +17795,7 @@ last-edited: 2021-10-31
 # nmon versus htop
 
 ```meta
-status: draft
+status: done
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -18230,7 +18230,7 @@ last-edited: 2021-10-04
 # Integral elements of a ring form a ring [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -18260,7 +18260,7 @@ last-edited: 2022-05-30
 # Siefert Algorithm [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -18272,7 +18272,7 @@ last-edited: 2022-02-03
 # Cap product [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -18291,7 +18291,7 @@ last-edited: 2022-02-03
 # Cup product [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -18333,7 +18333,7 @@ last-edited: 2021-09-24
 # Limits examples with small diagram categories
 
 ```meta
-status: draft
+status: done
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -18406,7 +18406,7 @@ https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 # Gauss, normals, fundamental forms [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -18491,7 +18491,7 @@ $$
 # Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -19121,7 +19121,7 @@ int f(vector<int> &xs) {
 # Representation theory of $SU(2)$ [TODO]
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -20026,7 +20026,7 @@ def rhsIV():
 # Min cost flow (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -20292,7 +20292,7 @@ int query_mins(int l, int r) {
 # Duval's algorithm
 
 ```meta
-status: draft
+status: done
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20418,7 +20418,7 @@ b===c
 # XOR on binary trie
 
 ```meta
-status: draft
+status: done
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20430,7 +20430,7 @@ like a handy way to visualize numbers. In particular, to solve question [1554C](
 # Inconvergent: beautiful generative art
 
 ```meta
-status: draft
+status: done
 created: 2021-07-30
 last-edited: 2021-08-19
 ```
@@ -21150,7 +21150,7 @@ vector<int> myz(std::string s) {
 # For a given recurrence, what base cases do I need to implement?
 
 ```meta
-status: draft
+status: done
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -21799,7 +21799,7 @@ void main() {
 # Example of RVs that are pairwise but not 3-way independent.
 
 ```meta
-status: draft
+status: done
 created: 2021-07-02
 last-edited: 2021-07-02
 ```
@@ -22552,7 +22552,7 @@ a model for the axioms of MLTT where UIP fails --- a groupoid!
 # Mnemonics for free = left adjoint
 
 ```meta
-status: draft
+status: done
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22566,7 +22566,7 @@ last-edited: 2021-06-27
 # Where to scratch a cat
 
 ```meta
-status: draft
+status: done
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22833,7 +22833,7 @@ while harmonic mean is more sensitive to small values. Geomean is neither, so it
 # Thoughts on playing Em Bm.
 
 ```meta
-status: draft
+status: done
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -23356,7 +23356,7 @@ addA (a b: nat):
 # Etymology of fiber bundle $F \rightarrow E \rightarrow B$
 
 ```meta
-status: draft
+status: done
 created: 2021-06-07
 last-edited: 2021-06-07
 ```
@@ -23491,7 +23491,7 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
 # Madoka Magica: plot thoughts
 
 ```meta
-status: draft
+status: done
 created: 2021-06-05
 last-edited: 2022-05-30
 ```
@@ -24981,7 +24981,7 @@ into the `Hom` category.
 # GHCID
 
 ```meta
-status: draft
+status: done
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25317,7 +25317,7 @@ last-edited: 2021-05-16
 # Cofactor as derivative of determinant
 
 ```meta
-status: draft
+status: done
 created: 2021-05-16
 last-edited: 2021-05-23
 ```
@@ -25397,7 +25397,7 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 # Legal Systems very different from ours
 
 ```meta
-status: draft
+status: done
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25405,7 +25405,7 @@ last-edited: 2021-05-16
 # Shrinking wedge of circles / Hawaiian earring (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -25422,7 +25422,7 @@ is so different from the hawaiian earring. Here are some thoughts:
 # Simplicial approxmation of maps (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -25789,7 +25789,7 @@ more than `1/2` of the circle), we will  ????
 # Octaves are double frequency apart (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -25810,7 +25810,7 @@ a multiple oCochlea and why frequencies are 1:2
 # Bias and gain
 
 ```meta
-status: draft
+status: done
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25879,7 +25879,7 @@ last-edited: 2021-05-16
 # Spectral norm of Hermitian matrix equals largest eigenvalue (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -25919,7 +25919,7 @@ last-edited: 2022-05-30
 # When maps cannot be lifted to the universal cover
 
 ```meta
-status: draft
+status: done
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25929,7 +25929,7 @@ last-edited: 2021-05-16
 # Nets from Munkres (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -26810,7 +26810,7 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 # Animating rotations with quaternion curves
 
 ```meta
-status: draft
+status: done
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -28146,7 +28146,7 @@ in our theory.
 # Mean value theorem and Taylor's theorem. (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-03-16
 last-edited: 2021-03-16
 ```
@@ -28658,7 +28658,7 @@ $$
 # Learning to talk with your hands
 
 ```meta
-status: draft
+status: done
 created: 2021-03-11
 last-edited: 2021-03-16
 ```
@@ -29148,7 +29148,7 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
 # Hilbert basis theorem for polynomial rings over fields (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -30207,7 +30207,7 @@ than a 1 categorical construct.
 # Non standard inner products and unitarity of representations
 
 ```meta
-status: draft
+status: done
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30889,7 +30889,7 @@ last-edited: 2022-05-30
 # BLM master thesis
 
 ```meta
-status: draft
+status: done
 created: 2021-02-03
 last-edited: 2021-02-03
 ```
@@ -31039,7 +31039,7 @@ $P$ and $p^{-1}$.
 # Djikstra's using a segtree
 
 ```meta
-status: draft
+status: done
 created: 2021-02-03
 last-edited: 2021-02-03
 ```
@@ -31103,21 +31103,21 @@ to get a bound.
 # Among any 51 integers, that are 2 with squares having equal value modulo 100
 
 ```meta
-status: draft
+status: done
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
 # $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
 
 ```meta
-status: draft
+status: done
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
 # $10^{3n+1}$ cannot be written as sum of two cubes
 
 ```meta
-status: draft
+status: done
 created: 2021-01-29
 last-edited: 2021-05-16
 ```
@@ -31186,7 +31186,7 @@ last-edited: 2021-01-29
 # Old school fonts
 
 ```meta
-status: draft
+status: done
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
@@ -31728,7 +31728,7 @@ instead of equals (`=`).
 # The Heather subculture
 
 ```meta
-status: draft
+status: done
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -32440,7 +32440,7 @@ constant times the identity. That is, there exists a $\lambda$ such that $f = \l
 # Daughters of destiny
 
 ```meta
-status: draft
+status: done
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -33159,7 +33159,7 @@ the situation.
 # The mnemonica stack (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -33358,7 +33358,7 @@ According to him, this is similar to how I read code:
 # KMP (Knuth, Morris, Pratt) (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -33587,7 +33587,7 @@ $e_-^2$ that would have given rise to expectiles.
 # Depth first search through linear algebra (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -33633,7 +33633,7 @@ last-edited: 2021-05-23
 # On reading how to rule (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -33908,7 +33908,7 @@ void mkroot(int newroot, int prevroot) {
 # Making GDB usable
 
 ```meta
-status: draft
+status: done
 created: 2020-11-24
 last-edited: 2020-11-24
 ```
@@ -34148,7 +34148,7 @@ us the diameter (the distance from $v$ to $w$)
 # Catalan numbers as popular candidate votes (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -34173,7 +34173,7 @@ to $1/(n+1) \binom{2n}{n}$ by reasoning about seqences of votes, called as
 # The chromatic polynomial (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -35118,7 +35118,7 @@ how the whole is greater than the sum of its parts, in terms of capturing a
 # Flows (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -35427,7 +35427,7 @@ to cost 1 + the number of trailing ones. We want to make this **constant**.
 # Shelly Kegan: death --- Suicide and rationality (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -35516,7 +35516,7 @@ and after. Call this the two state requirement.
 # Sam harris and jordan peterson: Vancouver 1 (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -36460,7 +36460,7 @@ the true reference value we want to hit.
 # Why is the gradient covariant?
 
 ```meta
-status: draft
+status: done
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36470,7 +36470,7 @@ last-edited: 2020-11-17
 # Politicization of science
 
 ```meta
-status: draft
+status: done
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36480,7 +36480,7 @@ last-edited: 2020-11-17
 # Multi ꙮ cular O: ꙮ / Eye of cthulu
 
 ```meta
-status: draft
+status: done
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36490,7 +36490,7 @@ last-edited: 2020-11-17
 # You can't measure the one way speed of light
 
 ```meta
-status: draft
+status: done
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36570,7 +36570,7 @@ for wk in sorted:
 # Easy times don't create weak people, they just allow weak people to survive.
 
 ```meta
-status: draft
+status: done
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36612,7 +36612,7 @@ last-edited: 2022-05-30
 # Bijection from `(0, 1)` to `[0, 1]`
 
 ```meta
-status: draft
+status: done
 created: 2020-10-30
 last-edited: 2020-10-30
 ```
@@ -36622,7 +36622,7 @@ last-edited: 2020-10-30
 # Rene Girard
 
 ```meta
-status: draft
+status: done
 created: 2020-10-30
 last-edited: 2020-10-30
 ```
@@ -36632,7 +36632,7 @@ last-edited: 2020-10-30
 # Noam Chomsky on anarchism (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -37368,7 +37368,7 @@ pointer, [like Microsoft Teams](https://docs.microsoft.com/en-us/answers/questio
 # Non commuting observables: Light polarization
 
 ```meta
-status: draft
+status: done
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37626,7 +37626,7 @@ Replace the idea of:
 # Data oriented programming in C++
 
 ```meta
-status: draft
+status: done
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37785,7 +37785,7 @@ I don't even know.
 # Autodiff over derivative of integrals
 
 ```meta
-status: draft
+status: done
 created: 2020-10-07
 last-edited: 2020-10-22
 ```
@@ -37843,7 +37843,7 @@ less reliable than it used to be.
 # Violent deaths in ancient societies (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -37887,7 +37887,7 @@ Generalization to tensors is left as an exercise for the reader.
 # Elementary probability theory (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -39792,7 +39792,7 @@ evocative.
 # Localization: Introducing epsilons (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -40107,7 +40107,7 @@ so we get the answer as `answer = 20/2! = 10`.
 # This is not a place of honor
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -42319,7 +42319,7 @@ last-edited: 2020-09-05
 # Product of compact spaces in compact
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-10-22
 ```
@@ -43423,7 +43423,7 @@ I really liked this bijection.
 # Continued fractions, mobius transformations
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -45683,7 +45683,7 @@ argmin f a a' = if (f a) < (f a') then a else a'
 # Evolution of bee colonies (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -48069,7 +48069,7 @@ function pointer is some pointer-like-thing.
 # A walkway of lanterns (TODO)
 
 ```meta
-status: done
+status: draft
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -48146,7 +48146,7 @@ them, so I made this for my own reference.
 # The hilarious commentary by dinosaure in OCaml git
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49880,7 +49880,7 @@ I often forget which is which, so I came up with this:
 # Legendre transform
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -54475,7 +54475,7 @@ which seems to imply that we need to use hyperbolic geometry for this.
 # Topology as an object telling us what zero-locus is closed:
 
 ```meta
-status: draft
+status: done
 created: 2019-09-12
 last-edited: 2019-09-12
 ```
@@ -54705,7 +54705,7 @@ from being formed.
 # [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 ```meta
-status: draft
+status: done
 created: 2019-07-21
 last-edited: 2019-07-21
 ```
@@ -54716,7 +54716,7 @@ to implement a superoptimiser based on MCMC methods.
 # Collapsing `BlockId`, `Label`, `Unique`:
 
 ```meta
-status: draft
+status: done
 created: 2019-06-28
 last-edited: 2020-04-07
 ```
@@ -54745,7 +54745,7 @@ long range effects, but not short range effects.
 # Vector: Arthur Whitney and text editors
 
 ```meta
-status: draft
+status: done
 created: 2019-06-22
 last-edited: 2019-06-28
 ```
@@ -55620,7 +55620,7 @@ to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 # Concurrency in Haskell
 
 ```meta
-status: draft
+status: done
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -57251,7 +57251,7 @@ let g:conjure#mapping#eval_motion = "E"
 # Big list of quotes
 
 ```meta
-status: draft
+status: big-list
 created: 2020-10-30
 last-edited: 2026-08-11
 ```
@@ -57654,7 +57654,7 @@ which end you wish edit: press c]i} to perform the edit you describe.
 # Big list of Chess
 
 ```meta
-status: draft
+status: big-list
 created: 2021-02-03
 last-edited: 2021-05-16
 ```
@@ -57675,7 +57675,7 @@ last-edited: 2021-05-16
 # Big list of shitposting
 
 ```meta
-status: draft
+status: big-list
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -57688,7 +57688,7 @@ last-edited: 2021-01-09
 # Big list of Breakdance
 
 ```meta
-status: draft
+status: big-list
 created: 2022-09-19
 last-edited: 2022-09-19
 ```
@@ -57706,7 +57706,7 @@ last-edited: 2022-09-19
 # Big list of Cardistry
 
 ```meta
-status: draft
+status: big-list
 created: 2022-09-19
 last-edited: 2023-04-02
 ```
@@ -57833,7 +57833,7 @@ last-edited: 2023-04-02
 # Poems to memorize
 
 ```meta
-status: draft
+status: done
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -58059,7 +58059,7 @@ last-edited: 2022-09-19
 # Big list of Hacker news
 
 ```meta
-status: draft
+status: big-list
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -58230,7 +58230,7 @@ last-edited: 2022-04-28
 # Big list of shuffle dancing
 
 ```meta
-status: draft
+status: big-list
 created: 2022-09-19
 last-edited: 2025-06-10
 ```
@@ -58296,7 +58296,7 @@ last-edited: 2025-06-10
 # Big list of tmux
 
 ```meta
-status: draft
+status: big-list
 created: 2022-11-24
 last-edited: 2024-01-31
 ```
@@ -58322,7 +58322,7 @@ last-edited: 2024-01-31
 # Big list of new words
 
 ```meta
-status: draft
+status: big-list
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
@@ -59134,7 +59134,7 @@ w: dan-cing un-der-neath the skies of lust
 # Big List of Artists and Illustrators
 
 ```meta
-status: draft
+status: big-list
 created: 2024-06-01
 last-edited: 2024-07-22
 ```
@@ -59151,7 +59151,7 @@ last-edited: 2024-07-22
 # Big List of Art and Paintings I Enjoy
 
 ```meta
-status: draft
+status: big-list
 created: 2024-08-04
 last-edited: 2024-08-08
 ```
@@ -59168,7 +59168,7 @@ last-edited: 2024-08-08
 # Big List of Decision Procedures Research Questions
 
 ```meta
-status: draft
+status: big-list
 created: 2025-02-28
 last-edited: 2025-02-28
 ```
@@ -59178,7 +59178,7 @@ last-edited: 2025-02-28
 # Big List of Fitness 
 
 ```meta
-status: draft
+status: big-list
 created: 2025-09-07
 last-edited: 2025-09-07
 ```
