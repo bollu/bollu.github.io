@@ -12,6 +12,12 @@
  
 # Big List of Funk Jazz Standards
 
+```meta
+status: draft
+created: 2026-08-28
+last-edited: 2026-08-28
+```
+
 - [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
 - Vamp: repeating pattern with chromaticism (by eg side slipping).
 - Use dorian, myxolydian modes.
@@ -79,6 +85,12 @@
 
 
 # Big List of Hosting 20 People For Wine And Cheese
+
+```meta
+status: draft
+created: 2026-08-23
+last-edited: 2026-08-26
+```
 
 #### Cooking
 
@@ -194,12 +206,24 @@ since she is lesser herself, and more a player of the game.
 
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
+```meta
+status: done
+created: 2026-08-26
+last-edited: 2026-08-28
+```
+
 - [Jazz Piano Site Jazz Standards Sheet Music](https://www.thejazzpianosite.com/jazz-piano-lessons/the-basics/jazz-piano-sheet-music/)
 - [Video](https://www.youtube.com/watch?v=a5WhMqNkuZ0&list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 - [Playlist](https://www.youtube.com/playlist?list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 
 
 # Mean, Variance And Everything Else As Geometry
+
+```meta
+status: done
+created: 2026-08-12
+last-edited: 2026-08-28
+```
 
 - [Video](https://www.youtube.com/watch?v=h4QF-2YiM88)
 - Space of vectors, where random varibles are vectors with coefficients given by the realization,
@@ -212,6 +236,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # How to learn the altered scale
+
+```meta
+status: done
+created: 2026-08-08
+last-edited: 2026-08-28
+```
 
 - Suppose we want to play the `D-G-C` `ii V I` chord progression.
 - For G, we can use notes from the altered scale.
@@ -237,6 +267,12 @@ since she is lesser herself, and more a player of the game.
 
 # How to Interpret Variance and Mean Geometrically
 
+```meta
+status: done
+created: 2026-08-12
+last-edited: 2026-08-12
+```
+
 - [Random Variables Are Just Right Triangles](https://www.youtube.com/watch?v=h4QF-2YiM88)
 - Consider a vector space of random variables.
 - Then, the vector $1$ is the constant random variable $1$.
@@ -247,6 +283,12 @@ since she is lesser herself, and more a player of the game.
 
 # Jazzy blues improv
 
+```meta
+status: done
+created: 2026-08-08
+last-edited: 2026-08-08
+```
+
 - Use the locked hands / block chords / barry harris
 - freely combine major and minor sounds, with a tonal center around A and C.
 - Bend almost all notes, keeping in mind that `Ab -> A`, `C# ->D/C` depending on the situation,
@@ -255,6 +297,12 @@ since she is lesser herself, and more a player of the game.
 - `BbM` sounds really cool on the left hand.
 
 # Sid's Paper Writing Guide
+
+```meta
+status: done
+created: 2026-07-03
+last-edited: 2026-07-08
+```
 
 ## Abstract
 
@@ -287,6 +335,12 @@ since she is lesser herself, and more a player of the game.
 
 # Quant Dev Role Prep
 
+```meta
+status: done
+created: 2026-07-08
+last-edited: 2026-08-08
+```
+
 - [Performance Analysis and Tuning on Modern CPUs](https://github.com/dendibakh/perf-book/releases/tag/2.0_release)
 - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - [c++23 the complete guide](https://www.josuttis.com/)
@@ -294,9 +348,21 @@ since she is lesser herself, and more a player of the game.
 
 # Misty, Bar Piano Version by Christian Fuchs
 
+```meta
+status: draft
+created: 2026-07-01
+last-edited: 2026-07-01
+```
+
 - [Video](hhttps://www.youtube.com/watch?v=1PyOO-M5zsA&t=775s)
 
 # The Most Satisfying Chord Progression by Christian Fuchs
+
+```meta
+status: done
+created: 2026-06-29
+last-edited: 2026-06-29
+```
 
 - [Video](https://www.youtube.com/watch?v=ffKAD9ZFHgo&t=4s)
 - RH plays Am blues (A C Eb E G), with drone, with the `A` on top with below the below.
@@ -309,14 +375,32 @@ since she is lesser herself, and more a player of the game.
 
 # Boogie Woogie in a Minor Key
 
+```meta
+status: draft
+created: 2026-06-29
+last-edited: 2026-06-29
+```
+
 - [Boogie Woogie in A minor by Henri Herbert](https://www.youtube.com/watch?v=HrWIxP8Pxdg)
 
 # FPSanitizer
+
+```meta
+status: draft
+created: 2026-06-03
+last-edited: 2026-06-03
+```
 
 - [Key Idea](https://cp4space.hatsya.com/2026/05/03/schanuels-conjecture-and-the-semantics-of-fpsan/)
 
 
 # Reflections on Task Creation
+
+```meta
+status: done
+created: 2026-05-13
+last-edited: 2026-05-13
+```
 
 #### Big Task, Mini Checkpoints
 
@@ -327,6 +411,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # Playing Funk Piano
+
+```meta
+status: done
+created: 2026-04-16
+last-edited: 2026-04-30
+```
 
 - [Groove window piano funk groove](https://www.youtube.com/watch?v=P_eEnt3pbNI&list=PLiTb84jJJ9MxcxlvQlsoRNAiVFS2M3VBc&index=14)
 - [Funk Chords: Top 5](https://www.youtube.com/watch?v=b0Zbla4Tsfs)
@@ -344,6 +434,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
+
+```meta
+status: done
+created: 2026-04-27
+last-edited: 2026-06-29
+```
 
 
 ## Basic Chord Progression
@@ -398,6 +494,12 @@ since she is lesser herself, and more a player of the game.
 
 # WAL and ARIES
 
+```meta
+status: done
+created: 2026-04-27
+last-edited: 2026-04-27
+```
+
 - [CMU Databases: BusTub](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html)
 - [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control).
 - [Refs and Transactions](https://clojure.org/reference/refs).
@@ -413,6 +515,12 @@ since she is lesser herself, and more a player of the game.
 
 # Proof of Godel Incompleteness from Turing Machines
 
+```meta
+status: done
+created: 2026-04-12
+last-edited: 2026-04-12
+```
+
 - Suppose theory T is complete and consistent.
 - Then T gives us a halting oracle, since T 'knows' whether a turing machine `M` halts or does not halt.
 - The idea is that when we are given a TM `M` and an input `x`, we can write down the statment
@@ -422,10 +530,22 @@ since she is lesser herself, and more a player of the game.
 
 # Jazz: Only Rhythm Matters
 
+```meta
+status: draft
+created: 2026-04-12
+last-edited: 2026-04-12
+```
+
 - Thelonious monk: Rhythm-A-Ning 
 - Thelonious monk: Straight, No Chaser
 
 # Lounge Jazz Left Hand
+
+```meta
+status: done
+created: 2026-04-12
+last-edited: 2026-04-12
+```
 
 - [Video](https://www.youtube.com/watch?v=-rFaso7RxDY)
 - Swell principle: Give it a breathing feeling. 
@@ -436,12 +556,24 @@ since she is lesser herself, and more a player of the game.
 
 # Half-Whole Tone Scale As Interlaced Diminished Chords.
 
+```meta
+status: done
+created: 2026-03-24
+last-edited: 2026-03-24
+```
+
 - Take two diminished chords: `C Eb F# A`, and `Db E G Bb`.
 - Interlacing these, we get `C Db Eb E F# G A Bb`, which is the half-tone whole tone scale.
 - So, if you know your diminshed chords (which you do, to play joplin and evans),
   then you can easily get the half-whole tone scale, which is super useful for playing over dominant chords.
 
 # Randomized SharpSAT
+
+```meta
+status: done
+created: 2026-03-20
+last-edited: 2026-08-08
+```
 
 - First idea: take random assignments, and use this to estimate total number of models.
 - Next idea: take deterministic partial assignments, then extend these partial assignments randomly. This will use the randomness on a 'smaller domain',
@@ -457,11 +589,23 @@ since she is lesser herself, and more a player of the game.
 
 # Learning all 7th inversions
 
+```meta
+status: done
+created: 2026-03-04
+last-edited: 2026-03-04
+```
+
 - Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
 - play Dmajor(DΔ), Ddom7(1st inversion), Dm7(2nd inversion), Dmajor7(3rd inversion),
   Dmin7(1st inversion).
 
 # Big List of Jazz Voicings
+
+```meta
+status: draft
+created: 2026-03-04
+last-edited: 2026-03-24
+```
 
 - [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
 - don't want doublings (same note played twice, lower and higher).
@@ -515,6 +659,12 @@ since she is lesser herself, and more a player of the game.
 
 # Jazz Piano Block Chords Melody Playing
 
+```meta
+status: done
+created: 2026-03-02
+last-edited: 2026-04-27
+```
+
 - [How to practice and play block chords](https://www.youtube.com/watch?v=AE2tZsGNFvo)
 - This is the style I like, it sound 'crunchy' due to the blockiness of the chords.
 - [Intro to Block Chords](https://www.youtube.com/watch?v=7dohizUym0M),
@@ -529,6 +679,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # A different derivation of the bepop notes
+
+```meta
+status: done
+created: 2026-02-05
+last-edited: 2026-02-05
+```
 
 ### Major C bebop
 
@@ -556,6 +712,12 @@ since she is lesser herself, and more a player of the game.
 
 # Playing over a ii V I with a 3rd scale.
 
+```meta
+status: done
+created: 2026-02-05
+last-edited: 2026-02-05
+```
+
 - For a Dm Gdom7 Cm7, play
 - Fmaj7 over Dm7
 - Bdim7 over G7
@@ -564,6 +726,12 @@ since she is lesser herself, and more a player of the game.
 
 # Flipped Enclosure Piano Voicings
 
+```meta
+status: done
+created: 2026-02-05
+last-edited: 2026-03-24
+```
+
 - To play a note, play an enclosure that is diatonic above and chromatic below.
   So in GM, to play G, play `A F# G`.
 - Moreover, when playing a sequence, if the sequence goes down, then play the enclosure in an increasing way,
@@ -571,6 +739,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # Jazz Piano Fundamentals Book
+
+```meta
+status: done
+created: 2026-03-24
+last-edited: 2026-03-24
+```
 
 - [Website](https://jeremysiskind.com/jazz-piano-fundamentals-main-page/)
 
@@ -618,6 +792,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # Stuff I learnt in 2025 
+
+```meta
+status: done
+created: 2026-01-03
+last-edited: 2026-01-03
+```
 
 #### Decision Procedures
 
@@ -679,6 +859,12 @@ since she is lesser herself, and more a player of the game.
 
 # Modular Arithmetic Decision Procedure
 
+```meta
+status: done
+created: 2025-12-15
+last-edited: 2025-12-15
+```
+
 
 - [Modular Arithmetic Decision Procedure by Domagoj and Madanlal](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2005-114.pdf)
 - For bounded integers, actually just perform the hensel lifting. Can handle polynomial fragment. 
@@ -688,6 +874,12 @@ since she is lesser herself, and more a player of the game.
   and lifts should also be faster?
 
 # Nobody's Fault but Mine Piano Chord Voicings
+
+```meta
+status: done
+created: 2025-12-10
+last-edited: 2025-12-10
+```
 
 
 - In the treble clef, bar 2, for piano, see the following 
@@ -724,6 +916,12 @@ A(1)| A(1)|    | A(1)|    |
 
 
 # Farkas Lemma
+
+```meta
+status: draft
+created: 2025-12-09
+last-edited: 2025-12-10
+```
 
 - [Reference: Advanced Algorithms by Michael X Goemans](https://dspace.mit.edu/bitstream/handle/1721.1/49420/6-854JFall2001/NR/rdonlyres/Electrical-Engineering-and-Computer-Science/6-854JFall2001/FD15AC29-4D14-4733-832C-5626A8B1366E/0/lect9_19.pdf)
 
@@ -768,6 +966,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # Computing with High Dimensional Vectors
 
+```meta
+status: done
+created: 2025-11-17
+last-edited: 2025-11-17
+```
+
 - Choose binary vectors.
 - Lemma 1 (Johnson Lidenstrauss): any n points in high dimensional space can be embedded into O(log n / eps^2) dimensions
   with (1 +/- eps) distortion of distances.
@@ -787,6 +991,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # Improvising Two Part Invention
 
+```meta
+status: done
+created: 2025-11-16
+last-edited: 2025-11-16
+```
+
 - Practice moving with a distance of 3rd and 6th between the two voices.
 - First practice 3ds and 6th separately. So practice playing a song together with all thirds.
 - Then practice playing a song together with all sixths.
@@ -800,6 +1010,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # Improvise Polyphony in four voices
 
+```meta
+status: done
+created: 2025-11-16
+last-edited: 2025-11-16
+```
+
 - The key idea is that we want to write four voices as 2+2 voices.
 - Now, we are interested in "close imitation", where the second voice comes in shortly after the subject.
 - There are two key factors: The pitch interval and the time interval.
@@ -811,6 +1027,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # How to Improve Evalauation Metrics
 
+```meta
+status: done
+created: 2025-11-14
+last-edited: 2025-11-15
+```
+
 - Create a histogram to burn down on.
 - When you start, you will probably make it via just printing errors, sorted in say lex order.
 - This will be too large. Therefore, you will now collapse these into larger equivalence classes, giving you a rougher
@@ -821,6 +1043,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # Durable Execution
 
+```meta
+status: done
+created: 2025-11-05
+last-edited: 2025-11-17
+```
+
 - I learnt of this concept from [absurd.sql](https://lucumr.pocoo.org/2025/11/3/absurd-workflows/),
   and is precisely the vocabulary that I have been looking for.
 - I am considering using SQLite for this, as it's the perfect simple backend for the scale of tasks that I have
@@ -829,6 +1057,12 @@ A(1)| A(1)|    | A(1)|    |
 - [To read: Queues via Postgres](https://web.archive.org/web/20190530143429/https://www.2ndquadrant.com/en/blog/what-is-select-skip-locked-for-in-postgresql-9-5/), and are my notes.
 
 # Multi-Width Bitvectors with Append: Using Fundamental Domains?
+
+```meta
+status: done
+created: 2025-10-18
+last-edited: 2025-11-05
+```
 
 - In discussing with davean, I realized that a good way to think about multi-width BVs is to have a "base length",
   and to write all widths as multiples of this length.
@@ -842,6 +1076,12 @@ A(1)| A(1)|    | A(1)|    |
 
 
 # Non Linear Theory of 2-adics does not mix with bitwise operations
+
+```meta
+status: done
+created: 2025-10-17
+last-edited: 2025-10-17
+```
 
 - We know that the first order theory of the 2-adics as a field (so with `+`, `-`, `*`, `/`, 0, 1)
   is decidable.
@@ -906,11 +1146,23 @@ A(1)| A(1)|    | A(1)|    |
 
 # Succinct Explanation of the Blossom Algorithm
 
+```meta
+status: draft
+created: 2025-10-17
+last-edited: 2025-10-17
+```
+
 
 - Thanks to Anton Lorenzen for the explanation!
 
 
 # Using Diminished Chords
+
+```meta
+status: done
+created: 2025-10-09
+last-edited: 2025-10-09
+```
 
 - Recall: diminished chord is made up entirely of minor 3rds, so `C Eb Gb A` is a `Cdim` chord.
 - Technique 1 (Suspended Diminished) : If we are going to play eg `C` chord for a long time, then throw in a `Cdim` in the middle.
@@ -928,6 +1180,12 @@ A(1)| A(1)|    | A(1)|    |
 
 # Spaced Repetition for Learning Italian
 
+```meta
+status: done
+created: 2025-10-09
+last-edited: 2025-10-09
+```
+
 - I've had mixed success with Anki with using spaced repetition for learning Italian.
 
 - [This is the best tutorial on writing Anki prompts I've stumbled upon](https://andymatuschak.org/prompts/),
@@ -935,6 +1193,12 @@ A(1)| A(1)|    | A(1)|    |
   It even highlights some mistakes that I was making, such as adding mnemonics in the *questions* (not the answers).
 
 # How To Benchmark
+
+```meta
+status: done
+created: 2025-09-29
+last-edited: 2025-09-29
+```
 
 - I realized that the branch of statistics I need is 'sampling theory',
   which explains how to estimate parameters from populations by means of polling / sampling,
@@ -970,11 +1234,23 @@ In general, if you are spending more than 5 minutes to schedule a cluster run, o
 
 # Fairness And Justice
 
+```meta
+status: done
+created: 2025-07-18
+last-edited: 2025-07-18
+```
+
 - Unconditional fairness: `□ ◇ crit`. It is the case that we enter the critical section infinitely often.
 - Conditional fairness: `□ ◇ wait -> □ ◇ crit`. If we wait infinitely often, then we enter the critical section infinitely often.
 - Justice : `◇ □ wait ->  □ ◇ crit`. If at some time, we wait forever (eventually forever wait), then we enter the critical section infinitely often.
 
 # Feynmann on Worthwhile Problems
+
+```meta
+status: done
+created: 2025-07-18
+last-edited: 2025-07-18
+```
 
 - [Reference](http://genius.cat-v.org/richard-feynman/writtings/letters/problems)
 
@@ -992,11 +1268,23 @@ In general, if you are spending more than 5 minutes to schedule a cluster run, o
 
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
+```meta
+status: done
+created: 2025-07-16
+last-edited: 2025-07-16
+```
+
 - Keep the git tag of the artifact. Keep bumping this up every time.
 - Merge this tag into main repeatedly. This ensures that the main branch
   has the commit of the artifact, and that this commit is never lost.
 
 # IC3 Invariants
+
+```meta
+status: draft
+created: 2025-07-15
+last-edited: 2025-08-17
+```
 
 - We exposit based on 'SAT based model checking without unrolling', while following
   intuitions from IC3: where monolithic and incremental meet.
@@ -1116,6 +1404,12 @@ In general, if you are spending more than 5 minutes to schedule a cluster run, o
 
 # Transitioning from Major to Minor chord
 
+```meta
+status: done
+created: 2025-06-10
+last-edited: 2025-06-10
+```
+
 - I figured this out when messing about with writing something in Dmajor, which is not
   a scale I use often, but was inspired to use since I want to get better at using scales-with-sharps,
   and it's my girlfriend's favourite scale.
@@ -1161,6 +1455,12 @@ K:C
 
 # Certifying Hardware Model Checking by Emily Zhengqi Yu
 
+```meta
+status: done
+created: 2025-05-21
+last-edited: 2025-05-21
+```
+
 > An illustration of this is demonstrated by IC3/PDR and interpolationbased
 > model checking, which offer inductive invariants that can be utilized
 > directly as certificates due to their algorithmic properties. Conversely,
@@ -1174,6 +1474,12 @@ K:C
 > states.
 
 # Formal Verification of Multiplier Circuits using Computer Algebra
+
+```meta
+status: done
+created: 2025-05-21
+last-edited: 2025-05-21
+```
 
 > We show how the polynomial calculus can be instantiated to yield a
 > practical algebraic calculus (PAC).
@@ -1190,11 +1496,23 @@ K:C
 
 # Pairwise Independent Events that are Not 3-way Independent
 
+```meta
+status: done
+created: 2025-06-03
+last-edited: 2025-06-03
+```
+
 - Consider `(x, y, x xor y)`.
 - Any two are completely independent, if `x, y` are sampled IID.
 - But given any two, the third is determined.
 
 # Big list of Italian Learning
+
+```meta
+status: draft
+created: 2025-05-22
+last-edited: 2025-07-18
+```
 
 - Plugin to get italian on YT videos: Language Reactor
 
@@ -1488,6 +1806,12 @@ K:C
 
 # Notes on CwFs and categorical NbE
 
+```meta
+status: done
+created: 2025-05-06
+last-edited: 2025-05-06
+```
+
 #### Fibered versus Indexed
 
 - Fibered: `TM -> M`.
@@ -1513,6 +1837,12 @@ K:C
 
 # Magic Circle Amigurimi Explanation
 
+```meta
+status: done
+created: 2025-05-04
+last-edited: 2025-07-18
+```
+
 - [Magic Loop Tutorial](https://thewoobles.com/pages/crochet-magic-loop)
 - The question is, why does this work, and why do we need the twist?
 - The magic loop is the same as a [noose knot](https://www.animatedknots.com/noose-knot),
@@ -1520,12 +1850,24 @@ K:C
 
 # The Euclidean Definitions of The Functions div and mod
 
+```meta
+status: draft
+created: 2025-05-06
+last-edited: 2025-05-06
+```
+
 
 - [Paper](https://dl.acm.org/doi/pdf/10.1145/128861.128862) that explains
   `sdiv`, `tdiv`, `fdiv`, and `ediv`.
 
 
 # Building Defeq ASTs for Dependently Typed Terms
+
+```meta
+status: done
+created: 2025-04-15
+last-edited: 2025-04-15
+```
 
 - First, consider an AST for natural numbers, which keeps track of
   the number of variables a `n : Nat`.
@@ -1589,12 +1931,24 @@ end BV
 
 # Ragtime Chord Progression
 
+```meta
+status: done
+created: 2025-04-04
+last-edited: 2025-08-09
+```
+
 - Major chord progression: [III7] [VI7] [II7] [V7] I
 - For C major, this is: [E7] [A7] [D7] [G7] [C].
 - Alternative, minor: [vi] [ii] [V7] I
 - For C, this is: [Am] [Dm] [G7] [C].
 
 # Example of Non Commuting Summation
+
+```meta
+status: done
+created: 2025-05-22
+last-edited: 2025-05-22
+```
 
 Consider the 2D region:
 
@@ -1630,6 +1984,12 @@ Ie, we have a "diamond" of 1s:
 
 # Covering Spaces for Automata
 
+```meta
+status: draft
+created: 2025-04-02
+last-edited: 2025-04-02
+```
+
 - Idea: think of the alphabet as a bouquet,
   with one petal for each letter in the alphabet.
 - Now, an automaton is a covering space of this bouquet!
@@ -1641,6 +2001,12 @@ Ie, we have a "diamond" of 1s:
 - TODO: Think about [Nielsen Transformations](https://en.wikipedia.org/wiki/Nielsen_transformation) in this context.
 
 # The Metamathematical implications of the Strong Church Turing Thesis
+
+```meta
+status: done
+created: 2025-04-01
+last-edited: 2025-04-02
+```
 
 - Thanks to Ben Przybocki, Meven, Arthur, and Anand for this enlightening fireside chat!
 - I realized that my beliefs about computation and mathematics can be cleanly put as follows:
@@ -1656,6 +2022,12 @@ Ie, we have a "diamond" of 1s:
   Thus, any model of mathematics that induces strange computational principles that deviate from the real world can be ruled out!
 
 # The Metaphysical Horizon
+
+```meta
+status: done
+created: 2025-04-01
+last-edited: 2025-04-03
+```
 
 - Idea told to me by Dr. Alistair Lockhart at Churchill College, Cambridge.
 - Humans are cognitive subjects, perceiving an unfathomed cosmos that surrounds them.
@@ -1692,6 +2064,12 @@ Ie, we have a "diamond" of 1s:
 
 # Projective Varieties are Complete
 
+```meta
+status: done
+created: 2025-03-22
+last-edited: 2025-03-23
+```
+
 - A Variety $X$ is complete iff for all other varieties $Y$, the projection map $X \times Y \to Y$ is closed.
 - Intuitively, given equations of the form $f(x, y) = 0$ cutting a closed subset of $X \times Y$,
   one can always 'eliminate' the dependency on $y$ to get a new equation $g(y) = 0$.
@@ -1706,6 +2084,12 @@ Ie, we have a "diamond" of 1s:
 
 # Check Lean Discrimination Tree Indexing
 
+```meta
+status: done
+created: 2025-03-10
+last-edited: 2025-03-10
+```
+
 use:
 
 ```
@@ -1713,6 +2097,12 @@ use:
 ```
 
 # Joke Definition of Metatheorem
+
+```meta
+status: done
+created: 2025-03-25
+last-edited: 2025-06-03
+```
 
 > A metatheorem is a theorem that can become false when you add another axiom!
 
@@ -1724,6 +2114,12 @@ property of the axiom system may no longer hold (think: subformula property).
 
 
 # Weird Art Movements in the 20th Century
+
+```meta
+status: done
+created: 2025-03-06
+last-edited: 2025-06-03
+```
 
 #### Abstract Expressionism
 
@@ -1742,6 +2138,12 @@ property of the axiom system may no longer hold (think: subformula property).
 
 
 # I Like Art Nouveau
+
+```meta
+status: done
+created: 2025-02-19
+last-edited: 2025-10-05
+```
 
 <img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
 
@@ -1762,6 +2164,12 @@ property of the axiom system may no longer hold (think: subformula property).
 
 # Bebop Scale
 
+```meta
+status: done
+created: 2025-02-19
+last-edited: 2025-02-19
+```
+
 -  Flat sixth.
 - In the normal major scale, if we travel downward, we get non chord tones on our down beats (1 3 5 7).
   For example, with `C`, we get `C(good)`, `B`, `A(?)`, `G`, `F(BAD)`, `E`, `D(BAD)`, `C`. 
@@ -1769,6 +2177,12 @@ property of the axiom system may no longer hold (think: subformula property).
 - C minor bebop scale:
 
 # Experimental Evaluation Setup I'm Happy With
+
+```meta
+status: done
+created: 2025-01-29
+last-edited: 2025-06-10
+```
 
 - Use python as a lightweight scripting language, with `asyncio` for spawning many processes.
 - Use `logging` to log info, and use python's inbuilt logger to write to a log file as well as stdout/stderr.
@@ -1779,6 +2193,12 @@ property of the axiom system may no longer hold (think: subformula property).
 - Write a `makefile` and a `README.txt` that explains how to run the script.
 
 # Pop Piano Accompaniment
+
+```meta
+status: done
+created: 2025-02-26
+last-edited: 2025-02-26
+```
 
 
 #### Using Sus chords
@@ -1811,10 +2231,22 @@ property of the axiom system may no longer hold (think: subformula property).
 
 # Pop Piano Covers I Admire
 
+```meta
+status: draft
+created: 2025-02-26
+last-edited: 2025-02-26
+```
+
 - [Owl City by Pianella Piano](https://www.youtube.com/watch?v=LRhGs8pHSh0&list=PLrXCURCvaqryvr3Q208kEIfLH4Z4A3CGW&index=6)
 
 
 # Wisdom of Critial Pair Theory
+
+```meta
+status: done
+created: 2025-01-24
+last-edited: 2025-01-24
+```
 
 Old rules:
 
@@ -1840,6 +2272,12 @@ x * BitVec.twoPow y = x <<< y
 ```
 
 # Stuff I learnt in 2024
+
+```meta
+status: done
+created: 2024-12-22
+last-edited: 2025-02-19
+```
 
 - Quick TL;DR of the year: My [research group](https://grosser.science/) moved from Edinburgh to Cambridge,
   so I was looking forward to lots of courses to take! 
@@ -2242,13 +2680,31 @@ After all, New Year's resolutions are still a day or two away!
 
 # Mechanical Theorem-Proving by Model Elimination  [WIP]
 
+```meta
+status: draft
+created: 2024-12-22
+last-edited: 2024-12-22
+```
+
 - A simplified format for the model elimination procedure
 
 # Shostaks Algorithm For Combining Decision Procedures [WIP]
 
+```meta
+status: draft
+created: 2024-12-22
+last-edited: 2024-12-22
+```
+
 - https://theory.stanford.edu/~barrett/pubs/BDS02-FROCOS02.pdf
 
 # Ragtime Theory
+
+```meta
+status: done
+created: 2024-12-06
+last-edited: 2025-04-23
+```
 
 - [John Valerio: Stride and Swing Piano](https://www.reddit.com/r/pianolearning/comments/118i5oj/comment/j9hbnta/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - Left hand: four beats per measure, alternate bass note and chord.
@@ -2285,6 +2741,12 @@ After all, New Year's resolutions are still a day or two away!
 
 # Using `reduceBool` and `ofReduceBool` in Lean
 
+```meta
+status: done
+created: 2024-12-07
+last-edited: 2024-12-07
+```
+
 
 ```
 import Lean
@@ -2303,6 +2765,12 @@ theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inf
 ```
 
 # Partimento Chord Progression Theory
+
+```meta
+status: done
+created: 2024-11-30
+last-edited: 2024-11-30
+```
 
 - consider the ones in the key of C minor.
 - The chord that corresponds to `Ab` is given as `D F# C`.
@@ -2326,6 +2794,12 @@ theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inf
 
 
 # Krohn Rhodes Theorem: Proof
+
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-11-28
+```
 
 - Recall writing an automata as semigroup and so on.
 - A character is a permutation if its action on the state space is a permutation.
@@ -2413,6 +2887,12 @@ theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inf
 
 # Quantifier Elimination for Real Closed Fields
 
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-11-28
+```
+
 #### Why do we need `<=`?
 
 - For a quick intution, suppose we want to know if `∃ x, ax^2 + bx + c = 0`.
@@ -2441,6 +2921,12 @@ theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inf
 - Then `V(a) - V(b)` is the number of distinct real roots of `p` between `a` and `b`.
 
 # Quantifier Elimination for Presburger Arithmetic
+
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-11-28
+```
 
 - We start with `(N, +)`.
 - However, see that in the first order theory, we can talk about e.g. `x > y` as `∃z, x + z + 1 = y`.
@@ -2523,6 +3009,12 @@ D30(x) # NEW
 
 # Quantifier Elimination For Algebraically Closed Fields
 
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-12-12
+```
+
 - `(C, +, ., 0, 1)`.
 - First reduction, see what we only need to eliminate existentials, since we can convert `∀x,P(x)` into `!(∃x, !P(x))`.
 - Next, we write P(x) is disjunctive normal form, so we get `∃x, P1(x) \/ P2(x) \/ ... Pn(x)`, where each `Pi` is CNF.
@@ -2555,6 +3047,12 @@ D30(x) # NEW
 
 # First UIP / Dominators in a DAG
 
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-11-28
+```
+
 #### Immediate dominator in a DAG
 
 ```py
@@ -2583,6 +3081,12 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 
 
 # PTTP: A Prolog Technology Theorem Prover
+
+```meta
+status: done
+created: 2024-11-28
+last-edited: 2024-12-22
+```
 
 - PTTP and Linked Inference
 - [References](https://www.cl.cam.ac.uk/~jrh13/slides/pttp-26jun97/slides.pdf)
@@ -2614,6 +3118,12 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 
 # Geomeans and ratios
 
+```meta
+status: done
+created: 2024-11-13
+last-edited: 2024-12-12
+```
+
 - Suppose we are benching a tool that does rewrites and SAT solving.
 - We call the rewrite times $R_i$ and the SAT solving times $S_i$.
 - Now, how does $\sum_i R_i / \sum_i S_i$ compare against $\sum_i (R_i / S_i) / N$?
@@ -2623,6 +3133,12 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 
 
 # Setting up mosh on google cloud
+
+```meta
+status: done
+created: 2024-11-13
+last-edited: 2025-03-06
+```
 
 - Step 0: Read the [gist titled A beginner's guide to setup Mosh roaming terminal on Mac to access Google Cloud Compute Engine instance](https://gist.github.com/marcwjj/d86bc137a302b50d8c0f1b5af5fd19d5)
 - Step 1: Setup a firewall rule on gcloud that enables all traffic from mosh (UDP 60,000 - 61,000).
@@ -2656,6 +3172,12 @@ gcloud compute scp --zone "europe-west1-b" --project "even-card-249812" \
 
 # Playing Pop on the Piano
 
+```meta
+status: done
+created: 2024-11-13
+last-edited: 2024-11-13
+```
+
 - Key idea: only allowed to play chords that share at least one note.
 - In some cases, permissible to play a chord that is at a distance of 1 (semi)tone away.
 - This forces one to know how to play all inversions of I, IV, V, i, VI, vi!
@@ -2666,6 +3188,12 @@ gcloud compute scp --zone "europe-west1-b" --project "even-card-249812" \
 
 # Boolean Reflection Design
 
+```meta
+status: done
+created: 2024-11-07
+last-edited: 2024-11-07
+```
+
 - To decide some kind of property involving free variables, we split it into two parts:
 - First, *closed term* that *interns* all free variables into an AST (makes them into bvars), so we have e.g. decidable equality on it, which is closed.
 - An *environment* that refers to the local context (i.e. the fvars), which needs to be built by metaprogramming.
@@ -2673,6 +3201,12 @@ gcloud compute scp --zone "europe-west1-b" --project "even-card-249812" \
   and a decidable "isomorphism" predicate which shows that they will be equal.
 
 # Propositional Proof Systems And Proof Complexity
+
+```meta
+status: done
+created: 2024-11-06
+last-edited: 2024-12-26
+```
 
 ### DRUP
 
@@ -2762,6 +3296,12 @@ $$
 
 # Diminished Sixth Scale
 
+```meta
+status: done
+created: 2024-10-18
+last-edited: 2024-11-28
+```
+
 - `C D E F G Ab A B C`.
 - The `Ab` makes it a dimnished sixth.
 - It makes the melodic parts line up on the strong parts of the beat:
@@ -2797,6 +3337,12 @@ C   C : "octave"
 
 # Canon Improvisation
 
+```meta
+status: done
+created: 2024-10-15
+last-edited: 2024-10-15
+```
+
 
 #### At the fifth above
 
@@ -2814,6 +3360,12 @@ C   C : "octave"
 #### At the fifth below
 
 # Readings on Writing Fugues and Partimento
+
+```meta
+status: done
+created: 2024-10-15
+last-edited: 2024-10-15
+```
 
 #### Writing a Fugue
 
@@ -2839,6 +3391,12 @@ C   C : "octave"
 
 
 # Applied Counterpoint Lecture Series
+
+```meta
+status: done
+created: 2024-10-15
+last-edited: 2024-10-15
+```
 
 - [Applied Counterpoint lecture series](https://www.youtube.com/watch?v=yPHC9Zf9s04&list=PLSntcNF64SVW2hG6S7j78_cXg_13ZWN0q)
 
@@ -2955,6 +3513,12 @@ C   C : "octave"
 
 # Hip hop on piano
 
+```meta
+status: done
+created: 2024-10-15
+last-edited: 2024-10-15
+```
+
 - From the ragtime book by scott bradlee.
 - Basic bassline:
 
@@ -2987,6 +3551,12 @@ A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,
 
 # Pachabel's series
 
+```meta
+status: done
+created: 2024-10-10
+last-edited: 2024-10-15
+```
+
 - down a fourth, up a step
 - context?
 - [An analysis of Canon in D](https://www.youtube.com/watch?v=y0h1v1c2DGI)
@@ -2997,9 +3567,21 @@ A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,
 
 # Public Domain Ragtime
 
+```meta
+status: draft
+created: 2024-10-15
+last-edited: 2024-10-15
+```
+
 - [Classical Ragtime Piano](http://www.ragtimepiano.ca/)
 
 # Maple Leaf Rag
+
+```meta
+status: done
+created: 2024-10-14
+last-edited: 2024-10-14
+```
 
 #### Weird Cool Sound Sequence:
 
@@ -3013,6 +3595,12 @@ Ab C: Ab Major 3 interval
 ```
 
 # Bach: Art of the fugue
+
+```meta
+status: done
+created: 2024-10-11
+last-edited: 2024-10-15
+```
 
 - Book by bach on how to make a fugue
 - [How to compose a simple fugue in the style of JS bach](https://www.youtube.com/watch?v=2dOUecLLFyI)
@@ -3041,6 +3629,12 @@ Ab C: Ab Major 3 interval
 
 # Bach style: Suspensions
 
+```meta
+status: done
+created: 2024-10-11
+last-edited: 2024-10-11
+```
+
 - When you have multiple voices, you have voices which move from one to the other.
 - If one of the voice suspends, ie, stays in the same chord while the other voices all move, it leads to a "lag", called a suspension.
 - A sus chord mimics this.
@@ -3061,6 +3655,12 @@ Ab C: Ab Major 3 interval
 - [Reference: Write a Musical Suspension in Three Easy Steps by Brian Kehlenbach](https://www.youtube.com/watch?v=zM1LV2JZgk4)
 
 # Example of needing uniform convergence / troll proof of pi equals 4
+
+```meta
+status: done
+created: 2024-10-11
+last-edited: 2024-12-26
+```
 
 - The key idea is that the proof implicitly relies on switching a limit with an integral with a sleight of hand:
 - Let $b(t)$ where $t \in [0, 1]$ be a arclength parametrization of the circle's boundary.
@@ -3105,6 +3705,12 @@ Ab C: Ab Major 3 interval
 - Explicitly, we will have $f_3 \equiv \frac{M}{\int_0^{7/8} F} f \cdot I_{[0, 7/8]}$.
 
 # Ragtime Composition
+
+```meta
+status: draft
+created: 2024-10-09
+last-edited: 2024-10-09
+```
 
 - "oompah" bass with chords on beats two and four
 - chromatic mediants
@@ -3217,6 +3823,12 @@ Ab C: Ab Major 3 interval
 
 # Forward Euler as System of Linear Equations
 
+```meta
+status: done
+created: 2024-10-06
+last-edited: 2024-12-26
+```
+
 - Suppose we want to solve `df/dt = grad f` on a grid of size 3, for 5 time steps.
 - I give boundary conditions `f(x=1, t=- = 42`, and `f(x=3, t=-) = 100`, and initial condition `f(x=-, t=0) = [42, 80, 100]`.
 - The idea is to note that `df/dt = grad f` discretizes as `f(x, t+1) - f(x, t) = f(x + 1, t) - f(x, t)`.
@@ -3228,6 +3840,12 @@ Ab C: Ab Major 3 interval
 
 # Categorification of sets works because it's a presheaf on a single point
 
+```meta
+status: done
+created: 2024-10-03
+last-edited: 2024-10-03
+```
+
 - Why are sets the categorification of the naturals?
 - It's because they obey the same "free theory"!
 - We build sets as the presheaf of a single point, which means that we get all sets by
@@ -3238,6 +3856,12 @@ Ab C: Ab Major 3 interval
   so it's a *good* thing! e.g. `Sum a b` versus `a + b`: `Sum a b` is free! 
 
 # Maple Leaf Rag: Chord Progression
+
+```meta
+status: done
+created: 2024-10-03
+last-edited: 2024-10-03
+```
 
 - Consider one part of maple leaf rag, which has the fun chord progression:
 
@@ -3265,6 +3889,12 @@ EbGC
 
 # Ragtime Rhythm & Chords
 
+```meta
+status: done
+created: 2024-10-03
+last-edited: 2024-10-03
+```
+
 - [Video](https://www.youtube.com/watch?v=d3mU3CtBJwY)
 
 - `do da de doo de doo`
@@ -3272,6 +3902,12 @@ EbGC
 - [Chord Progression: `I I vi vi II II I I`](https://www.perfessorbill.com/ragtime12.shtml)
 
 # When to generalize an argument to a function for an inductive proof
+
+```meta
+status: done
+created: 2024-09-29
+last-edited: 2024-09-29
+```
 
 - Suppose we have a recursive function:
 
@@ -3291,6 +3927,12 @@ let f y = fAux (hx x) (hy y)
 
 # Glenn Gould
 
+```meta
+status: done
+created: 2024-09-29
+last-edited: 2024-09-29
+```
+
 #### Why he rejected the romantic composers
 
 - The piano is a contrapunctal instrument, and it's a terrible mistake
@@ -3303,6 +3945,12 @@ let f y = fAux (hx x) (hy y)
 - This is similar to "interviews", where depth is lost due to spontaneity.
 
 # Music Appreciation
+
+```meta
+status: done
+created: 2024-09-28
+last-edited: 2024-09-29
+```
 
 - [Lectures by Ron Schmerhorn](https://www.youtube.com/watch?v=G6XuAwMAlhg&list=PLBhmR0VqIPKv8IwI-8mKKypjqig4HEVzI)
 
@@ -3320,6 +3968,12 @@ let f y = fAux (hx x) (hy y)
 - Cello suite #1 -- Prelude
 
 # Transformer Architecture is based on sets, not sequences
+
+```meta
+status: done
+created: 2024-10-15
+last-edited: 2024-09-29
+```
 
 - Neat text from Francois Chollet
 - He highlights that the correct way to think of a transformer is as an architecture that attends to a set of tokens.
@@ -3474,6 +4128,12 @@ let f y = fAux (hx x) (hy y)
 
 # I Like To Play Dances, Waltzes and Ragtime
 
+```meta
+status: done
+created: 2024-09-21
+last-edited: 2024-09-22
+```
+
 - All the music I like playing has a strong rhythmic component.
 - It should have cute nuggets of ideas, like waltzes and dances.
 - Furthermore, it should have strong syncopation, like ragtime!
@@ -3509,6 +4169,12 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 
 
 # Implementing Nelson Oppen
+
+```meta
+status: done
+created: 2024-09-21
+last-edited: 2024-12-26
+```
 
 ### Disjoint theories
 
@@ -3599,6 +4265,12 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 
 # Nondeterministic Nelson Oppen
+
+```meta
+status: draft
+created: 2024-09-21
+last-edited: 2024-09-21
+```
 
 
 ### Stably infinite thories
@@ -3738,6 +4410,12 @@ Arithmetic: x + 2 == y, v2 == y - x + 1, v4 == y - 2, v5 == 2
 
 # Gosper's algorithm
 
+```meta
+status: draft
+created: 2024-09-12
+last-edited: 2024-09-21
+```
+
 - Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k f(k)$, iff $S$ is hypergeometric.
 - Suppose $S(k)/S(k-1)$ is a rational function of $k$.
 - Then $f(k) / f(k - 1) = (S(k) - S(k - 1))/(S(k - 1) - S(k - 2)$, which equals $(S(k)/S(k - 1) - 1)/(1 - S(k-2)/S(k-1))$ which
@@ -3864,6 +4542,12 @@ $$
 
 # WZ (Wilf Zeilberger) pairs
 
+```meta
+status: done
+created: 2024-09-12
+last-edited: 2024-09-21
+```
+
 - Suppose we want to find a closed form for $\sum_{k=-\infty}^\infty F(n, k)$.
 - If we can show that $\sum_{k=-\infty}^{\infty} F(n, k) = \sum_{k=-\infty}^{\infty} F(n + 1, k)$, then we have that 
   $\sum_{k=-infty}^{infty} F(n, k) = \sum_{k=-infty}^{\infty} F(0, k)$. So this will be independent of $n$, and we can 
@@ -3893,6 +4577,12 @@ $$
 
 # Software bugs are real bugs?
 
+```meta
+status: done
+created: 2024-09-15
+last-edited: 2024-09-17
+```
+
 The coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
 which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
 out that ecologists have good models for approximating the **total number of species in a habitat** from the
@@ -3911,6 +4601,12 @@ For example, all birds that live on an island today form an assemblage; all plan
 - https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/11-1952.1
 
 # Sister Celine's Algorithm
+
+```meta
+status: done
+created: 2024-09-12
+last-edited: 2024-09-21
+```
 
 - Given a hypergeometric function $F(n, k)$, we want to find a recurrence that $F(n, k)$
   satisfies.
@@ -3940,11 +4636,23 @@ For example, all birds that live on an island today form an assemblage; all plan
 
 # I Like Piano Sonatas
 
+```meta
+status: done
+created: 2024-09-21
+last-edited: 2024-09-21
+```
+
 - Turns out, sonatas [such as this one](https://www.youtube.com/watch?v=7QgT4_e8PTg&list=RDQM0Muak0fLvAQ&start_radio=1) contain clever ideas,
   well packaged.
 - This is perfect, because it's exactly the type of thing I like to play :)
 
 # I like New Formalism Poetry
+
+```meta
+status: done
+created: 2024-08-31
+last-edited: 2024-09-01
+```
 
 - Took a heck of a lot of searching and sheer dumb luck to name the
   kind of poetry I was looking for. What helped was looking for threads on
@@ -3959,6 +4667,12 @@ For example, all birds that live on an island today form an assemblage; all plan
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
 # Kinds of Fiction Genres I Like
+
+```meta
+status: done
+created: 2024-09-01
+last-edited: 2024-09-04
+```
 
 - hard sci fi
 - ergodic literature
@@ -4097,12 +4811,24 @@ Triumphant antiformalism has to answer, besides, for a more
 
 # Eliminating Decision Fatigue
 
+```meta
+status: done
+created: 2024-10-09
+last-edited: 2024-10-09
+```
+
 - I've noticed that the act of taking decisions is quite complicated for me.
 - The solution has been quite easy: Wake up every day, *make a plan*.
 - Executing on a plan is easy, and isolates the act of agonizing on what to do in the day to a single focal point.
 - Also, planning out one's day just seems like a good idea in general.
 
 # The Two Modes of my Work
+
+```meta
+status: done
+created: 2024-09-15
+last-edited: 2024-09-15
+```
 
 - During my PhD, I've realized that I've needed to access two "modes",
   and how these have shifted as I've gone from programming as a kid to
@@ -4156,6 +4882,12 @@ Triumphant antiformalism has to answer, besides, for a more
 
   
 # The Gradual Guarantees
+
+```meta
+status: done
+created: 2024-08-26
+last-edited: 2024-10-09
+```
 
 - Says that static and dynamic type systems match up, and thus
   interpolating makes sense.
@@ -4271,11 +5003,23 @@ c = g(b)
 
 # Lean Naming Convention for Contexts
 
+```meta
+status: done
+created: 2024-08-26
+last-edited: 2024-08-26
+```
+
 - `LocalContext` *contains* `LocalDecl`s, and is *owned* by a `Metavar`.
 - `MetavarContext` *contains* `Metavar`s, and is *owned* by a `MetaM`.
 - `TacticM` *contains* the list of goal `[goal : MVarId]`.
 
 # Right hand for arpeggios
+
+```meta
+status: done
+created: 2024-08-21
+last-edited: 2024-08-31
+```
 
 - I've been trying to figure out how to get the right hand to be the "supporting role" when playing
   the melody with the left hand.
@@ -4286,6 +5030,12 @@ c = g(b)
 - Cm9: `D G Eb C`
 
 # Simulating Inductives Via Coinductives (And Vice Versa)
+
+```meta
+status: done
+created: 2024-08-17
+last-edited: 2024-08-17
+```
 
 - Given inductive types, it's fairly standard to simulate coinductives by writing them
   as an inverse limit of inductive types. For this, we need function spaces to write down the inverse limit sequence.
@@ -4360,6 +5110,12 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
 
 # Amelie Arpeggiation Explanation
 
+```meta
+status: done
+created: 2024-08-14
+last-edited: 2024-08-31
+```
+
 - I notate notes in different octaves as `C1 C2` etc.
 - I notate notes played at the same time in parentheses. So, `(C1 D1)` plays `C` and `D` simultaneously.
 
@@ -4388,6 +5144,12 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
 
 
 # Inductive Predicate as Least Fixed Point, directly
+
+```meta
+status: done
+created: 2024-08-09
+last-edited: 2024-08-09
+```
 
 ```
 inductive IsEven : Nat → Prop
@@ -4455,6 +5217,12 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 ```
 
 # Interpolants: Vibes
+
+```meta
+status: draft
+created: 2024-08-08
+last-edited: 2025-04-28
+```
 
 - References: [Applications of craig interpolants and model checking](http://mcmil.net/pubs/TACAS05.pdf)
 - We shall explain what an interpolant in two ways.
@@ -4616,6 +5384,12 @@ theorem IsEven_eq_IsEven' : ∀ n, IsEven n ↔ IsEven' n := by
 
 # AWS MathFest 2024
 
+```meta
+status: done
+created: 2024-08-08
+last-edited: 2024-08-08
+```
+
 - We had an interesting question at the AWS MathFest.
 - Suppose there are 31 days, and there are 31 jugglers.
 - on each day, jugglers put on a show. A show contains a set of jugglers.
@@ -4671,6 +5445,12 @@ day 2| x  x
 
 # Proving False with partial functions even with Inhabited types 
 
+```meta
+status: done
+created: 2024-07-25
+last-edited: 2024-08-08
+```
+
 - The idea is to define an inconsistent function where `foo = !foo`.
 - Then, we case split on the value of `foo` (via LEM), and show that we get contradiction in both cases.
 - See that such a function is inhabited, and yet we get a contradiction!
@@ -4691,10 +5471,22 @@ theorem false : False := by
 
 # Table Maker's Dilemma
 
+```meta
+status: draft
+created: 2024-06-09
+last-edited: 2024-06-09
+```
+
 - [Table Maker's Dilemma Wiki Page](https://en.wikipedia.org/wiki/Rounding#Table-maker's_dilemma)
 - [Floating point computation](https://www.cl.cam.ac.uk/teaching/1011/FPComp/)
 
 # Techne, Da Vinci, Michalangelo, and Art
+
+```meta
+status: draft
+created: 2024-06-01
+last-edited: 2024-06-14
+```
 
 - It would probably be the case that davinci and michalangelo would be considered as engineers, not artists!
 - Fine arts today has now become a vessel for philosophy. It seems to be disconnected from [techne](https://en.wikipedia.org/wiki/Techne)
@@ -4702,17 +5494,35 @@ theorem false : False := by
 
 # Ffmpeg one liner to re-encode mp4 so chrome can open it 
 
+```meta
+status: done
+created: 2024-06-14
+last-edited: 2024-06-14
+```
+
 ```
 ffmpeg -y -i "doctor.who.2005.s14e00.the.star.beast.1080p.web.h264-hornedsplendidpuduoffocus.mkv" -ar 22050 -ab 512 -b 800k -f mp4 -strict -2 -c:a aac "OUTPUT.mp4"
 ```
 
 # Notes on Copy and Patch Compilation
 
+```meta
+status: draft
+created: 2024-06-02
+last-edited: 2024-07-20
+```
+
 - [Brandt Bucher: A JIT Compiler for CPython](https://www.youtube.com/watch?app=desktop&v=HxSHIpEQRjs)
 - [quenya.lean](git@github.com:bollu/quenya.lean.git)
 
 
 # Setting up SAIL for porting to Lean
+
+```meta
+status: done
+created: 2024-05-07
+last-edited: 2024-05-07
+```
 
 - Since I have no idea how to use `opam`, but I do not the older Coq setup via makefiles,
   that's what I'll be using.
@@ -4782,6 +5592,12 @@ root$ cd sail && make -j $(nproc) && make install
 
 # Gregorian chant and numes
 
+```meta
+status: done
+created: 2024-04-14
+last-edited: 2024-04-14
+```
+
 - [A Beginners guide to reading gregorian chant notation](https://www.ststephenvc.com/wp-content/uploads/2020/02/beginner-guide-chant.pdf)
 - [Basic gregorian chant and sight reading by sister mary demetria](https://media.musicasacra.com/books/basicgregorianchant_1960.pdf)
 - [Neumes on wikipedia](https://en.wikipedia.org/wiki/Neume)
@@ -4796,6 +5612,12 @@ root$ cd sail && make -j $(nproc) && make install
 - Has notation that can be decoded into modern notation fairly straightforwardly.
 
 # Decreasing Metric for Mutual Recursive Functions
+
+```meta
+status: done
+created: 2024-03-16
+last-edited: 2024-04-24
+```
 
 ```
 mutual
@@ -4825,6 +5647,12 @@ end
 - I should read the Isabelle docs on how they prove termination. 
 
 # FOL + Fixpoint + Counting does not capture P
+
+```meta
+status: draft
+created: 2024-03-09
+last-edited: 2024-08-08
+```
 
 - I learnt this proof from Anuj Dawar's course in "logic and complexity, lent 2024".
 - [Reference handout](https://www.cl.cam.ac.uk/teaching/2324/L15/notes5.pdf)
@@ -5064,9 +5892,21 @@ $$
 
 # Building an ELF by hand
 
+```meta
+status: draft
+created: 2024-02-12
+last-edited: 2024-02-12
+```
+
 - Blog post posted over at repo:
 
 # Resolution is Refutation Complete
+
+```meta
+status: done
+created: 2024-02-05
+last-edited: 2024-02-12
+```
 
 - Constructive proof.
 - We take soundness for granted since it easy by induction on the proof length.
@@ -5099,6 +5939,12 @@ $$
 
 # Fagin's theorem
 
+```meta
+status: done
+created: 2024-02-05
+last-edited: 2024-02-05
+```
+
 - Consider sublanguages of all languages that encode models via the standard model encoding.
 - Which of these languages can be recognized by NP?
 - Crazy theorem: the ones that are exactly describable by *monadic second order logic*.
@@ -5122,6 +5968,12 @@ $$
 
 
 # EF (Ehrenfeucht–Fraïssé) games
+
+```meta
+status: done
+created: 2024-02-05
+last-edited: 2024-02-05
+```
 
 - Games used to show that two structures are rank-q equivalent in FOL via game semantics.
 - We make a restriction: we assume that the theory contains no function symbols. Recall that function symbols can be encoded via relations, so no
@@ -5180,6 +6032,12 @@ $$
 
 # DPLL
 
+```meta
+status: done
+created: 2024-01-31
+last-edited: 2024-01-31
+```
+
 - DPLL algorithm is a decision procedure for propositional logic.
 - Keeps a set of clauses, brute forces them by case splitting on literals, and optimizes existing clauses with heuristics:
 - **Unit propoagation**: For a literal `L`, If we have a clause `{L}` (a unit clause), we set `L` to true,
@@ -5199,9 +6057,21 @@ $$
 
 # Why FOL models must be nonempty
 
+```meta
+status: draft
+created: 2024-01-31
+last-edited: 2024-01-31
+```
+
 - We ask for nonemptiness to ensure rules like `(forall x. x = x)` is equialent to `exists x. x != x`.
 
 # Concrete calculation of hopf fibration
+
+```meta
+status: done
+created: 2024-01-31
+last-edited: 2024-04-24
+```
 
 - Take any point `(a, b, c, d) ∈ S3`.
 - This determines a quaternion `a + bi + cj + dk`.
@@ -5232,6 +6102,12 @@ $$
 - An Elementary Introduction to the Hopf Fibration, by David W Lyons.
 
 # Canonical bundle over RP2 is not trivial
+
+```meta
+status: done
+created: 2023-11-22
+last-edited: 2023-11-22
+```
 
 - Recall that `RP2` can be defined as the set of all lines in `R3`.
 - The trivial bundle is the bundle `RP2xR -> RP2`. We shall call it `T`.
@@ -5288,6 +6164,12 @@ $$
 - consider the scalar field on `S^2` that sends `x` to `λ(x)`. 
 
 # Concrete description of spinors
+
+```meta
+status: done
+created: 2023-11-21
+last-edited: 2023-11-21
+```
 
 - Consider how in physical space, $|\uparrow\rangle$ and $\downarrow\rangle$ in physical space are 180 degrees away
   (pointing up or down), but in the qubit state space, they are orthogonal. So there is an "angle doubling",
@@ -5355,6 +6237,12 @@ $$
 
 # Paracompact spaces
 
+```meta
+status: done
+created: 2023-11-22
+last-edited: 2023-11-22
+```
+
 - A space is paracompact iff every open cover $\{ U_\alpha \}$
   has a locally finite refinement $\{ V_\beta \}$.
 - That is, every $V_i$ has some $U_i$ such that $V_i \subseteq U_i$,
@@ -5383,6 +6271,12 @@ $$
 
 # Latin prefixes for words
 
+```meta
+status: done
+created: 2023-11-21
+last-edited: 2023-11-21
+```
+
 - `in`: in. Greek: `endo`
 - `ex`: out of. Greek: `ecto`.
 - `con`: with (e.g. construction -- to build with, compose -- to put with).
@@ -5401,6 +6295,12 @@ $$
 - Anything without these in maths is probably greek. 
 
 # Crash Course on Prosody
+
+```meta
+status: done
+created: 2023-11-02
+last-edited: 2023-11-02
+```
 
 - Syllable: Smallest unit.
 - Feet: Sequence of syllables.
@@ -5426,6 +6326,12 @@ A sight so touch-ing in its maj-es-ty
 - `x/` to `xx/`: anapest. [UNCOMMON]
 
 # What the hell is a nix flake?
+
+```meta
+status: done
+created: 2023-11-21
+last-edited: 2024-04-24
+```
 
 
 I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixOS/comments/131fvqs/comment/ji0f3gl/?utm_source=share&utm_medium=web2x&context=3), inlined here:
@@ -5469,6 +6375,12 @@ I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixO
 
 
 # How to prove `noConfusion`
+
+```meta
+status: done
+created: 2023-10-06
+last-edited: 2024-04-24
+```
 
 Suppose we take a type 
 
@@ -5549,6 +6461,12 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 
 # Origami box pleating
 
+```meta
+status: done
+created: 2023-10-06
+last-edited: 2024-04-24
+```
+
 - Box pleating: subdivide paper into grid, then create into grid.
 - To creases into model, use the [Elias stretch](https://abrashiorigami.com/how-to-collapse-box-pleated-crease-pattern/)
 - We get 3 types of creases: hinge, ridge, axial
@@ -5598,6 +6516,12 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 
 # Vibes of Weiner Processes
 
+```meta
+status: done
+created: 2023-10-06
+last-edited: 2024-04-24
+```
+
 - Caveat Emptor: This is totally non-rigorous, and it taken from physics / computer graphics.
 - The actual formalism requires quite a lot of machinery to setup the right measure space
   and topology to talk about convergence of processes to produce brownian motion.
@@ -5617,6 +6541,12 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 - **Donsker's theorem**: As $n \to \infty$, $W_n$ converges ()
 
 # Forward versus backward euler
+
+```meta
+status: done
+created: 2023-10-06
+last-edited: 2023-10-06
+```
 
 - Suppose we have a vector field $X$, initial point $x_0$, and we want to plot
   trajectories.
@@ -5657,6 +6587,12 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 - So, backward euler is *unconditionally stable* in the case of exponential decay.
 
 # Uniform Boundedness Principle / Banach Steinhauss
+
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
 
 - Consider a set of bounded linear operators $\mathcal F$. If $\mathcal F$ is pointwise bounded,
   that is, $sup_{T \in \mathcal F}\{ ||T(p)|| \}$ exists for all $p \in X$, then
@@ -5741,6 +6677,12 @@ $$
 
 # Coercive operator
 
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
+
 - This is called as the lax milgram theorem, but in lawrence and narici, it's a fucking lemma (lol).
 - Suppose there is an operator $A : X \to Y$ whose norm is bounded *below*: That is, there exists a $k$
   such that for all $x$, $k||x|| \leq ||Ax||$.
@@ -5770,6 +6712,12 @@ $$
 
 # It suffices to check for weak convergence on a spanning set.
 
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
+
 - Theorem: suppose $x[i]$ is a bounded sequence in $X$. Then, to check that $x[i] \to_w L$,
   it suffices to check on a spanning set $A \subseteq X$ such that $closure(span(A)) = X$.
 - Proof: first, it easily suffices for linear combinations by triangle inequality.
@@ -5789,6 +6737,12 @@ $$
 
 # Sequence that converges weakly but not strongly in $l^p$.
 
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
+
 - Consider the sequence $e_1 = (1, 0, \dots)$, $e_2 \equiv (0, 1, \dots)$, and
   in general $e_i[j] = \delta_i^j$.
 - Recall that to check weak convergence, it suffices to check on a basis of the dual space.
@@ -5806,6 +6760,12 @@ $$
 
 
 # Axioms for definite integration
+
+```meta
+status: draft
+created: 2023-08-06
+last-edited: 2023-09-22
+```
 
 - [Pete Clark](https://math.stackexchange.com/a/56522/261373)'s notes on honors calculus
   provides a handy axiomatization of what properties the definite integral ought to satisfy.
@@ -5828,6 +6788,12 @@ $$
 - TODO.
 
 # Quotient spaces of Banach space
+
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
 
 - We will see why it is important for a subspace $M$ of a banach space $X$
   to be closed for $X/M$ to be banach.
@@ -5878,6 +6844,12 @@ $$
 
 
 # Reisez Lemma
+
+```meta
+status: done
+created: 2023-08-06
+last-edited: 2023-09-22
+```
 
 - Let $M$ be a closed proper subspace of a normed linear space $X$. Then for all $0 < \alpha < 1$,
   there exists a $p \in X$ (dependent on $\alpha$), such that $d(M, p) \geq \alpha$.
@@ -5954,6 +6926,12 @@ $$
 
 # Using LLL to discover minimal polynomial for floating point number
 
+```meta
+status: done
+created: 2023-08-03
+last-edited: 2023-08-03
+```
+
 - Explain by example. Let floating point number $f = 1.4142$.
 - Clearly, this has a minpoly of $10000x - 14142 = 0$ with coefficients in $Z[x]$.
 - However, we know that the correct minpoly is $x^2 - 2 = 0$.
@@ -5971,6 +6949,12 @@ $$
   coefficient, which will be the minpoly.
 
 # Total Boundedness in a metric space
+
+```meta
+status: done
+created: 2023-08-03
+last-edited: 2023-09-22
+```
 
 - A set $A$ is totally bounded iff for any $\epsilon$, there exists a
   **finite** $\epsilon$ net $N_\epsilon$.
@@ -6051,6 +7035,12 @@ def mk_cauchy_sequence(S):
 
 # Holonomic v/s non holonomic constraints
 
+```meta
+status: done
+created: 2023-08-02
+last-edited: 2023-08-02
+```
+
 - A set of constraints such that the system under consideration becomes $TM$ where $M$ is the position space
   and $T_p M$ is the allowed velocities at position $p$ is a holonomic system
 - A set of constraints such that the system under consideration *cannot* be thought of as $TM$ where $M$
@@ -6063,6 +7053,12 @@ def mk_cauchy_sequence(S):
 - [Reference: SYMPLECTIC GEOMETRY AND HAMILTONIAN SYSTEMS by E Lerman](https://faculty.math.illinois.edu/~lerman/467/v3.pdf)
 
 # The Plenoptic Function
+
+```meta
+status: done
+created: 2023-08-02
+last-edited: 2023-08-02
+```
 
 - What can we see because of light?
 - Key idea: at each point $(x, y, z)$, we should be able to know, for all wavelenghts $\lambda$, the intensity
@@ -6091,6 +7087,12 @@ def mk_cauchy_sequence(S):
   from the point $(u, v)$ at the first plane and ending at $(s, t)$ at the second plane.
 
 # Precision, Recall, and all that.
+
+```meta
+status: done
+created: 2023-06-25
+last-edited: 2023-09-22
+```
 
 - Setting: we have some theorem goal $g$, a dataset of mathematical lemmas $D$, a set of actually useful
   lemmas $A$, and a set of predicted lemmas $P$.
@@ -6198,6 +7200,12 @@ Rank | Val | Prec | Rec
 
 # Heine Borel
 
+```meta
+status: done
+created: 2023-06-21
+last-edited: 2023-09-22
+```
+
 - Theorem: closed bounded subset of $\R^n$ is compact
 - We will prove it for $\R$ and leave the obvious generalization to the reader.
 - Key idea: recall that for metric spaces, compactness and sequential compactness are equivalent,
@@ -6232,6 +7240,12 @@ Rank | Val | Prec | Rec
 
 # The conceit of self loathing
 
+```meta
+status: done
+created: 2023-05-28
+last-edited: 2023-05-31
+```
+
 >  Self-contempt is defined as the conceit of thinking "I am inferior" and
 >  involves a sharp sense of one’s baseness and inadequacy vis-a-vis others.
 >  There is even an excessive variety of it called "self-abasement"
@@ -6251,6 +7265,12 @@ Rank | Val | Prec | Rec
 
 # Inverse scattering transform
 
+```meta
+status: done
+created: 2023-05-28
+last-edited: 2023-05-28
+```
+
 - Useful to solve nonlinear PDE
 - classical example is the shock wave equation / burges equation: $u_x + u u_t = 0$
 - [References](https://en.wikipedia.org/wiki/Inverse_scattering_transform)
@@ -6263,6 +7283,12 @@ Rank | Val | Prec | Rec
 
 
 # Differentiating through sampling from a random normal distribution
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-09-22
+```
 
 - Credits to [Edward Eriksson) for teaching me this.
 - The key idea is that since we can write the normal distribution with parameters
@@ -6318,12 +7344,30 @@ for i in range(1000):
 
 # BOSCC Vectorization
 
+```meta
+status: draft
+created: 2023-05-19
+last-edited: 2023-05-19
+```
+
 - Branch on superword conditional codes.
 
 # Autodiff
+
+```meta
+status: draft
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 - Activity analysis
 
 # Vector Bundles and K theory, 1.1
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 
 - We define a sphere (in 3D) by all points with distance $1$ from the original. Call this $M$.
 - The tangent plane $T_p M \equiv \{ v | v \perp p \}$.
@@ -6342,6 +7386,12 @@ for i in range(1000):
 - Proof?
 
 # Equicontinuity, Arzela Ascoli
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 - A sequence/family of functions are said to be equicontinuous if they vary equally in a given nbhd
 - Necessary for Arzela Ascoli
 - A subset of $C(X)$, space of continuous functions on a compact Hausdorff
@@ -6370,11 +7420,23 @@ for i in range(1000):
 
 # Sobolev Embedding Theorem 
 
+```meta
+status: draft
+created: 2024-08-08
+last-edited: 2024-08-08
+```
+
 - Intuitive Statement: Bound on norm of derivatives gives bound on function norm
 - Intuition: On a closed compact set, function can only grow as much as the derivative lets it grow.
 
 
 # Eikonal Equation [WIP]
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-09-22
+```
 
 #### 1D
 #### nD
@@ -6392,6 +7454,12 @@ for i in range(1000):
 
 
 # Practical example of semidirect product
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 
 ```
 -- | represents a string with indexes into it.
@@ -6414,11 +7482,23 @@ instance Semigroup IndexedString where
   structure.
 
 # Algebraic graph calculus
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 - http://gabarro.org/ccn/algebraic_graph_calculus.html
 - The gradient corresponds to the incidence matrix, which takes values on
   vertices and spits out values on edges.
 
 # Change of basis from triangle x y to barycentric
+
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-19
+```
 
 - If we have $\int_T f(x, y)dx dy$ for a triangle $T$, we would often like to change to
   barycentric coordinates to compute $\int_{p=0}0^1 \int_{q=0}^p f(p, q) dp dq$. But what is the relationship
@@ -6428,6 +7508,12 @@ instance Semigroup IndexedString where
 
 # Lean4 access metam and so forth
 
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-31
+```
+
 ```
 #eval show Lean.MetaM _ from do
   return 0
@@ -6435,11 +7521,23 @@ instance Semigroup IndexedString where
 
 # Harmonic function
 
+```meta
+status: done
+created: 2023-05-19
+last-edited: 2023-05-31
+```
+
 - Solve Poisson's equation (wave equation) : `Δ f = 0`.
 - is a vector field $V = ∇f$ arose from a potential, then it
   satisfies $∇ x(∇f) = 0$ (by the exact sequence).
 
 # Lax Milgram theorem
+
+```meta
+status: done
+created: 2023-03-26
+last-edited: 2023-05-31
+```
 
 - The theorem states that given a system $B(u, -) = f(-)$, where $B$
   is a linear, bounded, coercive operator, then a unique solution exists
@@ -6448,6 +7546,12 @@ instance Semigroup IndexedString where
   some kind of inner product $B(., .)$ that represents "energy".
 
 # Why L2 needs a quotient upto almost everywhere
+
+```meta
+status: done
+created: 2023-04-04
+last-edited: 2023-04-04
+```
 
 - We want a norm to have the property that $|x| = 0$ if and only if $x = 0$.
 - But in a function space, we can have nonzero functions taht have measure zero. eg. the function
@@ -6459,6 +7563,12 @@ instance Semigroup IndexedString where
   almost everywhere.
 
 # Repulsive curves
+
+```meta
+status: draft
+created: 2023-04-04
+last-edited: 2023-09-22
+```
 
 #### Gradient depends on norm
 
@@ -6501,6 +7611,12 @@ instance Semigroup IndexedString where
 
 
 # Why NuPRL and Realisability makes it hard to communicate math
+
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-03-28
+```
 
 - [Superb answer by jon sterling](https://proofassistants.stackexchange.com/questions/1012/can-mathematical-formalizations-in-nuprl-be-trusted-as-correct-in-the-greater-ma/1046#1046)
 
@@ -6545,6 +7661,12 @@ instance Semigroup IndexedString where
 
 # Lean does not allow nested inductive families
 
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-09-22
+```
+
 
 - The checker is defined in terms of reduction to plain inductives, although
   the reduction itself is not performed before going to the kernel (it was in
@@ -6563,6 +7685,12 @@ inductive E : Const → Type
 
 
 # Weakly implicit arguments in Lean
+
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-09-22
+```
 
 ```
 variables {α : Type} (f : α → α)
@@ -6604,6 +7732,12 @@ but is expected to have type
 
 # Big list of elf file munging / linker / ABI
 
+```meta
+status: draft
+created: 2023-03-28
+last-edited: 2023-05-31
+```
+
 - `nm`: list symbols in file.
 - Useful tools are available at [binutils](https://www.gnu.org/software/binutils/)
 - `readelf -a <file>`: see everything in an ELF file.
@@ -6630,11 +7764,23 @@ but is expected to have type
 
 # Regular epi and regular category
 
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-03-28
+```
+
 - A regular epi `c->d` means that there is a kind of relation on `c` (concreteley,
   an object `R` and two morphisms `f: R -> c` and `g: R -> c`) such that `d` is `c` module `R`, i.e. the quotient of `c` by `R`
 - A regular category is one where every arrow has a (regular epi-mono) factorization.
 
 # Focal point
+
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-04-04
+```
 
 - The focal point of a space is a point whose only open nbhd is the whole space.
 - In the sierpiski space `(), bottom`, the `bottom` is the focal point.
@@ -6650,6 +7796,12 @@ but is expected to have type
 
 # Operational versus Denotational semantics
 
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-04-04
+```
+
 > I think if you tell people that denotational semantics is just model theory for
 > programming languages you've got most of the way there.
 
@@ -6660,6 +7812,12 @@ but is expected to have type
 
 
 # Minimising L2 norm with total constraint
+
+```meta
+status: done
+created: 2023-04-04
+last-edited: 2023-04-04
+```
 
 - Suppose we are trying to minimize $x^2 + y^2$ subject to $x + y = 10$.
 - We can think of $(x, y)$ as two points located symmetrically about $5$, suppose
@@ -6705,6 +7863,12 @@ but is expected to have type
 
 # Bounding L2 norm by L1 norm and vice versa
 
+```meta
+status: done
+created: 2023-04-04
+last-edited: 2023-04-04
+```
+
 - We can bound a function along the x-axis (in its domain) or along the
   y axis (in its range).
 
@@ -6728,6 +7892,12 @@ but is expected to have type
 - thus, l1 norm is larger than l2 norm.
 
 # Example of unbounded linear operator
+
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2023-04-04
+```
 
 #### Differentiation
 
@@ -6761,6 +7931,12 @@ but is expected to have type
 
 # Direct sum of topological vector spaces
 
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2023-04-02
+```
+
 - In vector spaces, direct sum (also direct product) needs projection functors $\pi_1, \pi2_: V \to X, Y$
   such that $X \times Y = V$.
 - In topological vector spaces, these projections also need to be *continuous* which is a massive
@@ -6779,6 +7955,12 @@ but is expected to have type
 - Thus, we have an example of the direct sum of two closed subspaces which is not closed, because it is dense.
 
 # Subspaces need not have complement
+
+```meta
+status: draft
+created: 2023-04-02
+last-edited: 2023-09-22
+```
 
 - Clearly, one can have open subspaces that cannot be complemented. For example,
   the subspace of polynomials in $C[0, 1]$ is dense, and thus has no complement, as a complemented
@@ -6808,6 +7990,12 @@ but is expected to have type
 
 # $L^\infty$ is HUGE
 
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2023-04-02
+```
+
 - Key insight: if we take any space like $L^1$ or $L^2$ or something, the terms need to eventually vanish.
 - This is a small subspace $c_0$ of $L^\infty$, which is the subspace of sequences that eventually vanish.
 
@@ -6816,6 +8004,12 @@ but is expected to have type
 #### Continuous functions is NOT dense in $L^\infty$
 
 # Banach space that does not admit Schrauder basis
+
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2023-04-02
+```
 
 - Schrauder basis is a basis where we can get all elements uniquely by taking countable sequence of
   elements from the basis.
@@ -6827,6 +8021,12 @@ but is expected to have type
 
 
 # Open mapping theorem
+
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2024-04-24
+```
 
 - Given a surjective continuous linear map $f: X \to Y$, image of open unit ball is open.
 - Immediate corollary: image of open set is open (translate/scale open unit
@@ -6901,6 +8101,12 @@ but is expected to have type
 
 
 # Closed graph theorem
+
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2024-04-24
+```
 
 - the graph of a function from a banach space to another banach space is a
   closed subset iff the function is continuous.
@@ -6982,6 +8188,12 @@ $$
 
 # Bounded inverse theorem
 
+```meta
+status: done
+created: 2023-04-02
+last-edited: 2023-04-02
+```
+
 - Theorem: Every bijective bounded linear operator has bounded inverse.
 - Equivaently: Every bijective continuous linear operator has continuous inverse.
 - Proof: quick corollary of open mapping. Let $L: X \to Y$ be
@@ -6996,6 +8208,12 @@ $$
 
 
 # Nonexistence of solutions for ODE and PDE
+
+```meta
+status: done
+created: 2023-03-27
+last-edited: 2024-04-27
+```
 
 - ODE system, no bc: always solution by picard liendolf
 - ODE system, with boundary cond:,  can have no solution. Eg. $f'(x) = 0$, with
@@ -7029,6 +8247,12 @@ $$
 - We can use the extra dimensions available in a PDE to create "conflicting" data along different time axes.
 
 # Baire Category Theorem
+
+```meta
+status: draft
+created: 2023-03-27
+last-edited: 2023-09-22
+```
 
 - Dense set: set whose closure is full space
 - Baire Category theorem: Intersection of countably many
@@ -7147,6 +8371,12 @@ def find_witness(Ds, p, eps):
 
 # libOpenGL, libVDSO and Nix
 
+```meta
+status: done
+created: 2023-03-27
+last-edited: 2023-03-27
+```
+
 
 - openGL is bother userspace / user facing (provides APIs) and drivers
   (talks to GPU hardware)
@@ -7161,6 +8391,12 @@ def find_witness(Ds, p, eps):
 
 
 # Stuff I learnt in 2022
+
+```meta
+status: done
+created: 2022-11-24
+last-edited: 2023-03-26
+```
 
 2022 was a weird year for me. I moved from India to Edinburgh to pursue
 my PhD, and a lot of the year was (and still is) getting used to
@@ -7435,6 +8671,12 @@ interesting challenges and neat things I can point to at the end of year! With t
 
 # You don't know jack about data races
 
+```meta
+status: done
+created: 2023-01-01
+last-edited: 2023-01-01
+```
+
 #### Toy example
 
 - Consider a function `void incr() { global += 1; }`.
@@ -7497,6 +8739,12 @@ P2: if(y) { x = true; }
 
 # Training a custom model for Lean4
 
+```meta
+status: done
+created: 2023-01-01
+last-edited: 2023-01-01
+```
+
 - Bert: 111m (0.1BN)
 - Gato : 1.2 BN
 - GPT 2: 1.5 billion
@@ -7514,6 +8762,12 @@ P2: if(y) { x = true; }
 
 # Stratified synthetsis
 
+```meta
+status: done
+created: 2023-01-01
+last-edited: 2023-03-27
+```
+
 > The key to our results is stratified
 > synthesis, where we use a set of instructions whose semantics
 > are known to synthesize the semantics of additional instruc-
@@ -7527,6 +8781,12 @@ P2: if(y) { x = true; }
 
 
 # Mutual recursion elaboration in Lean
+
+```meta
+status: done
+created: 2023-01-01
+last-edited: 2023-03-26
+```
 
 Lean has four backends for elaborating mutual definitions.
 
@@ -7646,6 +8906,12 @@ definitions, since Lean can blow up if we have many inductives.
 
 # Subject reduction in Lean
 
+```meta
+status: done
+created: 2023-01-01
+last-edited: 2023-01-01
+```
+
 Not exactly. Subject reduction is the property that if you replace a subterm of
 a term with a defeq one (especially if the subterm is the result of reduction),
 the resulting big term remains typecheckable. This fails in lean because if you
@@ -7697,6 +8963,12 @@ by { dsimp, refl }
 
 # Big list of GNU Binutils
 
+```meta
+status: draft
+created: 2023-01-01
+last-edited: 2023-03-27
+```
+
 - `nm` to list all symbols in an object file.
 
 #### ld
@@ -7708,6 +8980,12 @@ by { dsimp, refl }
 Use `nm` to list all symbols in a file.
 
 # Axiom K versus UIP
+
+```meta
+status: done
+created: 2022-11-24
+last-edited: 2023-03-26
+```
 - UIP: all proofs of equality are equal: `(p q: Eq A a a'): Eq (Eq A a a') p q`
 - Axiom K: all proofs of equality are equal to refl: `(p: Eq A a a): Eq (Eq A a a) p (refl A a)`
 
@@ -7738,10 +9016,22 @@ K refl = refl
 
 
 # Linear vs uniqueness types
+
+```meta
+status: draft
+created: 2022-11-24
+last-edited: 2022-11-24
+```
 - A function `A -o B` which is linear in `A` guarantees that the function *consumes* A
 - A function `Unique<A> -> B` guarantees that the function holds the *only reference* to `A`.
 
 # Any model of lean must have all inductives
+
+```meta
+status: done
+created: 2022-11-02
+last-edited: 2023-03-26
+```
 
 - Or, lean knows about the sizes of types.
 - See that the below proof script shows that
@@ -7766,6 +9056,12 @@ exact h2 (h1 two.t1 two.t2)
 
 # Index over the past, fiber over the future
 
+```meta
+status: done
+created: 2022-11-02
+last-edited: 2023-03-27
+```
+
 - indexed view corresponds to `check`
 - fibered corresponds to `infer`: given a term, tell me the type of the term?
 - Some talk by conor at topos.
@@ -7774,6 +9070,12 @@ exact h2 (h1 two.t1 two.t2)
 
 
 # Type formers need not be injective
+
+```meta
+status: done
+created: 2022-11-02
+last-edited: 2023-03-27
+```
 
 ```
 abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collection of all subsets.
@@ -7784,6 +9086,12 @@ abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collecti
   that `a = b /\ b = bs`.
 
 # There cannot be a type of size the universe
+
+```meta
+status: done
+created: 2023-03-27
+last-edited: 2023-03-27
+```
 
 ```
 axiom CODE : Type -- assume we have CODEs for types...
@@ -7803,12 +9111,24 @@ noncomputable def cantor (UcodedU: Powerset codedU): codedU := -- use the fact t
 
 # The dependently typed expression problem
 
+```meta
+status: done
+created: 2022-11-02
+last-edited: 2022-11-02
+```
+
 Dependently typed programming is like the expression problem.
 We can either write Ohad/OOP, where we have data and proofs (behaviour)
 next to each other. Or we can write in Xavier/functional style, where
 the data is separate from the proofs (behaviour).
 
 # Motivation for modal logic
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-03-26
+```
 
 - `possibly A -> necessarily (possibly A -> B) -> necessarily B`
 - this weakens the precondition `A -> (A -> B) -> B` by needing only `possible A`
@@ -7832,6 +9152,12 @@ the data is separate from the proofs (behaviour).
 
 # Scones
 
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2022-11-02
+```
+
 - take $C$ a category. There is a global sections functor $\Gamma: C -> Set$ given by $Hom(1, -)$.
 - take the pullback $C \xrightarrow{\Gamma} Set \xleftarrow{cod} Set^{\to}$.
 
@@ -7849,6 +9175,12 @@ the data is separate from the proofs (behaviour).
 
 
 # Presheaf models of type theory
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-03-26
+```
 - Let $C$ be any category.
 - Contexts are presheaves $\Gamma: C^op \to Set$. Morphisms are natural transformations of presheaves.
 - an element of a context $Elem(\Gamma)$ is a global element / grothendieck construction / object in the category of elements of contexts:
@@ -7862,6 +9194,12 @@ the data is separate from the proofs (behaviour).
 - [Ref: Cubical type theory with several universes in nuprl](https://www.youtube.com/watch?v=ioa-f_nCNuE)
 
 # Weighted limits via collages
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-03-26
+```
 
 #### Collage of a profunctor.
 - more explicitly, for `P : C -|-> D`, define `Collage(P)` as the category where `Obj(Collage(P)) = Obj(D) + Obj(C)`, `Collage(P)(inl x, inl y) = D(x,y)`, `Collage(P)(inr x, inr y) = C(x,y)`, `Collage(P)(inl x, inr y) = P(x,y)`, `Collage(P)(inr x, inl y) = 0`
@@ -7918,6 +9256,12 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 
 # Disjoint Coproduct
 
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2022-10-27
+```
+
 - One says that a coproduct $X+Y$ is disjoint iff the intersection of $X$ with $Y$ in $X+Y$ is empty.
 - The intersection of $A, B$ over $X$ is defined as the pullback of the diagram (in fact, cospan) $A \rightarrow X \leftarrow B$.
 - Thus, in this case,  we say that $X, Y$ are disjoint iff the pullback of $X \rightarrow X+Y \leftarrow Y$ is the initial object.
@@ -7927,6 +9271,12 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 
 
 # Leibniz Equality in Lean4
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-03-26
+```
 
 ```
 @[simp, reducible]
@@ -7951,6 +9301,12 @@ theorem Leibniz_implies_defeq (x y: A) (LEQ: Leibniz x y):
 ```
 
 # Strong normalization of STLC
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-03-26
+```
 
 - Recall that in the category Hask, objects are types, morphisms are functions/expressions.
 - Recall that in the category of contexts, objects are contexts, morphisms are substitutions.
@@ -8009,6 +9365,12 @@ body ∈ LType(B); (∀ aval∈ Ltype(A), body[a/aval] ∈ Ltype(B))
 
 # Subobject classifiers of $N \to FinSet$, or precosheaf of $FinSet$
 
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-09-22
+```
+
 #### Subobject classifier in $S^2$
 
 - Start with $Set^2$. This has as objects $X_0 \to X_1$. The subobjects are of the form:
@@ -8066,11 +9428,23 @@ X1 - Χ[f]1- -> Ο1
 
 
 # Dimensions versus units
+
+```meta
+status: draft
+created: 2022-10-27
+last-edited: 2022-10-27
+```
 - `gram/kg` is dimensionless because it's length/length, but it indeed has units `g/kg`, since it's
   the conversion ratio between grams versus kilograms.
 
 
 # HoTTesT: Identity types
+
+```meta
+status: done
+created: 2022-10-27
+last-edited: 2023-05-31
+```
 
 - [lecture](https://www.youtube.com/watch?v=oMKl7pBRg1E&list=PLtIZ5qxwSNnzpNqfXzJjlHI9yCAzRzKtx&index=8).
 - We already have judgemental equality. (computational equality: beta eta alpha equality).
@@ -8100,6 +9474,12 @@ X1 - Χ[f]1- -> Ο1
 - `=`-elim: `x: A, y: A, z: x =A y |- D(x, y, z) type`, and given `x:A |- d: D(x, x, r_x)`, then we have  `ind=(d, x, y, z): D(x, y, z)`
 
 # Left and right adjoints to inverse image
+
+```meta
+status: draft
+created: 2022-09-28
+last-edited: 2023-04-02
+```
 
 #### The story in set
 
@@ -8143,6 +9523,12 @@ b1 b2 b3
 
 # Paredit via adjoints
 
+```meta
+status: done
+created: 2022-09-28
+last-edited: 2023-04-02
+```
+
 - We posit that text editor movements ought to be endofunctions, and complementary keybinds
   ought to be adjoints to each other.
 - With this in mind, what is the correct category for `paredit`, and what are the adjunctions?
@@ -8154,6 +9540,12 @@ b1 b2 b3
 
 
 # Less than versus Less than or equals over Z
+
+```meta
+status: done
+created: 2022-09-28
+last-edited: 2023-04-02
+```
 
 -  If we have a theorem whose hypotheses and goal are of the form `a <= b - 1` for `a, b` integers,
    is it always safe to replace these with `a < b`? Shockingly, no!
@@ -8170,10 +9562,22 @@ b1 b2 b3
 
 # Allegories and Categories
 
+```meta
+status: draft
+created: 2022-09-28
+last-edited: 2022-09-28
+```
+
 - An allegory is a category enriched over posets, where each morphism $r: A \to B$
   has a converse $r': B \to A$.
 
 # Partial function as span
+
+```meta
+status: done
+created: 2022-09-28
+last-edited: 2022-09-28
+```
 
 - A partial function $f: D \subseteq X \to Y$ is a span of $Y \leftarrow D \hookrightarrow X$.
   What a slick definition!
@@ -8182,6 +9586,12 @@ b1 b2 b3
 
 
 # Turing degree
+
+```meta
+status: done
+created: 2022-09-25
+last-edited: 2023-04-02
+```
 
 - [Lectures on turing degree](https://pi.math.cornell.edu/~shore/papers/pdf/SingLect2NS.pdf)
 - A set $X$ is turing reducible to $Y$ iff oracle access to membership in $Y$ provides
@@ -8206,6 +9616,12 @@ b1 b2 b3
 
 # Proof that there is a TM whose halting is independent of ZFC
 
+```meta
+status: done
+created: 2022-09-25
+last-edited: 2022-09-25
+```
+
 - Start by assuming that ZFC is consistent.
 - Consider a TM which enumerates proofs in ZFC (ie, sequents if we want to use sequent calculus),
  looking for a sequent that proves the inoncsistency of ZFC.
@@ -8215,6 +9631,12 @@ b1 b2 b3
 - Thus, it is independent of ZFC whether TM M halts or not.
 
 # Contradiction from non-positive occurence
+
+```meta
+status: done
+created: 2022-09-19
+last-edited: 2022-09-19
+```
 
 We wish to show that allow non-positive occurences of the inductive type
 in its constructor can lead to contradiction. Proof as haskell file below:
@@ -8238,6 +9660,12 @@ inhab = FnSpace contra
 
 # The constructible universe L
 
+```meta
+status: done
+created: 2022-09-19
+last-edited: 2023-04-02
+```
+
 - When building **von neumann universe**, we take *all* subsets from previous state; $V(0) = \emptyset$, $V(n + 1) = 2^{V(n)}$,
   $V(\lim \alpha) = \cup_{\beta < \alpha} V(\beta)$.
 - To build $L$ (the definable universe), first we need the notion of definability.
@@ -8256,6 +9684,12 @@ inhab = FnSpace contra
 
 
 # Godel completeness theorem
+
+```meta
+status: done
+created: 2022-09-19
+last-edited: 2022-09-19
+```
 
 - If a formula is true (holds in every model), then it is derivable from the
   logic.
@@ -8279,6 +9713,12 @@ inhab = FnSpace contra
 
 # Uniform proofs, focused proofs, polarization, logic programming
 
+```meta
+status: done
+created: 2022-09-19
+last-edited: 2022-09-28
+```
+
 - Focusing and synthetic rules: http://requestforlogic.blogspot.com/2010/09/focusing-and-synthetic-rules.html
 - girard statement about proofs as time; https://mathoverflow.net/a/179258/123769
 - [Focused proof](https://en.wikipedia.org/wiki/Focused_proof)
@@ -8288,6 +9728,12 @@ inhab = FnSpace contra
 
 
 # Why cut elimination?
+
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2023-04-02
+```
 
 - Morally spekaing, gives control over the formulae that occur in a proof.
 - If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X -> Z`
@@ -8313,6 +9759,12 @@ inhab = FnSpace contra
 
 # Forcing to add a function
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2022-09-07
+```
+
 - Let $M$ be a countable transitive model of ZFC.
 - We will add a new function $c: \aleph_0^M \to \{0, 1\}^M$ into $M$ by creating $M[G]$.
 - Let $P$ be the set of all finite partial functions from $\aleph_0$ to $\{0, 1\}$ in $M$.
@@ -8336,6 +9788,12 @@ inhab = FnSpace contra
 
 # Diaconescu's theorem
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2023-04-02
+```
+
 - Choice implies LEM
 - Let $P$ be a proposition. Build the sets $T, F$ as:
 - $T \equiv {x \in \{0, 1\} : (x = 1) \lor P}$, and $F \equiv x \in \{ 0, 1 \} : (x = 0) \lor P \}$.
@@ -8352,6 +9810,12 @@ inhab = FnSpace contra
 - This means we have $P \lor \lnot P$!
 
 # Forcing machinery
+
+```meta
+status: draft
+created: 2022-09-07
+last-edited: 2023-06-25
+```
 
 - Let $M$ be a countable mode of ZFC (exists by lowenheim skolem).
 - Let $\Omega \equiv \{0, 1\}$ ($\Omega$ for subobject classifier).
@@ -8574,6 +10038,12 @@ Therefore, all these conditions are equivalent.
 
 # Partial Evaluation, Chapter 3
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2024-08-08
+```
+
 
 #### Bootstrapping and self-application
 
@@ -8586,6 +10056,12 @@ Therefore, all these conditions are equivalent.
 - Now we can use `t` on `h'` to recieve an `S'` compiler `l' : T(S' → T)`.
 
 # Partial Evaluation, Chapter 1
+
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2023-04-02
+```
 
 - `out = [[p]](i, i')`, then `p1 = [[mix]](p, i); out = [[p1]](i')`.
 - Alternatively, can write as `[[p]](i, i') = [[ [[mix]](p, i) ]](i')`
@@ -8623,6 +10099,12 @@ Therefore, all these conditions are equivalent.
 
 # Diagonal lemma for monotone functions
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2023-04-02
+```
+
 - Statement: For a monotone function $f: P \times P \to Q$, we have the equality
   $f(\sqcup_s s, \sqcup_t t) = f(\sqcup_x (x, x))$
 - Since $\sqcup_x (x, x) \sqsubseteq \sqcup_{s, t} (s, t)$, by monotonicity of $f$, we have that
@@ -8652,6 +10134,12 @@ $$
 
 # Cantor Schroder Bernstein via fixpoint
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2022-09-28
+```
+
 - Given two injections $f: S \to T$, $g: T \to S$, we want to create a bijection.
 - Suppose we have $S = T = N$, and $f(n) = g(n) = n + 1$.
 - If $f$ were surjective, we are done, for then $f$ is the bijection.
@@ -8669,6 +10157,12 @@ $$
 
 
 # Maximal Ideals of Boolean Algebras are Truth Values
+
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2023-04-02
+```
 
 ##### Boolean algebras
 - Has meet, join, complement, 1, 0 with usual laws
@@ -8708,6 +10202,12 @@ $$
 - Dualize the story via Grothendieck/Geometry to talk about filters :)
 
 # Crash course on DCPO: formalizing lambda calculus
+
+```meta
+status: done
+created: 2020-09-29
+last-edited: 2023-04-02
+```
 
 In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
 like a way to associate a "natural" mathematical object to such a function. The
@@ -8868,6 +10368,12 @@ than $a$, and hence implies $a$.
 
 # Resolution algorithm for propositional logic
 
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2024-01-31
+```
+
 - Resolution is refutation complete: will find a disproof if one exists for propositional logic
 -  Key idea is the resolution rule:
 
@@ -8904,6 +10410,12 @@ F \/ l; G \/ not(l)
 
 
 # Completeness for first order logic
+
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2022-09-07
+```
 - This requires soundness to have been established before.
 - We work with sequent calculus, where `Γ => Δ` means that `g1 /\ g1 /\ ... /\ gn => d1 \/ d2 \/ .. \/ dn`.
 - First prove that `Γ => Δ` is derivable iff `Γ U ~Δ => 0` is derivable.
@@ -8920,6 +10432,12 @@ F \/ l; G \/ not(l)
 
 
 # Compactness theorem of first order logic
+
+```meta
+status: draft
+created: 2022-09-07
+last-edited: 2023-04-02
+```
 
 - Define a theory to be a set of sentences.
 - Compactness states that if a theory `T` is such that every finite subset `Tfin ⊂ T` of the theory
@@ -8972,6 +10490,12 @@ F \/ l; G \/ not(l)
 
 
 # First order logic: Semantics
+
+```meta
+status: done
+created: 2022-09-07
+last-edited: 2022-09-07
+```
 - $M \models F$ can be reads as $M$ models $F$, or $M$ makes true $F$ ($M$ for model, $F$ for formula).
 
 #### Defining models for quantification
@@ -8994,6 +10518,12 @@ F \/ l; G \/ not(l)
   agree.[HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
 
 # full abstraction in semantics
+
+```meta
+status: done
+created: 2023-03-27
+last-edited: 2023-03-27
+```
 
 - Observational equivalence: same results when run, $\sim_O$
 - Denotational equivalence: same denotation.
@@ -9028,6 +10558,12 @@ F \/ l; G \/ not(l)
 
 # You could have invented Sequents
 
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2022-08-22
+```
+
 - Key idea: define a notation called `Γ => Δ` iff the conjunction of sentences
   in gamma implies the disjunction of terms in delta.
 - Why would anybody do this? isn't this weird?
@@ -9043,6 +10579,12 @@ F \/ l; G \/ not(l)
 
 
 # Fibrational category theory, sec 1.1, sec 1.2
+
+```meta
+status: draft
+created: 2022-08-22
+last-edited: 2023-04-02
+```
 
 - Key idea: can define a notion of a bundle `p: E → B`
 - The idea is that we want to generalize pullbacks into fibres.
@@ -9147,6 +10689,12 @@ I -u--->J
 
 # Simple Type Theory via Fibrations
 
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2022-08-22
+```
+
 - Objects are contexts, so sequence of `(term:type)`
 - Morphisms between contents `Γ = (v1:s1, v2:s2)` and `Δ = (w1:t1, w2:t2)`
   are terms `M1, M2` such that we have `Γ |- M1 : t1` and `Γ |- M2 : t2`.
@@ -9189,6 +10737,12 @@ I -u--->J
 
 
 # Realisability models
+
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2022-09-07
+```
 
 
 For closed terms `u`, and type `𝜏` we are going to define `u ⊩ 𝜏` (read “u is a
@@ -9245,10 +10799,22 @@ told another time. 10/10
 
 # Naming left closed, right open with start/stop
 
+```meta
+status: draft
+created: 2022-08-22
+last-edited: 2022-08-22
+```
+
 Call the variables `startPos` and `stopPos`. Since it's called stop,
 it's a little more intuitive that it's exclusive!
 
 # Nested vs mutual inductive types:
+
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2023-04-02
+```
 
 ```
 inductive m1
@@ -9269,6 +10835,12 @@ inductive n2 (a: Type): Type :=
 ```
 
 # Embedding HOL in Lean
+
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2023-04-02
+```
 
 ```
 inductive Sets where
@@ -9291,12 +10863,24 @@ def Model := Σ (s: Sets), s.denote
 
 # Module system for separate compilation
 
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2022-08-22
+```
+
 - https://github.com/leanprover/lean4/issues/416
 - https://www.cs.utah.edu/plt/publications/macromod.pdf
 - https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/phd-defence.pdf
 - https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/thesis.pdf
 
 # Second order arithmetic
+
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2022-08-22
+```
 
 - First order arithmetic has variables that range over numbers
 - Second order arithmetic has variables that range over sets of numbers
@@ -9306,6 +10890,12 @@ def Model := Σ (s: Sets), s.denote
   can develop a workable theory of real analysis in this axiomatic framework.
 
 # Lean4 Dev Meeting
+
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2023-04-02
+```
 
 - Mathport uses matli4 to move tactics.
 - Mathlib4 has syntax definitions ofr every single tactic that exists in `mathlib`.
@@ -9439,6 +11029,12 @@ elab tk:"foo" val:term : tactic => do
 
 # Categorical model of dependent types
 
+```meta
+status: done
+created: 2022-08-22
+last-edited: 2023-09-22
+```
+
 - [Motivation for variants of categorical models of dependent types](https://proofassistants.stackexchange.com/questions/1086/what-are-the-motivations-for-different-variants-of-categorical-models-of-depende)
 - [Seminal paper: Locally cartesian closed categories and type theory](https://www.math.mcgill.ca/~rags/LCCC/LCCC.pdf)
 - A closed type is interpreted as an object.
@@ -9531,6 +11127,12 @@ becomes the function `snd: ΓxA → A`.
 - [Lectures notes on categorical logic](https://staff.math.su.se/palmgren/lecturenotesTT.pdf)
 
 # Coends
+
+```meta
+status: done
+created: 2022-06-26
+last-edited: 2023-04-02
+```
 
 - Dual of an end
 - A cowedge is defined by injections into the co-end of all diagonal elements.
@@ -9724,6 +11326,12 @@ extract (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = fmap i2o gi
 
 
 # Natural Transformations as ends
+
+```meta
+status: done
+created: 2022-06-26
+last-edited: 2023-04-02
+```
 - [Bartosz: Natural transformations as ends](https://www.youtube.com/watch?v=DseY4qIGZV4&list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL&index=13)
 - Ends generalize the notion of product/limit. It's sort of like an infinite product plus the wedge condition.
 - $\int_X p x x$ is the notation for ends, where $p$ is a profunctor.
@@ -9803,6 +11411,12 @@ dimap id(a) k τa    dimap k id(b) τb
 - In haskell, this would be `forall x. (a -> x) -> f x ~= f a`.
 
 # Ends and diagonals
+
+```meta
+status: done
+created: 2022-06-26
+last-edited: 2023-04-02
+```
 
 - [Bartosz: Wedges](https://www.youtube.com/watch?v=TAPxt26YyEI)
 - Let's think of `Cop x C`, and an element on the diagonal `(a, a)`, and a function `f: a -> b`.
@@ -9944,9 +11558,21 @@ q a a         q b b
 
 # Parabolic dynamics and renormalization
 
+```meta
+status: draft
+created: 2022-06-26
+last-edited: 2022-06-26
+```
+
 - [Video](https://www.youtube.com/watch?v=Z77mTqj_Wnk)
 
 # Quantifiers as adjoints
+
+```meta
+status: done
+created: 2022-06-26
+last-edited: 2023-04-02
+```
 
 - Consider `S(x, y) ⊂ X × Y`, as a relation that tells us when `(x, y)` is true.
 - We can then interpret `∀x, S(x, y)` to be a subset of `Y`, that has all the elements
@@ -10029,15 +11655,33 @@ q a a         q b b
 
 
 # TLDP pages for bash conditionals
+
+```meta
+status: draft
+created: 2022-10-13
+last-edited: 2022-10-13
+```
 - [The TLDP pages](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html) have a large list of all
   possible bash conditionals
 
 # Remainder, Modulo
 
+```meta
+status: draft
+created: 2022-10-13
+last-edited: 2022-10-13
+```
+
 - remainder takes the sign of the first operand.
 - modulo takes the sign of the second operand.
 
 # Parameters cannot be changed *anywhere*, not just in return location
+
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2023-04-02
+```
 
 ```
 inductive List (a: Type): Type where
@@ -10052,6 +11696,12 @@ inductive List (a: Type): Type where
 
 
 # LCNF
+
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2023-04-02
+```
 
 - `let x := v in e ~= (\x -> e) v`
 
@@ -10110,6 +11760,12 @@ def f (n: Nat): Any := ...
 
 # Predicative v/s Impredicative: On Universes in Type Theory
 
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2022-10-13
+```
+
 
 #### Tarski formulation of univereses
 
@@ -10137,10 +11793,22 @@ T(a) type
 
 # Testing infra in Lean4
 
+```meta
+status: draft
+created: 2022-10-13
+last-edited: 2022-10-13
+```
+
 - to run tests in parallel, `cd build/stage1/ && CTEST_PARALLEL_LEVEL=20 ctest`.
 
 
 # Autocompletion in Lean4
+
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2022-10-13
+```
 
 - for C++, use `compiledb` to generate a `compile_commands.json`
 - for lean, setup a lean toolchain override for the correct `stage0`:
@@ -10151,6 +11819,12 @@ $ elan override my-lean-copy
 ```
 
 # Inductive types
+
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2023-04-02
+```
 
 #### Coq
 
@@ -10206,6 +11880,12 @@ inductive T
 
 # Parameter verus Index
 
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2022-10-13
+```
+
 - Parameters are fixed for all constructors, indexes can vary amongst constructors.
 - Parameters represent parametric polymorphism, and one does not gain information on them during pattern matching.
 - Indexes rep
@@ -10213,11 +11893,23 @@ inductive T
 
 # HNF versus WHNF
 
+```meta
+status: done
+created: 2022-10-13
+last-edited: 2022-10-13
+```
+
 #### Head normal form
 - a data constructor applied to arguments which are in normal form
 - a lambda abstraction whose body is in normal form
 
 # Different types of arguments in Lean4:
+
+```meta
+status: done
+created: 2022-07-27
+last-edited: 2022-07-27
+```
 - `(x: T)` regular argument
 - `[S: Functor f]` typeclass argument / argument resolved by typeclass resolution
 - `{x: T}`: Maximally implicit argument, to be inferred.
@@ -10227,6 +11919,12 @@ inductive T
 In Coq people shun away from this binder. I'm not sure why, I guess there are issues with it at a larger scale. We could get rid of it. For the paper it's utterly irrelevant in my opinion
 
 # Big list of lean tactics
+
+```meta
+status: draft
+created: 2022-06-27
+last-edited: 2023-04-02
+```
 - `conv <pattern> => ...`: rewrite in pattern. example: `conv in x + 1 => rw ...`
 - `split` allows one to deal with the cases of a match pattern. This also allows one to case on an `if` condition.
 - `cases H: inductive with | cons1 => sorry | cons2 => sorry` is used to perform case analysis on an inductive type.
@@ -10239,6 +11937,12 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
    perform reduction to give `1`.
 
 # Hyperdoctrine
+
+```meta
+status: done
+created: 2022-06-03
+last-edited: 2023-04-02
+```
 - A hyperdoctrine equips a category with some kind of logic `L`.
 - It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
   whose internal logic corresponds to `L`.
@@ -10299,10 +12003,22 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 
 # Fungrim
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - https://fredrikj.net/math/fungrim2022.pdf
 - They want to integrate with mathlib to have formal definitions.
 
 # Category where coproducts of computable things is not computable
+
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-04-02
+```
 
 - Modular lattices are an algebraic variety.
 - Consider the category of modular latties.
@@ -10314,14 +12030,32 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 
 # Homotopy continuation
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 
 - [Rigorous arithmetic with approximate roots of polynomials --- CAG L16](https://www.youtube.com/watch?v=XC_tfjjBPLc&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=38)
 
 # Relationship between linearity and contradiction
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - https://xorshammer.com/2021/04/08/but-why-is-proof-by-contradiction-non-constructive/
 
 # Monads from Riehl
+
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2023-04-02
+```
 
 - I'm having some trouble enmeshing my haskell intuition for monads with the rigor, so this
 - A category is said to be monadi
@@ -10591,6 +12325,12 @@ $$
 
 # Combinatorial Cauchy Schwarz
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-04-02
+```
+
 #### Version 1
 
 - Suppose you have r pigeons and n holes, and want to minimize the number of pairs of pigeons in the same hole.
@@ -10615,6 +12355,12 @@ $$
   the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares.
 
 # Bezout's theorem
+
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-09-22
+```
 
 - [On Bezout's theorem Mc coy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
 - Let $k$ be algebraically closed.
@@ -10764,6 +12510,12 @@ $$
 
 # Example for invariant theory
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-04-02
+```
+
 - Consider $p(z, w) = p_1 z^2 + p_2 zw + p_3 w^2$ --- binary forms of degree two.
 - The group $SL(2, Z)$ acts on these by substituting $(z, w) \mapsto PSL(2, Z) (z, w)$.
 - We can write the effect on the coefficents explicitly: $(p_1', p_2', p_3') = M (p_1, p_2, p_3)$.
@@ -10774,16 +12526,34 @@ $$
 
 # Counterexample to fundamental theorem of calculus?
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - Integral of `1/x^2` from `[-1, 1]` should equal `-1/x` evaluated at `(-1, 1)` which gives `-1/1 - (-(-1)/1)`, that is, `-1 - 1 = -2`.
 - But this is absurd since $1/x^2$ is always positive in $[-1, 1]$.
 - What's going wrong?
 
 # Why a sentinel of `-1` is sensible
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - See that when we have an array, we usually index it with an array index of `0 <= i < len`.
 - If `len = 0`, then the only "acceptable" `i` is `-1`, since it's the greatest integer that is less that `len=0`.
 
 # Data structure to maintain mex
+
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-04-02
+```
 
 #### offline
 
@@ -10834,6 +12604,12 @@ int mex_mex() {
 
 # Scatted algebraic number theory ideas: Ramification
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - I've  had Pollion on math IRC explain ramification to me.
 
 ```
@@ -10882,6 +12658,12 @@ int mex_mex() {
 
 # Coreflection
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2022-08-22
+```
+
 - A right adjoint to an inclusion functor is a coreflector.
 
 #### Torsion Abelain Group -> Abelian Group
@@ -10927,11 +12709,23 @@ int mex_mex() {
 
 # Better `man` Pages via `info`
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - I recently learnt about `info`, and it provides so much more quality than `man`!
 - `info` pages about things like `sed` and `awk` are actually useful.
 
 
 # The Zen of juggling three balls
+
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2023-04-02
+```
 
 - Hold one ball in the left hand `A`, two in the right hand `B, C`.
   This initial configuration is denoted `[A;;B,C]`.
@@ -10955,6 +12749,12 @@ int mex_mex() {
 
 # Example of lattice that is not distributive
 
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - Take a 2D vector space, and take the lattice of subspaces of the vector space.
 - Take three subspaces; `a = x`, `b = y`, `c = x + y`.
 - Then see that `c /\ (a \/ b) = c`, while `c /\ a = c /\ b = 0`,
@@ -10962,10 +12762,22 @@ int mex_mex() {
 
 # Patat
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-05-30
+```
+
 - Make slides that render in the terminal!
 - https://github.com/bollu/patat
 
 # Common Lisp LOOP Macro
+
+```meta
+status: done
+created: 2022-05-30
+last-edited: 2022-05-30
+```
 
 #### Loop with index:
 
@@ -10982,9 +12794,21 @@ int mex_mex() {
 
 # Mitchell-Bénabou language
 
+```meta
+status: draft
+created: 2022-05-30
+last-edited: 2022-09-28
+```
+
 - [Link](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
 
 # Hyperdoctrine
+
+```meta
+status: done
+created: 2022-06-03
+last-edited: 2023-04-02
+```
 
 - A hyperdoctrine equips a category with some kind of logic `L`.
 - It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
@@ -10998,6 +12822,12 @@ int mex_mex() {
 - https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
 
 # Why is product in Rel not cartesian product?
+
+```meta
+status: done
+created: 2022-06-03
+last-edited: 2022-06-03
+```
 
 #### Monoidal category
 - Intuitively, category can be equipped with $\otimes, I$ that makes it a monoid.
@@ -11030,6 +12860,12 @@ int mex_mex() {
 
 # `simp` in Lean4
 
+```meta
+status: done
+created: 2022-06-03
+last-edited: 2022-06-03
+```
+
 - `Lean/Elab/Tactic/Simp.lean`:
 
 ```
@@ -11058,6 +12894,12 @@ where
 
 # Big list of Lean4 TODOS
 
+```meta
+status: draft
+created: 2022-06-03
+last-edited: 2022-06-03
+```
+
 - Hoogle for Lean4.
 - show source in `doc-gen4`.
 - mutual `structure` definitions.
@@ -11065,6 +12907,12 @@ where
 - Convert lean book into `Jupyter` notebook?
 
 # `unsafePerformIO` in Lean4:
+
+```meta
+status: done
+created: 2022-05-24
+last-edited: 2022-06-03
+```
 
 
 - First do the obvious thing, actually do the IO:
@@ -11085,6 +12933,12 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 # Big List of Lean4 FAQ
 
+```meta
+status: draft
+created: 2022-06-03
+last-edited: 2022-06-03
+```
+
 - `FVar`: free variables
 - `BVar`: bound variables
 - `MVar`: metavariables [variables for unification].
@@ -11093,6 +12947,12 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 
 # Sheaves in geometry and logic 1.2: Pullbacks
+
+```meta
+status: done
+created: 2022-05-04
+last-edited: 2022-05-04
+```
 - Pullbacks are fiber bundles.
 - Pullbacks for presheaves are constructed pointwise.
 - The pullback of $f$ along itself in set is going to be the set of $(x, y)$ such that $f(x) = f(y)$.
@@ -11105,6 +12965,12 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 - The pullback of an epi along any arrow is epi in set, but not necessarily always!
 
 # Sheaves in geometry and logic 1.3: Characteristic functions of subobjects
+
+```meta
+status: done
+created: 2022-05-04
+last-edited: 2023-04-02
+```
 
 
 ```
@@ -11211,11 +13077,23 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 # Common Lisp Debugging: Clouseau
 
+```meta
+status: done
+created: 2022-05-04
+last-edited: 2023-04-02
+```
+
 - Install the `clouseau` package to get GUI visualizations of common lisp code.
 - Use `(ql:quickload 'clouseau)` to use the package, and then use
   `(clouseau:inspect (make-condition 'uiop:subprocess-error :code 42))` to inspect a variable.
 
 # Drawabox: Lines
+
+```meta
+status: done
+created: 2022-05-04
+last-edited: 2023-09-22
+```
 
 #### Superimposed liens
 
@@ -11231,6 +13109,12 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 
 # Common Lisp Beauty: paths
+
+```meta
+status: done
+created: 2022-05-04
+last-edited: 2023-09-22
+```
 
 ```lisp
 ; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[E {10034448F3}>
@@ -11304,6 +13188,12 @@ CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
 
 # Logical Predicates (OPLSS '12)
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-04-28
+```
+
 - $R_\tau(e)$ has three conditions:
 - (1) $e$ has type $\tau$
 - (2) $e$ has the property of interest ($e$ strongly normalizes / has normal form)
@@ -11315,6 +13205,12 @@ CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
 
 
 # Logical Relations (Sterling)
+
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2023-04-02
+```
 
 - Key idea is to consider relations $R_\tau$ between closed terms of types $\tau_l$ and $\tau_r$. That is, we have
   have a relation $R_\tau \subseteq \{ (t_l, t_r): (\cdot \vdash t_l : \tau_l), (\cdot \vdash t_r : \tau_r)$.
@@ -11393,6 +13289,12 @@ $$
 
 # Pointless topology: Frames
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-09-25
+```
+
 - A frame is a lattice with arbitrary joins, finite meets, with distributive law: $A \cap \cup_i B_i = \cup_i A \cap B_i$.
 - A map of frames is a lattice map between frames.
 - A category of locales is the opposite category of frames.
@@ -11416,6 +13318,12 @@ $$
   What you see is there: every completely prime filter is the nbhd of some point. You don't see double: the pt is unique.
 
 # Introduction to substructural logics: Ch1
+
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2023-09-22
+```
 
 #### Terminology
 
@@ -11464,6 +13372,12 @@ $$
 
 # Integrating against ultrafilers
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-09-28
+```
+
 - Let $X$ be a set.
 - Recall that a filter on $X$ is a collection of subsets $\Omega$ of $X$ that are
   closed under supersets and intersections (union comes for free by closure under supersets).
@@ -11496,10 +13410,22 @@ $$
 
 # wegli: Neat tool for semantically grepping C++
 
+```meta
+status: draft
+created: 2022-04-28
+last-edited: 2022-04-28
+```
+
 - https://github.com/googleprojectzero/weggli
 
 
 # Mostowski Collapse
+
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2023-04-02
+```
 
 - Let $V$ be a set, let $U$ be a universe and let $R$ be a well founded relation on $V$.
 - Recall that a relation is well-founded iff every non-empty subset contains a minimal element.
@@ -11548,6 +13474,12 @@ $$
 
 # Spaces that have same homotopy groups but not the same homotopy type
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-04-28
+```
+
 - Two spaces have the same homotopy type iff there are functions $f: X \to Y$ and $g: Y \to X$
   such that $f \circ g$ and $g \circ f$ are homotopic to the identity.
 - Now consider two spaces: (1) the point, (2) the topologists's sine curve with two ends attached (the warsaw circle).
@@ -11559,6 +13491,12 @@ $$
 
 # Fundamental group functor does not preserve epis
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2023-04-02
+```
+
 - Epis in the category of topological spaces are continuous functions that have dense image.
 - Take a circle $S^1$ and pinch it in the middle to get $S^1 \lor S^1$. this map is an epi: $f: S^1 \to S^1 \lor S^1$.
 - See that this does not induce an epi $\pi(Z) \to \pi_(Z) \star \pi_1(Z)$.
@@ -11567,11 +13505,23 @@ $$
 
 # Epi in topological spaces
 
+```meta
+status: draft
+created: 2022-04-28
+last-edited: 2022-04-28
+```
+
 
 - Epis in the category of topological spaces are continuous functions that have dense image.
 - Proof: TODO
 
 # Permutation models
+
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-04-28
+```
 
 - These are used to show create models of `ZF + not(Choice)`.
 - Key idea: if we just have ZF without atoms, then a set has no non-trivial `∈` preserving permutations.
@@ -11588,12 +13538,24 @@ $$
 
 # Almost universal class
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2023-04-02
+```
+
 - A universal class is one that contains all subsets as elements.
 - A class is almost universal if every subset of $L$ is a a subset of some element of $L$. But note that $L$ does not need to have all subsets as elements.
 - $L$ is almost universal if for any subset $A \subset L$ (where $A$ is a set), there is some $B \in L$ such that $A \subseteq B$,
   but $A$ in itself need not be in $L$.
 
 # Godel operations
+
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-04-28
+```
 
 - A finite collection of operations that is used to create all constructible sets from ordinals.
 - Recall $V$, the von neumann universe, which we build by iterating powersets starting from $\emptyset$.
@@ -11608,6 +13570,12 @@ $$
 
 # Orthogonal Factorization Systems
 
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
+
 - For a category $C$, a factorization system consists of sets of morphisms $(E, M)$ such that:
 - $E, M$ contain all isos.
 - $E, M$ are closed under composition.
@@ -11616,6 +13584,12 @@ $$
 - [Reference: Riehl on factorization systems](https://math.jhu.edu/~eriehl/factorization.pdf)
 
 # Orthogonal morphisms
+
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
 
 Two morphisms `e: a -> b` and `m: x -> y` are orthogonal iff for any `(f, g)` such
 that the square commutes:
@@ -11644,6 +13618,12 @@ x --m--> y
 
 # Locally Presentable Category
 
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
+
 - A category is locally presentable iff it has a set $S$ of objects such that
   every object is a colimit over these objects. This definition is correct upto
   size issues.
@@ -11670,9 +13650,21 @@ x --m--> y
 
 # Remez Algorithm
 
+```meta
+status: draft
+created: 2022-04-03
+last-edited: 2022-04-03
+```
+
 - [link](https://en.wikipedia.org/wiki/Remez_algorithm)
 
 # Permission bits reference
+
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
 
 - I always forget the precise encoding of permissions, so I mkae a cheat sheet to
   remember what's what. It's `read,write,execute` which have values `2^2, 2^1, 2^0`.
@@ -11702,11 +13694,23 @@ x --m--> y
 
 # Papers on Computational Group Theory
 
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
+
 - A practical model for computation with matrix groups.
 - A data structure for a uniform approach to computations with finite groups.
 - A fast implementatoin of the monster group.
 
 # Kan Extensions: Key idea
+
+```meta
+status: done
+created: 2022-04-03
+last-edited: 2022-04-03
+```
 
 - The key insight is to notice that when we map from $C \to E$ via $K$, then the $K(x)$ object that we get
   whose comma we form with $K \downarrow Kx$ also has an arrow $Kx \to Kx$ via the identity arrow.
@@ -11716,6 +13720,12 @@ x --m--> y
 
 
 # Interleaved dataflow analysis and rewriting
+
+```meta
+status: done
+created: 2022-02-06
+last-edited: 2022-05-30
+```
 
 
 ```
@@ -11751,6 +13761,12 @@ T -> analysis
 
 # Central variable as `focal`
 
+```meta
+status: done
+created: 2022-02-06
+last-edited: 2022-05-30
+```
+
 - The NLTK code which [breaks down a word into syllables](https://www.nltk.org/_modules/nltk/tokenize/sonority_sequencing.html)
   inspects trigrams.
 - It names the variables of the trigrams `prev`, `focal`, and `next`.
@@ -11758,6 +13774,12 @@ T -> analysis
   of a word like `current`.
 
 # Wilson's theorem
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-03
+```
 
 - We get $p \equiv 1$  (mod $4$) implies $((p-1)/2)!$ is a square root of -1.
 - It turns that this is because from Wilson's theorem, $(p-1)! = -1$.
@@ -11769,6 +13791,12 @@ T -> analysis
 - It's really nice to be able to see where this condition comes from!
 
 # General enough special cases
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2023-10-06
+```
 
 - Also, I feel thanks to thinking about combinatorial objects for a while
   I've gained some kind of "confidence", where I check a special
@@ -11792,14 +13820,32 @@ void editor_state_backspace_char(EditorState& s) {
 
 # XOR and AND relationship
 
+```meta
+status: draft
+created: 2022-02-03
+last-edited: 2022-02-03
+```
+
 -  `a xor b = a + b - 2 (a & b)`
 
 # Geometry of complex integrals
+
+```meta
+status: draft
+created: 2022-02-03
+last-edited: 2022-02-03
+```
 
 - integral f(z) dz is work in real part, flux in imaginary part.
 - https://www.youtube.com/watch?v=EyBDtUtyshk
 
 # Green's functions
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
 - Can solve $L y(x) = f(x)$.
 - $f(x)$ is called as the forcing operator.
 - $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$.
@@ -11809,12 +13855,24 @@ void editor_state_backspace_char(EditorState& s) {
 
 # CP trick: writing exact counting as counting less than
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-01-28
+```
+
 - If we can solve for number of elements `<= k`, say given by `leq(k)` where `k` is an integer,
   then we can also solve for number of elements `= k`, given by `eq(k) := leq(k) - leq(k - 1)`.
 - While simple, this is hugely benificial in many situations because `<=k` can be implement as some kind of
   prefix sum data structure plus binary search, which is much less error prone to hack up than exact equality.
 
 # CP trick: Heavy Light Decomposition euler tour tree
+
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-01-28
+```
 
 - To implement HLD, first define heavy edge to be edge to heaviest vertex.
 - To use segment tree over HLD paths, create a "skewed" DFS where each node visits
@@ -11827,6 +13885,12 @@ void editor_state_backspace_char(EditorState& s) {
 
 # Counting with repetitions via pure binomial coefficients
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-05-30
+```
+
 - If we want to place $n$ things where $a$ of them are of kind `a`, $b$ are of kind `b`, $c$
   of them are kind $c$.
   the usual formula is $n!/(a!b!c!)$.
@@ -11838,6 +13902,12 @@ void editor_state_backspace_char(EditorState& s) {
 - Generalization is immediate.
 
 # Fundamental theorem of homological algebra [TODO]
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
 
 - Let $M$ be an $R$ module.
 - A resolution of $M$ is an exact chain complex `... -> M2 -> M1 -> M0 -> M -> 0`
@@ -11886,6 +13956,12 @@ P1---   P0 -> M -> 0
 ## Chain homotopy classes of chain maps
 
 # Projective modules in terms of universal property
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
 
 ## (1): Universal property / Defn
 
@@ -12032,6 +14108,12 @@ E ->>B <--       g~
 
 # How ideals recover factorization [TODO]
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-05-30
+```
+
 - consider $Z[-5]$. Here, we have the equation that $2 \times 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$.
 - Why are $2, 3, (1 + \sqrt 5), (1 - \sqrt 5)$ prime?
 - we can enumerate numbers upto a given absolute value.
@@ -12112,6 +14194,12 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
 - [Video lectures: Intro to algebraic number thory via fermat's last theorem](https://www.youtube.com/watch?v=1f0-pc9zYPQ&list=PLSibAQEfLnTwq2-zCB-t9v2WvnnVKd0wn)
 
 # Centroid of a tree
+
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
 
 - Do not confuse with **Center of a tree**, which is a node $v$ that minimizes the distance to all other nodes:
   $max_{w \in V} d(v, w)$. This can be found by taking the node that is the middle of a diameter.
@@ -12204,6 +14292,12 @@ int centroid(int v, int p) {
 
 # Path query to subtree query
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-01-28
+```
+
 - Model question: [CSES counting paths](https://cses.fi/problemset/task/1136)
 - We have a static tree, and we wish to perform updates on paths, and a final query.
 - We can uniquely represent a path in a tree with an initial and final node. There are $O(n^2)$ paths
@@ -12213,6 +14307,12 @@ int centroid(int v, int p) {
 
 
 # Pavel: bridges, articulation points for UNDIRECTED graphs
+
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2023-04-02
+```
 
 - Two vertices are 2-edge connected if there are 2 paths between them. The two paths cannot share ANU edges.
 - Every bridge must occur as a DFS tree edge, because DFS connects all components together.
@@ -12240,6 +14340,12 @@ int centroid(int v, int p) {
 
 # Monadic functor
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-05-30
+```
+
 - A fuctor $U: D \to C$ is monadic iff it has a left adjoint $F: C \to D$ and
   the adjunction is monadic.
 - An adjunction $C : F \vdash U: D$ is monadic if the induced "comparison functor" from $D$ to the
@@ -12260,6 +14366,12 @@ int centroid(int v, int p) {
 
 # Injective module
 
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-05-30
+```
+
 - An injective module is a generalization of the properties of $\mathbb Q$ as an abelian group ($\mathbb Z$ module.)
 - In particular, given any injective group homomorphism $f: X \to Y$ and a morphism $q_X: X \to \mathbb Q$,
   then we induce a group homomorphism $q_Y: Y \to \mathbb Q$, where $X, Y$ are abelian groups.
@@ -12278,6 +14390,12 @@ int centroid(int v, int p) {
   $q: Q \to Z/3Z$. This is given by $q(x) = $
 
 # Proof that $Spec(R)$ is a sheaf [TODO]
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-06
+```
 
 - Give topology for $Spec(R)$ by defining the base as $D(f)$ --- sets where $f \in R$ does not vanish.
 - Note that the base is closed under intersection: $D(f) \cap D(g) = D(fg)$.
@@ -12317,25 +14435,55 @@ int centroid(int v, int p) {
 
 # Projections onto convex sets
 
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2026-08-28
+```
+
 - [Link](https://en.wikipedia.org/wiki/Projections_onto_convex_sets)
 
 
 # BGFS algorithm for unconstrained nonlinear optimization
 
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2022-02-06
+```
+
 - [Link](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
 
 # LM algorithm for nonlinear least squares
+
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2022-02-06
+```
 
 - [Link](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
 
 
 # Backward dataflow and continuations
+
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-04-03
+```
 - Forward dataflow deals with facts _thus far_.
 - Backward dataflow deals with facts about _the future_, or the _rest of the program_.
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
 
 # Coordinate compression with `set` and `vector`
+
+```meta
+status: done
+created: 2022-01-28
+last-edited: 2022-05-30
+```
 
 If we have a `std::set<T>` that represents our set of uncompressed values, we can
 quickly compress it with a `std::vector<T>` and `lower_bound` without having to
@@ -12351,6 +14499,12 @@ assert(xs[compressed] == uncompressed);
 
 # Hilbert polynomial and dimension
 
+```meta
+status: draft
+created: 2022-01-18
+last-edited: 2022-01-18
+```
+
 - Think of non Cohen Macaulay ring (plane with line perpendicular to it). Here the dimension varies per point.
 - Let $R$ be a graded ring. Let $R^0$ be noetherian. $R$ is finitely generated as an algebra over $R^0$.
   This implies by hilbert basis theorem that $R$ is noetherian (finitely generated as a module over $R^0$).
@@ -12364,6 +14518,12 @@ assert(xs[compressed] == uncompressed);
 
 # Cost of looping over all multiples of $i$ for $i$ in $1$ to $N$
 
+```meta
+status: done
+created: 2022-01-18
+last-edited: 2022-01-18
+```
+
 - Intuitively, when I think of "looping over $i$ and all its multiples", I seem to have a gut
   feeling that its cost is $N$. Of course, it is not. It is $N/i$.
 - Thus, the correct total cost becomes $\sum_{i=1}^N N/i$ (versus the false cost of $\sum_{i=1}^N N = N^2$.
@@ -12374,6 +14534,12 @@ assert(xs[compressed] == uncompressed);
 
 
 # Stuff I learnt in 2021
+
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 I spent this year focusing on fundamentals, and attempting to prepare
 myself for topics I'll need during my PhD. This involved learning things
@@ -12844,6 +15010,12 @@ far along I get!
 
 # Cayley hamilton for 2x2 matrices in sage via AG
 
+```meta
+status: done
+created: 2021-12-29
+last-edited: 2023-04-02
+```
+
 - I want to 'implement' the zariski based proof for cayley hamilton in SAGE and show
   that it works by checking the computations scheme-theoretically.
 - Let's work through the proof by hand. Take a 2x2 matrix `[a, b; c, d]`.
@@ -12878,11 +15050,23 @@ far along I get!
 
 # LispWorks config
 
+```meta
+status: draft
+created: 2022-01-02
+last-edited: 2022-01-02
+```
+
 - Looks like all emacs keybindings just work
 - https://www.nicklevine.org/declarative/lectures/additional/key-binds.html
 
 
 # Birkhoff Von Neumann theorem
+
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-05-30
+```
 
 - By Frobenius Konig theorem, $A$ must have block structure:
 
@@ -12961,6 +15145,12 @@ s [B|C]
 
 # Latin Square
 
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-05-30
+```
+
 - A latin square of order $N$ is an $N \times N$ array in which each row and column is
   a permutation of $\{ a_1, a_2, \dots, a_n \}$.
 - Example latin square (to show that these exist):
@@ -13008,6 +15198,12 @@ s [B|C]
   the latin square with no overlaps.
 
 # Assignment Problem
+
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-05-30
+```
 
 - Let $A$ be an $n \times n$ non-negative matrix.
 - A permutation $\sigma$ of $[1, \dots, n]$ is called a **simple assignment** if $A[i][\sigma(i)]$ is positive
@@ -13087,6 +15283,12 @@ r + s = n + 1
 
 # Interpolating homotopies
 
+```meta
+status: done
+created: 2022-01-02
+last-edited: 2022-05-30
+```
+
 - If we have kp + (1-k) q and a contractible space X which contracts to point
   c, where image of p is x and imagine of q is y, then send the above point to
   theta(x, 2k) : k <= 1/2 and theta (y, 1-2(k - 1/2))or theta (y, 2-2k)
@@ -13094,18 +15296,42 @@ r + s = n + 1
 
 # Example where MIP shows extra power over IP
 
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2021-12-28
+```
+
 - God tells us chess board is draw. Can't verify
 - If two Gods, can make one God play against the other. So if one says draw, other says win, can have them play and find out who is lying!
 - Hence, MIP has more power than IP? (Intuitively at least).
 
 # Lazy reversible computation?
+
+```meta
+status: draft
+created: 2021-12-28
+last-edited: 2021-12-28
+```
 - Lazy programs are hard to analyze because we need to reason abot them backwards.
 - Suppose we limit ourselves to reversible programs. Does it then become easy?
 
 # Theorem coverage as an analogue to code coverage
+
+```meta
+status: draft
+created: 2021-12-28
+last-edited: 2022-05-30
+```
 - Theorem coverage: how many lines of code are covered by correctness theorems?
 
 # Lazy GPU programming
+
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2023-04-02
+```
 
 - All laziness is a program analysis problem, where we need to strictify.
 - Lazy vectorization is a program analysis problem where we need to find
@@ -13148,11 +15374,23 @@ r + s = n + 1
 
 # Backward dataflow and continuations
 
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-04-03
+```
+
 - Forward dataflow deals with facts _thus far_.
 - Backward dataflow deals with facts about _the future_, or the _rest of the program_.
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
 # The tyranny of structurelessness
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2021-12-26
+```
 
 - [THE TYRANNY of STRUCTURELESSNESS by Jo Freeman aka Joreen](https://www.jofreeman.com/joreen/tyranny.htm)
 
@@ -13186,6 +15424,12 @@ r + s = n + 1
 
 # Simple Sabotage Field Manual
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-01-02
+```
+
 - (1) Insist on doing everything through "channels." Never permit short-cuts to
   be taken in order to expedite decisions.
 - (2) Make "speeches." Talk as frequently as possible and at great length.
@@ -13209,6 +15453,12 @@ r + s = n + 1
 
 # Counting permutations with #MAXSAT
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2021-12-26
+```
+
 Using #MAXSAT, you can count permutations, weird. Build a complete bipartite
 graph K(n,n), and then connect left to source, right to sink with unit
 capacity. Each solution to the flow problem is an assignment / permutation.
@@ -13216,20 +15466,44 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 # Coloring `cat` output with `supercat`
+
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2021-12-26
+```
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
 # Reader monoid needs a hopf algebra?!
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2021-12-26
+```
 - 5.1, eg (iii)
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
 
 # Monads mnemonic
 
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2021-12-26
+```
+
 - multiplication is $\mu$ because Mu.
 - return is $\eta$ because return is unit is Yeta.
 
 # Card stacking
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2023-04-02
+```
 
 > It's not about the idea, it's about the execution
 -  The idea is indeed pedestrain: Let's stack cards!
@@ -13239,6 +15513,12 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 # SSH into google cloud
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2021-12-26
+```
 - Setup firewall rules that enable all SSH
 - Add SSH key into `metadata` of project.
 - ssh `<ssh-key-username>@<external-ip>` ought to just work.
@@ -13247,12 +15527,24 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 # Comma & Semicolon in index notation
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
+
 > A comma before an index indicates partial differentiation with respect to that index.
 > A semicolon indicates covariate differentiation.
 
 - Thus, the divergence may be written as `v_i,i`
 
 # Spin groups
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 - Spin group is a 2 to 1 cover of $SO(n)$.
 - We claim that for 3 dimensions, $Spin(3) \simeq SU(2)$. So we should have a 2 to 1 homomorphism $\rho: SU(2) \to SO(3)$.
@@ -13270,11 +15562,23 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 # Undefined behaviour is like compactification [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-03
+```
+
 - We compactify something like $\mathbb N$ into $\mathbb N^\infty$.
 - What does Stone Cech give us?
 - Read abstract stone duality!
 
 # God of areppo
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 
 > One day, a farmer named Arepo built a temple at the edge of his field. It was a humble thing, with stone walls and a thatch roof. At the center of the room Arepo stacked some stones to make a cairn. Two days later, a god moved into Arepo's temple.
@@ -13385,6 +15689,12 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 # Classification of lie algebras, dynkin diagrams
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 #### Classification of complex lie algebras
 - $L$ is a complex vector space with a lie bracket $[., .]$.
@@ -13540,6 +15850,12 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 # Weird free group construction from adjoint functor theorem
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
+
 
 - We wish to construct the free group on a set $S$. Call the free group $\Gamma S$.
 - Call the forgetful functor from groups to sets as $U$.
@@ -13569,6 +15885,12 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 # bashupload
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-01-02
+```
+
 ```
 curl bashupload.com -T your_file.txt
 ```
@@ -13576,6 +15898,12 @@ curl bashupload.com -T your_file.txt
 - Super useful if one wants to quickly send a file from/to a server.
 
 # When are the catalan numbers odd
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2023-04-02
+```
 
 - The catalan numbers $C_n$ count the number of binary trees on $n$ nodes.
 - For every binary tree, label the nodes in some standard ordering (eg. BFS).
@@ -13589,6 +15917,12 @@ curl bashupload.com -T your_file.txt
 
 
 # Geodesic equation, Extrinsic
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 - The geodesic on a sphere must be a great circle. If it's not, so say we pick a circle at some fixed azimuth,
   then all the velocities point towards the center at this azimuth, not at the center of the sphere! But
@@ -13635,6 +15969,12 @@ $$
 
 # Connections, take 2
 
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
+
 - I asked a [math.se question](https://math.stackexchange.com/questions/4309198/on-which-tangent-bundles-of-mathbb-r2-does-position-velocity-acceleration)
   about position, velocity, acceleration that recieved a great answer by `peek-a-boo`. Let me try and provide an exposition of his answer.
 - Imagein a base manifold $M$, say a circle.
@@ -13680,11 +16020,23 @@ $$
 
 # Dropping into tty on manjaro/GRUB
 
+```meta
+status: draft
+created: 2021-12-26
+last-edited: 2021-12-26
+```
+
 - Acces grub by holding down `<ESC>`
 -  add a suffix `rw 3` on the GRUB config line that loads `linux ...`
 
 
 # Why the zero set of a continuous function must be a closed set
+
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2022-05-30
+```
 
 - Consider the set of points $Z = f^{-1}(0)$ for some function $f: X \to \mathbb R$.
 - Suppose we can talk about sequences or limits in $X$.
@@ -13697,6 +16049,12 @@ $$
   sets of polynomials!
 
 # Derivatives in diffgeo
+
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2022-01-02
+```
 
 - A function of the form $f: \mathbb R^i \to \mathbb R^o$ has derivative specified by an $(o \times i)$ matrix, one which says
   how each output varies with each input.
@@ -13722,6 +16080,12 @@ $$
 
 # Building stuff with Docker
 
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2024-01-31
+```
+
 - create `Dockerfile`, write `docker build .`.
 - File contains shell stuff to run in `RUN <cmd>` lines. `<cmd>` can have newlines with backslash ala shell script.
 - `docker run <image/layer sha> <command>` to run something at an image SHA (ie, not in a running container). Useful to debug.
@@ -13740,6 +16104,12 @@ $$
 
 # Lie derivative versus covariant derivative
 
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2022-01-02
+```
+
 <img src="./static/lie-bracket-versus-covariant-derivative.png"/>
 
 - Lie derivative cares about all flow lines, covariant derivative cares about a single flow line.
@@ -13757,6 +16127,12 @@ $$
 
 
 # The Tor functor
+
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2022-01-02
+```
 
 Let $A$ be a commutative ring, $P$ an $A$-module. The functors $Tor_i^A(-, P)$ are defined in such a way that
 
@@ -13799,6 +16175,12 @@ $$
 
 # Sum of quadratic errors
 
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2021-11-18
+```
+
 - Consider the function $(x - a)^2 + (x - b)^2$
 - Minimum error is at $2(x - a) + 2(x - b)$, or at `(a + b)/2`.
 - As we move away towards either end-point, the _error always increases_!
@@ -13807,11 +16189,23 @@ $$
 
 # Hip-Hop and Shakespeare
 
+```meta
+status: draft
+created: 2021-11-18
+last-edited: 2021-11-18
+```
+
 - For whatver reason, it appears like iambie pentameter allows one to rap shakespeaker sonnets to 80bmp / 150bpm.
 - [TedX talk by  Akala](https://www.youtube.com/watch?v=DSbtkLA3GrY)
 
 
 # Write thin to write well
+
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2022-05-30
+```
 
 - Set column width to be absurdly low which forces your writing to get better (?!)
 - That is, when you write, say in vim or emacs, you put one clause per line.
@@ -13854,6 +16248,12 @@ let g:goyo_margin_bottom = 0
 
 # Hidden symmetries of alg varieties
 
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2022-05-30
+```
+
 - Given equations in $A$, can find solutions in any $B$ such that we have $\phi: A \to B$
 - Can translate topological ideas to geometry.
 - Fundamental theorem of riemann: fundamental group with finitely many covering becomes algebraic (?!)
@@ -13870,9 +16270,21 @@ let g:goyo_margin_bottom = 0
 
 # `fd` for `find`
 
+```meta
+status: draft
+created: 2021-11-11
+last-edited: 2021-11-11
+```
+
 - `fd` seems to be much, much faster at `find` than, well, `find`.
 
 # Thu Morse sequence for sharing
+
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2021-11-18
+```
 
 - Suppose A goes first at picking object from a collection of objects, then B.
 - B has an inherent disatvantage, since they went second.
@@ -13885,6 +16297,12 @@ let g:goyo_margin_bottom = 0
 - [Reference](https://www.youtube.com/watch?v=prh72BLNjIk)
 
 # Elementary and power sum symmetric polynomials
+
+```meta
+status: done
+created: 2021-12-28
+last-edited: 2022-05-30
+```
 
 - [Borcherds video on newton identites](https://www.youtube.com/watch?v=JG1F1G0S_bo)
 - [Terry tao calls the power sum symmetric polynomials as 'moments'](https://mathoverflow.net/questions/402051/distribution-of-some-sums-modulo-p/402109#402109)
@@ -14006,6 +16424,12 @@ $$
 
 
 # Projective spaces and grassmanians in AG
+
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2022-05-30
+```
 
 #### Projective space
 - Projective space is the space of all lines through $\mathbb R^n$.
@@ -14178,12 +16602,24 @@ $$
 
 # Mnemonic for why `eta` is unit:
 
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2021-11-11
+```
+
 - Remember that given an adjunction $F \vdash G$, the unit of the adjunction is $\eta: 1 \to GF$.
 - We use the symbol `eta` because it's `yunit`, and `eta` is `y` in `greek` (which is why the vim digraph for `eta` is `C-k y*`)
 - $\eta$ is `unit`, since when you flip it, you get $\mu$, which is $\mu$-ltiplication (multiplication). Hence $\eta$ is the unit for the multiplication
   to form a monoidal structure for the monad.
 
 # Fundamental theorem of galois theory
+
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2022-05-30
+```
 
 - Let $K \subseteq M$ is a finite galois extension (normal + separable), then there a 1:1 correspondence between intermediate fields $L$
   and subgroups of the galois group $G = Gal(M/K)$.
@@ -14239,6 +16675,12 @@ $$
 
 # Counter-intuitive linearity of expectation [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 - I like the example of "10 diners check 10 hats. After dinner they are given the hats back at random."
   Each diner has a 1/10 chance of getting their own hat back, so by linearity of expectation, the expected number of diners who get the correct hat is 1.
 
@@ -14254,6 +16696,12 @@ $$
 
 # Metis
 
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2021-11-11
+```
+
 > So insofar as Athena is a goddess of war, what really do we mean by that? Note that her most famous weapon is not her sword but her shield Aegis, and Aegis has a gorgon's head on it, so that anyone who attacks her is in serious danger of being turned to stone. She's always described as being calm and majestic, neither of which adjectives anyone ever applied to Ares....
 
 > Let's face it, Randy, we've all known guys like Ares. The pattern of human behavior that caused the internal mental representation known as Ares to appear in the minds of the ancient Greeks is very much with us today, in the form of terrorists, serial killers, riots, pogroms, and agressive tinhorn dictators who turn out to be military incompetents. And yet for all their stupidity and incompetence, people like that can conquer and control large chunks of the world if they are not resisted....
@@ -14264,6 +16712,12 @@ $$
 
 # Tooling for performance benchmarking
 
+```meta
+status: done
+created: 2021-11-11
+last-edited: 2021-12-26
+```
+
 - Optick and Tracy and flame graphs
 - https://github.com/wolfpld/tracy
 - https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
@@ -14272,6 +16726,12 @@ $$
 
 
 # Normal field extensions
+
+```meta
+status: draft
+created: 2021-11-06
+last-edited: 2022-05-30
+```
 
 ## Normal extension
 
@@ -14341,6 +16801,12 @@ $$
 
 # Eisenstein Theorem for checking irreducibility
 
+```meta
+status: done
+created: 2021-11-03
+last-edited: 2022-05-30
+```
+
 - Let $p(x) = a_0 + a_1 x + \dots + a_n x^n$
 - If $p$ divides all coefficients except for the highest one ($a_n$), $a_0$ is $p$-squarefree ($p^2$ does not divide $a_0$), then $p(x)$ is irreducible.
 - That is, $p | a0, p | a_1$, upto $p | a_{n-1}$, $p \not | a_n$, and finally $p^2 \not | a_0$.
@@ -14366,6 +16832,12 @@ $$
   show that $a_n$ is divisible by $p$, a contradiction. (This uses $p \not | a_n$).
 
 # Gauss Lemma for polynomials
+
+```meta
+status: done
+created: 2021-11-03
+last-edited: 2022-05-30
+```
 
 - Let $z(x) \in Z[X]$ such that $z(x) = p(x) q(x)$ where $p(x), q(x) \in Q[X]$. Then we claim that there exists
   $p'(x), q'(x) \in Z[x]$ such that $z(x) = p'(x) q'(x)$.
@@ -14403,6 +16875,12 @@ $$
 
 # How GHC does typeclass resolution
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-11-01
+```
+
 - As told to me by davean:
 
 - Its like 5 steps
@@ -14429,6 +16907,12 @@ $$
 
 # Defining continuity covariantly
 
+```meta
+status: draft
+created: 2021-10-06
+last-edited: 2022-05-30
+```
+
 - Real analysis: coavriant definition: $f(\lim x) = \lim (f x)$. Contravariant definition in analysis/topology: $f^{-1}(open)$ is open.
 - Contravariant in topology via sierpinski: $U \subseteq X$ is open iff characteristic function
   $f(x) = \begin{cases} T & x \in U \\ \bot & \text{otherwise} \end{cases}$
@@ -14452,6 +16936,12 @@ $$
 
 # Why commutator is important for QM
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - Suppose we have an operator $L$ with eigenvector $x$, eigenvalue $\lambda$. So $Lx = \lambda x$.
 - Now suppose we have another operator $N$ such that $[L, N] = \kappa N$ for some constant $\kappa$.
 - Compute $[L, N]x = \kappa Nx$, which implies:
@@ -14474,8 +16964,20 @@ $$
 
 # Deriving pratt parsing by analyzing recursive descent [TODO]
 
+```meta
+status: draft
+created: 2022-02-03
+last-edited: 2022-02-03
+```
+
 
 # Level set of a continuous function must be closed
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - Let $f$ be continuous, let $L \equiv f^{-1}(y)$ be a level set. We claim $L$ is closed.
 - Consider any sequence of points $s: \mathbb N \to L$. We must have $f(s_i) = y$
@@ -14488,10 +16990,22 @@ $$
 
 
 # HPNDUF - Hard problems need design up front!
+
+```meta
+status: draft
+created: 2021-10-31
+last-edited: 2021-10-31
+```
 - [Norvig v/s some TDD due try to solve sudoku](http://ravimohan.blogspot.com/2007/04/learning-from-sudoku-solvers.html)
 
 
 # Separable Extension is contained in Galois extension
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - Recall that an extension is galois if it is separable and normal.
 - Consider some separable extension $L/K$.
@@ -14504,6 +17018,12 @@ $$
 
 
 # Primitive element theorem
+
+```meta
+status: done
+created: 2021-11-06
+last-edited: 2023-09-22
+```
 
 - Let $E/k$ be a finite extension. We will characterize when a primitive element exists, and show that
   this will always happen for separable extensions.
@@ -14619,6 +17139,12 @@ $$
 
 # Separable extension via embeddings into alg. closure
 
+```meta
+status: done
+created: 2021-11-06
+last-edited: 2022-05-30
+```
+
 #### Defn by embeddings
 - Let $L/K$ be a finite extension.
 - It is separable iff a given embedding $\sigma: K \to \overline K$ can be extended in $[L:K]$ ways (This number can be at most $[L:K]$.)
@@ -14681,6 +17207,12 @@ $$
 
 
 # Separable extensions via derivation
+
+```meta
+status: draft
+created: 2021-11-06
+last-edited: 2022-05-30
+```
 - Let $R$ be a commutative ring, $M$ an $R$-module. A derivation is a map such that $D(a + b) = D(a) + D(b)$ and $D(ab) = aD(b) + D(a)b$ [ie, the calculus chain rule is obeyed].
 - Note that the map does not need to be an $R$-homomorphism (?!)
 - The elements of $R$ such that $D(R) = 0$ are said to be the _constants_ of $R$.
@@ -14765,6 +17297,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 
 # Irreducible polynomial over a field divides any polynomial with common root
 
+```meta
+status: done
+created: 2021-11-06
+last-edited: 2021-11-06
+```
+
 - Let $p(x) \in K[x]$ be an irreducible polynomial over a field $K$. Let $p$ it share a common root $\alpha$ with another polynomial $q(x) \in K[x]$. Then we claim
   that $p(x)$ divides $q(x)$.
 - Consider the GCD $g \equiv gcd(p, q)$. Since $p, q$ share a root $\alpha$, we have that $(x - \alpha)$ divides $g$.  Thus $g$ is a non-constant polynomial.
@@ -14772,6 +17310,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - Now, we have $g | q$, but since $g = p$, we have $g | q$. This implies $p | q$ for any $q$ that shares a root with $p$.
 
 # Galois extension
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - Let $M$ be a finite extension of $K$. Let $G = Gal(M/K)$. Then $M$ is said to be Galois iff:
 
@@ -14802,6 +17346,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 
 # Separability of field extension as diagonalizability
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - Take $Q(\sqrt 2)$ over $Q$. $\sqrt(2)$ corresponds to the linear transform $[0 1][2 0]$ over the basis $a + b \sqrt 2$.
 - The chracteristic polynomial of the linear transform is $x^2 - 2$, which is indeed the minimal polynomial for $\sqrt(2)$.
 - Asking for every element of $Q(\sqrt 2)$ to be separable is the same as
@@ -14810,6 +17360,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
   So $minpoly(I) = x - 1$, $charpoly(I) = (x - 1)^n$.
 
 # Motivation for the compact-open topology
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
 
 - If $X$ is a compact space and $Y$ is a metric space, consider two functions $f, g: X \to Y$.
 - We can define a distance $d(f, g) \equiv \min_{x \in X} d(f(x), g(x))$.
@@ -14822,6 +17378,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 
 # Example of covariance zero, and yet "correlated"
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - $x$ and $y$ coordinates of points on a disk.
 - $E[X], E[Y]$ is zero because symmetric about origin.
 - $E[XY] = 0$ because of symmetry along quadrants.
@@ -14830,6 +17392,12 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - If $Y = aX+b$ the $corr(X, Y) = sgn(a)$.
 
 # Hypothesis Testing
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 #### Mnemonic for type I versus type II errors
 
@@ -14895,11 +17463,23 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 
 # Dumb mnemonic for remembering adjunction turnstile
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - The left side of the adjunction `F` wants to "push the piston" on the right
   side, so it must be `F -| G` where `-|` allows `F` to "crush" `G` with the
   flat surface `|`.
 
 # Delta debugging
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - [Delta debugging from the fuzzing book](git@github.com:opencompl/lean-gap.git)
 - Start with a program that crashes.
@@ -14932,6 +17512,12 @@ def reduce(inp: str, test: str -> bool):
 ```
 
 # Tidy Data
+
+```meta
+status: draft
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - [The paper](http://vita.had.co.nz/papers/tidy-data.pdf)
 
@@ -15062,6 +17648,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # Normal subgroups through the lens of actions
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - finite group is permutation subgroup
 - ghg' is relavelling by g
 - if gHg' = H, then H does not care about labelling
@@ -15073,6 +17665,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # Writing rebuttals, Tobias style
 
+```meta
+status: draft
+created: 2021-10-31
+last-edited: 2022-09-19
+```
+
 - Writing rebuttals, key take-aways:
 - Make your headings for reviewers who are seeing your rebuttal projected on a screen to defend your paper.
 - Don't write in Q?A style
@@ -15083,6 +17681,12 @@ MX17004 2010-05-27 33.2 18.2
   clear
 
 # LCS DP: The speedup is from filtration
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - I feel like I finally see where the power of dynamic programming lies.
 - Consider the longest common subsequence problem over arrays $A$, $B$ of size $n$, $m$.
@@ -15103,6 +17707,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # Poisson distribution
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-11-01
+```
+
 - Think about flipping a biased coin with some bias $p$ to associate a coin flip to each real number. Call this $b: \mathbb R \to \{0, 1\}$.
 - Define the count of an interval $I$ as $\#I \equiv \{ r \in I | b(r) = 1 \}$.
 - Suppose that this value $\#I$ is finite for any bounded interval.
@@ -15114,6 +17724,12 @@ MX17004 2010-05-27 33.2 18.2
 
 
 # F1 or Fun : The field with one element
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - Many combinatorial phenomena can be recovered as the "limit" of geometric phenomena over the "field with one element",
   a mathematical mirage.
@@ -15149,6 +17765,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # McKay's proof of Cauchy's theorem for groups [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 - In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1}) = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
 - We can interpret this as follows: in the multiplication table of a group, firstly, each row contains exactly one $1$.
 - Also, when $g \neq h$ (ie, we are off the main diagonal of the multiplication table), each $gh = 1$ has a "cyclic permutation solution" $hg = 1$.
@@ -15160,16 +17782,34 @@ MX17004 2010-05-27 33.2 18.2
 
 # ncdu for disk space measurement
 
+```meta
+status: draft
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - I've started to use `ncdu` to get a quick look at disk space instead of `baobab`. It's quite handy
   since it's an ncurses based TUI.
 
 
 # nmon versus htop
 
+```meta
+status: draft
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - I've switched to using `nmon` instead of `htop` for viewing system load. It's TUI looks much nicer than `htop`,
   and I find its process list much easier to parse.
 
 # Schrier sims --- why purify generators times coset
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
 
 - Let `p = (0 3 4)(1 2)`. Let `G = <p>`. What is the stabilizer of `k=0`?
 - `purify(p) = e` so we would imagine we would have `H = e`.
@@ -15179,6 +17819,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # Vyn's feeling about symmetry
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2021-10-31
+```
+
 - They are of the opinion that the correct definition of a symmetry of an object $S$ in space is that
   a transformation $T$ is a symmetry of $S$ iff $T(S) = S$ (as a set).
 - The above rules out things like translations of a cube.
@@ -15186,6 +17832,12 @@ MX17004 2010-05-27 33.2 18.2
   a specific translation $T$.
 
 # Convergence in distribution is very weak
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 - consider $X \sim N(0, 1)$. Also consider $-X$ which will be identically distributed (by symmetry of $-$ and $N$).
 - So we have that $-X \sim N(0, 1)$.
@@ -15231,6 +17883,12 @@ MX17004 2010-05-27 33.2 18.2
 
 
 # Class equation, P-group structure
+
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
 
 #### Centralizer
 
@@ -15311,6 +17969,12 @@ MX17004 2010-05-27 33.2 18.2
 
 # Sylow Theorem 1
 
+```meta
+status: done
+created: 2021-10-31
+last-edited: 2022-05-30
+```
+
 I've always wanted a proof I can remember, and I think I've found one.
 
 - Let $G$ be a group such that $|G| = p^n m $ where $p$ does not divide $m$.
@@ -15377,6 +18041,12 @@ stabilizer could have!
 
 # Fuzzing book
 
+```meta
+status: done
+created: 2021-09-28
+last-edited: 2023-04-02
+```
+
 - Statement coverage is different from branch coverage, since an `if (cond) { s1; } s2` will say that `s1` and `s2` were executed when
   `cond=True`, so we have full statement coverage. On the other hand, this does not guarantee full branch coverage, since we have not
   exectuted the branch where `cond=False`. We can't tell that we haven't covered this branch since *there is no statement* to record that
@@ -15426,6 +18096,12 @@ $$
 
 
 # Fisher Yates
+
+```meta
+status: done
+created: 2021-10-04
+last-edited: 2022-05-30
+```
 
 - We wish to generate a random permutation.
 - Assume we can generate a random permutation of $[a, b, c]$.
@@ -15498,6 +18174,12 @@ def permutation(draw, n):
 
 # Bucchberger algorithm
 
+```meta
+status: done
+created: 2021-09-28
+last-edited: 2022-05-30
+```
+
 - multidegree: term of maximum degree, where maximum is defined via lex ordering.
 - Alternatively, multidegree is the degree of the leading term.
 - If `multideg(f) = a` and `multideg(g) = b`, define `c[i] = max(a[i], b[i])`. Then $\vec x^c$ is the LCM of the leading monomial
@@ -15519,6 +18201,12 @@ def permutation(draw, n):
 
 
 # GAP permutation syntax
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-28
+```
 - The action of permutation on an element is given by $i^p$. This is the "exponential notation" for group actions.
 - See that we only ever write permutations multiplicatively, eg `(1) (23)` is
   the composition of permutations [written multiplicatively].
@@ -15527,6 +18215,12 @@ def permutation(draw, n):
 
 # Why division algorithm with multiple variables go bad
 
+```meta
+status: done
+created: 2021-10-04
+last-edited: 2021-10-04
+```
+
 - In `C[x, y]`, defining division is complicated, and needs grobner bases to work.
 - It's because they don't obey the GCD property. Just because `gcd(a, b) = g` does not mean that there exist `k, l` such that `ak + bl = g`
 - For example, in `C[x, y]`, we have `gcd(x, y) = 1` but we don't have polynomials `k, l` such that `kx + ly = 1`.
@@ -15534,6 +18228,12 @@ def permutation(draw, n):
   and similarly modulo `x` it means `kx = 1` which is also absurd.
 
 # Integral elements of a ring form a ring [TODO]
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-03
+```
 
 - An integral element of a field $L$ (imagine $\mathbb C$)
   relative to an integral domain $A$ (imagine $\mathbb Z$) is the root of a monic polynomial in $A$.
@@ -15547,17 +18247,35 @@ def permutation(draw, n):
 
 # "Cheap" proof of euler characteristic
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
+
 - If we punch a hole in a sphere, we create an edge with no vertex or face. This causes $V - E + F$ to go down by 1.
 - If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together.
   This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
 
 # Siefert Algorithm [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-03
+```
+
 - Algorithm to find surface that a knot bounds.
 - If we find a surface, then the genus of the boundary is one minus the genus of the surface.
 - Compute genus via classification of surfaces.
 
 # Cap product [TODO]
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-02-03
+```
 - https://www.youtube.com/watch?v=oxthuLI8PQk
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
@@ -15571,6 +18289,12 @@ def permutation(draw, n):
 - This is why it's also called as the intersection product, since it somehow counts intersections.
 
 # Cup product [TODO]
+
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
 - Can always multiply functions together. This takes a $k$ chain $\xi$ and an $l$ chain $\eta$ and produces $\xi \cup \eta$ which is a $k + l$
@@ -15590,6 +18314,12 @@ def permutation(draw, n):
 
 # Colimits examples with small diagram categories
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-24
+```
+
 - Given a colimit, compute the value as taking the union of all objects, and imposing the relation $x \sim f(x)$
   for all arrows $f \in Hom(X, Y)$ and all $x \in X$.
 
@@ -15602,10 +18332,22 @@ def permutation(draw, n):
 
 # Limits examples with small diagram categories
 
+```meta
+status: draft
+created: 2021-09-24
+last-edited: 2021-09-24
+```
+
 - Given a limit, compute the value as taking product of all objects, and taking only those tuples which obey the relations
   the relation $f(a) = b$ for all arrows $f \in Hom(X, Y)$.
 
 # Classification of compact 2-manifolds [TODO]
+
+```meta
+status: draft
+created: 2022-02-03
+last-edited: 2022-02-03
+```
 
 - Oriented compact 2-surfaces: sphere, torus, 2 holed torus, etc.
 - have euler characteristic $V - E + F $ as $2 - 2g$
@@ -15663,6 +18405,12 @@ https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 
 # Gauss, normals, fundamental forms [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 - consider a parametrization $r: u, v \to \mathbb R^3$
 - at a point $p = r(u, v)$ on the surface, the tangent vectors are $r_u \equiv \partial_u r$ and similarly $r_v \equiv \partial_v r$.
 - Let $k = xr_u + y r_v$. Then $k \cdot k$ is the **first fundamental form**. Computed as
@@ -15681,6 +18429,12 @@ https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=34
 
 # Second fundamental form
+
+```meta
+status: done
+created: 2021-11-18
+last-edited: 2023-04-02
+```
 - Let $z = f(x, y)$ be a (local) parametrization of the surface. Taylor expand $f$. we get:
 - $f(x + dx, y + dy) = f(x, y) + dx^T a + dy^T b + dx^T L dx + 2 dx^T M dy + dy^T N dy$.
 - We must get such a taylor expansion since our output is 1D (a real number), inputs are $dx, dy$ which are 3D vectors, and the infinitesimals
@@ -15736,6 +18490,12 @@ $$
 
 # Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 - Let $S$ be a 2 dimensional surface.
 - Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
 - Since surfaces are parametric, we can think of it as a map from $U \subset \mathbb R^n \to S \to S^2$.
@@ -15753,6 +18513,12 @@ $$
 
 # Integrating Curvature in 1D [TODO]
 
+```meta
+status: draft
+created: 2022-02-03
+last-edited: 2022-02-03
+```
+
 - All curves are parametrized by _arc length_ to avoid weird artefacts by time parametrization.
 - So $r(s)$ is a function from length of the curve to $\mathbb R^3$.
 - The (unit?) tangent to a curve is given by $T(s) \equiv dr/ds = r'(s)$.
@@ -15763,6 +18529,12 @@ $$
 
 
 # Fundamental theorem of symmetric polynomials
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 
 - Every symmetric polynomial of variables $x, y, z$ can be written in terms of the elementary symmetric polynomials $\sigma_0 \equiv 1$,
   $\sigma_1 = x + y + z$, $\sigma_2 = xy + yz + xz$. Generalize appropriately.
@@ -15816,6 +18588,12 @@ $$
 - Solve by the usual back-substitution.
 
 # DP over submasks
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 - https://codeforces.com/contest/1554/problem/B
 - 5e8 operations is 1
 - take every (mask, submask). The bits of the pair can be `1 1`, `1 0`, and `0 0`. So the pairs of all mask, submask will be `3^n`
@@ -15844,6 +18622,12 @@ for(int m = N; m >= 0; m--) {
 - Thus, for all indexes `i > x` we have `c[i]=s[i]`.
 
 # Dual of Planar Euler graph is bipartite
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 
 ### Proof by contradiction
 
@@ -15890,6 +18674,12 @@ e----------d
 
 # Yoneda preserves limits
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-10-04
+```
+
 
 - Let $J$ be small, $C$ locally small.
 - Let $F: J \to C$ be a diagram. Let $y : C \to [C^{op}, Set]$ be the contravariant yoneda defined by $y(c) \equiv Hom(-, c)$.
@@ -15909,6 +18699,12 @@ e----------d
 
 
 # Separable Polynomials and extensions
+
+```meta
+status: draft
+created: 2021-11-06
+last-edited: 2022-05-30
+```
 
 
 #### Separable polynomial
@@ -16068,6 +18864,12 @@ e----------d
 
 # Limits of a functor category are computed pointwise.
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
+
 #### Reduction to discrete category
 
 - Let's take a functor category $[X, Y]$.
@@ -16139,6 +18941,12 @@ F =α=> H <=β= G
 
 # `a + b = (a or b) + (a and b)`
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-24
+```
+
 - `0 + 0 = or(0, 0) + and(0, 0)`
 - `0 + 1 = or(0, 1) + and(0, 1)`
 - `1 + 1 = or(1, 1) + and(1, 1)`
@@ -16146,6 +18954,12 @@ F =α=> H <=β= G
 
 
 # Intuition for why choosing closed-closed intervals of `[1..n]` is $(n+1)C2$
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-24
+```
 
 - $nC2$ counts all intervals $\{ [i, j]: i > j \}$.
 - To count intervals $[i, i]$, there are $n$ of them, so it's $nC2 + n$ which is $n(n-1)/2 + n $,
@@ -16156,6 +18970,12 @@ F =α=> H <=β= G
 
 
 # Thoughtful discussion on the limits of safe spaces
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 
 > (2) You cannot make all valuable, positive, motivated people feel safe. It's really sad, but there are fundamental incompatibilities in the kind of safety that different people need (even before we get to what makes them productive--you can't even make everyone feel comfortable!). I think this discussion has demonstrated amazing attempts by people at understanding and incorporating different perspectives, but at the end of it all, some people are going to have to be triaged out, or will have to accept some lack of safety. Two examples: (a) people with low self-esteem tend to find confrontational environments unsafe emotionally, but many neurodivergent people tend to find environments that require high social awareness unsafe emotionally. You can ameliorate this contradiction somewhat with careful guidelines, but fundamentally the problem cannot be solved: the neurodivergent simply cannot do what the emotionally fragile require of them, so one or the other or both is going to have a bad time. There is nothing wicked about either of these people! But they're not compatible. (b) people of a category that has faced systematic discrimination often do not feel safe with "free speech" that is allowed to get anywhere near sounding like discrimination against them (for very good reason!), but people who have exposure to thought-policing with severe consequences for disobedience often do not feel safe with anything less than very broad construal of "free speech". This one's even harder, because both sides can have really deep emotionally salient reasons for their perspective, and yet they are incompatible. There is nothing wicked about either of these people! But different types of wickedness have been done to them or are reasonably feared by them, rendering them incompatible with
 each other.
@@ -16170,6 +18990,12 @@ each other.
 
 
 # Semidirect product: Panning and Zooming
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 
 - I think I finally have an example of a semidirect product that I understand well enough I'd dare to teach a friend.
 - Take the real line. We can move points on it by adding them (panning). Viewed differently, we can _pan_ the real line left and right,
@@ -16224,6 +19050,12 @@ Z---[z=1]---[z=1/2]--[z=1/4]----...
 
 
 # Longest Convex Subsequence DP
+
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2022-05-30
+```
 
 - This was an enlightening problem to solve due to the presence of many degenerate cases.
 - The question: given an array `xs[]`, find the length of the longest subsequence `ys[]` such that for all indexes `0 <= l < m < r < |ys|`, we have that
@@ -16288,6 +19120,12 @@ int f(vector<int> &xs) {
 
 # Representation theory of $SU(2)$ [TODO]
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 - `2x2` unitary matrices, so $AA^\dagger = I$.
 - Lie algebra is $su(2)$, which are of the form $A^\dagger = -A$, and $Tr(A) = 0$.
 - We write $M_v \equiv \begin{bmatrix} ix & y + iz  \\ -y + iz & -ix \end{bmatrix}$.
@@ -16331,6 +19169,12 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 
 # Why quaternions work better
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2022-05-30
+```
+
 - We want to manipuate $SO(3)$. Imagine it like $SO(1)$.
 - Unfortunately, $\pi_1(SO(3)) = \mathbb Z/2\mathbb Z$. This is a pain, much like rotations of a circle need to be
   concatenated with modulo, which is a pain.
@@ -16354,6 +19198,12 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 
 # DFA to CFG via colimits?
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 - Can convert a CFG to DFA by keeping an arbitrary limit on the depth of the stack, counting
   how many elements are in the stack, and going to a failure state when we exceed the depth.
 - If we do so, can get a DFA for each natural number --- this is the max stack depth we keep track of.
@@ -16362,6 +19212,12 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 
 # Why pointless topology is powerful
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 - Key idea of pointless topology: topology manipulates open sets and their lattice. Forget the set, simply manipulate lattices!
 - When can a lattice be written in terms of sets?
 - Birkhoff representation theorem: Lattice is distributive iff isomorphic to a lattice of subsets of join-irreducible elements.
@@ -16369,6 +19225,12 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 - Yay, extra power.
 
 # Denotational semantics in a few sentences
+
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-12-26
+```
 
 - We want to find a math object that reflects lambda calculus
 - Such an object must contain its own space of functions; $L \simeq [L \to L]$.
@@ -16387,6 +19249,12 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 
 
 # Monge Matrix
+
+```meta
+status: draft
+created: 2021-08-25
+last-edited: 2022-05-30
+```
 
 - Suppose we two line segments`AB`, `CD`:
 
@@ -16435,6 +19303,12 @@ B---D
 
 # Fixpoint as decorator
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 ```py
 #!/usr/bin/env python3
 class Thunk:
@@ -16459,6 +19333,12 @@ print(fact(5))
 
 # Combinatorial generation algorithms
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 - [Visual Guide to Combinatorial Search](https://computationalcombinatorics.wordpress.com/2012/11/28/a-visual-guide-to-combinatorial-search/)
 - [Slides](https://faculty.coe.drexel.edu/jwalsh/Jayant_Mckay.pdf)
 - [Method of homomorphisms](https://www.molgen.de/download/pubs/AlgGroupActDIMACS.pdf)
@@ -16467,6 +19347,12 @@ print(fact(5))
 - [Ranking/Unraking permutations](https://computationalcombinatorics.wordpress.com/2012/09/10/ranking-and-unranking-of-combinations-and-permutations/)
 
 # Perform DP on measures, not indexes.
+
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
 
 - In the problem of longest common subsequence (or any string problem in general), we should
   conceptually think of the DP state as the _length_. This gives us a natural base case (`length = 0`),
@@ -16519,6 +19405,12 @@ int lcs_len(const vector<int> &xs, const vector<int> &ys) {
 
 # Alternative version of Myhill-Nerode
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 - In one version of myhill-nerode I know, the states correspond to equivalence classes of strings under the equivalence relation $x \sim y$
   iff forall strings $s$, $x + s \in L \iff y + s \in L$.
 - In another version (V2), we define the _right context_ of a string $w$ to be the set of all suffixes $s$ such that $w + s  \in L$.
@@ -16533,6 +19425,12 @@ int lcs_len(const vector<int> &xs, const vector<int> &ys) {
 
 
 # Polya Enumeration
+
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2022-05-30
+```
 
 - Let $X$ be a set of objects with the action of a group $G$. For example, $X$ is the configurations of a square, represented as 4-tuples
   by reading the vertices offin clockwise order, and let $G$ be the group of symmetries of a square.
@@ -16585,6 +19483,12 @@ $$
 - $Y$ is the set of colorings of $X$ by $C$.
 
 # Weighted Burnside Lemma
+
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2022-05-30
+```
 
 - I'm learning the weighted burnside lemma as a preamble to polya enumeration.
 - Define for a set $X$ with a group action $G$, a weight function on the orbits $O$.
@@ -16670,6 +19574,12 @@ e     r     r^2   r^3
 
 # Cycle index polynomial
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2022-05-30
+```
+
 - If $\sigma \in S_n$ let $cyc(\sigma)$ be the integer partition of $n$ giving cycle lengths.
 - For example, if $\sigma = (1 2)(3)(4 5 6)(7 8)$, then $cyc(\sigma) = 3 + 2 + 2 + 1 \sim (3, 2, 2, 1)$.
 - Recall that an integer partition $\lambda$ of $n$ is a tuple $\lambda[:]$ such that $\sum_i \lambda[i] = n$
@@ -16709,6 +19619,12 @@ d c
 
 
 # Mnemonics For Symmetric Polynomials
+
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2022-05-30
+```
 
 #### Some notation for partitions
 - Consider a partition $\lambda \equiv (\lambda_1, \lambda_2, \dots \lambda_l)$ of a partition of $N$.
@@ -16773,6 +19689,12 @@ $$
 
 # Uses of minimal string rotation
 
+```meta
+status: done
+created: 2021-08-25
+last-edited: 2021-08-25
+```
+
 - This algorithm always struck me as useless. Now I know some uses.
 - 1. Finger print identification:
   We can encode the finger print into
@@ -16784,6 +19706,12 @@ $$
   to sequence of such trees. When are two forests equivalent? Normalize them by minimal rotation.
 
 # Suffix Automata
+
+```meta
+status: draft
+created: 2021-08-25
+last-edited: 2022-05-30
+```
 
 - We take for granted knowledge of the Myhill nerode theorem to build the minimal automata of the
   set of suffixes of a string $l$.
@@ -16831,6 +19759,12 @@ $$
 
 # Simpson's Paradox
 
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
+
 - The example which made simpson's paradox click for me was the *extreme* case.
 - Suppose
   department `E` hires _every woman_ but only half the men (`E` for every), while department `N` hires _neither_
@@ -16847,6 +19781,12 @@ $$
 - The information that is lost is that of the split up of men and women who apply to `E` and `N`.
 
 # Myhill Nerode Theorem
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2022-05-30
+```
 
 - Take a language $L$ over an alphabet $A$.
 - Define $x \in A^\star$ to have a **disginguishing extension** from $y \in A^\star$
@@ -16932,6 +19872,12 @@ $$
 - Thus the automata $D^\star$ is a (the) minimal automata for $L$.
 
 # Linearity of expectation for sampling
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2023-04-02
+```
 
 ```py
 # process 1
@@ -17079,6 +20025,12 @@ def rhsIV():
 
 # Min cost flow (TODO)
 
+```meta
+status: done
+created: 2022-02-03
+last-edited: 2022-05-30
+```
+
 
 - Problem statement: Find a maximal flow with minimum cost.
 
@@ -17141,6 +20093,12 @@ def rhsIV():
 
 # Clojure: minimal makefile for REPL driven dev with Neovim
 
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2022-05-30
+```
+
 Create the `deps.edn` file:
 
 ```
@@ -17171,6 +20129,12 @@ test:
 
 # Delimited continuations
 
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
+
 - `reset`: add a marker to delimit the capture of the continuation by `shift`.
   So called because we add a `reset mark` onto the stack.
 - `shift`: .. So called because to start executing a `shift`, we move stack frames upto the closest reset from the stack into the heap.
@@ -17182,6 +20146,12 @@ test:
 
 # Never forget monic again
 
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
+
 - Remember monic ~ injective.
 - Remember that injective is $f(x) = f(y) \implies x = y$.
 - Since we're doing category theory, replace $x$ and $y$ by functions $h(p)$ and $k(p)$.
@@ -17190,6 +20160,12 @@ test:
 
 
 # Weird canonical example of monic and epic: left/right shift
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2022-05-30
+```
 
 - Consider the function `right` over an infinite sequence `a_n` which is defined as
   `right(a[:])[i] = 0 if i == 0 else a[i-1]`. That is, it shifts a sequence to the right.
@@ -17221,6 +20197,12 @@ test:
 
 # Playing guitar: being okay with incorrect chords
 
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2022-05-30
+```
+
 - I find it very hard to switch chords, since I feel "afraid" of playing the wrong chord.
 - I feel like this manifests in different ways: I am relunctant to write documents which I fear maybe incorrect,
   and yet would be valuable to write up. I feel relunctant to compete in competitions for fear of not knowing
@@ -17240,6 +20222,12 @@ test:
 - TL;DR: **strumming hand >>> chord hand**. Focus on the strumming! It's okay to screw up on chords `:)`
 
 # Sparse table
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2022-05-30
+```
 
 - Given an array `as :: Semilattice a => [a]`, find semilattice join of any range `[lft..rt]` in `O(1)` time, given
    `O(n log n)` preprocessing.
@@ -17303,10 +20291,22 @@ int query_mins(int l, int r) {
 
 # Duval's algorithm
 
+```meta
+status: draft
+created: 2021-08-19
+last-edited: 2021-08-19
+```
+
 - https://stackoverflow.com/questions/55642656/how-does-duvals-algorithm-handle-odd-length-strings
 - https://ritukundu.wordpress.com/2016/10/07/algorithm-to-find-the-least-lexicographic-rotation-of-a-circular-string/
 
 # Amortized complexity from the verifier perspective
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
 
 - If we want an API that can verify amortized complexity, then each method returns two costs: (a) "number of cycles" spent on the operation,
   (b) "claimed cost" of the operation. For example, `vector.push_back()` may return "number of cycles" to be as large as `O(n)` when doubling,
@@ -17315,6 +20315,12 @@ int query_mins(int l, int r) {
 - This establishes that the claimed/amortized cost is an upper bound on the real cost!
 
 # Relationship betwee permutations and runs
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
 
 - Let the permutation be $\pi \equiv (3 9 2 5 6 7 10 11 13 15 14 16 12 1 4 8)$.
 - Split into runs: $r_1:(3 9)$, $r_2:(2 5 6 7 10 11 13 15)$, $r_3:(14 16)$, $r_4:(12)$, $r_5:(1 4 8)$.
@@ -17357,6 +20363,12 @@ int query_mins(int l, int r) {
 
 
 # Brouwer's fixed point theorem
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2021-08-19
+```
 
 #### General statement:
 
@@ -17405,11 +20417,23 @@ b===c
 
 # XOR on binary trie
 
+```meta
+status: draft
+created: 2021-08-19
+last-edited: 2021-08-19
+```
+
 If we XOR a number, then it flips the path that were taking on the binary trie! This seems
 like a handy way to visualize numbers. In particular, to solve question [1554C](https://codeforces.com/contest/1554/problem/C)
 
 
 # Inconvergent: beautiful generative art
+
+```meta
+status: draft
+created: 2021-07-30
+last-edited: 2021-08-19
+```
 
 
 - [https://inconvergent.net/faq/](Link to website)
@@ -17417,6 +20441,12 @@ like a handy way to visualize numbers. In particular, to solve question [1554C](
 
 
 # Prefix/Border function
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 Function that for a string `s`, at index `i`, returns the length of the longest border of `s[0..i]` (inclusive).
 For example, consider the string `s=abababcaab`.
@@ -17565,6 +20595,12 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 
 # Shortest walk versus shortest path
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 - path is a sequence of vertices connected by edges.
 - walk is a simple path or a path with no loops.
 - djikstra's solves shortest walk, not shortest path, since it can't hangle paths with negative cycles!
@@ -17577,6 +20613,12 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 
 # Minimal tech stack
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 
 - `st`: suckless terminal.
 - `mtm`: minimal terminal multiplexer.
@@ -17585,6 +20627,12 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 
 
 # FFT
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 - Evaluating a polynomial `p(x)` at `[a0, a1, ... am]` in general is hard, even though
   we have the recurrence `p(x) = po(x^2) + x pe(x^2)`. This makes the polynomials smaller
@@ -17668,6 +20716,12 @@ Consider the tree:
 
 # codeforces rating of some GMs
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-24
+```
+
 - Zscoder: Is quite comforting to see the rating of someone who [started at 1400, dropped to pupil](https://codeforces.com/profile/zscoder)
   and then worked their way back up?
 
@@ -17676,6 +20730,12 @@ Consider the tree:
 
 
 # Continuum TTRPG
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 > Events don't conspire. People do. Events *can't* conspire, and people *can*.
 > Causality is not a renewable resource.
@@ -17724,6 +20784,12 @@ Consider the tree:
 
 
 # Words to know in target language
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 - Animal: dog, cat, fish, bird, cow, pig, mouse, horse, wing, animalC
 
@@ -17836,12 +20902,24 @@ Consider the tree:
 
 # DP on subarrays
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 We can update subarrays with the rule `dp[l][r] = merge(dp[l][r-1], dp[l+1][r], compute(l, r))`
 where `merge` merges the best results of all subarrays, and `compute(l, r)` computes the
 value for `[l..r]`. This guarantees that `dp[l][r]` will track the best value from all
 subarrays. For this DP to work, we iterate by length of the subarray.
 
 # Vis editor cheat sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
 
 #### Insert
 - `x/search`: selects all things that match `search`
@@ -17870,6 +20948,12 @@ subarrays. For this DP to work, we iterate by length of the subarray.
 
 # Mean, Median and Jensen's
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 The intuition for Jensen's is typically presented as:
 
 ```
@@ -17893,6 +20977,12 @@ The intuition for Jensen's is typically presented as:
   and I quite enjoy the change!
 
 # The similarity between labellings and representations
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 - One way to think about labellings is that we track the "entire history" of the object.
 - it's hard to count unlabelled objects. it's easier to count labelled objects.
@@ -17936,6 +21026,12 @@ is not isomorphic (though they would be if we forget the numbering), since the c
 
 # L1 norm is greater than or equal to L2 norm
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 Pick two points $A \equiv (x_1, y_1)$ and $B \equiv (x_2, y_2)$, and suppose $x_1 < x_2$ and $y_1 < y_2$.
 So we imagine this as two sides of a triangle:
 
@@ -17977,6 +21073,12 @@ A
 - By triangle inequality, $OA + OB \geq AB$, hence $L_1 = \delta_x + \delta_y \geq L_2$
 
 # Z algorithm
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 - The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
 - $Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
@@ -18047,11 +21149,23 @@ vector<int> myz(std::string s) {
 
 # For a given recurrence, what base cases do I need to implement?
 
+```meta
+status: draft
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 - For a linear recurrence, we need to defie base cases for as many steps as we go back.
 - For combinations, we step `n` by `1`, `r` by `1`. So we need to define what happens for `n=0` OR `r=0`.
 
 
 # Number of distinct numbers in a partition
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 - A positive integer $n$ is represented as a partition $\lambda \equiv (k_1, k_2, \dots)$ where
   $\sum_i k_i = n$ and $k_1 \leq k_2, \dots$.
@@ -18064,6 +21178,12 @@ vector<int> myz(std::string s) {
 
 
 # Splitting $f(x) = y$ into indicators
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
 
 If the output of $f(x)$ is a natural number, then we can write the value $f(x)$ as:
 
@@ -18082,6 +21202,12 @@ $$
 
 # Why searching for divisors upto `sqrt(n)` works
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 - It's not that all divisors are smaller than $\sqrt n$. For example, consider $14 = 7 \times 2$. $\sqrt{14} \sim 4$, but one
   of its diviors ($7$) is greater than 4.
 - Rather, it is that if there is a divisor $l$ (for large) which is larger than $\sqrt n$, there will be another divisor $s$ which is smaller than $\sqrt n$.
@@ -18093,6 +21219,12 @@ $$
 
 
 # Heuristics for the prime number theorem
+
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
 
 > "It is evident that the primes are randomly distributed but, unfortunately, we don't know what 'random' means."
 
@@ -18176,6 +21308,12 @@ This "proves" the prime number theorem.
 
 # Sum of absolute differences of an array
 
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
+
 - We are given an array `a[:]` and we are asked to compute the sum of differences $\sum_{i=1}^n \sum_{j=i+1}^n |a[i] - a[j]|$.
 - To compute this efficiently, first sort `a[:]` into a sorted array `s[:]`. For simplicity, say we have `N = 4`.
 - Now see that if we write down the values for `N=4`, we will see:
@@ -18206,6 +21344,12 @@ D =
 
 # GCD  is at most difference of numbers
 
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
+
 - assume WLOG $l< r$. Then, Let $g \equiv gcd(l, r)$. Claim: $g \leq r - l$.
 - Proof: we have $g \div r$ an $g \div l$ by definition, hence we must have $g \div (r - l)$, and $g$, $(r-l)$ are nonnegative.
   So  $g \leq (r - l)$.
@@ -18220,6 +21364,12 @@ D =
 
 # implementing GCD and LCM
 
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2021-07-08
+```
+
 ```cpp
 // gcd(x, y) = d <=> min({ ax + by : ax + b y >= 0 })= d
 long gcd(long x,long y) { return y == 0 ? x : gcd(y, x%y); }
@@ -18228,6 +21378,12 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 
 
 # Centroid of a tree
+
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
 
 - A centroid is a node which upon removal creates subtrees of size at most `ceil(n/2)`.
 
@@ -18253,6 +21409,12 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
   is a different tree from the original tree.
 
 # Center of a tree
+
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2022-05-30
+```
 
 - The *remoteness* / *eccentricity* of a vertex $v$ is its distance from its furthest node. $r(v) \equiv \max_{w \in V} d(v, w)$.
 - The *center* of a tree is the vertex with minimum remoteness.
@@ -18313,6 +21475,12 @@ median (the center) invariant.
 
 # Image unshredding as hamiltonian path
 
+```meta
+status: done
+created: 2021-07-03
+last-edited: 2022-05-30
+```
+
 This was a cool use of [hamiltonian path](https://github.com/robinhouston/image-unshredding) that I saw on hacker news
 recently.
 
@@ -18326,6 +21494,12 @@ vertices exactly one, (in contrast to an euler tour, we must visit each edge exa
 
 
 # Distance between lines in nD
+
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
 
 - https://www.codechef.com/viewsolution/28723599
 
@@ -18371,6 +21545,12 @@ $$
 
 # `lower_bound` binary search with closed intervals
 
+```meta
+status: done
+created: 2021-07-08
+last-edited: 2021-07-08
+```
+
 ```cpp
 // find rightmost ix such that ps[ix].b < t
 ll max_earlier(ll t, vector<P> &ps) {
@@ -18400,6 +21580,12 @@ ll max_earlier(ll t, vector<P> &ps) {
 
 
 # Sliding window implementation style
+
+```meta
+status: draft
+created: 2021-07-02
+last-edited: 2022-05-30
+```
 
 I usually implement sliding window as:
 
@@ -18485,6 +21671,12 @@ for(int c = 'a'; c <= 'b'; ++c) {
 
 # Kawaii implementation of `x = min(x, y)`
 
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
+
 
 ```cpp
 template <typename T>
@@ -18499,6 +21691,12 @@ to mean `x = min(x, 10)`. This a nice pattern!
 
 # CSES: Counting Towers
 
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
+
 - [Link to problem](https://cses.fi/problemset/task/2413/) I found the problem interesting, as I found the DP states un-obvious.
 - I eventually performed a DP on the the number of possible towers in y-axis `[0, h)` where we keep track of whether
   the last layer has a `2x1` tile or two `1x1` tiles.
@@ -18511,6 +21709,12 @@ to mean `x = min(x, 10)`. This a nice pattern!
   it over to counting the number of such objects created.
 
 # Smallest positive natural which can't be represented as sum of any subset of a set of naturals
+
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
 
 we're given a set of naturals $S \equiv \{ x_i \}$ and we want to find
 $n \equiv \min \{ sum(T): T \subseteq S \}$, the smallest number that can't be written as a sum
@@ -18594,11 +21798,23 @@ void main() {
 
 # Example of RVs that are pairwise but not 3-way independent.
 
+```meta
+status: draft
+created: 2021-07-02
+last-edited: 2021-07-02
+```
+
 Define `X, Y` to be uniformly random `{0, 1}` variables. `Z = X xor Y`. Each of the pairs
 are independent, but `X, Y` determine `Z` so it's not 3-way independent.
 
 
 # Notes on Liam O Connor's thesis: Cogent
+
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
 
 - `AutoCoress`: cool tool
 - `sel4`: translate C to HOL using AutoCoress
@@ -18655,6 +21871,12 @@ are independent, but `X, Y` determine `Z` so it's not 3-way independent.
 
 
 # C++ `lower_bound`, `upper_bound` API
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
 
 I never remember what precisely `lower_bound` returns, so this is me collecting this information
 in a way that makes sense to me. The API docs say
@@ -18720,12 +21942,24 @@ iterators towards the left, and `upperbound` shifts iterators to right.
 
 # Books that impart mental models
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 I love books that impart menetal models of how a domain expert thinks about their field. This was
 something I loved in particular about [TiHKAL](https://en.wikipedia.org/wiki/TiHKAL) which describes
 reaction mechanisms. I'd love references to other books that do the same.
 
 
 # Subarrays ~= prefixes
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
 
 To solve any problem about subarrays, we can reinterpret a subarray `[l..r]` as a prefix `[0..r] - [0..l]`.
 For example, to find all subarrays `[l..r]` whose sum of elements divides `n`, we can think of this
@@ -18774,6 +22008,12 @@ int main() {
 
 # Operations with modular fractions
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 - Quick note on why it's legal to perform regular arithmetic operations  on fractions $a/b$ as operations on $ab^{-1}$ where $ab^{-1} \in \mathbb Z/pZ$.
 - The idea is that we wish to show that the map $a/b \mapsto ab^{-1}$ is a ring homomorphism $\phi: \mathbb Q \to \mathbb Z/p \mathbb Z$.
 - The proof: (i) the map $Z \rightarrow Z/pZ$ is a ring homormophism, (ii)  map from an integral domain to a field always factors through the field of fractions of the domain, we
@@ -18817,6 +22057,12 @@ Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arit
 
 # Modular inverse calculation
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 - Easy way to calculate $a^{-1}$ mod $p$ is to use $a^{p-2}$. We know that $a^{p - 1} \equiv 1$ from Lagrane's theorem,
   so $a^{p-2} \cdot a \equiv 1$, or $a^{-1} \equiv a^{p-2}$. This can be done fairly quickly with repeated exponentiation.
 
@@ -18843,6 +22089,12 @@ pair<int, int> euc(int x, int y) {
 
 
 # The number of pairs `(a,b)` such that `ab≤x` is `O(xlogx)`
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
 
 Fix a given `a`. `ab ≤ x` implies that `b ≤ x/a`, or there are only `x/a` possible values for `b`.
 If we now consider all possible values for `a` from `1` upto `x`, we get:
@@ -18873,6 +22125,12 @@ consider the two functions:
 
 # DP as path independence
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 - Dp is about forgetting the past / path independence. Doesn't matter how we got to a state, only what the state is.
   For example, to DP on subsequences, we don't care about how we got to a given subsequence. We only care about
   the final result that we computed for that subsequence. This lets us "extend" knowledge about a subsequence.
@@ -18884,6 +22142,12 @@ consider the two functions:
 
 
 # Binary search to find rightmost index which does not possess some property
+
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
 
 ```cpp
 // p for predicate/property
@@ -19108,6 +22372,12 @@ int lca(int u, int v) {
 
 # Correctness of `lower_bound` search with half-open intervals
 
+```meta
+status: done
+created: 2021-07-02
+last-edited: 2022-05-30
+```
+
 
 ```cpp
 // precondition: `xs` is sorted.
@@ -19173,6 +22443,12 @@ int tallest(vector<long> &xs, int y) {
 
 # Greedy Coin change: proof by probing
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 #### Probing the coin set `{1, 5, 10, 20, 100}`
 
 - Let `O*` be optimal solution for this coin set. I'll write `copies x [coinval$]` notationally.
@@ -19206,6 +22482,12 @@ int tallest(vector<long> &xs, int y) {
 
 
 # Clean way to write burnside lemma
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
 
 Burnside lemma says that $|Orb(G)| \equiv 1/|G| \sum_{g \in G} fix(g)$. We prove this
 as follows:
@@ -19257,11 +22539,23 @@ $$
 
 # The groupoid interpretation of type theory
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
+
 The monograph by  Martin Hofmann and Thomas Streicher is remarkably lucid. It
 opens by stating that UIP (uniqueness of identity proofs) is false by providing
 a model for the axioms of MLTT where UIP fails --- a groupoid!
 
 # Mnemonics for free = left adjoint
+
+```meta
+status: draft
+created: 2021-06-27
+last-edited: 2021-06-27
+```
 
 > To free is a very liberal thought. Very left
 
@@ -19271,11 +22565,23 @@ a model for the axioms of MLTT where UIP fails --- a groupoid!
 
 # Where to scratch a cat
 
+```meta
+status: draft
+created: 2021-06-27
+last-edited: 2021-06-27
+```
+
 Scratch the sides of their rear legs - that's where they can't scratch themselves.
 Found this useful to know, since we've recently adopted a stray.
 
 
 # Mnemonic for Specht module actions
+
+```meta
+status: draft
+created: 2021-06-27
+last-edited: 2022-05-30
+```
 
 Consider the two extreme cases, of wide v/s narrow:
 ```
@@ -19303,6 +22609,12 @@ y = [#]
 - Extend this to arrive at specht module morphism: If we have a non-zero morphism $\phi: S^\lambda \rightarrow S^\mu$ then $\lambda \rightarrow \mu$ [Check this?? Unsure]
 
 # Quotes from 'Braiding Sweetgrass'
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2025-06-10
+```
 
 
 > I reserve my time for those who can talk about science, and music,
@@ -19381,6 +22693,12 @@ y = [#]
 
 
 # Transfinite recursion: Proof
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
 - Let $(J, <)$ be a well-ordered set.
 - Denote by $[0, \alpha)$ the set $\{ j \in J : j < \alpha \}$ as suggestive notation. Similarly $[0, \alpha]$ is the set $\{ j \in J: j \leq \alpha \}$.
 - Let $r: (\forall \alpha \in J, [0, \alpha) \rightarrow O) \rightarrow O$ be a recursion formula, which
@@ -19408,6 +22726,12 @@ y = [#]
 
 # Transfinite induction: Proof
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2022-05-30
+```
+
 - Let $(J, <)$ be a well-ordered set.
 - Let $S(\alpha) \equiv J < \alpha$, or $S(\alpha) \equiv \{ j \in J: j < \alpha \}$.  This is called as the section of $J$ by $\alpha$.
 - Let a $J_0 \subseteq J$ be *inductive* iff for all $\alpha \in J$, $S(\alpha) \subseteq J_0$ implies $\alpha \in J_0$. That is:
@@ -19427,6 +22751,12 @@ $$
 
 # Thoughts on playing Em-Bm
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
+
 I'm having some trouble playing Eminor followed by Bminor in quick succession.
 The problem was a type of analysis-paralysis, where I wasn't sure in what order I should
 barre the chord, and then place my other fingers.  I'm trying to change my
@@ -19436,6 +22766,12 @@ to it. This seems to help, since the task becomes (a) place root finger (b) natu
 other fingers after it.
 
 # An explanation for why permutations and linear orders are not naturally isomorphic
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
 
 the number of linear orders on a finite set is the same as the number of
 bijections: the factorial of the cardinality.  Every linear order on a set is
@@ -19449,6 +22785,12 @@ different criteria for "being equal".
 
 
 # We can't define choice for finite sets in Haskell!
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
 
 > If all you have is a decidable equality relation on the elements, then
 > there seems to be no function which can implement choice. That is, you can’t
@@ -19478,14 +22820,32 @@ different criteria for "being equal".
 
 # Geomean is scale independent
 
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
+
 `sqrt(ab)` is dimensionally meaningful even if `a` and `b` are dimensionally different. I found
 this interesting, since it implies that Geomean is not "biased": arithmetic mean is more sensitive to large values (eg: `(1 + 999)/2 = 500`),
 while harmonic mean is more sensitive to small values. Geomean is neither, so it's more "balanced".
 
 # Thoughts on playing Em Bm.
 
+```meta
+status: draft
+created: 2021-06-27
+last-edited: 2021-06-27
+```
+
 
 # Induction on natural numbers cannot be derived from other axioms
+
+```meta
+status: done
+created: 2021-06-27
+last-edited: 2021-06-27
+```
 
 The idea is to consider a model of the naturals that obeys all axioms other than induction,
 and to then show how this model fails to be a model of induction. Thus, induction
@@ -19497,6 +22857,12 @@ it is NOT true that $\forall m \in M, P(m)$ since it does not hold for $* \in M$
 induction as an axiom to rule out other things.
 
 # Ordinals and cardinals
+
+```meta
+status: done
+created: 2021-06-13
+last-edited: 2022-09-07
+```
 
 
 This a rough sketch of a part of set theory I know very little about, which I'm encountering as I solve
@@ -19612,6 +22978,12 @@ acts as a place to do mathematics safely, while still having access to the "set 
 
 # Musing about Specht modules
 
+```meta
+status: done
+created: 2021-06-13
+last-edited: 2022-05-30
+```
+
 If we generalize, to each point $x$, we are creating a group of orthogonal
 matrices $O_x$ (like $C_t$), such that
 - All points in the orbit have (the same/similar, unsure?) $C_t$
@@ -19668,6 +23040,12 @@ p | q
 
 # Every continuous function on $[a, b]$ attains a maximum
 
+```meta
+status: done
+created: 2021-06-13
+last-edited: 2021-06-13
+```
+
 The high-level machinery proof:
 1. Continuous image of a compact set `[a, b]` under function $f$ is a compact set `f([a, b])` (1).
 2. Compact set in $\mathbb R$ is closed (2) (Heine Borel).
@@ -19687,6 +23065,12 @@ The high-level machinery proof:
 
 
 # Invisible cities
+
+```meta
+status: done
+created: 2021-06-09
+last-edited: 2021-06-09
+```
 
 > The city does not consist of this, but of relationships between the
 > measurements of its space and the events of its past: the height of a lamppost
@@ -19868,6 +23252,12 @@ The high-level machinery proof:
 
 # Associativity of addition in cubicaltt
 
+```meta
+status: done
+created: 2021-06-07
+last-edited: 2022-05-30
+```
+
 Let's first understand what we need to prove. we're trying to prove that addition is associative. addition is defined as follows:
 
 ```
@@ -19965,11 +23355,23 @@ addA (a b: nat):
 
 # Etymology of fiber bundle $F \rightarrow E \rightarrow B$
 
+```meta
+status: draft
+created: 2021-06-07
+last-edited: 2021-06-07
+```
+
 
 The $F$ stands for fibre, $E$ for ensemble (total space), and $B$ for base space,
 as told in this [math.stackexchange answer](https://math.stackexchange.com/questions/4165418/etymology-of-mathbfbg-for-category-of-one-object-for-g/4165440#4165440)
 
 # Galois correspondence, functorially
+
+```meta
+status: done
+created: 2021-06-07
+last-edited: 2022-05-30
+```
 
 For a given group $G$, build the category of subgroups as follows:
 The objects aren't exactly subgroups, but are isomorphic to them ---
@@ -20000,6 +23402,12 @@ between $L$ and $F$, and has morphisms as field morphisms which fix $F$.
 
 
 # CubicalTT: sharpening thinking about indexed functions
+
+```meta
+status: done
+created: 2021-06-06
+last-edited: 2022-05-30
+```
 
 
 ```
@@ -20041,6 +23449,12 @@ g1 (b : nat) (c : nat) : nat = b
 
 # Functors to motivate adjuntions
 
+```meta
+status: done
+created: 2021-06-07
+last-edited: 2022-05-30
+```
+
 - Consider the category $Set^\partial$ of sets with partial functions
   as morphisms, and the category $Set^*$, the category of pointed sets and
   and basepoint-preserving functions as morphisms.
@@ -20076,11 +23490,23 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
 
 # Madoka Magica: plot thoughts
 
+```meta
+status: draft
+created: 2021-06-05
+last-edited: 2022-05-30
+```
+
 - I wonder whether incubator ~ Kyubey ~ kyubii ~ nine-tails.
 - Homura is such a tragic character.
 
 
 # Chain rule functorially
+
+```meta
+status: done
+created: 2021-06-06
+last-edited: 2022-05-30
+```
 
 - The first category is $Euc^*$, whose objects are pointed subsets of Euclidean space.
    So, the objects are of the form $(U \subseteq \mathbb R^n, a \in U)$. Morphisms
@@ -20106,6 +23532,12 @@ And as for $Euc$, we should replace this with $ManOpen$ where we use based
 "charted" opens of a differentiable manifold.  This makes the diffgeo clear!
 
 # Lagrange multipliers by algebra
+
+```meta
+status: done
+created: 2021-06-05
+last-edited: 2021-06-11
+```
 
 #### Constrained optimisataion: the first stab
 
@@ -20177,6 +23609,12 @@ The langrange multipler procedure is nice since it does not break the symmetry b
 
 
 # Specht module construction
+
+```meta
+status: draft
+created: 2021-06-04
+last-edited: 2022-05-30
+```
 
 #### $A[\lambda][t]$, and its image
 
@@ -20645,6 +24083,12 @@ and then using `A_t`.
 
 # Even and odd functions through representation theory
 
+```meta
+status: done
+created: 2021-06-02
+last-edited: 2022-05-30
+```
+
 Consider the action of $\mathbb Z/ 2\mathbb Z$ on the space of functions $\mathbb R \to \mathbb R$.
 given by $\phi(0)(f) = f$, and $phi(1)(f) = \lambda x. f(-x)$. How do we write this in terms of irreps?
 
@@ -20660,6 +24104,12 @@ sum of an even part $e_f(x) \equiv [f(x) + f(-x)]/2$ and an odd part $o_f(x) \eq
 we have described the action of $\phi$ in terms of subspaces which span the space, so we've found the irrep decomposition.
 
 # Greg egan: Orthogonal
+
+```meta
+status: done
+created: 2021-05-26
+last-edited: 2022-05-30
+```
 
 I found the idea of writing a story about a universe with a closed loop of time fascinating.
 Here are some of the sentences that really helped me "get" compatiblism as an idea thanks
@@ -21045,9 +24495,21 @@ to reading the book:
 
 # Simplicial approximation: maps can be approximated by simplicial maps (TODO)
 
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2023-04-02
+```
+
 
 
 # Limit is right adjoint to diagonal
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 Suppose a category `C` possesses all small limits. This means that for any index category `J`
 and functor `F: J -> C`, the limit `lim F:C` exists in C. We wish to show that the functor
@@ -21084,6 +24546,12 @@ the technology, unfortunately, to make this go through.
 
 
 # Working out why right adjoints preserve limits.
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 We have `L: C -> D` and `R: D -> C` adjoints functors,
 so we have the condition:
@@ -21149,6 +24617,12 @@ Thus, the two sets are equivalent, and hence `Hom(a, -)` preserves limits (almos
 
 # Limit/Colimit/Cone/Cocone: the arrows are consistent!
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
+
 I sometimes wonder if a product is a limit or a colimit (not really, because
 I remember that limits are product + equalizers, but it makes for a nice story
 nonetheless). I realised that the arrows of a cone/co-cone are always consistent.
@@ -21162,6 +24636,12 @@ _out_ of the apex, ie, a limit, since a limit is a product and thus has projecti
 
 
 # Representable Functors
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 imagine image of functors $F: C \rightarrow D$, $G: C \rightarrow D'$ as lying in sheets.
 Then a nautural transformation $\eta$ goes "perpendicular to these sheets. Often,
@@ -21325,6 +24805,12 @@ Hom(-, y)>-----*
 
 # Why terminal object is a limit
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 1. Thinking in Set, the terminal object is `{*}`, which is the empty product of
    sets. Hence, the terminal is a type of product, which is a limit.
 2. What does the terminal `{*}` project onto? It should project onto its
@@ -21340,6 +24826,12 @@ Hom(-, y)>-----*
 
 
 # Excluded middle is not false in intuitionistic logic
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 ```hs
 {-# LANGUAGE EmptyCase #-}
@@ -21363,6 +24855,12 @@ lemFalseExplodes lem = absurd (lemNotFalse lem)
 ```
 
 # Yoneda Lemma and embedding
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 ```hs
 type Hom a b = (a -> b)
@@ -21482,10 +24980,22 @@ into the `Hom` category.
 
 # GHCID
 
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 - [ghcid](https://hackage.haskell.org/package/ghcid) + tmux is a nice way to get a REPL/IDE
   like experience for haskell with minimal fuss.
 
 # Character theory
+
+```meta
+status: done
+created: 2021-06-05
+last-edited: 2022-05-30
+```
 
 I jot down the rough proof sketches of character theoretic facts for quick reference.
 Fix a group $G$. A group representation of $G$ is a group homomorphism from the group
@@ -21721,6 +25231,12 @@ the number of conjugacy classes of the group.
 
 # Cofibration
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
+
 ```
 A --gA[t]--> X
 |           ^
@@ -21788,11 +25304,23 @@ Reference: [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMt
 
 # Emily Riehl Contrability as uniqueness
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 - untyped lambda calc/simply typed is topology of computation.
 - dependent lambda calc/topos theoretic interpretation gives extensional mltt. Diagonal is identity type.
 - challenge: intensional in topological setting. Path space is the identity type.
 
 # Cofactor as derivative of determinant
+
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2021-05-23
+```
 
 I saw this at [math.se](https://math.stackexchange.com/questions/4128999/does-taking-derivative-of-determinant-of-a-matrix-with-respect-to-an-entry-give),
 that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\partial A}{\partial A[i][j]}$ which I think is quite cool.
@@ -21801,6 +25329,12 @@ that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\p
 
 
 # Homology, the big picture
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2023-04-02
+```
 
 First, there was nothing. Then, we decided we want homology. We start out by baby-stepping with
 simplicial homology. We rapidly abandon this in favour of singular homology, since it's easier to define
@@ -21862,7 +25396,19 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 
 # Legal Systems very different from ours
 
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 # Shrinking wedge of circles / Hawaiian earring (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 I've been trying to make peace with the fact that countably infinite wedge of circles
 is so different from the hawaiian earring. Here are some thoughts:
@@ -21874,6 +25420,12 @@ is so different from the hawaiian earring. Here are some thoughts:
   of radius $1/n$ in the interval $t \in [(n-1)/n, n/(n+1)]$, and stay at $(0, 0)$ at $t=1$.
 
 # Simplicial approxmation of maps (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 #### What we want:
 
@@ -21900,6 +25452,12 @@ this map.
 #### The correct statement
 
 # Lebesgue number lemma (TODO)
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 for a compact space $X$ and an open cover $\{ U_\alpha \}$, there is a radius
 $r > 0$ such that any ball of such a radius will be in some open cover: For all
@@ -21931,6 +25489,12 @@ TODO
 
 # Lean internals Cheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 - [CIC page in Coq](https://web.mit.edu/jgross/Public/tmp/doc/sphinx/_build/html/language/cic.html)
 - [`bollu/cubicaltt`](https://bollu.github.io/cubicaltt/Main.html): an annotated version of the cubicaltt sources.
 - [CPDT (certified programming with dependent types) chapter on equality](http://adam.chlipala.net/cpdt/html/Cpdt.Equality.html)
@@ -21943,12 +25507,24 @@ TODO
 
 # MicroUI
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 I love the implementation of [`microui`](https://github.com/rxi/microui), so I wrote
 a [code walkthrough here](https://bollu.github.io/microui/microui-source.html). I feel I learnt
 a nice design pattern for writing such an immediate-mode GUI library in the future.
 
 
 # Proof of tree having (V-1) edges
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
 
 I'm more comfortable with the proof where we link the vertex to the incoming
 edge "all at once".  The proof of induction feels weird.  So sahiti suggested:
@@ -21962,6 +25538,12 @@ the arbitrariness of the choice breaks my "flow".
 
 # Creating PDFs to read code
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 1. Use [`vim-bruin`](https://git.sr.ht/~romainl/vim-bruin) for black and white printing
 2. Use `more *.cpp *.h > consolidated.cpp` to create a single file. `ClangFormat` this file.
 3. Open in vim, use `:toHTML` in vim to dump out an HTML.
@@ -21970,6 +25552,12 @@ the arbitrariness of the choice breaks my "flow".
 
 
 # Bias and gain
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
 
 Bias changes the "central tendency"/"hinge point" of the curve.
 
@@ -21993,6 +25581,12 @@ function GetGain(t,g) {
 
 # Barycentric subdivision: edge length decreases
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-23
+```
+
 For a edge $E$, subdiving the edges into two at the center produces two edges
 both $1/2$ the original length.  Given a triangle $T$, we wish to prove that
 subdividing the triangle by joining the barycenter to the vertices reduces edge
@@ -22008,6 +25602,12 @@ This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a fac
 
 
 # Homotopic maps produce same singular homology: Intuition
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 Take two maps $f, g: X \rightarrow Y$ which are homotopic. We wish
 to show that if $f$ is homotopic to $g$, then we will get the same
@@ -22046,6 +25646,12 @@ So, we get a "prism" whose endpoints are $m = f \circ l$ and $n = g \circ l$.
 
 
 # Singular homology: induced homomorphism
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-23
+```
 
 The space of chains $C[i]$ of a topological space $X$
 is defined as all functions $\Delta^i \rightarrow X$.
@@ -22088,6 +25694,12 @@ is well-defined.
 
 # Demoscene tools
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-11-18
+```
+
 - [Leviathan](https://github.com/bollu/Leviathan-2.0): framework for 4k demos.
 - [WaveSabre](https://github.com/bollu/WaveSabre). [Talk at DemoBit](https://youtu.be/JjFyHI1b_Tw?t=7246)
 - [aDDIct](https://conspiracy.hu/release/tool/) --- This not helpful as it contains no sources.
@@ -22099,6 +25711,12 @@ is well-defined.
 
 # Binaural Beat
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 > The beating effect happens when sound waves physically mix together.  Believe
 > it or not though, there is a part of your brain where it mixes (adds) the
 > sounds from each ear together as well.  That means that if you play similar
@@ -22107,6 +25725,12 @@ is well-defined.
 
 
 # Low pass filter by delaying
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
  I don't understand this.  Full text with context:
 
@@ -22164,6 +25788,12 @@ more than `1/2` of the circle), we will  ????
 
 # Octaves are double frequency apart (TODO)
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
+
 As I am reading `BasicSynth`, I learnt that:
 
 > Each half-step between notes in the
@@ -22179,10 +25809,22 @@ a multiple oCochlea and why frequencies are 1:2
 
 # Bias and gain
 
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 - Bias lets us move the "mean" of the  plot.
 - Gain lets us move "how quickly" we get to the mean.
 
 # Show, don't tell
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
 
 Think of effects, not causes.
 
@@ -22192,6 +25834,12 @@ Think of effects, not causes.
 - https://www.youtube.com/watch?v=YAKcbvioxFk
 
 # Try and think of natural transformations as intertwinings
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-23
+```
 
 I'm comfrotable with elementary representation theory, but I feel far less at home manipulating
 natural transformations. I should try and simply think of them as the intertwinig operators
@@ -22214,6 +25862,12 @@ by wherever the functor sends the identity element.
 
 # Subobject classifier measures how much we need to pay to access fact
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 - Truths are free. We don't pay any of the monoid (given $A \rightarrow B$,
   subobj assigns full monoid to image of $A$ in $B$).
 - We go bankrupt trying to prove really false things (subobj assigns emptyset)
@@ -22224,6 +25878,12 @@ by wherever the functor sends the identity element.
 
 # Spectral norm of Hermitian matrix equals largest eigenvalue (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
+
 Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be
 hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
 The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i]$
@@ -22232,11 +25892,23 @@ $||Av^\star|| = \lambda^*$ is maximal.
 
 # Penrose cohomology [TODO]
 
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2023-04-02
+```
+
 <img src="./static/penrose-triangle.png"/>
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
 # Weingarten map
+
+```meta
+status: done
+created: 2021-12-26
+last-edited: 2022-05-30
+```
 
 - Let $S \subseteq \mathbb R^3$ be an extrinsic manifold
 - Let $U \subseteq \mathbb R^2$ be the domain for a parametrization $x: U \to S$.
@@ -22246,9 +25918,21 @@ $||Av^\star|| = \lambda^*$ is maximal.
 
 # When maps cannot be lifted to the universal cover
 
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2021-05-16
+```
+
 -  https://math.stackexchange.com/questions/1734540/existence-of-a-lifting
 
 # Nets from Munkres (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 #### Directed set
 A direct set is a partial order $J$ which has "weak joins".
@@ -22383,6 +26067,12 @@ as the universal net converges.
 
 # Limit point compactness from Munkres
 
+```meta
+status: done
+created: 2021-04-11
+last-edited: 2022-05-30
+```
+
 Munkres calls "Bolzano Weirstrass" as limit point compactness. He defines a
 space $X$ to be **limit point compact** if every infinite subset of $X$ has a
 limit point.
@@ -22416,6 +26106,12 @@ since we bisect the interval each time. Hence, $J$ is a single point, ie $J = \{
 point of the original subsequence. Any open set around $O$ will contain some interval $I[o]$
 
 # Proof of Heine Borel from Munkres (compact iff closed, bounded)
+
+```meta
+status: done
+created: 2021-06-10
+last-edited: 2022-05-30
+```
 
 We wish to show that compact iff closed and bounded in $\mathbb R$.
 
@@ -22510,6 +26206,12 @@ More elaborately:
 
 # Alexandrov topology
 
+```meta
+status: done
+created: 2021-04-11
+last-edited: 2022-05-30
+```
+
 These are the best generalizations of finite topological spaces.
 I should study them for better intuition + comptutability properties.
 This is a topology where the intersection of all families of open sets
@@ -22523,6 +26225,12 @@ is the intersection of all opens containing $x$.
 
 # Zeroth singular homology group: Intuition
 
+```meta
+status: done
+created: 2021-04-11
+last-edited: 2021-05-23
+```
+
 We wish to show that for a path connected space $X$, the zeroth singular homology group is just $\mathbb Z$.
 The intuition is that the zeroth homology group is given by consider $C[1] \xrightarrow{\partial_1} C[0]$,
 $C[0] \xrightarrow{\partial_0} 0$, and then taking $H[0] \equiv ker(\partial_0) / im(\partial_1) = C[0] / im(\partial_1)$.
@@ -22535,6 +26243,12 @@ which is isomorphic to $\mathbb Z$. Thus, the zeroth singular homology group is 
 
 
 # Examples of fiber products / pullbacks
+
+```meta
+status: done
+created: 2021-03-31
+last-edited: 2022-05-30
+```
 
 #### Fiber products of sets
 
@@ -22655,6 +26369,12 @@ The answer is that apparently, it's exactly $Spec(A) \times_{Spec(R)} Spec(B)$.
 
 # Covariant derivative
 
+```meta
+status: done
+created: 2021-03-31
+last-edited: 2022-05-30
+```
+
 If $x_p \equiv a \partial_x + b \partial_y + c \partial_z$ is a vector at $p \in \mathbb R^3$ and $Y$ is a vector field,
 then the covariant derivative of $Y$ in the direction $X$ is given by taking the directional derivative
 of each component of $Y$ along $X$:
@@ -22744,12 +26464,24 @@ Let $\sigma$ be a $C^\infty$ curve.
 
 # Clackety sounds: `bucklespring`
 
+```meta
+status: done
+created: 2021-03-31
+last-edited: 2021-05-23
+```
+
 I've taken to running [`bucklespring`](https://github.com/zevv/bucklespring) in the background when I code,
 because it makes the experience of programming so much more tactile. Having left my mechanical keyboard
 in college in the time of the plague, I feel like I was sorely missing this sort of auditory feedback!
 
 
 # Submersions and immersions
+
+```meta
+status: done
+created: 2021-03-31
+last-edited: 2022-05-30
+```
 
 Who in the world decided their names? I remember which is which based on the sound. "Submersion"
 is "surjective", "immersion" is "injective". But really, the naming makes no sense. I can intuitively
@@ -22758,6 +26490,12 @@ to be locally injective. You can only submerge $X$ into $Y$ if $Y$ is "larger" t
 asks for the precise opposite!
 
 # Ehrsmann connection
+
+```meta
+status: done
+created: 2021-03-31
+last-edited: 2023-11-02
+```
 
 Here's my current understanding of how the Ehrsmann connection works.
 
@@ -22809,6 +26547,12 @@ Hence, the function we defined above must be surjective.
 NOTE TO SELF: there should be a more direct proof that uses the fact that the fiber is $G$-torsor!
 
 # Quotes from the culture
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 > “Empathize with stupidity and you’re halfway to thinking like an idiot,”
 
@@ -22927,6 +26671,12 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 
 # Lie bracket commutator as infinitesimal conjugation
 
+```meta
+status: done
+created: 2021-09-24
+last-edited: 2021-09-24
+```
+
 
 - Consider the map $c(g, h) = ghg^{-1}$. Say we want to study the map near the identity in the first argument.
 - So we replace $g$ by $e + \epsilon k$ for identity $e$ and $k$ arbitrary group element.
@@ -22948,6 +26698,12 @@ $$
 
 # Thoughts on proof of fundamental group of unit circle
 
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2021-05-16
+```
+
 #### Definition of covering space
 
 It's important that when we say that $p^{-1}(U) = U \times F$, that the local
@@ -22968,6 +26724,12 @@ and we can thus use induction to path lift.
 
 
 # Pasting lemma
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 Let $f: X \rightarrow Y$ be a function.
 Let $A, B$ are closed subets of $X$ such that $X = A \cup V$. Then $f$ is continuous iff
@@ -23002,6 +26764,12 @@ $$
 
 # Tensoring with base ring has no effect
 
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2021-03-29
+```
+
 If $0 \rightarrow M' \rightarrow M \rightarrow M''$ is an exact sequence of $A$ modules,
 then so is $0 \rightarrow A \otimes M' \rightarrow A \otimes M \rightarrow A \otimes M''$.
 (As an aside, the order is $M', M, M''$ since the middle term $M$ is somehow
@@ -23011,6 +26779,12 @@ right).
 
 
 # Seeing the semidirect product of the dihedral group.
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 Think of rigid motions of a hexagon. Let's focus on a single edge.
 See that the movement of this edge determines everything else.
@@ -23035,10 +26809,22 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 
 # Animating rotations with quaternion curves
 
+```meta
+status: draft
+created: 2021-03-29
+last-edited: 2021-03-29
+```
+
 - [Reference: classic paper](http://graphics.cs.cmu.edu/nsp/course/15-464/Fall05/assignments/p245-shoemake.pdf)
 - [Comp.graphics usenet FAQ](http://www.faqs.org/faqs/graphics/algorithms-faq/)
 
 # Mnemonic for hom-tensor and left-right adjoints
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2021-03-29
+```
 
 - Remember the phrase `tensor-hom` adjunction, thus tensor is left adjoint.
 - Remember that the type of an adjunction is `(f x -> y) -> (x -> g y)` and here,
@@ -23058,6 +26844,12 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 
 
 # Construction of tensor product: Atiyah macdonald
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 I've only seen two ways of seeing the tensor product: (1) for vector
 spaces, where one uses a basis, and (2) the universal property, that
@@ -23099,6 +26891,12 @@ If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T
 
 
 # Recovering topology from sheaf of functions: Proof from Atiyah Macdonald
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 Let $X$ be a compact Haussdorff space. Such a space is normal (T4), so we can separate closed subsets
 by open neighbourhoods. This also means that the space obeys the Urhyson lemma, so we can construct
@@ -23168,6 +26966,12 @@ to argue about zero sets of functions.
    while describing the exact same phenomena.
 
 # Urhyson's lemma
+
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 We don't know any continuous functions on compact Haussdorf spaces; Let $X$ be a topological space. What functions
 $X \rightarrow \mathbb R$ are continuous? We only have the constant functions!
@@ -23321,6 +27125,12 @@ makes sense Urhyson's is involved.
 
 # Compact Hausdorff spaces are normal
 
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2021-03-29
+```
+
 
 Let $C, D$ be two disjoint closed subsets. We wish to exhibit disjoint opens
 $U, V$ which separate $C, D$. Formally, we want $C \subseteq U, D \subseteq V, U \cap V = \emptyset$.
@@ -23344,6 +27154,12 @@ $V_{c_i D}$ cover $D$ (so $V_{CD} \equiv \cap_{i=0}^n V_{c_i} D$ covers $D$). Th
 us our final opens $U_{CD}$ and $V_{CD}$. that separate $C$ and $D$.
 
 # Stone representation theorem: Proof from Atiyah Macdonald
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 A boolean ring is one where for every element $r \in R$, we have $r^2 = r$. We first
 study boolean rings abstactly and collect their properties. Secondly,
@@ -23517,6 +27333,12 @@ But every clopen set can be written as $D(l')$ for some $l'$.
 
 # Covariant Hom is left exact
 
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2021-03-29
+```
+
 Let's say we have the exact sequence:
 
 $$
@@ -23558,6 +27380,12 @@ the case with $Z$ and $Z/2Z$
 #### $Hom(-; Z/2Z)$
 
 # Internal versus External semidirect products
+
+```meta
+status: done
+created: 2021-03-17
+last-edited: 2022-05-30
+```
 
 Say we have an inner semidirect product. This means we have subgroups $N, K$ such that $NK = G$,
 $N$ normal in $G$ and $N \cap K = \{ e \}$. Given such conditions, we can realize $N$ and $K$
@@ -23610,6 +27438,12 @@ hold as well.
 
 # Splitting of semidirect products in terms of projections
 
+```meta
+status: done
+created: 2021-03-17
+last-edited: 2021-03-17
+```
+
 Say we have an exact sequence that splits:
 
 $$
@@ -23637,6 +27471,12 @@ $\pi_n: G \rightarrow G; \pi_n(g) \equiv g \cdot \pi(k)^{-1}$.
 
 
 # Tensor is right exact
+
+```meta
+status: done
+created: 2021-03-17
+last-edited: 2022-05-30
+```
 
 Consider an exact sequence
 
@@ -23839,6 +27679,12 @@ Hence, $coker(i) \simeq R \otimes C$.
 
 # Semidirect product as commuting conditions
 
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2022-05-30
+```
+
 Recall that in $N \ltimes K = G$, $N$ is normal. This is from the mnemonic
 that it looks like $N \triangleleft G$, or from the fact that the acting/twisting subgroup
 $K$ is a fish that wants to "eat"/act on the normal subgroup $N$.
@@ -23878,6 +27724,12 @@ versus rotate-translate.
 
 
 # Exact sequences for semidirect products; fiber bundles
+
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2022-05-30
+```
 
 #### Fiber bundles
 
@@ -23992,6 +27844,12 @@ We want the final picture to be:
 
 #  Semidirect product is equivalent to splitting of exact sequence
 
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
+
 Consider the exact sequence
 
 $$
@@ -24073,6 +27931,12 @@ we need to check that it's an isomorphism, so we need to make sure that this has
 
 # Intro to topological quantum field theory
 
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2021-05-16
+```
+
 - Once again, watching a videos for shits and giggles.
 - Geometrically, we cut and paste topological indices / defects.
 - QFT in dimensions n+1 (n space, 1 time)
@@ -24101,6 +27965,12 @@ we need to check that it's an isomorphism, so we need to make sure that this has
 
 
 # Non examples of algebraic varieties
+
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2022-05-30
+```
 
 It's always good to have a stock of non-examples.
 
@@ -24143,6 +28013,12 @@ In some cases, we could have used *analytic* facts about continuity of polynomia
 to simply use *combiantorial* data which I find interesting.
 
 # Nilradical is intersection of all prime ideals
+
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2022-05-30
+```
 
 #### Nilradical is contained in intersection of all prime ideals
 
@@ -24215,6 +28091,12 @@ nilradical.
 
 # Exactness of modules is local
 
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2021-03-16
+```
+
 
 We wish to show that for some ring $R$ and modules $K, L, M$
 a sequence $K \rightarrow L \rightarrow M$ is exact iff $K_m \rightarrow L_m \rightarrow M_m$
@@ -24224,6 +28106,12 @@ is exact for every maximal ideal $m \subset R$. This tells us that exactness is 
 
 
 # Quotient by maximal ideal gives a field
+
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2021-03-16
+```
 
 #### Quick proof
 
@@ -24240,6 +28128,12 @@ is an inverse to $x$, hence every nonzero element is invertible.
 
 # Ring of power series with infinite positive and negative terms
 
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2021-03-16
+```
+
 If we allow a ring with elements $x^i$ for all $-\infty < x < \infty$, for notation's
 sake, let's call it $R[[[x]]]$. Unfortunately, this is a badly behaved ring.
 Define $S \equiv \sum_{i = -\infty}^\infty x^i$. See that $xS = S$, since
@@ -24250,6 +28144,12 @@ theory of polyhedral point counting, we accept that $S = 0$ and exploit this
 in our theory.
 
 # Mean value theorem and Taylor's theorem. (TODO)
+
+```meta
+status: done
+created: 2021-03-16
+last-edited: 2021-03-16
+```
 
 I realise that there are many theorems that I learnt during my preparation for JEE
 that I simply don't know how to prove. This is one of them. Here I exhibit
@@ -24303,6 +28203,12 @@ $$
 
 
 # Cayley Hamilton
+
+```meta
+status: draft
+created: 2021-03-11
+last-edited: 2022-05-30
+```
 
 I find the theorem spectacular, because while naively the vector space $M_n(F)$
 has dimension $n^2$, Cayley-Hamilton tells us that there's only $n$ of $M^0, M^1, \dots$
@@ -24669,6 +28575,12 @@ Which is exactly cramer's rule.
 
 # Nakayama's lemma
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
+
 I read the statement as $IM = M \implies M = 0$, when $I$ is in the jacobson radical.
 1. Essentially, it tells us that if a module $M$ "lives by the $I$", then it also "dies by the $I$".
 2. Alternatively, we factor the equation as $M(I - 1) = 0$. Since our ideal $I$
@@ -24680,6 +28592,12 @@ I read the statement as $IM = M \implies M = 0$, when $I$ is in the jacobson rad
    Equating the two, we get $v_0 = 0, v_1 = v_0 = 0, v_2 = v_1 = 0$ and so on, collapsing the entire ring.
 
 # Vector fields over the 2 sphere
+
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 We assume that we already know the hairy ball theorem, which states that
 no continuous vector field on $S^2$ exists that is nowhere vanishing. Using
@@ -24739,10 +28657,22 @@ $$
 
 # Learning to talk with your hands
 
+```meta
+status: draft
+created: 2021-03-11
+last-edited: 2021-03-16
+```
+
 I was intruged by [this HN thread](https://news.ycombinator.com/item?id=26382528)
 about learning to talk with your hands. I guess I'm going to try and do this more often now.
 
 # Lovecraftisms
+
+```meta
+status: done
+created: 2021-03-11
+last-edited: 2022-05-30
+```
 
 I recently binged a lot of Lovecraftian horror to get a sense of
 his writing style. Here's a big list of my favourite quotes:
@@ -24917,6 +28847,12 @@ his writing style. Here's a big list of my favourite quotes:
 
 # Hairy ball theorem from Sperner's Lemma (TODO)
 
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2022-05-30
+```
+
 - Let $\Delta$ be an n-dimensional simplex with vertices $v_0, v_1, \dots, v_n$.
 - Let $\Delta_i$ be the face opposite to vertex $v_i$. That is, $\Delta_i$ is the face with all vertices except $v_i$.
 - The boundary $\partial \Delta$ is the union of all the $n+1$ faces of $\Delta_i$ (i is from $0$ to $n$).
@@ -25017,6 +28953,12 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
 
 
 # CS and type theory: Talks by vovodesky
+
+```meta
+status: done
+created: 2021-03-01
+last-edited: 2022-05-30
+```
 
 - [Talk 1: Computer Science and Homotopy Theory](https://www.youtube.com/watch?v=UvDeVqzcw4k)
 - Think of ZFC sets as rooted trees. Have two axioms:
@@ -25205,6 +29147,12 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
 
 # Hilbert basis theorem for polynomial rings over fields (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
+
 **Theorem:** Every ideal $I$ of $k[x_1, \dots, x_n]$ is finitely generated.
 
 First we need a lemma:
@@ -25303,6 +29251,12 @@ First we need a lemma:
 
 
 # Covering spaces
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 #### Covering spaces: Intuition
 
@@ -25492,6 +29446,12 @@ independent of $s$.
 
 # Wedge Sum and Smash Product
 
+```meta
+status: done
+created: 2021-03-01
+last-edited: 2022-05-30
+```
+
 I sometimes forget which is which. I now remember this as folows:
 
 - First, these work on based spaces so we always need to think of based points.
@@ -25505,6 +29465,12 @@ I sometimes forget which is which. I now remember this as folows:
   be a union.
 
 # Quotient topology
+
+```meta
+status: done
+created: 2021-03-11
+last-edited: 2022-05-30
+```
 
 I watched this for shits and giggles. I don't know enough topology at all, but it's
 fun to watch arbitrary math videos.
@@ -25563,6 +29529,12 @@ for which this map is continuous.
 
 # CW Complexes and HEP
 
+```meta
+status: done
+created: 2021-03-11
+last-edited: 2022-05-30
+```
+
 If $X$ is a CW complex and $A$ is a closed subcomplex, then it has the HEP.
 A closed subcomplex is a union of closed cells of $X$ such that $X$ is obtained
 by adding more cells to $A$.
@@ -25609,6 +29581,12 @@ Induction on lemma. base case is empty set.
 
 # Stable homotopy theory
 
+```meta
+status: done
+created: 2021-03-11
+last-edited: 2022-05-30
+```
+
 We like stable homotopy groups
 because of the [Freudenthal suspension theorem](https://en.wikipedia.org/wiki/Freudenthal_suspension_theorem)
 which tells us that homotopy groups stabilise after many suspensions.
@@ -25637,6 +29615,12 @@ This gives us the adjunction between suspension and looping.
 
 # Simply connected spaces
 
+```meta
+status: done
+created: 2021-03-01
+last-edited: 2022-05-30
+```
+
 - A space is simply connected iff fundamental group at all points is trivial.
 - We usually don't want to talk about basepoint, so we assume that the space
   is path-connected. This means we can move the basepoint around, or not
@@ -25659,6 +29643,12 @@ path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
 
 # Finitely generated as vector space v/s algebra:
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 - To be finitely generated as a vector space over $K$ from a generating
   set $S$ means that we take elements of the form $\sum_i k_i s_i$, or abbreviated,
   elements of the form $\sum KS$
@@ -25673,6 +29663,12 @@ generating set $\{ 1, X, X^2, \dots \}$ is not finite. It *is* finitely
 generated as a $K$-algebra with generating set $\{ X \}$.
 
 # Weak and Strong Nullstllensatz
+
+```meta
+status: draft
+created: 2021-02-26
+last-edited: 2022-05-30
+```
 
 
 #### Weak Nulstellensatz: On the tin
@@ -25811,6 +29807,12 @@ points such as $(x)$ or $(y)$ which don't exist in variety-land. This is really 
 
 # Screen recording for kakoune pull request
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 I wanted to show what keys I was pressing to demonstate the change I was
 proposing. So I used:
 - `SimpleScreenRecorder` to record my screen.
@@ -25820,6 +29822,12 @@ This was used the create the PR that
 [improves the page up/page down to mimic vim behaviour](https://github.com/mawww/kakoune/pull/4074)
 
 # Intuition for why finitely presented abelian groups are isomorphic to product of cyclics
+
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2021-05-16
+```
 
 - If we have a finitely presented group, we can write any element as a product
   of the generators.. Say we have two genetors $g, h$ and some relations between
@@ -25835,12 +29843,24 @@ This was used the create the PR that
 
 # Euler characteristic of sphere
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2021-02-26
+```
+
 Pick two antipodal points and connect them into a great circle. We have two points.
 To connect them, we need two edges. The great circle divdies the spere into two
 faces. This gives $2-2+2=2$.
 
 
 # John Conway: The symmetries of things
+
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
 
 Original way to classify wallpaper groups: think of geometric transforms
 that fix the pattern. Thurston's orbifold solution: think of quotients of $\mathbb R^2$
@@ -25930,6 +29950,12 @@ we maybe able to go the other way. This is the metrization theorem.
 
 # Semidirect product mnemonic
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 I just learnt that when we write the semidirect product $N \ltimes K$, the
 $\ltimes$ is to look like a combination of $N \triangleleft G$ ($N$ is normal in $G$)
 and the $\times$ operator; This tells us that it is the $N$ part that is normal.
@@ -25967,6 +29993,12 @@ Another mnemonic for the semidirect product:
 
 # Non orthogonal projections
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 Consider the matrix
 
 $$
@@ -25980,6 +30012,12 @@ $$
 
 
 # Why did maxwell choose his EM wave to be light?
+
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
 
 - We Knew gravity as fields
 - dalton/thompson atomic model that had particles: protons, neutrons, electron
@@ -26000,6 +30038,12 @@ $$
 
 # Fast string concatenation in python3
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 Apparently, the correct way to do this, in a way that's not `O(n^2)` is to
 use the `io.StringIO` module. The API is:
 
@@ -26014,6 +30058,12 @@ helping a friend speed up some data munging.
 
 # Split infinitive
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2021-02-26
+```
+
 ```
 to safely remove %v
 ```
@@ -26025,6 +30075,12 @@ to remove %v safely.
 ```
 
 # Yoneda from string concatenation
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 I'm trying to build intuition for Yoneda (again) this time from the perspective
 of strings and concatenation. The idea is that the identity function behaves
@@ -26074,6 +30130,12 @@ concatenation. So can we understand yoneda from this model?
 
 
 # Right Kan extensions as extending the domain of a functor
+
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 #### First over functions (fake category fluff)
 
@@ -26144,11 +30206,23 @@ than a 1 categorical construct.
 
 # Non standard inner products and unitarity of representations
 
+```meta
+status: draft
+created: 2021-02-26
+last-edited: 2022-05-30
+```
+
 
 I stumbled across [this questions about non-standard inner products](https://math.stackexchange.com/questions/4021023/visualization-of-length-and-orthogonality-under-non-standard-inner-product). Can I use this to visualize the weyl
 averaging trick in represention theory?
 
 # take at most 4 letters from 15 letters.
+
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2022-05-30
+```
 
 Trivial: use $\binom{15}{0} + \binom{15}{1} + \binom{15}{3} + \binom{15}{4}$.
 Combinatorially, we know that $\binom{n}{r} + \binom{n}{r-1} = \binom{n+1}{r}$.
@@ -26163,6 +30237,12 @@ I find it nice how I used to never look for the combinatorial meaning behind
 massaging the algebra, but I do now.
 
 # Flat functions
+
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2022-05-30
+```
 
 Define
 
@@ -26209,6 +30289,12 @@ $$
 
 # Hopf Algebras and combinatorics
 
+```meta
+status: done
+created: 2021-05-16
+last-edited: 2022-05-30
+```
+
 > Started from algebraic topology in the 40s. In late 70s, Rota
 > figured out that many combinatorial objects have the structure of a Hopf
 > algebra.
@@ -26239,6 +30325,12 @@ $\epsilon(g) = 1$, $s(g) = g^{-1}$.
 
 # Butcher group
 
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2021-02-26
+```
+
 I really want to read the math about the [butcher group](https://en.wikipedia.org/wiki/Butcher_group),
 which was introduced to study numerical solutions of ODEs using RK, and
 then had far-reaching theoretical applications. Connes remarked:
@@ -26251,6 +30343,12 @@ then had far-reaching theoretical applications. Connes remarked:
 
 # Neovim frontends
 
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2021-02-26
+```
+
 - [veonim](https://glitchtron.org/veonim/): Rendered an utterly glitched UI.
 - [uivonum](https://github.com/smolck/uivonim): NPM based, so wasn't my thing.
 - [neovide](https://github.com/Kethku/neovide): rust based, feels very fluid,
@@ -26258,6 +30356,12 @@ then had far-reaching theoretical applications. Connes remarked:
 - [goneovim](https://github.com/akiyosi/goneovim)
 
 # A semidirect product worked on in great detail
+
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2022-05-30
+```
 
 We work out the semidirect product structure of the collection of real 2x2 matrices
 
@@ -26477,6 +30581,12 @@ In some sense, one can view
 so this example provides good intuition for the general case.
 
 # Direct and Inverse limits
+
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2022-05-30
+```
 
 #### Direct limit: definition
 
@@ -26739,6 +30849,12 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 # LEAN 4 overfrom from LEAN together 2021
+
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2022-05-30
+```
 - add `unsafe` keyword.
 - allow people to provide unsafe version of any opaque function if the
   type is inhabited. Type inhabited => proofs are fine. (Do we need to assume UIP for this to work?)
@@ -26772,9 +30888,21 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 
 # BLM master thesis
 
+```meta
+status: draft
+created: 2021-02-03
+last-edited: 2021-02-03
+```
+
 - [link here](https://tspace.library.utoronto.ca/bitstream/1807/101595/3/Khogali_Yusra_201806_MA_thesis.pdf)
 
 # RSK correspondence for permutations
+
+```meta
+status: done
+created: 2021-02-03
+last-edited: 2022-05-30
+```
 
 ##### Tableaux
 
@@ -26910,11 +31038,23 @@ $P$ and $p^{-1}$.
 
 # Djikstra's using a segtree
 
+```meta
+status: draft
+created: 2021-02-03
+last-edited: 2021-02-03
+```
+
 > keep min segtree of distances. Now just have to run n-1 interations.
 > You like segtrees right :P
 
 
 # Markov and chebyshev from a measure theoretic lens
+
+```meta
+status: done
+created: 2021-01-29
+last-edited: 2021-01-29
+```
 
 I've been idly watching [Probability and Stochastics for finance: NPTEL](https://www.youtube.com/watch?v=qTg0mqxuGeA&list=PLEYrMI37wMbplhGJmqhlYv0VUSwC6zMsU&index=8), and I came across this nice way to
 think about the markov and chebyshev inequality. I wonder whether Chernoff
@@ -26961,14 +31101,38 @@ to get a bound.
 
 
 # Among any 51 integers, that are 2 with squares having equal value modulo 100
+
+```meta
+status: draft
+created: 2021-01-29
+last-edited: 2021-01-29
+```
 # $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
+
+```meta
+status: draft
+created: 2021-01-29
+last-edited: 2021-01-29
+```
 # $10^{3n+1}$ cannot be written as sum of two cubes
+
+```meta
+status: draft
+created: 2021-01-29
+last-edited: 2021-05-16
+```
 
 https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contravariant-Divisible.html
 
 
 
 # Coq-club: the meaning of a specification
+
+```meta
+status: done
+created: 2021-01-29
+last-edited: 2022-05-30
+```
 
 > When I was doing my PhD, I faced questions similar to yours. It emerged from my
 > encounter of HOL4 for completing a project after having used Coq for another.
@@ -27003,6 +31167,12 @@ https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contra
 
 # SQLite opening
 
+```meta
+status: done
+created: 2021-01-29
+last-edited: 2021-01-29
+```
+
 ```
 ** The author disclaims copyright to this source code.  In place of
 ** a legal notice, here is a blessing:
@@ -27015,11 +31185,23 @@ https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contra
 
 # Old school fonts
 
+```meta
+status: draft
+created: 2021-01-29
+last-edited: 2021-01-29
+```
+
 I've been rolling with the  `Px437 ToshibaSat 8x14` font as my daily driver purely for nostalgia reasons; It is to be honest quite a good font! Otherwise, I use `Iosevka Fixed Expanded`, or the "agda font", `mononoki`.
 
 - [I love the old school fonts website](https://int10h.org/oldschool-pc-fonts/fontlist/?2#toshiba)
 
 # Stalking `syzigies` on hackernews
+
+```meta
+status: done
+created: 2021-01-29
+last-edited: 2021-01-29
+```
 
 He's the author of Macaulay; I learnt quite a bit by [stalking him on hackernews](https://news.ycombinator.com/threads?id=Syzygies)
 
@@ -27093,6 +31275,12 @@ define | edge? g e
 
 # Conditional probability is neither causal nor temporal
 
+```meta
+status: done
+created: 2021-01-29
+last-edited: 2022-05-30
+```
+
 I found this insightful:
 
 > `P(A|B)` means the probability of A happening given B already
@@ -27112,6 +31300,12 @@ but I'd never seen/actively contemplated an example of `P(A|B)` where they
 are temporally reversed/ambiguous.
 
 # Hook length formula
+
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
 
 Truly remarkable formula that tells us the number of standard young tableaux
 for a given partition $\lambda$ of $n$. Recall the definitions:
@@ -27261,11 +31455,23 @@ corresponds to an irrep of $S_n$.
 
 # The tyranny of light
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2021-01-23
+```
+
 > More information may
 > lead to less understanding; more information may undermine trust; and more
 > information may make society less rationally governable.
 
 # Muirhead's inequality
+
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
 
 We denote by $\sum_! F(x[1], \dots, x[n])$ the sum ov $F$ evaluated over all
 permutations. Formally:
@@ -27359,6 +31565,12 @@ $$
 
 # Rearrangement inequality
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
+
 If $a[i]$ is a non-decreasing sequence: $a[1] \leq a[2] \leq \dots a[n]$, and
 similarly $b[i]$ is a non-decreasing sequence: $b[1] \leq b[2] \leq b[n]$ then
 we have that:
@@ -27438,6 +31650,12 @@ and thus we are done.
 
 # Triangle inequality
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
+
 We can write this as:
 
 ```
@@ -27508,9 +31726,21 @@ project everything on the $AB=c$ line, we will get less-than(`<=`)
 instead of equals (`=`).
 
 # The Heather subculture
+
+```meta
+status: draft
+created: 2021-01-23
+last-edited: 2021-01-23
+```
 - And finally, [the sweater's perspective](https://www.youtube.com/watch?v=c_PT91SqVX8)
 
 # Frobenius Kernel
+
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
 
 #### Some facts about conjugates of a subgroup
 
@@ -27530,6 +31760,12 @@ Let $H$ be a subgroup of $G$. Define $H_g \equiv \{ g h g^{-1} : h \in H \}$.
 
 # Galois theory by "Abel's theorem in problems and solutions"
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2021-01-23
+```
+
 I found the ideas in the book fascinating. The rough idea was:
 
 - Show that the $n$th root operation allows for some "winding behaviour"
@@ -27542,6 +31778,12 @@ I found the ideas in the book fascinating. The rough idea was:
 
 
 # Galois theory perspective of the quadratic equation
+
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2021-01-23
+```
 
 I found this quite delightful the first time I saw it, so I wanted to record
 it ever since.
@@ -27586,6 +31828,12 @@ $$
 
 # Burnside lemma by representation theory.
 
+```meta
+status: draft
+created: 2021-01-23
+last-edited: 2022-05-30
+```
+
 Recall that burnside asks us to show that given a group $G$
 acting on a set $S$, we have that the average
 of the local fixed points $1/|G|(\sum_{g \in G} |\texttt{Fix}(g)|)$ is
@@ -27628,6 +31876,12 @@ to a 1D subrepresentation for all the elements in the orbit of $s*$.
 
 
 # Contributing to SAGEmath
+
+```meta
+status: done
+created: 2021-02-26
+last-edited: 2021-02-26
+```
 
 
 #### Development
@@ -27682,6 +31936,12 @@ many positively review tickets waiting, end of release cycle).
 
 # Shadow puppet analogy for entanglement
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2021-01-23
+```
+
 I found [this answer on quantumcomputing.stackexchange](https://quantumcomputing.stackexchange.com/a/15525/14471)
 to be a visceral example of "something like entanglement":
 
@@ -27708,6 +31968,12 @@ configuration space of image 2 are valid, and vice versa.
 
 
 # Books for contest math
+
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
 
 A personal list of books I wish to study this year, to get better at
 "problem solving". This is ranked in order of difficulty
@@ -27739,6 +32005,12 @@ I wish to spend this year learning nuts and bolts type things.
 
 # Analysing simple games
 
+```meta
+status: done
+created: 2021-01-23
+last-edited: 2022-05-30
+```
+
 I found the clear articulation of these ideas quite nice.
 
 1. In a game with symmetry, a symmetric move can be blocked or prevented **only**
@@ -27765,6 +32037,12 @@ if the move just made by the other player can block it.
 - [Mathematical circles: Russian experience](https://bookstore.ams.org/mawrld-7)
 
 # Linear algebraic proof of the handshaking lemma
+
+```meta
+status: done
+created: 2021-01-11
+last-edited: 2021-06-27
+```
 
 We wish to show that the number odd vertices is even. Let $A$ be the adjacency
 matrix of the undirected graph $G$. Since $G$ is undirected, $A = A^T$. Now
@@ -27824,6 +32102,12 @@ $$
 
 # Historical contemporaries
 
+```meta
+status: done
+created: 2021-01-11
+last-edited: 2022-05-30
+```
+
 I continue to be delighted at how connected arbitrary parts of history are.
 Here's a list of contemporaries I would not have guessed:
 
@@ -27835,6 +32119,12 @@ Here's a list of contemporaries I would not have guessed:
 - Picasso was against the Korean war (1950) and painted about it.
 
 # Rota's twelvefold way
+
+```meta
+status: done
+created: 2021-01-11
+last-edited: 2022-05-30
+```
 
 - Count functions from $I \rightarrow O$.
 - See that any such function is a subset of $O^I$.
@@ -27887,6 +32177,12 @@ Here's a list of contemporaries I would not have guessed:
 
 # Counting necklackes with unique elements
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
+
 Count number of ways to form a necklace with $\{1, 2, \dots, n\}$
 
 - Method 1: This is equivalent to counting $|S_5|$ modulo the subgroup generated by
@@ -27898,6 +32194,12 @@ Count number of ways to form a necklace with $\{1, 2, \dots, n\}$
 
 
 # Decomposition of projective space
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 Projective space $\mathbb P^{n+1} = \mathbb P^n \cup \mathbb R^n$. The
 current way I think about this is as follows (specialize to $n=3$)
@@ -27963,6 +32265,12 @@ slopes.
 
 # Childhood: Playing pokemon gold in japanese
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
 I just recalled this very off memory of how back when I was a kid, somehow the
 only version of pokemon (gold) that was circulating amongst folks was the one
 in _japanese_. So we freaking played gold in _japanese_. I can't believe I got
@@ -27977,6 +32285,12 @@ just how _insane_ the whole thing is. A kid's determination to play a game
 knows no bounds, indeed.
 
 # Tensor is a thing that transforms like a tensor
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2024-04-24
+```
 
 There are two ways of using linear maps in the context of physics. One is
 as a thing that acts on the _space_. The other is a thing that acts on the
@@ -28034,6 +32348,12 @@ Physicists (and people who write memory allocators) need such elaborate tracking
 
 # Tensor Hom adjunction
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
 - `(- X A)` witnesses `A` as an output, while `Hom(A, -)` witness A as input.
 - Similarly, we know that we can contract `A` with `A*` so it makes sense that the
   "dual" of multiplying by `A` (ie, how to divide out `A`) is to invert it by
@@ -28041,6 +32361,12 @@ Physicists (and people who write memory allocators) need such elaborate tracking
 
 
 # Schur's lemma
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-29
+```
 
 #### Statement
 
@@ -28113,11 +32439,23 @@ constant times the identity. That is, there exists a $\lambda$ such that $f = \l
 
 # Daughters of destiny
 
+```meta
+status: draft
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
 Captures the microcosm of what it means to live in India.
 
 - [Shanti Bhavan](https://www.shantibhavanchildren.org/)
 
 # Stuff I learnt in 2020
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-05-16
+```
 
 - MLIR
 - unification
@@ -28143,6 +32481,12 @@ Captures the microcosm of what it means to live in India.
 
 
 # Line bundles, a high level view as I understand them today
+
+```meta
+status: done
+created: 2021-01-10
+last-edited: 2021-03-29
+```
 
 - What is a line bundle?
 - What does it mean to tensor two line bundles?
@@ -28171,6 +32515,12 @@ So, $\mathbb R \otimes \mathbb  R^* \simeq \mathbb R$. Generalize to bundles.
 - [Fiber bundles at physics travel guide](https://physicstravelguide.com/advanced_tools/fiber_bundles#tab__concrete)
 
 # Conversations with a wood carver
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 There's a wood carver who lives close to home, whose name is Harish.
 I went to speak to him, asking if he would be willing to teach me woodcarving.
@@ -28217,6 +32567,12 @@ believes that it is fundamentally impossible for people to learn carpentry.
 
 
 # Discrete Riemann Roch
+
+```meta
+status: draft
+created: 2021-05-16
+last-edited: 2022-05-30
+```
 
 #### Divisors
 Function $V \rightarrow \mathbb Z$. We think of this as formal linear combination
@@ -28680,6 +33036,12 @@ $$
 
 # Conversation with Olaf Klinke
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
+
 > do you have reading you'd recommend to gain your viewpoint of
 > computation-as-topology-as-computation?
 
@@ -28735,6 +33097,12 @@ A treasure trove of smart little Haskell programs is
 
 # Topological groups and languages
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
+
 [MonoidNull](http://hackage.haskell.org/package/monoid-subclasses/docs/Data-Monoid-Null.html) is a monoid
 that allow us to test for `mempty`. So it obeys the law:
 
@@ -28789,6 +33157,12 @@ the situation.
 
 
 # The mnemonica stack (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 ```
 4  c♣
@@ -28851,6 +33225,12 @@ A  h♡
 
 
 # Conversation with Alok about how I read
+
+```meta
+status: draft
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 Alok Debnath, a friend of mine claims he understood "how I read" based on
 reading infinite jest and setting me experiments that allowed him to observe
@@ -28977,12 +33357,24 @@ According to him, this is similar to how I read code:
 
 # KMP (Knuth, Morris, Pratt) (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 #### References
 - [KMP in haskell](https://chaoxuprime.com/posts/2014-04-11-the-kmp-algorithm-in-haskell.html)
 - [String algorithms: Borders, KMP: video](https://www.youtube.com/watch?v=-YdOWEpZEfc)
 - [Geometric point pattern matching](http://www.jucs.org/jucs_16_14/geometric_point_pattern_matching/jucs_16_14_1902_1911_ukkonen.pdf)
 
 # Reading C declarations
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-09
+```
 
 > The real rule turns out to be simple (although non-obvious): "Declaration
 > matches usage." So, for example, if you want a pointer to a function
@@ -29002,6 +33394,12 @@ int (*(*f)())[3];
 
 # Make mnemonics
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
 - `$@`: target, since it looks like a target.
 - `$<`: the 1st prereq, since `<` points to the left.
 - `$^`: all prereqs, since `^` looks like an "upward grouping flower bracket".
@@ -29014,6 +33412,12 @@ int (*(*f)())[3];
 - [notes for new make users](http://gromnitsky.users.sourceforge.net/articles/notes-for-new-make-users/#4b6d995-automatic-variables)
 
 # Vandermonde and FFT
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2021-01-09
+```
 
 
 FFT lets you do the following:
@@ -29030,6 +33434,12 @@ instead of computing it using FFT.
 - [Codeforces contest comment by Swistakk)[https://codeforces.com/blog/entry/85348?#comment-730898]
 
 # Thoughts on blitz chess: 950 ELO
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 I plan on summarizing my current thoughts on chess at different stages of ELO
 on Lichess.  This should be fun to look back on. Currently, I found that the
@@ -29060,6 +33470,12 @@ problem with competitive programming --- the exact same anxieties, in fact.
 
 # Periodic tables and make illegal states unrepresentable
 
+```meta
+status: done
+created: 2020-12-07
+last-edited: 2021-01-09
+```
+
 The periodic table of elements succeeded because the "gaps" in the table
 consisted of only legal atoms --- thus, by making illegal states unrepresentable,
 a table of the current state of knowledge becomes valuable because all the
@@ -29068,6 +33484,12 @@ juggling notattion.
 
 
 # questions on the structure of graphs
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 I've been trying to get more of a feeling for graphs lately, so I'm collecting
 sources of "structural" questions of graphs and answers for these questions.
@@ -29081,6 +33503,12 @@ sources of "structural" questions of graphs and answers for these questions.
 
 
 # Combinations notation in bijective combinatorics
+
+```meta
+status: done
+created: 2020-12-07
+last-edited: 2020-12-07
+```
 
 They explicitly write $nCr$ as $[n]C[r, n-r]$. This makes it better for
 "future uses", where it explicitly allows us to think of $[n]C[x, y]$ as
@@ -29104,6 +33532,12 @@ second component ($n-r-1$), in the smaller set ($n-1$).
 
 
 # Arguments for little endian
+
+```meta
+status: done
+created: 2020-12-07
+last-edited: 2022-05-30
+```
 Say we wish to store `<MSB> 100 200 300 400 <LSB>`. In little endian, this would be
 stored as:
 
@@ -29119,6 +33553,12 @@ it would be `data[3]`. So, storing stuff backwards makes it easier to chop off
 the LSBs data, since that's the _suffix_.
 
 # Expectiles
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 
 Mean is a minimiser of $L_2$ norm: it minimizes the loss of penalizing your
@@ -29146,12 +33586,24 @@ $e_-^2$ that would have given rise to expectiles.
 
 # Depth first search through linear algebra (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 
 #### References
 - [Talk Video](https://www.youtube.com/watch?v=fKim6IKdr8U)
 - [Link to paper](https://dl.acm.org/doi/pdf/10.1145/3315454.3329962)
 
 # 2-SAT
+
+```meta
+status: done
+created: 2020-12-07
+last-edited: 2022-05-30
+```
 
 First break into SCC's. Each SCC represents equivalence: since there is a
 path from every variable to every other variable, they must take on the
@@ -29170,9 +33622,21 @@ Hence, if $x$ implies $\lnot x$, we should set $x$ to $\texttt{false}$. The othe
 assignment is _inconsistent_.
 
 # Longest increasing subsequence, step by step (TODO)
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 - [The science of Programming by Gries](https://www.cs.cornell.edu/gries/July2016/The-Science-Of-Programming-Gries-038790641X.pdf)
 
 # On reading how to rule (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 #### The prince
 
 #### Arthashastra
@@ -29181,6 +33645,12 @@ assignment is _inconsistent_.
 
 
 # Strongly Connected Components via Kosaraju's algorithm
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 We know that a directed graph can be written as two-levels, a top-level dag,
 with each node in the DAG being a condensation of the original graph. So
@@ -29227,6 +33697,12 @@ I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
 
 
 # Articulation points
+
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 I find DFS fascinating, and honestly insane for how much structral
 information of the graph it manages to retain.
@@ -29399,6 +33875,12 @@ void process_edge(int x, int y) {
 
 # Disjoint set union
 
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2021-01-09
+```
+
 #### intuition for correctness of `rank`:
 
 Assume that we had to re-point pointers of all our children to the
@@ -29425,9 +33907,21 @@ void mkroot(int newroot, int prevroot) {
 
 # Making GDB usable
 
+```meta
+status: draft
+created: 2020-11-24
+last-edited: 2020-11-24
+```
+
 - Use [GEF](https://github.com/hugsy/gef)
 
 # Bouncing light clock is an hourglass
+
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 I've always disliked the "clocks" that are used in special relativity,
 because a clock attempts to measure something absolute, rather than something
@@ -29448,6 +33942,12 @@ between two mirrors. We can look at this as us "flipping" the hourglass
 once the photon reaches the bottom of the hourglass.
 
 # Euler tours
+
+```meta
+status: done
+created: 2021-01-11
+last-edited: 2022-05-30
+```
 
 #### Tucker's proof: undirected graph with all even degree has an euler tour
 
@@ -29471,9 +33971,21 @@ up vertices otherwise!
 
 # Representation theory of the symmetric group (TODO)
 
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 - [Video lectures: Representation theory, a combinatorial viewpoint](https://www.youtube.com/watch?v=QqJIOnTDbLM&list=PLFE2F2CDA55A9EBB6)
 
 # Maximum matchings in bipartite graphs
+
+```meta
+status: done
+created: 2021-01-11
+last-edited: 2021-01-11
+```
 
 It turns out that the best way to do this is to simply implement Dinic's with
 scaling. That seems to meet the desired Hopcroft-Karp complexity. I was quite
@@ -29490,6 +34002,12 @@ new ideas.
 
 
 # p-adics, 2's complement, intuition for bit fiddling
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 Consider the equation $x \& (-x)$ which enables us to find the largest
 power of 2 that divides $x$. One can prove this relatively easily from the
@@ -29577,6 +34095,12 @@ number is signed/unsigned.
 
 # Diameter of a tree
 
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
+
 
 ## Key property of the diameter
 
@@ -29623,6 +34147,12 @@ us the diameter (the distance from $v$ to $w$)
 
 # Catalan numbers as popular candidate votes (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 - Usually, folks define catalan numbers as paths that go up or right from $(1, 1)$
   to $(n, n)$ in a way that never goes below the line $y = x$.
 
@@ -29641,6 +34171,12 @@ to $1/(n+1) \binom{2n}{n}$ by reasoning about seqences of votes, called as
 - [Richard Stanley's slides](https://math.mit.edu/~rstan/transparencies/china.pdf)
 
 # The chromatic polynomial (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 I've been on a combinatorics binge lately, so I'm collecting cool facts about
 the chromatic polynomial. We first define the chromatic function of a graph,
@@ -29661,6 +34197,12 @@ the single vertex with the $n$ colors we have.
 
 
 # Structure theory of finite endo-functions
+
+```meta
+status: draft
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 We study functions $f: V \rightarrow V$ and their properties by thinking of them as a
 graph with vertex set $V$ and directed edges $(v, f(v))$. This gives us insight into
@@ -29698,6 +34240,12 @@ Say we have a function $f: V \rightarrow V$ where $|V| = n$ and $f(1) = 1$, $f(n
 
 # Number of paths in a DAG
 
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
+
 Given the adjacency matrix $A$ of a DAG, this  must be nilpotent. This is because
 $A^k[i][j]$ will tell us the number of paths from $i$ to $j$ with $k$ edges in the path.
 In a DAG, since there are no cycles, there is an upper bound on the number of edges
@@ -29713,6 +34261,12 @@ we must have that $A^|V| = 0$.
 
 
 # Set partitions
+
+```meta
+status: draft
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 Let $X$ be a set. A breakup of $X$ into pairwise disjoint sets $A[i]$ such that $\cup_i A[i] = X$
 is called a partition $P$ of the set $X$.
@@ -29842,6 +34396,12 @@ TODO
 
 # Integer partitions: Recurrence
 
+```meta
+status: done
+created: 2020-12-07
+last-edited: 2022-05-30
+```
+
 An integer partition of an integer $n$ is a sequence of numbers $p[1], p[2], \dots p[n]$ which
 is weakly decreasing: so we have $p[1] \geq p[2] \dots \geq p[n]$. For example, these
 are the integer partitions of $5$:
@@ -29875,6 +34435,12 @@ The idea is to consider a partition $p[1], p[2], \dots, p[k]$ of $n$ based on th
 - [Slides by Brian Miceli](http://ramanujan.math.trinity.edu/bmiceli/research/TXState04-09-10.pdf)
 
 # Stars and bars by direct bijection
+
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 We know that the number of $k$ element multisets using letters from $\{1, \dots, n\}$
 is $\binom{k+n-1}{k}$.  That is, we are allowed to pick elements from $\{1, \dots, n\}$
@@ -29917,6 +34483,12 @@ we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, m
 - Reference: Bijective Combinatorics
 
 # DFS and topological sorting
+
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 The proper way to solve a maze is to keep breadcrumbs! Use recursion.
 Recursively explore the graph, backtracking as necessary.
@@ -30051,6 +34623,12 @@ impossible because the graph cannot have cycles! Thus, we will still have that
 
 # Tournaments
 
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
+
 - Tournament graph: either $U$ beats $V$, so we have $U \rightarrow V$ or we have $V$ beats $U$ so we
   have the edges $V \rightarrow U$ for every $U, V$
 
@@ -30118,6 +34696,12 @@ that $v \rightarrow u$. In the other case, we have that $\not u \rightarrow w \x
 - [Reference: Math for computer science, lecture 10](https://www.youtube.com/watch?v=DOIp5D7VMS4)
 
 # Matching problems (TODO)
+
+```meta
+status: draft
+created: 2020-11-24
+last-edited: 2022-05-30
+```
 
 Given a graph $G = (V, E)$ a matching is a collection of edges of $G$ where every
 node has degree 1.
@@ -30374,6 +34958,12 @@ But this contradicts the equation $\max{b_2}(g_2, g_2') = g_2' = g_1$ (?)
 
 # Four fundamental subspaces
 
+```meta
+status: done
+created: 2020-11-24
+last-edited: 2022-05-30
+```
+
 - Column space / Image: $C(A)$, since it corresponds to $C(A) \equiv \{ y : \exists x, y = Ax \}$
 - Null space $N(A) \equiv \{ k : Ak = 0 \}$.
 - Row space: row spans the row space, so it's all linear combinations of the rows
@@ -30435,9 +35025,21 @@ nullspace by lookinag at $E$, because $E$ gives us $EA = R$.
 
 
 # WHO list of essential medicines (TODO)
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 - [Wikipedia reference](https://en.wikipedia.org/wiki/WHO_Model_List_of_Essential_Medicines)
 
 # why is `int i = i` allowed in C++?
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2021-01-09
+```
 
 This bizarre program:
 
@@ -30462,6 +35064,12 @@ as a *value*.
 
 # Kakoune cheatsheet
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
+
 - `/`: search for some text. `n`: go to next occurence. `Shift-n`: goto next occurence with a multi cursor.
 - `Shift-X`: select multiple lines in sequence. `s`: make a multi-cursor a word in the current selection
 - `space`: remove multiple cursors
@@ -30471,6 +35079,12 @@ as a *value*.
 
 
 # Assembly IDE
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2021-01-23
+```
 
 I've wanted to "learn assembly" properly, in the sense of write small to
 medium programs to feel like a native. Scouting around for IDE's, I couldn't
@@ -30491,11 +35105,23 @@ assembly! I had no idea if it's a *good* ecosystem --- my experience with
 
 # Cohomology is like holism
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 A shower thought, but Cohomology is indeed like holism. It describes precisely
 how the whole is greater than the sum of its parts, in terms of capturing a
 "global defect" that is oftentimes "locally trivial".
 
 # Flows (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 - [Srinivas Devdas: Flows](https://www.youtube.com/watch?v=VYZGlgzr_As)
 
@@ -30613,6 +35239,12 @@ for edges whose flow has to shrink.
 
 
 # Amortized analysis
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
 
 - [Erik Demaine: amortization --- amortized analysis](https://www.youtube.com/watch?v=3MpzavN3Mco)
 
@@ -30794,6 +35426,12 @@ to cost 1 + the number of trailing ones. We want to make this **constant**.
 
 # Shelly Kegan: death --- Suicide and rationality (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
+
 How does the fact that we will die affect the way we live? previous
 chapter! The fact our mortality raises the question of whether or not
 we should put an end to our life. It's the extra feature --- the variability
@@ -30876,6 +35514,12 @@ and after. Call this the two state requirement.
 - [Shelly Kegan: death, 24. Suicide, Part 1](https://www.youtube.com/watch?v=MajfZIyHP8U&list=PLEA18FAF1AD9047B0&index=24)
 
 # Sam harris and jordan peterson: Vancouver 1 (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 > Is there a difference between religious and non-religious totalitarian states?
 > Yes, dogma is the commonality. In the case of stalin / north korea, they
@@ -30965,6 +35609,12 @@ and after. Call this the two state requirement.
 
 # Correctness of binary search
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
+
 
 #### Closed-closed intervals
 
@@ -31024,6 +35674,12 @@ int binsearch(int l, int r, int val, int *xs) {
 
 # `readlink -f <path>` to access file path
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 To get the full path of a file, use
 
 ```
@@ -31034,6 +35690,12 @@ $ readline -f file
 This is useful to `scp`/`rsync` stuff.
 
 # rank/select as compress/decompress
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
 
 I haven't found a good naming convention so far for describing order
 statistics. I'm taking about the common implementation:
@@ -31125,6 +35787,12 @@ to the original array linguistically, which I quite like.
 
 # Remembering Eulerian and Hamiltonian cycles
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
+
 I used to keep forgetting the difference. Here's how I remember it now.
 We know that an _euler tour_ always exists for a tree. Indeed, it's
 a [handy data structure](https://en.wikipedia.org/wiki/Euler_tour_technique)
@@ -31143,6 +35811,12 @@ the edges once.
 
 # Nice way to loop over an array in reverse
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 ```cpp
 const double n = sizeof(spheres) / sizeof(Sphere), inf = t = 1e20;
 for (int i = int(n); i--; ) { } //chad
@@ -31151,6 +35825,12 @@ for (int i = n-1; i >= 0; i--) { // simp
 
 
 # Dynamic Programming: Erik Demaine's lectures
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
 
 I realized I'd never bothered to ever formally learn dynamic programming,
 so I'm watching Erik Demaine's lectures and taking down notes here.
@@ -31746,6 +36426,12 @@ v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
 
 # Accuracy vs precision
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
+
 <img src="./static/accuracy-vs-precision.png"/>
 
 I had a hard time remembering which is which, so here's how I do it now.
@@ -31773,21 +36459,51 @@ the true reference value we want to hit.
 
 # Why is the gradient covariant?
 
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 - [expanation of gradient being covariant in terms of the integral version](https://physics.stackexchange.com/a/127534/129278)
 
 # Politicization of science
+
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
 
 - [Reference](https://en.wikipedia.org/wiki/Politicization_of_science)
 
 # Multi ꙮ cular O: ꙮ / Eye of cthulu
 
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 - [Multiocular O](https://en.wikipedia.org/wiki/Multiocular_O)
 
 # You can't measure the one way speed of light
 
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 - [Veritasium video](https://www.youtube.com/watch?v=pTn6Ewhb27k)
 
 # Show me the hand strategy
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2020-11-17
+```
 
 So, how do you surface covert-aggressions and covert-criticism?  Enter the:
 Show Me The Hand Strategy The "show me the hand strategy" can be applied with
@@ -31808,6 +36524,12 @@ compelled to come out in the open and be more direct
 
 
 # Words that can be distinguished from letters if we know the sign of the permutation
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2020-11-17
+```
 
 ```py
 #!/usr/bin/env python3
@@ -31847,12 +36569,30 @@ for wk in sorted:
 
 # Easy times don't create weak people, they just allow weak people to survive.
 
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 Easy times doesn't weaken the _generator_ side of things, it simply weakens
 the _adverserial_ side of things allowing weak people to survive.
 
 # Multiplicative weights algorithm (TODO)
 
+```meta
+status: draft
+created: 2020-11-17
+last-edited: 2020-11-17
+```
+
 # How to fairly compare groups
+
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2022-05-30
+```
 
 > Why is this a key argument? It’s really quite simple. Let’s say I have two
 > groups, A and B. Group A has 10 people, group B has 2. Each of the 12 people
@@ -31871,13 +36611,31 @@ the _adverserial_ side of things allowing weak people to survive.
 
 # Bijection from `(0, 1)` to `[0, 1]`
 
+```meta
+status: draft
+created: 2020-10-30
+last-edited: 2020-10-30
+```
+
 <img src="./static/bijection-between-closed-01-open-01.png">
 
 # Rene Girard
 
+```meta
+status: draft
+created: 2020-10-30
+last-edited: 2020-10-30
+```
+
 - [Link where I first heard of him](https://alexdanco.com/2019/04/28/secrets-about-people-a-short-and-dangerous-introduction-to-rene-girard/)
 
 # Noam Chomsky on anarchism (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 - [Video of interview](https://www.youtube.com/watch?v=totmHrIJzK8)
 - Emma Goldman Archives
@@ -31922,6 +36680,12 @@ universal: universally accepted, and universally rejected in practice!
 
 
 # Slavoj Zizek: Violence
+
+```meta
+status: done
+created: 2020-10-30
+last-edited: 2022-05-30
+```
 
 - [Video talk at google](https://www.youtube.com/watch?v=_x0eyNkNpL0)
 
@@ -32093,6 +36857,12 @@ Zizek:
 
 # Poverty: Who's to blame?
 
+```meta
+status: done
+created: 2020-10-30
+last-edited: 2020-10-30
+```
+
 - [Video](https://www.youtube.com/watch?v=jAaCpyuwRIw)
 
 #### First blame countries
@@ -32117,6 +36887,12 @@ Zizek:
 - Promises I can keep
 
 # Learn Zig in Y minutes
+
+```meta
+status: done
+created: 2020-10-24
+last-edited: 2021-03-16
+```
 
 
 - imports:
@@ -32251,6 +37027,12 @@ test "string literals" {
 
 # The algebraic structure of the 'nearest smaller number' question
 
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
+
 The [nearest smaller number](https://cses.fi/problemset/task/1645) problem
 can be solved by using a stack along with an observation of monotonicity.
 This is explained in the [USACO guide to stacks in the Gold section](https://usaco-guide.netlify.app/gold/stacks).
@@ -32283,6 +37065,12 @@ diagram associated to it? or a DFS tree?
 
 # Why loss of information is terrifying: Checking that a context-free language is regular is undecidable
 
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2020-10-22
+```
+
 This comes from applying [Greibach's theorem](https://en.wikipedia.org/wiki/Greibach%27s_theorem#Applications).
 I find myself thinking about this theorem once in a while, and its repercussions.
 If we once had access to God who tabulated for all all regular languages
@@ -32295,6 +37083,12 @@ can sometimes be irreversably damaging.
 
 
 # Sciences of the artificial
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 > A bridge under its usual conditions of service, behaves simply as a
 > relatively smooth level surface. Only when it has been overloaded do we
@@ -32324,6 +37118,12 @@ Why simulation is useful:
 
 
 # Numbering nodes in a tree
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 If we consider a tree such as:
 
@@ -32373,6 +37173,12 @@ $$
 
 # Number of vertices in a rooted tree
 
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2020-10-22
+```
+
 Make sure the edges of the tree are ordered to point away from the root $r$.
 So, for all edges $(u, v) \in E$, make sure that $d(r, v) = d(r, u) + 1$.
 
@@ -32388,6 +37194,12 @@ should attempt to "parallelize" inductive arguments so you can see the entire
 counting "at once".
 
 # Median minimizes L1 norm
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 Consider the meadian of $xs[1..N]$. We want to show that the median minimizes
 the L1 norm $L_1(y) = \sum_i |xs[i] - y|$. If we differentiate $L_1(y)$ with
@@ -32447,6 +37259,12 @@ $|y - l| + |y - r|$!
 
 # LISP quine
 
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
+
 I learnt how to synthesize a LISP quine using MiniKanren. It's quite magical,
 I don't understand it yet.
 
@@ -32460,6 +37278,12 @@ I don't understand it yet.
 ```
 
 # A slew of order theoretic and graph theoretic results
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2024-04-14
+```
 
 I've been trying to abstract out the [activity selection problem](https://en.wikipedia.org/wiki/Activity_selection_problem)
 from the lens of order theory. For this, I plan on studying the following
@@ -32528,6 +37352,12 @@ int main() {
 
 # Neko to follow your cursor around
 
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2020-10-22
+```
+
 ```
 $ oneko -idle 0 -speed 100 -time 5120 -bg blue -fg orange -position +20+20
 ```
@@ -32537,10 +37367,22 @@ pointer, [like Microsoft Teams](https://docs.microsoft.com/en-us/answers/questio
 
 # Non commuting observables: Light polarization
 
+```meta
+status: draft
+created: 2020-10-22
+last-edited: 2020-10-22
+```
+
 - [physics.se](https://physics.stackexchange.com/questions/240543/is-there-something-behind-non-commuting-observables)
 
 
 # Statement expressions and other GCC C extensions
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 This seems really handy. I've always loved that I could write
 
@@ -32653,6 +37495,12 @@ struct {
 
 
 # A quick look at impredicativity
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 I found this video very helpful, since I was indeed confused about the two
 meanings of impredicativity that I had seen floating around. One used by haskellers,
@@ -32777,11 +37625,23 @@ Replace the idea of:
 
 # Data oriented programming in C++
 
+```meta
+status: draft
+created: 2020-10-22
+last-edited: 2020-10-22
+```
+
 - Calcuating entropy to find out if a variable is worth it! Fucking amazing.
 - [Video](https://www.youtube.com/watch?v=rX0ItVEVjHc)
 
 
 # Retro glitch
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 <img src=static/retro-glitch.jpg />
 
@@ -32795,6 +37655,12 @@ Replace the idea of:
 
 
 # SSA as linear typed language
+
+```meta
+status: done
+created: 2020-10-22
+last-edited: 2022-05-30
+```
 
 - Control flow is linear in a basic block: ie, we can have a sea of nodes
   representation, where each terminator instruction produces _linear_ control
@@ -32821,6 +37687,12 @@ Replace the idea of:
 ```
 
 # Nix weirdness on small machines
+
+```meta
+status: done
+created: 2020-10-07
+last-edited: 2022-05-30
+```
 
 ```
 floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello
@@ -32912,10 +37784,22 @@ I don't even know.
 
 # Autodiff over derivative of integrals
 
+```meta
+status: draft
+created: 2020-10-07
+last-edited: 2020-10-22
+```
+
 - [Reynolds transport theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem)
 - [Physics based differential rendering](https://shuangz.com/courses/pbdr-course-sg20/)
 
 # Proof of projective duality
+
+```meta
+status: done
+created: 2020-10-07
+last-edited: 2022-05-30
+```
 
 In projective geometry, we can interchange any statement with "points" and
 "lines" and continue to get a true statement. For example, we have the
@@ -32941,6 +37825,12 @@ equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb
 
 # Preventing the collapse of civilization
 
+```meta
+status: done
+created: 2020-10-07
+last-edited: 2020-10-07
+```
+
 - [video by Jonathan Blow](https://www.youtube.com/watch?v=ZSRHeXYDLko)
 - [The year civilization collapsed](https://www.youtube.com/watch?v=bRcu-ysocX4)
 - [The thirty million line problem](https://caseymuratori.com/blog_0031#:~:text=The%20Thirty%2DMillion%2DLine%20Problem%20(2015))
@@ -32951,6 +37841,12 @@ I am very sympathetic to the perspective that software has gotten far
 less reliable than it used to be.
 
 # Violent deaths in ancient societies (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 ### Kanun in albania
 
@@ -32964,6 +37860,12 @@ less reliable than it used to be.
 - [Kanun](https://en.wikipedia.org/wiki/Kanun_(Albania))
 
 # An elementary example of a thing that is not a vector
+
+```meta
+status: done
+created: 2020-10-07
+last-edited: 2020-10-07
+```
 
 Consider the tripe (temperature, pressure, humidity) at a point. If we rotate
 the picture by 60 degrees, the triple _does not change_.
@@ -32983,6 +37885,12 @@ To be more precise, I can phrase it as:
 Generalization to tensors is left as an exercise for the reader.
 
 # Elementary probability theory (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 I've never learnt elementary probability theory "correctly". This is me
 attempting to fix it.
@@ -33416,6 +38324,12 @@ $$
 
 # The handshaking lemma
 
+```meta
+status: done
+created: 2020-10-07
+last-edited: 2022-05-30
+```
+
 ### Concrete situation:
 
 Let's take a graph $G \equiv (V, E)$. We can imagine that each edge has a potential
@@ -33439,6 +38353,12 @@ complexes.
 
 # Git for pure mathematicians
 
+```meta
+status: done
+created: 2020-09-29
+last-edited: 2020-11-24
+```
+
 What is `git`? It's not a version control system. It's an interface to work
 with _torsors_. We have a space of files. We can manipulate "differences of
 files", which are represented by patches/diffs. `git`'s model provides us tools
@@ -33451,6 +38371,12 @@ We have two spaces, and a rooted DAG that connects to two spaces:
 - A DAG where each node is a diff. The root note in the DAG is the empty diff.
 
 # Mutorch
+
+```meta
+status: done
+created: 2020-09-29
+last-edited: 2022-05-30
+```
 
 Minimal reverse mode AD implementation.
 
@@ -33643,6 +38569,12 @@ print("dz/dy: %s" % y.grad())
 
 # Computing the smith normal form
 
+```meta
+status: done
+created: 2020-09-29
+last-edited: 2022-05-30
+```
+
 
 ```py
 #!/usr/bin/env python3.6
@@ -33770,6 +38702,12 @@ out = smith_normal_form(xs,ys)
 ```
 
 # Laziness for C programmers
+
+```meta
+status: done
+created: 2020-09-22
+last-edited: 2022-05-30
+```
 
 #### Side node: nonsrict versus lazy (This section can be skipped)
 
@@ -34184,6 +39122,12 @@ is interest, please do e-mail me at `siddu.druid@gmail.com`.
 
 # Exact sequence of pointed sets
 
+```meta
+status: done
+created: 2020-09-17
+last-edited: 2022-05-30
+```
+
 This was a shower thought. I don't even if these form an abelian category.
 Let's assume we have pointed sets, where every set has a distinguished
 element $*$. $p$ will be analogous to the zero of an abelian
@@ -34268,6 +39212,12 @@ into $*$ [pun intended].
 
 
 # What is a syzygy?
+
+```meta
+status: done
+created: 2020-09-16
+last-edited: 2022-05-30
+```
 
 Word comes from greek word for "yoke" . If we have two oxen pulling, we yoke
 them together to make it easier for them to pull.
@@ -34468,6 +39418,12 @@ I wonder how to make this precise.
 
 # Under the spell of Leibniz's dream
 
+```meta
+status: done
+created: 2020-09-16
+last-edited: 2022-05-30
+```
+
 - [Link to the article by djikstra](http://www.cs.utexas.edu/users/EWD/transcriptions/EWD12xx/EWD1298.html)
 - [`monochrom`'s favourite work on djikstra](http://www.vex.net/~trebla/ewd.html)
 
@@ -34513,6 +39469,12 @@ I found it very quotable. I'm posting some quotes below.
 
 # Normal operators: Decomposition into Hermitian operators
 
+```meta
+status: done
+created: 2020-09-15
+last-edited: 2020-09-15
+```
+
 Given a normal operator $A$, we can always decompose it $A = B + iC$
 where $B = B^{\dagger}$, $C = C^\dagger$, and $[B, C] = 0$.
 
@@ -34545,6 +39507,12 @@ and hence $[B, C] = 0$.
 
 
 # Readable pointers
+
+```meta
+status: done
+created: 2020-09-15
+last-edited: 2022-05-30
+```
 
 I recently had to debug a whole bunch of code that manipuates pointers, so I
 need to stare at random things like `0x7f7d6ab2c0c0`, like so:
@@ -34629,6 +39597,12 @@ shared, which means the numbers are themselves close.
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
 # The grassmanian, handwavily
 
+```meta
+status: draft
+created: 2020-09-15
+last-edited: 2022-05-30
+```
+
 The grassmanian is a manifold consisting of, roughly, $k$ dimensional subspaces
 of an $n$ dimensional vector space.
 
@@ -34643,6 +39617,12 @@ reasoning for intuition, so I'm going to do all the derivations in that style.
 
 
 # Lie bracket as linearization of conjugation
+
+```meta
+status: done
+created: 2020-09-15
+last-edited: 2022-05-30
+```
 
 Let us have $Y = GXG^{-1}$ with all of these as matrices. Let's say that $G$
 is very close to the identity: $G = I + E$ with $E^2 = 0$ ($E$ for epsilon).
@@ -34682,12 +39662,24 @@ group's conjugacy structure.
 
 # Computational Origami
 
+```meta
+status: done
+created: 2020-09-15
+last-edited: 2021-05-16
+```
+
 - [RabbitEar: library for building origami visualizations in the browser](https://rabbitear.org/docs/)
 - [ORIPA: tool for visualizing flat folded origami](https://github.com/oripa/oripa)
 - [TreeMaker:]()
 - [Origami Simulator: Tool to simulate origami, going from flat shaped to folded shaped](https://origamisimulator.org/)
 
 # Katex in duktape
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Here's some code to use `duktape`, a lightweight JavaScript interpreter
 to run `katex` when implementing a custom static site generator [as I
@@ -34787,11 +39779,23 @@ int main() {
 
 # Kebab case
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 [I learnt from the Nu shell blog](https://www.nushell.sh/blog/2020/08/23/year_of_nushell.html)
 that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
 # Localization: Introducing epsilons (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 We can think of localization at a zero divisors
 as going from a regime of having divisors of zero into a
@@ -34800,6 +39804,12 @@ $R = \mathbb Z/12 \mathbb Z$.
 
 
 # NaN punning: Storing integers in doubles in JavaScript
+
+```meta
+status: done
+created: 2021-03-29
+last-edited: 2022-05-30
+```
 
 This is a technique that allows us to store data inside a `double` by
 punning the value of a `NaN`. This is used inside javascript engines
@@ -34925,6 +39935,12 @@ int32_t main() {
 
 # Offline Documentation
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-29
+```
+
 I'm collecting sources of offline documentation, because my internet
 has been quite unstable lately due to the monsoon. I realized that when it
 came to C, I would always `man malloc`, or `apropos exit` to recall
@@ -34940,6 +39956,12 @@ for all the languages I use, so I'm building a list:
 
 # Using Gurobi
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I've been trying to learn how to use Gurobi, the industrial strength
 solver for linear and quadratic equation systems.
 
@@ -34950,6 +39972,12 @@ $ cd /path/to/gurobi90/linux64/src/build/ && make
 ```
 
 # [osqp: convex optimizer in 6000 LoC](osqp-an-industrial-strength-convex-optimizer-in-6000-loc)
+
+```meta
+status: done
+created: 2020-08-25
+last-edited: 2020-08-25
+```
 
 - [Here's the github link to their repo](https://github.com/oxfordcontrol/osqp)
 
@@ -34991,6 +40019,12 @@ I would love to take a course which explains the source code.
 
 
 # stars and bars by generating functions
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Say I have `C` colors of objects, and `S` slots to put these objects in. In
 how manys can I put objects into slots, without regard to order? For example,
@@ -35072,9 +40106,21 @@ so we get the answer as `answer = 20/2! = 10`.
 
 # This is not a place of honor
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 - [Long term nuclear waste](https://en.wikipedia.org/wiki/Long-time_nuclear_waste_warning_messages)
 
 # Topological proof of infinitude of primes
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2021-05-23
+```
 
 - [On an exotic topology of the integers](https://arxiv.org/pdf/1008.0713.pdf)
 
@@ -35102,6 +40148,12 @@ semidecidability perspective.
 
 
 # Burnside Theorem
+
+```meta
+status: done
+created: 2021-01-09
+last-edited: 2022-05-30
+```
 
 
 For a finite group $G$ acting on a set $X$, burnside's lemma equates
@@ -35169,6 +40221,12 @@ So in conclusion, the calculation gives us:
 
 # The Ise Grand shrine
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 > The shrine buildings at Naikū and Gekū, as well as the Uji Bridge, are
 > rebuilt every 20 years as a part of the Shinto belief of the death and
 > renewal of nature and the impermanence of all things and as a way of passing
@@ -35186,6 +40244,12 @@ supercolliders simply to keep the knowledge of how to build it alive.
 
 
 # Edward Kmett's list of useful math
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2021-01-09
+```
 
 - I use Bayesian statistics constantly for probabilistic programming and neural
   networks. Calculus gave me access to understand automatic differentiation,
@@ -35244,6 +40308,12 @@ supercolliders simply to keep the knowledge of how to build it alive.
 
 # Cokernel is not sheafy
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I wanted to understand why the Cokernel is not a sheafy condition.
 I found an [explanation in Ravi Vakil's homework solutions](https://math.mit.edu/~mckernan/Teaching/07-08/Spring/18.726/model2.pdf)
 which I am expanding on here.
@@ -35295,6 +40365,12 @@ $$
 
 # Von neumann: foundations of QM
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 - I wanted to understand what von neumann actually did when he
   "made QM rigorous", what was missing, and why we need $C^\star$ algebras for
   quantum mechanics, or even "rigged hilbert spaces".
@@ -35322,6 +40398,12 @@ $$
 - [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
 
 # Discrete schild's ladder
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 If one is given a finite graph $(V, E)$, which we are guaranteed came
 from discretizing a grid, can we recover a global sense of orientation?
@@ -35352,6 +40434,12 @@ from discretizing a grid, can we recover a global sense of orientation?
 
 
 # Derivative of step is dirac delta
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2021-03-01
+```
 
 I learnt of the "distributional derivative" today from my friend, Mahathi.
 Recording this here.
@@ -35407,6 +40495,12 @@ $$
 - Thus, the derivative of the step distribution is the dirac delta distribution.
 
 # Extended euclidian algorithm
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### Original definition
 
@@ -35513,6 +40607,12 @@ $$
 
 # In a PID, all prime ideals are maximal, geometrically
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 Assume $R$ is Noetherian.
 
 - By [Krull's principal ideal theorem](https://en.wikipedia.org/wiki/Krull%27s_principal_ideal_theorem),
@@ -35559,6 +40659,12 @@ ideals are maximal.
 
 # Prime numbers as maximal among principal ideals
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I learnt of this characterization from benedict gross's lectures, [lecture 31](https://www.youtube.com/watch?v=l1OWAasmBLI&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5&index=31).
 
 We usually define a number $p \in R$ as prime iff the ideal generated by
@@ -35583,6 +40689,12 @@ ideal $(p)$ is maximal: no other principal ideal $(a)$ contains it.
 
 
 # Axiom of Choice and Zorn's Lemma
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I have not seen this "style" of proof before of AoC/Zorn's lemma
 by thinking of partial functions $(A \rightarrow B)$ as monotone functions
@@ -35610,6 +40722,12 @@ Thus, Zorn's Lemma implies Axiom of Choice.
 
 
 # Local ring in terms of invertibility
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Recall that a local ring $R$ is a ring with a unique maximal ideal $M$.
 This is supposedly equivalent to the definition:
@@ -35668,6 +40786,12 @@ This is supposedly equivalent to the definition:
 - [Using the internal language of toposes in algebraic geometry](https://rawgit.com/iblech/internal-methods/master/notes.pdf)
 
 # Nullstellensatz for schemes
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### System of equations
 
@@ -35836,6 +40960,12 @@ of points in $L^n$. These points are solutions to the system $X$.
 
 # Perspectives on Yoneda
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 We can try to gain intuition for Yoneda by considering a finite category
 where we view arrows as directed paths.
 
@@ -35963,6 +41093,12 @@ From this perspective, it is trivial to see that:
 
 # Germs, Stalks, Sheaves of differentiable functions
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I know some differential geometry, so I'll be casting sheaves in terms
 of tangent spaces for my own benefit
 
@@ -36025,6 +41161,12 @@ gives us a discontinuity at $0$.
 
 # Connectedness in terms of continuity
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 This was a shower thought.
 
 - We usually define a topological space $X$ as connected
@@ -36055,6 +41197,12 @@ there should be a point of "breakage" where we suddenly switch colors.
 
 
 # Intuition for limits in category theory
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### A characterization of limits
 
@@ -36105,6 +41253,12 @@ projectIn = MkCoLimit
 
 
 # Finite topologies and DFS numbering
+
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 In this great math overflow question on
 [How to think about non hausdorff topologies in the finite case](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135), there's an answer that encourages us
@@ -36192,6 +41346,12 @@ will get
 ### DFS: the back edges
 
 # Categorical definition of products in painful detail
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I feel like I have incorrectly understood, then un-understood, and re-understood
 in a slightly less broken way the definition of the product in category theory
@@ -36409,6 +41569,12 @@ a         |   |        b
 
 # Why is the spectrum of a ring called so?
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've been watching Ravi Vakil's excellent "pseudolectures" on algebraic geometry,
 aptly titled
 [AGITTC: Algebraic geometry in the time of Covid](https://www.youtube.com/channel/UCy3u23mZE4TyW88yr6JLx9A).
@@ -36434,6 +41600,12 @@ in Peter Schloze's notes on AG. [I got an answer for this on `math.se`](https://
 
 # Ergo proxy
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've been watching the anime "Ergo Proxy". I'll keep this section updated
 with things I find intriguing in the anime.
 
@@ -36449,6 +41621,12 @@ with things I find intriguing in the anime.
 
 #  [Satisfied and frustrated equations](#satisfied-and-frustrated-equations)
 
+```meta
+status: done
+created: 2020-07-08
+last-edited: 2020-07-08
+```
+
 I found [this interesting terminology on a wiki walk](https://en.wikipedia.org/wiki/Gain_graph)
 - An edge is satisfied if some equation `y = f(x)` is **satisfied**.
 - Otherwise, the edge is said to be **frustrated**.
@@ -36458,6 +41636,12 @@ makes for good haskell like variable names. `ss` for satisfied equations,
 `fs` for frustrated equations!
 
 # Combinatorial intuition for Fermat's little theorem
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 We wish to show that $x^p \equiv x (\mod p)$ _combinatorially_. Let's take
 $2^3 (\mod 3)$ for simplicity. The general case follows. Let's first write
@@ -36573,6 +41757,12 @@ if I counted its equivalence class as having size `4`.
 
 # An incorrect derivation of special relativity in 1D
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I record an _incorrect_ derivation of special relativity, starting from the
 single axiom "speed of light is constant in all inertial reference frames".
 I don't understand why this derivation is incorrect. Help figuring this out
@@ -36654,6 +41844,12 @@ The issue is the equation $x' = vt + ct$.
 
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
 
+```meta
+status: done
+created: 2020-07-07
+last-edited: 2022-05-30
+```
+
 I found this cool document written by Sir Atiyah, called as
 ["The geometry and dynamics of magnetic monopoles"](https://www.jstor.org/stable/j.ctt7zv206)
 which contains
@@ -36662,6 +41858,12 @@ I'll record what I read here.
 
 
 # Sanskrit and Sumerian
+
+```meta
+status: done
+created: 2020-07-05
+last-edited: 2022-05-30
+```
 
 #### Sanskrit's precursors
 
@@ -36716,6 +41918,12 @@ was setup is sumerian has become more stringent in Sanskrit.
 
 # Writing Cuneiform
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've been reading about the Sumerian people, and I've gotten fascinated with
 the question of how to write in Cuneiform, which is their script. I wanted
 to learn how to write cuneiform. It appears that it was originally written
@@ -36737,6 +41945,12 @@ We have three components:
 - [Font: Old persian block](https://www.compart.com/en/unicode/block/U+103A0)
 
 # The code of hammurabi
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I've wanted to read the code of hammurabi since it was name dropped in
 [Snow Crash by Neal Stephenson](https://en.wikipedia.org/wiki/Snow_Crash).
@@ -36841,6 +42055,12 @@ Some helpful hints were found from the
   somewhat childishly, established in the minds of men
 
 # The implicit and inverse function theorem
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I keep forgetting the precise conditions of these two theorems. So here
 I'm writing it down as a reference for myself.
@@ -37010,6 +42230,12 @@ process to get the full inverse.
 
 # Whalesong hyperbolic space in detail
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 We can build a toy model of a space where velocity increases with depth.
 Let the x-y axis be: left-to-right (→) is positive x, top-to-bottom (↓) is positive y.
 Now let the velocity at a given location $(x^\star, y^\star)$ be $(y^\star+1, 1)$.
@@ -37025,6 +42251,12 @@ Under such a model, our shortest paths will be 'curved' paths.
 
 
 # Motivating Djikstra's
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 Usually I've seen Djikstra's algorithm presented as a greedy algorithm,
 and then an analogy given to "fire" for the greediness. We can reverse
@@ -37062,6 +42294,12 @@ to arrive at Djikstra's
 
 # Intuitions for hyperbolic space
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 - [Combinatorial group theory](https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534)
 - [Van Kampen diagrams: an intuition](https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135)
 - [DIY Hyperbolic geometry](https://math.berkeley.edu/~kpmann/DIYhyp.pdf)
@@ -37080,9 +42318,21 @@ to arrive at Djikstra's
 
 # Product of compact spaces in compact
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-10-22
+```
+
 <img src="./static/product-of-compact-is-compact.png">
 
 # Hyperbolic groups have solvable word problem
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I have never seen an elementary account of this in a 'trust these facts, now
 here is why hyperbolic groups have a solvable word problem'. I am writing
@@ -37219,6 +42469,12 @@ We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 
 # Elementary uses of Sheaves in complex analysis
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 I always wanted to see sheaves in the wild in a setting that was both
 elementary but 'correct': In that, it's not some perverse example
 created to show sheaves (DaTaBaSeS arE ShEAvEs). Ahlfors has a great example
@@ -37290,6 +42546,12 @@ be arbitrary.
 <img src="./static/sheaf.png">
 
 # Snake lemma
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 ## Why homomorphisms for chain maps?
 
@@ -37363,6 +42625,12 @@ this long exact sequence is saatisfied:
 
 # Kernel, cokernel, image
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$.
 - If we have an $x0$ such that $T(x0) = y0$, then see that $T(x0 + Ker(T)) = T(x0) + T(Ker(T)) = y0 + 0 = y0$.
   So the kernel gives us our degrees of freedom: how much can we change around without
@@ -37373,6 +42641,12 @@ Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = 
   solution.
 
 # The commutator subgroup
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Define the commutator of $g, h$ as $[g, h] \equiv ghg^{-1}h^{-1}$.
 The subgroup **generated** by all commutators
@@ -37393,6 +42667,12 @@ $[G, G]$.
 
 
 # Simplicity of A5 using PSL(2, 5)
+
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### Presentation of A5
 
@@ -37487,6 +42767,12 @@ TODO! I'm still reading Keith Conrad's notes.
 
 
 # A5 is not solvable
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 There are many accounts of why A5 is not solvable on the internet. I'm recording my
 version here, because the proof involves certain ad-hoc choices which I want
@@ -37905,6 +43191,12 @@ s = t*t
 
 # Complex orthogonality in terms of projective geometry
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 If we think of complex vectors $p = [p_1, p_2]$, $q = [q_1, q_2]$ as belonging to
 _projective space_: that is, $p \simeq p_1/p_2$, and $q \simeq q_1 / q_2$, we can
 interpret orthogonality as:
@@ -37928,6 +43220,12 @@ If we imagine these as points on the Riemann sphere, TODO
 
 # Arithmetic sequences, number of integers in a closed interval
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 This is a cute reason for why when we count the number of integers in
 the closed interval `[a, b]`, it's going to be `b - a + 1`. We setup
 an arithmetic sequence with initial term `a`, common difference `1`. Now
@@ -37940,6 +43238,12 @@ n = b - a + 1
 ```
 
 #  [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
+
+```meta
+status: done
+created: 2020-06-06
+last-edited: 2022-05-30
+```
 
 Let us think of the function $arg: \mathbb C \rightarrow \mathbb R$ as a multi
 valued function, which maps each complex number to the set of possible
@@ -38095,6 +43399,12 @@ out = f'(path)
 
 # Odd partitions, unique partitions
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 A well known identity in combinatorics is that the partitions `n = l1 + l2 + ... + ln`
 where each `li` is odd is in bijectiion with a partition where each `li` is unique.
 I really liked this bijection.
@@ -38112,11 +43422,23 @@ I really liked this bijection.
 
 # Continued fractions, mobius transformations
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 read [`ekmett/fractions`](https://github.com/ekmett/fractions) properly
 and write detailed log about it, and the related math.
 
 
 # Permutations-and-lyndon-factorization
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 For a string `s`, the Lyndon factorization writes `s` as the concatenation of
 substrings `t1`, `t2`, ..., `tn`, such that:
@@ -38153,12 +43475,24 @@ decomposition if nothng else.
 
 # Graphs are preorders
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-09-07
+```
+
 I wanted to record this fact for myself, so that I have reason to come back
 to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
 
 
 # Parallelisable version of maximum sum subarray
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I learnt of a "prefix sum/min" based formulation from
 [the solution to question D, codeforces educational round 88](https://codeforces.com/blog/entry/78116).
@@ -38214,6 +43548,12 @@ is an integral (sum) of the deltas in height.
 
 # Thoughts on implicit heaps
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Some musings I had on the ability to represent heaps as arrays, and in general,
 the benifits of knowing the total number of elements.
 
@@ -38234,6 +43574,12 @@ the benifits of knowing the total number of elements.
   some annoying if/then/elses into one-liners.
 
 # Discriminant and Resultant
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I had always seen the definition of a discriminant of a polynomial $p(x)$ as:
 $$
@@ -38367,6 +43713,12 @@ of the solution we are looking for!
 
 # Polynomial root finding using QR decomposition
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 1. For a polynomial $p(x)$, build the companion matrix $P(x)$.
 2. Show that the characteristic polynomial $cp(P)$ of the companion matrix $P(x)$ is indeed $p(x)$.
 3. Find eigenvalues of $P(x)$, which will be roots of $p(x)$, since the
@@ -38377,6 +43729,12 @@ of the solution we are looking for!
 
 
 # A hacker's guide to numerical analysis
+
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 > Life may toss us ill-conditioned problems, but it is too short
 > to settle for unstable algorithms. - D.P. O'Leary
@@ -38749,6 +44107,12 @@ the discontinuity.
 
 # Mobius inversion on Incidence Algebras
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 Most of these functions are really defined on the _incidence algebra_ of
 the poset $P$ with ground field $K$. An _incidence_ algebra $ I(P) $ is a
 set of functions which maps intervals of $P$ to the ground field $K$. an
@@ -38864,6 +44228,12 @@ $$
 
 
 # Finite differences and Umbral calculus
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Umbral calculus lays out a large collection of "umbral" / "shadowy"
 coincidences across combinatorics and calculus. Here, I'll lay out some of
@@ -39150,6 +44520,12 @@ $$
 
 # Permutahedron
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 The permutahedron over $n$ letters is a polytope which is defined as the convex
 hull of all permutations of the point $(1, 2, \dots, n)$.
 For example, the permutahedron over 3 letters is the convex hull of the
@@ -39245,6 +44621,12 @@ the number line as:
   towards the left".
 
 # Lyndon + Christoffel = Convex Hull
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 Actual "real world" use-case of lyndon factorization, cribbed from here:
 
 - [Lyndon + Christoffel = digitally convex](https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf)
@@ -39391,6 +44773,12 @@ along `y`.
 
 # Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 Let's concentrate on the `e^x >= 1 + x` part.
 
 1. The tangent of `e^x` at `x = 0` is `1 + x`, since the taylor series
@@ -39408,6 +44796,12 @@ Similarly for `e^(-x)`, working through the math:
 
 
 # Ranking and Sorting
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 We we want to sort an arrray `xs` and write the results into an array `ys`.
 In both cases, the invariant to be satisfied is that `ys` is `xs` in ascending
@@ -39560,6 +44954,12 @@ the classical _adjunction_ between rank and select.
 
 # Proof of minkowski convex body theorem
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 We can derive a proof of the minkowski convex body theorem starting from
 Blichfeldt’s theorem.
 
@@ -39631,6 +45031,12 @@ $$
 
 
 # Burrows Wheeler
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 We aim to get the $O(n)$ algorithm for burrows wheeler, by starting from the
 naive $O(n^2)$ implementation and then slowly chipping away to get to the
@@ -39982,6 +45388,12 @@ for current letter. Can find next letter using BWT matix.
 
 # Intuitionstic logic as a Heyting algebra
 
+```meta
+status: done
+created: 2023-03-28
+last-edited: 2023-03-28
+```
+
 _open sets_ form a Heyting Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
 Formally, a Heyting algebra over a set $X$ is a collection $(L, \lor, \land, \Rightarrow)$
@@ -40149,6 +45561,12 @@ which was the definition of $\Rightarrow$ we wanted!
 
 # Edit distance
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 This implementation of edit distance crystallizes the fact that when computing
 edit distance, we only ever move forwards on solving the problem. we _do not_
 store the results of the overlapping computations, though we could. Rather,
@@ -40264,6 +45682,12 @@ argmin f a a' = if (f a) < (f a') then a else a'
 
 # Evolution of bee colonies (TODO)
 
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
+
 This kind of culture that beehives have is called as 'eusociality'.
 I'm interested in this because I want to understand what alien societies might
 look like, and what selection pressures are required to have bee-like societies
@@ -40275,6 +45699,12 @@ a society, but tend to be hazy on how this state of affairs came to be.
 
 
 # Best practices for array indexing
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 These are rules I'm going to follow when I solve problems on
 [codeforces](https://codeforces.com/). I've arrived at these rules by repeatedly
@@ -40424,6 +45854,12 @@ loop-writing.
 
 # Algebraic structure for vector clocks
 
+```meta
+status: done
+created: 2020-05-01
+last-edited: 2020-06-29
+```
+
 _I_ update my time, ie, union(time me, time me), I get an element that's one up the lattice.
 When I union with someone else, I get the max. So we have an algebraic structure
 which is $(L, \leq, next: L \rightarrow L)$ where `next` is monotone for `(L, <=)`.
@@ -40440,6 +45876,12 @@ This also shows up in the case of the "Gallager-Humblet-Spira Algorithm" and
 the fragment-name-union-rule.
 
 # Networks are now faster than disks
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I learnt of this counter-intutive fact first from this
 [usenix article no SQL](https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf).
@@ -40458,6 +45900,12 @@ mentioned that SSDs might be much faster, and the numbers bear out:
 - Disk seek: 10,000,000 ns [regular disk]
 
 # Einstein-de Haas effect
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I learnt of this from hacker news. This is some crazy experiment that shows
 that the 'quantum angular momentum' (spin) and the 'classical angular momentum'
@@ -40488,6 +45936,12 @@ So, my understanding of the experiment is:
 
 
 # Rank-select as adjunction
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 We will introduce two operations `rank`, `select`, --- these are used to
 build memory-efficient data structures that can still be queried quickly.
@@ -40537,6 +45991,12 @@ Thanks to Edward Kmett for teaching me this.
 
 
 # Bounding chains: uniformly sample colorings
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 We wish to _uniformly sample_ `k` colorings of a graph $G$ with maximum degree
 $\Delta$. Hence, we require $k \geq \Delta + 1$. To perform this sampling,
@@ -40914,6 +46374,12 @@ sample = last . chain
 
 # Coupling from the past
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 ##### Relationship between CFTP and reset transitions
 
 ##### References
@@ -40923,6 +46389,12 @@ sample = last . chain
 
 # Word problems in Russia and America
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 - [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
 
 scathing critique of how ameriacn math education is screwed:
@@ -40931,6 +46403,12 @@ anecdote about how looking for 'reality' in mathematical problems may in fact
 break student's ability to think in the abstract! This is a deep insight.
 
 # Encoding mathematical hieararchies
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 I've wanted to learn how the SageMATH system is organized when it comes to math
 hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know
@@ -40946,6 +46424,12 @@ how mathematical components does it. This might help narrow in on what what the
 
 
 # Learning code by hearing it
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I learnt of this from an amazing discussion on HackerNews, where a sighted
 programmed, who is going blind, asked the community if he could remain
@@ -41016,6 +46500,12 @@ rm /tmp/test.wav
 
 # Your arm can be a spinor
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I tend to forget the name of this trick. It exhibits spinors in real life:
 a system that needs to rotate by 720 degrees to return back to its
 original state, versus the usual 360 tha we are generally used to. We need
@@ -41026,6 +46516,12 @@ to consider our entire arm + cup we are holding as a system for this to work.
 
 
 # Self modifying code for function calls: Look ma, I don't need a stack!
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
@@ -41116,6 +46612,12 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
 
 # Adjunctions as advice
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We
 can look at this as shifting the "before-advice" from the _input_ to an
 "after advice" of the _output_, where I'm using
@@ -41155,6 +46657,12 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 
 # Reversible computation as groups on programs
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
 programs with the identity program not computing anything at all, the inverse
@@ -41169,6 +46677,12 @@ discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
 # Blazing fast math rendering on the web
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 So, I've shifted the blog to be static-site-generated using a
 static-site-generator written by yours truly. The code clocks in at around a
@@ -41359,6 +46873,12 @@ markdown and the transpiler in the way _I_ want it to be.
 
 # VC dimension
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 Consider a ground set $X$. Let the space of all possible binary classifications
 be the function space $C \equiv \{ f \mid f : X \rightarrow \pm 1 \}$.
 Now, a hypothesis class $H$ is a subset of $C$. For example, some model
@@ -41430,6 +46950,12 @@ We can show that this exponential/polynomial behaviour happens in general
 for $S \subseteq X$.
 
 # Symplectic version of classical mechanics
+
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### Basics, symplectic mechanics as inverting $\omega$:
 
@@ -41528,6 +47054,12 @@ will have the right symmetries.
 
 # Theorems for free
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 These are personal notes I made of a custom notation for denoting the relations
 from the theorems for free paper. I developed the notation since I wanted
 to keep track of what types are floating around and what the relations are doing.
@@ -41596,6 +47128,12 @@ If this is the case, then we can simplify the math to be:
 
 # How to reason with half-open intervals
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've always found code that uses half-open intervals far harder to write
 than using closed intervals. For example, when performing string processing,
 I prefer to write `closed` over `halfopen` since I find it easier
@@ -41637,6 +47175,12 @@ in this viewpoint as well.
 
 # How does one build a fusion bomb?
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I haven't found anything on the internet that describes how to build
 a fusion bomb; it's almost as if this information has been supressed
 by governments. However, I'm curious --- would a physics grad student
@@ -41653,6 +47197,12 @@ I read on wikipedia that most countries classify the details:
 > associated with weapons programs, in a legal doctrine known as "born secret".
 
 # Christoffel symbols, geometrically
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-22
+```
 
 Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
 into $\mathbb R^n$. So we have a function $e: \mathbb R^d \rightarrow \mathbb R^n$
@@ -41729,6 +47279,12 @@ $$
 
 # A natural vector space without an explicit basis
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 On learning about infinite dimensional vector spaces, one learns that
 we need to use the axiom of choice to assert that every such vector space
 has a basis; indeed, it's equivalent to the AoC to assert this. However,
@@ -41772,6 +47328,12 @@ For example, one can write the equation:
 
 
 # Cache oblivious B trees
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Central idea: assume a memory model where computation is free, only cost
 is pulling data from cache into memory. Cache has total size $M$, can hold
@@ -41884,6 +47446,12 @@ that has max of nodes. Leaves are the members of the ordered file.
 - [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
 
 # Krohn-Rhodes decomposition
+
+```meta
+status: draft
+created: 2020-03-28
+last-edited: 2022-05-30
+```
 
 We denote partial functions with $X \rightharpoonup Y$ and total functions
 with $X \rightarrow Y$.
@@ -42261,6 +47829,12 @@ We will show how to establish a relational covering:
 
 # Proving block matmul using program analysis
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
 where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output),
 $A \in \mathbb R^{2n \times r}, B \in \mathbb R^{r \times 2m}$ are matrices.
@@ -42401,6 +47975,12 @@ We can imagine the scenario as follows:
 
 # Why I like algebra over analysis
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Midnight discussions with my room-mate
 [Arjun P](https://researchweb.iiit.ac.in/~arjun.p/).
 
@@ -42457,6 +48037,12 @@ why I like algebra.
 
 # `using` for cleaner function type typedefs
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've always struggled with remembering the syntax for function type typedefs:
 
 ```cpp
@@ -42481,6 +48067,12 @@ function pointer is some pointer-like-thing.
 
 
 # A walkway of lanterns (TODO)
+
+```meta
+status: done
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 ### Semidirect products
 
@@ -42537,6 +48129,12 @@ $$
 
 # Natural transformations
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-10-22
+```
+
 <img  src="./static/natural-transformation.png">
 
 
@@ -42546,6 +48144,12 @@ them, so I made this for my own reference.
 
 
 # The hilarious commentary by dinosaure in OCaml git
+
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
 re-implementation of `git` in `OCaml`. It's well-written, and I was
@@ -42618,6 +48222,12 @@ devrait avoir un problème. Donc TODO. *)
 ```
 
 # How to link against MLIR with CMake
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 Since `MLIR` hasn't setup the nice tooling that LLVM has around `CMake`
 as far as I can tell, one needs to actually _know_ `CMake` to link against
@@ -42700,6 +48310,12 @@ target_link_libraries(languagemodels
 
 
 # Energy as triangulaizing state space
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 This comes from The wild book by John Rhodes, which I anticipate I'll be posting more of in the coming weeks.
 
@@ -42806,6 +48422,12 @@ $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 
 # The cutest way to write semidirect products
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a
 homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
 is the endomorphism group of $M$. We will notate $\phi(n)(m)$ as $n \cdot m \in M$.
@@ -42853,6 +48475,12 @@ which is indeed the right expression for the inverse.
 
 # My Favourite APLisms
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 #### identity matrix
 ```
 n←3 ⋄ id ← n n ⍴(1,n⍴0) ⋄ id
@@ -42882,6 +48510,12 @@ indexes in `xs`.
 ```
 
 # Proof of chinese remainder theorem on rings
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 #### General operations on ideals
 We have at our hands a commutative ring $R$, and we wish to study the ideal
@@ -42982,6 +48616,12 @@ $$
 
 # monic and epic arrows
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 This is trivial, I'm surprised it took me _this long_ to internalize this fact.
 
 When we convert a poset $(X, \leq)$ into a category, we stipulate that
@@ -42997,6 +48637,12 @@ I wonder if quite a lot of category theoretic diagrams are clarified by thinking
 of monic and epic directly in terms of controlling sizes.
 
 # The geometry of Lagrange multipliers
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
 one uses the method of lagrange multipliers. The idea is to consider a new
 function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
@@ -43026,6 +48672,12 @@ by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \epsilon) = c$.
 
 # Efficient tree transformations on GPUs (TODO)
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
@@ -44108,6 +49760,12 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 
 # Things I wish I knew when I was learning APL
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 - For pasting multi-line code,
   [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
   For multi-line dfns, one can use `∇`. For multi-line values, I don't know yet.
@@ -44126,6 +49784,12 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 - Set `]boxing on` to enable boxing for trains, arguments, everything.
 
 # Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 I ran across this when reading another question on math.se, so I
 [posted this proof for verification](https://math.stackexchange.com/questions/3570129/proof-verification-request-complement-of-multiplicative-set-is-ideal-iff-the-id) just to be sure I wasn't missing
@@ -44169,6 +49833,12 @@ in question.
 
 # Getting started with APL
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-11-24
+```
+
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL.
   This IDE comes with auto complete, good key bindings, a top bar chock-full of
@@ -44182,12 +49852,24 @@ in question.
 
 # SpaceChem was the best compiler I ever used
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 It's kind of sad that this is the case, but on thinking about this, I realised
 that the SpaceChem game was essentially a compiler, and it was such a pleasure
 to learn how to use and debug --- the visual nature of it made it amazing to
 find out.
 
 # Mnemonic for Kruskal and Prim
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 I often forget which is which, so I came up with this:
 
@@ -44197,10 +49879,22 @@ I often forget which is which, so I came up with this:
 
 # Legendre transform
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 <img  src="./static/legendre.png">
 
 
 # Cartesian Trees
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-10-22
+```
 
 Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
@@ -44253,6 +49947,12 @@ occurence will do).
 
 # DFS numbers as a monotone map
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Really, we want a partial order that is defined with the tree as the
 Hasse diagram. However, performing operations on this is hard. Hence,
 the DFS numbering is a good monotone map from this partial order
@@ -44267,6 +49967,12 @@ some information, but don't lose _all_ the information as going to a total
 order (the naturals) does?
 
 # Self attention? not really
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 The code is taken from [The annotated transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
 which explains the "attention is all you need paper".
@@ -44381,6 +50087,12 @@ to self `:)`
 
 # Coarse structures
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 A coarse structure on the set $X$ is a collection of relations on $X$:
 $E \subseteq 2^{X \times X}$ (called as _controlled sets_ / _entourages_)
 such that:
@@ -44415,6 +50127,12 @@ then coarse structures (which are their dual) are related to..?
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
 # Matroids for greedy algorithms (TODO)
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2021-05-23
+```
 
 #### Definitions of matroids
 
@@ -44607,6 +50325,12 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 
 # Grokking Zariski
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 There's a lot written on the Zariski topology on the internet, but most
 of them lack explicit examples and pictures. This is my attempt to
 communicate what the Zariski topology looks like, from the perspectives
@@ -44747,6 +50471,12 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
 
 # My preferred version of quicksort
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Wikipedia lists the implementation of quicksort as:
 
 ```cpp
@@ -44831,6 +50561,12 @@ What version of quicksort do you prefer? Drop me an email!
 
 # Geometric proof of Cauchy Schwarz inequality
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 <img src="./static/cauchy-schwarz.svg">
 
 - All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
@@ -44843,6 +50579,12 @@ inequality:
 
 
 # Dataflow analysis using Grobner basis
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 This was a quick experiment in using Grobner basis to model situations. We
 can represent our dataflow analysis constraints in terms of polynomial
@@ -44888,6 +50630,12 @@ which admit much faster solutions.
 
 
 # Fenwick trees and orbits
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I learnt of a nice, formal way to prove the correctness of Fenwick
 trees in terms of orbits that I wish to reproduce here.
@@ -45099,6 +50847,12 @@ Hence, at some point $q = u$.
 
 # Dirichlet inversion
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 We call all functions $f: \mathbb Z \rightarrow \mathbb R$ as
 _arithmetic functions_, since they operate on the integers.
 
@@ -45254,6 +51008,12 @@ $$ n = \sum_{d \vert n} n/d $$
 
 
 # Incunabulum for the 21st century: Making the J interpreter compile in 2020
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 This is me trying to understand the fabled interpreter of the `J` language
 working, so I could absorb Arthur Whitney's style of writing C: it's
@@ -45425,6 +51185,12 @@ Until then, enjoy the monolith of code!
 
 # An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
+
 #### The problem
 Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
 such that $\lim_{n \rightarrow \infty} \vert a_{n+1} - a_n \vert \rightarrow 0$,
@@ -45514,6 +51280,12 @@ whose behaviour can do unexpected things depending on the choice of $n$.
 
 # Krylov subspace method
 
+```meta
+status: done
+created: 2020-01-12
+last-edited: 2020-09-05
+```
+
 <!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
 
 This is a class of methods used to solve $Ax = b$, where $A$ is sparse.
@@ -45558,6 +51330,12 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 
 # Good reference to the Rete pattern matching algorithm
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
 is an algorithm that allows matching a huge number of rules with a huge database
 of "facts".
@@ -45600,6 +51378,12 @@ implement Rete to understand it, so that it's part of my toolkit if I ever
 need it.
 
 # Leapfrog Integration
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 We have a system we wish to simulate using hamilton's equations:
 
@@ -45741,6 +51525,12 @@ plt.show()
 ```
 
 # Comparison of forward and reverse mode AD
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 Quite a lot of ink has been spilt on this topic. My favourite reference
 is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
@@ -45968,6 +51758,12 @@ $$
 
 
 # An invitation to homology and cohomology, Part 1 --- Homology
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 There are many introductions to homology on the internet, but none of them
 really met my criteria for being simple, picture filled, and getting the
@@ -46236,6 +52032,12 @@ we can construct $H_1$ as:
 
 # An invitation to homology and cohomology, Part 2 --- Cohomology
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2021-03-29
+```
+
 <!--
 f is closed <=> df = 0
 f is exact <=> f = dg
@@ -46375,6 +52177,12 @@ This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](https://en.wikipedia.org/wiki/Universal_coefficient_theorem)
 
 # Stuff I learnt in 2019
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 I write these retrospective blog posts every year since 2017. I tend to post a
 collection of papers, books, and ideas I've stumbled across that year.
@@ -47139,6 +52947,12 @@ about my chances as a grad student in the future `:)`.
 
 # A motivation for p-adic analysis
 
+```meta
+status: done
+created: 2019-12-20
+last-edited: 2020-10-22
+```
+
 I've seen the definitions of p-adic numbers scattered around on the internet,
 but this analogy as motivated by the book
 [p-adic numbers by Fernando Gouvea](https://www.springer.com/gp/book/9783540629115)
@@ -47512,6 +53326,12 @@ I highly recommend the book
 
 # Line of investigation to build physical intuition for semidirect products
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 To quote wikipedia:
 > In crystallography, the space group of a crystal splits as the semidirect
 > product of the point group and the translation group if and only if the space
@@ -47524,6 +53344,12 @@ the definitions involved so I can finally feel like I truly understand semidirec
 products from the "action" perspective.
 
 # Topology is really about computation --- part 2
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
@@ -47547,6 +53373,12 @@ business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
 # Topology is really about computation --- part 1
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -47777,6 +53609,12 @@ def loop(): while True: pass
 
 # PSLQ algorithm: finding integer relations between reals
 
+```meta
+status: done
+created: 2019-11-05
+last-edited: 2019-11-05
+```
+
 An algorithm to find _integer_ relations between _real_ numbers. It was
 apparently named "algorithms of the century" by Computing in science and
 engineering.
@@ -47784,6 +53622,12 @@ engineering.
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
 # Geometric characterization of normal subgroups
+
+```meta
+status: done
+created: 2019-10-31
+last-edited: 2020-09-05
+```
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
@@ -47822,6 +53666,12 @@ entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
 # Handy characterization of adding an element into an ideal, proof that maximal ideal is prime
+
+```meta
+status: done
+created: 2019-10-30
+last-edited: 2020-09-05
+```
 
 ##### The characterization
 
@@ -47883,6 +53733,12 @@ $b \in I$.
 
 
 # Radical ideals, nilpotents, and reduced rings
+
+```meta
+status: done
+created: 2019-10-30
+last-edited: 2020-09-05
+```
 
 ##### Radical Ideals
 A radical ideal of a ring $R$ is an ideal such that
@@ -47952,6 +53808,12 @@ I learnt of this explanation from this
 
 # My disenchantment with abstract interpretation
 
+```meta
+status: done
+created: 2019-10-30
+last-edited: 2020-09-05
+```
+
 When I first ran across the theory of abstract interpretation, it seemed magical:
 Define two functions, check that they're monotone maps, and boom, we have
 on our hands an analysis.
@@ -48001,6 +53863,12 @@ This was a huge bummer for me to find out that this is not the case.
 
 
 # Computing equivalent gate sets using grobner bases
+
+```meta
+status: done
+created: 2019-10-25
+last-edited: 2022-05-30
+```
 
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
@@ -48372,6 +54240,12 @@ I really enjoyed hacking this up and getting nerd sniped.
 
 # The janus programming language --- Time reversible computation
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
 
@@ -48386,6 +54260,12 @@ An apt name for the language!
 
 # `A = B` --- A book about proofs of combinatorial closed forms
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2019-12-28
+```
+
 
 The book explains algorithms on solving closed forms for combinatorial
 recurrences, by means of [Zeilberger's algorithm](http://mathworld.wolfram.com/ZeilbergersAlgorithm.html).
@@ -48398,6 +54278,12 @@ my work on compilers.
 - [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
 
 # Generating `k` bitsets of a given length `n`:
+
+```meta
+status: done
+created: 2019-10-18
+last-edited: 2020-09-05
+```
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
 set. For example, generate all bitvectors of length `5` that have `3` bits
@@ -48557,6 +54443,12 @@ Continuing this process gives us the rest of the sequence:
 ```
 # Bondi k-calculus
 
+```meta
+status: done
+created: 2019-09-16
+last-edited: 2019-09-16
+```
+
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
 
 An alternative formalism to derive special relativity geometrically,
@@ -48582,9 +54474,21 @@ which seems to imply that we need to use hyperbolic geometry for this.
 
 # Topology as an object telling us what zero-locus is closed:
 
+```meta
+status: draft
+created: 2019-09-12
+last-edited: 2019-09-12
+```
+
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
 # Vivado toolchain craziness
+
+```meta
+status: done
+created: 2019-09-11
+last-edited: 2020-09-05
+```
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -48708,6 +54612,12 @@ At some point, I gave up on the entire enterprise.
 
 # What the hell _is_ a Grobner basis? Ideals as rewrite systems
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 ##### A motivating example
 
 The question a Grobner basis allows us to answer is this: can the polynomial
@@ -48773,6 +54683,12 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 
 # [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-10-22
+```
+
 
 <img src="static/lie-bracket-versus-torsion.png">
 
@@ -48788,16 +54704,34 @@ from being formed.
 
 # [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
+```meta
+status: draft
+created: 2019-07-21
+last-edited: 2019-07-21
+```
+
 Click the title to go to the post. We replicate the `STOKE` paper in haskell,
 to implement a superoptimiser based on MCMC methods.
 
 # Collapsing `BlockId`, `Label`, `Unique`:
+
+```meta
+status: draft
+created: 2019-06-28
+last-edited: 2020-04-07
+```
 
 We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed.
 
 
 # Spatial partitioning data structures in molecular dynamics
+
+```meta
+status: done
+created: 2019-06-28
+last-edited: 2020-09-05
+```
 
 - [Cell lists](https://en.wikipedia.org/wiki/Cell_lists)
 - [Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
@@ -48810,10 +54744,22 @@ long range effects, but not short range effects.
 
 # Vector: Arthur Whitney and text editors
 
+```meta
+status: draft
+created: 2019-06-22
+last-edited: 2019-06-28
+```
+
 - http://archive.vector.org.uk/art10501320
 
 
 # Representing CPS in LLVM using the `@coro.*` intrinsics
+
+```meta
+status: done
+created: 2019-06-15
+last-edited: 2019-06-15
+```
 
 This is part of a larger thread --- [Adding CPS call support to LLVM](http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html) where there is a large discussion on the correct design of how to teach LLVM about CPS.
 
@@ -48822,6 +54768,12 @@ Gor Nishanov proided the above example of encoding CPS using the llvm `coro` ins
 - https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
 
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
+
+```meta
+status: done
+created: 2019-06-05
+last-edited: 2020-04-07
+```
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
 but they should be different.
@@ -48834,6 +54786,12 @@ Honestly, this is confusing, but I guess there's some story to having two separa
 
 
 # Discrete random distributions with conditioning in 20 lines of haskell
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 ```hs
 newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
@@ -48903,6 +54861,12 @@ D {unD = [(1,0.0),
 Notice that `D a ~= WriterT (Product Float) []`!
 
 # Everything you know about word2vec is wrong
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2022-05-30
+```
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
@@ -49062,6 +55026,12 @@ seriously again --- from next time, I read the source _first_.
 
 # Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
 
+```meta
+status: done
+created: 2019-05-31
+last-edited: 2022-05-30
+```
+
 This is a section that I'll update as I learn more about the space, since I'm studying
 differential geometry over the summer, I hope to know enough about "sympletic manifolds".
 I'll make this an append-only log to add to the section as I understand more.
@@ -49155,6 +55125,12 @@ plt.savefig("leapfrog-vs-euler.png")
 ```
 
 # Small Haskell MCMC implementation
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -49442,6 +55418,12 @@ sampling from x^4 with finite support
 
 # The smallest implementation of reverse mode AD (autograd) ever:
 
+```meta
+status: done
+created: 2019-05-24
+last-edited: 2020-04-07
+```
+
 ```hs
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 import qualified Data.Map.Strict as M
@@ -49539,6 +55521,12 @@ haskell so rad?
 
 # Timings of passes in GHC, and low hanging fruit in the backend:
 
+```meta
+status: draft
+created: 2019-05-24
+last-edited: 2020-04-10
+```
+
 - One can use `-v3` to get pass timings.
 - Apparently, GHC spends a lot of time in the simplifier, and time
   spend in the backend is peanuts in comparison to this.
@@ -49552,6 +55540,12 @@ To quote `AndreasK`:
 - [NCG generates slow loop code](https://gitlab.haskell.org/ghc/ghc/issues/9041)
 
 # Varargs in GHC: `T7160.hs`
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 
 A comment from this test case tells us why the function `debugBelch2` exists:
 
@@ -49591,6 +55585,12 @@ debugBelch(const char*s, ...)
 ```
 # Debugging debug info in GHC
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 
 I wanted to use debug info to help build a better debugging experience
 within [`tweag/asterius`](http://github.com/tweag/asterius). So, I was
@@ -49607,16 +55607,34 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 
 # GHC LLVM code generator: Switch to unreachable
 
+```meta
+status: done
+created: 2019-05-22
+last-edited: 2020-09-05
+```
+
 The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102)
 code generator switches to the first label. It should be more profitable
 to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 
 # Concurrency in Haskell
 
+```meta
+status: draft
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
 
 # Handy list of differential geometry definitions
+
+```meta
+status: done
+created: 2019-05-15
+last-edited: 2021-03-29
+```
 
 There are way too many objects in diffgeo, all of them subtly connected.
 Here I catalogue all of the ones I have run across:
@@ -49732,6 +55750,12 @@ This satisfies the identity:
 
 # Lazy programs have space leaks, Strict programs have time leaks
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
   aka the dreaded monadic parsing backtracking problem.
@@ -49746,6 +55770,12 @@ with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
 # Presburger arithmetic can represent the Collatz Conjecture
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2021-03-29
+```
 
 An observation I had: the function
 
@@ -49810,6 +55840,12 @@ I've yet to check that the image contains a `1` for every choice of `x`.
 
 # Using compactness to argue about covers
 
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
+
 I've always seen compactness be used by _starting_ with a possibly infinite
 coverm and then _filtering it_ into a finite subcover. This finite
 subcover is then used for finiteness properties (like summing, min, max, etc.).
@@ -49850,6 +55886,12 @@ that the cantor set is non-empty, since:
 
 # Japanese Financial Counting system
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2019-12-28
+```
+
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
 Japanese contains a separate kanji set called `daiji`, to prevent people
@@ -49865,6 +55907,12 @@ from adding strokes to stuff previously written.
 
 # Stephen wolfram's live stream
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-05
+```
+
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
 
@@ -49875,6 +55923,12 @@ The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
 # `Cleave` as a word has some of the most irregular inflections
+
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2019-12-28
+```
 - cleave
 - clove
 - cleaved
@@ -49883,11 +55937,23 @@ _really_ interesting ideas (like that of cleave being very irregular).
 
 # McCune's single axiom for group theory
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-05
+```
+
 [Single Axioms for Groups and Abelian Groups with Various Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
 
 # `Word2Vec` C code implements gradient descent really weirdly
+
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-04-10
+```
 I'll be posting snippets of the original source code, along with a
 link to the Github sources. We are interested in exploring the skip-gram
 implementation of Word2Vec, with negative sampling, without hierarchical
@@ -50026,6 +56092,12 @@ and I plan on updating this section when I understand this better.
 
 # Arthur Whitney: dense code
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-05
+```
+
 
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
   that has very little whitespace and single letter variable names.
@@ -50038,6 +56110,12 @@ and I plan on updating this section when I understand this better.
   A great list of APL snippets that solve classical problems.
 
 # How does one work with arrays in a linear language?
+
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-05
+```
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -50080,6 +56158,12 @@ is _forced_ since mutation very often involves temporaries / copying!
 for my course in college)
 
 # Linear optimisation is the same as linear feasibility checking
+
+```meta
+status: done
+created: 2020-09-05
+last-edited: 2020-09-05
+```
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -50096,6 +56180,12 @@ Core building block of effectively using the ellipsoid algorithm.
   _check if this polytope is empty_ problem!
 
 # Quantum computation without complex numbers
+
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-05
+```
 
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
@@ -50117,6 +56207,12 @@ something to ponder.
 
 # Linguistic fun fact: Comparative Illusion
 
+```meta
+status: done
+created: 2019-12-28
+last-edited: 2020-09-22
+```
+
 I steal from wikipedia:
 
 > Comparative Illusion, which is a grammatical illusion where certain
@@ -50127,6 +56223,12 @@ For example: "More people have been to Berlin than I have."
 
 
 # Long-form posts:
+
+```meta
+status: draft
+created: 2019-04-10
+last-edited: 2021-05-23
+```
 ## Reading
 - [2018 reading](content/blog/stuff-i-learnt-this-year-2018.md)
 - [2017 reading](content/blog/papers-I-read-and-loved-in-2017.md)
@@ -50154,6 +56256,12 @@ For example: "More people have been to Berlin than I have."
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
 # Emacs Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-11-24
+```
 
 - `M-,`: go back
 - `M-\`: `delete-horizontal-space`. when ranting about how `C-<backspace>` kills too much, just use `M-\` instead!
@@ -50418,6 +56526,12 @@ This is tagged as "not a bug" --- because
 
 # Coq Cheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 Things in Coq that I keep forgetting, and are hard to lookup.
 
 #### Manually set the value of an existential
@@ -50435,6 +56549,12 @@ set (ident := expr) in *
 This is useful to not lose information when `destruct` ing.
 
 # Writing Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 #### Books about charming sentences and how to construct them
 
@@ -50502,6 +56622,12 @@ is something I wish to explore.
 
 # Latex Cheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2021-07-30
+```
+
 
 #### write text under some equation --- variable under max or argmax
 
@@ -50519,6 +56645,12 @@ hunspell -l -t -i utf-8 yourfile.tex
 
 
 # Architecture Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 I have an interest in architecture and how it might relate to software.
 While the two are quite different, I feel that a deep look at both could
@@ -50556,6 +56688,12 @@ things on architecture I wish to read and/or have read:
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
 # Recipes Cheat Sheet / Big List of Recipes
+
+```meta
+status: done
+created: 2025-03-26
+last-edited: 2026-06-22
+```
 
 ### Rava Dosa
 
@@ -50897,6 +57035,12 @@ grated coconut and blend all of it. It turns into a thick red paste.
 
 # History Cheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 ##### Crusades were a thing of the past by the time of the fall of Constatinople. (1453)
 
 So the historian (Dr. Mario Philippedes) says on netflix's
@@ -50937,6 +57081,12 @@ own good
 Named after the spartans.
 
 # Words Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 Contains words that I write, and ones that I enjoy.
 
@@ -51052,6 +57202,12 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 
 # Clojure Sheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
+
 ### Neovim/Conjure/Coc-Conjure
 
 ```
@@ -51093,6 +57249,12 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+```meta
+status: draft
+created: 2020-10-30
+last-edited: 2026-08-11
+```
 
 > a statistician frustrated by how “everyone wants to be a theorist”
 > writes that “mathematical theory is not critical to the development of machine learning.
@@ -51423,6 +57585,12 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Empathy
 
+```meta
+status: done
+created: 2020-11-17
+last-edited: 2021-03-16
+```
+
 > Oof, I don't really know what to say right now but I'm glad you told me
 
 - [Brene brown on empathy](https://www.youtube.com/watch?v=1Evwgu369Jw)
@@ -51431,6 +57599,12 @@ let g:conjure#mapping#eval_motion = "E"
 
 
 # Vim Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-05-30
+```
 
 ### Using `:grep` and friends
 
@@ -51479,6 +57653,12 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 # Big list of Chess
 
+```meta
+status: draft
+created: 2021-02-03
+last-edited: 2021-05-16
+```
+
 - On Lichess, goto `sound -> speech` to be able to HEAR moves! Similarly,
   enable notation everywhere in preferences to get used to reading moves in
   notation.
@@ -51494,12 +57674,24 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 # Big list of shitposting
 
+```meta
+status: draft
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
 > ~ Siddharth, you said you're wired that way and thus can't believe in religion.
 > So you can't change yourself, thus you're pure.
 > Therefore, all you need is a [monad](https://en.wikipedia.org/wiki/Monad_(philosophy))
 > to change the immutable into the mutable --- Thus, embrace the Leibniz.
 
 # Big list of Breakdance
+
+```meta
+status: draft
+created: 2022-09-19
+last-edited: 2022-09-19
+```
 
 ##### Week 1 moves
 
@@ -51512,6 +57704,12 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 
 # Big list of Cardistry
+
+```meta
+status: draft
+created: 2022-09-19
+last-edited: 2023-04-02
+```
 
 ## Current Practice
 
@@ -51633,10 +57831,22 @@ which end you wish edit: press c]i} to perform the edit you describe.
 - [Big list of card mnemonics on wikipedia](https://en.wikipedia.org/wiki/List_of_playing-card_nicknames)
 
 # Poems to memorize
+
+```meta
+status: draft
+created: 2021-01-09
+last-edited: 2021-01-09
+```
 - [Ode on the Death of the Duke of Wellington](https://www.bartleby.com/246/385.html)
 
 
 # X86 Cheat Sheet
+
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2023-05-19
+```
 
 ##### Mnemonical for CCall
 
@@ -51664,6 +57874,12 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 
 # Common Lisp Cheat Sheet
+
+```meta
+status: draft
+created: 2021-07-30
+last-edited: 2022-04-03
+```
 
 - [Peter Norvig's common lisp guide](https://www.cs.umd.edu/~nau/cmsc421/norvig-lisp-style.pdf)
 - To make a runnable file, add `;; #!/usr/bin/env sbcl --script` to the top.
@@ -51789,6 +58005,12 @@ ought to be treated as errors.
 
 # Agda Cheat Sheet
 
+```meta
+status: done
+created: 2021-07-30
+last-edited: 2022-09-19
+```
+
 - Load/check file: `C-c C-l`.
 - Show goals: `C-c C-?`.
 - Accept goal value: `C-c C-SPACE`
@@ -51803,6 +58025,12 @@ ought to be treated as errors.
 - Within goal: Information: `C-c C-;`.
 
 # Don't Try
+
+```meta
+status: done
+created: 2022-09-19
+last-edited: 2022-09-19
+```
 
   ROLL THE DICE
   -------------
@@ -51829,6 +58057,12 @@ ought to be treated as errors.
 
 
 # Big list of Hacker news
+
+```meta
+status: draft
+created: 2021-05-23
+last-edited: 2022-05-30
+```
 
 > The road to hell is paved with good intentions
 > I am a coloured South African(an ethnic group that was previously disadvantaged due to apartheid era racial policies) we in South Africa have Affirmative action policies called Black Economic Empower(BEE) (Its open to all previously advantaged racial groups ie Black, Coloured, Indian they just call it BEE) that has led to mass corruption and cronyism.
@@ -51978,6 +58212,12 @@ speak slower than you want to.
 
 # Hair in a bun with stick
 
+```meta
+status: done
+created: 2022-04-28
+last-edited: 2022-04-28
+```
+
 - Start with stick like `<---`, such that stick is below hair.
 - Twist stick 90 degrees, taking a twist of the hair along with it, such that it is now vertical (`|`).
 - Twist stick 90 degrees further, this time **scraping the scalp** to go "under" with the tip, such that it is now `--->`.
@@ -51988,6 +58228,12 @@ speak slower than you want to.
 - [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
 
 # Big list of shuffle dancing
+
+```meta
+status: draft
+created: 2022-09-19
+last-edited: 2025-06-10
+```
 
 #### Insta Reels
 
@@ -52006,6 +58252,12 @@ speak slower than you want to.
 - T step
 
 # Latte Art
+
+```meta
+status: done
+created: 2024-05-07
+last-edited: 2025-06-10
+```
 
 #### Stuff I've figured out
 
@@ -52043,6 +58295,12 @@ speak slower than you want to.
 
 # Big list of tmux
 
+```meta
+status: draft
+created: 2022-11-24
+last-edited: 2024-01-31
+```
+
 - `C-b d`: detach from session (have tmux running in the background)
 - `C-b ,`: rename
 - `C-b n/p`: next/previous window movement.
@@ -52063,10 +58321,22 @@ speak slower than you want to.
 
 # Big list of new words
 
+```meta
+status: draft
+created: 2024-01-31
+last-edited: 2024-01-31
+```
+
 - Hermeneutics: Derives from hermes who gave language to humans. 
   the study of interpretation, particularly of philosophical, wisdom literature, and biblical texts.
 
 # Favourite OP1 tutorials
+
+```meta
+status: done
+created: 2024-04-04
+last-edited: 2024-04-04
+```
 - [Opz trap](https://www.youtube.com/watch?v=F1snsWHrUms)
 - [opz boombap hip hop](https://www.youtube.com/watch?v=WVllTjtBTZk)
 - [opz hiphop](https://www.youtube.com/watch?v=OQ509eGdmGk)
@@ -52077,6 +58347,12 @@ speak slower than you want to.
 - [how to make opz album pt 1](https://www.youtube.com/watch?v=gMlRTO93Q38)
 
 # Favourite Demoscenes
+
+```meta
+status: done
+created: 2021-08-19
+last-edited: 2024-04-06
+```
 
 - [Engage by Logicoma](https://www.youtube.com/watch?v=r7IIawcFXHA)
 - [Number One / Another one by fairlight](https://www.youtube.com/watch?v=TaEoAJw_0Zc)
@@ -52090,6 +58366,12 @@ speak slower than you want to.
 
 
 # Classical music
+
+```meta
+status: done
+created: 2024-04-13
+last-edited: 2024-09-28
+```
 
 - References: inside the score
 - Prelude: musical form on wikipedia
@@ -52336,6 +58618,12 @@ speak slower than you want to.
 
 
 # Blues and Jazz Piano Improv
+
+```meta
+status: done
+created: 2024-04-13
+last-edited: 2024-12-26
+```
 
 #### Jazz Piano: The Theoretical Minimum
 
@@ -52597,6 +58885,12 @@ C D E♭ F G A B♭ (C natural minor).
 
 # Sheet Music
 
+```meta
+status: draft
+created: 2024-04-25
+last-edited: 2024-10-05
+```
+
 #### C Minor Scales
 
 <img src="/static/scales.cropped.svg" />
@@ -52839,6 +59133,12 @@ w: dan-cing un-der-neath the skies of lust
 
 # Big List of Artists and Illustrators
 
+```meta
+status: draft
+created: 2024-06-01
+last-edited: 2024-07-22
+```
+
 #### Franklin Booth
 
 #### Berine Wrightson
@@ -52849,6 +59149,12 @@ w: dan-cing un-der-neath the skies of lust
 - [Architectural Sketching: texture](https://www.youtube.com/watch?v=zJKZhxV4W9o&list=PL-7IZmGjCRjDEVs-7jjNAepfkBp95VouI&index=3)
 
 # Big List of Art and Paintings I Enjoy
+
+```meta
+status: draft
+created: 2024-08-04
+last-edited: 2024-08-08
+```
 
 ##### Hiroshi Yoshida
 
@@ -52861,9 +59167,21 @@ w: dan-cing un-der-neath the skies of lust
 
 # Big List of Decision Procedures Research Questions
 
+```meta
+status: draft
+created: 2025-02-28
+last-edited: 2025-02-28
+```
+
 - Normalization procedure for the mathlib theory of affine spaces plus their functions!
 
 # Big List of Fitness 
+
+```meta
+status: draft
+created: 2025-09-07
+last-edited: 2025-09-07
+```
 
 #### Protein & Supplements
 
