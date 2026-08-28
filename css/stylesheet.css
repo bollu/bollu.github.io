@@ -226,6 +226,13 @@ ul {
   font-color: #0f0f0f;
 }
 
+/* keep the kannada markers, but mute them so they don't compete with text */
+.container ul li::marker,
+.container ol li::marker {
+  color: #b5b5b5;
+  font-size: 0.75em;
+}
+
 #footer {
   margin-top: 2em;
   display: flex;

@@ -64,25 +64,6 @@ static const ll MAX_CHARS = 1e9;
 
 
 
-// indent for logging to tell which function is calling what.
-struct Logger {
-  static int G_LOG_INDENT;
-  const int indent;
-  Logger() : indent(G_LOG_INDENT) {
-    G_LOG_INDENT++;
-    if (indent > 40) {
-      assert(false &&
-             "indent more than 40 levels deep; you sure this is correct?");
-    }
-  }
-  ~Logger() { G_LOG_INDENT--; }
-  void print(std::ostream &o) {
-    for (int i = 0; i < indent; ++i) {
-      o << " ";
-    }
-  }
-};
-int Logger::G_LOG_INDENT = 1;
 
 ll hashstr(const char *s, const ll len) {
   const ll p = 53;
@@ -99,72 +80,6 @@ ll hashstr(const char *s, const ll len) {
   return h;
 }
 
-
-enum class TT {
-  Comment,
-  RawText,
-  HTML,
-  LatexBlock,
-  LatexInline,
-  CodeInline,
-  CodeBlock,
-  LineBreak,
-  Link,
-  List,
-  TListNumbered,
-  InlineGroup,
-  Heading,
-  Italic,
-  Bold,
-  Quote,
-  MetaBlock,
-  Paragraph,
-  Undefined,
-};
-
-std::ostream &operator<<(std::ostream &o, const TT &ty) {
-  switch (ty) {
-  case TT::Comment:
-    return o << "COMMENT";
-  case TT::HTML:
-    return o << "HTML";
-  case TT::LineBreak:
-    return o << "LineBreak";
-  case TT::LatexBlock:
-    return o << "LatexBlock";
-  case TT::LatexInline:
-    return o << "LatexInline";
-  case TT::CodeBlock:
-    return o << "CodeBlock";
-  case TT::CodeInline:
-    return o << "CodeInline";
-  case TT::RawText:
-    return o << "RAW";
-  case TT::Undefined:
-    return o << "UNDEFINED";
-  case TT::Link:
-    return o << "LINK";
-  case TT::List:
-    return o << "LIST";
-  case TT::TListNumbered:
-    return o << "LISTNUMBERED";
-  case TT::InlineGroup:
-    return o << "INLINEGROUP";
-  case TT::Heading:
-    return o << "HEADING";
-  case TT::Italic:
-    return o << "ITALIC";
-  case TT::Bold:
-    return o << "BOLD";
-  case TT::Quote:
-    return o << "Quote";
-  case TT::MetaBlock:
-    return o << "MetaBlock";
-  case TT::Paragraph:
-    return o << "Paragraph";
-  }
-  assert(false && "unreachable");
-};
 
 // L for location
 struct L {
@@ -351,113 +266,140 @@ void printf_line_marking_delimited_same_open_closed(const L l, const char delim,
   fprintf_line_marking_delimited_same_open_closed(stderr, l, delim, raw_input);
 }
 
-// T type, optional string data.
-struct T {
-  TT ty = TT::Undefined;
-  Span span = Span(L(-1, -1, -1), L(-1, -1, -1));
+// ===== document AST =====
+//
+// the document is a vector<BlockTm*> (block terms). prose-bearing blocks hold
+// one raw source Span per line after phase A (parseBlocks), and one InlineLine
+// of InlineTm* (inline terms) per line after phase B (parseInlines).
 
-  T(TT ty, Span span) : ty(ty), span(span){};
-  T(){};
+struct InlineTm {
+  enum class Kind {
+    Text,   // raw source bytes; also raw inline HTML.
+    Code,   // `...`  (span includes the backticks).
+    Latex,  // $...$  (span includes the dollars).
+    Italic, // *...* / _..._ ; **...** parses as nested Italic.
+    Link,   // [text](url)
+  };
+  const Kind kind;
+  Span span;
+  virtual ~InlineTm() {}
+
+protected:
+  InlineTm(Kind kind, Span span) : kind(kind), span(span) {}
 };
 
-std::ostream &operator<<(std::ostream &o, const T &t) {
-  return o << t.ty << "[" << t.span << "]";
-}
+// the inline terms of one source line.
+typedef vector<InlineTm *> InlineLine;
 
-// TLink for link information.
-struct TLink : public T {
-  // link is taken ownership of.
-  TLink(Span span, T *text, const char *link)
-      : T(TT::Link, span), text(text), link(link){};
-  T *text;
-  const char *link;
+struct InlineText : public InlineTm {
+  InlineText(Span span) : InlineTm(Kind::Text, span) {}
 };
 
-Span mkTokensSpan(L startloc, const vector<T *> &items) {
-  if (items.size() == 0) { return Span(startloc, startloc); };
-  assert(items.size() > 0);
-  Span s = items[0]->span;
-  assert(s.begin.si >= startloc.si);
-  for (int i = 1; i < (int)items.size(); ++i) {
-    Span next = items[i]->span;
-
-    if (next.begin.si < s.end.si) {
-      cerr << "merging: " << *items[i - 1] << " | " << *items[i] << "\n";
-    }
-    assert(next.begin.si >= s.end.si);
-    s = Span(s.begin, next.end);
-  }
-  return s;
-}
-
-struct TList : public T {
-  vector<T *> items;
-  TList(L begin, vector<T *> items) : T(TT::List, mkTokensSpan(begin, items)), items(items){};
+struct InlineCode : public InlineTm {
+  InlineCode(Span span) : InlineTm(Kind::Code, span) {}
 };
 
-struct TListNumbered : public T {
-  vector<T *> items;
-  TListNumbered(L begin, vector<T *> items)
-      : T(TT::TListNumbered, mkTokensSpan(begin, items)), items(items){};
+struct InlineLatex : public InlineTm {
+  InlineLatex(Span span) : InlineTm(Kind::Latex, span) {}
 };
 
-struct TCodeBlock : public T {
-  TCodeBlock(Span span, KEEP const char *langname)
-      : T(TT::CodeBlock, span), langname(strdup(langname)) {}
-  char *langname;
+struct InlineItalic : public InlineTm {
+  InlineLine items;
+  InlineItalic(Span span, InlineLine items)
+      : InlineTm(Kind::Italic, span), items(items) {}
+};
+
+struct InlineLink : public InlineTm {
+  InlineLine text;
+  std::string url;
+  InlineLink(Span span, InlineLine text, std::string url)
+      : InlineTm(Kind::Link, span), text(text), url(url) {}
+};
+
+// one list item: the marker location plus one entry per content line
+// (continuation indentation already stripped).
+struct ListItemTm {
+  L marker;
+  vector<Span> line_spans;  // phase A.
+  vector<InlineLine> lines; // phase B.
+  ListItemTm(L marker) : marker(marker) {}
 };
 
 // article metadata from a ```meta fenced block: status/date/topics key-values.
 enum class MetaStatus { Draft, Done }; // absent status key means Draft.
 
-struct TMetaBlock : public T {
+struct BlockTm {
+  enum class Kind {
+    Heading,      // # ...; hnum counts the #s.
+    Paragraph,    // consecutive prose lines.
+    List,         // - ...
+    NumberedList, // 1. 2. 3. ...
+    Quote,        // consecutive > lines.
+    CodeBlock,    // ``` fence (```abc renders as sheet music).
+    LatexBlock,   // $$ ... $$
+    Html,         // <script> ... </script>, emitted verbatim.
+    Comment,      // <!-- ... -->, emitted as nothing.
+    Meta,         // ```meta fence; renders as nothing.
+  };
+  const Kind kind;
+  Span span;
+  virtual ~BlockTm() {}
+
+protected:
+  BlockTm(Kind kind, Span span) : kind(kind), span(span) {}
+};
+
+struct BlockHeading : public BlockTm {
+  int hnum;
+  Span line_span;  // phase A: the heading text, starting after the #s.
+  InlineLine line; // phase B.
+  BlockHeading(int hnum, Span line_span)
+      : BlockTm(Kind::Heading, line_span), hnum(hnum), line_span(line_span) {}
+};
+
+// consecutive prose lines, delimited by blank lines or other blocks.
+// wrap = false for runs of raw block-level HTML (e.g. the index preamble),
+// which are emitted without the <p> wrapper.
+struct BlockParagraph : public BlockTm {
+  vector<Span> line_spans;  // phase A.
+  vector<InlineLine> lines; // phase B.
+  bool wrap = true;
+  BlockParagraph(Span span) : BlockTm(Kind::Paragraph, span) {}
+};
+
+// a hyphen (Kind::List) or numbered (Kind::NumberedList) list.
+struct BlockList : public BlockTm {
+  vector<ListItemTm> items;
+  BlockList(Kind kind, Span span, vector<ListItemTm> items)
+      : BlockTm(kind, span), items(items) {}
+};
+
+struct BlockQuote : public BlockTm {
+  vector<Span> line_spans;  // phase A.
+  vector<InlineLine> lines; // phase B.
+  BlockQuote(Span span) : BlockTm(Kind::Quote, span) {}
+};
+
+struct BlockCode : public BlockTm {
+  std::string langname;
+  BlockCode(Span span, std::string langname)
+      : BlockTm(Kind::CodeBlock, span), langname(langname) {}
+};
+
+// a span-only raw block: $$latex$$ (Kind::LatexBlock), verbatim <script> html
+// (Kind::Html), or a comment (Kind::Comment).
+struct BlockRaw : public BlockTm {
+  BlockRaw(Kind kind, Span span) : BlockTm(kind, span) {}
+};
+
+// article metadata from a ```meta fenced block.
+struct BlockMeta : public BlockTm {
   MetaStatus status = MetaStatus::Draft;
   char date[11] = {0}; // "YYYY-MM-DD", or empty if absent.
-  std::vector<std::string> topics;
-  TMetaBlock(Span span) : T(TT::MetaBlock, span) {}
+  vector<std::string> topics;
+  BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
-struct TInlineGroup : public T {
-  TInlineGroup(L begin, vector<T *> items)
-      : T(TT::InlineGroup, mkTokensSpan(begin, items)), items(items) {}
-  vector<T *> items;
-};
-
-// a paragraph: a run of top-level prose tokens, grouped by insertParagraphs.
-struct TParagraph : public T {
-  vector<T *> items;
-  TParagraph(vector<T *> items)
-      : T(TT::Paragraph, mkTokensSpan(items[0]->span.begin, items)),
-        items(items) {}
-};
-
-struct THeading : public T {
-  THeading(int hnum, Span span, T *item)
-      : T(TT::Heading, span), hnum(hnum), item(item){};
-  int hnum;
-  T *item;
-};
-
-struct TItalic : public T {
-  TItalic(Span span, T *item) : T(TT::Italic, span), item(item){};
-  T *item;
-};
-
-struct TBold : public T {
-  TBold(Span span, T *item) : T(TT::Bold, span), item(item){};
-  T *item;
-};
-
-struct TQuote : public T {
-  TQuote(Span span, vector<T *> items) : T(TT::Quote, span), items(items){};
-  vector<T *> items;
-};
-
-// we may have to stop at `\n` for a heading. Argh.
-bool is_char_special_inline_token(char c) {
-  return c == '*' || c == '[' || c == ']' || c == '$' || c == '`' || c == '_' ||
-         c == '\n';
-}
 
 // return true if haystack starts with needle
 bool strpeek(const char *haystack, const char *needle) {
@@ -516,26 +458,20 @@ L strconsume(L l, const char *raw_input, const char *delim, const char *errfmt,
   return l;
 }
 
-T *tokenizeLink(const char *s, const ll len, const L opensq);
-T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
-  Logger logger;
-  logger.print(cerr);
-  // cerr << "tokenizeLineFragment(" << lbegin << ")\n";
+InlineTm *tryParseLink(const char *s, const ll len, const L opensq);
+
+// one inline term starting at lbegin: a link, `code`, $latex$, *italic*, or a
+// run of raw text up to the next special character.
+InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
   assert(lbegin.si < len);
 
-  T *linkt = nullptr;
-  if (s[lbegin.si] == '[' &&
-      (linkt = tokenizeLink(s, len, lbegin)) != nullptr) {
-    logger.print(cerr);
-    cerr << "tokenizeLineFragment:link(" << lbegin << ")\n";
-    return linkt;
-  } else if (s[lbegin.si] == '`') {
-    logger.print(cerr);
-    cerr << "tokenizeLineFragment:code(" << lbegin << ")\n";
+  InlineTm *link = nullptr;
+  if (s[lbegin.si] == '[' && (link = tryParseLink(s, len, lbegin))) {
+    return link;
+  }
+  if (s[lbegin.si] == '`') {
     L lcur = lbegin.next('`');
-    // TODO: fix error message here.
     lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
-
     if (lbegin.line != lcur.line) {
       printf_err_span(Span(lbegin, lcur), s,
                 "inline code block `...` not allowed to "
@@ -544,200 +480,98 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
                 lbegin.line, lbegin.col, lcur.line, lcur.col);
       assert(false && "inline code block `...` on two different lines.");
     }
-
-    return new T(TT::CodeInline, Span(lbegin, lcur));
-  } else if (s[lbegin.si] == '$') {
-    cerr << "tokenizeLineFragment:$(" << lbegin << ")\n";
+    return new InlineCode(Span(lbegin, lcur));
+  }
+  if (s[lbegin.si] == '$') {
     L lcur = lbegin.next('$');
-    // TODO: fix error message here.
     lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
-
     if (lbegin.line != lcur.line) {
-      // inline latex block not allowed to be on two different lines.
-      // TODO: add color to the line!
       printf_err_span(Span(lbegin, lcur), s,
                 "inline latex block not allowed to be on two different lines.");
       printf_line_marking_delimited_same_open_closed(lbegin, '$', s);
       assert(false && "inline latex block on two different lines.");
     }
-
-    return new T(TT::LatexInline, Span(lbegin, lcur));
+    return new InlineLatex(Span(lbegin, lcur));
   }
-
-  // This ordering is important; bold MUST be checked first.
-  else if (s[lbegin.si] == '*' || s[lbegin.si] == '_') {
-    logger.print(cerr);
-    cerr << "tokenizeLineFragment:italic(" << lbegin << ")\n";
+  if (s[lbegin.si] == '*' || s[lbegin.si] == '_') {
+    // **bold** parses as an Italic nested directly inside an Italic.
     const char delim = s[lbegin.si];
     L lcur = lbegin.next(delim);
-    vector<T *> toks;
+    InlineLine items;
     while (1) {
-      T *t = tokenizeLineFragment(s, len, lcur);
-      assert(t);
-      toks.push_back(t);
-
+      InlineTm *t = parseInlineFragment(s, len, lcur);
       lcur = t->span.end;
+      items.push_back(t);
       if (lcur.si == len) {
-        printf_err_span(Span(lbegin, lcur), s, "unmatched italic demiliter: |%c|.", delim);
+        printf_err_span(Span(lbegin, lcur), s,
+                        "unmatched italic delimiter: |%c|.", delim);
         assert(false && "unmatched italic delimiter");
       }
-
-      assert(lcur.si < len);
-
       if (s[lcur.si] == '\n') {
-        printf_err_span(Span(lbegin, lcur), s, "italic emphasis spread across multiple lines!");
+        printf_err_span(Span(lbegin, lcur), s,
+                        "italic emphasis spread across multiple lines!");
         assert(false && "italic spread across multiple lines");
       }
-
-      if (s[lcur.si] == delim) {
-        break;
-      }
+      if (s[lcur.si] == delim) { break; }
     }
-
-    assert(s[lcur.si] == delim);
-    lcur = lcur.next(delim);
-    return new TItalic(Span(lbegin, lcur), new TInlineGroup(lbegin, toks));
-  } else {
-    logger.print(cerr);
-    cerr << "tokenizeLineFragment:raw(" << lbegin << ")\n";
-    L lcur = lbegin;
-    while (1) {
-      lcur = lcur.next(s[lcur.si]);
-      const char c = s[lcur.si];
-      if (c == '*' || c == '[' || c == ']' || c == '$' || c == '`' ||
-          c == '_' || c == '\n' || c == '\0') {
-        break;
-      }
-    }
-    return new T(TT::RawText, Span(lbegin, lcur));
+    return new InlineItalic(Span(lbegin, lcur.next(delim)), items);
   }
-}
-
-// consumes INCLUDING newline.
-T *tokenizeInlineLine(const char *s, const ll len, const L lbegin) {
-  Logger logger;
-  logger.print(cerr);
-  cerr << "tokenizeInlineLine(" << lbegin << ")\n";
-  vector<T *> toks;
+  // raw text: consume up to the next special character.
   L lcur = lbegin;
   while (1) {
-    if (s[lcur.si] == '\n') {
-      // consume newline.
-      lcur.si += 1;
+    lcur = lcur.next(s[lcur.si]);
+    const char c = s[lcur.si];
+    if (c == '*' || c == '[' || c == ']' || c == '$' || c == '`' || c == '_' ||
+        c == '\n' || c == '\0') {
       break;
     }
-    T *t = tokenizeLineFragment(s, len, lcur);
-    lcur = t->span.end;
-    toks.push_back(t);
   }
-  return new TInlineGroup(lbegin, toks);
-};
+  return new InlineText(Span(lbegin, lcur));
+}
 
-// tokenize those strings that can only occur "inside" an inline context,
-// so only:
-// - raw text
-// - inline math
-// - bold/italic/underline
-// This is _wrong_, because we may have a ']' till sth else.
-// TODO: add an assert to check that a link does not contain a
-// link inside it. eg: [foo is[bar](barlink) xxx](foolink)
-T *tokenizeLink(const char *s, const ll len, const L opensq) {
-  cerr << "tokenizeLink(" << opensq << ")\n";
+// the inline terms of one line, up to (and excluding) the terminating newline.
+InlineLine parseInlineLine(const char *s, const ll len, const L lbegin) {
+  InlineLine line;
+  L lcur = lbegin;
+  while (s[lcur.si] != '\n') {
+    InlineTm *t = parseInlineFragment(s, len, lcur);
+    lcur = t->span.end;
+    line.push_back(t);
+  }
+  return line;
+}
+
+// [text](url). returns nullptr if this is not a well-formed single-line link.
+InlineTm *tryParseLink(const char *s, const ll len, const L opensq) {
   assert(opensq.si < len);
   assert(s[opensq.si] == '[');
   L lcur = opensq.next('[');
 
-  vector<T *> toks;
+  InlineLine text;
   while (1) {
-    T *t = tokenizeLineFragment(s, len, lcur);
+    InlineTm *t = parseInlineFragment(s, len, lcur);
     lcur = t->span.end;
-    toks.push_back(t);
-    if (s[lcur.si] == ']') {
-      break;
-    }
+    text.push_back(t);
+    if (s[lcur.si] == ']') { break; }
+    // a `[` without an accompanying `]` on the same line: not a link.
+    if (s[lcur.si] == '\n') { return nullptr; }
+  }
 
-    // we have an `[` without an accompanying `]` on the same line, so this
-    // can't be a link...
-    if (s[lcur.si] == '\n') {
-      return nullptr;
-    }
-  };
-  assert(s[lcur.si] == ']');
-
-  const L closesq = lcur;
-  const L openround = closesq.next(s[closesq.si]);
-  if (s[openround.si] != '(') {
-    return nullptr;
-  };
+  const L openround = lcur.next(']');
+  if (s[openround.si] != '(') { return nullptr; }
 
   L closeround = openround;
-  while (s[closeround.si] != ')' && s[closeround.si] != '\0') {
+  while (s[closeround.si] != ')' && s[closeround.si] != '\n' &&
+         s[closeround.si] != '\0') {
     closeround = closeround.next(s[closeround.si]);
   }
+  // an unclosed `(` -- or one closed only on a later line -- is not a link.
+  // (scanning across lines here once swallowed a whole article into a URL.)
+  if (s[closeround.si] != ')') { return nullptr; }
 
-  if (s[closeround.si] != ')') {
-    return nullptr;
-  } else {
-    closeround = closeround.next(')');
-  }
-
-  char *link = (char *)calloc((closeround.si - openround.si), sizeof(char));
-  for (int i = 0, j = openround.si + 1; s[j] != ')'; ++i, ++j) {
-    link[i] = s[j];
-  }
-
-  // TODO: change `tokenize` to `tokenizeInline` when the time is right.
-  // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq,
-  // false); text =
-  T *text = new TInlineGroup(opensq, toks);
-  return new TLink(Span(opensq, closeround), text, link);
-}
-
-// Tokenizes a list hyphen. s[lhyphen] == '-';
-T *tokenizeHyphenListItem(const char *s, const ll len, const L lhyphen) {
-  Logger logger;
-  logger.print(cerr);
-  cerr << "tokenizeHyphenListItem(" << lhyphen << ")\n";
-  assert(s[lhyphen.si] == '-');
-  L lcur = lhyphen.next('-');
-
-  vector<T *> toks;
-  while (1) {
-    T *t = tokenizeInlineLine(s, len, lcur);
-    toks.push_back(t);
-    lcur = t->span.end;
-    assert(lcur.si == len || s[lcur.si] == '\n');
-    if (lcur.si == len) {
-      break;
-    } else {
-      // 1. consume the newline.
-      lcur = lcur.next(s[lcur.si]);
-
-      // decide if we continue the hyphen.
-      if (s[lcur.si] != ' ' && s[lcur.si] != '\n' && s[lcur.si] != '-') {
-        printf_err_span(Span(lhyphen, lcur), s,
-                  "ERROR: list hyphen must either have (1) new aligned text, "
-                  "(2) two newlines, (3) a new list hyphen.\n"
-                  "ERROR: incorrectly terminated list hyphen (started here)...");
-        assert(false && "incorrectly terminated list hyphen");
-      } else if (s[lcur.si] == '\n' || s[lcur.si] == '-') {
-        break;
-      } else {
-        lcur = consumeIntraLineWhitespace(s, lcur);
-        if (s[lcur.si] == '\n') {
-          printf_err_span(Span(lhyphen, lcur), s,
-                    "ERROR: list hyphen has incorrect white space ending in a "
-                    "newline after it.\n"
-                    "ERROR: incorrectly terminated list hyphen (started here)...");
-          assert(false && "incorrect whitespace-like-line after list hyphen");
-        }
-
-        // we have whitespace followed by characters. good, continue.
-        continue;
-      }
-    }
-  }
-  return new TInlineGroup(lhyphen, toks);
+  return new InlineLink(Span(opensq, closeround.next(')')),
+                        text,
+                        std::string(s + openround.si + 1, s + closeround.si));
 }
 
 // return if s[lbegin...] = <number>"."
@@ -753,90 +587,6 @@ bool isNumberedListBegin(const char *s, const ll len, const L lbegin) {
   }
   // we made progress, didn't hit EOF, and have a "."
   return l.si > lbegin.si && l.si < len && s[l.si] == '.';
-}
-
-// we are assuming that this is called on the *first* list item that
-// has been seen.
-// s[lhyphen] == start of number;
-T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
-                            const ll curnum) {
-
-  Logger logger;
-  logger.print(cerr);
-  cerr << "tokenizeNumberedListItem(" << lhyphen << ")\n";
-
-  char curitem[7];
-  sprintf(curitem, "%lld.", curnum);
-  if (!strpeek(s + lhyphen.si, curitem)) {
-    // this is err_loc on purpose, not err_span,
-    // as we know the precise location where the
-    // error happens!
-    printf_err_loc(lhyphen, s, "Expected list item to start with number: |%lld|",
-              curnum);
-    assert(false && "list item not respecting numbering.");
-  }
-
-  assert(strpeek(s + lhyphen.si, curitem));
-  L lcur = lhyphen.next(curitem);
-
-  vector<T *> toks;
-  while (1) {
-    T *t = tokenizeInlineLine(s, len, lcur);
-    toks.push_back(t);
-    lcur = t->span.end;
-    assert(lcur.si == len || s[lcur.si] == '\n');
-    if (lcur.si == len) {
-      break;
-    } else {
-      // 1. consume the newline.
-      lcur = lcur.next(s[lcur.si]);
-
-      // decide if we continue the hyphen.
-      if (s[lcur.si] != ' ' && s[lcur.si] != '\n' &&
-          !isNumberedListBegin(s, len, lcur)) {
-        printf_err_span(Span(lhyphen, lcur), s,
-                  "ERROR: list hyphen must either have (1) new aligned text, "
-                  "(2) two newlines, (3) a new numbered list beginning.\n"
-                  "ERROR: incorrectly terminated list hyphen (started here)...");
-        assert(false && "incorrectly terminated list hyphen");
-      } else if (s[lcur.si] == '\n' || isNumberedListBegin(s, len, lcur)) {
-        break;
-      } else {
-        lcur = consumeIntraLineWhitespace(s, lcur);
-        if (s[lcur.si] == '\n') {
-          printf_err_span(Span(lhyphen, lcur), s,
-                    "ERROR: list hyphen has incorrect white space ending in a "
-                    "newline after it.\n"
-                    "ERROR: incorrectly terminated list hyphen (started here)...");
-          assert(false && "incorrect whitespace-like-line after list hyphen");
-        }
-
-        // we have whitespace followed by characters. good, continue.
-        continue;
-      }
-    }
-  }
-  return new TInlineGroup(lhyphen, toks);
-}
-
-// quotes.
-T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
-  cerr << "tokenizeQuoteItem(" << lquote << ")\n";
-  assert(s[lquote.si] == '>');
-  L lcur = lquote.next('>');
-  vector<T *> toks;
-  while (1) {
-    T *t = tokenizeInlineLine(s, len, lcur);
-    toks.push_back(t);
-    lcur = t->span.end;
-    assert(s[lcur.si] == '\n');
-    if (lcur.si + 1 < len && s[lcur.si + 1] == '>') {
-      lcur = lcur.next("\n>");
-      continue;
-    }
-    break;
-  }
-  return new TQuote(Span(lquote, lcur), toks);
 }
 
 // LIST :=
@@ -869,10 +619,10 @@ T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
 
-// parse the contents of a ```meta fenced block into a TMetaBlock.
+// parse the contents of a ```meta fenced block into a Meta block term.
 // span covers the whole block including fences; keys are status/date/topics.
-T *tokenizeMetaBlock(const char *s, const Span span) {
-  TMetaBlock *meta = new TMetaBlock(span);
+BlockMeta *parseMetaBlock(const char *s, const Span span) {
+  BlockMeta *meta = new BlockMeta(span);
   const L content_begin = span.begin.next("```").next("meta").next("\n");
   const L content_end = span.end.prev("```");
   std::string content(s + content_begin.si, s + content_end.si);
@@ -939,35 +689,101 @@ T *tokenizeMetaBlock(const char *s, const Span span) {
   return meta;
 }
 
-T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
-  Logger logger;
-  logger.print(cerr);
-  cerr << "tokenizeBlock(" << lbegin << ")\n";
-  assert(lbegin.si < len);
-  L lcur = lbegin;
+// ===== phase A: block structure =====
+//
+// the block scanner walks the input a line at a time and produces the
+// block-level structure: headings, lists, quotes, raw/fenced blocks, and
+// paragraphs. prose-bearing blocks store raw line spans only; their inline
+// structure is parsed in a second phase (parseInlines). blank lines separate
+// blocks; they are consumed as structure and produce no tokens.
 
-  if (lcur.si < len - 1 && s[lcur.si] == '\n' && s[lcur.si + 1] == '\n') {
-    while (lcur.si < len - 1 &&
-           (s[lcur.si + 1] == '\n' || s[lcur.si + 1] == ' ' ||
-            s[lcur.si + 1] == '\t')) {
-      lcur = lcur.next(s[lcur.si]);
-    }
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->2+Newline(" << lbegin << ")\n";
+// location of the '\n' terminating the current line.
+L findLineEnd(const char *s, const ll len, L l) {
+  while (l.si < len && s[l.si] != '\n') { l = l.next(s[l.si]); }
+  assert(l.si < len && "input must end in a newline");
+  return l;
+}
 
-    return new T(TT::LineBreak, Span(lbegin, lcur));
+// is the rest of the current line whitespace only?
+bool isBlankLine(const char *s, const ll len, L l) {
+  while (l.si < len && (s[l.si] == ' ' || s[l.si] == '\t')) {
+    l = l.next(s[l.si]);
   }
-  if (s[lcur.si] == '\n') {
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->1Newline(" << lbegin << ")\n";
-    return new T(TT::RawText, Span(lcur, lcur.nextline()));
+  return l.si >= len || s[l.si] == '\n';
+}
+
+// scan a hyphen or numbered list starting at its first marker. leaves lcur at
+// the start of the line following the list.
+BlockList *parseListBlock(const char *s, const ll len, L &lcur,
+                          const bool numbered) {
+  const L lbegin = lcur;
+  vector<ListItemTm> items;
+  ll curnum = 1;
+  L lend = lbegin;
+  while (1) {
+    ListItemTm item(lcur);
+    // consume the marker.
+    if (numbered) {
+      char marker[24];
+      sprintf(marker, "%lld.", curnum);
+      if (!strpeek(s + lcur.si, marker)) {
+        printf_err_loc(lcur, s,
+                       "Expected list item to start with number: |%lld|", curnum);
+        assert(false && "list item not respecting numbering.");
+      }
+      lcur = lcur.next(marker);
+      curnum++;
+    } else {
+      assert(s[lcur.si] == '-');
+      lcur = lcur.next('-');
+    }
+    // consume the item's content lines.
+    while (1) {
+      const L le = findLineEnd(s, len, lcur);
+      item.line_spans.push_back(Span(lcur, le));
+      lend = le;
+      lcur = le.nextline();
+      if (lcur.si >= len || isBlankLine(s, len, lcur)) { break; }
+      if (numbered ? isNumberedListBegin(s, len, lcur) : s[lcur.si] == '-') {
+        break; // next item.
+      }
+      if (s[lcur.si] == ' ') {
+        // an indented continuation line joins the item, indentation stripped.
+        lcur = consumeIntraLineWhitespace(s, lcur);
+        continue;
+      }
+      printf_err_span(Span(item.marker, lcur), s,
+                "ERROR: a list item must be followed by an indented "
+                "continuation line, a blank line, or the next list marker.");
+      assert(false && "incorrectly terminated list item");
+    }
+    items.push_back(item);
+    if (lcur.si >= len || isBlankLine(s, len, lcur)) { break; }
+  }
+  return new BlockList(numbered ? BlockTm::Kind::NumberedList
+                                : BlockTm::Kind::List,
+                       Span(lbegin, lend), items);
+}
+
+vector<BlockTm *> parseBlocks(const char *s, const ll len) {
+  assert(len > 0 && s[len - 1] == '\n' && "input must end in a newline");
+  vector<BlockTm *> ts;
+  BlockParagraph *para = nullptr; // paragraph currently being accumulated.
+
+  const auto closePara = [&para]() { para = nullptr; };
+
+  L lcur = LOC_FIRST;
+  while (lcur.si < len) {
+  const L lbegin = lcur;
+
+  // ===blank line: ends the current paragraph, produces nothing===
+  if (isBlankLine(s, len, lcur)) {
+    closePara();
+    lcur = findLineEnd(s, len, lcur).nextline();
+    continue;
   }
   if (strpeek(s + lcur.si, "$$")) {
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->LatexBlock(" << lbegin << ")\n";
+    closePara();
     lcur = lcur.next("$$");
 
     // TODO: fix error message here, that will get generated from strconsume.
@@ -989,25 +805,24 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
           "WARNING: latex block is very long! Perhaps block is overflowing?");
       assert(false && "very large latex block");
     }
-    return new T(TT::LatexBlock, Span(lbegin, lcur));
-  } else if (strpeek(s + lcur.si, "<script")) {
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->Script(" << lbegin << ")\n";
-
+    ts.push_back(new BlockRaw(BlockTm::Kind::LatexBlock, Span(lbegin, lcur)));
+    lcur = lcur.nextline();
+    continue;
+  }
+  if (strpeek(s + lcur.si, "<script")) {
+    closePara();
     lcur = strconsume(lcur, s, "</script>", "unclosed <script> tag.");
-    return new T(TT::HTML, Span(lbegin, lcur));
-  } else if (strpeek(s + lcur.si, "<!--")) {
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->Comment(" << lbegin << ")\n";
-
+    ts.push_back(new BlockRaw(BlockTm::Kind::Html, Span(lbegin, lcur)));
+    continue; // may resume mid-line; the loop re-dispatches from here.
+  }
+  if (strpeek(s + lcur.si, "<!--")) {
+    closePara();
     lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
-    return new T(TT::Comment, Span(lbegin, lcur));
-  } else if (strpeek(s + lbegin.si, "```")) {
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->Code(" << lbegin << ")\n";
+    ts.push_back(new BlockRaw(BlockTm::Kind::Comment, Span(lbegin, lcur)));
+    continue; // may resume mid-line; the loop re-dispatches from here.
+  }
+  if (strpeek(s + lcur.si, "```")) {
+    closePara();
     lcur = lcur.next("```");
 
 
@@ -1050,97 +865,114 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       // assert(false && "very large code block");
     }
     if (!strcmp(langname, "meta")) {
-      return tokenizeMetaBlock(s, Span(lbegin, lcur));
+      ts.push_back(parseMetaBlock(s, Span(lbegin, lcur)));
+    } else {
+      ts.push_back(new BlockCode(Span(lbegin, lcur), langname));
     }
-    return new TCodeBlock(Span(lbegin, lcur), langname);
-  } else if (strpeek(s + lcur.si, "#")) {
-
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->Heading(" << lbegin << ")\n";
-
-    // cerr << "HEADING" << lcur << "\n";
-    int i = 0;
-    for (; lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')) {
-      i++;
-    };
-    T *t = tokenizeInlineLine(s, len, lcur);
-    // cerr << "HEADING" << lcur << "\n";
-    return new THeading(i, Span(lcur, t->span.end), t);
-  } else if (s[lcur.si] == '-') {
-
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->List(" << lbegin << ")\n";
-
-    vector<T *> toks;
-    while (1) {
-      T *t = tokenizeHyphenListItem(s, len, lcur);
-      toks.push_back(t);
-      lcur = t->span.end;
-      assert(s[lcur.si] == '\n');
-      lcur = lcur.next('\n');
-      if (s[lcur.si] == '-') {
-        continue;
-      }
-      break;
-    }
-    return new TList(lbegin, toks);
-  } else if ((lcur.si == 0 || s[lcur.si - 1] == '\n') &&
-             isNumberedListBegin(s, len, lcur)) {
-
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->NumberedList(" << lbegin << ")\n";
-
-    vector<T *> toks;
-    int curnum = 1;
-    while (1) {
-      T *t = tokenizeNumberedListItem(s, len, lcur, curnum++);
-      toks.push_back(t);
-      lcur = t->span.end;
-      assert(s[lcur.si] == '\n');
-      lcur = lcur.next('\n');
-      if (isNumberedListBegin(s, len, lcur)) {
-        continue;
-      }
-      break;
-    }
-    return new TListNumbered(lbegin, toks);
-  } else if (s[lcur.si] == '>') {
-    return tokenizeQuoteItem(s, len, lcur);
-  } else {
-
-    Logger logger;
-    logger.print(cerr);
-    cerr << "tokenizeBlock->Inline(" << lbegin << ")\n";
-
-    // consume whitespace.
-    while (s[lcur.si] == '\n' || s[lcur.si] == '\t' || s[lcur.si] == ' ') {
-      lcur = lcur.next(s[lcur.si]);
-    }
-    // TODO: add paragraph here!
-    return tokenizeInlineLine(s, len, lbegin);
+    free(langname);
+    lcur = lcur.nextline();
+    continue;
   }
+  if (strpeek(s + lcur.si, "#")) {
+    closePara();
+    int hnum = 0;
+    for (; lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')) {
+      hnum++;
+    }
+    const L le = findLineEnd(s, len, lcur);
+    ts.push_back(new BlockHeading(hnum, Span(lcur, le)));
+    lcur = le.nextline();
+    continue;
+  }
+  if (s[lcur.si] == '-') {
+    closePara();
+    ts.push_back(parseListBlock(s, len, lcur, /*numbered=*/false));
+    continue;
+  }
+  if ((lcur.si == 0 || s[lcur.si - 1] == '\n') &&
+      isNumberedListBegin(s, len, lcur)) {
+    closePara();
+    ts.push_back(parseListBlock(s, len, lcur, /*numbered=*/true));
+    continue;
+  }
+  if (s[lcur.si] == '>') {
+    closePara();
+    BlockQuote *quote = new BlockQuote(Span(lcur, lcur));
+    while (1) {
+      lcur = lcur.next('>');
+      const L le = findLineEnd(s, len, lcur);
+      quote->line_spans.push_back(Span(lcur, le));
+      quote->span = Span(quote->span.begin, le);
+      lcur = le.nextline();
+      if (lcur.si >= len || s[lcur.si] != '>') { break; }
+    }
+    ts.push_back(quote);
+    continue;
+  }
+
+  // ===prose line: open or continue a paragraph===
+  if (!para) {
+    para = new BlockParagraph(Span(lcur, lcur));
+    ts.push_back(para);
+  }
+  const L le = findLineEnd(s, len, lcur);
+  para->line_spans.push_back(Span(lcur, le));
+  para->span = Span(para->line_spans[0].begin, le);
+  lcur = le.nextline();
+  }
+
+  return ts;
 }
 
-void tokenize(const char *s, const ll len, vector<T *> &ts) {
-  Logger logger;
-  Span span(LOC_FIRST, LOC_FIRST);
-  while (span.end.si < len) {
-    cerr << "\n";
-    logger.print(cerr);
-    cerr << "tokenize loop(" << span.end << ")\n";
-    T *t = tokenizeBlock(s, len, span.end);
-    assert(t != nullptr);
-    ts.push_back(t);
-
-    logger.print(cerr);
-    cerr << "debug: " << *t << "\n";
-
-    // we always have to make progress.
-    assert(span.end.si != t->span.end.si);
-    span = t->span;
+// ===== phase B: inline structure =====
+//
+// parse the inline structure (emphasis, links, code, latex) inside each
+// block's stored line spans, filling the render-ready inline trees.
+void parseInlines(vector<BlockTm *> &ts, const char *s, const ll len) {
+  for (BlockTm *t : ts) {
+    switch (t->kind) {
+    case BlockTm::Kind::Heading: {
+      BlockHeading *heading = (BlockHeading *)t;
+      heading->line = parseInlineLine(s, len, heading->line_span.begin);
+      break;
+    }
+    case BlockTm::Kind::Paragraph: {
+      BlockParagraph *para = (BlockParagraph *)t;
+      for (const Span &line : para->line_spans) {
+        para->lines.push_back(parseInlineLine(s, len, line.begin));
+      }
+      // a run of raw block-level HTML (e.g. the index preamble's <h1>) is
+      // emitted bare: wrapping block-level HTML in <p> is invalid.
+      char first_nonws = 0;
+      for (const Span &line : para->line_spans) {
+        for (ll i = line.begin.si; i < line.end.si && !first_nonws; ++i) {
+          if (!isspace(s[i])) { first_nonws = s[i]; }
+        }
+        if (first_nonws) { break; }
+      }
+      para->wrap = first_nonws != '<';
+      break;
+    }
+    case BlockTm::Kind::List:
+    case BlockTm::Kind::NumberedList: {
+      BlockList *list = (BlockList *)t;
+      for (ListItemTm &item : list->items) {
+        for (const Span &line : item.line_spans) {
+          item.lines.push_back(parseInlineLine(s, len, line.begin));
+        }
+      }
+      break;
+    }
+    case BlockTm::Kind::Quote: {
+      BlockQuote *quote = (BlockQuote *)t;
+      for (const Span &line : quote->line_spans) {
+        quote->lines.push_back(parseInlineLine(s, len, line.begin));
+      }
+      break;
+    }
+    default:
+      break; // raw blocks carry no inline structure.
+    }
   }
 }
 
@@ -1299,64 +1131,58 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
 // this will return:
 // A = B or what I need
 // So this strips off all "decoration" leaving only the text in place.
-// TODO: Refactor LatexInline, CodeInline, Bold, Italic
-// to be same struct.
-void inlineTokenToPlaintext(const char *raw_input, const T *t, char *outs,
-                            ll &outlen) {
+void inlineToPlaintext(const char *s, const InlineTm *t, char *outs,
+                       ll &outlen);
 
-  if (t->ty == TT::InlineGroup) {
-    // cerr << *t << "\n";
-    ll len = 0;
-    for (T *item : ((TInlineGroup *)t)->items) {
-      inlineTokenToPlaintext(raw_input, item, outs + len, len);
-    };
-    outlen = len + 1;
-  } else if (t->ty == TT::CodeInline) {
-    Span span = Span(t->span.begin.next("`"), t->span.end.prev("`"));
-    strncpy(outs, raw_input + span.begin.si, span.nchars());
-    outlen += span.nchars();
-  } else if (t->ty == TT::LatexInline) {
-    Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
-    strncpy(outs, raw_input + span.begin.si, span.nchars());
-    outlen += span.nchars();
-  } else if (t->ty == TT::RawText) {
-    strncpy(outs, raw_input + t->span.begin.si, t->span.nchars());
+void inlineLineToPlaintext(const char *s, const InlineLine &line, char *outs,
+                           ll &outlen) {
+  ll len = 0;
+  for (const InlineTm *item : line) {
+    inlineToPlaintext(s, item, outs + len, len);
+  }
+  outlen = len + 1;
+}
+
+void inlineToPlaintext(const char *s, const InlineTm *t, char *outs,
+                       ll &outlen) {
+  switch (t->kind) {
+  case InlineTm::Kind::Text: {
+    strncpy(outs, s + t->span.begin.si, t->span.nchars());
     outlen += t->span.nchars();
-  } else if (t->ty == TT::Comment) {
-    return;
-  } else if (t->ty == TT::Bold) {
-    TBold *bold = (TBold *)t;
-    inlineTokenToPlaintext(raw_input, bold->item, outs, outlen);
-  } else if (t->ty == TT::Italic) {
-    TItalic *italic = (TItalic *)t;
-    inlineTokenToPlaintext(raw_input, italic->item, outs, outlen);
-  } else if (t->ty == TT::Link) {
-    TLink *link = (TLink *)t;
-    inlineTokenToPlaintext(raw_input, link->text, outs, outlen);
-  } else {
-    printf_err_span(t->span, raw_input, "unexpected token in heading!");
-    assert(false && "unexpected token in heading.");
+    break;
+  }
+  case InlineTm::Kind::Code: {
+    const Span span = Span(t->span.begin.next("`"), t->span.end.prev("`"));
+    strncpy(outs, s + span.begin.si, span.nchars());
+    outlen += span.nchars();
+    break;
+  }
+  case InlineTm::Kind::Latex: {
+    const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
+    strncpy(outs, s + span.begin.si, span.nchars());
+    outlen += span.nchars();
+    break;
+  }
+  case InlineTm::Kind::Italic:
+    inlineLineToPlaintext(s, ((InlineItalic *)t)->items, outs, outlen);
+    break;
+  case InlineTm::Kind::Link:
+    inlineLineToPlaintext(s, ((InlineLink *)t)->text, outs, outlen);
+    break;
   }
 }
 
 // make a link according to github flavoured markdown convention for
 // a heading.
 // https://gist.github.com/asabaylus/3071099
-// The code that creates the anchors is here:
-// https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb
-//
-// It downcases the string
-// remove anything that is not a letter, number, space or hyphen (see the source
-// for how Unicode is handled) changes any space to a hyphen. If that is not
-// unique, add "-1", "-2", "-3",... to make it unique
 GIVE const char *mkHeadingURL(KEEP const char *raw_input,
-                              KEEP THeading *heading) {
+                              const BlockHeading *heading) {
   const int BUFSIZE = (1 << 10);
   char plaintext[BUFSIZE];
   for (int i = 0; i < BUFSIZE; ++i)
     plaintext[i] = 0;
   ll ptlen = 0;
-  inlineTokenToPlaintext(raw_input, heading->item, plaintext, ptlen);
+  inlineLineToPlaintext(raw_input, heading->line, plaintext, ptlen);
   plaintext[ptlen] = 0;
   assert(ptlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
 
@@ -1370,22 +1196,16 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input,
   }
   assert(ptend - ptbegin >= 0);
 
-
-
   char *url = (char *)calloc(strlen(OUTPUT_ROOT_DIR_TRAILING_SLASH) + ptlen + 2, sizeof(char));
   assert(url && "unable to allocate memory for making heading URL");
 
   sprintf(url, "%s", OUTPUT_ARTICLES_URL_TRAILING_SLASH);
   ll url_ix = strlen(url);
 
-
   bool seenalnum = true;
   for (ll i = ptbegin; i != ptend; ++i) { // heading index
-    // convert uppercase -> lowercase
-    // keep digits
-    // convert space to hyphen
-    // convert groups of hyphens into single hyphen
-    // remove everything else.
+    // convert uppercase -> lowercase; keep digits; convert space to hyphen;
+    // convert groups of hyphens into single hyphen; remove everything else.
     const char c = plaintext[i];
     if ((isalpha(c) || isdigit(c)) && !seenalnum) {
       seenalnum = true;
@@ -1460,336 +1280,205 @@ uint32_t murmur_32_scramble(uint32_t k) {
     k *= 0x1b873593;
     return k;
 }
-uint32_t murmur3_32(const char* key, size_t len, uint32_t seed) {
-    assert(len >= 0);
-    uint32_t h = seed;
-    uint32_t k;
-    /* Read in groups of 4. */
-    for (size_t i = len >> 2; i; i--) {
-        // Here is a source of differing results across endiannesses.
-        // A swap here has no effects on hash properties though.
-        memcpy(&k, key, sizeof(uint32_t));
-        key += sizeof(uint32_t);
-        h ^= murmur_32_scramble(k);
-        h = (h << 13) | (h >> 19);
-        h = h * 5 + 0xe6546b64;
-    }
-    /* Read the rest. */
-    k = 0;
-    for (size_t i = len % 4; i >= 0; i--) {
-        k <<= 8;
-        k |= key[i - 1];
-    }
-    // A swap is *not* necessary here because the preceding loop already
-    // places the low bytes in the low places according to whatever endianness
-    // we use. Swaps only apply when the memory is copied in a chunk.
-    h ^= murmur_32_scramble(k);
-    /* Finalize. */
-	h ^= len;
-	h ^= h >> 16;
-	h *= 0x85ebca6b;
-	h ^= h >> 13;
-	h *= 0xc2b2ae35;
-	h ^= h >> 16;
-	return h;
+
+// ===== rendering =====
+
+bool renderInline(duk_context *katex_ctx, duk_context *prism_ctx,
+                  const char *raw_input, const InlineTm *t, ll &outlen,
+                  char *outs);
+
+bool renderInlineLine(duk_context *katex_ctx, duk_context *prism_ctx,
+                      const char *raw_input, const InlineLine &line,
+                      ll &outlen, char *outs) {
+  bool success = true;
+  for (const InlineTm *t : line) {
+    success &= renderInline(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
+  }
+  return success;
 }
 
-
-uint32_t hash_t(const char *raw_input, const T *const t) {
-  assert(t != nullptr);
-  return murmur3_32(raw_input + t->span.begin.si, t->span.end.si - t->span.begin.si, 42);
-}
-
-bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
-            const char *raw_input, const T *const t, ll &outlen, char *outs) {
-  assert(t != nullptr);
-  switch (t->ty) {
-  case TT::Undefined: {
-    assert(false && "Should not have received undefined");
-    return false;
-  }
-  case TT::Comment: {
-    return true;
-  }
-
-  case TT::HTML:
-  case TT::RawText: {
+bool renderInline(duk_context *katex_ctx, duk_context *prism_ctx,
+                  const char *raw_input, const InlineTm *t, ll &outlen,
+                  char *outs) {
+  switch (t->kind) {
+  case InlineTm::Kind::Text: {
     strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
     outlen += t->span.nchars();
     outs[outlen] = ' '; outlen++;
     return true;
   }
 
-  case TT::LineBreak: {
-    // paragraph breaks are handled structurally by toHTMLBlockStream, which
-    // wraps prose runs in <p>; a line break renders nothing by itself.
+  case InlineTm::Kind::Code: {
+    outlen += sprintf(outs + outlen, "<code class='inline'>");
+    const Span span = Span(t->span.begin.next("`"), t->span.end.prev("`"));
+    strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
+    outlen += span.nchars();
+    outlen += sprintf(outs + outlen, "</code>");
     return true;
   }
 
-  case TT::MetaBlock: {
-    // article metadata renders to nothing in the article body.
-    return true;
-  }
-
-  case TT::CodeBlock: {
-    TCodeBlock *block = (TCodeBlock *)t;
-
-    // we want to ignore the first 3 ``` and the last 3 ```
-    const Span span =
-        Span(t->span.begin.next("```").next(block->langname).next("\n"),
-             t->span.end.prev("```"));
-
-    if (!strcmp(block->langname, "abc")) {
-      const char *open = "<div class=\"abc\">";
-      const char *close = "</div>";
-
-      strcpy(outs + outlen, open);
-      outlen += strlen(open);
-
-      // write span.
-      strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
-      outlen += span.nchars();
-
-      strcpy(outs + outlen, close);
-      outlen += strlen(close);
-      return true;
-
-    } else {
-      // TODO: escape HTML content.
-      const char *open = "<pre><code>";
-      const char *close = "</code></pre>";
-
-      strcpy(outs + outlen, open);
-      outlen += strlen(open);
-
-      char *code_html = pygmentize(prism_ctx, raw_input, block->langname, span);
-
-      strcpy(outs + outlen, code_html);
-      outlen += strlen(code_html);
-      free(code_html);
-
-      strcpy(outs + outlen, close);
-      outlen += strlen(close);
-      return true;
-    }
-  }
-
-  case TT::LatexInline:
-  case TT::LatexBlock: {
-    const Span span =
-        t->ty == TT::LatexBlock
-            ? Span(t->span.begin.next("$$"), t->span.end.prev("$$"))
-            : Span(t->span.begin.next('$'), t->span.end.prev('$'));
-
-    if (t->ty == TT::LatexBlock) {
-      outlen += sprintf(outs + outlen, "<div class='latexblock'>");
-    } else if (t->ty == TT::LatexInline) {
-      outlen += sprintf(outs + outlen, "<span class='latexinline'>");
-    } else {
-      assert(false && "expected latex inline or latex block");
-    }
+  case InlineTm::Kind::Latex: {
+    const Span span = Span(t->span.begin.next('$'), t->span.end.prev('$'));
+    outlen += sprintf(outs + outlen, "<span class='latexinline'>");
 
     char *outcompile;
     bool success;
-    tie(success, outcompile) = compileLatex(katex_ctx, raw_input, span,
-                     t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock
-                                             : LatexType::LatexTypeInline);
-    if (!success) {
-        return false;
-    }
+    tie(success, outcompile) =
+        compileLatex(katex_ctx, raw_input, span, LatexType::LatexTypeInline);
+    if (!success) { return false; }
     strcpy(outs + outlen, outcompile);
     outlen += strlen(outcompile);
-
     free(outcompile);
 
-    if (t->ty == TT::LatexBlock) {
-      outlen += sprintf(outs + outlen, "</div>");
-    } else if (t->ty == TT::LatexInline) {
-      outlen += sprintf(outs + outlen, "</span>");
-    } else {
-      assert(false && "expected latex inline or latex block");
-    }
+    outlen += sprintf(outs + outlen, "</span>");
     return true;
   }
 
-  case TT::List: {
-    const char *openul = "<ul>";
-    const char *closeul = "</ul>";
-
-    const char *openli = "<li>";
-    const char *closeli = "</li>";
-
-    TList *tlist = (TList *)t;
-    strcpy(outs + outlen, openul);
-    outlen += strlen(openul);
-    for (auto it : tlist->items) {
-      strcpy(outs + outlen, openli);
-      outlen += strlen(openli);
-      toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
-      strcpy(outs + outlen, closeli);
-      outlen += strlen(closeli);
-    }
-    strcpy(outs + outlen, closeul);
-    outlen += strlen(closeul);
-    return true;
-  }
-
-  case TT::TListNumbered: {
-    const char *openul = "<ol>";
-    const char *closeul = "</ol>";
-
-    const char *openli = "<li>";
-    const char *closeli = "</li>";
-
-    TList *tlist = (TList *)t;
-    strcpy(outs + outlen, openul);
-    outlen += strlen(openul);
-    for (auto it : tlist->items) {
-      strcpy(outs + outlen, openli);
-      outlen += strlen(openli);
-      toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
-      strcpy(outs + outlen, closeli);
-      outlen += strlen(closeli);
-    }
-    strcpy(outs + outlen, closeul);
-    outlen += strlen(closeul);
-    return true;
-  }
-
-  case TT::Link: {
-    TLink *link = (TLink *)t;
-    // toHTML(raw_input, temp_dir_path, link->text,  outlen, outs);
-    outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-    toHTML(katex_ctx, prism_ctx, raw_input, link->text, outlen, outs);
-    outlen += sprintf(outs + outlen, "</a>");
-    return true;
-  }
-
-  case TT::InlineGroup: {
-    TInlineGroup *group = (TInlineGroup *)t;
-    for (T *t : group->items) {
-      toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
-    }
-    return true;
-  }
-
-  case TT::Paragraph: {
-    TParagraph *para = (TParagraph *)t;
-    bool success = true;
-    outlen += sprintf(outs + outlen, "<p>");
-    for (T *item : para->items) {
-      success &= toHTML(katex_ctx, prism_ctx, raw_input, item, outlen, outs);
-    }
-    outlen += sprintf(outs + outlen, "</p>");
+  case InlineTm::Kind::Italic: {
+    const InlineItalic *italic = (const InlineItalic *)t;
+    outlen += sprintf(outs + outlen, "<i>");
+    const bool success = renderInlineLine(katex_ctx, prism_ctx, raw_input,
+                                          italic->items, outlen, outs);
+    outlen += sprintf(outs + outlen, "</i>");
     return success;
   }
 
-  case TT::CodeInline: {
-    const char *open = "<code class='inline'>";
-    const char *close = "</code>";
-    strcpy(outs + outlen, open);
-    outlen += strlen(open);
+  case InlineTm::Kind::Link: {
+    const InlineLink *link = (const InlineLink *)t;
+    outlen += sprintf(outs + outlen, "<a href=%s>", link->url.c_str());
+    const bool success = renderInlineLine(katex_ctx, prism_ctx, raw_input,
+                                          link->text, outlen, outs);
+    outlen += sprintf(outs + outlen, "</a>");
+    return success;
+  }
+  }
+  assert(false && "unreachable");
+}
 
-    const Span span = Span(t->span.begin.next("`"), t->span.end.prev("`"));
+const char *mkHeadingURL(const char *raw_input, const BlockHeading *heading);
 
-    strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
-    outlen += span.nchars();
-
-    strcpy(outs + outlen, close);
-    outlen += strlen(close);
+bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
+                 const char *raw_input, const BlockTm *t, ll &outlen,
+                 char *outs) {
+  switch (t->kind) {
+  case BlockTm::Kind::Comment:
+  case BlockTm::Kind::Meta: {
+    // comments and article metadata render to nothing.
     return true;
   }
 
-  case TT::Heading: {
-    THeading *theading = (THeading *)t;
+  case BlockTm::Kind::Html: {
+    strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
+    outlen += t->span.nchars();
+    outs[outlen] = ' '; outlen++;
+    return true;
+  }
 
-    // need the _raw text_. Hmm.
-    const char *link = mkHeadingURL(raw_input, theading);
-    // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
-    outlen += sprintf(outs + outlen, "<h%d>", min(4, 1 + theading->hnum));
+  case BlockTm::Kind::CodeBlock: {
+    const BlockCode *block = (const BlockCode *)t;
+
+    // we want to ignore the first 3 ``` and the last 3 ```
+    const Span span =
+        Span(t->span.begin.next("```").next(block->langname.c_str()).next("\n"),
+             t->span.end.prev("```"));
+
+    if (block->langname == "abc") {
+      // sheet music, rendered client-side by abcjs.
+      outlen += sprintf(outs + outlen, "<div class=\"abc\">");
+      strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
+      outlen += span.nchars();
+      outlen += sprintf(outs + outlen, "</div>");
+      return true;
+    }
+
+    // TODO: escape HTML content.
+    outlen += sprintf(outs + outlen, "<pre><code>");
+    char *code_html =
+        pygmentize(prism_ctx, raw_input, block->langname.c_str(), span);
+    strcpy(outs + outlen, code_html);
+    outlen += strlen(code_html);
+    free(code_html);
+    outlen += sprintf(outs + outlen, "</code></pre>");
+    return true;
+  }
+
+  case BlockTm::Kind::LatexBlock: {
+    const Span span = Span(t->span.begin.next("$$"), t->span.end.prev("$$"));
+    outlen += sprintf(outs + outlen, "<div class='latexblock'>");
+
+    char *outcompile;
+    bool success;
+    tie(success, outcompile) =
+        compileLatex(katex_ctx, raw_input, span, LatexType::LatexTypeBlock);
+    if (!success) { return false; }
+    strcpy(outs + outlen, outcompile);
+    outlen += strlen(outcompile);
+    free(outcompile);
+
+    outlen += sprintf(outs + outlen, "</div>");
+    return true;
+  }
+
+  case BlockTm::Kind::Heading: {
+    const BlockHeading *heading = (const BlockHeading *)t;
+    const char *link = mkHeadingURL(raw_input, heading);
+    const int h = min(4, 1 + heading->hnum);
+    outlen += sprintf(outs + outlen, "<h%d>", h);
     outlen +=
         sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-    toHTML(katex_ctx, prism_ctx, raw_input, theading->item, outlen, outs);
-    outlen += sprintf(outs + outlen, "</h%d>", min(4, 1 + theading->hnum));
-
+    const bool success = renderInlineLine(katex_ctx, prism_ctx, raw_input,
+                                          heading->line, outlen, outs);
+    outlen += sprintf(outs + outlen, "</h%d>", h);
     free((char *)link);
-    return true;
+    return success;
   }
 
-  case TT::Italic: {
-    TItalic *tcur = (TItalic *)t;
-    outlen += sprintf(outs + outlen, "<i>");
-    toHTML(katex_ctx, prism_ctx, raw_input, tcur->item, outlen, outs);
-    outlen += sprintf(outs + outlen, "</i>");
-    return true;
+  case BlockTm::Kind::Paragraph: {
+    const BlockParagraph *para = (const BlockParagraph *)t;
+    bool success = true;
+    if (para->wrap) { outlen += sprintf(outs + outlen, "<p>"); }
+    for (ll i = 0; i < (ll)para->lines.size(); ++i) {
+      if (i > 0) { outlen += sprintf(outs + outlen, "\n"); }
+      success &= renderInlineLine(katex_ctx, prism_ctx, raw_input,
+                                  para->lines[i], outlen, outs);
+    }
+    if (para->wrap) { outlen += sprintf(outs + outlen, "</p>"); }
+    return success;
   }
 
-  case TT::Bold: {
-    TBold *tcur = (TBold *)t;
-    outlen += sprintf(outs + outlen, "<b>");
-    toHTML(katex_ctx, prism_ctx, raw_input, tcur->item, outlen, outs);
-    outlen += sprintf(outs + outlen, "</b>");
-    return true;
+  case BlockTm::Kind::List:
+  case BlockTm::Kind::NumberedList: {
+    const BlockList *list = (const BlockList *)t;
+    const bool numbered = t->kind == BlockTm::Kind::NumberedList;
+    bool success = true;
+    outlen += sprintf(outs + outlen, numbered ? "<ol>" : "<ul>");
+    for (const ListItemTm &item : list->items) {
+      outlen += sprintf(outs + outlen, "<li>");
+      for (const InlineLine &line : item.lines) {
+        success &= renderInlineLine(katex_ctx, prism_ctx, raw_input, line,
+                                    outlen, outs);
+      }
+      outlen += sprintf(outs + outlen, "</li>");
+    }
+    outlen += sprintf(outs + outlen, numbered ? "</ol>" : "</ul>");
+    return success;
   }
 
-  case TT::Quote: {
-    TQuote *tq = (TQuote *)t;
-
+  case BlockTm::Kind::Quote: {
+    const BlockQuote *quote = (const BlockQuote *)t;
+    bool success = true;
     outlen += sprintf(outs + outlen, "<blockquote>");
-    for (auto it : tq->items) {
+    for (const InlineLine &line : quote->lines) {
       outlen += sprintf(outs + outlen, "<p>");
-      toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
+      success &= renderInlineLine(katex_ctx, prism_ctx, raw_input, line,
+                                  outlen, outs);
       outlen += sprintf(outs + outlen, "</p>");
     }
     outlen += sprintf(outs + outlen, "</blockquote>");
-    return true;
+    return success;
   }
-  default:
-    assert(false && "unhandled token type in toHTML");
-  };
-  assert(false && "unreachabe");
-}
-
-// is this token part of running prose (grouped into a TParagraph by
-// insertParagraphs), as opposed to a block element that stands on its own?
-bool isProseFlowToken(const T *t) {
-  return t->ty == TT::InlineGroup || t->ty == TT::RawText;
-}
-
-// token-stream pass: group consecutive top-level prose tokens into TParagraph
-// nodes and drop the LineBreaks that separated them. after this pass the
-// stream is emitted by a plain toHTML loop.
-vector<T *> insertParagraphs(const vector<T *> &ts, const char *raw_input) {
-  vector<T *> out;
-  ll i = 0;
-  while (i < (ll)ts.size()) {
-    if (ts[i]->ty == TT::LineBreak) { i++; continue; }
-    if (!isProseFlowToken(ts[i])) { out.push_back(ts[i]); i++; continue; }
-
-    // collect the prose run [i, j).
-    ll j = i;
-    while (j < (ll)ts.size() && isProseFlowToken(ts[j])) { j++; }
-
-    // the first non-whitespace character of the run decides its shape.
-    char first_nonws = 0;
-    for (ll k = i; k < j && !first_nonws; ++k) {
-      for (ll si = ts[k]->span.begin.si; si < ts[k]->span.end.si; ++si) {
-        if (!isspace(raw_input[si])) { first_nonws = raw_input[si]; break; }
-      }
-    }
-    if (!first_nonws) { i = j; continue; } // stray newlines: drop.
-
-    if (first_nonws == '<') {
-      // a line of raw block HTML (e.g. the index preamble's <h1>) stays bare:
-      // wrapping block-level HTML in <p> is invalid.
-      for (ll k = i; k < j; ++k) { out.push_back(ts[k]); }
-    } else {
-      out.push_back(
-          new TParagraph(vector<T *>(ts.begin() + i, ts.begin() + j)));
-    }
-    i = j;
   }
-  return out;
+  assert(false && "unreachable");
 }
 
 // TUFTE
@@ -1846,34 +1535,19 @@ static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
 char raw_input[MAX_CHARS];
 
-bool is_h1(const T *t) {
-  if (t->ty != TT::Heading) {
-    return false;
-  }
-  if (((THeading *)(t))->hnum != 1) {
-    return false;
-  }
-  return true;
+bool is_h1(const BlockTm *t) {
+  return t->kind == BlockTm::Kind::Heading && ((BlockHeading *)t)->hnum == 1;
 }
 
-// per-article info collected by splitting the token stream on H1s.
+// per-article info collected by splitting the block stream on H1s.
 struct ArticleInfo {
-  THeading *heading;
-  const char *url;      // from mkHeadingURL; includes the /articles/ prefix.
-  ll ix_start, ix_end;  // token range [ix_start, ix_end).
-  TMetaBlock *meta;     // nullptr if the article has no ```meta block.
+  const BlockHeading *heading;
+  const char *url;       // from mkHeadingURL; includes the /articles/ prefix.
+  ll ix_start, ix_end;   // block range [ix_start, ix_end).
+  const BlockMeta *meta; // nullptr if the article has no ```meta block.
 };
 
-// is this a RawText token containing only whitespace?
-bool is_whitespace_rawtext(const T *t, const char *raw_input) {
-  if (t->ty != TT::RawText) { return false; }
-  for (ll i = t->span.begin.si; i < t->span.end.si; ++i) {
-    if (!isspace(raw_input[i])) { return false; }
-  }
-  return true;
-}
-
-vector<ArticleInfo> collectArticles(const vector<T *> &ts,
+vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
                                     const char *raw_input) {
   vector<ArticleInfo> articles;
   std::unordered_map<std::string, int> url_count;
@@ -1881,7 +1555,7 @@ vector<ArticleInfo> collectArticles(const vector<T *> &ts,
   while (ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
   while (ix < (ll)ts.size()) {
     ArticleInfo info;
-    info.heading = (THeading *)ts[ix];
+    info.heading = (const BlockHeading *)ts[ix];
     info.url = mkHeadingURL(raw_input, info.heading);
     info.ix_start = ix;
     info.meta = nullptr;
@@ -1890,14 +1564,11 @@ vector<ArticleInfo> collectArticles(const vector<T *> &ts,
     while (ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
     info.ix_end = ix;
 
-    // metadata is the first real token after the heading.
-    for (ll j = info.ix_start + 1; j < info.ix_end; ++j) {
-      if (ts[j]->ty == TT::LineBreak ||
-          is_whitespace_rawtext(ts[j], raw_input)) {
-        continue;
-      }
-      if (ts[j]->ty == TT::MetaBlock) { info.meta = (TMetaBlock *)ts[j]; }
-      break;
+    // metadata is the block immediately after the heading (blank lines
+    // produce no tokens).
+    if (info.ix_start + 1 < info.ix_end &&
+        ts[info.ix_start + 1]->kind == BlockTm::Kind::Meta) {
+      info.meta = (const BlockMeta *)ts[info.ix_start + 1];
     }
 
     if (++url_count[info.url] > 1) {
@@ -1996,7 +1667,8 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
         "<li class='post-row' data-status='%s' data-topics='%s' data-year='%s'>",
         status, data_topics.c_str(), year);
     outlen += sprintf(outs + outlen, "<a href='%s.html' class='post-title'>", a.url);
-    toHTML(katex_ctx, prism_ctx, raw_input, a.heading->item, outlen, outs);
+    renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line,
+                     outlen, outs);
     outlen += sprintf(outs + outlen, "</a>");
     outlen += sprintf(outs + outlen, "<span class='post-meta'>");
     if (year[0]) {
@@ -2030,39 +1702,32 @@ struct RSS {
     }
   }
 
-  static void mkHeadingRSSTitle(const char *raw_input, T *t, std::string &out) {
-    if (t->ty == TT::InlineGroup) {
-      TInlineGroup *group = (TInlineGroup *)t;
-      for (T *item : group->items) {
-        mkHeadingRSSTitle(raw_input, item, out);
+  // the heading's inline terms as escaped plain text.
+  static void mkRSSTitle(const char *raw_input, const InlineLine &line,
+                         std::string &out) {
+    for (const InlineTm *t : line) {
+      switch (t->kind) {
+      case InlineTm::Kind::Italic:
+        mkRSSTitle(raw_input, ((const InlineItalic *)t)->items, out);
+        break;
+      case InlineTm::Kind::Link:
+        mkRSSTitle(raw_input, ((const InlineLink *)t)->text, out);
+        break;
+      case InlineTm::Kind::Code:
+      case InlineTm::Kind::Latex:
+        // strip the delimiter characters.
+        for (ll i = t->span.begin.si + 1; i < t->span.end.si - 1; ++i) {
+          writeEscapedCharacter(raw_input[i], out);
+        }
+        break;
+      case InlineTm::Kind::Text:
+        for (ll i = t->span.begin.si; i < t->span.end.si; ++i) {
+          writeEscapedCharacter(raw_input[i], out);
+        }
+        // at the end of raw text, write a space.
+        writeEscapedCharacter(' ', out);
+        break;
       }
-    } else if (t->ty == TT::Heading) {
-      THeading *heading = (THeading *)t;
-      mkHeadingRSSTitle(raw_input, heading->item, out);
-    } else if (t->ty == TT::Bold) {
-      TBold *bold = (TBold *)t;
-      mkHeadingRSSTitle(raw_input, bold->item, out);
-    } else if (t->ty == TT::Italic) {
-      TItalic *italic = (TItalic *)t;
-      mkHeadingRSSTitle(raw_input, italic->item, out);
-    } else if (t->ty == TT::Link) {
-      TLink *link = (TLink *)t;
-      mkHeadingRSSTitle(raw_input, link->text, out);
-    } else if (t->ty == TT::CodeInline || t->ty == TT::LatexInline) {
-      for (int i = t->span.begin.si + 1; i < t->span.end.si - 1; ++i) {
-        writeEscapedCharacter(raw_input[i], out);
-      }
-    } else if (t->ty == TT::RawText) {
-      for (int i = t->span.begin.si; i < t->span.end.si; ++i) {
-        writeEscapedCharacter(raw_input[i], out);
-      }
-      // at the end of raw text, write a space.
-      writeEscapedCharacter(' ', out);
-    } else {
-      printf_err_span(t->span, raw_input,
-                "unknown type of token type in a heading: |%d|", t->ty);
-      std::cerr << "unknown token of type: |" << t->ty << "|\n";
-      assert(false && "unknown type of heading to convert in RSS title");
     }
   }
   // "YYYY-MM-DD" -> RFC-822 "Mon, 12 Mar 2024 00:00:00 +0000"; false on
@@ -2099,7 +1764,7 @@ struct RSS {
       // </item>
 
       std::string title;
-      mkHeadingRSSTitle(raw_input, article.heading, title);
+      mkRSSTitle(raw_input, article.heading->line, title);
 
       fprintf(frss, "  <item>\n");
       fprintf(frss, "    <title>%s</title>\n", title.c_str());
@@ -2198,10 +1863,10 @@ int main(int argc, char **argv) {
   const ll nread = fread(raw_input, 1, len, fin);
   assert(nread == len);
 
-  vector<T *> ts;
-  tokenize(raw_input, nread, ts);
-  ts = insertParagraphs(ts, raw_input);
-  cout << "===Done tokenizing; Emitting HTML...===\n";
+  // phase A: block structure; phase B: inline structure.
+  vector<BlockTm *> ts = parseBlocks(raw_input, nread);
+  parseInlines(ts, raw_input, nread);
+  cout << "===Done parsing; Emitting HTML...===\n";
 
   const vector<ArticleInfo> articles = collectArticles(ts, raw_input);
 
@@ -2237,7 +1902,8 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
     for (int i = 0; i < ix_h1; ++i) {
-      toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, index_html_buf);
+      renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
+                  index_html_buf);
     }
 
     // ===write out table of contents===
@@ -2266,9 +1932,8 @@ int main(int argc, char **argv) {
   // ===write out all of the other .html files===
   while (ix_h1 < (ll)ts.size()) {
     const int ix_start = ix_h1;
-    assert(ts[ix_start]->ty == TT::Heading);
-    THeading *heading = (THeading *)ts[ix_start];
-    assert(heading->hnum == 1);
+    assert(is_h1(ts[ix_start]));
+    const BlockHeading *heading = (const BlockHeading *)ts[ix_start];
 
     ix_h1++;
     while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) {
@@ -2284,7 +1949,8 @@ int main(int argc, char **argv) {
     outlen += sprintf(outbuf + outlen, "%s", html_preamble);
     bool success = true;
     for (int i = ix_start; i < ix_h1; ++i) {
-      success &= toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
+      success &=
+          renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
 
     if (!success) {
@@ -2299,7 +1965,7 @@ int main(int argc, char **argv) {
       int ix = ix_start - 1;
       while(ix >= 0 && !is_h1(ts[ix])) { ix--; } 
       if (ix >= 0  && is_h1(ts[ix])) {
-        THeading *prev = (THeading *)ts[ix];
+        const BlockHeading *prev = (const BlockHeading *)ts[ix];
         outlen += sprintf(outbuf + outlen, "<a class=\"footer-item\" href=\"%s.html\"> Newer </a>",
             mkHeadingURL(raw_input, prev));
       }
@@ -2311,7 +1977,7 @@ int main(int argc, char **argv) {
       int ix = ix_start +1;
       while(ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
       if (ix < (ll) ts.size() && is_h1(ts[ix])) {
-        THeading *next = (THeading *)ts[ix];
+        const BlockHeading *next = (const BlockHeading *)ts[ix];
         outlen += sprintf(outbuf + outlen, "<a class=\"footer-item\" href=\"%s.html\"> Older </a>", 
             mkHeadingURL(raw_input, next));
       }
