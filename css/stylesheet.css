@@ -67,8 +67,11 @@ img {
   min-height: 100%;
   max-width: 100%;
   font-size: 1.5em;
-  /* line-height: 1.5em; */
-  line-height: 1.1em;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
   padding-left: 30px;
   padding-right: 30px;
   background: #ffffff;
@@ -113,6 +116,35 @@ img {
   padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
+}
+
+/* === vertical rhythm; these must follow the .container * reset === */
+
+.container p {
+  margin-bottom: 0.8em;
+}
+
+.container h1, .container h2, .container h3, .container h4, .container h5 {
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+.container ul, .container ol {
+  margin-bottom: 0.8em;
+}
+
+.container li {
+  margin-bottom: 0.15em;
+}
+
+.container pre, .container .latexblock, .container blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  padding: 5px 10px;
+}
+
+.container blockquote p {
+  margin-bottom: 0.3em;
 }
 
 .image {}
@@ -194,13 +226,6 @@ ul {
   font-color: #0f0f0f;
 }
 
-/* https://stackoverflow.com/a/31633969/5305365 */
-br {
-  display: block; /* makes it have a width */
-  content: ""; /* clears default height */
-  margin-top: 0; /* change this to whatever height you want it */
-}
-
 #footer {
   margin-top: 2em;
   display: flex;
@@ -215,4 +240,88 @@ br {
 
 blockquote {
   padding-left: 0.2em;
+}
+
+/* === homepage filter: topic bubbles + done/draft toggle === */
+
+#filter-bar {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#status-filter {
+  margin-bottom: 0.6em;
+}
+
+#topic-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+#filter-bar .pill {
+  font-family: 'Blog Serif', serif;
+  font-size: 0.85em;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #bbb;
+  border-radius: 999px;
+  padding: 0.15em 0.8em;
+  margin-right: 0.3em;
+  cursor: pointer;
+  line-height: 1.4em;
+}
+
+#filter-bar .pill:hover {
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+#filter-bar .pill.is-active {
+  background: #1a73e8;
+  border-color: #1a73e8;
+  color: #ffffff;
+}
+
+#filter-bar .pill-count {
+  opacity: 0.6;
+  padding-left: 0.4em;
+  font-size: 0.85em;
+}
+
+#post-list .post-row.hidden {
+  display: none;
+}
+
+#post-list .post-meta {
+  padding-left: 0.6em;
+  font-size: 0.8em;
+  color: #777;
+  white-space: nowrap;
+}
+
+#post-list .post-year {
+  padding-right: 0.5em;
+}
+
+#post-list .post-topic {
+  padding-right: 0.5em;
+  font-style: italic;
+}
+
+#post-list .status-dot {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+#post-list .status-dot.status-done {
+  background: #188038;
+}
+
+#post-list .status-dot.status-draft {
+  background: transparent;
+  border: 1px solid #999;
 }

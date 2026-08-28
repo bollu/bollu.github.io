@@ -1806,7 +1806,7 @@ const char html_preamble[] =
     "<script src='/abcjs/abcjs-basic-min.js'></script>"
     "<link rel='stylesheet' href='/abcjs/abcjs-audio.css' >"
     // ===RSS===
-    "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
+    "<link rel='alternate' type='application/rss+xml' href='/feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
     "<link rel='stylesheet' href='/katex/katex.min.css'"
     "    "
@@ -2023,6 +2023,8 @@ struct RSS {
       out += " &quot; ";
     } else if (c == '\'') {
       out += " &apos; ";
+    } else if (c == '&') {
+      out += "&amp;";
     } else {
       out.push_back(c);
     }
@@ -2081,7 +2083,7 @@ struct RSS {
                            const vector<ArticleInfo> &articles) {
     assert(frss != nullptr);
     // https://www.mnot.net/rss/tutorial/
-    fprintf(frss, "<?xml version=\"1.0\"?>\n");
+    fprintf(frss, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(frss, "<rss version=\"2.0\">\n");
     fprintf(frss, "<channel>\n");
     fprintf(frss, "<title>A universe of sorts</title>\n");
@@ -2102,9 +2104,10 @@ struct RSS {
       fprintf(frss, "  <item>\n");
       fprintf(frss, "    <title>%s</title>\n", title.c_str());
       // tell the aggregators that we are using RSS 2.0
-      fprintf(frss, "    <guid>%s/%s.html</guid>\n",
+      // article.url already begins with /articles/.
+      fprintf(frss, "    <guid>%s%s.html</guid>\n",
               CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
-      fprintf(frss, "    <link>%s/%s.html</link>\n",
+      fprintf(frss, "    <link>%s%s.html</link>\n",
               CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
       if (article.meta && article.meta->date[0]) {
         char rfc822[64];
