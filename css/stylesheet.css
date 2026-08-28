@@ -256,16 +256,6 @@ blockquote {
   margin-bottom: 1em;
 }
 
-#status-filter {
-  margin-bottom: 0.6em;
-}
-
-#topic-bubbles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4em;
-}
-
 #filter-bar .pill {
   font-family: 'Blog Serif', serif;
   font-size: 0.85em;
@@ -290,12 +280,6 @@ blockquote {
   color: #ffffff;
 }
 
-#filter-bar .pill-count {
-  opacity: 0.6;
-  padding-left: 0.4em;
-  font-size: 0.85em;
-}
-
 #post-list .post-row.hidden {
   display: none;
 }
@@ -309,11 +293,6 @@ blockquote {
 
 #post-list .post-year {
   padding-right: 0.5em;
-}
-
-#post-list .post-topic {
-  padding-right: 0.5em;
-  font-style: italic;
 }
 
 #post-list .status-dot {
@@ -331,4 +310,16 @@ blockquote {
 #post-list .status-dot.status-draft {
   background: transparent;
   border: 1px solid #999;
+}
+
+/* the created / last-edited / draft line under each article's title */
+.container .article-meta {
+  font-size: 0.8em;
+  color: #777;
+  margin-bottom: 1em;
+}
+
+.container .article-meta-draft {
+  color: #b3261e;
+  font-style: italic;
 }

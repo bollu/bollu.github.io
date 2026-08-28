@@ -325,7 +325,8 @@ struct ListItemTm {
   ListItemTm(L marker) : marker(marker) {}
 };
 
-// article metadata from a ```meta fenced block: status/date/topics key-values.
+// article metadata from a ```meta fenced block:
+// status/created/last-edited key-values.
 enum class MetaStatus { Draft, Done }; // absent status key means Draft.
 
 struct BlockTm {
@@ -395,8 +396,8 @@ struct BlockRaw : public BlockTm {
 // article metadata from a ```meta fenced block.
 struct BlockMeta : public BlockTm {
   MetaStatus status = MetaStatus::Draft;
-  char date[11] = {0}; // "YYYY-MM-DD", or empty if absent.
-  vector<std::string> topics;
+  char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
+  char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -619,8 +620,21 @@ bool isNumberedListBegin(const char *s, const ll len, const L lbegin) {
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
 
+// is `val` a well-formed YYYY-MM-DD date? copies it into out[11] if so.
+bool parseMetaDate(const std::string &val, char *out) {
+  int y, m, d;
+  if (val.size() == 10 && sscanf(val.c_str(), "%4d-%2d-%2d", &y, &m, &d) == 3 &&
+      m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+    memcpy(out, val.c_str(), 10);
+    out[10] = 0;
+    return true;
+  }
+  return false;
+}
+
 // parse the contents of a ```meta fenced block into a Meta block term.
-// span covers the whole block including fences; keys are status/date/topics.
+// span covers the whole block including fences;
+// keys are status/created/last-edited.
 BlockMeta *parseMetaBlock(const char *s, const Span span) {
   BlockMeta *meta = new BlockMeta(span);
   const L content_begin = span.begin.next("```").next("meta").next("\n");
@@ -661,26 +675,15 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         printf_err_span(span, s,
             "meta status must be 'draft' or 'done', got: |%s|", val.c_str());
       }
-    } else if (key == "date") {
-      int y, m, d;
-      if (val.size() == 10 && sscanf(val.c_str(), "%4d-%2d-%2d", &y, &m, &d) == 3 &&
-          m >= 1 && m <= 12 && d >= 1 && d <= 31) {
-        strncpy(meta->date, val.c_str(), sizeof(meta->date) - 1);
-      } else {
+    } else if (key == "created") {
+      if (!parseMetaDate(val, meta->created)) {
         printf_err_span(span, s,
-            "meta date must be YYYY-MM-DD, got: |%s|", val.c_str());
+            "meta created must be YYYY-MM-DD, got: |%s|", val.c_str());
       }
-    } else if (key == "topics") {
-      size_t tstart = 0;
-      while (tstart <= val.size()) {
-        size_t tend = val.find(',', tstart);
-        if (tend == std::string::npos) { tend = val.size(); }
-        std::string topic = val.substr(tstart, tend - tstart);
-        tstart = tend + 1;
-        const size_t tb = topic.find_first_not_of(" \t");
-        if (tb == std::string::npos) { continue; }
-        const size_t te = topic.find_last_not_of(" \t");
-        meta->topics.push_back(topic.substr(tb, te - tb + 1));
+    } else if (key == "last-edited") {
+      if (!parseMetaDate(val, meta->last_edited)) {
+        printf_err_span(span, s,
+            "meta last-edited must be YYYY-MM-DD, got: |%s|", val.c_str());
       }
     } else {
       printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
@@ -1361,9 +1364,33 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
                  const char *raw_input, const BlockTm *t, ll &outlen,
                  char *outs) {
   switch (t->kind) {
-  case BlockTm::Kind::Comment:
+  case BlockTm::Kind::Comment: {
+    return true;
+  }
+
   case BlockTm::Kind::Meta: {
-    // comments and article metadata render to nothing.
+    // article metadata renders as a small line under the heading.
+    const BlockMeta *meta = (const BlockMeta *)t;
+    const bool draft = meta->status == MetaStatus::Draft;
+    if (!meta->created[0] && !meta->last_edited[0] && !draft) { return true; }
+
+    outlen += sprintf(outs + outlen, "<div class='article-meta'>");
+    const char *sep = "";
+    if (meta->created[0]) {
+      outlen += sprintf(outs + outlen, "created %s", meta->created);
+      sep = " · ";
+    }
+    // showing last-edited only makes sense once it differs from created.
+    if (meta->last_edited[0] && strcmp(meta->last_edited, meta->created) != 0) {
+      outlen += sprintf(outs + outlen, "%slast edited %s", sep,
+                        meta->last_edited);
+      sep = " · ";
+    }
+    if (draft) {
+      outlen += sprintf(outs + outlen,
+                        "%s<span class='article-meta-draft'>draft</span>", sep);
+    }
+    outlen += sprintf(outs + outlen, "</div>");
     return true;
   }
 
@@ -1580,21 +1607,8 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
   return articles;
 }
 
-// slug used for topic data-attributes and filter matching; never for URLs.
-std::string topicSlug(const std::string &topic) {
-  std::string out;
-  for (char c : topic) {
-    if (isalnum(c)) {
-      out.push_back(tolower(c));
-    } else if (c == ' ' || c == '-') {
-      if (!out.empty() && out.back() != '-') { out.push_back('-'); }
-    }
-  }
-  return out;
-}
-
 // returns number of characters written.
-// homepage: topic bubbles + done/draft filter + the (filterable) post list.
+// homepage: done/draft filter + the (filterable) post list.
 long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
                            const char *raw_input,
                            const vector<ArticleInfo> &articles,
@@ -1602,43 +1616,15 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   printf("===writing homepage TOC===\n");
   ll outlen = 0;
 
-  // count topics; untagged articles fall into 'misc'.
-  std::vector<std::pair<std::string, std::string>> slug2name; // insertion order
-  std::unordered_map<std::string, int> topic_count;
-  for (const ArticleInfo &a : articles) {
-    std::vector<std::string> topics =
-        a.meta && !a.meta->topics.empty() ? a.meta->topics
-                                          : std::vector<std::string>{"misc"};
-    for (const std::string &t : topics) {
-      const std::string slug = topicSlug(t);
-      if (slug.empty()) { continue; }
-      if (topic_count[slug]++ == 0) { slug2name.push_back({slug, t}); }
-    }
-  }
-  std::sort(slug2name.begin(), slug2name.end(),
-            [&](const std::pair<std::string, std::string> &a,
-                const std::pair<std::string, std::string> &b) {
-              const int ca = topic_count[a.first], cb = topic_count[b.first];
-              if (ca != cb) { return ca > cb; }
-              return a.first < b.first;
-            });
-
   // ===filter bar===
-  outlen += sprintf(outs + outlen, "<div id='filter-bar'>");
   outlen += sprintf(outs + outlen,
+      "<div id='filter-bar'>"
       "<div id='status-filter'>"
       "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
       "<button class='pill status-pill' data-status-filter='done'>done</button>"
       "<button class='pill status-pill' data-status-filter='draft'>draft</button>"
+      "</div>"
       "</div>");
-  outlen += sprintf(outs + outlen, "<div id='topic-bubbles'>");
-  for (const auto &sn : slug2name) {
-    outlen += sprintf(outs + outlen,
-        "<button class='pill topic-pill' data-topic-filter='%s'>%s"
-        "<span class='pill-count'>%d</span></button>",
-        sn.first.c_str(), sn.second.c_str(), topic_count[sn.first]);
-  }
-  outlen += sprintf(outs + outlen, "</div></div>");
 
   // ===post list===
   outlen += sprintf(outs + outlen, "<ol reversed id='post-list'>");
@@ -1646,26 +1632,10 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     const char *status =
         (a.meta && a.meta->status == MetaStatus::Done) ? "done" : "draft";
     char year[5] = {0};
-    if (a.meta && a.meta->date[0]) { strncpy(year, a.meta->date, 4); }
-
-    std::string data_topics = ",";
-    std::string topic_spans;
-    if (a.meta && !a.meta->topics.empty()) {
-      for (const std::string &t : a.meta->topics) {
-        const std::string slug = topicSlug(t);
-        if (slug.empty()) { continue; }
-        data_topics += slug + ",";
-        topic_spans += "<span class='post-topic'>" + t + "</span>";
-      }
-    }
-    if (data_topics == ",") {
-      data_topics = ",misc,";
-      topic_spans = "";
-    }
+    if (a.meta && a.meta->created[0]) { strncpy(year, a.meta->created, 4); }
 
     outlen += sprintf(outs + outlen,
-        "<li class='post-row' data-status='%s' data-topics='%s' data-year='%s'>",
-        status, data_topics.c_str(), year);
+        "<li class='post-row' data-status='%s' data-year='%s'>", status, year);
     outlen += sprintf(outs + outlen, "<a href='%s.html' class='post-title'>", a.url);
     renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line,
                      outlen, outs);
@@ -1674,7 +1644,6 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     if (year[0]) {
       outlen += sprintf(outs + outlen, "<span class='post-year'>%s</span>", year);
     }
-    outlen += sprintf(outs + outlen, "%s", topic_spans.c_str());
     outlen += sprintf(outs + outlen,
         "<span class='status-dot status-%s' title='%s'></span>", status, status);
     outlen += sprintf(outs + outlen, "</span></li>");
@@ -1774,9 +1743,9 @@ struct RSS {
               CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
       fprintf(frss, "    <link>%s%s.html</link>\n",
               CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
-      if (article.meta && article.meta->date[0]) {
+      if (article.meta && article.meta->created[0]) {
         char rfc822[64];
-        if (rfc822FromISODate(article.meta->date, rfc822, sizeof(rfc822))) {
+        if (rfc822FromISODate(article.meta->created, rfc822, sizeof(rfc822))) {
           fprintf(frss, "    <pubDate>%s</pubDate>\n", rfc822);
         }
       }
