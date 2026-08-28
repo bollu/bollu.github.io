@@ -12317,7 +12317,7 @@ int centroid(int v, int p) {
 
 # Projections onto convex sets
 
-- [Link](https://en.wikipedia.org/wiki/Projections_onto_convex_sets
+- [Link](https://en.wikipedia.org/wiki/Projections_onto_convex_sets)
 
 
 # BGFS algorithm for unconstrained nonlinear optimization
