@@ -12,6 +12,12 @@
  
 # Big List of Funk Jazz Standards
 
+```meta
+status: done
+date: 2023-05-01
+topics: jazz, music
+```
+
 - [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
 - Vamp: repeating pattern with chromaticism (by eg side slipping).
 - Use dorian, myxolydian modes.
@@ -201,6 +207,12 @@ since she is lesser herself, and more a player of the game.
 
 # Mean, Variance And Everything Else As Geometry
 
+```meta
+status: done
+date: 2024-01-15
+topics: math
+```
+
 - [Video](https://www.youtube.com/watch?v=h4QF-2YiM88)
 - Space of vectors, where random varibles are vectors with coefficients given by the realization,
   and the all-ones vector is the RV $1$.
@@ -212,6 +224,12 @@ since she is lesser herself, and more a player of the game.
 
 
 # How to learn the altered scale
+
+```meta
+status: draft
+date: 2024-02-20
+topics: jazz, music
+```
 
 - Suppose we want to play the `D-G-C` `ii V I` chord progression.
 - For G, we can use notes from the altered scale.
