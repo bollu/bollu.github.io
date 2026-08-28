@@ -1705,7 +1705,8 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "<a class='garage-door' "
       "href='https://notes.andymatuschak.org/About_these_notes"
       "?stackedNotes=zCMhncA1iSE74MKKYQS5PBZ'>"
-      "work with the garage door open</a>"
+      "Work With The Garage Door Open</a>"
+      "<span class='garage-door-author'> — Andy Matuschak</span>"
       "</div>"
       "</div>");
 

@@ -129,6 +129,14 @@ img {
   margin-bottom: 0.4em;
 }
 
+/* the site header: the name sits tight under the title, big and heavy --
+   the size the old markup's accidental h3-inside-h1 nesting produced. */
+.container h1 + h3 {
+  font-size: 2.34em; /* h3's 1.17em against the enclosing h1's 2em. */
+  line-height: 1em;
+  margin-top: 0;
+}
+
 .container ul, .container ol {
   margin-bottom: 0.8em;
 }
@@ -259,7 +267,9 @@ blockquote {
 /* minimal tab-style buttons: a colored line under the selected one. */
 #filter-bar .pill {
   font-family: 'Blog Serif', serif;
-  font-size: 0.85em;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   background: none;
   color: #000000;
   border: none;
@@ -315,6 +325,12 @@ blockquote {
   font-size: 0.85em;
   padding-left: 0.6em;
   font-style: italic;
+}
+
+#status-filter .garage-door-author {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #777;
 }
 
 /* the created / last-edited / draft line under each article's title */
