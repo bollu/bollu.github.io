@@ -327,10 +327,11 @@ struct ListItemTm {
 
 // article metadata from a ```meta fenced block:
 // status/created/last-edited key-values.
-// absent status key means Draft. BigList marks living list documents; they
-// are lifted out of the chronological post list into their own homepage
-// section.
-enum class MetaStatus { Draft, Done, BigList };
+// Article marks a finished piece; Scratch is a working note published with
+// the garage door open (the absent-status default). BigList marks living
+// list documents, lifted out of the chronological post list into their own
+// homepage section.
+enum class MetaStatus { Scratch, Article, BigList };
 
 struct BlockTm {
   enum class Kind {
@@ -398,7 +399,7 @@ struct BlockRaw : public BlockTm {
 
 // article metadata from a ```meta fenced block.
 struct BlockMeta : public BlockTm {
-  MetaStatus status = MetaStatus::Draft;
+  MetaStatus status = MetaStatus::Scratch;
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
@@ -670,16 +671,16 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
     val = vb == std::string::npos ? "" : val.substr(vb);
 
     if (key == "status") {
-      if (val == "done") {
-        meta->status = MetaStatus::Done;
-      } else if (val == "draft") {
-        meta->status = MetaStatus::Draft;
+      if (val == "article") {
+        meta->status = MetaStatus::Article;
+      } else if (val == "scratch") {
+        meta->status = MetaStatus::Scratch;
       } else if (val == "big-list") {
         meta->status = MetaStatus::BigList;
       } else {
         printf_err_span(span, s,
-            "meta status must be 'draft', 'done', or 'big-list', got: |%s|",
-            val.c_str());
+            "meta status must be 'article', 'scratch', or 'big-list', "
+            "got: |%s|", val.c_str());
       }
     } else if (key == "created") {
       if (!parseMetaDate(val, meta->created)) {
@@ -1378,7 +1379,7 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     // article metadata renders as a small line under the heading.
     const BlockMeta *meta = (const BlockMeta *)t;
     if (!meta->created[0] && !meta->last_edited[0] &&
-        meta->status == MetaStatus::Done) {
+        meta->status == MetaStatus::Article) {
       return true;
     }
 
@@ -1394,9 +1395,10 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
                         meta->last_edited);
       sep = " · ";
     }
-    if (meta->status == MetaStatus::Draft) {
-      outlen += sprintf(outs + outlen,
-                        "%s<span class='article-meta-draft'>draft</span>", sep);
+    if (meta->status == MetaStatus::Scratch) {
+      outlen += sprintf(
+          outs + outlen,
+          "%s<span class='article-meta-scratch'>scratch</span>", sep);
     } else if (meta->status == MetaStatus::BigList) {
       outlen += sprintf(
           outs + outlen,
@@ -1646,17 +1648,12 @@ std::string bigListLabel(const std::string &title) {
   return title;
 }
 
-// returns number of characters written.
-// homepage: the big-list section, the done/draft filter, and the
-// (filterable) chronological post list.
-long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
-                           const char *raw_input,
-                           const vector<ArticleInfo> &articles,
-                           KEEP char *outs) {
-  printf("===writing homepage TOC===\n");
-  ll outlen = 0;
-
-  // ===big lists: lifted out of the chronological list===
+// the big-list articles, lifted out of the chronological list into one plain
+// line of links: "Big lists of A · B · C ...". placed where the preamble's
+// <!-- big-lists --> marker comment sits.
+long long writeBigListsHTML(const char *raw_input,
+                            const vector<ArticleInfo> &articles,
+                            KEEP char *outs) {
   vector<std::pair<std::string, const ArticleInfo *>> biglists;
   for (const ArticleInfo &a : articles) {
     if (a.meta && a.meta->status == MetaStatus::BigList) {
@@ -1664,6 +1661,7 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
                           &a});
     }
   }
+  if (biglists.empty()) { return 0; }
   std::sort(biglists.begin(), biglists.end(),
             [](const std::pair<std::string, const ArticleInfo *> &a,
                const std::pair<std::string, const ArticleInfo *> &b) {
@@ -1672,25 +1670,42 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
               for (char &c : lb) { c = tolower(c); }
               return la < lb;
             });
-  if (!biglists.empty()) {
-    outlen += sprintf(outs + outlen, "<div id='big-lists'>"
-                                     "<span class='big-lists-label'>"
-                                     "Big lists of</span> ");
-    for (const auto &bl : biglists) {
-      outlen += sprintf(outs + outlen,
-                        "<a class='pill big-list-pill' href='%s.html'>%s</a>",
-                        bl.second->url, bl.first.c_str());
-    }
-    outlen += sprintf(outs + outlen, "</div>");
+
+  ll outlen = 0;
+  outlen += sprintf(outs + outlen,
+                    "<div id='big-lists'>"
+                    "<span class='big-lists-label'>Big lists of</span> ");
+  const char *sep = "";
+  for (const auto &bl : biglists) {
+    outlen += sprintf(outs + outlen, "%s<a href='%s.html'>%s</a>", sep,
+                      bl.second->url, bl.first.c_str());
+    sep = " · ";
   }
+  outlen += sprintf(outs + outlen, "</div>");
+  return outlen;
+}
+
+// returns number of characters written.
+// homepage: the done/draft filter and the (filterable) chronological post
+// list; big lists live in their own section (writeBigListsHTML).
+long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
+                           const char *raw_input,
+                           const vector<ArticleInfo> &articles,
+                           KEEP char *outs) {
+  printf("===writing homepage TOC===\n");
+  ll outlen = 0;
 
   // ===filter bar===
   outlen += sprintf(outs + outlen,
       "<div id='filter-bar'>"
       "<div id='status-filter'>"
       "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
-      "<button class='pill status-pill' data-status-filter='done'>done</button>"
-      "<button class='pill status-pill' data-status-filter='draft'>draft</button>"
+      "<button class='pill status-pill' data-status-filter='article'>article</button>"
+      "<button class='pill status-pill' data-status-filter='scratch'>scratch</button>"
+      "<a class='garage-door' "
+      "href='https://notes.andymatuschak.org/About_these_notes"
+      "?stackedNotes=zCMhncA1iSE74MKKYQS5PBZ'>"
+      "work with the garage door open</a>"
       "</div>"
       "</div>");
 
@@ -1699,7 +1714,8 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   for (const ArticleInfo &a : articles) {
     if (a.meta && a.meta->status == MetaStatus::BigList) { continue; }
     const char *status =
-        (a.meta && a.meta->status == MetaStatus::Done) ? "done" : "draft";
+        (a.meta && a.meta->status == MetaStatus::Article) ? "article"
+                                                          : "scratch";
     char year[5] = {0};
     if (a.meta && a.meta->created[0]) { strncpy(year, a.meta->created, 4); }
 
@@ -1939,12 +1955,27 @@ int main(int argc, char **argv) {
     ll outlen = 0;
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
+    // the preamble's <!-- big-lists --> marker comment places the big-list
+    // section; without a marker it lands just above the post list.
+    bool biglists_emitted = false;
     for (int i = 0; i < ix_h1; ++i) {
+      if (ts[i]->kind == BlockTm::Kind::Comment &&
+          std::string(raw_input + ts[i]->span.begin.si,
+                      raw_input + ts[i]->span.end.si)
+                  .find("big-lists") != std::string::npos) {
+        outlen +=
+            writeBigListsHTML(raw_input, articles, index_html_buf + outlen);
+        biglists_emitted = true;
+        continue;
+      }
       renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
                   index_html_buf);
     }
 
     // ===write out table of contents===
+    if (!biglists_emitted) {
+      outlen += writeBigListsHTML(raw_input, articles, index_html_buf + outlen);
+    }
     outlen += writeHomepageTOC(katex_ctx, prism_ctx, raw_input, articles,
                                index_html_buf + outlen);
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
