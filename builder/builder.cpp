@@ -12,10 +12,12 @@
 #include <string>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <algorithm>
 #include <tuple>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <time.h>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -115,6 +117,8 @@ enum class TT {
   Italic,
   Bold,
   Quote,
+  MetaBlock,
+  Paragraph,
   Undefined,
 };
 
@@ -154,6 +158,10 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
     return o << "BOLD";
   case TT::Quote:
     return o << "Quote";
+  case TT::MetaBlock:
+    return o << "MetaBlock";
+  case TT::Paragraph:
+    return o << "Paragraph";
   }
   assert(false && "unreachable");
 };
@@ -399,10 +407,28 @@ struct TCodeBlock : public T {
   char *langname;
 };
 
+// article metadata from a ```meta fenced block: status/date/topics key-values.
+enum class MetaStatus { Draft, Done }; // absent status key means Draft.
+
+struct TMetaBlock : public T {
+  MetaStatus status = MetaStatus::Draft;
+  char date[11] = {0}; // "YYYY-MM-DD", or empty if absent.
+  std::vector<std::string> topics;
+  TMetaBlock(Span span) : T(TT::MetaBlock, span) {}
+};
+
 struct TInlineGroup : public T {
   TInlineGroup(L begin, vector<T *> items)
       : T(TT::InlineGroup, mkTokensSpan(begin, items)), items(items) {}
   vector<T *> items;
+};
+
+// a paragraph: a run of top-level prose tokens, grouped by insertParagraphs.
+struct TParagraph : public T {
+  vector<T *> items;
+  TParagraph(vector<T *> items)
+      : T(TT::Paragraph, mkTokensSpan(items[0]->span.begin, items)),
+        items(items) {}
 };
 
 struct THeading : public T {
@@ -842,6 +868,77 @@ T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
 
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
+
+// parse the contents of a ```meta fenced block into a TMetaBlock.
+// span covers the whole block including fences; keys are status/date/topics.
+T *tokenizeMetaBlock(const char *s, const Span span) {
+  TMetaBlock *meta = new TMetaBlock(span);
+  const L content_begin = span.begin.next("```").next("meta").next("\n");
+  const L content_end = span.end.prev("```");
+  std::string content(s + content_begin.si, s + content_end.si);
+
+  size_t linestart = 0;
+  while (linestart < content.size()) {
+    size_t lineend = content.find('\n', linestart);
+    if (lineend == std::string::npos) { lineend = content.size(); }
+    std::string line = content.substr(linestart, lineend - linestart);
+    linestart = lineend + 1;
+
+    // trim the line; skip blanks.
+    const size_t b = line.find_first_not_of(" \t\r");
+    if (b == std::string::npos) { continue; }
+    const size_t e = line.find_last_not_of(" \t\r");
+    line = line.substr(b, e - b + 1);
+
+    const size_t colon = line.find(':');
+    if (colon == std::string::npos) {
+      printf_err_span(span, s, "meta line has no 'key: value': |%s|", line.c_str());
+      continue;
+    }
+    std::string key = line.substr(0, colon);
+    std::string val = line.substr(colon + 1);
+    const size_t kb = key.find_last_not_of(" \t");
+    key = key.substr(0, kb == std::string::npos ? 0 : kb + 1);
+    const size_t vb = val.find_first_not_of(" \t");
+    val = vb == std::string::npos ? "" : val.substr(vb);
+
+    if (key == "status") {
+      if (val == "done") {
+        meta->status = MetaStatus::Done;
+      } else if (val == "draft") {
+        meta->status = MetaStatus::Draft;
+      } else {
+        printf_err_span(span, s,
+            "meta status must be 'draft' or 'done', got: |%s|", val.c_str());
+      }
+    } else if (key == "date") {
+      int y, m, d;
+      if (val.size() == 10 && sscanf(val.c_str(), "%4d-%2d-%2d", &y, &m, &d) == 3 &&
+          m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+        strncpy(meta->date, val.c_str(), sizeof(meta->date) - 1);
+      } else {
+        printf_err_span(span, s,
+            "meta date must be YYYY-MM-DD, got: |%s|", val.c_str());
+      }
+    } else if (key == "topics") {
+      size_t tstart = 0;
+      while (tstart <= val.size()) {
+        size_t tend = val.find(',', tstart);
+        if (tend == std::string::npos) { tend = val.size(); }
+        std::string topic = val.substr(tstart, tend - tstart);
+        tstart = tend + 1;
+        const size_t tb = topic.find_first_not_of(" \t");
+        if (tb == std::string::npos) { continue; }
+        const size_t te = topic.find_last_not_of(" \t");
+        meta->topics.push_back(topic.substr(tb, te - tb + 1));
+      }
+    } else {
+      printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
+    }
+  }
+  return meta;
+}
+
 T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
   Logger logger;
   logger.print(cerr);
@@ -951,6 +1048,9 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
           "WARNING: code block is very long! Perhaps block is overflowing?");
       // TODO: convert this to an assert.
       // assert(false && "very large code block");
+    }
+    if (!strcmp(langname, "meta")) {
+      return tokenizeMetaBlock(s, Span(lbegin, lcur));
     }
     return new TCodeBlock(Span(lbegin, lcur), langname);
   } else if (strpeek(s + lcur.si, "#")) {
@@ -1421,9 +1521,13 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   }
 
   case TT::LineBreak: {
-    const char *br = "<br/>";
-    strcpy(outs + outlen, br);
-    outlen += strlen(br);
+    // paragraph breaks are handled structurally by toHTMLBlockStream, which
+    // wraps prose runs in <p>; a line break renders nothing by itself.
+    return true;
+  }
+
+  case TT::MetaBlock: {
+    // article metadata renders to nothing in the article body.
     return true;
   }
 
@@ -1562,13 +1666,22 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   }
 
   case TT::InlineGroup: {
-    outlen += sprintf(outs + outlen, "<span class='centered'>");
     TInlineGroup *group = (TInlineGroup *)t;
     for (T *t : group->items) {
       toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
     }
-    outlen += sprintf(outs + outlen, "</span>");
     return true;
+  }
+
+  case TT::Paragraph: {
+    TParagraph *para = (TParagraph *)t;
+    bool success = true;
+    outlen += sprintf(outs + outlen, "<p>");
+    for (T *item : para->items) {
+      success &= toHTML(katex_ctx, prism_ctx, raw_input, item, outlen, outs);
+    }
+    outlen += sprintf(outs + outlen, "</p>");
+    return success;
   }
 
   case TT::CodeInline: {
@@ -1624,8 +1737,9 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
 
     outlen += sprintf(outs + outlen, "<blockquote>");
     for (auto it : tq->items) {
+      outlen += sprintf(outs + outlen, "<p>");
       toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
-      outlen += sprintf(outs + outlen, "<br/>");
+      outlen += sprintf(outs + outlen, "</p>");
     }
     outlen += sprintf(outs + outlen, "</blockquote>");
     return true;
@@ -1636,13 +1750,55 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   assert(false && "unreachabe");
 }
 
+// is this token part of running prose (grouped into a TParagraph by
+// insertParagraphs), as opposed to a block element that stands on its own?
+bool isProseFlowToken(const T *t) {
+  return t->ty == TT::InlineGroup || t->ty == TT::RawText;
+}
+
+// token-stream pass: group consecutive top-level prose tokens into TParagraph
+// nodes and drop the LineBreaks that separated them. after this pass the
+// stream is emitted by a plain toHTML loop.
+vector<T *> insertParagraphs(const vector<T *> &ts, const char *raw_input) {
+  vector<T *> out;
+  ll i = 0;
+  while (i < (ll)ts.size()) {
+    if (ts[i]->ty == TT::LineBreak) { i++; continue; }
+    if (!isProseFlowToken(ts[i])) { out.push_back(ts[i]); i++; continue; }
+
+    // collect the prose run [i, j).
+    ll j = i;
+    while (j < (ll)ts.size() && isProseFlowToken(ts[j])) { j++; }
+
+    // the first non-whitespace character of the run decides its shape.
+    char first_nonws = 0;
+    for (ll k = i; k < j && !first_nonws; ++k) {
+      for (ll si = ts[k]->span.begin.si; si < ts[k]->span.end.si; ++si) {
+        if (!isspace(raw_input[si])) { first_nonws = raw_input[si]; break; }
+      }
+    }
+    if (!first_nonws) { i = j; continue; } // stray newlines: drop.
+
+    if (first_nonws == '<') {
+      // a line of raw block HTML (e.g. the index preamble's <h1>) stays bare:
+      // wrapping block-level HTML in <p> is invalid.
+      for (ll k = i; k < j; ++k) { out.push_back(ts[k]); }
+    } else {
+      out.push_back(
+          new TParagraph(vector<T *>(ts.begin() + i, ts.begin() + j)));
+    }
+    i = j;
+  }
+  return out;
+}
+
 // TUFTE
 // <body vlink="#660000" text="#000000" link="#CC0000"
 //  bgcolor="#FFFFF3" alink="#660000">
 const char html_preamble[] =
     "<!DOCTYPE html>"
     "<meta charset='UTF-8'>"
-    "<html>"
+    "<html lang='en'>"
     "<head>"
     // ===viewport===
     "<meta name='viewport' content='width=device-width, initial-scale=1'>"
@@ -1700,39 +1856,156 @@ bool is_h1(const T *t) {
   return true;
 }
 
-// returns number of characters written
-// ix: index to start from. This will be the index after the
-// TODO: unify the API style of writeTableOfContentsHTML and toHTML, to have
-// both of them take a `const char *` at index `0`, and return a `long long`
-// of length.
-long long writeTableOfContentsHTML(duk_context *katex_ctx,
-                                   duk_context *prism_ctx,
-                                   const char *raw_input, const vector<T *> &ts,
-                                   KEEP char *outs) {
+// per-article info collected by splitting the token stream on H1s.
+struct ArticleInfo {
+  THeading *heading;
+  const char *url;      // from mkHeadingURL; includes the /articles/ prefix.
+  ll ix_start, ix_end;  // token range [ix_start, ix_end).
+  TMetaBlock *meta;     // nullptr if the article has no ```meta block.
+};
 
-  printf("===writing TOC===\n");
-  ll outlen = 0;
-  ll ix_h1 = 0;
+// is this a RawText token containing only whitespace?
+bool is_whitespace_rawtext(const T *t, const char *raw_input) {
+  if (t->ty != TT::RawText) { return false; }
+  for (ll i = t->span.begin.si; i < t->span.end.si; ++i) {
+    if (!isspace(raw_input[i])) { return false; }
+  }
+  return true;
+}
 
-  outlen += sprintf(outs + outlen, "<ol reversed>");
-  while (ix_h1 != (ll)ts.size()) {
-    while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) {
-      ix_h1++;
-    }
-    if (ix_h1 == (ll)ts.size()) {
+vector<ArticleInfo> collectArticles(const vector<T *> &ts,
+                                    const char *raw_input) {
+  vector<ArticleInfo> articles;
+  std::unordered_map<std::string, int> url_count;
+  ll ix = 0;
+  while (ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
+  while (ix < (ll)ts.size()) {
+    ArticleInfo info;
+    info.heading = (THeading *)ts[ix];
+    info.url = mkHeadingURL(raw_input, info.heading);
+    info.ix_start = ix;
+    info.meta = nullptr;
+
+    ix++;
+    while (ix < (ll)ts.size() && !is_h1(ts[ix])) { ix++; }
+    info.ix_end = ix;
+
+    // metadata is the first real token after the heading.
+    for (ll j = info.ix_start + 1; j < info.ix_end; ++j) {
+      if (ts[j]->ty == TT::LineBreak ||
+          is_whitespace_rawtext(ts[j], raw_input)) {
+        continue;
+      }
+      if (ts[j]->ty == TT::MetaBlock) { info.meta = (TMetaBlock *)ts[j]; }
       break;
     }
 
-    assert(is_h1(ts[ix_h1]));
-    THeading *theading = (THeading *)ts[ix_h1];
-    ix_h1++; // proceed to next heading
+    if (++url_count[info.url] > 1) {
+      printf("WARNING: duplicate article URL |%s|; earlier article at this "
+             "URL is overwritten.\n", info.url);
+    }
+    articles.push_back(info);
+  }
+  return articles;
+}
 
-    const char *url = mkHeadingURL(raw_input, theading);
-    printf("---writing heading |%lld: %s|---\n", ix_h1, url);
-    // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
-    outlen += sprintf(outs + outlen, "<li><a href='%s.html'>", url);
-    toHTML(katex_ctx, prism_ctx, raw_input, theading->item, outlen, outs);
-    outlen += sprintf(outs + outlen, "</a></li>");
+// slug used for topic data-attributes and filter matching; never for URLs.
+std::string topicSlug(const std::string &topic) {
+  std::string out;
+  for (char c : topic) {
+    if (isalnum(c)) {
+      out.push_back(tolower(c));
+    } else if (c == ' ' || c == '-') {
+      if (!out.empty() && out.back() != '-') { out.push_back('-'); }
+    }
+  }
+  return out;
+}
+
+// returns number of characters written.
+// homepage: topic bubbles + done/draft filter + the (filterable) post list.
+long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
+                           const char *raw_input,
+                           const vector<ArticleInfo> &articles,
+                           KEEP char *outs) {
+  printf("===writing homepage TOC===\n");
+  ll outlen = 0;
+
+  // count topics; untagged articles fall into 'misc'.
+  std::vector<std::pair<std::string, std::string>> slug2name; // insertion order
+  std::unordered_map<std::string, int> topic_count;
+  for (const ArticleInfo &a : articles) {
+    std::vector<std::string> topics =
+        a.meta && !a.meta->topics.empty() ? a.meta->topics
+                                          : std::vector<std::string>{"misc"};
+    for (const std::string &t : topics) {
+      const std::string slug = topicSlug(t);
+      if (slug.empty()) { continue; }
+      if (topic_count[slug]++ == 0) { slug2name.push_back({slug, t}); }
+    }
+  }
+  std::sort(slug2name.begin(), slug2name.end(),
+            [&](const std::pair<std::string, std::string> &a,
+                const std::pair<std::string, std::string> &b) {
+              const int ca = topic_count[a.first], cb = topic_count[b.first];
+              if (ca != cb) { return ca > cb; }
+              return a.first < b.first;
+            });
+
+  // ===filter bar===
+  outlen += sprintf(outs + outlen, "<div id='filter-bar'>");
+  outlen += sprintf(outs + outlen,
+      "<div id='status-filter'>"
+      "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
+      "<button class='pill status-pill' data-status-filter='done'>done</button>"
+      "<button class='pill status-pill' data-status-filter='draft'>draft</button>"
+      "</div>");
+  outlen += sprintf(outs + outlen, "<div id='topic-bubbles'>");
+  for (const auto &sn : slug2name) {
+    outlen += sprintf(outs + outlen,
+        "<button class='pill topic-pill' data-topic-filter='%s'>%s"
+        "<span class='pill-count'>%d</span></button>",
+        sn.first.c_str(), sn.second.c_str(), topic_count[sn.first]);
+  }
+  outlen += sprintf(outs + outlen, "</div></div>");
+
+  // ===post list===
+  outlen += sprintf(outs + outlen, "<ol reversed id='post-list'>");
+  for (const ArticleInfo &a : articles) {
+    const char *status =
+        (a.meta && a.meta->status == MetaStatus::Done) ? "done" : "draft";
+    char year[5] = {0};
+    if (a.meta && a.meta->date[0]) { strncpy(year, a.meta->date, 4); }
+
+    std::string data_topics = ",";
+    std::string topic_spans;
+    if (a.meta && !a.meta->topics.empty()) {
+      for (const std::string &t : a.meta->topics) {
+        const std::string slug = topicSlug(t);
+        if (slug.empty()) { continue; }
+        data_topics += slug + ",";
+        topic_spans += "<span class='post-topic'>" + t + "</span>";
+      }
+    }
+    if (data_topics == ",") {
+      data_topics = ",misc,";
+      topic_spans = "";
+    }
+
+    outlen += sprintf(outs + outlen,
+        "<li class='post-row' data-status='%s' data-topics='%s' data-year='%s'>",
+        status, data_topics.c_str(), year);
+    outlen += sprintf(outs + outlen, "<a href='%s.html' class='post-title'>", a.url);
+    toHTML(katex_ctx, prism_ctx, raw_input, a.heading->item, outlen, outs);
+    outlen += sprintf(outs + outlen, "</a>");
+    outlen += sprintf(outs + outlen, "<span class='post-meta'>");
+    if (year[0]) {
+      outlen += sprintf(outs + outlen, "<span class='post-year'>%s</span>", year);
+    }
+    outlen += sprintf(outs + outlen, "%s", topic_spans.c_str());
+    outlen += sprintf(outs + outlen,
+        "<span class='status-dot status-%s' title='%s'></span>", status, status);
+    outlen += sprintf(outs + outlen, "</span></li>");
   }
   outlen += sprintf(outs + outlen, "</ol>");
   return outlen;
@@ -1790,9 +2063,22 @@ struct RSS {
       assert(false && "unknown type of heading to convert in RSS title");
     }
   }
+  // "YYYY-MM-DD" -> RFC-822 "Mon, 12 Mar 2024 00:00:00 +0000"; false on
+  // failure. RSS 2.0 requires RFC-822 dates.
+  static bool rfc822FromISODate(const char *iso, char *out, size_t outsz) {
+    int y, m, d;
+    if (sscanf(iso, "%4d-%2d-%2d", &y, &m, &d) != 3) { return false; }
+    struct tm tm = {};
+    tm.tm_year = y - 1900;
+    tm.tm_mon = m - 1;
+    tm.tm_mday = d;
+    if (timegm(&tm) == (time_t)-1) { return false; } // normalizes tm_wday.
+    return strftime(out, outsz, "%a, %d %b %Y 00:00:00 +0000", &tm) > 0;
+  }
+
   // https://www.mnot.net/rss/tutorial/
   static void writeRSSFeed(KEEP FILE *frss, KEEP const char *raw_input,
-                           const vector<T *> &ts) {
+                           const vector<ArticleInfo> &articles) {
     assert(frss != nullptr);
     // https://www.mnot.net/rss/tutorial/
     fprintf(frss, "<?xml version=\"1.0\"?>\n");
@@ -1803,31 +2089,29 @@ struct RSS {
     fprintf(frss, "<description>%s</description>\n",
             CONFIG_WEBSITE_RSS_DESCRIPTION);
 
-    for (ll ix_h1 = 0; ix_h1 < (int)ts.size(); ++ix_h1) {
-      if (!is_h1(ts[ix_h1])) {
-        continue;
-      }
-      assert(is_h1(ts[ix_h1]));
-
+    for (const ArticleInfo &article : articles) {
       // <item>
       // <title>News for September the Second</title>
       // <link>http://example.com/2002/09/01</link>
       // <description>other things happened today</description>
       // </item>
 
-      THeading *theading = (THeading *)ts[ix_h1];
-      // TODO: make this a useful string of text, not the raw fucking URL
-      const char *url = mkHeadingURL(raw_input, theading);
       std::string title;
-      mkHeadingRSSTitle(raw_input, theading, title);
+      mkHeadingRSSTitle(raw_input, article.heading, title);
 
       fprintf(frss, "  <item>\n");
       fprintf(frss, "    <title>%s</title>\n", title.c_str());
       // tell the aggregators that we are using RSS 2.0
       fprintf(frss, "    <guid>%s/%s.html</guid>\n",
-              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, url);
+              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
       fprintf(frss, "    <link>%s/%s.html</link>\n",
-              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, url);
+              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, article.url);
+      if (article.meta && article.meta->date[0]) {
+        char rfc822[64];
+        if (rfc822FromISODate(article.meta->date, rfc822, sizeof(rfc822))) {
+          fprintf(frss, "    <pubDate>%s</pubDate>\n", rfc822);
+        }
+      }
       fprintf(frss, "  </item>\n");
     }
     // end the file.
@@ -1913,7 +2197,10 @@ int main(int argc, char **argv) {
 
   vector<T *> ts;
   tokenize(raw_input, nread, ts);
+  ts = insertParagraphs(ts, raw_input);
   cout << "===Done tokenizing; Emitting HTML...===\n";
+
+  const vector<ArticleInfo> articles = collectArticles(ts, raw_input);
 
   // index of the latest <h1> tag.
   ll ix_h1 = 0;
@@ -1951,8 +2238,8 @@ int main(int argc, char **argv) {
     }
 
     // ===write out table of contents===
-    outlen += writeTableOfContentsHTML(katex_ctx, prism_ctx, raw_input, ts,
-                                       index_html_buf + outlen);
+    outlen += writeHomepageTOC(katex_ctx, prism_ctx, raw_input, articles,
+                               index_html_buf + outlen);
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
@@ -2058,7 +2345,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  RSS::writeRSSFeed(frss, raw_input, ts);
+  RSS::writeRSSFeed(frss, raw_input, articles);
   fclose(frss);
 
   return 0;
