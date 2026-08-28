@@ -12,13 +12,15 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
  
-# Big List of Funk Jazz Standards
+# Big List of Jazz
 
 ```meta
 status: big-list
-created: 2026-08-28
+created: 2026-03-04
 last-edited: 2026-08-28
 ```
+
+## Funk Jazz Standards
 
 - [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
 - Vamp: repeating pattern with chromaticism (by eg side slipping).
@@ -85,6 +87,58 @@ last-edited: 2026-08-28
 
 
 
+
+## Jazz Voicings
+
+- [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
+- don't want doublings (same note played twice, lower and higher).
+  Can be using the fingers to play more colorful tones,
+  also, it shuts down the resonance of a sound.
+- Some use doublings on purpose, but we avoid them.
+- Don't want to just have a stack of thirds, sounds a litle less sophisticated.
+- We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
+- The essential tones are te 3rd and the 7th.
+
+#### Type A/B Voicings
+
+- Only uses essential tones. Learn inversions of these
+  (Type A: 3rd below) followed by (Type B: 7th below).
+  When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
+  This leads to a smooth ascent.
+- NOTE: sounds crazy dissonant?
+
+## Thickened Line Voicings
+
+- Kinds of voicings that are useful to enforcing a melody.
+
+#### Thickened Line: Closed Position / Shearing Voicing
+
+- The melody notes are bottom and top.
+- Use "mary had a little lamb" to play this.
+- Play on the bepop scale
+
+#### Thickcened Line: Drop 2 Voicings
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the second note from the top *down* an ocatve.
+- These are 'lighter' sounding than closed position voicings.
+
+#### Thickcened Line: Drop 3 Voicings (Can Learn Later)
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the third note from the top *down* an ocatve.
+- Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
+
+#### Modal: So What Voicing
+
+- Pick a mode, say, D dorian.
+- In modal jazz, all notes are 'equal' (so there is no 'essential tones', or 'chord and non chord tones').
+- Play 3rd or 4th intervals *from the mode*.
+- Stack 4th, 4th, 4th, and 3rd from within the mode. 5 notes in total.
+- For example, in D dorian, we can play `low:D G C F E`, which is `3rd 4th 4th 4th 3rd` from the mode.
+- Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
+- These two make the classic 'so-what' call and response pattern:
+  `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
 
 # Big List of Hosting 20 People For Wine And Cheese
 
@@ -600,64 +654,6 @@ last-edited: 2026-03-04
 - Pick D major. Recall, Dmajor7: `D F# A C#`, Ddom7: `D F# A C`, Dm7: `D F A C`.
 - play Dmajor(DΔ), Ddom7(1st inversion), Dm7(2nd inversion), Dmajor7(3rd inversion),
   Dmin7(1st inversion).
-
-# Big List of Jazz Voicings
-
-```meta
-status: big-list
-created: 2026-03-04
-last-edited: 2026-03-24
-```
-
-- [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
-- don't want doublings (same note played twice, lower and higher).
-  Can be using the fingers to play more colorful tones,
-  also, it shuts down the resonance of a sound.
-- Some use doublings on purpose, but we avoid them.
-- Don't want to just have a stack of thirds, sounds a litle less sophisticated.
-- We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
-- The essential tones are te 3rd and the 7th.
-
-#### Type A/B Voicings
-
-- Only uses essential tones. Learn inversions of these
-  (Type A: 3rd below) followed by (Type B: 7th below).
-  When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
-  This leads to a smooth ascent.
-- NOTE: sounds crazy dissonant?
-
-## Thickened Line Voicings
-
-- Kinds of voicings that are useful to enforcing a melody.
-
-#### Thickened Line: Closed Position / Shearing Voicing
-
-- The melody notes are bottom and top.
-- Use "mary had a little lamb" to play this.
-- Play on the bepop scale
-
-#### Thickcened Line: Drop 2 Voicings
-
-- Start with a closed position voicing, get rid of the lowest/bottom note,
-  and move the second note from the top *down* an ocatve.
-- These are 'lighter' sounding than closed position voicings.
-
-#### Thickcened Line: Drop 3 Voicings (Can Learn Later)
-
-- Start with a closed position voicing, get rid of the lowest/bottom note,
-  and move the third note from the top *down* an ocatve.
-- Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
-
-#### Modal: So What Voicing
-
-- Pick a mode, say, D dorian.
-- In modal jazz, all notes are 'equal' (so there is no 'essential tones', or 'chord and non chord tones').
-- Play 3rd or 4th intervals *from the mode*.
-- Stack 4th, 4th, 4th, and 3rd from within the mode. 5 notes in total.
-- For example, in D dorian, we can play `low:D G C F E`, which is `3rd 4th 4th 4th 3rd` from the mode.
-- Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
-- These two make the classic 'so-what' call and response pattern:
-  `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
 
 # Jazz Piano Block Chords Melody Playing
 
@@ -7732,10 +7728,10 @@ but is expected to have type
   ∀ {x y : α}, f x = f y → x = y
 ```
 
-# Big List of Linkers, Loaders, and ELF
+# Linkers, Loaders, and ELF
 
 ```meta
-status: big-list
+status: article
 created: 2023-03-28
 last-edited: 2023-05-31
 ```
@@ -58304,10 +58300,10 @@ last-edited: 2024-01-31
 - `tmux list-sessions` / `C-b s`: show all sessions.
 - `C-b (/)`: move between sessions
 
-# Big list of new words
+# New words
 
 ```meta
-status: big-list
+status: article
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
