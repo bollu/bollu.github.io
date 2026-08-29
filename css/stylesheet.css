@@ -59,21 +59,23 @@ img {
   height: auto
 }
 
+/* wide layout: a roomier column than the old 800px box, but still capped
+   so lines stay readable on large screens. */
 .container {
   overflow-x: auto;
   overflow-y: hidden;
-  margin-top: 0px;
   height: 100%;
   min-height: 100%;
-  max-width: 100%;
+  max-width: 1150px;
   font-size: 1.5em;
   line-height: 1.45;
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
   overflow-wrap: break-word;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin: 48px auto 0 auto;
+  padding-left: 48px;
+  padding-right: 48px;
   background: #ffffff;
 }
 
@@ -84,27 +86,10 @@ img {
 
 @media (max-width: 480px) {
   .container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
-
-}
-
-@media (max-width: 1024px) {
-  .container {
-    max-width: 650px;
-    margin: 80px auto 0px auto;
-  }
-
-
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 800px;
-    margin: 80px auto 0px auto;
-  }
-
 }
 
 .container * {
@@ -354,14 +339,14 @@ blockquote {
   font-style: italic;
 }
 
-/* the big-list line, placed by the preamble's big-lists marker comment */
-#big-lists {
+/* the big-list / i-like lines, placed by the preamble's marker comment */
+.container .big-lists-row {
   margin-top: 0.5em;
-  margin-bottom: 1em;
-  text-align: left; /* the container justifies; keep this line ragged. */
+  margin-bottom: 0.5em;
+  text-align: left; /* the container justifies; keep these lines ragged. */
   line-height: 1.6em;
 }
 
-#big-lists .big-lists-label {
+.big-lists-row .big-lists-label {
   color: #777;
 }
