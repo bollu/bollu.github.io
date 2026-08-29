@@ -327,11 +327,12 @@ struct ListItemTm {
 
 // article metadata from a ```meta fenced block:
 // status/created/last-edited key-values.
-// Article marks a finished piece; Scratch is a working note published with
-// the garage door open (the absent-status default). BigList marks living
-// list documents, lifted out of the chronological post list into their own
-// homepage section.
-enum class MetaStatus { Scratch, Article, BigList };
+// Scratch is a working note published with the garage door open (the
+// absent-status default). TechnicalNote and Essay mark the curated best:
+// a complete technical exposition, or a piece of reflective prose. BigList
+// marks living list documents, lifted out of the chronological post list
+// into their own homepage section.
+enum class MetaStatus { Scratch, TechnicalNote, Essay, BigList };
 
 struct BlockTm {
   enum class Kind {
@@ -671,16 +672,18 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
     val = vb == std::string::npos ? "" : val.substr(vb);
 
     if (key == "status") {
-      if (val == "article") {
-        meta->status = MetaStatus::Article;
+      if (val == "technical-note") {
+        meta->status = MetaStatus::TechnicalNote;
+      } else if (val == "essay") {
+        meta->status = MetaStatus::Essay;
       } else if (val == "scratch") {
         meta->status = MetaStatus::Scratch;
       } else if (val == "big-list") {
         meta->status = MetaStatus::BigList;
       } else {
         printf_err_span(span, s,
-            "meta status must be 'article', 'scratch', or 'big-list', "
-            "got: |%s|", val.c_str());
+            "meta status must be 'technical-note', 'essay', 'scratch', or "
+            "'big-list', got: |%s|", val.c_str());
       }
     } else if (key == "created") {
       if (!parseMetaDate(val, meta->created)) {
@@ -1379,7 +1382,7 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     // article metadata renders as a small line under the heading.
     const BlockMeta *meta = (const BlockMeta *)t;
     if (!meta->created[0] && !meta->last_edited[0] &&
-        meta->status == MetaStatus::Article) {
+        meta->status == MetaStatus::TechnicalNote) {
       return true;
     }
 
@@ -1399,6 +1402,9 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
       outlen += sprintf(
           outs + outlen,
           "%s<span class='article-meta-scratch'>scratch</span>", sep);
+    } else if (meta->status == MetaStatus::Essay) {
+      outlen += sprintf(outs + outlen,
+                        "%s<span class='article-meta-essay'>essay</span>", sep);
     } else if (meta->status == MetaStatus::BigList) {
       outlen += sprintf(
           outs + outlen,
@@ -1700,7 +1706,8 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "<div id='filter-bar'>"
       "<div id='status-filter'>"
       "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
-      "<button class='pill status-pill' data-status-filter='article'>article</button>"
+      "<button class='pill status-pill' data-status-filter='technical-note'>technical notes</button>"
+      "<button class='pill status-pill' data-status-filter='essay'>essays</button>"
       "<button class='pill status-pill' data-status-filter='scratch'>scratch</button>"
       "<a class='garage-door' "
       "href='https://notes.andymatuschak.org/About_these_notes"
@@ -1714,9 +1721,12 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   outlen += sprintf(outs + outlen, "<ol reversed id='post-list'>");
   for (const ArticleInfo &a : articles) {
     if (a.meta && a.meta->status == MetaStatus::BigList) { continue; }
-    const char *status =
-        (a.meta && a.meta->status == MetaStatus::Article) ? "article"
-                                                          : "scratch";
+    const char *status = "scratch";
+    if (a.meta && a.meta->status == MetaStatus::TechnicalNote) {
+      status = "technical-note";
+    } else if (a.meta && a.meta->status == MetaStatus::Essay) {
+      status = "essay";
+    }
     char year[5] = {0};
     if (a.meta && a.meta->created[0]) { strncpy(year, a.meta->created, 4); }
 
@@ -1731,7 +1741,8 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       outlen += sprintf(outs + outlen, "<span class='post-year'>%s</span>", year);
     }
     outlen += sprintf(outs + outlen,
-        "<span class='status-dot status-%s' title='%s'></span>", status, status);
+        "<span class='status-label status-%s'>%s</span>", status,
+        strcmp(status, "technical-note") == 0 ? "technical" : status);
     outlen += sprintf(outs + outlen, "</span></li>");
   }
   outlen += sprintf(outs + outlen, "</ol>");

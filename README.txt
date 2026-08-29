@@ -263,7 +263,7 @@ since she is lesser herself, and more a player of the game.
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
 ```meta
-status: article
+status: scratch
 created: 2026-08-26
 last-edited: 2026-08-28
 ```
@@ -276,7 +276,7 @@ last-edited: 2026-08-28
 # Mean, Variance And Everything Else As Geometry
 
 ```meta
-status: article
+status: scratch
 created: 2026-08-12
 last-edited: 2026-08-28
 ```
@@ -294,7 +294,7 @@ last-edited: 2026-08-28
 # How to learn the altered scale
 
 ```meta
-status: article
+status: scratch
 created: 2026-08-08
 last-edited: 2026-08-28
 ```
@@ -324,7 +324,7 @@ last-edited: 2026-08-28
 # How to Interpret Variance and Mean Geometrically
 
 ```meta
-status: article
+status: scratch
 created: 2026-08-12
 last-edited: 2026-08-12
 ```
@@ -340,7 +340,7 @@ last-edited: 2026-08-12
 # Jazzy blues improv
 
 ```meta
-status: article
+status: scratch
 created: 2026-08-08
 last-edited: 2026-08-08
 ```
@@ -355,7 +355,7 @@ last-edited: 2026-08-08
 # Sid's Paper Writing Guide
 
 ```meta
-status: article
+status: scratch
 created: 2026-07-03
 last-edited: 2026-07-08
 ```
@@ -392,7 +392,7 @@ last-edited: 2026-07-08
 # Quant Dev Role Prep
 
 ```meta
-status: article
+status: scratch
 created: 2026-07-08
 last-edited: 2026-08-08
 ```
@@ -405,7 +405,7 @@ last-edited: 2026-08-08
 # Misty, Bar Piano Version by Christian Fuchs
 
 ```meta
-status: article
+status: scratch
 created: 2026-07-01
 last-edited: 2026-07-01
 ```
@@ -415,7 +415,7 @@ last-edited: 2026-07-01
 # The Most Satisfying Chord Progression by Christian Fuchs
 
 ```meta
-status: article
+status: scratch
 created: 2026-06-29
 last-edited: 2026-06-29
 ```
@@ -432,7 +432,7 @@ last-edited: 2026-06-29
 # Boogie Woogie in a Minor Key
 
 ```meta
-status: article
+status: scratch
 created: 2026-06-29
 last-edited: 2026-06-29
 ```
@@ -442,7 +442,7 @@ last-edited: 2026-06-29
 # FPSanitizer
 
 ```meta
-status: article
+status: scratch
 created: 2026-06-03
 last-edited: 2026-06-03
 ```
@@ -453,7 +453,7 @@ last-edited: 2026-06-03
 # Reflections on Task Creation
 
 ```meta
-status: article
+status: scratch
 created: 2026-05-13
 last-edited: 2026-05-13
 ```
@@ -469,7 +469,7 @@ last-edited: 2026-05-13
 # Playing Funk Piano
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-16
 last-edited: 2026-04-30
 ```
@@ -492,7 +492,7 @@ last-edited: 2026-04-30
 # Lounge Jazz / Bar Piano Ala Christian Fuchs
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-27
 last-edited: 2026-06-29
 ```
@@ -551,7 +551,7 @@ last-edited: 2026-06-29
 # WAL and ARIES
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-27
 last-edited: 2026-04-27
 ```
@@ -572,7 +572,7 @@ last-edited: 2026-04-27
 # Proof of Godel Incompleteness from Turing Machines
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-12
 last-edited: 2026-04-12
 ```
@@ -587,7 +587,7 @@ last-edited: 2026-04-12
 # Jazz: Only Rhythm Matters
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-12
 last-edited: 2026-04-12
 ```
@@ -598,7 +598,7 @@ last-edited: 2026-04-12
 # Lounge Jazz Left Hand
 
 ```meta
-status: article
+status: scratch
 created: 2026-04-12
 last-edited: 2026-04-12
 ```
@@ -613,7 +613,7 @@ last-edited: 2026-04-12
 # Half-Whole Tone Scale As Interlaced Diminished Chords.
 
 ```meta
-status: article
+status: scratch
 created: 2026-03-24
 last-edited: 2026-03-24
 ```
@@ -626,7 +626,7 @@ last-edited: 2026-03-24
 # Randomized SharpSAT
 
 ```meta
-status: article
+status: scratch
 created: 2026-03-20
 last-edited: 2026-08-08
 ```
@@ -646,7 +646,7 @@ last-edited: 2026-08-08
 # Learning all 7th inversions
 
 ```meta
-status: article
+status: scratch
 created: 2026-03-04
 last-edited: 2026-03-04
 ```
@@ -658,7 +658,7 @@ last-edited: 2026-03-04
 # Jazz Piano Block Chords Melody Playing
 
 ```meta
-status: article
+status: scratch
 created: 2026-03-02
 last-edited: 2026-04-27
 ```
@@ -679,7 +679,7 @@ last-edited: 2026-04-27
 # A different derivation of the bepop notes
 
 ```meta
-status: article
+status: scratch
 created: 2026-02-05
 last-edited: 2026-02-05
 ```
@@ -711,7 +711,7 @@ last-edited: 2026-02-05
 # Playing over a ii V I with a 3rd scale.
 
 ```meta
-status: article
+status: scratch
 created: 2026-02-05
 last-edited: 2026-02-05
 ```
@@ -725,7 +725,7 @@ last-edited: 2026-02-05
 # Flipped Enclosure Piano Voicings
 
 ```meta
-status: article
+status: scratch
 created: 2026-02-05
 last-edited: 2026-03-24
 ```
@@ -739,7 +739,7 @@ last-edited: 2026-03-24
 # Jazz Piano Fundamentals Book
 
 ```meta
-status: article
+status: scratch
 created: 2026-03-24
 last-edited: 2026-03-24
 ```
@@ -792,7 +792,7 @@ last-edited: 2026-03-24
 # Stuff I learnt in 2025 
 
 ```meta
-status: article
+status: scratch
 created: 2026-01-03
 last-edited: 2026-01-03
 ```
@@ -858,7 +858,7 @@ last-edited: 2026-01-03
 # Modular Arithmetic Decision Procedure
 
 ```meta
-status: article
+status: scratch
 created: 2025-12-15
 last-edited: 2025-12-15
 ```
@@ -874,7 +874,7 @@ last-edited: 2025-12-15
 # Nobody's Fault but Mine Piano Chord Voicings
 
 ```meta
-status: article
+status: scratch
 created: 2025-12-10
 last-edited: 2025-12-10
 ```
@@ -965,7 +965,7 @@ last-edited: 2025-12-10
 # Computing with High Dimensional Vectors
 
 ```meta
-status: article
+status: scratch
 created: 2025-11-17
 last-edited: 2025-11-17
 ```
@@ -990,7 +990,7 @@ last-edited: 2025-11-17
 # Improvising Two Part Invention
 
 ```meta
-status: article
+status: scratch
 created: 2025-11-16
 last-edited: 2025-11-16
 ```
@@ -1009,7 +1009,7 @@ last-edited: 2025-11-16
 # Improvise Polyphony in four voices
 
 ```meta
-status: article
+status: scratch
 created: 2025-11-16
 last-edited: 2025-11-16
 ```
@@ -1026,7 +1026,7 @@ last-edited: 2025-11-16
 # How to Improve Evalauation Metrics
 
 ```meta
-status: article
+status: scratch
 created: 2025-11-14
 last-edited: 2025-11-15
 ```
@@ -1042,7 +1042,7 @@ last-edited: 2025-11-15
 # Durable Execution
 
 ```meta
-status: article
+status: scratch
 created: 2025-11-05
 last-edited: 2025-11-17
 ```
@@ -1057,7 +1057,7 @@ last-edited: 2025-11-17
 # Multi-Width Bitvectors with Append: Using Fundamental Domains?
 
 ```meta
-status: article
+status: scratch
 created: 2025-10-18
 last-edited: 2025-11-05
 ```
@@ -1076,7 +1076,7 @@ last-edited: 2025-11-05
 # Non Linear Theory of 2-adics does not mix with bitwise operations
 
 ```meta
-status: article
+status: technical-note
 created: 2025-10-17
 last-edited: 2025-10-17
 ```
@@ -1145,7 +1145,7 @@ last-edited: 2025-10-17
 # Succinct Explanation of the Blossom Algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2025-10-17
 last-edited: 2025-10-17
 ```
@@ -1157,7 +1157,7 @@ last-edited: 2025-10-17
 # Using Diminished Chords
 
 ```meta
-status: article
+status: scratch
 created: 2025-10-09
 last-edited: 2025-10-09
 ```
@@ -1179,7 +1179,7 @@ last-edited: 2025-10-09
 # Spaced Repetition for Learning Italian
 
 ```meta
-status: article
+status: scratch
 created: 2025-10-09
 last-edited: 2025-10-09
 ```
@@ -1193,7 +1193,7 @@ last-edited: 2025-10-09
 # How To Benchmark
 
 ```meta
-status: article
+status: scratch
 created: 2025-09-29
 last-edited: 2025-09-29
 ```
@@ -1233,7 +1233,7 @@ In general, if you are spending more than 5 minutes to schedule a cluster run, o
 # Fairness And Justice
 
 ```meta
-status: article
+status: scratch
 created: 2025-07-18
 last-edited: 2025-07-18
 ```
@@ -1245,7 +1245,7 @@ last-edited: 2025-07-18
 # Feynmann on Worthwhile Problems
 
 ```meta
-status: article
+status: scratch
 created: 2025-07-18
 last-edited: 2025-07-18
 ```
@@ -1267,7 +1267,7 @@ last-edited: 2025-07-18
 # Git Trick to Improve Artifact Evaluation: Never Lose a Commit / Feature Branch
 
 ```meta
-status: article
+status: scratch
 created: 2025-07-16
 last-edited: 2025-07-16
 ```
@@ -1403,7 +1403,7 @@ last-edited: 2025-08-17
 # Transitioning from Major to Minor chord
 
 ```meta
-status: article
+status: scratch
 created: 2025-06-10
 last-edited: 2025-06-10
 ```
@@ -1454,7 +1454,7 @@ K:C
 # Certifying Hardware Model Checking by Emily Zhengqi Yu
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-21
 last-edited: 2025-05-21
 ```
@@ -1474,7 +1474,7 @@ last-edited: 2025-05-21
 # Formal Verification of Multiplier Circuits using Computer Algebra
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-21
 last-edited: 2025-05-21
 ```
@@ -1495,7 +1495,7 @@ last-edited: 2025-05-21
 # Pairwise Independent Events that are Not 3-way Independent
 
 ```meta
-status: article
+status: scratch
 created: 2025-06-03
 last-edited: 2025-06-03
 ```
@@ -1805,7 +1805,7 @@ last-edited: 2025-07-18
 # Notes on CwFs and categorical NbE
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-06
 last-edited: 2025-05-06
 ```
@@ -1836,7 +1836,7 @@ last-edited: 2025-05-06
 # Magic Circle Amigurimi Explanation
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-04
 last-edited: 2025-07-18
 ```
@@ -1849,7 +1849,7 @@ last-edited: 2025-07-18
 # The Euclidean Definitions of The Functions div and mod
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-06
 last-edited: 2025-05-06
 ```
@@ -1862,7 +1862,7 @@ last-edited: 2025-05-06
 # Building Defeq ASTs for Dependently Typed Terms
 
 ```meta
-status: article
+status: scratch
 created: 2025-04-15
 last-edited: 2025-04-15
 ```
@@ -1930,7 +1930,7 @@ end BV
 # Ragtime Chord Progression
 
 ```meta
-status: article
+status: scratch
 created: 2025-04-04
 last-edited: 2025-08-09
 ```
@@ -1943,7 +1943,7 @@ last-edited: 2025-08-09
 # Example of Non Commuting Summation
 
 ```meta
-status: article
+status: scratch
 created: 2025-05-22
 last-edited: 2025-05-22
 ```
@@ -2001,7 +2001,7 @@ last-edited: 2025-04-02
 # The Metamathematical implications of the Strong Church Turing Thesis
 
 ```meta
-status: article
+status: scratch
 created: 2025-04-01
 last-edited: 2025-04-02
 ```
@@ -2022,7 +2022,7 @@ last-edited: 2025-04-02
 # The Metaphysical Horizon
 
 ```meta
-status: article
+status: scratch
 created: 2025-04-01
 last-edited: 2025-04-03
 ```
@@ -2063,7 +2063,7 @@ last-edited: 2025-04-03
 # Projective Varieties are Complete
 
 ```meta
-status: article
+status: scratch
 created: 2025-03-22
 last-edited: 2025-03-23
 ```
@@ -2083,7 +2083,7 @@ last-edited: 2025-03-23
 # Check Lean Discrimination Tree Indexing
 
 ```meta
-status: article
+status: scratch
 created: 2025-03-10
 last-edited: 2025-03-10
 ```
@@ -2097,7 +2097,7 @@ use:
 # Joke Definition of Metatheorem
 
 ```meta
-status: article
+status: scratch
 created: 2025-03-25
 last-edited: 2025-06-03
 ```
@@ -2114,7 +2114,7 @@ property of the axiom system may no longer hold (think: subformula property).
 # Weird Art Movements in the 20th Century
 
 ```meta
-status: article
+status: scratch
 created: 2025-03-06
 last-edited: 2025-06-03
 ```
@@ -2138,7 +2138,7 @@ last-edited: 2025-06-03
 # I Like Art Nouveau
 
 ```meta
-status: article
+status: scratch
 created: 2025-02-19
 last-edited: 2025-10-05
 ```
@@ -2163,7 +2163,7 @@ last-edited: 2025-10-05
 # Bebop Scale
 
 ```meta
-status: article
+status: scratch
 created: 2025-02-19
 last-edited: 2025-02-19
 ```
@@ -2177,7 +2177,7 @@ last-edited: 2025-02-19
 # Experimental Evaluation Setup I'm Happy With
 
 ```meta
-status: article
+status: scratch
 created: 2025-01-29
 last-edited: 2025-06-10
 ```
@@ -2193,7 +2193,7 @@ last-edited: 2025-06-10
 # Pop Piano Accompaniment
 
 ```meta
-status: article
+status: scratch
 created: 2025-02-26
 last-edited: 2025-02-26
 ```
@@ -2230,7 +2230,7 @@ last-edited: 2025-02-26
 # Pop Piano Covers I Admire
 
 ```meta
-status: article
+status: scratch
 created: 2025-02-26
 last-edited: 2025-02-26
 ```
@@ -2241,7 +2241,7 @@ last-edited: 2025-02-26
 # Wisdom of Critial Pair Theory
 
 ```meta
-status: article
+status: scratch
 created: 2025-01-24
 last-edited: 2025-01-24
 ```
@@ -2272,7 +2272,7 @@ x * BitVec.twoPow y = x <<< y
 # Stuff I learnt in 2024
 
 ```meta
-status: article
+status: essay
 created: 2024-12-22
 last-edited: 2025-02-19
 ```
@@ -2699,7 +2699,7 @@ last-edited: 2024-12-22
 # Ragtime Theory
 
 ```meta
-status: article
+status: scratch
 created: 2024-12-06
 last-edited: 2025-04-23
 ```
@@ -2740,7 +2740,7 @@ last-edited: 2025-04-23
 # Using `reduceBool` and `ofReduceBool` in Lean
 
 ```meta
-status: article
+status: scratch
 created: 2024-12-07
 last-edited: 2024-12-07
 ```
@@ -2765,7 +2765,7 @@ theorem foo' : true = true := @of_decide_eq_true (p := true = true) (inst := inf
 # Partimento Chord Progression Theory
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-30
 last-edited: 2024-11-30
 ```
@@ -2794,7 +2794,7 @@ last-edited: 2024-11-30
 # Krohn Rhodes Theorem: Proof
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-11-28
 ```
@@ -2886,7 +2886,7 @@ last-edited: 2024-11-28
 # Quantifier Elimination for Real Closed Fields
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-11-28
 ```
@@ -2921,7 +2921,7 @@ last-edited: 2024-11-28
 # Quantifier Elimination for Presburger Arithmetic
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-11-28
 ```
@@ -3008,7 +3008,7 @@ D30(x) # NEW
 # Quantifier Elimination For Algebraically Closed Fields
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-12-12
 ```
@@ -3046,7 +3046,7 @@ last-edited: 2024-12-12
 # First UIP / Dominators in a DAG
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-11-28
 ```
@@ -3081,7 +3081,7 @@ def idom(dag : Dict[int, int], sink : int) -> int:
 # PTTP: A Prolog Technology Theorem Prover
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-28
 last-edited: 2024-12-22
 ```
@@ -3117,7 +3117,7 @@ last-edited: 2024-12-22
 # Geomeans and ratios
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-13
 last-edited: 2024-12-12
 ```
@@ -3133,7 +3133,7 @@ last-edited: 2024-12-12
 # Setting up mosh on google cloud
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-13
 last-edited: 2025-03-06
 ```
@@ -3171,7 +3171,7 @@ gcloud compute scp --zone "europe-west1-b" --project "even-card-249812" \
 # Playing Pop on the Piano
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-13
 last-edited: 2024-11-13
 ```
@@ -3187,7 +3187,7 @@ last-edited: 2024-11-13
 # Boolean Reflection Design
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-07
 last-edited: 2024-11-07
 ```
@@ -3201,7 +3201,7 @@ last-edited: 2024-11-07
 # Propositional Proof Systems And Proof Complexity
 
 ```meta
-status: article
+status: scratch
 created: 2024-11-06
 last-edited: 2024-12-26
 ```
@@ -3295,7 +3295,7 @@ $$
 # Diminished Sixth Scale
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-18
 last-edited: 2024-11-28
 ```
@@ -3336,7 +3336,7 @@ C   C : "octave"
 # Canon Improvisation
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -3360,7 +3360,7 @@ last-edited: 2024-10-15
 # Readings on Writing Fugues and Partimento
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -3391,7 +3391,7 @@ last-edited: 2024-10-15
 # Applied Counterpoint Lecture Series
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -3512,7 +3512,7 @@ last-edited: 2024-10-15
 # Hip hop on piano
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -3550,7 +3550,7 @@ A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,
 # Pachabel's series
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-10
 last-edited: 2024-10-15
 ```
@@ -3566,7 +3566,7 @@ last-edited: 2024-10-15
 # Public Domain Ragtime
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-10-15
 ```
@@ -3576,7 +3576,7 @@ last-edited: 2024-10-15
 # Maple Leaf Rag
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-14
 last-edited: 2024-10-14
 ```
@@ -3595,7 +3595,7 @@ Ab C: Ab Major 3 interval
 # Bach: Art of the fugue
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-11
 last-edited: 2024-10-15
 ```
@@ -3628,7 +3628,7 @@ last-edited: 2024-10-15
 # Bach style: Suspensions
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-11
 last-edited: 2024-10-11
 ```
@@ -3655,7 +3655,7 @@ last-edited: 2024-10-11
 # Example of needing uniform convergence / troll proof of pi equals 4
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-11
 last-edited: 2024-12-26
 ```
@@ -3822,7 +3822,7 @@ last-edited: 2024-10-09
 # Forward Euler as System of Linear Equations
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-06
 last-edited: 2024-12-26
 ```
@@ -3839,7 +3839,7 @@ last-edited: 2024-12-26
 # Categorification of sets works because it's a presheaf on a single point
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-03
 last-edited: 2024-10-03
 ```
@@ -3856,7 +3856,7 @@ last-edited: 2024-10-03
 # Maple Leaf Rag: Chord Progression
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-03
 last-edited: 2024-10-03
 ```
@@ -3888,7 +3888,7 @@ EbGC
 # Ragtime Rhythm & Chords
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-03
 last-edited: 2024-10-03
 ```
@@ -3902,7 +3902,7 @@ last-edited: 2024-10-03
 # When to generalize an argument to a function for an inductive proof
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-29
 last-edited: 2024-09-29
 ```
@@ -3926,7 +3926,7 @@ let f y = fAux (hx x) (hy y)
 # Glenn Gould
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-29
 last-edited: 2024-09-29
 ```
@@ -3945,7 +3945,7 @@ last-edited: 2024-09-29
 # Music Appreciation
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-28
 last-edited: 2024-09-29
 ```
@@ -3968,7 +3968,7 @@ last-edited: 2024-09-29
 # Transformer Architecture is based on sets, not sequences
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-15
 last-edited: 2024-09-29
 ```
@@ -4127,7 +4127,7 @@ last-edited: 2024-09-29
 # I Like To Play Dances, Waltzes and Ragtime
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-21
 last-edited: 2024-09-22
 ```
@@ -4169,7 +4169,7 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 # Implementing Nelson Oppen
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-21
 last-edited: 2024-12-26
 ```
@@ -4541,7 +4541,7 @@ $$
 # WZ (Wilf Zeilberger) pairs
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-12
 last-edited: 2024-09-21
 ```
@@ -4576,7 +4576,7 @@ last-edited: 2024-09-21
 # Software bugs are real bugs?
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-15
 last-edited: 2024-09-17
 ```
@@ -4601,7 +4601,7 @@ For example, all birds that live on an island today form an assemblage; all plan
 # Sister Celine's Algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-12
 last-edited: 2024-09-21
 ```
@@ -4635,7 +4635,7 @@ last-edited: 2024-09-21
 # I Like Piano Sonatas
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-21
 last-edited: 2024-09-21
 ```
@@ -4647,7 +4647,7 @@ last-edited: 2024-09-21
 # I like New Formalism Poetry
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-31
 last-edited: 2024-09-01
 ```
@@ -4667,7 +4667,7 @@ last-edited: 2024-09-01
 # Kinds of Fiction Genres I Like
 
 ```meta
-status: article
+status: scratch
 created: 2024-09-01
 last-edited: 2024-09-04
 ```
@@ -4810,7 +4810,7 @@ Triumphant antiformalism has to answer, besides, for a more
 # Eliminating Decision Fatigue
 
 ```meta
-status: article
+status: scratch
 created: 2024-10-09
 last-edited: 2024-10-09
 ```
@@ -4823,7 +4823,7 @@ last-edited: 2024-10-09
 # The Two Modes of my Work
 
 ```meta
-status: article
+status: essay
 created: 2024-09-15
 last-edited: 2024-09-15
 ```
@@ -4882,7 +4882,7 @@ last-edited: 2024-09-15
 # The Gradual Guarantees
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-26
 last-edited: 2024-10-09
 ```
@@ -5002,7 +5002,7 @@ c = g(b)
 # Lean Naming Convention for Contexts
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-26
 last-edited: 2024-08-26
 ```
@@ -5014,7 +5014,7 @@ last-edited: 2024-08-26
 # Right hand for arpeggios
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-21
 last-edited: 2024-08-31
 ```
@@ -5030,7 +5030,7 @@ last-edited: 2024-08-31
 # Simulating Inductives Via Coinductives (And Vice Versa)
 
 ```meta
-status: article
+status: technical-note
 created: 2024-08-17
 last-edited: 2024-08-17
 ```
@@ -5109,7 +5109,7 @@ type EventuallyNone (s : Stream (Option a)) : Prop :=
 # Amelie Arpeggiation Explanation
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-14
 last-edited: 2024-08-31
 ```
@@ -5144,7 +5144,7 @@ last-edited: 2024-08-31
 # Inductive Predicate as Least Fixed Point, directly
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-09
 last-edited: 2024-08-09
 ```
@@ -5383,7 +5383,7 @@ last-edited: 2025-04-28
 # AWS MathFest 2024
 
 ```meta
-status: article
+status: technical-note
 created: 2024-08-08
 last-edited: 2024-08-08
 ```
@@ -5444,7 +5444,7 @@ day 2| x  x
 # Proving False with partial functions even with Inhabited types 
 
 ```meta
-status: article
+status: scratch
 created: 2024-07-25
 last-edited: 2024-08-08
 ```
@@ -5470,7 +5470,7 @@ theorem false : False := by
 # Table Maker's Dilemma
 
 ```meta
-status: article
+status: scratch
 created: 2024-06-09
 last-edited: 2024-06-09
 ```
@@ -5481,7 +5481,7 @@ last-edited: 2024-06-09
 # Techne, Da Vinci, Michalangelo, and Art
 
 ```meta
-status: article
+status: scratch
 created: 2024-06-01
 last-edited: 2024-06-14
 ```
@@ -5493,7 +5493,7 @@ last-edited: 2024-06-14
 # Ffmpeg one liner to re-encode mp4 so chrome can open it 
 
 ```meta
-status: article
+status: scratch
 created: 2024-06-14
 last-edited: 2024-06-14
 ```
@@ -5505,7 +5505,7 @@ ffmpeg -y -i "doctor.who.2005.s14e00.the.star.beast.1080p.web.h264-hornedsplendi
 # Notes on Copy and Patch Compilation
 
 ```meta
-status: article
+status: scratch
 created: 2024-06-02
 last-edited: 2024-07-20
 ```
@@ -5517,7 +5517,7 @@ last-edited: 2024-07-20
 # Setting up SAIL for porting to Lean
 
 ```meta
-status: article
+status: scratch
 created: 2024-05-07
 last-edited: 2024-05-07
 ```
@@ -5591,7 +5591,7 @@ root$ cd sail && make -j $(nproc) && make install
 # Gregorian chant and numes
 
 ```meta
-status: article
+status: scratch
 created: 2024-04-14
 last-edited: 2024-04-14
 ```
@@ -5612,7 +5612,7 @@ last-edited: 2024-04-14
 # Decreasing Metric for Mutual Recursive Functions
 
 ```meta
-status: article
+status: scratch
 created: 2024-03-16
 last-edited: 2024-04-24
 ```
@@ -5891,7 +5891,7 @@ $$
 # Building an ELF by hand
 
 ```meta
-status: article
+status: scratch
 created: 2024-02-12
 last-edited: 2024-02-12
 ```
@@ -5901,7 +5901,7 @@ last-edited: 2024-02-12
 # Resolution is Refutation Complete
 
 ```meta
-status: article
+status: technical-note
 created: 2024-02-05
 last-edited: 2024-02-12
 ```
@@ -5938,7 +5938,7 @@ last-edited: 2024-02-12
 # Fagin's theorem
 
 ```meta
-status: article
+status: scratch
 created: 2024-02-05
 last-edited: 2024-02-05
 ```
@@ -5968,7 +5968,7 @@ last-edited: 2024-02-05
 # EF (Ehrenfeucht–Fraïssé) games
 
 ```meta
-status: article
+status: technical-note
 created: 2024-02-05
 last-edited: 2024-02-05
 ```
@@ -6031,7 +6031,7 @@ last-edited: 2024-02-05
 # DPLL
 
 ```meta
-status: article
+status: scratch
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
@@ -6056,7 +6056,7 @@ last-edited: 2024-01-31
 # Why FOL models must be nonempty
 
 ```meta
-status: article
+status: scratch
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
@@ -6066,7 +6066,7 @@ last-edited: 2024-01-31
 # Concrete calculation of hopf fibration
 
 ```meta
-status: article
+status: scratch
 created: 2024-01-31
 last-edited: 2024-04-24
 ```
@@ -6102,7 +6102,7 @@ last-edited: 2024-04-24
 # Canonical bundle over RP2 is not trivial
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-22
 last-edited: 2023-11-22
 ```
@@ -6164,7 +6164,7 @@ last-edited: 2023-11-22
 # Concrete description of spinors
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-21
 last-edited: 2023-11-21
 ```
@@ -6236,7 +6236,7 @@ $$
 # Paracompact spaces
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-22
 last-edited: 2023-11-22
 ```
@@ -6270,7 +6270,7 @@ last-edited: 2023-11-22
 # Latin prefixes for words
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-21
 last-edited: 2023-11-21
 ```
@@ -6295,7 +6295,7 @@ last-edited: 2023-11-21
 # Crash Course on Prosody
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-02
 last-edited: 2023-11-02
 ```
@@ -6326,7 +6326,7 @@ A sight so touch-ing in its maj-es-ty
 # What the hell is a nix flake?
 
 ```meta
-status: article
+status: scratch
 created: 2023-11-21
 last-edited: 2024-04-24
 ```
@@ -6375,7 +6375,7 @@ I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixO
 # How to prove `noConfusion`
 
 ```meta
-status: article
+status: technical-note
 created: 2023-10-06
 last-edited: 2024-04-24
 ```
@@ -6460,7 +6460,7 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 # Origami box pleating
 
 ```meta
-status: article
+status: scratch
 created: 2023-10-06
 last-edited: 2024-04-24
 ```
@@ -6515,7 +6515,7 @@ last-edited: 2024-04-24
 # Vibes of Weiner Processes
 
 ```meta
-status: article
+status: scratch
 created: 2023-10-06
 last-edited: 2024-04-24
 ```
@@ -6541,7 +6541,7 @@ last-edited: 2024-04-24
 # Forward versus backward euler
 
 ```meta
-status: article
+status: technical-note
 created: 2023-10-06
 last-edited: 2023-10-06
 ```
@@ -6587,7 +6587,7 @@ last-edited: 2023-10-06
 # Uniform Boundedness Principle / Banach Steinhauss
 
 ```meta
-status: article
+status: technical-note
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6676,7 +6676,7 @@ $$
 # Coercive operator
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6711,7 +6711,7 @@ last-edited: 2023-09-22
 # It suffices to check for weak convergence on a spanning set.
 
 ```meta
-status: article
+status: technical-note
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6736,7 +6736,7 @@ last-edited: 2023-09-22
 # Sequence that converges weakly but not strongly in $l^p$.
 
 ```meta
-status: article
+status: technical-note
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6788,7 +6788,7 @@ last-edited: 2023-09-22
 # Quotient spaces of Banach space
 
 ```meta
-status: article
+status: technical-note
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6844,7 +6844,7 @@ last-edited: 2023-09-22
 # Reisez Lemma
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-06
 last-edited: 2023-09-22
 ```
@@ -6925,7 +6925,7 @@ last-edited: 2023-09-22
 # Using LLL to discover minimal polynomial for floating point number
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-03
 last-edited: 2023-08-03
 ```
@@ -6949,7 +6949,7 @@ last-edited: 2023-08-03
 # Total Boundedness in a metric space
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-03
 last-edited: 2023-09-22
 ```
@@ -7034,7 +7034,7 @@ def mk_cauchy_sequence(S):
 # Holonomic v/s non holonomic constraints
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-02
 last-edited: 2023-08-02
 ```
@@ -7053,7 +7053,7 @@ last-edited: 2023-08-02
 # The Plenoptic Function
 
 ```meta
-status: article
+status: scratch
 created: 2023-08-02
 last-edited: 2023-08-02
 ```
@@ -7087,7 +7087,7 @@ last-edited: 2023-08-02
 # Precision, Recall, and all that.
 
 ```meta
-status: article
+status: technical-note
 created: 2023-06-25
 last-edited: 2023-09-22
 ```
@@ -7199,7 +7199,7 @@ Rank | Val | Prec | Rec
 # Heine Borel
 
 ```meta
-status: article
+status: scratch
 created: 2023-06-21
 last-edited: 2023-09-22
 ```
@@ -7239,7 +7239,7 @@ last-edited: 2023-09-22
 # The conceit of self loathing
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-28
 last-edited: 2023-05-31
 ```
@@ -7264,7 +7264,7 @@ last-edited: 2023-05-31
 # Inverse scattering transform
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-28
 last-edited: 2023-05-28
 ```
@@ -7283,7 +7283,7 @@ last-edited: 2023-05-28
 # Differentiating through sampling from a random normal distribution
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-09-22
 ```
@@ -7343,7 +7343,7 @@ for i in range(1000):
 # BOSCC Vectorization
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7353,7 +7353,7 @@ last-edited: 2023-05-19
 # Autodiff
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7362,7 +7362,7 @@ last-edited: 2023-05-19
 # Vector Bundles and K theory, 1.1
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7386,7 +7386,7 @@ last-edited: 2023-05-19
 # Equicontinuity, Arzela Ascoli
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7419,7 +7419,7 @@ last-edited: 2023-05-19
 # Sobolev Embedding Theorem 
 
 ```meta
-status: article
+status: scratch
 created: 2024-08-08
 last-edited: 2024-08-08
 ```
@@ -7454,7 +7454,7 @@ last-edited: 2023-09-22
 # Practical example of semidirect product
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7482,7 +7482,7 @@ instance Semigroup IndexedString where
 # Algebraic graph calculus
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7493,7 +7493,7 @@ last-edited: 2023-05-19
 # Change of basis from triangle x y to barycentric
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-19
 ```
@@ -7507,7 +7507,7 @@ last-edited: 2023-05-19
 # Lean4 access metam and so forth
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-31
 ```
@@ -7520,7 +7520,7 @@ last-edited: 2023-05-31
 # Harmonic function
 
 ```meta
-status: article
+status: scratch
 created: 2023-05-19
 last-edited: 2023-05-31
 ```
@@ -7532,7 +7532,7 @@ last-edited: 2023-05-31
 # Lax Milgram theorem
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-26
 last-edited: 2023-05-31
 ```
@@ -7546,7 +7546,7 @@ last-edited: 2023-05-31
 # Why L2 needs a quotient upto almost everywhere
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-04
 last-edited: 2023-04-04
 ```
@@ -7611,7 +7611,7 @@ last-edited: 2023-09-22
 # Why NuPRL and Realisability makes it hard to communicate math
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-03-28
 ```
@@ -7660,7 +7660,7 @@ last-edited: 2023-03-28
 # Lean does not allow nested inductive families
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-09-22
 ```
@@ -7685,7 +7685,7 @@ inductive E : Const → Type
 # Weakly implicit arguments in Lean
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-09-22
 ```
@@ -7731,7 +7731,7 @@ but is expected to have type
 # Linkers, Loaders, and ELF
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-05-31
 ```
@@ -7763,7 +7763,7 @@ last-edited: 2023-05-31
 # Regular epi and regular category
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-03-28
 ```
@@ -7775,7 +7775,7 @@ last-edited: 2023-03-28
 # Focal point
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-04-04
 ```
@@ -7795,7 +7795,7 @@ last-edited: 2023-04-04
 # Operational versus Denotational semantics
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-28
 last-edited: 2023-04-04
 ```
@@ -7812,7 +7812,7 @@ last-edited: 2023-04-04
 # Minimising L2 norm with total constraint
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-04
 last-edited: 2023-04-04
 ```
@@ -7862,7 +7862,7 @@ last-edited: 2023-04-04
 # Bounding L2 norm by L1 norm and vice versa
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-04
 last-edited: 2023-04-04
 ```
@@ -7892,7 +7892,7 @@ last-edited: 2023-04-04
 # Example of unbounded linear operator
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2023-04-04
 ```
@@ -7930,7 +7930,7 @@ last-edited: 2023-04-04
 # Direct sum of topological vector spaces
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2023-04-02
 ```
@@ -7989,7 +7989,7 @@ last-edited: 2023-09-22
 # $L^\infty$ is HUGE
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2023-04-02
 ```
@@ -8004,7 +8004,7 @@ last-edited: 2023-04-02
 # Banach space that does not admit Schrauder basis
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2023-04-02
 ```
@@ -8021,7 +8021,7 @@ last-edited: 2023-04-02
 # Open mapping theorem
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2024-04-24
 ```
@@ -8101,7 +8101,7 @@ last-edited: 2024-04-24
 # Closed graph theorem
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2024-04-24
 ```
@@ -8187,7 +8187,7 @@ $$
 # Bounded inverse theorem
 
 ```meta
-status: article
+status: scratch
 created: 2023-04-02
 last-edited: 2023-04-02
 ```
@@ -8208,7 +8208,7 @@ last-edited: 2023-04-02
 # Nonexistence of solutions for ODE and PDE
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-27
 last-edited: 2024-04-27
 ```
@@ -8370,7 +8370,7 @@ def find_witness(Ds, p, eps):
 # libOpenGL, libVDSO and Nix
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-27
 last-edited: 2023-03-27
 ```
@@ -8391,7 +8391,7 @@ last-edited: 2023-03-27
 # Stuff I learnt in 2022
 
 ```meta
-status: article
+status: essay
 created: 2022-11-24
 last-edited: 2023-03-26
 ```
@@ -8670,7 +8670,7 @@ interesting challenges and neat things I can point to at the end of year! With t
 # You don't know jack about data races
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-01-01
 ```
@@ -8738,7 +8738,7 @@ P2: if(y) { x = true; }
 # Training a custom model for Lean4
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-01-01
 ```
@@ -8761,7 +8761,7 @@ last-edited: 2023-01-01
 # Stratified synthetsis
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-03-27
 ```
@@ -8781,7 +8781,7 @@ last-edited: 2023-03-27
 # Mutual recursion elaboration in Lean
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-03-26
 ```
@@ -8905,7 +8905,7 @@ definitions, since Lean can blow up if we have many inductives.
 # Subject reduction in Lean
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-01-01
 ```
@@ -8962,7 +8962,7 @@ by { dsimp, refl }
 # GNU Binutils
 
 ```meta
-status: article
+status: scratch
 created: 2023-01-01
 last-edited: 2023-03-27
 ```
@@ -8980,7 +8980,7 @@ Use `nm` to list all symbols in a file.
 # Axiom K versus UIP
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-24
 last-edited: 2023-03-26
 ```
@@ -9016,7 +9016,7 @@ K refl = refl
 # Linear vs uniqueness types
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-24
 last-edited: 2022-11-24
 ```
@@ -9026,7 +9026,7 @@ last-edited: 2022-11-24
 # Any model of lean must have all inductives
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-02
 last-edited: 2023-03-26
 ```
@@ -9055,7 +9055,7 @@ exact h2 (h1 two.t1 two.t2)
 # Index over the past, fiber over the future
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-02
 last-edited: 2023-03-27
 ```
@@ -9070,7 +9070,7 @@ last-edited: 2023-03-27
 # Type formers need not be injective
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-02
 last-edited: 2023-03-27
 ```
@@ -9086,7 +9086,7 @@ abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collecti
 # There cannot be a type of size the universe
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-27
 last-edited: 2023-03-27
 ```
@@ -9110,7 +9110,7 @@ noncomputable def cantor (UcodedU: Powerset codedU): codedU := -- use the fact t
 # The dependently typed expression problem
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-02
 last-edited: 2022-11-02
 ```
@@ -9123,7 +9123,7 @@ the data is separate from the proofs (behaviour).
 # Motivation for modal logic
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-03-26
 ```
@@ -9151,7 +9151,7 @@ last-edited: 2023-03-26
 # Scones
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2022-11-02
 ```
@@ -9175,7 +9175,7 @@ last-edited: 2022-11-02
 # Presheaf models of type theory
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-03-26
 ```
@@ -9194,7 +9194,7 @@ last-edited: 2023-03-26
 # Weighted limits via collages
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-03-26
 ```
@@ -9255,7 +9255,7 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 # Disjoint Coproduct
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2022-10-27
 ```
@@ -9271,7 +9271,7 @@ last-edited: 2022-10-27
 # Leibniz Equality in Lean4
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-03-26
 ```
@@ -9301,7 +9301,7 @@ theorem Leibniz_implies_defeq (x y: A) (LEQ: Leibniz x y):
 # Strong normalization of STLC
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-03-26
 ```
@@ -9364,7 +9364,7 @@ body ∈ LType(B); (∀ aval∈ Ltype(A), body[a/aval] ∈ Ltype(B))
 # Subobject classifiers of $N \to FinSet$, or precosheaf of $FinSet$
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-09-22
 ```
@@ -9428,7 +9428,7 @@ X1 - Χ[f]1- -> Ο1
 # Dimensions versus units
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2022-10-27
 ```
@@ -9439,7 +9439,7 @@ last-edited: 2022-10-27
 # HoTTesT: Identity types
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-27
 last-edited: 2023-05-31
 ```
@@ -9522,7 +9522,7 @@ b1 b2 b3
 # Paredit via adjoints
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-28
 last-edited: 2023-04-02
 ```
@@ -9540,7 +9540,7 @@ last-edited: 2023-04-02
 # Less than versus Less than or equals over Z
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-28
 last-edited: 2023-04-02
 ```
@@ -9561,7 +9561,7 @@ last-edited: 2023-04-02
 # Allegories and Categories
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-28
 last-edited: 2022-09-28
 ```
@@ -9572,7 +9572,7 @@ last-edited: 2022-09-28
 # Partial function as span
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-28
 last-edited: 2022-09-28
 ```
@@ -9586,7 +9586,7 @@ last-edited: 2022-09-28
 # Turing degree
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-25
 last-edited: 2023-04-02
 ```
@@ -9615,7 +9615,7 @@ last-edited: 2023-04-02
 # Proof that there is a TM whose halting is independent of ZFC
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-25
 last-edited: 2022-09-25
 ```
@@ -9631,7 +9631,7 @@ last-edited: 2022-09-25
 # Contradiction from non-positive occurence
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2022-09-19
 ```
@@ -9659,7 +9659,7 @@ inhab = FnSpace contra
 # The constructible universe L
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2023-04-02
 ```
@@ -9684,7 +9684,7 @@ last-edited: 2023-04-02
 # Godel completeness theorem
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2022-09-19
 ```
@@ -9712,7 +9712,7 @@ last-edited: 2022-09-19
 # Uniform proofs, focused proofs, polarization, logic programming
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2022-09-28
 ```
@@ -9728,7 +9728,7 @@ last-edited: 2022-09-28
 # Why cut elimination?
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2023-04-02
 ```
@@ -9758,7 +9758,7 @@ last-edited: 2023-04-02
 # Forcing to add a function
 
 ```meta
-status: article
+status: technical-note
 created: 2022-09-07
 last-edited: 2022-09-07
 ```
@@ -9787,7 +9787,7 @@ last-edited: 2022-09-07
 # Diaconescu's theorem
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2023-04-02
 ```
@@ -10037,7 +10037,7 @@ Therefore, all these conditions are equivalent.
 # Partial Evaluation, Chapter 3
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2024-08-08
 ```
@@ -10056,7 +10056,7 @@ last-edited: 2024-08-08
 # Partial Evaluation, Chapter 1
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2023-04-02
 ```
@@ -10098,7 +10098,7 @@ last-edited: 2023-04-02
 # Diagonal lemma for monotone functions
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2023-04-02
 ```
@@ -10133,7 +10133,7 @@ $$
 # Cantor Schroder Bernstein via fixpoint
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2022-09-28
 ```
@@ -10157,7 +10157,7 @@ last-edited: 2022-09-28
 # Maximal Ideals of Boolean Algebras are Truth Values
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2023-04-02
 ```
@@ -10202,7 +10202,7 @@ last-edited: 2023-04-02
 # Crash course on DCPO: formalizing lambda calculus
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-29
 last-edited: 2023-04-02
 ```
@@ -10367,7 +10367,7 @@ than $a$, and hence implies $a$.
 # Resolution algorithm for propositional logic
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2024-01-31
 ```
@@ -10410,7 +10410,7 @@ F \/ l; G \/ not(l)
 # Completeness for first order logic
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2022-09-07
 ```
@@ -10490,7 +10490,7 @@ last-edited: 2023-04-02
 # First order logic: Semantics
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-07
 last-edited: 2022-09-07
 ```
@@ -10518,7 +10518,7 @@ last-edited: 2022-09-07
 # full abstraction in semantics
 
 ```meta
-status: article
+status: scratch
 created: 2023-03-27
 last-edited: 2023-03-27
 ```
@@ -10557,7 +10557,7 @@ last-edited: 2023-03-27
 # You could have invented Sequents
 
 ```meta
-status: article
+status: technical-note
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -10688,7 +10688,7 @@ I -u--->J
 # Simple Type Theory via Fibrations
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -10737,7 +10737,7 @@ last-edited: 2022-08-22
 # Realisability models
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2022-09-07
 ```
@@ -10798,7 +10798,7 @@ told another time. 10/10
 # Naming left closed, right open with start/stop
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -10809,7 +10809,7 @@ it's a little more intuitive that it's exclusive!
 # Nested vs mutual inductive types:
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2023-04-02
 ```
@@ -10835,7 +10835,7 @@ inductive n2 (a: Type): Type :=
 # Embedding HOL in Lean
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2023-04-02
 ```
@@ -10862,7 +10862,7 @@ def Model := Σ (s: Sets), s.denote
 # Module system for separate compilation
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -10875,7 +10875,7 @@ last-edited: 2022-08-22
 # Second order arithmetic
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2022-08-22
 ```
@@ -10890,7 +10890,7 @@ last-edited: 2022-08-22
 # Lean4 Dev Meeting
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2023-04-02
 ```
@@ -11028,7 +11028,7 @@ elab tk:"foo" val:term : tactic => do
 # Categorical model of dependent types
 
 ```meta
-status: article
+status: scratch
 created: 2022-08-22
 last-edited: 2023-09-22
 ```
@@ -11127,7 +11127,7 @@ becomes the function `snd: ΓxA → A`.
 # Coends
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-26
 last-edited: 2023-04-02
 ```
@@ -11326,7 +11326,7 @@ extract (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = fmap i2o gi
 # Natural Transformations as ends
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-26
 last-edited: 2023-04-02
 ```
@@ -11411,7 +11411,7 @@ dimap id(a) k τa    dimap k id(b) τb
 # Ends and diagonals
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-26
 last-edited: 2023-04-02
 ```
@@ -11557,7 +11557,7 @@ q a a         q b b
 # Parabolic dynamics and renormalization
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-26
 last-edited: 2022-06-26
 ```
@@ -11567,7 +11567,7 @@ last-edited: 2022-06-26
 # Quantifiers as adjoints
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-26
 last-edited: 2023-04-02
 ```
@@ -11655,7 +11655,7 @@ last-edited: 2023-04-02
 # TLDP pages for bash conditionals
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11665,7 +11665,7 @@ last-edited: 2022-10-13
 # Remainder, Modulo
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11676,7 +11676,7 @@ last-edited: 2022-10-13
 # Parameters cannot be changed *anywhere*, not just in return location
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2023-04-02
 ```
@@ -11696,7 +11696,7 @@ inductive List (a: Type): Type where
 # LCNF
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2023-04-02
 ```
@@ -11759,7 +11759,7 @@ def f (n: Nat): Any := ...
 # Predicative v/s Impredicative: On Universes in Type Theory
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11792,7 +11792,7 @@ T(a) type
 # Testing infra in Lean4
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11803,7 +11803,7 @@ last-edited: 2022-10-13
 # Autocompletion in Lean4
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11819,7 +11819,7 @@ $ elan override my-lean-copy
 # Inductive types
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2023-04-02
 ```
@@ -11879,7 +11879,7 @@ inductive T
 # Parameter verus Index
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11892,7 +11892,7 @@ last-edited: 2022-10-13
 # HNF versus WHNF
 
 ```meta
-status: article
+status: scratch
 created: 2022-10-13
 last-edited: 2022-10-13
 ```
@@ -11904,7 +11904,7 @@ last-edited: 2022-10-13
 # Different types of arguments in Lean4:
 
 ```meta
-status: article
+status: scratch
 created: 2022-07-27
 last-edited: 2022-07-27
 ```
@@ -11919,7 +11919,7 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 # Lean tactics
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-27
 last-edited: 2023-04-02
 ```
@@ -11937,7 +11937,7 @@ last-edited: 2023-04-02
 # Hyperdoctrine
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2023-04-02
 ```
@@ -12002,7 +12002,7 @@ last-edited: 2023-04-02
 # Fungrim
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12013,7 +12013,7 @@ last-edited: 2022-05-30
 # Category where coproducts of computable things is not computable
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2023-04-02
 ```
@@ -12029,7 +12029,7 @@ last-edited: 2023-04-02
 # Homotopy continuation
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12040,7 +12040,7 @@ last-edited: 2022-05-30
 # Relationship between linearity and contradiction
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12324,7 +12324,7 @@ $$
 # Combinatorial Cauchy Schwarz
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2023-04-02
 ```
@@ -12355,7 +12355,7 @@ last-edited: 2023-04-02
 # Bezout's theorem
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2023-09-22
 ```
@@ -12509,7 +12509,7 @@ $$
 # Example for invariant theory
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2023-04-02
 ```
@@ -12525,7 +12525,7 @@ last-edited: 2023-04-02
 # Counterexample to fundamental theorem of calculus?
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12537,7 +12537,7 @@ last-edited: 2022-05-30
 # Why a sentinel of `-1` is sensible
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12548,7 +12548,7 @@ last-edited: 2022-05-30
 # Data structure to maintain mex
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2023-04-02
 ```
@@ -12603,7 +12603,7 @@ int mex_mex() {
 # Scatted algebraic number theory ideas: Ramification
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12657,7 +12657,7 @@ last-edited: 2022-05-30
 # Coreflection
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-08-22
 ```
@@ -12708,7 +12708,7 @@ last-edited: 2022-08-22
 # Better `man` Pages via `info`
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12720,7 +12720,7 @@ last-edited: 2022-05-30
 # The Zen of juggling three balls
 
 ```meta
-status: article
+status: technical-note
 created: 2022-05-30
 last-edited: 2023-04-02
 ```
@@ -12748,7 +12748,7 @@ last-edited: 2023-04-02
 # Example of lattice that is not distributive
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12761,7 +12761,7 @@ last-edited: 2022-05-30
 # Patat
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12772,7 +12772,7 @@ last-edited: 2022-05-30
 # Common Lisp LOOP Macro
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-05-30
 ```
@@ -12793,7 +12793,7 @@ last-edited: 2022-05-30
 # Mitchell-Bénabou language
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-30
 last-edited: 2022-09-28
 ```
@@ -12803,7 +12803,7 @@ last-edited: 2022-09-28
 # Hyperdoctrine
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2023-04-02
 ```
@@ -12822,7 +12822,7 @@ last-edited: 2023-04-02
 # Why is product in Rel not cartesian product?
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -12859,7 +12859,7 @@ last-edited: 2022-06-03
 # `simp` in Lean4
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -12893,7 +12893,7 @@ where
 # Lean4 TODOS
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -12907,7 +12907,7 @@ last-edited: 2022-06-03
 # `unsafePerformIO` in Lean4:
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-24
 last-edited: 2022-06-03
 ```
@@ -12932,7 +12932,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 # Lean4 FAQ
 
 ```meta
-status: article
+status: scratch
 created: 2022-06-03
 last-edited: 2022-06-03
 ```
@@ -12947,7 +12947,7 @@ last-edited: 2022-06-03
 # Sheaves in geometry and logic 1.2: Pullbacks
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-04
 last-edited: 2022-05-04
 ```
@@ -12965,7 +12965,7 @@ last-edited: 2022-05-04
 # Sheaves in geometry and logic 1.3: Characteristic functions of subobjects
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-04
 last-edited: 2023-04-02
 ```
@@ -13076,7 +13076,7 @@ last-edited: 2023-04-02
 # Common Lisp Debugging: Clouseau
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-04
 last-edited: 2023-04-02
 ```
@@ -13088,7 +13088,7 @@ last-edited: 2023-04-02
 # Drawabox: Lines
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-04
 last-edited: 2023-09-22
 ```
@@ -13109,7 +13109,7 @@ last-edited: 2023-09-22
 # Common Lisp Beauty: paths
 
 ```meta
-status: article
+status: scratch
 created: 2022-05-04
 last-edited: 2023-09-22
 ```
@@ -13187,7 +13187,7 @@ CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
 # Logical Predicates (OPLSS '12)
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13205,7 +13205,7 @@ last-edited: 2022-04-28
 # Logical Relations (Sterling)
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2023-04-02
 ```
@@ -13288,7 +13288,7 @@ $$
 # Pointless topology: Frames
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-09-25
 ```
@@ -13318,7 +13318,7 @@ last-edited: 2022-09-25
 # Introduction to substructural logics: Ch1
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2023-09-22
 ```
@@ -13371,7 +13371,7 @@ last-edited: 2023-09-22
 # Integrating against ultrafilers
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-09-28
 ```
@@ -13409,7 +13409,7 @@ last-edited: 2022-09-28
 # wegli: Neat tool for semantically grepping C++
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13420,7 +13420,7 @@ last-edited: 2022-04-28
 # Mostowski Collapse
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2023-04-02
 ```
@@ -13473,7 +13473,7 @@ last-edited: 2023-04-02
 # Spaces that have same homotopy groups but not the same homotopy type
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13490,7 +13490,7 @@ last-edited: 2022-04-28
 # Fundamental group functor does not preserve epis
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2023-04-02
 ```
@@ -13516,7 +13516,7 @@ last-edited: 2022-04-28
 # Permutation models
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13537,7 +13537,7 @@ last-edited: 2022-04-28
 # Almost universal class
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2023-04-02
 ```
@@ -13550,7 +13550,7 @@ last-edited: 2023-04-02
 # Godel operations
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -13569,7 +13569,7 @@ last-edited: 2022-04-28
 # Orthogonal Factorization Systems
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13584,7 +13584,7 @@ last-edited: 2022-04-03
 # Orthogonal morphisms
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13617,7 +13617,7 @@ x --m--> y
 # Locally Presentable Category
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13649,7 +13649,7 @@ last-edited: 2022-04-03
 # Remez Algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13659,7 +13659,7 @@ last-edited: 2022-04-03
 # Permission bits reference
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13693,7 +13693,7 @@ last-edited: 2022-04-03
 # Papers on Computational Group Theory
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13705,7 +13705,7 @@ last-edited: 2022-04-03
 # Kan Extensions: Key idea
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-03
 last-edited: 2022-04-03
 ```
@@ -13720,7 +13720,7 @@ last-edited: 2022-04-03
 # Interleaved dataflow analysis and rewriting
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-06
 last-edited: 2022-05-30
 ```
@@ -13760,7 +13760,7 @@ T -> analysis
 # Central variable as `focal`
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-06
 last-edited: 2022-05-30
 ```
@@ -13774,7 +13774,7 @@ last-edited: 2022-05-30
 # Wilson's theorem
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -13791,7 +13791,7 @@ last-edited: 2022-02-03
 # General enough special cases
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-03
 last-edited: 2023-10-06
 ```
@@ -13819,7 +13819,7 @@ void editor_state_backspace_char(EditorState& s) {
 # XOR and AND relationship
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -13829,7 +13829,7 @@ last-edited: 2022-02-03
 # Geometry of complex integrals
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-03
 last-edited: 2022-02-03
 ```
@@ -13840,7 +13840,7 @@ last-edited: 2022-02-03
 # Green's functions
 
 ```meta
-status: article
+status: scratch
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -13854,7 +13854,7 @@ last-edited: 2022-05-30
 # CP trick: writing exact counting as counting less than
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-01-28
 ```
@@ -13867,7 +13867,7 @@ last-edited: 2022-01-28
 # CP trick: Heavy Light Decomposition euler tour tree
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-01-28
 ```
@@ -13884,7 +13884,7 @@ last-edited: 2022-01-28
 # Counting with repetitions via pure binomial coefficients
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-05-30
 ```
@@ -13956,7 +13956,7 @@ P1---   P0 -> M -> 0
 # Projective modules in terms of universal property
 
 ```meta
-status: article
+status: technical-note
 created: 2022-02-03
 last-edited: 2022-05-30
 ```
@@ -14194,7 +14194,7 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
 # Centroid of a tree
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -14291,7 +14291,7 @@ int centroid(int v, int p) {
 # Path query to subtree query
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-01-28
 ```
@@ -14307,7 +14307,7 @@ last-edited: 2022-01-28
 # Pavel: bridges, articulation points for UNDIRECTED graphs
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2023-04-02
 ```
@@ -14339,7 +14339,7 @@ last-edited: 2023-04-02
 # Monadic functor
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-05-30
 ```
@@ -14365,7 +14365,7 @@ last-edited: 2022-05-30
 # Injective module
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-05-30
 ```
@@ -14434,7 +14434,7 @@ last-edited: 2022-02-06
 # Projections onto convex sets
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2026-08-28
 ```
@@ -14445,7 +14445,7 @@ last-edited: 2026-08-28
 # BGFS algorithm for unconstrained nonlinear optimization
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-02-06
 ```
@@ -14455,7 +14455,7 @@ last-edited: 2022-02-06
 # LM algorithm for nonlinear least squares
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-02-06
 ```
@@ -14466,7 +14466,7 @@ last-edited: 2022-02-06
 # Backward dataflow and continuations
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-04-03
 ```
@@ -14478,7 +14478,7 @@ last-edited: 2022-04-03
 # Coordinate compression with `set` and `vector`
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-28
 last-edited: 2022-05-30
 ```
@@ -14517,7 +14517,7 @@ last-edited: 2022-01-18
 # Cost of looping over all multiples of $i$ for $i$ in $1$ to $N$
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-18
 last-edited: 2022-01-18
 ```
@@ -15009,7 +15009,7 @@ far along I get!
 # Cayley hamilton for 2x2 matrices in sage via AG
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-29
 last-edited: 2023-04-02
 ```
@@ -15049,7 +15049,7 @@ last-edited: 2023-04-02
 # LispWorks config
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-02
 last-edited: 2022-01-02
 ```
@@ -15061,7 +15061,7 @@ last-edited: 2022-01-02
 # Birkhoff Von Neumann theorem
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -15144,7 +15144,7 @@ s [B|C]
 # Latin Square
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -15198,7 +15198,7 @@ last-edited: 2022-05-30
 # Assignment Problem
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -15282,7 +15282,7 @@ r + s = n + 1
 # Interpolating homotopies
 
 ```meta
-status: article
+status: scratch
 created: 2022-01-02
 last-edited: 2022-05-30
 ```
@@ -15295,7 +15295,7 @@ last-edited: 2022-05-30
 # Example where MIP shows extra power over IP
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2021-12-28
 ```
@@ -15307,7 +15307,7 @@ last-edited: 2021-12-28
 # Lazy reversible computation?
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2021-12-28
 ```
@@ -15317,7 +15317,7 @@ last-edited: 2021-12-28
 # Theorem coverage as an analogue to code coverage
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -15326,7 +15326,7 @@ last-edited: 2022-05-30
 # Lazy GPU programming
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2023-04-02
 ```
@@ -15373,7 +15373,7 @@ last-edited: 2023-04-02
 # Backward dataflow and continuations
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-04-03
 ```
@@ -15385,7 +15385,7 @@ last-edited: 2022-04-03
 # The tyranny of structurelessness
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15423,7 +15423,7 @@ last-edited: 2021-12-26
 # Simple Sabotage Field Manual
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-01-02
 ```
@@ -15452,7 +15452,7 @@ last-edited: 2022-01-02
 # Counting permutations with #MAXSAT
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15466,7 +15466,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 # Coloring `cat` output with `supercat`
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15476,7 +15476,7 @@ last-edited: 2021-12-26
 # Reader monoid needs a hopf algebra?!
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15487,7 +15487,7 @@ last-edited: 2021-12-26
 # Monads mnemonic
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15498,7 +15498,7 @@ last-edited: 2021-12-26
 # Card stacking
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2023-04-02
 ```
@@ -15513,7 +15513,7 @@ last-edited: 2023-04-02
 # SSH into google cloud
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -15526,7 +15526,7 @@ last-edited: 2021-12-26
 # Comma & Semicolon in index notation
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15539,7 +15539,7 @@ last-edited: 2022-05-30
 # Spin groups
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15573,7 +15573,7 @@ last-edited: 2022-02-03
 # God of areppo
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15689,7 +15689,7 @@ last-edited: 2022-05-30
 # Classification of lie algebras, dynkin diagrams
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15849,7 +15849,7 @@ last-edited: 2022-05-30
 # Weird free group construction from adjoint functor theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15884,7 +15884,7 @@ last-edited: 2022-05-30
 # bashupload
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-01-02
 ```
@@ -15898,7 +15898,7 @@ curl bashupload.com -T your_file.txt
 # When are the catalan numbers odd
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2023-04-02
 ```
@@ -15917,7 +15917,7 @@ last-edited: 2023-04-02
 # Geodesic equation, Extrinsic
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -15968,7 +15968,7 @@ $$
 # Connections, take 2
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -16019,7 +16019,7 @@ last-edited: 2022-05-30
 # Dropping into tty on manjaro/GRUB
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2021-12-26
 ```
@@ -16031,7 +16031,7 @@ last-edited: 2021-12-26
 # Why the zero set of a continuous function must be a closed set
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2022-05-30
 ```
@@ -16049,7 +16049,7 @@ last-edited: 2022-05-30
 # Derivatives in diffgeo
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2022-01-02
 ```
@@ -16079,7 +16079,7 @@ last-edited: 2022-01-02
 # Building stuff with Docker
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2024-01-31
 ```
@@ -16103,7 +16103,7 @@ last-edited: 2024-01-31
 # Lie derivative versus covariant derivative
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2022-01-02
 ```
@@ -16127,7 +16127,7 @@ last-edited: 2022-01-02
 # The Tor functor
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2022-01-02
 ```
@@ -16174,7 +16174,7 @@ $$
 # Sum of quadratic errors
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2021-11-18
 ```
@@ -16188,7 +16188,7 @@ last-edited: 2021-11-18
 # Hip-Hop and Shakespeare
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2021-11-18
 ```
@@ -16200,7 +16200,7 @@ last-edited: 2021-11-18
 # Write thin to write well
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2022-05-30
 ```
@@ -16247,7 +16247,7 @@ let g:goyo_margin_bottom = 0
 # Hidden symmetries of alg varieties
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2022-05-30
 ```
@@ -16269,7 +16269,7 @@ last-edited: 2022-05-30
 # `fd` for `find`
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2021-11-11
 ```
@@ -16279,7 +16279,7 @@ last-edited: 2021-11-11
 # Thu Morse sequence for sharing
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2021-11-18
 ```
@@ -16297,7 +16297,7 @@ last-edited: 2021-11-18
 # Elementary and power sum symmetric polynomials
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-28
 last-edited: 2022-05-30
 ```
@@ -16424,7 +16424,7 @@ $$
 # Projective spaces and grassmanians in AG
 
 ```meta
-status: article
+status: technical-note
 created: 2021-11-11
 last-edited: 2022-05-30
 ```
@@ -16601,7 +16601,7 @@ $$
 # Mnemonic for why `eta` is unit:
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2021-11-11
 ```
@@ -16614,7 +16614,7 @@ last-edited: 2021-11-11
 # Fundamental theorem of galois theory
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2022-05-30
 ```
@@ -16695,7 +16695,7 @@ last-edited: 2022-05-30
 # Metis
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2021-11-11
 ```
@@ -16711,7 +16711,7 @@ last-edited: 2021-11-11
 # Tooling for performance benchmarking
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-11
 last-edited: 2021-12-26
 ```
@@ -16800,7 +16800,7 @@ last-edited: 2022-05-30
 # Eisenstein Theorem for checking irreducibility
 
 ```meta
-status: article
+status: technical-note
 created: 2021-11-03
 last-edited: 2022-05-30
 ```
@@ -16832,7 +16832,7 @@ last-edited: 2022-05-30
 # Gauss Lemma for polynomials
 
 ```meta
-status: article
+status: technical-note
 created: 2021-11-03
 last-edited: 2022-05-30
 ```
@@ -16874,7 +16874,7 @@ last-edited: 2022-05-30
 # How GHC does typeclass resolution
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-11-01
 ```
@@ -16935,7 +16935,7 @@ last-edited: 2022-05-30
 # Why commutator is important for QM
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -16972,7 +16972,7 @@ last-edited: 2022-02-03
 # Level set of a continuous function must be closed
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -16990,7 +16990,7 @@ last-edited: 2022-05-30
 # HPNDUF - Hard problems need design up front!
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17000,7 +17000,7 @@ last-edited: 2021-10-31
 # Separable Extension is contained in Galois extension
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17018,7 +17018,7 @@ last-edited: 2022-05-30
 # Primitive element theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2021-11-06
 last-edited: 2023-09-22
 ```
@@ -17138,7 +17138,7 @@ last-edited: 2023-09-22
 # Separable extension via embeddings into alg. closure
 
 ```meta
-status: article
+status: technical-note
 created: 2021-11-06
 last-edited: 2022-05-30
 ```
@@ -17296,7 +17296,7 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 # Irreducible polynomial over a field divides any polynomial with common root
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-06
 last-edited: 2021-11-06
 ```
@@ -17310,7 +17310,7 @@ last-edited: 2021-11-06
 # Galois extension
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17345,7 +17345,7 @@ last-edited: 2022-05-30
 # Separability of field extension as diagonalizability
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17360,7 +17360,7 @@ last-edited: 2021-10-31
 # Motivation for the compact-open topology
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17377,7 +17377,7 @@ last-edited: 2021-10-31
 # Example of covariance zero, and yet "correlated"
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17392,7 +17392,7 @@ last-edited: 2021-10-31
 # Hypothesis Testing
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17462,7 +17462,7 @@ last-edited: 2022-05-30
 # Dumb mnemonic for remembering adjunction turnstile
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17474,7 +17474,7 @@ last-edited: 2021-10-31
 # Delta debugging
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17647,7 +17647,7 @@ MX17004 2010-05-27 33.2 18.2
 # Normal subgroups through the lens of actions
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17681,7 +17681,7 @@ last-edited: 2022-09-19
 # LCS DP: The speedup is from filtration
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17706,7 +17706,7 @@ last-edited: 2022-05-30
 # Poisson distribution
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-11-01
 ```
@@ -17724,7 +17724,7 @@ last-edited: 2021-11-01
 # F1 or Fun : The field with one element
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17781,7 +17781,7 @@ last-edited: 2022-05-30
 # ncdu for disk space measurement
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17793,7 +17793,7 @@ last-edited: 2021-10-31
 # nmon versus htop
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17804,7 +17804,7 @@ last-edited: 2021-10-31
 # Schrier sims --- why purify generators times coset
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17818,7 +17818,7 @@ last-edited: 2021-10-31
 # Vyn's feeling about symmetry
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2021-10-31
 ```
@@ -17832,7 +17832,7 @@ last-edited: 2021-10-31
 # Convergence in distribution is very weak
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17883,7 +17883,7 @@ last-edited: 2022-05-30
 # Class equation, P-group structure
 
 ```meta
-status: article
+status: technical-note
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -17968,7 +17968,7 @@ last-edited: 2022-05-30
 # Sylow Theorem 1
 
 ```meta
-status: article
+status: technical-note
 created: 2021-10-31
 last-edited: 2022-05-30
 ```
@@ -18040,7 +18040,7 @@ stabilizer could have!
 # Fuzzing book
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-28
 last-edited: 2023-04-02
 ```
@@ -18096,7 +18096,7 @@ $$
 # Fisher Yates
 
 ```meta
-status: article
+status: technical-note
 created: 2021-10-04
 last-edited: 2022-05-30
 ```
@@ -18173,7 +18173,7 @@ def permutation(draw, n):
 # Bucchberger algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-28
 last-edited: 2022-05-30
 ```
@@ -18201,7 +18201,7 @@ last-edited: 2022-05-30
 # GAP permutation syntax
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-28
 ```
@@ -18214,7 +18214,7 @@ last-edited: 2021-09-28
 # Why division algorithm with multiple variables go bad
 
 ```meta
-status: article
+status: scratch
 created: 2021-10-04
 last-edited: 2021-10-04
 ```
@@ -18246,7 +18246,7 @@ last-edited: 2022-02-03
 # "Cheap" proof of euler characteristic
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18313,7 +18313,7 @@ last-edited: 2022-05-30
 # Colimits examples with small diagram categories
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -18331,7 +18331,7 @@ last-edited: 2021-09-24
 # Limits examples with small diagram categories
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -18429,7 +18429,7 @@ https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 # Second fundamental form
 
 ```meta
-status: article
+status: scratch
 created: 2021-11-18
 last-edited: 2023-04-02
 ```
@@ -18529,7 +18529,7 @@ last-edited: 2022-02-03
 # Fundamental theorem of symmetric polynomials
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18588,7 +18588,7 @@ last-edited: 2022-05-30
 # DP over submasks
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18622,7 +18622,7 @@ for(int m = N; m >= 0; m--) {
 # Dual of Planar Euler graph is bipartite
 
 ```meta
-status: article
+status: technical-note
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18673,7 +18673,7 @@ e----------d
 # Yoneda preserves limits
 
 ```meta
-status: article
+status: technical-note
 created: 2021-09-24
 last-edited: 2021-10-04
 ```
@@ -18863,7 +18863,7 @@ last-edited: 2022-05-30
 # Limits of a functor category are computed pointwise.
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18940,7 +18940,7 @@ F =α=> H <=β= G
 # `a + b = (a or b) + (a and b)`
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -18954,7 +18954,7 @@ last-edited: 2021-09-24
 # Intuition for why choosing closed-closed intervals of `[1..n]` is $(n+1)C2$
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -18970,7 +18970,7 @@ last-edited: 2021-09-24
 # Thoughtful discussion on the limits of safe spaces
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -18990,7 +18990,7 @@ each other.
 # Semidirect product: Panning and Zooming
 
 ```meta
-status: article
+status: technical-note
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -19050,7 +19050,7 @@ Z---[z=1]---[z=1/2]--[z=1/4]----...
 # Longest Convex Subsequence DP
 
 ```meta
-status: article
+status: technical-note
 created: 2021-09-24
 last-edited: 2022-05-30
 ```
@@ -19168,7 +19168,7 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 # Why quaternions work better
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2022-05-30
 ```
@@ -19197,7 +19197,7 @@ last-edited: 2022-05-30
 # DFA to CFG via colimits?
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19211,7 +19211,7 @@ last-edited: 2021-08-25
 # Why pointless topology is powerful
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19225,7 +19225,7 @@ last-edited: 2021-08-25
 # Denotational semantics in a few sentences
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-12-26
 ```
@@ -19302,7 +19302,7 @@ B---D
 # Fixpoint as decorator
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19332,7 +19332,7 @@ print(fact(5))
 # Combinatorial generation algorithms
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19347,7 +19347,7 @@ last-edited: 2021-08-25
 # Perform DP on measures, not indexes.
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19404,7 +19404,7 @@ int lcs_len(const vector<int> &xs, const vector<int> &ys) {
 # Alternative version of Myhill-Nerode
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19425,7 +19425,7 @@ last-edited: 2021-08-25
 # Polya Enumeration
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2022-05-30
 ```
@@ -19483,7 +19483,7 @@ $$
 # Weighted Burnside Lemma
 
 ```meta
-status: article
+status: technical-note
 created: 2021-08-25
 last-edited: 2022-05-30
 ```
@@ -19573,7 +19573,7 @@ e     r     r^2   r^3
 # Cycle index polynomial
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2022-05-30
 ```
@@ -19619,7 +19619,7 @@ d c
 # Mnemonics For Symmetric Polynomials
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2022-05-30
 ```
@@ -19688,7 +19688,7 @@ $$
 # Uses of minimal string rotation
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-25
 last-edited: 2021-08-25
 ```
@@ -19758,7 +19758,7 @@ last-edited: 2022-05-30
 # Simpson's Paradox
 
 ```meta
-status: article
+status: technical-note
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -19781,7 +19781,7 @@ last-edited: 2021-08-19
 # Myhill Nerode Theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2021-08-19
 last-edited: 2022-05-30
 ```
@@ -19872,7 +19872,7 @@ last-edited: 2022-05-30
 # Linearity of expectation for sampling
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2023-04-02
 ```
@@ -20092,7 +20092,7 @@ last-edited: 2022-05-30
 # Clojure: minimal makefile for REPL driven dev with Neovim
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2022-05-30
 ```
@@ -20128,7 +20128,7 @@ test:
 # Delimited continuations
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20145,7 +20145,7 @@ last-edited: 2021-08-19
 # Never forget monic again
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20160,7 +20160,7 @@ last-edited: 2021-08-19
 # Weird canonical example of monic and epic: left/right shift
 
 ```meta
-status: article
+status: technical-note
 created: 2021-08-19
 last-edited: 2022-05-30
 ```
@@ -20196,7 +20196,7 @@ last-edited: 2022-05-30
 # Playing guitar: being okay with incorrect chords
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2022-05-30
 ```
@@ -20222,7 +20222,7 @@ last-edited: 2022-05-30
 # Sparse table
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2022-05-30
 ```
@@ -20290,7 +20290,7 @@ int query_mins(int l, int r) {
 # Duval's algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20301,7 +20301,7 @@ last-edited: 2021-08-19
 # Amortized complexity from the verifier perspective
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20315,7 +20315,7 @@ last-edited: 2021-08-19
 # Relationship betwee permutations and runs
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20363,7 +20363,7 @@ last-edited: 2021-08-19
 # Brouwer's fixed point theorem
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20416,7 +20416,7 @@ b===c
 # XOR on binary trie
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2021-08-19
 ```
@@ -20428,7 +20428,7 @@ like a handy way to visualize numbers. In particular, to solve question [1554C](
 # Inconvergent: beautiful generative art
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-08-19
 ```
@@ -20441,7 +20441,7 @@ last-edited: 2021-08-19
 # Prefix/Border function
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20594,7 +20594,7 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 # Shortest walk versus shortest path
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20612,7 +20612,7 @@ last-edited: 2022-05-30
 # Minimal tech stack
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -20627,7 +20627,7 @@ last-edited: 2021-07-30
 # FFT
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20715,7 +20715,7 @@ Consider the tree:
 # codeforces rating of some GMs
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -20730,7 +20730,7 @@ last-edited: 2021-09-24
 # Continuum TTRPG
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20784,7 +20784,7 @@ last-edited: 2022-05-30
 # Words to know in target language
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20901,7 +20901,7 @@ last-edited: 2022-05-30
 # DP on subarrays
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -20914,7 +20914,7 @@ subarrays. For this DP to work, we iterate by length of the subarray.
 # Vis editor cheat sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -20947,7 +20947,7 @@ last-edited: 2021-07-30
 # Mean, Median and Jensen's
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -20977,7 +20977,7 @@ The intuition for Jensen's is typically presented as:
 # The similarity between labellings and representations
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -21025,7 +21025,7 @@ is not isomorphic (though they would be if we forget the numbering), since the c
 # L1 norm is greater than or equal to L2 norm
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -21073,7 +21073,7 @@ A
 # Z algorithm
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -21148,7 +21148,7 @@ vector<int> myz(std::string s) {
 # For a given recurrence, what base cases do I need to implement?
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -21160,7 +21160,7 @@ last-edited: 2021-07-30
 # Number of distinct numbers in a partition
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -21178,7 +21178,7 @@ last-edited: 2022-05-30
 # Splitting $f(x) = y$ into indicators
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -21201,7 +21201,7 @@ $$
 # Why searching for divisors upto `sqrt(n)` works
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -21219,7 +21219,7 @@ last-edited: 2022-05-30
 # Heuristics for the prime number theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -21307,7 +21307,7 @@ This "proves" the prime number theorem.
 # Sum of absolute differences of an array
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -21343,7 +21343,7 @@ D =
 # GCD  is at most difference of numbers
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -21363,7 +21363,7 @@ last-edited: 2022-05-30
 # implementing GCD and LCM
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-08
 last-edited: 2021-07-08
 ```
@@ -21378,7 +21378,7 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 # Centroid of a tree
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -21409,7 +21409,7 @@ last-edited: 2022-05-30
 # Center of a tree
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-08
 last-edited: 2022-05-30
 ```
@@ -21474,7 +21474,7 @@ median (the center) invariant.
 # Image unshredding as hamiltonian path
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-03
 last-edited: 2022-05-30
 ```
@@ -21494,7 +21494,7 @@ vertices exactly one, (in contrast to an euler tour, we must visit each edge exa
 # Distance between lines in nD
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -21544,7 +21544,7 @@ $$
 # `lower_bound` binary search with closed intervals
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-08
 last-edited: 2021-07-08
 ```
@@ -21670,7 +21670,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
 # Kawaii implementation of `x = min(x, y)`
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -21690,7 +21690,7 @@ to mean `x = min(x, 10)`. This a nice pattern!
 # CSES: Counting Towers
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -21709,7 +21709,7 @@ last-edited: 2022-05-30
 # Smallest positive natural which can't be represented as sum of any subset of a set of naturals
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -21797,7 +21797,7 @@ void main() {
 # Example of RVs that are pairwise but not 3-way independent.
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2021-07-02
 ```
@@ -21809,7 +21809,7 @@ are independent, but `X, Y` determine `Z` so it's not 3-way independent.
 # Notes on Liam O Connor's thesis: Cogent
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -21871,7 +21871,7 @@ last-edited: 2022-05-30
 # C++ `lower_bound`, `upper_bound` API
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -21941,7 +21941,7 @@ iterators towards the left, and `upperbound` shifts iterators to right.
 # Books that impart mental models
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -21954,7 +21954,7 @@ reaction mechanisms. I'd love references to other books that do the same.
 # Subarrays ~= prefixes
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22007,7 +22007,7 @@ int main() {
 # Operations with modular fractions
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22056,7 +22056,7 @@ Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arit
 # Modular inverse calculation
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22089,7 +22089,7 @@ pair<int, int> euc(int x, int y) {
 # The number of pairs `(a,b)` such that `ab≤x` is `O(xlogx)`
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22124,7 +22124,7 @@ consider the two functions:
 # DP as path independence
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22142,7 +22142,7 @@ last-edited: 2022-05-30
 # Binary search to find rightmost index which does not possess some property
 
 ```meta
-status: article
+status: technical-note
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -22371,7 +22371,7 @@ int lca(int u, int v) {
 # Correctness of `lower_bound` search with half-open intervals
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-02
 last-edited: 2022-05-30
 ```
@@ -22442,7 +22442,7 @@ int tallest(vector<long> &xs, int y) {
 # Greedy Coin change: proof by probing
 
 ```meta
-status: article
+status: technical-note
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22482,7 +22482,7 @@ last-edited: 2022-05-30
 # Clean way to write burnside lemma
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22538,7 +22538,7 @@ $$
 # The groupoid interpretation of type theory
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22550,7 +22550,7 @@ a model for the axioms of MLTT where UIP fails --- a groupoid!
 # Mnemonics for free = left adjoint
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22564,7 +22564,7 @@ last-edited: 2021-06-27
 # Where to scratch a cat
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22609,7 +22609,7 @@ y = [#]
 # Quotes from 'Braiding Sweetgrass'
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2025-06-10
 ```
@@ -22693,7 +22693,7 @@ last-edited: 2025-06-10
 # Transfinite recursion: Proof
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22725,7 +22725,7 @@ last-edited: 2021-06-27
 # Transfinite induction: Proof
 
 ```meta
-status: article
+status: technical-note
 created: 2021-06-27
 last-edited: 2022-05-30
 ```
@@ -22750,7 +22750,7 @@ $$
 # Thoughts on playing Em-Bm
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22766,7 +22766,7 @@ other fingers after it.
 # An explanation for why permutations and linear orders are not naturally isomorphic
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22785,7 +22785,7 @@ different criteria for "being equal".
 # We can't define choice for finite sets in Haskell!
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22819,7 +22819,7 @@ last-edited: 2021-06-27
 # Geomean is scale independent
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22831,7 +22831,7 @@ while harmonic mean is more sensitive to small values. Geomean is neither, so it
 # Thoughts on playing Em Bm.
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22840,7 +22840,7 @@ last-edited: 2021-06-27
 # Induction on natural numbers cannot be derived from other axioms
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-27
 last-edited: 2021-06-27
 ```
@@ -22857,7 +22857,7 @@ induction as an axiom to rule out other things.
 # Ordinals and cardinals
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-13
 last-edited: 2022-09-07
 ```
@@ -22977,7 +22977,7 @@ acts as a place to do mathematics safely, while still having access to the "set 
 # Musing about Specht modules
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-13
 last-edited: 2022-05-30
 ```
@@ -23039,7 +23039,7 @@ p | q
 # Every continuous function on $[a, b]$ attains a maximum
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-13
 last-edited: 2021-06-13
 ```
@@ -23065,7 +23065,7 @@ The high-level machinery proof:
 # Invisible cities
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-09
 last-edited: 2021-06-09
 ```
@@ -23251,7 +23251,7 @@ last-edited: 2021-06-09
 # Associativity of addition in cubicaltt
 
 ```meta
-status: article
+status: technical-note
 created: 2021-06-07
 last-edited: 2022-05-30
 ```
@@ -23354,7 +23354,7 @@ addA (a b: nat):
 # Etymology of fiber bundle $F \rightarrow E \rightarrow B$
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-07
 last-edited: 2021-06-07
 ```
@@ -23366,7 +23366,7 @@ as told in this [math.stackexchange answer](https://math.stackexchange.com/quest
 # Galois correspondence, functorially
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-07
 last-edited: 2022-05-30
 ```
@@ -23402,7 +23402,7 @@ between $L$ and $F$, and has morphisms as field morphisms which fix $F$.
 # CubicalTT: sharpening thinking about indexed functions
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-06
 last-edited: 2022-05-30
 ```
@@ -23448,7 +23448,7 @@ g1 (b : nat) (c : nat) : nat = b
 # Functors to motivate adjuntions
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-07
 last-edited: 2022-05-30
 ```
@@ -23489,7 +23489,7 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
 # Madoka Magica: plot thoughts
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-05
 last-edited: 2022-05-30
 ```
@@ -23501,7 +23501,7 @@ last-edited: 2022-05-30
 # Chain rule functorially
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-06
 last-edited: 2022-05-30
 ```
@@ -23532,7 +23532,7 @@ And as for $Euc$, we should replace this with $ManOpen$ where we use based
 # Lagrange multipliers by algebra
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-05
 last-edited: 2021-06-11
 ```
@@ -24082,7 +24082,7 @@ and then using `A_t`.
 # Even and odd functions through representation theory
 
 ```meta
-status: article
+status: scratch
 created: 2021-06-02
 last-edited: 2022-05-30
 ```
@@ -24104,7 +24104,7 @@ we have described the action of $\phi$ in terms of subspaces which span the spac
 # Greg egan: Orthogonal
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-26
 last-edited: 2022-05-30
 ```
@@ -24504,7 +24504,7 @@ last-edited: 2023-04-02
 # Limit is right adjoint to diagonal
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -24546,7 +24546,7 @@ the technology, unfortunately, to make this go through.
 # Working out why right adjoints preserve limits.
 
 ```meta
-status: article
+status: technical-note
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -24616,7 +24616,7 @@ Thus, the two sets are equivalent, and hence `Hom(a, -)` preserves limits (almos
 # Limit/Colimit/Cone/Cocone: the arrows are consistent!
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -24636,7 +24636,7 @@ _out_ of the apex, ie, a limit, since a limit is a product and thus has projecti
 # Representable Functors
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -24804,7 +24804,7 @@ Hom(-, y)>-----*
 # Why terminal object is a limit
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-23
 last-edited: 2021-05-23
 ```
@@ -24826,7 +24826,7 @@ last-edited: 2021-05-23
 # Excluded middle is not false in intuitionistic logic
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-23
 last-edited: 2022-05-30
 ```
@@ -24855,7 +24855,7 @@ lemFalseExplodes lem = absurd (lemNotFalse lem)
 # Yoneda Lemma and embedding
 
 ```meta
-status: article
+status: technical-note
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -24979,7 +24979,7 @@ into the `Hom` category.
 # GHCID
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -24990,7 +24990,7 @@ last-edited: 2021-05-16
 # Character theory
 
 ```meta
-status: article
+status: technical-note
 created: 2021-06-05
 last-edited: 2022-05-30
 ```
@@ -25230,7 +25230,7 @@ the number of conjugacy classes of the group.
 # Cofibration
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -25303,7 +25303,7 @@ Reference: [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMt
 # Emily Riehl Contrability as uniqueness
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25315,7 +25315,7 @@ last-edited: 2021-05-16
 # Cofactor as derivative of determinant
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-23
 ```
@@ -25329,7 +25329,7 @@ that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\p
 # Homology, the big picture
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2023-04-02
 ```
@@ -25395,7 +25395,7 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 # Legal Systems very different from ours
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25488,7 +25488,7 @@ TODO
 # Lean internals Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -25506,7 +25506,7 @@ last-edited: 2021-07-30
 # MicroUI
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25519,7 +25519,7 @@ a nice design pattern for writing such an immediate-mode GUI library in the futu
 # Proof of tree having (V-1) edges
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25537,7 +25537,7 @@ the arbitrariness of the choice breaks my "flow".
 # Creating PDFs to read code
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25552,7 +25552,7 @@ last-edited: 2021-05-16
 # Bias and gain
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25580,7 +25580,7 @@ function GetGain(t,g) {
 # Barycentric subdivision: edge length decreases
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-23
 ```
@@ -25602,7 +25602,7 @@ This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a fac
 # Homotopic maps produce same singular homology: Intuition
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -25646,7 +25646,7 @@ So, we get a "prism" whose endpoints are $m = f \circ l$ and $n = g \circ l$.
 # Singular homology: induced homomorphism
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-23
 ```
@@ -25693,7 +25693,7 @@ is well-defined.
 # Demoscene tools
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-11-18
 ```
@@ -25710,7 +25710,7 @@ last-edited: 2021-11-18
 # Binaural Beat
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25725,7 +25725,7 @@ last-edited: 2021-05-16
 # Low pass filter by delaying
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -25808,7 +25808,7 @@ a multiple oCochlea and why frequencies are 1:2
 # Bias and gain
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25819,7 +25819,7 @@ last-edited: 2021-05-16
 # Show, don't tell
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25834,7 +25834,7 @@ Think of effects, not causes.
 # Try and think of natural transformations as intertwinings
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-23
 ```
@@ -25861,7 +25861,7 @@ by wherever the functor sends the identity element.
 # Subobject classifier measures how much we need to pay to access fact
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -25903,7 +25903,7 @@ last-edited: 2023-04-02
 # Weingarten map
 
 ```meta
-status: article
+status: scratch
 created: 2021-12-26
 last-edited: 2022-05-30
 ```
@@ -25917,7 +25917,7 @@ last-edited: 2022-05-30
 # When maps cannot be lifted to the universal cover
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2021-05-16
 ```
@@ -26066,7 +26066,7 @@ as the universal net converges.
 # Limit point compactness from Munkres
 
 ```meta
-status: article
+status: scratch
 created: 2021-04-11
 last-edited: 2022-05-30
 ```
@@ -26106,7 +26106,7 @@ point of the original subsequence. Any open set around $O$ will contain some int
 # Proof of Heine Borel from Munkres (compact iff closed, bounded)
 
 ```meta
-status: article
+status: technical-note
 created: 2021-06-10
 last-edited: 2022-05-30
 ```
@@ -26205,7 +26205,7 @@ More elaborately:
 # Alexandrov topology
 
 ```meta
-status: article
+status: scratch
 created: 2021-04-11
 last-edited: 2022-05-30
 ```
@@ -26224,7 +26224,7 @@ is the intersection of all opens containing $x$.
 # Zeroth singular homology group: Intuition
 
 ```meta
-status: article
+status: scratch
 created: 2021-04-11
 last-edited: 2021-05-23
 ```
@@ -26243,7 +26243,7 @@ which is isomorphic to $\mathbb Z$. Thus, the zeroth singular homology group is 
 # Examples of fiber products / pullbacks
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-31
 last-edited: 2022-05-30
 ```
@@ -26368,7 +26368,7 @@ The answer is that apparently, it's exactly $Spec(A) \times_{Spec(R)} Spec(B)$.
 # Covariant derivative
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-31
 last-edited: 2022-05-30
 ```
@@ -26463,7 +26463,7 @@ Let $\sigma$ be a $C^\infty$ curve.
 # Clackety sounds: `bucklespring`
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-31
 last-edited: 2021-05-23
 ```
@@ -26476,7 +26476,7 @@ in college in the time of the plague, I feel like I was sorely missing this sort
 # Submersions and immersions
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-31
 last-edited: 2022-05-30
 ```
@@ -26490,7 +26490,7 @@ asks for the precise opposite!
 # Ehrsmann connection
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-31
 last-edited: 2023-11-02
 ```
@@ -26547,7 +26547,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 # Quotes from the culture
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -26670,7 +26670,7 @@ last-edited: 2022-05-30
 # Lie bracket commutator as infinitesimal conjugation
 
 ```meta
-status: article
+status: scratch
 created: 2021-09-24
 last-edited: 2021-09-24
 ```
@@ -26697,7 +26697,7 @@ $$
 # Thoughts on proof of fundamental group of unit circle
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2021-05-16
 ```
@@ -26724,7 +26724,7 @@ and we can thus use induction to path lift.
 # Pasting lemma
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -26763,7 +26763,7 @@ $$
 # Tensoring with base ring has no effect
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -26779,7 +26779,7 @@ right).
 # Seeing the semidirect product of the dihedral group.
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -26808,7 +26808,7 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 # Animating rotations with quaternion curves
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -26819,7 +26819,7 @@ last-edited: 2021-03-29
 # Mnemonic for hom-tensor and left-right adjoints
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -26844,7 +26844,7 @@ last-edited: 2021-03-29
 # Construction of tensor product: Atiyah macdonald
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -26891,7 +26891,7 @@ If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T
 # Recovering topology from sheaf of functions: Proof from Atiyah Macdonald
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -27124,7 +27124,7 @@ makes sense Urhyson's is involved.
 # Compact Hausdorff spaces are normal
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -27154,7 +27154,7 @@ us our final opens $U_{CD}$ and $V_{CD}$. that separate $C$ and $D$.
 # Stone representation theorem: Proof from Atiyah Macdonald
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -27332,7 +27332,7 @@ But every clopen set can be written as $D(l')$ for some $l'$.
 # Covariant Hom is left exact
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2021-03-29
 ```
@@ -27380,7 +27380,7 @@ the case with $Z$ and $Z/2Z$
 # Internal versus External semidirect products
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-17
 last-edited: 2022-05-30
 ```
@@ -27437,7 +27437,7 @@ hold as well.
 # Splitting of semidirect products in terms of projections
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-17
 last-edited: 2021-03-17
 ```
@@ -27471,7 +27471,7 @@ $\pi_n: G \rightarrow G; \pi_n(g) \equiv g \cdot \pi(k)^{-1}$.
 # Tensor is right exact
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-17
 last-edited: 2022-05-30
 ```
@@ -27678,7 +27678,7 @@ Hence, $coker(i) \simeq R \otimes C$.
 # Semidirect product as commuting conditions
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2022-05-30
 ```
@@ -27724,7 +27724,7 @@ versus rotate-translate.
 # Exact sequences for semidirect products; fiber bundles
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2022-05-30
 ```
@@ -27843,7 +27843,7 @@ We want the final picture to be:
 #  Semidirect product is equivalent to splitting of exact sequence
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -27930,7 +27930,7 @@ we need to check that it's an isomorphism, so we need to make sure that this has
 # Intro to topological quantum field theory
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2021-05-16
 ```
@@ -27965,7 +27965,7 @@ last-edited: 2021-05-16
 # Non examples of algebraic varieties
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-16
 last-edited: 2022-05-30
 ```
@@ -28013,7 +28013,7 @@ to simply use *combiantorial* data which I find interesting.
 # Nilradical is intersection of all prime ideals
 
 ```meta
-status: article
+status: technical-note
 created: 2021-03-16
 last-edited: 2022-05-30
 ```
@@ -28090,7 +28090,7 @@ nilradical.
 # Exactness of modules is local
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2021-03-16
 ```
@@ -28106,7 +28106,7 @@ is exact for every maximal ideal $m \subset R$. This tells us that exactness is 
 # Quotient by maximal ideal gives a field
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2021-03-16
 ```
@@ -28127,7 +28127,7 @@ is an inverse to $x$, hence every nonzero element is invertible.
 # Ring of power series with infinite positive and negative terms
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-16
 last-edited: 2021-03-16
 ```
@@ -28574,7 +28574,7 @@ Which is exactly cramer's rule.
 # Nakayama's lemma
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -28656,7 +28656,7 @@ $$
 # Learning to talk with your hands
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-11
 last-edited: 2021-03-16
 ```
@@ -28667,7 +28667,7 @@ about learning to talk with your hands. I guess I'm going to try and do this mor
 # Lovecraftisms
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-11
 last-edited: 2022-05-30
 ```
@@ -28953,7 +28953,7 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
 # CS and type theory: Talks by vovodesky
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-01
 last-edited: 2022-05-30
 ```
@@ -29251,7 +29251,7 @@ First we need a lemma:
 # Covering spaces
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -29445,7 +29445,7 @@ independent of $s$.
 # Wedge Sum and Smash Product
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-01
 last-edited: 2022-05-30
 ```
@@ -29465,7 +29465,7 @@ I sometimes forget which is which. I now remember this as folows:
 # Quotient topology
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-11
 last-edited: 2022-05-30
 ```
@@ -29528,7 +29528,7 @@ for which this map is continuous.
 # CW Complexes and HEP
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-11
 last-edited: 2022-05-30
 ```
@@ -29580,7 +29580,7 @@ Induction on lemma. base case is empty set.
 # Stable homotopy theory
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-11
 last-edited: 2022-05-30
 ```
@@ -29614,7 +29614,7 @@ This gives us the adjunction between suspension and looping.
 # Simply connected spaces
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-01
 last-edited: 2022-05-30
 ```
@@ -29642,7 +29642,7 @@ path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
 # Finitely generated as vector space v/s algebra:
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -29806,7 +29806,7 @@ points such as $(x)$ or $(y)$ which don't exist in variety-land. This is really 
 # Screen recording for kakoune pull request
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -29822,7 +29822,7 @@ This was used the create the PR that
 # Intuition for why finitely presented abelian groups are isomorphic to product of cyclics
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2021-05-16
 ```
@@ -29842,7 +29842,7 @@ last-edited: 2021-05-16
 # Euler characteristic of sphere
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2021-02-26
 ```
@@ -29855,7 +29855,7 @@ faces. This gives $2-2+2=2$.
 # John Conway: The symmetries of things
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -29949,7 +29949,7 @@ we maybe able to go the other way. This is the metrization theorem.
 # Semidirect product mnemonic
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -29992,7 +29992,7 @@ Another mnemonic for the semidirect product:
 # Non orthogonal projections
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30012,7 +30012,7 @@ $$
 # Why did maxwell choose his EM wave to be light?
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30037,7 +30037,7 @@ last-edited: 2022-05-30
 # Fast string concatenation in python3
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30057,7 +30057,7 @@ helping a friend speed up some data munging.
 # Split infinitive
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2021-02-26
 ```
@@ -30075,7 +30075,7 @@ to remove %v safely.
 # Yoneda from string concatenation
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -30130,7 +30130,7 @@ concatenation. So can we understand yoneda from this model?
 # Right Kan extensions as extending the domain of a functor
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -30205,7 +30205,7 @@ than a 1 categorical construct.
 # Non standard inner products and unitarity of representations
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30217,7 +30217,7 @@ averaging trick in represention theory?
 # take at most 4 letters from 15 letters.
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2022-05-30
 ```
@@ -30237,7 +30237,7 @@ massaging the algebra, but I do now.
 # Flat functions
 
 ```meta
-status: article
+status: technical-note
 created: 2021-02-03
 last-edited: 2022-05-30
 ```
@@ -30288,7 +30288,7 @@ $$
 # Hopf Algebras and combinatorics
 
 ```meta
-status: article
+status: scratch
 created: 2021-05-16
 last-edited: 2022-05-30
 ```
@@ -30324,7 +30324,7 @@ $\epsilon(g) = 1$, $s(g) = g^{-1}$.
 # Butcher group
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2021-02-26
 ```
@@ -30342,7 +30342,7 @@ then had far-reaching theoretical applications. Connes remarked:
 # Neovim frontends
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2021-02-26
 ```
@@ -30356,7 +30356,7 @@ last-edited: 2021-02-26
 # A semidirect product worked on in great detail
 
 ```meta
-status: article
+status: technical-note
 created: 2021-02-03
 last-edited: 2022-05-30
 ```
@@ -30581,7 +30581,7 @@ so this example provides good intuition for the general case.
 # Direct and Inverse limits
 
 ```meta
-status: article
+status: technical-note
 created: 2021-02-03
 last-edited: 2022-05-30
 ```
@@ -30849,7 +30849,7 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 # LEAN 4 overfrom from LEAN together 2021
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2022-05-30
 ```
@@ -30887,7 +30887,7 @@ last-edited: 2022-05-30
 # BLM master thesis
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2021-02-03
 ```
@@ -30897,7 +30897,7 @@ last-edited: 2021-02-03
 # RSK correspondence for permutations
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2022-05-30
 ```
@@ -31037,7 +31037,7 @@ $P$ and $p^{-1}$.
 # Djikstra's using a segtree
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2021-02-03
 ```
@@ -31049,7 +31049,7 @@ last-edited: 2021-02-03
 # Markov and chebyshev from a measure theoretic lens
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
@@ -31101,21 +31101,21 @@ to get a bound.
 # Among any 51 integers, that are 2 with squares having equal value modulo 100
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
 # $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
 # $10^{3n+1}$ cannot be written as sum of two cubes
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-05-16
 ```
@@ -31127,7 +31127,7 @@ https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contra
 # Coq-club: the meaning of a specification
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2022-05-30
 ```
@@ -31166,7 +31166,7 @@ last-edited: 2022-05-30
 # SQLite opening
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
@@ -31184,7 +31184,7 @@ last-edited: 2021-01-29
 # Old school fonts
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
@@ -31196,7 +31196,7 @@ I've been rolling with the  `Px437 ToshibaSat 8x14` font as my daily driver pure
 # Stalking `syzigies` on hackernews
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
@@ -31274,7 +31274,7 @@ define | edge? g e
 # Conditional probability is neither causal nor temporal
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-29
 last-edited: 2022-05-30
 ```
@@ -31300,7 +31300,7 @@ are temporally reversed/ambiguous.
 # Hook length formula
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -31454,7 +31454,7 @@ corresponds to an irrep of $S_n$.
 # The tyranny of light
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -31466,7 +31466,7 @@ last-edited: 2021-01-23
 # Muirhead's inequality
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -31564,7 +31564,7 @@ $$
 # Rearrangement inequality
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -31649,7 +31649,7 @@ and thus we are done.
 # Triangle inequality
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -31726,7 +31726,7 @@ instead of equals (`=`).
 # The Heather subculture
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -31735,7 +31735,7 @@ last-edited: 2021-01-23
 # Frobenius Kernel
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -31759,7 +31759,7 @@ Let $H$ be a subgroup of $G$. Define $H_g \equiv \{ g h g^{-1} : h \in H \}$.
 # Galois theory by "Abel's theorem in problems and solutions"
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -31778,7 +31778,7 @@ I found the ideas in the book fascinating. The rough idea was:
 # Galois theory perspective of the quadratic equation
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -31876,7 +31876,7 @@ to a 1D subrepresentation for all the elements in the orbit of $s*$.
 # Contributing to SAGEmath
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-26
 last-edited: 2021-02-26
 ```
@@ -31935,7 +31935,7 @@ many positively review tickets waiting, end of release cycle).
 # Shadow puppet analogy for entanglement
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2021-01-23
 ```
@@ -31968,7 +31968,7 @@ configuration space of image 2 are valid, and vice versa.
 # Books for contest math
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -32004,7 +32004,7 @@ I wish to spend this year learning nuts and bolts type things.
 # Analysing simple games
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-23
 last-edited: 2022-05-30
 ```
@@ -32037,7 +32037,7 @@ if the move just made by the other player can block it.
 # Linear algebraic proof of the handshaking lemma
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-11
 last-edited: 2021-06-27
 ```
@@ -32101,7 +32101,7 @@ $$
 # Historical contemporaries
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-11
 last-edited: 2022-05-30
 ```
@@ -32119,7 +32119,7 @@ Here's a list of contemporaries I would not have guessed:
 # Rota's twelvefold way
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-11
 last-edited: 2022-05-30
 ```
@@ -32176,7 +32176,7 @@ last-edited: 2022-05-30
 # Counting necklackes with unique elements
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -32194,7 +32194,7 @@ Count number of ways to form a necklace with $\{1, 2, \dots, n\}$
 # Decomposition of projective space
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -32264,7 +32264,7 @@ slopes.
 # Childhood: Playing pokemon gold in japanese
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -32285,7 +32285,7 @@ knows no bounds, indeed.
 # Tensor is a thing that transforms like a tensor
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-09
 last-edited: 2024-04-24
 ```
@@ -32347,7 +32347,7 @@ Physicists (and people who write memory allocators) need such elaborate tracking
 # Tensor Hom adjunction
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -32361,7 +32361,7 @@ last-edited: 2021-01-09
 # Schur's lemma
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-09
 last-edited: 2021-01-29
 ```
@@ -32438,7 +32438,7 @@ constant times the identity. That is, there exists a $\lambda$ such that $f = \l
 # Daughters of destiny
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -32450,7 +32450,7 @@ Captures the microcosm of what it means to live in India.
 # Stuff I learnt in 2020
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-05-16
 ```
@@ -32481,7 +32481,7 @@ last-edited: 2021-05-16
 # Line bundles, a high level view as I understand them today
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-10
 last-edited: 2021-03-29
 ```
@@ -32515,7 +32515,7 @@ So, $\mathbb R \otimes \mathbb  R^* \simeq \mathbb R$. Generalize to bundles.
 # Conversations with a wood carver
 
 ```meta
-status: article
+status: essay
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33035,7 +33035,7 @@ $$
 # Conversation with Olaf Klinke
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33096,7 +33096,7 @@ A treasure trove of smart little Haskell programs is
 # Topological groups and languages
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33369,7 +33369,7 @@ last-edited: 2021-05-23
 # Reading C declarations
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -33393,7 +33393,7 @@ int (*(*f)())[3];
 # Make mnemonics
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -33412,7 +33412,7 @@ last-edited: 2021-01-09
 # Vandermonde and FFT
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -33434,7 +33434,7 @@ instead of computing it using FFT.
 # Thoughts on blitz chess: 950 ELO
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33469,7 +33469,7 @@ problem with competitive programming --- the exact same anxieties, in fact.
 # Periodic tables and make illegal states unrepresentable
 
 ```meta
-status: article
+status: scratch
 created: 2020-12-07
 last-edited: 2021-01-09
 ```
@@ -33484,7 +33484,7 @@ juggling notattion.
 # questions on the structure of graphs
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -33503,7 +33503,7 @@ sources of "structural" questions of graphs and answers for these questions.
 # Combinations notation in bijective combinatorics
 
 ```meta
-status: article
+status: scratch
 created: 2020-12-07
 last-edited: 2020-12-07
 ```
@@ -33532,7 +33532,7 @@ second component ($n-r-1$), in the smaller set ($n-1$).
 # Arguments for little endian
 
 ```meta
-status: article
+status: scratch
 created: 2020-12-07
 last-edited: 2022-05-30
 ```
@@ -33553,7 +33553,7 @@ the LSBs data, since that's the _suffix_.
 # Expectiles
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33598,7 +33598,7 @@ last-edited: 2021-05-23
 # 2-SAT
 
 ```meta
-status: article
+status: scratch
 created: 2020-12-07
 last-edited: 2022-05-30
 ```
@@ -33645,7 +33645,7 @@ last-edited: 2021-05-23
 # Strongly Connected Components via Kosaraju's algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -33697,7 +33697,7 @@ I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
 # Articulation points
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -33874,7 +33874,7 @@ void process_edge(int x, int y) {
 # Disjoint set union
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2021-01-09
 ```
@@ -33906,7 +33906,7 @@ void mkroot(int newroot, int prevroot) {
 # Making GDB usable
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2020-11-24
 ```
@@ -33916,7 +33916,7 @@ last-edited: 2020-11-24
 # Bouncing light clock is an hourglass
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -33942,7 +33942,7 @@ once the photon reaches the bottom of the hourglass.
 # Euler tours
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-11
 last-edited: 2022-05-30
 ```
@@ -33980,7 +33980,7 @@ last-edited: 2021-05-23
 # Maximum matchings in bipartite graphs
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-11
 last-edited: 2021-01-11
 ```
@@ -34002,7 +34002,7 @@ new ideas.
 # p-adics, 2's complement, intuition for bit fiddling
 
 ```meta
-status: article
+status: technical-note
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -34094,7 +34094,7 @@ number is signed/unsigned.
 # Diameter of a tree
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -34239,7 +34239,7 @@ Say we have a function $f: V \rightarrow V$ where $|V| = n$ and $f(1) = 1$, $f(n
 # Number of paths in a DAG
 
 ```meta
-status: article
+status: technical-note
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -34395,7 +34395,7 @@ TODO
 # Integer partitions: Recurrence
 
 ```meta
-status: article
+status: technical-note
 created: 2020-12-07
 last-edited: 2022-05-30
 ```
@@ -34435,7 +34435,7 @@ The idea is to consider a partition $p[1], p[2], \dots, p[k]$ of $n$ based on th
 # Stars and bars by direct bijection
 
 ```meta
-status: article
+status: technical-note
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -34483,7 +34483,7 @@ we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, m
 # DFS and topological sorting
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -34622,7 +34622,7 @@ impossible because the graph cannot have cycles! Thus, we will still have that
 # Tournaments
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -34957,7 +34957,7 @@ But this contradicts the equation $\max{b_2}(g_2, g_2') = g_2' = g_1$ (?)
 # Four fundamental subspaces
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-24
 last-edited: 2022-05-30
 ```
@@ -35034,7 +35034,7 @@ last-edited: 2021-05-23
 # why is `int i = i` allowed in C++?
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2021-01-09
 ```
@@ -35063,7 +35063,7 @@ as a *value*.
 # Kakoune cheatsheet
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -35079,7 +35079,7 @@ last-edited: 2022-05-30
 # Assembly IDE
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2021-01-23
 ```
@@ -35104,7 +35104,7 @@ assembly! I had no idea if it's a *good* ecosystem --- my experience with
 # Cohomology is like holism
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -35239,7 +35239,7 @@ for edges whose flow has to shrink.
 # Amortized analysis
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -35608,7 +35608,7 @@ last-edited: 2022-05-30
 # Correctness of binary search
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -35673,7 +35673,7 @@ int binsearch(int l, int r, int val, int *xs) {
 # `readlink -f <path>` to access file path
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -35690,7 +35690,7 @@ This is useful to `scp`/`rsync` stuff.
 # rank/select as compress/decompress
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -35786,7 +35786,7 @@ to the original array linguistically, which I quite like.
 # Remembering Eulerian and Hamiltonian cycles
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -35810,7 +35810,7 @@ the edges once.
 # Nice way to loop over an array in reverse
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -35825,7 +35825,7 @@ for (int i = n-1; i >= 0; i--) { // simp
 # Dynamic Programming: Erik Demaine's lectures
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -36425,7 +36425,7 @@ v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
 # Accuracy vs precision
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -36458,7 +36458,7 @@ the true reference value we want to hit.
 # Why is the gradient covariant?
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36468,7 +36468,7 @@ last-edited: 2020-11-17
 # Politicization of science
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36478,7 +36478,7 @@ last-edited: 2020-11-17
 # Multi ꙮ cular O: ꙮ / Eye of cthulu
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36488,7 +36488,7 @@ last-edited: 2020-11-17
 # You can't measure the one way speed of light
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36498,7 +36498,7 @@ last-edited: 2020-11-17
 # Show me the hand strategy
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36524,7 +36524,7 @@ compelled to come out in the open and be more direct
 # Words that can be distinguished from letters if we know the sign of the permutation
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36568,7 +36568,7 @@ for wk in sorted:
 # Easy times don't create weak people, they just allow weak people to survive.
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2020-11-17
 ```
@@ -36587,7 +36587,7 @@ last-edited: 2020-11-17
 # How to fairly compare groups
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2022-05-30
 ```
@@ -36610,7 +36610,7 @@ last-edited: 2022-05-30
 # Bijection from `(0, 1)` to `[0, 1]`
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-30
 last-edited: 2020-10-30
 ```
@@ -36620,7 +36620,7 @@ last-edited: 2020-10-30
 # Rene Girard
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-30
 last-edited: 2020-10-30
 ```
@@ -36680,7 +36680,7 @@ universal: universally accepted, and universally rejected in practice!
 # Slavoj Zizek: Violence
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-30
 last-edited: 2022-05-30
 ```
@@ -36856,7 +36856,7 @@ Zizek:
 # Poverty: Who's to blame?
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-30
 last-edited: 2020-10-30
 ```
@@ -36887,7 +36887,7 @@ last-edited: 2020-10-30
 # Learn Zig in Y minutes
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-24
 last-edited: 2021-03-16
 ```
@@ -37026,7 +37026,7 @@ test "string literals" {
 # The algebraic structure of the 'nearest smaller number' question
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37064,7 +37064,7 @@ diagram associated to it? or a DFS tree?
 # Why loss of information is terrifying: Checking that a context-free language is regular is undecidable
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37083,7 +37083,7 @@ can sometimes be irreversably damaging.
 # Sciences of the artificial
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37118,7 +37118,7 @@ Why simulation is useful:
 # Numbering nodes in a tree
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37172,7 +37172,7 @@ $$
 # Number of vertices in a rooted tree
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37194,7 +37194,7 @@ counting "at once".
 # Median minimizes L1 norm
 
 ```meta
-status: article
+status: technical-note
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37258,7 +37258,7 @@ $|y - l| + |y - r|$!
 # LISP quine
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37278,7 +37278,7 @@ I don't understand it yet.
 # A slew of order theoretic and graph theoretic results
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2024-04-14
 ```
@@ -37351,7 +37351,7 @@ int main() {
 # Neko to follow your cursor around
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37366,7 +37366,7 @@ pointer, [like Microsoft Teams](https://docs.microsoft.com/en-us/answers/questio
 # Non commuting observables: Light polarization
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37377,7 +37377,7 @@ last-edited: 2020-10-22
 # Statement expressions and other GCC C extensions
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37495,7 +37495,7 @@ struct {
 # A quick look at impredicativity
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37624,7 +37624,7 @@ Replace the idea of:
 # Data oriented programming in C++
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2020-10-22
 ```
@@ -37636,7 +37636,7 @@ last-edited: 2020-10-22
 # Retro glitch
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37655,7 +37655,7 @@ last-edited: 2022-05-30
 # SSA as linear typed language
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-22
 last-edited: 2022-05-30
 ```
@@ -37687,7 +37687,7 @@ last-edited: 2022-05-30
 # Nix weirdness on small machines
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-07
 last-edited: 2022-05-30
 ```
@@ -37783,7 +37783,7 @@ I don't even know.
 # Autodiff over derivative of integrals
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-07
 last-edited: 2020-10-22
 ```
@@ -37794,7 +37794,7 @@ last-edited: 2020-10-22
 # Proof of projective duality
 
 ```meta
-status: article
+status: technical-note
 created: 2020-10-07
 last-edited: 2022-05-30
 ```
@@ -37824,7 +37824,7 @@ equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb
 # Preventing the collapse of civilization
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-07
 last-edited: 2020-10-07
 ```
@@ -37860,7 +37860,7 @@ last-edited: 2021-05-23
 # An elementary example of a thing that is not a vector
 
 ```meta
-status: article
+status: scratch
 created: 2020-10-07
 last-edited: 2020-10-07
 ```
@@ -38323,7 +38323,7 @@ $$
 # The handshaking lemma
 
 ```meta
-status: article
+status: technical-note
 created: 2020-10-07
 last-edited: 2022-05-30
 ```
@@ -38352,7 +38352,7 @@ complexes.
 # Git for pure mathematicians
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-29
 last-edited: 2020-11-24
 ```
@@ -38371,7 +38371,7 @@ We have two spaces, and a rooted DAG that connects to two spaces:
 # Mutorch
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-29
 last-edited: 2022-05-30
 ```
@@ -38568,7 +38568,7 @@ print("dz/dy: %s" % y.grad())
 # Computing the smith normal form
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-29
 last-edited: 2022-05-30
 ```
@@ -38702,7 +38702,7 @@ out = smith_normal_form(xs,ys)
 # Laziness for C programmers
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-22
 last-edited: 2022-05-30
 ```
@@ -39121,7 +39121,7 @@ is interest, please do e-mail me at `siddu.druid@gmail.com`.
 # Exact sequence of pointed sets
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-17
 last-edited: 2022-05-30
 ```
@@ -39212,7 +39212,7 @@ into $*$ [pun intended].
 # What is a syzygy?
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-16
 last-edited: 2022-05-30
 ```
@@ -39417,7 +39417,7 @@ I wonder how to make this precise.
 # Under the spell of Leibniz's dream
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-16
 last-edited: 2022-05-30
 ```
@@ -39468,7 +39468,7 @@ I found it very quotable. I'm posting some quotes below.
 # Normal operators: Decomposition into Hermitian operators
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-15
 last-edited: 2020-09-15
 ```
@@ -39507,7 +39507,7 @@ and hence $[B, C] = 0$.
 # Readable pointers
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-15
 last-edited: 2022-05-30
 ```
@@ -39617,7 +39617,7 @@ reasoning for intuition, so I'm going to do all the derivations in that style.
 # Lie bracket as linearization of conjugation
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-15
 last-edited: 2022-05-30
 ```
@@ -39661,7 +39661,7 @@ group's conjugacy structure.
 # Computational Origami
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-15
 last-edited: 2021-05-16
 ```
@@ -39674,7 +39674,7 @@ last-edited: 2021-05-16
 # Katex in duktape
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -39778,7 +39778,7 @@ int main() {
 # Kebab case
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -39804,7 +39804,7 @@ $R = \mathbb Z/12 \mathbb Z$.
 # NaN punning: Storing integers in doubles in JavaScript
 
 ```meta
-status: article
+status: scratch
 created: 2021-03-29
 last-edited: 2022-05-30
 ```
@@ -39934,7 +39934,7 @@ int32_t main() {
 # Offline Documentation
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-29
 ```
@@ -39955,7 +39955,7 @@ for all the languages I use, so I'm building a list:
 # Using Gurobi
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -39972,7 +39972,7 @@ $ cd /path/to/gurobi90/linux64/src/build/ && make
 # [osqp: convex optimizer in 6000 LoC](osqp-an-industrial-strength-convex-optimizer-in-6000-loc)
 
 ```meta
-status: article
+status: scratch
 created: 2020-08-25
 last-edited: 2020-08-25
 ```
@@ -40019,7 +40019,7 @@ I would love to take a course which explains the source code.
 # stars and bars by generating functions
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40105,7 +40105,7 @@ so we get the answer as `answer = 20/2! = 10`.
 # This is not a place of honor
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -40115,7 +40115,7 @@ last-edited: 2020-09-05
 # Topological proof of infinitude of primes
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2021-05-23
 ```
@@ -40148,7 +40148,7 @@ semidecidability perspective.
 # Burnside Theorem
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
 ```
@@ -40220,7 +40220,7 @@ So in conclusion, the calculation gives us:
 # The Ise Grand shrine
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -40244,7 +40244,7 @@ supercolliders simply to keep the knowledge of how to build it alive.
 # Edward Kmett's list of useful math
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2021-01-09
 ```
@@ -40307,7 +40307,7 @@ last-edited: 2021-01-09
 # Cokernel is not sheafy
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40364,7 +40364,7 @@ $$
 # Von neumann: foundations of QM
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40398,7 +40398,7 @@ last-edited: 2022-05-30
 # Discrete schild's ladder
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40434,7 +40434,7 @@ from discretizing a grid, can we recover a global sense of orientation?
 # Derivative of step is dirac delta
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2021-03-01
 ```
@@ -40495,7 +40495,7 @@ $$
 # Extended euclidian algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40606,7 +40606,7 @@ $$
 # In a PID, all prime ideals are maximal, geometrically
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40658,7 +40658,7 @@ ideals are maximal.
 # Prime numbers as maximal among principal ideals
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40689,7 +40689,7 @@ ideal $(p)$ is maximal: no other principal ideal $(a)$ contains it.
 # Axiom of Choice and Zorn's Lemma
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40722,7 +40722,7 @@ Thus, Zorn's Lemma implies Axiom of Choice.
 # Local ring in terms of invertibility
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40786,7 +40786,7 @@ This is supposedly equivalent to the definition:
 # Nullstellensatz for schemes
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -40959,7 +40959,7 @@ of points in $L^n$. These points are solutions to the system $X$.
 # Perspectives on Yoneda
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41092,7 +41092,7 @@ From this perspective, it is trivial to see that:
 # Germs, Stalks, Sheaves of differentiable functions
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41160,7 +41160,7 @@ gives us a discontinuity at $0$.
 # Connectedness in terms of continuity
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41197,7 +41197,7 @@ there should be a point of "breakage" where we suddenly switch colors.
 # Intuition for limits in category theory
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41346,7 +41346,7 @@ will get
 # Categorical definition of products in painful detail
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41568,7 +41568,7 @@ a         |   |        b
 # Why is the spectrum of a ring called so?
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -41599,7 +41599,7 @@ in Peter Schloze's notes on AG. [I got an answer for this on `math.se`](https://
 # Ergo proxy
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -41620,7 +41620,7 @@ with things I find intriguing in the anime.
 #  [Satisfied and frustrated equations](#satisfied-and-frustrated-equations)
 
 ```meta
-status: article
+status: scratch
 created: 2020-07-08
 last-edited: 2020-07-08
 ```
@@ -41636,7 +41636,7 @@ makes for good haskell like variable names. `ss` for satisfied equations,
 # Combinatorial intuition for Fermat's little theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41756,7 +41756,7 @@ if I counted its equivalence class as having size `4`.
 # An incorrect derivation of special relativity in 1D
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -41843,7 +41843,7 @@ The issue is the equation $x' = vt + ct$.
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
 
 ```meta
-status: article
+status: scratch
 created: 2020-07-07
 last-edited: 2022-05-30
 ```
@@ -41858,7 +41858,7 @@ I'll record what I read here.
 # Sanskrit and Sumerian
 
 ```meta
-status: article
+status: scratch
 created: 2020-07-05
 last-edited: 2022-05-30
 ```
@@ -41917,7 +41917,7 @@ was setup is sumerian has become more stringent in Sanskrit.
 # Writing Cuneiform
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -41945,7 +41945,7 @@ We have three components:
 # The code of hammurabi
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42055,7 +42055,7 @@ Some helpful hints were found from the
 # The implicit and inverse function theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42229,7 +42229,7 @@ process to get the full inverse.
 # Whalesong hyperbolic space in detail
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -42251,7 +42251,7 @@ Under such a model, our shortest paths will be 'curved' paths.
 # Motivating Djikstra's
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -42293,7 +42293,7 @@ to arrive at Djikstra's
 # Intuitions for hyperbolic space
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -42317,7 +42317,7 @@ last-edited: 2020-09-05
 # Product of compact spaces in compact
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-10-22
 ```
@@ -42327,7 +42327,7 @@ last-edited: 2020-10-22
 # Hyperbolic groups have solvable word problem
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42468,7 +42468,7 @@ We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 # Elementary uses of Sheaves in complex analysis
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42546,7 +42546,7 @@ be arbitrary.
 # Snake lemma
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42624,7 +42624,7 @@ this long exact sequence is saatisfied:
 # Kernel, cokernel, image
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42641,7 +42641,7 @@ Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = 
 # The commutator subgroup
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -42767,7 +42767,7 @@ TODO! I'm still reading Keith Conrad's notes.
 # A5 is not solvable
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -43219,7 +43219,7 @@ If we imagine these as points on the Riemann sphere, TODO
 # Arithmetic sequences, number of integers in a closed interval
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -43238,7 +43238,7 @@ n = b - a + 1
 #  [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
 
 ```meta
-status: article
+status: scratch
 created: 2020-06-06
 last-edited: 2022-05-30
 ```
@@ -43398,7 +43398,7 @@ out = f'(path)
 # Odd partitions, unique partitions
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -43421,7 +43421,7 @@ I really liked this bijection.
 # Continued fractions, mobius transformations
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -43433,7 +43433,7 @@ and write detailed log about it, and the related math.
 # Permutations-and-lyndon-factorization
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -43474,7 +43474,7 @@ decomposition if nothng else.
 # Graphs are preorders
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-09-07
 ```
@@ -43487,7 +43487,7 @@ phenomena that make more sense when looked at from a preorder point of view.
 # Parallelisable version of maximum sum subarray
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -43547,7 +43547,7 @@ is an integral (sum) of the deltas in height.
 # Thoughts on implicit heaps
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -43574,7 +43574,7 @@ the benifits of knowing the total number of elements.
 # Discriminant and Resultant
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -43712,7 +43712,7 @@ of the solution we are looking for!
 # Polynomial root finding using QR decomposition
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -44228,7 +44228,7 @@ $$
 # Finite differences and Umbral calculus
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -44519,7 +44519,7 @@ $$
 # Permutahedron
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -44621,7 +44621,7 @@ the number line as:
 # Lyndon + Christoffel = Convex Hull
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -44772,7 +44772,7 @@ along `y`.
 # Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -44796,7 +44796,7 @@ Similarly for `e^(-x)`, working through the math:
 # Ranking and Sorting
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -44953,7 +44953,7 @@ the classical _adjunction_ between rank and select.
 # Proof of minkowski convex body theorem
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45031,7 +45031,7 @@ $$
 # Burrows Wheeler
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45387,7 +45387,7 @@ for current letter. Can find next letter using BWT matix.
 # Intuitionstic logic as a Heyting algebra
 
 ```meta
-status: article
+status: technical-note
 created: 2023-03-28
 last-edited: 2023-03-28
 ```
@@ -45560,7 +45560,7 @@ which was the definition of $\Rightarrow$ we wanted!
 # Edit distance
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45699,7 +45699,7 @@ a society, but tend to be hazy on how this state of affairs came to be.
 # Best practices for array indexing
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45853,7 +45853,7 @@ loop-writing.
 # Algebraic structure for vector clocks
 
 ```meta
-status: article
+status: scratch
 created: 2020-05-01
 last-edited: 2020-06-29
 ```
@@ -45876,7 +45876,7 @@ the fragment-name-union-rule.
 # Networks are now faster than disks
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45900,7 +45900,7 @@ mentioned that SSDs might be much faster, and the numbers bear out:
 # Einstein-de Haas effect
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -45936,7 +45936,7 @@ So, my understanding of the experiment is:
 # Rank-select as adjunction
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -45991,7 +45991,7 @@ Thanks to Edward Kmett for teaching me this.
 # Bounding chains: uniformly sample colorings
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46373,7 +46373,7 @@ sample = last . chain
 # Coupling from the past
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -46388,7 +46388,7 @@ last-edited: 2020-09-05
 # Word problems in Russia and America
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -46403,7 +46403,7 @@ break student's ability to think in the abstract! This is a deep insight.
 # Encoding mathematical hieararchies
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -46424,7 +46424,7 @@ how mathematical components does it. This might help narrow in on what what the
 # Learning code by hearing it
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46499,7 +46499,7 @@ rm /tmp/test.wav
 # Your arm can be a spinor
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -46516,7 +46516,7 @@ to consider our entire arm + cup we are holding as a system for this to work.
 # Self modifying code for function calls: Look ma, I don't need a stack!
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46611,7 +46611,7 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
 # Adjunctions as advice
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46656,7 +46656,7 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 # Reversible computation as groups on programs
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46677,7 +46677,7 @@ of the unitary group (as in the QM case) to find programs in far quicker ways?
 # Blazing fast math rendering on the web
 
 ```meta
-status: article
+status: essay
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -46872,7 +46872,7 @@ markdown and the transpiler in the way _I_ want it to be.
 # VC dimension
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -47053,7 +47053,7 @@ will have the right symmetries.
 # Theorems for free
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -47127,7 +47127,7 @@ If this is the case, then we can simplify the math to be:
 # How to reason with half-open intervals
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -47174,7 +47174,7 @@ in this viewpoint as well.
 # How does one build a fusion bomb?
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -47197,7 +47197,7 @@ I read on wikipedia that most countries classify the details:
 # Christoffel symbols, geometrically
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2020-09-22
 ```
@@ -47278,7 +47278,7 @@ $$
 # A natural vector space without an explicit basis
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -47328,7 +47328,7 @@ For example, one can write the equation:
 # Cache oblivious B trees
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -47974,7 +47974,7 @@ We can imagine the scenario as follows:
 # Why I like algebra over analysis
 
 ```meta
-status: article
+status: essay
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48036,7 +48036,7 @@ why I like algebra.
 # `using` for cleaner function type typedefs
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48128,7 +48128,7 @@ $$
 # Natural transformations
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-10-22
 ```
@@ -48144,7 +48144,7 @@ them, so I made this for my own reference.
 # The hilarious commentary by dinosaure in OCaml git
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48222,7 +48222,7 @@ devrait avoir un problème. Donc TODO. *)
 # How to link against MLIR with CMake
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48310,7 +48310,7 @@ target_link_libraries(languagemodels
 # Energy as triangulaizing state space
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -48421,7 +48421,7 @@ $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 # The cutest way to write semidirect products
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48474,7 +48474,7 @@ which is indeed the right expression for the inverse.
 # My Favourite APLisms
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48510,7 +48510,7 @@ indexes in `xs`.
 # Proof of chinese remainder theorem on rings
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -48615,7 +48615,7 @@ $$
 # monic and epic arrows
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -48637,7 +48637,7 @@ of monic and epic directly in terms of controlling sizes.
 # The geometry of Lagrange multipliers
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49759,7 +49759,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 # Things I wish I knew when I was learning APL
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49784,7 +49784,7 @@ last-edited: 2020-09-05
 # Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49832,7 +49832,7 @@ in question.
 # Getting started with APL
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-11-24
 ```
@@ -49851,7 +49851,7 @@ last-edited: 2020-11-24
 # SpaceChem was the best compiler I ever used
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49864,7 +49864,7 @@ find out.
 # Mnemonic for Kruskal and Prim
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49878,7 +49878,7 @@ I often forget which is which, so I came up with this:
 # Legendre transform
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49889,7 +49889,7 @@ last-edited: 2020-09-05
 # Cartesian Trees
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-10-22
 ```
@@ -49946,7 +49946,7 @@ occurence will do).
 # DFS numbers as a monotone map
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -49967,7 +49967,7 @@ order (the naturals) does?
 # Self attention? not really
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -50086,7 +50086,7 @@ to self `:)`
 # Coarse structures
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -50324,7 +50324,7 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 # Grokking Zariski
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -50470,7 +50470,7 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
 # My preferred version of quicksort
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -50560,7 +50560,7 @@ What version of quicksort do you prefer? Drop me an email!
 # Geometric proof of Cauchy Schwarz inequality
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -50579,7 +50579,7 @@ inequality:
 # Dataflow analysis using Grobner basis
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -50630,7 +50630,7 @@ which admit much faster solutions.
 # Fenwick trees and orbits
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -50846,7 +50846,7 @@ Hence, at some point $q = u$.
 # Dirichlet inversion
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -51008,7 +51008,7 @@ $$ n = \sum_{d \vert n} n/d $$
 # Incunabulum for the 21st century: Making the J interpreter compile in 2020
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -51184,7 +51184,7 @@ Until then, enjoy the monolith of code!
 # An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -51279,7 +51279,7 @@ whose behaviour can do unexpected things depending on the choice of $n$.
 # Krylov subspace method
 
 ```meta
-status: article
+status: scratch
 created: 2020-01-12
 last-edited: 2020-09-05
 ```
@@ -51329,7 +51329,7 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 # Good reference to the Rete pattern matching algorithm
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -51378,7 +51378,7 @@ need it.
 # Leapfrog Integration
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -51525,7 +51525,7 @@ plt.show()
 # Comparison of forward and reverse mode AD
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -51758,7 +51758,7 @@ $$
 # An invitation to homology and cohomology, Part 1 --- Homology
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -52031,7 +52031,7 @@ we can construct $H_1$ as:
 # An invitation to homology and cohomology, Part 2 --- Cohomology
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2021-03-29
 ```
@@ -52177,7 +52177,7 @@ made explicit by the [Universal Coefficient Theorem](https://en.wikipedia.org/wi
 # Stuff I learnt in 2019
 
 ```meta
-status: article
+status: essay
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -52946,7 +52946,7 @@ about my chances as a grad student in the future `:)`.
 # A motivation for p-adic analysis
 
 ```meta
-status: article
+status: technical-note
 created: 2019-12-20
 last-edited: 2020-10-22
 ```
@@ -53325,7 +53325,7 @@ I highly recommend the book
 # Line of investigation to build physical intuition for semidirect products
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -53344,7 +53344,7 @@ products from the "action" perspective.
 # Topology is really about computation --- part 2
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -53373,7 +53373,7 @@ business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 # Topology is really about computation --- part 1
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -53608,7 +53608,7 @@ def loop(): while True: pass
 # PSLQ algorithm: finding integer relations between reals
 
 ```meta
-status: article
+status: scratch
 created: 2019-11-05
 last-edited: 2019-11-05
 ```
@@ -53622,7 +53622,7 @@ engineering.
 # Geometric characterization of normal subgroups
 
 ```meta
-status: article
+status: technical-note
 created: 2019-10-31
 last-edited: 2020-09-05
 ```
@@ -53666,7 +53666,7 @@ we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 # Handy characterization of adding an element into an ideal, proof that maximal ideal is prime
 
 ```meta
-status: article
+status: technical-note
 created: 2019-10-30
 last-edited: 2020-09-05
 ```
@@ -53733,7 +53733,7 @@ $b \in I$.
 # Radical ideals, nilpotents, and reduced rings
 
 ```meta
-status: article
+status: technical-note
 created: 2019-10-30
 last-edited: 2020-09-05
 ```
@@ -53807,7 +53807,7 @@ I learnt of this explanation from this
 # My disenchantment with abstract interpretation
 
 ```meta
-status: article
+status: essay
 created: 2019-10-30
 last-edited: 2020-09-05
 ```
@@ -53863,7 +53863,7 @@ This was a huge bummer for me to find out that this is not the case.
 # Computing equivalent gate sets using grobner bases
 
 ```meta
-status: article
+status: scratch
 created: 2019-10-25
 last-edited: 2022-05-30
 ```
@@ -54239,7 +54239,7 @@ I really enjoyed hacking this up and getting nerd sniped.
 # The janus programming language --- Time reversible computation
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -54259,7 +54259,7 @@ An apt name for the language!
 # `A = B` --- A book about proofs of combinatorial closed forms
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2019-12-28
 ```
@@ -54278,7 +54278,7 @@ my work on compilers.
 # Generating `k` bitsets of a given length `n`:
 
 ```meta
-status: article
+status: scratch
 created: 2019-10-18
 last-edited: 2020-09-05
 ```
@@ -54442,7 +54442,7 @@ Continuing this process gives us the rest of the sequence:
 # Bondi k-calculus
 
 ```meta
-status: article
+status: scratch
 created: 2019-09-16
 last-edited: 2019-09-16
 ```
@@ -54473,7 +54473,7 @@ which seems to imply that we need to use hyperbolic geometry for this.
 # Topology as an object telling us what zero-locus is closed:
 
 ```meta
-status: article
+status: scratch
 created: 2019-09-12
 last-edited: 2019-09-12
 ```
@@ -54483,7 +54483,7 @@ last-edited: 2019-09-12
 # Vivado toolchain craziness
 
 ```meta
-status: article
+status: scratch
 created: 2019-09-11
 last-edited: 2020-09-05
 ```
@@ -54611,7 +54611,7 @@ At some point, I gave up on the entire enterprise.
 # What the hell _is_ a Grobner basis? Ideals as rewrite systems
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -54682,7 +54682,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 # [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-10-22
 ```
@@ -54703,7 +54703,7 @@ from being formed.
 # [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 ```meta
-status: article
+status: scratch
 created: 2019-07-21
 last-edited: 2019-07-21
 ```
@@ -54714,7 +54714,7 @@ to implement a superoptimiser based on MCMC methods.
 # Collapsing `BlockId`, `Label`, `Unique`:
 
 ```meta
-status: article
+status: scratch
 created: 2019-06-28
 last-edited: 2020-04-07
 ```
@@ -54726,7 +54726,7 @@ collapsed.
 # Spatial partitioning data structures in molecular dynamics
 
 ```meta
-status: article
+status: scratch
 created: 2019-06-28
 last-edited: 2020-09-05
 ```
@@ -54743,7 +54743,7 @@ long range effects, but not short range effects.
 # Vector: Arthur Whitney and text editors
 
 ```meta
-status: article
+status: scratch
 created: 2019-06-22
 last-edited: 2019-06-28
 ```
@@ -54754,7 +54754,7 @@ last-edited: 2019-06-28
 # Representing CPS in LLVM using the `@coro.*` intrinsics
 
 ```meta
-status: article
+status: scratch
 created: 2019-06-15
 last-edited: 2019-06-15
 ```
@@ -54768,7 +54768,7 @@ Gor Nishanov proided the above example of encoding CPS using the llvm `coro` ins
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 ```meta
-status: article
+status: scratch
 created: 2019-06-05
 last-edited: 2020-04-07
 ```
@@ -54786,7 +54786,7 @@ Honestly, this is confusing, but I guess there's some story to having two separa
 # Discrete random distributions with conditioning in 20 lines of haskell
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -54861,7 +54861,7 @@ Notice that `D a ~= WriterT (Product Float) []`!
 # Everything you know about word2vec is wrong
 
 ```meta
-status: article
+status: technical-note
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -55025,7 +55025,7 @@ seriously again --- from next time, I read the source _first_.
 # Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
 
 ```meta
-status: article
+status: scratch
 created: 2019-05-31
 last-edited: 2022-05-30
 ```
@@ -55125,7 +55125,7 @@ plt.savefig("leapfrog-vs-euler.png")
 # Small Haskell MCMC implementation
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55417,7 +55417,7 @@ sampling from x^4 with finite support
 # The smallest implementation of reverse mode AD (autograd) ever:
 
 ```meta
-status: article
+status: scratch
 created: 2019-05-24
 last-edited: 2020-04-07
 ```
@@ -55540,7 +55540,7 @@ To quote `AndreasK`:
 # Varargs in GHC: `T7160.hs`
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55584,7 +55584,7 @@ debugBelch(const char*s, ...)
 # Debugging debug info in GHC
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55606,7 +55606,7 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 # GHC LLVM code generator: Switch to unreachable
 
 ```meta
-status: article
+status: scratch
 created: 2019-05-22
 last-edited: 2020-09-05
 ```
@@ -55618,7 +55618,7 @@ to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 # Concurrency in Haskell
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55629,7 +55629,7 @@ Great link to the GHC wiki that describes the concurrency primitives
 # Handy list of differential geometry definitions
 
 ```meta
-status: article
+status: scratch
 created: 2019-05-15
 last-edited: 2021-03-29
 ```
@@ -55749,7 +55749,7 @@ This satisfies the identity:
 # Lazy programs have space leaks, Strict programs have time leaks
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55770,7 +55770,7 @@ leak is a time leak.
 # Presburger arithmetic can represent the Collatz Conjecture
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2021-03-29
 ```
@@ -55839,7 +55839,7 @@ I've yet to check that the image contains a `1` for every choice of `x`.
 # Using compactness to argue about covers
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -55885,7 +55885,7 @@ that the cantor set is non-empty, since:
 # Japanese Financial Counting system
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2019-12-28
 ```
@@ -55906,7 +55906,7 @@ from adding strokes to stuff previously written.
 # Stephen wolfram's live stream
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-05
 ```
@@ -55923,7 +55923,7 @@ _really_ interesting ideas (like that of cleave being very irregular).
 # `Cleave` as a word has some of the most irregular inflections
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2019-12-28
 ```
@@ -55936,7 +55936,7 @@ last-edited: 2019-12-28
 # McCune's single axiom for group theory
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-05
 ```
@@ -55948,7 +55948,7 @@ for training groups, where we can use this axiom as the loss function!
 # `Word2Vec` C code implements gradient descent really weirdly
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-04-10
 ```
@@ -56091,7 +56091,7 @@ and I plan on updating this section when I understand this better.
 # Arthur Whitney: dense code
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-05
 ```
@@ -56110,7 +56110,7 @@ last-edited: 2020-09-05
 # How does one work with arrays in a linear language?
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-05
 ```
@@ -56158,7 +56158,7 @@ for my course in college)
 # Linear optimisation is the same as linear feasibility checking
 
 ```meta
-status: article
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -56180,7 +56180,7 @@ Core building block of effectively using the ellipsoid algorithm.
 # Quantum computation without complex numbers
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-05
 ```
@@ -56206,7 +56206,7 @@ something to ponder.
 # Linguistic fun fact: Comparative Illusion
 
 ```meta
-status: article
+status: scratch
 created: 2019-12-28
 last-edited: 2020-09-22
 ```
@@ -56256,7 +56256,7 @@ last-edited: 2021-05-23
 # Emacs Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-11-24
 ```
@@ -56525,7 +56525,7 @@ This is tagged as "not a bug" --- because
 # Coq Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -56549,7 +56549,7 @@ This is useful to not lose information when `destruct` ing.
 # Writing Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -56621,7 +56621,7 @@ is something I wish to explore.
 # Latex Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2021-07-30
 ```
@@ -56645,7 +56645,7 @@ hunspell -l -t -i utf-8 yourfile.tex
 # Architecture Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -56688,7 +56688,7 @@ things on architecture I wish to read and/or have read:
 # Recipes Cheat Sheet / Big List of Recipes
 
 ```meta
-status: article
+status: scratch
 created: 2025-03-26
 last-edited: 2026-06-22
 ```
@@ -57034,7 +57034,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 # History Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -57081,7 +57081,7 @@ Named after the spartans.
 # Words Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -57201,7 +57201,7 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 # Clojure Sheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -57734,7 +57734,7 @@ speak slower than you want to.
 # Empathy
 
 ```meta
-status: article
+status: scratch
 created: 2020-11-17
 last-edited: 2021-03-16
 ```
@@ -57749,7 +57749,7 @@ last-edited: 2021-03-16
 # Vim Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-05-30
 ```
@@ -57802,7 +57802,7 @@ which end you wish edit: press c]i} to perform the edit you describe.
 # Chess
 
 ```meta
-status: article
+status: scratch
 created: 2021-02-03
 last-edited: 2021-05-16
 ```
@@ -57823,7 +57823,7 @@ last-edited: 2021-05-16
 # Breakdance
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2022-09-19
 ```
@@ -57968,7 +57968,7 @@ last-edited: 2023-04-02
 # Poems to memorize
 
 ```meta
-status: article
+status: scratch
 created: 2021-01-09
 last-edited: 2021-01-09
 ```
@@ -57978,7 +57978,7 @@ last-edited: 2021-01-09
 # X86 Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2023-05-19
 ```
@@ -58141,7 +58141,7 @@ ought to be treated as errors.
 # Agda Cheat Sheet
 
 ```meta
-status: article
+status: scratch
 created: 2021-07-30
 last-edited: 2022-09-19
 ```
@@ -58162,7 +58162,7 @@ last-edited: 2022-09-19
 # Don't Try
 
 ```meta
-status: article
+status: scratch
 created: 2022-09-19
 last-edited: 2022-09-19
 ```
@@ -58194,7 +58194,7 @@ last-edited: 2022-09-19
 # Hair in a bun with stick
 
 ```meta
-status: article
+status: scratch
 created: 2022-04-28
 last-edited: 2022-04-28
 ```
@@ -58235,7 +58235,7 @@ last-edited: 2025-06-10
 # Latte Art
 
 ```meta
-status: article
+status: scratch
 created: 2024-05-07
 last-edited: 2025-06-10
 ```
@@ -58277,7 +58277,7 @@ last-edited: 2025-06-10
 # Tmux
 
 ```meta
-status: article
+status: scratch
 created: 2022-11-24
 last-edited: 2024-01-31
 ```
@@ -58303,7 +58303,7 @@ last-edited: 2024-01-31
 # New words
 
 ```meta
-status: article
+status: scratch
 created: 2024-01-31
 last-edited: 2024-01-31
 ```
@@ -58314,7 +58314,7 @@ last-edited: 2024-01-31
 # Favourite OP1 tutorials
 
 ```meta
-status: article
+status: scratch
 created: 2024-04-04
 last-edited: 2024-04-04
 ```
@@ -58330,7 +58330,7 @@ last-edited: 2024-04-04
 # Favourite Demoscenes
 
 ```meta
-status: article
+status: scratch
 created: 2021-08-19
 last-edited: 2024-04-06
 ```
@@ -58349,7 +58349,7 @@ last-edited: 2024-04-06
 # Classical music
 
 ```meta
-status: article
+status: scratch
 created: 2024-04-13
 last-edited: 2024-09-28
 ```
@@ -58601,7 +58601,7 @@ last-edited: 2024-09-28
 # Blues and Jazz Piano Improv
 
 ```meta
-status: article
+status: scratch
 created: 2024-04-13
 last-edited: 2024-12-26
 ```
@@ -59141,7 +59141,7 @@ last-edited: 2026-08-28
 # Decision Procedures Research Questions
 
 ```meta
-status: article
+status: scratch
 created: 2025-02-28
 last-edited: 2025-02-28
 ```
@@ -59151,7 +59151,7 @@ last-edited: 2025-02-28
 # Fitness
 
 ```meta
-status: article
+status: scratch
 created: 2025-09-07
 last-edited: 2025-09-07
 ```
