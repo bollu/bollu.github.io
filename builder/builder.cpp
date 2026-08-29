@@ -446,6 +446,7 @@ struct BlockMeta : public BlockTm {
   std::string location; // where a photo was taken (status: photo).
   std::string location_url; // map link for the location; plain text if empty.
   std::string photo;    // site-absolute image path (status: photo).
+  bool hero = false;    // this photo renders in the masthead, not the mosaic.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -867,6 +868,13 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
       meta->location_url = val;
     } else if (key == "photo") {
       meta->photo = val;
+    } else if (key == "hero") {
+      if (val == "yes") {
+        meta->hero = true;
+      } else {
+        printf_err_span(span, s, "meta hero must be 'yes', got: |%s|",
+                        val.c_str());
+      }
     } else {
       printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
     }
@@ -2011,6 +2019,51 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
   return outlen;
 }
 
+// a photo card: the image flush in a tinted box, caption with blurb and a
+// pinned map link below. `classes` picks the context (mosaic brick vs.
+// masthead hero); everything else comes from the article's meta block.
+static ll writePhotoCardHTML(const ArticleInfo &a, const char *classes,
+                             KEEP char *outs) {
+  // a small map-pin outline, drawn in the caption's text color.
+  const char *pin_svg =
+      "<svg class='pin' viewBox='0 0 24 24' width='11' height='11' "
+      "fill='none' stroke='currentColor' stroke-width='2' "
+      "stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"
+      "<path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/>"
+      "<circle cx='12' cy='10' r='3'/></svg>";
+  char fspath[1024];
+  sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
+          a.meta->photo.c_str() + 1); // skip the leading '/'.
+  int w = 0, h = 0;
+  const bool have_wh = jpegDimensions(fspath, &w, &h);
+  ll outlen = 0;
+  outlen += sprintf(outs + outlen,
+                    "<div class='%s'><img loading='lazy' src='%s'",
+                    classes, a.meta->photo.c_str());
+  if (have_wh) {
+    outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
+  }
+  outlen += sprintf(outs + outlen, "><div class='photo-caption'>");
+  if (!a.meta->blurb.empty()) {
+    outlen += sprintf(outs + outlen, "%s ", a.meta->blurb.c_str());
+  }
+  const bool linked = !a.meta->location_url.empty();
+  if (linked) {
+    outlen += sprintf(outs + outlen, "<a class='photo-loc' href='%s'>",
+                      a.meta->location_url.c_str());
+  } else {
+    outlen += sprintf(outs + outlen, "<span class='photo-loc'>");
+  }
+  outlen += sprintf(outs + outlen, "%s%s", pin_svg, a.meta->location.c_str());
+  outlen += sprintf(outs + outlen, "%s", linked ? "</a>" : "</span>");
+  if (a.meta->created[0]) {
+    outlen += sprintf(outs + outlen, "<span class='photo-loc'> · %s</span>",
+                      shortDate(a.meta->created).c_str());
+  }
+  outlen += sprintf(outs + outlen, "</div></div>");
+  return outlen;
+}
+
 // one mosaic tile: kicker, linked title, date, and the meta blurb.
 static ll writeMosaicCard(duk_context *katex_ctx, duk_context *prism_ctx,
                           const char *raw_input,
@@ -2064,50 +2117,14 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     }
   }
   for (const ArticleInfo &a : articles) {
-    if (status_of(a) == MetaStatus::Photo && !a.meta->photo.empty()) {
+    // the hero photo lives in the masthead, not the mosaic.
+    if (status_of(a) == MetaStatus::Photo && !a.meta->photo.empty() &&
+        !a.meta->hero) {
       photos.push_back(&a);
     }
   }
-  // a small map-pin outline, drawn in the caption's text color.
-  const char *pin_svg =
-      "<svg class='pin' viewBox='0 0 24 24' width='11' height='11' "
-      "fill='none' stroke='currentColor' stroke-width='2' "
-      "stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"
-      "<path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/>"
-      "<circle cx='12' cy='10' r='3'/></svg>";
   const auto writePhoto = [&](const ArticleInfo &a) {
-    char fspath[1024];
-    sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
-            a.meta->photo.c_str() + 1); // skip the leading '/'.
-    int w = 0, h = 0;
-    const bool have_wh = jpegDimensions(fspath, &w, &h);
-    outlen += sprintf(outs + outlen,
-                      "<div class='brick brick-photo'>"
-                      "<img loading='lazy' src='%s'",
-                      a.meta->photo.c_str());
-    if (have_wh) {
-      outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
-    }
-    outlen += sprintf(outs + outlen, "><div class='photo-caption'>");
-    if (!a.meta->blurb.empty()) {
-      outlen += sprintf(outs + outlen, "%s ", a.meta->blurb.c_str());
-    }
-    const bool linked = !a.meta->location_url.empty();
-    if (linked) {
-      outlen += sprintf(outs + outlen, "<a class='photo-loc' href='%s'>",
-                        a.meta->location_url.c_str());
-    } else {
-      outlen += sprintf(outs + outlen, "<span class='photo-loc'>");
-    }
-    outlen += sprintf(outs + outlen, "%s%s", pin_svg,
-                      a.meta->location.c_str());
-    outlen += sprintf(outs + outlen, "%s", linked ? "</a>" : "</span>");
-    if (a.meta->created[0]) {
-      outlen += sprintf(outs + outlen,
-                        "<span class='photo-loc'> · %s</span>",
-                        shortDate(a.meta->created).c_str());
-    }
-    outlen += sprintf(outs + outlen, "</div></div>");
+    outlen += writePhotoCardHTML(a, "brick brick-photo", outs + outlen);
   };
   outlen += sprintf(outs + outlen,
                     "<div class='mosaic'><div class='brick-sizer'></div>");
@@ -2389,6 +2406,24 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
     for (int i = 0; i < ix_h1; ++i) {
+      // the preamble's <!-- hero --> marker renders the photo article
+      // marked 'hero: yes' as the masthead card.
+      if (ts[i]->kind == BlockTm::Kind::Comment &&
+          std::string(raw_input + ts[i]->span.begin.si,
+                      raw_input + ts[i]->span.end.si)
+                  .find("hero") != std::string::npos) {
+        const ArticleInfo *hero = nullptr;
+        for (const ArticleInfo &a : articles) {
+          if (a.meta && a.meta->hero) {
+            assert(hero == nullptr && "more than one 'hero: yes' article");
+            hero = &a;
+          }
+        }
+        assert(hero && "<!-- hero --> marker but no 'hero: yes' article");
+        outlen += writePhotoCardHTML(*hero, "masthead-photo brick-photo",
+                                     index_html_buf + outlen);
+        continue;
+      }
       renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
                   index_html_buf);
     }
