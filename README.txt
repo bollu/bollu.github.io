@@ -8,7 +8,7 @@
 - Motto: **It's useful to finish things.**
 
 
-<img style="width: 100%; max-width: 880px; display: block; margin: 0 auto 1em auto;" src="/static/sid-bubble.jpg">
+<img style="width: 100%; aspect-ratio: 8 / 5; object-fit: fill; display: block; margin: 0 auto 1em auto;" src="/static/sid-bubble.jpg">
 
 <!-- photos -->
 
