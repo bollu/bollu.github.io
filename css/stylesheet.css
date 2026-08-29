@@ -632,10 +632,62 @@ ul {
     break-inside: avoid;
   }
 
-  /* navigation and comments are meaningless on paper */
+  /* navigation, comments, and the photo strip are meaningless on paper */
   #footer,
   .utterances,
+  .photo-strip,
   script {
     display: none !important;
+  }
+}
+
+/* === masthead: header text beside the portrait === */
+
+.container .masthead {
+  display: flex;
+  gap: 2.5em;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.container .masthead-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.container .masthead-photo {
+  width: 44%;
+  max-width: 520px;
+  height: auto;
+  border-radius: 2px;
+}
+
+/* === the photo strip below the masthead === */
+
+.container .photo-strip {
+  display: flex;
+  gap: 0.6em;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  margin-bottom: 1.2em;
+}
+
+.container .photo-strip img {
+  height: 9em;
+  width: auto;
+  max-width: none;
+  scroll-snap-align: start;
+  border-radius: 2px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .container .masthead {
+    flex-direction: column;
+  }
+
+  .container .masthead-photo {
+    width: 100%;
+    max-width: 520px;
   }
 }

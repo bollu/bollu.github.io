@@ -24,6 +24,7 @@
 
 #undef NDEBUG
 #include <assert.h>
+#include <dirent.h>
 
 #ifndef BLOG_ROOT_FOLDER_TRAILING_SLASH // path configured from cmake.
   #error "expected command line option 'BLOG_ROOT_FOLDER_TRAILING_SLASH'"
@@ -1911,6 +1912,45 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
   return articles;
 }
 
+// the homepage photo strip: every synced preview in
+// static/photos/strip/, newest first, each linking to the public album.
+// the directory is gitignored and synced by scripts/sync_photos.py; when
+// it is missing or empty, no strip is emitted.
+static ll writePhotoStripHTML(KEEP char *outs) {
+  const char *album =
+      "https://nx72119.your-storageshare.de/apps/photos/public/"
+      "3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5";
+  char dirpath[1024];
+  sprintf(dirpath, "%sstatic/photos/strip", BLOG_ROOT_FOLDER_TRAILING_SLASH);
+  DIR *dir = opendir(dirpath);
+  if (dir == nullptr) { return 0; }
+  vector<std::string> files;
+  while (dirent *e = readdir(dir)) {
+    const std::string name = e->d_name;
+    if (name.size() > 4 && name.compare(name.size() - 4, 4, ".jpg") == 0) {
+      files.push_back(name);
+    }
+  }
+  closedir(dir);
+  if (files.empty()) { return 0; }
+  // newest first: fileids grow over time.
+  std::sort(files.begin(), files.end(), [](const std::string &a,
+                                           const std::string &b) {
+    return atoll(a.c_str()) > atoll(b.c_str());
+  });
+
+  ll outlen = 0;
+  outlen += sprintf(outs + outlen, "<div class='photo-strip'>");
+  for (const std::string &f : files) {
+    outlen += sprintf(outs + outlen,
+                      "<a href='%s'><img loading='lazy' "
+                      "src='/static/photos/strip/%s'></a>",
+                      album, f.c_str());
+  }
+  outlen += sprintf(outs + outlen, "</div>");
+  return outlen;
+}
+
 // returns number of characters written.
 // the homepage contents: the three curated categories (essays,
 // expositions, big lists) in full as three ruled mini-columns, then
@@ -2233,6 +2273,14 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
     for (int i = 0; i < ix_h1; ++i) {
+      // the preamble's <!-- photos --> marker places the photo strip.
+      if (ts[i]->kind == BlockTm::Kind::Comment &&
+          std::string(raw_input + ts[i]->span.begin.si,
+                      raw_input + ts[i]->span.end.si)
+                  .find("photos") != std::string::npos) {
+        outlen += writePhotoStripHTML(index_html_buf + outlen);
+        continue;
+      }
       renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
                   index_html_buf);
     }

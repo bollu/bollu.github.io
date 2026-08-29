@@ -5,9 +5,11 @@ serve: build-website
 	cd out && python3 -m http.server
 
 netlify: build/builder
+	-python3 scripts/sync_photos.py
 	netlify deploy --build 
 
 netlify-prod: build/builder
+	-python3 scripts/sync_photos.py
 	netlify deploy --build --prod
 
 build-website: run-builder copy-to-out
@@ -30,3 +32,5 @@ copy-to-out: prism/ katex/ static/ todo.md README.txt
 	mkdir -p out/static
 	cp -r css abcjs prism katex static script prism/* katex/* static/* todo.md resume out/
 	cp -r sheet-music/*.cropped.svg out/static/
+sync-photos:
+	python3 scripts/sync_photos.py

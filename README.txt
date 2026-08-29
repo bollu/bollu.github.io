@@ -1,3 +1,6 @@
+<div class='masthead'>
+<div class='masthead-text'>
+
 <h1> A Universe of Sorts
 <img style="width: 1em; display: inline-block; float: right" src="/static/banner.png">
 <h3> Siddharth Bhat</h3>
@@ -7,9 +10,14 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md) / [Photography](https://nx72119.your-storageshare.de/apps/photos/public/3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - Motto: **It's useful to finish things.**
 
+</div>
 
+<img class='masthead-photo' src="/static/sid-bubble.jpg">
 
-<img style="width: 100%; max-width: 620px; display: block; margin: 0 auto 1em auto;" src="/static/sid-bubble.jpg">
+</div>
+
+<!-- photos -->
+
  
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
