@@ -1,0 +1,8 @@
+[package]
+name = "builder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayon = "1"
+quick-js = "0.4"

@@ -339,16 +339,35 @@ ul {
   border-top: 1px solid #ddd6c8;
 }
 
-/* the polished trio: three mini-columns */
-.container .toc-top {
-  display: flex;
-  gap: 2.2em;
+/* the mosaic: the polished trio as cards, interleaved with photos.
+   masonry.js absolutely positions the bricks; the float is the no-JS
+   fallback. brick widths must match the masonry gutter (18px). */
+.container .mosaic {
   margin: 1.4em 0;
 }
 
-.container .toc-top .toc-group {
-  flex: 1;
-  min-width: 0;
+.container .mosaic::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.container .brick-sizer,
+.container .brick {
+  width: calc((100% - 36px) / 3);
+}
+
+.container .brick {
+  float: left;
+  margin-bottom: 18px;
+  margin-right: 18px;
+}
+
+.container .brick-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
 }
 
 /* technical notes and scratch: two columns */
@@ -384,9 +403,15 @@ ul {
 
 /* narrow screens: everything stacks */
 @media (max-width: 900px) {
-  .container .toc-top,
   .container .toc-bottom {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .container .brick-sizer,
+  .container .brick {
+    width: 100%;
   }
 }
 
@@ -632,32 +657,56 @@ ul {
     break-inside: avoid;
   }
 
-  /* navigation, comments, and the photo strip are meaningless on paper */
+  /* navigation, comments, and the photos are meaningless on paper */
   #footer,
   .utterances,
-  .photo-strip,
+  .brick-photo,
   script {
     display: none !important;
   }
+
+  /* masonry's absolute positioning doesn't paginate: flow the cards. */
+  .container .mosaic {
+    height: auto !important;
+  }
+
+  .container .brick {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+  }
 }
 
-/* === the photo strip below the masthead === */
+/* === masthead: header text beside the portrait === */
 
-.container .photo-strip {
+.container .masthead {
   display: flex;
-  gap: 0.6em;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  margin-bottom: 1.2em;
+  gap: 2.5em;
+  align-items: center;
+  margin-bottom: 1em;
 }
 
-.container .photo-strip img {
-  height: 9em;
-  width: auto;
-  max-width: none;
-  scroll-snap-align: start;
+.container .masthead-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.container .masthead-photo {
+  width: 38%;
+  max-width: 440px;
+  height: auto;
   border-radius: 2px;
-  display: block;
+}
+
+@media (max-width: 900px) {
+  .container .masthead {
+    flex-direction: column;
+  }
+
+  .container .masthead-photo {
+    width: 100%;
+    max-width: 440px;
+  }
 }
 
 

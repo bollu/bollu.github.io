@@ -1916,39 +1916,22 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
 // static/photos/strip/, newest first, each linking to the public album.
 // the directory is gitignored and synced by scripts/sync_photos.py; when
 // it is missing or empty, no strip is emitted.
-static ll writePhotoStripHTML(KEEP char *outs) {
-  const char *album =
-      "https://nx72119.your-storageshare.de/apps/photos/public/"
-      "3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5";
-  char dirpath[1024];
-  sprintf(dirpath, "%sstatic/photos/strip", BLOG_ROOT_FOLDER_TRAILING_SLASH);
-  DIR *dir = opendir(dirpath);
-  if (dir == nullptr) { return 0; }
-  vector<std::string> files;
-  while (dirent *e = readdir(dir)) {
-    const std::string name = e->d_name;
-    if (name.size() > 4 && name.compare(name.size() - 4, 4, ".jpg") == 0) {
-      files.push_back(name);
-    }
+// the strip photos, newest first, from the manifest written by
+// scripts/sync_photos.py. Missing manifest => no photos (offline-safe).
+struct StripPhoto { long long id; int w, h; };
+static vector<StripPhoto> readPhotoManifest() {
+  vector<StripPhoto> photos;
+  char path[1024];
+  sprintf(path, "%sstatic/photos/strip/manifest.txt",
+          BLOG_ROOT_FOLDER_TRAILING_SLASH);
+  FILE *f = fopen(path, "rb");
+  if (f == nullptr) { return photos; }
+  StripPhoto p;
+  while (fscanf(f, "%lld %d %d", &p.id, &p.w, &p.h) == 3) {
+    photos.push_back(p);
   }
-  closedir(dir);
-  if (files.empty()) { return 0; }
-  // newest first: fileids grow over time.
-  std::sort(files.begin(), files.end(), [](const std::string &a,
-                                           const std::string &b) {
-    return atoll(a.c_str()) > atoll(b.c_str());
-  });
-
-  ll outlen = 0;
-  outlen += sprintf(outs + outlen, "<div class='photo-strip'>");
-  for (const std::string &f : files) {
-    outlen += sprintf(outs + outlen,
-                      "<a href='%s'><img loading='lazy' "
-                      "src='/static/photos/strip/%s'></a>",
-                      album, f.c_str());
-  }
-  outlen += sprintf(outs + outlen, "</div>");
-  return outlen;
+  fclose(f);
+  return photos;
 }
 
 // returns number of characters written.
@@ -2000,15 +1983,18 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     return a.meta ? a.meta->status : MetaStatus::Scratch;
   };
 
-  // ===the curated trio, in full===
+  // ===the mosaic: the curated trio as cards, interleaved with the album
+  // photos. masonry.js places bricks in source order into the shortest
+  // column, so the three cards top the columns and photos cascade below.
   struct Group { MetaStatus status; const char *title; };
   const Group top[] = {{MetaStatus::Essay, "Essays"},
                        {MetaStatus::Exposition, "Expositions"},
                        {MetaStatus::BigList, "Big Lists"}};
-  outlen += sprintf(outs + outlen, "<div class='toc-top'>");
+  outlen += sprintf(outs + outlen,
+                    "<div class='mosaic'><div class='brick-sizer'></div>");
   for (const Group &g : top) {
     outlen += sprintf(outs + outlen,
-                      "<div class='toc-group'>"
+                      "<div class='brick brick-card'>"
                       "<div class='toc-title'>%s</div><ul class='toc-list'>",
                       g.title);
     for (const ArticleInfo &a : articles) {
@@ -2018,7 +2004,25 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     }
     outlen += sprintf(outs + outlen, "</ul></div>");
   }
+  const char *album =
+      "https://nx72119.your-storageshare.de/apps/photos/public/"
+      "3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5";
+  for (const StripPhoto &p : readPhotoManifest()) {
+    outlen += sprintf(outs + outlen,
+                      "<div class='brick brick-photo'><a href='%s'>"
+                      "<img loading='lazy' src='/static/photos/strip/%lld.jpg'"
+                      " width='%d' height='%d'></a></div>",
+                      album, p.id, p.w, p.h);
+  }
   outlen += sprintf(outs + outlen, "</div>");
+  // masonry only loads on the homepage.
+  outlen += sprintf(outs + outlen,
+      "<script src='/script/masonry.pkgd.min.js'></script>"
+      "<script>document.addEventListener('DOMContentLoaded',function(){"
+      "var m=document.querySelector('.mosaic');"
+      "if(m&&window.Masonry){new Masonry(m,{itemSelector:'.brick',"
+      "columnWidth:'.brick-sizer',percentPosition:true,gutter:18});}});"
+      "</script>");
 
   // ===technical notes and scratch, two columns===
   const Group bottom[] = {{MetaStatus::TechnicalNote, "Technical Notes"},
@@ -2273,14 +2277,6 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
     for (int i = 0; i < ix_h1; ++i) {
-      // the preamble's <!-- photos --> marker places the photo strip.
-      if (ts[i]->kind == BlockTm::Kind::Comment &&
-          std::string(raw_input + ts[i]->span.begin.si,
-                      raw_input + ts[i]->span.end.si)
-                  .find("photos") != std::string::npos) {
-        outlen += writePhotoStripHTML(index_html_buf + outlen);
-        continue;
-      }
       renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
                   index_html_buf);
     }

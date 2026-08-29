@@ -1,0 +1,2 @@
+alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Owned, usize, intrusive_collections::LinkedList<FutexWaiterAdapter>, alloc::collections::btree::node::marker::LeafOrInternal>
+Option<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Owned, usize, intrusive_collections::LinkedList<FutexWaiterAdapter>, alloc::collections::btree::node::marker::LeafOrInternal>>

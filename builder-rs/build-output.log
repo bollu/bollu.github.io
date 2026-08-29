@@ -1,0 +1,163 @@
+warning: unused variable: `content_start`
+   --> src/parse.rs:541:13
+    |
+541 |         let content_start = self.loc;
+    |             ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_content_start`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: methods `len` and `merge` are never used
+  --> src/ast.rs:50:12
+   |
+44 | impl Span {
+   | --------- methods in this implementation
+...
+50 |     pub fn len(&self) -> usize {
+   |            ^^^
+...
+60 |     pub fn merge(self, other: Span) -> Span {
+   |            ^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: field `span` is never read
+  --> src/ast.rs:86:9
+   |
+83 |     Heading {
+   |     ------- field in this variant
+...
+86 |         span: Span,
+   |         ^^^^
+   |
+   = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+  --> src/ast.rs:91:9
+   |
+89 |     Paragraph {
+   |     --------- field in this variant
+90 |         content: Vec<Inline>,
+91 |         span: Span,
+   |         ^^^^
+   |
+   = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:107:9
+    |
+105 |     List {
+    |     ---- field in this variant
+106 |         items: Vec<ListItem>,
+107 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:112:9
+    |
+110 |     NumberedList {
+    |     ------------ field in this variant
+111 |         items: Vec<ListItem>,
+112 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:117:9
+    |
+115 |     Quote {
+    |     ----- field in this variant
+116 |         lines: Vec<Vec<Inline>>,
+117 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:122:9
+    |
+120 |     Html {
+    |     ---- field in this variant
+121 |         content: String,
+122 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:126:9
+    |
+125 |     Comment {
+    |     ------- field in this variant
+126 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `span` is never read
+   --> src/ast.rs:130:9
+    |
+129 |     LineBreak {
+    |     --------- field in this variant
+130 |         span: Span,
+    |         ^^^^
+    |
+    = note: `Block` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `span` is never used
+   --> src/ast.rs:175:12
+    |
+174 | impl Block {
+    | ---------- method in this implementation
+175 |     pub fn span(&self) -> Span {
+    |            ^^^^
+
+warning: function `dump_ast` is never used
+   --> src/ast.rs:205:8
+    |
+205 | pub fn dump_ast(blocks: &[Block], input: &str) -> String {
+    |        ^^^^^^^^
+
+warning: function `indent` is never used
+   --> src/ast.rs:213:4
+    |
+213 | fn indent(out: &mut String, level: usize) {
+    |    ^^^^^^
+
+warning: function `dump_block` is never used
+   --> src/ast.rs:219:4
+    |
+219 | fn dump_block(out: &mut String, block: &Block, input: &str, depth: usize) {
+    |    ^^^^^^^^^^
+
+warning: function `dump_inline` is never used
+   --> src/ast.rs:292:4
+    |
+292 | fn dump_inline(out: &mut String, inline: &Inline, input: &str, depth: usize) {
+    |    ^^^^^^^^^^^
+
+warning: method `error_at` is never used
+  --> src/parse.rs:77:8
+   |
+24 | impl<'a> Parser<'a> {
+   | ------------------- method in this implementation
+...
+77 |     fn error_at(&mut self, loc: Loc, message: impl Into<String>) {
+   |        ^^^^^^^^
+
+warning: field `articles_url_prefix` is never read
+   --> src/render.rs:139:9
+    |
+138 | pub struct RenderConfig {
+    |            ------------ field in this struct
+139 |     pub articles_url_prefix: String,
+    |         ^^^^^^^^^^^^^^^^^^^
+
+warning: `builder` (bin "builder") generated 17 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/builder /Users/bollu/blog`
+=== Reading /Users/bollu/blog/README.txt ===
+=== Input length: 2235034 bytes ===
+=== Parsing... ===
