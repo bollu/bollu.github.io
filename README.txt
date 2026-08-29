@@ -15981,7 +15981,7 @@ last-edited: 2022-05-30
 - We imagine the base manifold (circle) as horizontal, and the bundle $E$ as vertical. We imagine $TM$ as vectors lying horizontal
   on the circle, and we imagine $TE$ as vectors lying horizontal above the bundle. So something like:
 
-<img src="./static/connection-vector-bundle-geometry.png"/>
+@img("/static/connection-vector-bundle-geometry.png", size: s)
 
 
 - So the connection has type $C: E \times TM \to TE$. Consider a point $m \in M$ in the base manifold.
@@ -16108,7 +16108,7 @@ created: 2021-11-18
 last-edited: 2022-01-02
 ```
 
-<img src="./static/lie-bracket-versus-covariant-derivative.png"/>
+@img("/static/lie-derivative-versus-covariant-derivative.png", size: m)
 
 - Lie derivative cares about all flow lines, covariant derivative cares about a single flow line.
 - The black vector field is X
@@ -19896,14 +19896,14 @@ def process(addx, addy):
   can be split into an execution of `process(True, False)` and an execution of `process(False, True)`.
   This can be depicted as:
 
-<img src="./static/linearity-of-expectation-theory/split-process-in-two.png">
+@img("/static/linearity-of-expectation/split-process-in-two.png", size: m)
 
 - The above process assumes that we get the *same* results from running `process(True, True)` as we do when we run
   `process(True, False)` and `process(False, True)` in succession. Of course, this will never happen.
 - However, since we are taking an average over many trials, we can imagine that for a run of `process(True, True)`, we will have
   corresponding runs of `process(True, False)` and `process(False, True)`:
 
-<img src="./static/linearity-of-expectation-theory/matching-over-trials.png">
+@img("/static/linearity-of-expectation/matching-over-trials.png", size: m)
 
 - The key thing to remember is that the random variable *does not care* about the process, only about the *value*
   that is spit out by the process.
@@ -25139,7 +25139,7 @@ $$
 This tells that we can choose any index $[r, i]$ and index $[i, j]$ and these will be orthogonal,
 when viewed as vectors "along" the set of matrices.
 
-<img src="./static/repr-theory/schur-orthogonality.png">
+@img("/static/repr-theory/schur-orthogonality.png", size: m)
 
 If the representation is a one-dimensional representation/character, then we have no freedom
 in indexing, and the above becomes:
@@ -25896,7 +25896,7 @@ created: 2021-05-23
 last-edited: 2023-04-02
 ```
 
-<img src="./static/penrose-triangle.png"/>
+@img("/static/penrose-triangle.png", size: m)
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
@@ -26150,7 +26150,7 @@ $$
 - **CONTRADICTION:** $c \in M \land c > lub(M)$, which is absurd. We would have $c = lub(M)$.
 - Thus, this means that $lub(M) = r$, and thus the entire interval $[l, r]$ has finite subcover.
 
-<img src="./static/closed-intervals-compact-in-order-topology.png" />
+@img("/static/closed-intervals-compact-in-order-topology.png", size: m)
 
 #### (2) Closed subset of a compact set is compact
 
@@ -26180,7 +26180,7 @@ itself becomes closed.
   thus $q$ is NOT A LIMIT --- not every open nbhd of $Q$ has non-empty intersection with $S$.
 - Contrapositive: All limit points of $S$ are in $S$. Thus, $S$ is closed. (4)
 
-<img src="./static/compact-subset-of-haussdorf-is-closed.png"/>
+@img("/static/compact-subset-of-haussdorf-is-closed.png", size: m)
 
 #### (4) A set with all limit points is closed (complement of open)
 
@@ -27702,7 +27702,7 @@ rotations don't "look normal". Alternatively, one can try to consider translate-
 versus rotate-translate.
 
 
-<img src="./static/semidirect-product/rotate-translate.png"/>
+@img("/static/semidirect-product/rotate-translate.png", size: m)
 - First rotating by $r$ and then translating by $t$ along the x-axis
   has the same effect as first translating by $t'$ at 45 degrees to the x-axis,
   and then rotating by the **same** r.
@@ -27711,7 +27711,7 @@ versus rotate-translate.
   translation `t''` and some other rotation `r''` such that `t''; r''` (`t''` first, `r''` next)
   has the same effect as `r;t` (`r` first, `t` next)?
 
-<img src="./static/semidirect-product/translate-rotate.png"/>
+@img("/static/semidirect-product/translate-rotate.png", size: m)
 
 - First let's translate by $t$ along the x-axis and then rotating by $r$.
   Now let's think, if we wanted to rotate and then translate, what rotation would
@@ -29374,7 +29374,7 @@ We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
 
 > Slogan: Lifts of paths are unique: if they agree at one point, they agree at all points!
 
-<img src="./static/cw/path-lifting-uniqueness-setup.png"/>
+@img("/static/cw/path-lifting-uniqueness.png", size: m)
 
 - We just need to show that if $F_1$ and $F_2$ agree somewhere in $Y$, they agree
   everywhere. It is clear that if they agree everywhere, they must agree somewhere.
@@ -29543,7 +29543,7 @@ by adding more cells to $A$.
 If $e$ is a disk, then there is a continuous map from $e \times [0, 1]$ to
 $\partial e \times [0, 1] \cup (e \times \{ 0 \})$.
 
-<img src="./static/cw/hep-project-disk.png"/>
+@img("/static/cw/hep-project-disk.png", size: m)
 
 ##### Lemma
 
@@ -30090,14 +30090,14 @@ concatenation. So can we understand yoneda from this model?
   called `a, b, c` in `Hom(X, X)`. So our picture of `Hom(X, X)` looks like this:
 
 
-<img src="./static/yoneda/hom-x-x-1.png"/>
+@img("/static/yoneda/hom-x-x-1.png", size: m)
 
 - what does it *mean* to have an element `a` in `Hom(X, X)`? It means that there's
   an arrow from `X` to `X` in the category. But this also means that we have
   a map from `Hom(X, X)` *to* `Hom(X, X)`, given by composing with `a`! That is,
   we have a map `- . a :: Hom(X, X) -> Hom(X, X)`.
 
-<img src="./static/yoneda/hom-x-x-2.png"/>
+@img("/static/yoneda/hom-x-x-2.png", size: m)
 
 - If we have such a map of "composition with a", then we need to know where this
   map `-.a` maps all the elements of `Hom(X, X).` Thinking about this,
@@ -30106,14 +30106,14 @@ concatenation. So can we understand yoneda from this model?
   gives us the elements
   `idX.a = a, a.a = aa, b.a = ba, c.a = ca`.
 
-<img src="./static/yoneda/hom-x-x-3.png"/>
+@img("/static/yoneda/hom-x-x-3.png", size: m)
 
 - Similarly, we need to know where *these* new elements `aa`, `ba`, `ca` map to,
   but let's hold off on that for now, for that simply demands an extrapolation of
   imagination. Let's imagine having another object `Y` and an arrow `g: X -> Y`.
   This will give us a new hom-set `Hom(X, Y) = Hom(X, X) . g`
 
-<img src="./static/yoneda/hom-x-y-1.png"/>
+@img("/static/yoneda/hom-x-y-1.png", size: m)
 
 - In `Hom(X, Y)` we will have as elements all the arrows from `X` to `Y`.
   Let's say there's some arrow `h: X -> Y`. Then, we will find this arrow `h` in `Hom(X, Y)`
@@ -30415,7 +30415,7 @@ $$
 \end{bmatrix}
 $$
 
-<img src="./static/semidirect-product/diagonal.png"/>
+@img("/static/semidirect-product/diagonal.png", size: m)
 
 Hopefully clearly, this is isomorphic
 to $\mathbb R^*$ since the only degree of freedom is the bottom right entry,
@@ -30423,7 +30423,7 @@ which gets multiplied during matrix multiplication. These transform
 a vector $(x, y)$ into the vector $(x, \delta y)$.
 Informally, the $D$ matrices are responsible for scaling the $y$-axis.
 
-<img src="./static/semidirect-product/diagonal-composition.png"/>
+@img("/static/semidirect-product/diagonal-composition.png", size: m)
 
 ##### Shear transforms
 
@@ -30447,13 +30447,13 @@ $$
 $$
 
 
-<img src="./static/semidirect-product/shear.png"/>
+@img("/static/semidirect-product/shear.png", size: m)
 
 These are isomorphic to $\mathbb R^+$, since the only degree of freedom is
 their top-right entry, which gets added on matrix multiplication. These
 matrices transform a vector $(x, y)$ into $(x + \delta y, y)$.
 
-<img src="./static/semidirect-product/shear-composition.png"/>
+@img("/static/semidirect-product/shear-composition.png", size: m)
 
 
 #### Generating all transforms with diagonal and shear transforms
@@ -30503,7 +30503,7 @@ $$
 
 This doesn't leave us with another diagonal transform.
 
-<img src="./static/semidirect-product/sinv-d-s.png" />
+@img("/static/semidirect-product/sinv-d-s.png", size: m)
 
 #####  Conjugating $S$ with $D$
 
@@ -30523,7 +30523,7 @@ See that the final result we end up with is a shear transform which
 shears by $y/d$. So, we can write the equation $DSD^{-1} = S$: conjugating
 a shear by scaling leaves us with a shear.
 
-<img src="./static/semidirect-product/dinv-s-d.png" />
+@img("/static/semidirect-product/dinv-s-d.png", size: m)
 
 ##### The connnection to partial  fractions
 
@@ -31511,7 +31511,7 @@ in terms of partitions. For two sequences $f, g$, define $F$ to be their "integr
 Then the condition that $f \prec g$ states that $F$ is upper bounded by $G$,
 and that $F, G$ are concave functions.
 
-<img src='./static/majorization-partitions.png'>
+@img("/static/majorization-partitions.png", size: m)
 
 
 The other lens of viewing majorization is to think of a number as some sort
@@ -31521,7 +31521,7 @@ In this viewpoint, the majorization condition asserts that $f \prec g$ is that
 $g$ will always be ahead of/not fall behind $f$.
 
 
-<img src='./static/majorization-fixed-length.png'>
+@img("/static/majorization-fixed-length.png", size: m)
 
 #### Majorization and step
 
@@ -32245,7 +32245,7 @@ lines.
 We can make a definition: the **point at infinity for a given direction** is the
 equivalence class of all lines in that direction.
 
-<img src='./static/projective-plane-incidence-points.png'/>
+@img("/static/projective-plane-incidence-points.png", size: m)
 
 #### The line at infinity
 
@@ -32768,7 +32768,7 @@ the total degree zero.
 
 #### `div` is same as laplacian
 
-<img src='./static/discrete-riemann-roch/laplacian-lending.png'>
+@img("/static/discrete-riemann-roch/laplacian-lending.png", size: m)
 
 #### Picard group is cokernel of L
 
@@ -33146,7 +33146,7 @@ object where equality is decidable! Below is an illustration of how I imagine
 the situation.
 
 
-<img src='./static/olaf-topological-groups.png' />
+@img("/static/olaf-topological-groups.png", size: m)
 
 
 
@@ -33771,7 +33771,7 @@ whose removal disconnected the graph. Such a vertex is an articulation vertex.
 > subgraph is biconnected. Vertices can belong to many components;
 > Indeeed, articulation vertices are those that belong to more than one component.
 
-<img src="./static/structure-of-non-biconnected-graph.png"/>
+@img("/static/structure-of-non-biconnected-graph.png", size: m)
 
 
 #### Lemma: Characterization of biconnected components
@@ -33795,7 +33795,7 @@ We look at pictures and try to figure out how to do this.
 
 #### DFS for articulation vertices - undirected:
 
-<img src="./static/articulation-vertex-undirected.png"/>
+@img("/static/articulation-vertex-undirected.png", size: m)
 
 - The connectivity of a graph is the smallest number of vertices that need to
   be deleted to disconnect the graph.
@@ -33857,7 +33857,7 @@ void process_edge(int x, int y) {
 ```
 
 
-<img src="./static/articulation-vertices-undirected-3-cases.png"/>
+@img("/static/articulation-vertices-undirected-3-cases.png", size: m)
 
 > In a DFS tree, a vertex v (other than the root) is an articulation
 > vertex iff v is not a leaf and some subtree of v has no back edge incident
@@ -34105,17 +34105,17 @@ last-edited: 2022-05-30
 - Let $p$ be a path of maximum diameter, which starts at $p$ and ends at $q$.
  Consider a tree where the diameter is shown in golden:
 
-<img src='./static/diameter/tree-diam-spread.png' />
+@img("/static/diameter/tree-diam-spread.png", size: m)
 
 - We claim that a node at distance $d$ from the left can have a subtree of
   height at most $d$:
 
-<img src='./static/diameter/tree-diam-straight-example.png' />
+@img("/static/diameter/tree-diam-straight-example.png", size: m)
 
 - Suppose this were not the case. Then, we can build a *longer* diameter (in pink)
   that is longer than the "supposed diameter" (in gold):
 
-<img src='.static/diameter/tree-diam-straight-counterexample.png' />
+@img("/static/diameter/tree-diam-straight-counterexample.png", size: m)
 
 ## Algorithm to find the diameter:
 
@@ -34127,17 +34127,17 @@ us the diameter (the distance from $v$ to $w$)
 
 - first imagine the tree lying flat on the table.
 
-<img src="./static/diameter/tree.png" />
+@img("/static/diameter/tree.png", size: m)
 
 - Hold the tree up at node $c$. It's going to fall by gravity and arrange as
   shown below. This is the same as performing a DFS.
 
-<img src="./static/diameter/tree-dfs-1.png" />
+@img("/static/diameter/tree-dfs-1.png", size: m)
 
 - Pick one of the lowest nodes (we pick $g$). Now hold the entire tree from
   this lowest node, and once again allow gravity to act.
 
-<img src="./static/diameter/tree-dfs-2.png" />
+@img("/static/diameter/tree-dfs-2.png", size: m)
 
 - This will give us new lowest nodes such as $b$. This node $b$ is going to be
   diameter, "because" it's the distance from a lowest node to another lowest
@@ -34370,7 +34370,7 @@ $$
 I found this very cool. The idea is to treat each rook as a "bouncer" that bounces light
 rays. All elements hit by a light ray belong to an equivalence class.
 
-<img src="./static/rooks-equivalence-classes.png"/>
+@img("/static/rooks-equivalence-classes.png", size: m)
 
 
 #### Wrooks and signless stirling numbers
@@ -36430,7 +36430,7 @@ created: 2020-11-17
 last-edited: 2022-05-30
 ```
 
-<img src="./static/accuracy-vs-precision.png"/>
+@img("/static/accuracy-vs-precision.png", size: m)
 
 I had a hard time remembering which is which, so here's how I do it now.
 First, I think of it from a probabilistic lens, where one of them is the
@@ -36615,7 +36615,7 @@ created: 2020-10-30
 last-edited: 2020-10-30
 ```
 
-<img src="./static/bijection-between-closed-01-open-01.png">
+@img("/static/bijection-between-closed-01-open-01.png", size: m)
 
 # Rene Girard
 
@@ -37057,7 +37057,7 @@ and that of [Graham Scan](https://en.wikipedia.org/wiki/Graham_scan) which also
 uses a similar technique of maintaining a stack. Does this also have a hasse
 diagram associated to it? or a DFS tree?
 
-<img src="./static/nearest-smaller-number.png">
+@img("/static/nearest-smaller-number.png", size: m)
 
 
 
@@ -37641,7 +37641,7 @@ created: 2020-10-22
 last-edited: 2022-05-30
 ```
 
-<img src=static/retro-glitch.jpg />
+@img("/static/retro-glitch.jpg", size: m)
 
 - There's something great about the juxtaposition of the classic Christian scene
   with the glitch aesthetic. I'm unable to articulate _what_ it is that I so
@@ -40188,7 +40188,7 @@ Consider a system of a particle in a well. We consider two energy levels:
 that with `E = 0`, and `E = 1`. This gives us the following five
 states:
 
-<img src="./static/burnside/setup.png" >
+@img("/static/burnside/setup.png", size: m)
 
 now I want to simulate this system, like a good computer scientist. So let's
 write the stupdiest one possible, `Δ0`, that doesn't simulate anything
@@ -40196,25 +40196,27 @@ at all, and `Δ+1`, which steps the system forward by a single step.
 These look like this:
 
 
-<img src="./static/burnside/simulation-1.png" >
+@img("/static/burnside/simulation-1.png", size: m)
 
 But why only these? Why privilege these time-scales? We should at least
 have `Δ-1`, for the arrow of time is fiction:
-<img src="./static/burnside/intergrator-minus-1.png">
+
+@img("/static/burnside/intergrator-minus-1.png", size: m)
 
 We should also have coarser integrators. Hence we contemplate `Δ+2` and `Δ-2`.
 Turns out these are equivalent:
 
-<img src="./static/burnside/integrator-plus-2-minus-2.png">
+@img("/static/burnside/integrator-plus-2-minus-2.png", size: m)
 
 
 We can also consider `Δ + 3`. We also see that `Δ + 4 = Δ`:
-<img src="./static/burnside/integrator-3-4.png">
+
+@img("/static/burnside/integrator-3-4.png", size: m)
 
 
 So in conclusion, the calculation gives us:
 
-<img src="./static/burnside/conclusion.png" >
+@img("/static/burnside/conclusion.png", size: m)
 
 
 # The Ise Grand Shrine
@@ -42322,7 +42324,7 @@ created: 2020-09-05
 last-edited: 2020-10-22
 ```
 
-<img src="./static/product-of-compact-is-compact.png">
+@img("/static/product-of-compact-is-compact.png", size: m)
 
 # Hyperbolic Groups Have Solvable Word Problem
 
@@ -42541,7 +42543,7 @@ be arbitrary.
 
 ### Germs of analytic functions satisfy (Sheaf: Trial 3)
 
-<img src="./static/sheaf.png">
+@img("/static/sheaf.png", size: m)
 
 # Snake Lemma
 
@@ -43209,7 +43211,7 @@ p = -1/\overline{q} = -q/|q| \\
 $$
 
 
-<img src="./static/riemann-sphere-conjugate.png">
+@img("/static/riemann-sphere-conjugate.png", size: m)
 If we imagine these as points on the Riemann sphere, TODO
 
 #### References
@@ -43253,8 +43255,9 @@ $$
 
 We plot the function here:
 
-<img src="./static/arg-multi-value-circle.png">
-<img src="./static/arg-multi-value-plot.png">
+@img("/static/arg-multi-value-circle.png", size: m)
+
+@img("/static/arg-multi-value-plot.png", size: m)
 
 
 - Note that for every value $z \in C$, we get a _set_ of values associated
@@ -43271,7 +43274,7 @@ Let's try to investigate what happens if we move from `right` towards `bot`,
 arbitrarily stipulating ("picking a branch") that `arg(right) = 0` as a sort
 of basepoint.
 
-<img src="./static/arg-multi-value-branch-lower.png">
+@img("/static/arg-multi-value-branch-lower.png", size: m)
 
 - Note that we were _forced_ to pick the value `arg(bot) = -1` from our
   considerations of continuity. No other value extends continuous from the
@@ -43289,7 +43292,7 @@ This prompts the natural question:
   `arg(right) = 0` as before. This gives us:
 
 
-<img src="./static/arg-multi-value-branch-upper.png">
+@img("/static/arg-multi-value-branch-upper.png", size: m)
 
 
 - Note that once again, we were _forced_ to pick `arg(top) = 1` by continuity
@@ -43331,7 +43334,7 @@ weird that we would need to depend on the history to define this function. We
 can formalize this notion of history. Let's first discretize the situation,
 giving us:
 
-<img src="./static/discrete-multi-valued.png"/>
+@img("/static/discrete-multi-valued.png", size: m)
 
 - We are on the space of the spokes, given by `a, b, c, d, e, f, g, h`.
 - We have a function `f: Spoke -> Val` whose values are given on the spokes.
@@ -43341,7 +43344,7 @@ giving us:
   discontinuity in `out` at time `7`.
 - We want to fix this, so we make the function `f` multi-valued.
 
-<img src=./static/discrete-multi-valued-assign-multi-value.png>
+@img("/static/discrete-multi-valued-assign-multi-value.png", size: m)
 
 - We assign both values `8` and `0` to the spoke `a`. We wish to define
   the evaluation of `f: Spoke -> 2^N` relative to path `p`. At time `t`, point
@@ -43542,7 +43545,7 @@ as deltas, where we are trying to find the highest elevation. since elevation
 is an integral (sum) of the deltas in height.
 
 
-<img src="./static/max-sum-subarray.png">
+@img("/static/max-sum-subarray.png", size: m)
 
 # Thoughts on Implicit Heaps
 
@@ -43798,7 +43801,7 @@ $y$, in an arithmetic of precision $u$. How do we measure the quality of $\hat y
    so we ask for $\min |\delta x|$. We can divide this error by $x$ as a
    normalization factor. This is the **backward error**.
 
-<img src="./static/forward-backward-error.png">
+@img("/static/forward-backward-error.png", size: m)
 
 There are two reasons we prefer backward error.
 
@@ -43835,7 +43838,7 @@ $$
 That is, for a small perturbation in the output $(\delta y)$, we can get a
 backward error of $\delta x$. This is called as **mixed forward backward error**.
 
-<img src="./static/mixed-forward-backward-error.png">
+@img("/static/mixed-forward-backward-error.png", size: m)
 
 We can say that an algorithm with mixed-forward-backward-error is stable iff:
 
@@ -44648,7 +44651,7 @@ existed before.
   points between the line with slope $p/q$ starting from the origin, and the
   discretized line as described by $w$. An example picture:
 
-<img src="./static/christoffel-word-example.png">
+@img("/static/christoffel-word-example.png", size: m)
 
 - It turns out that all primitive christoffel words are Lyndon words. I'm not
   100% sure what primitive is, but the take-away is that these primitive
@@ -44665,7 +44668,7 @@ existed before.
   successive line segment has lower slope than the previous (since the
   lyndon decomposition splits words into non-decreasing lex order).
 
-<img src="./static/lyndon-convex.png">
+@img("/static/lyndon-convex.png", size: m)
 
 - We can then check that each word in the lyndon decomposition is a Christoffel
   word. If it is, then your sequence of moves describes a "good  discrete
@@ -44675,7 +44678,7 @@ existed before.
 
 ### Bonus: slick characterization of line drawing
 
-<img src="./static/christoffel-cyclic-7-4.png">
+@img("/static/christoffel-cyclic-7-4.png", size: m)
 
 
 If we want to draw a line with slope `p/q = 4/7` using the lower approximation the idea
@@ -48133,7 +48136,7 @@ created: 2020-09-05
 last-edited: 2020-10-22
 ```
 
-<img  src="./static/natural-transformation.png">
+@img("/static/natural-transformation.png", size: m)
 
 
 I don't find people who draw "all three parts" of the natural transformation:
@@ -49883,7 +49886,7 @@ created: 2020-09-05
 last-edited: 2020-09-05
 ```
 
-<img  src="./static/legendre.png">
+@img("/static/legendre.png", size: m)
 
 
 # Cartesian Trees
@@ -49899,7 +49902,7 @@ range minimum query (RMQ) on the array $A$ is equivalent to the lowest common an
 of the nodes of the tree $T$.
 
 
-<img src="./static/cartesian-tree.svg">
+@img("/static/cartesian-tree.svg", size: m)
 
 Note that the tree looks like a _min-heap_.
 
@@ -50565,7 +50568,7 @@ created: 2020-09-05
 last-edited: 2020-09-05
 ```
 
-<img src="./static/cauchy-schwarz.svg">
+@img("/static/cauchy-schwarz.svg", size: m)
 
 - All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
 
@@ -50677,7 +50680,7 @@ Some examples of the range of responsibility of an index are:
 - $15 = 15 = (14, 15]$
 - $16 = 2^4 = (0, 16]$
 
-<img src="./static/fenwick-structure.gif">
+@img("/static/fenwick-structure.gif", size: s)
 
 
 #### query
@@ -51158,7 +51161,7 @@ a=~3
 
 I liked it so much that I took a screenshot and made it my lock screen.
 
-<img src="./static/screenshot-j-incunabulum.png">
+@img("/static/screenshot-j-incunabulum.png", size: m)
 
 #### Thoughts
 
@@ -51414,7 +51417,7 @@ of the orbits of planets using two integrators, one that's symplectic (leapfrog)
 and one that isn't (Euler)
 
 
-<img src="./static/leapfrog-vs-euler.png">
+@img("/static/leapfrog-vs-euler.png", size: m)
 
 Notice that since leapfrog attempts to keep energy conserved, the orbits stay
 as orbits! On the other hand, the euler integrator quickly spirals out, since
@@ -51815,30 +51818,30 @@ Examples of simplicial complexes:
 
 - Every simplex is trivially a simplicial complex.
 
-<img src="static/simplices/complex-0-simplices.svg" width="50">
+@img("/static/simplices/complex-0-simplices.svg", size: s)
 - A collection of points is a simplicial complex with all simplices of degree $0$.
 
-<img src="static/simplices/complex-unfilled-triangle.svg" width="50">
+@img("/static/simplices/complex-unfilled-triangle.svg", size: s)
 - An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
 
-<img src="static/simplices/complex-unfilled-butterfly.svg" width="50">
+@img("/static/simplices/complex-unfilled-butterfly.svg", size: s)
 - Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
   this one of degree $0$, $1$.
 
-<img src="static/simplices/complex-half-filled-butterfly.svg" width="50">
+@img("/static/simplices/complex-half-filled-butterfly.svg", size: s)
 - This is the same shape as the unfilled butterly, except now containing a
   simplex of degree 2: the filling in of the bottom of the butterfly.
 
 
 Non-examples of simplicial complexes are:
 
-<img src="static/simplices/non-simplex-1.svg" width="50">
+@img("/static/simplices/non-simplex-1.svg", size: s)
 - This does not contain the point at the lower-left corner, which should exist
   since it is a boundary of the straight line. This violates rule (1):
   Every boundary of a simplex from $K$ is in $K$
 
 
-<img src="static/simplices/non-simplex-2.svg" width="50">
+@img("/static/simplices/non-simplex-2.svg", size: s)
 - This does not contain the points which are at the intersection of the
   triangle and the line. This violates rule (2):
   The intersection of any two simplices in $K$ is also in $K$.
@@ -51848,7 +51851,7 @@ Non-examples of simplicial complexes are:
 Let's consider the simplest possible case of computing the homlogy, and we
 do so, we will expand on what homology _is_, and what we're trying to do.
 
-<img src="static/simplices/homology-triangle-edges.svg">
+@img("/static/simplices/homology-triangle-edges.svg", size: m)
 
 Look at the triangle above. We have the red, green, and blue vertices, which
 I'll notate $r, g, b$. We also have the edges that are orange ($o$), cyan ($c$), and
@@ -51985,7 +51988,7 @@ around the triangle, such as $o + m + c + o + m + c$.
 
 ### (No) Holes in a space: Homology of a _filled_ triangle
 
-<img src="static/simplices/homology-triangle-faces.svg">
+@img("/static/simplices/homology-triangle-faces.svg", size: m)
 
 In this case, notice that the triangle is _filled_ with a face $f$.
 Therefore, the "hole" that we had previously is now filled up, and does not
@@ -52041,7 +52044,7 @@ f is closed <=> df = 0
 f is exact <=> f = dg
 -->
 
-<img src="static/simplices/cohomology-triangle-vertices.svg">
+@img("/static/simplices/cohomology-triangle-vertices.svg", size: m)
 
 Once again, we have our humble triangle with vertices $V = \{r, g, b\}$,
 edges $E = \{o, m, c \}$, faces $F = \{ f \}$ with boundary maps $\partial_{EV}$,
@@ -52115,7 +52118,7 @@ forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
 are called as **exact differential forms**. That is, $g_e = d g_v$ _exactly_,
 such that there is no "remainder term" on applying the $d$ operator.
 
-<img src="static/simplices/cohomology-triangle-edges.svg">
+@img("/static/simplices/cohomology-triangle-edges.svg", size: m)
 
 We take an example of a differential form that is _not exact_, which has been
 defined on the edges of the triangle above. Let's call it $h_e$.
@@ -52150,7 +52153,7 @@ the essence of cohomology.
 
 ## Cohomology of half-filled butterfly
 
-<img  src="static/simplices/cohomology-half-filled-butterfly.svg">
+@img("/static/simplices/cohomology-half-filled-butterfly.svg", size: m)
 
 Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
@@ -52808,10 +52811,12 @@ from having to reinvent `X` from scratch.
 
 
 - [Gradient Descent](http://chronologia.org/art/math/123a176.jpg)
-  <img width=200 height=200 src="http://chronologia.org/art/math/123a176.jpg">
+
+@img("http://chronologia.org/art/math/123a176.jpg", size: m)
 
 - [Topological Zoo](http://chronologia.org/art/math/077a011.jpg)
-  <img width=200 height=200 src="http://chronologia.org/art/math/077a011.jpg">
+
+@img("http://chronologia.org/art/math/077a011.jpg", size: m)
 
 - [Persistent Homology in Multivariate Data Visualization](https://bastian.rieck.me/research/Dissertation_Rieck_2017.pdf)
   This is the PhD dissertation of [Bastian Rieck](https://bastian.rieck.me/),
@@ -54688,7 +54693,7 @@ last-edited: 2020-10-22
 ```
 
 
-<img src="static/lie-bracket-versus-torsion.png">
+@img("/static/lie-bracket-versus-torsion.png", size: m)
 
 This picture _finally_ made the difference between these two things clear.
 The lie bracket moves along the _flow_, while the torsion moves along
@@ -55059,7 +55064,7 @@ I'll make this an append-only log to add to the section as I understand more.
 
 ##### Simulating orbits with large timesteps
 
-<img src="./static/leapfrog-vs-euler.png">
+@img("/static/leapfrog-vs-euler.png", size: m)
 
 Clearly, the leapfrog integrator preserves energy and continues to move
 in an orbit, while the euler integrator goes batshit and causes orbits
@@ -58874,15 +58879,15 @@ last-edited: 2024-10-05
 
 #### C Minor Scales
 
-<img src="/static/scales.cropped.svg" />
+@img("/static/scales.cropped.svg", size: m)
 
 #### Bossa Nova Rhythm
 
-<img src="/static/bossa-nova.cropped.svg" />
+@img("/static/bossa-nova.cropped.svg", size: s)
 
 #### Wutang Clan: CREAM
 
-<img src="/static/wutang-cream.cropped.svg" />
+@img("/static/wutang-cream.cropped.svg", size: s)
 
 #### Madoka Magica OST
 
