@@ -2376,9 +2376,9 @@ int main(int argc, char **argv) {
       success &=
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
-    // ===tailpiece: the end-of-article mark===
-    outlen += sprintf(outbuf + outlen, "<div class='tailpiece'>❦</div>");
     outlen += sprintf(outbuf + outlen, "</div>");
+    // ===tailpiece: the end-of-article mark (outside the column flow)===
+    outlen += sprintf(outbuf + outlen, "<div class='tailpiece'>❦</div>");
 
     if (!success) {
       fprintf(stdout, "===ERROR: compile [%s] failed. skipping. ", url);

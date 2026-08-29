@@ -530,6 +530,19 @@ ul {
   column-gap: 2.5em;
   orphans: 2;
   widows: 2;
+  position: relative;
+}
+
+/* the newspaper hairline in the gutter: drawn once, at the true center,
+   rather than via column-rule (which chrome also paints against overflow
+   column fragments, leaving stray lines at the right). */
+.container .two-column::before {
+  content: '';
+  position: absolute;
+  left: calc(50% - 0.5px);
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #ddd;
 }
 
 /* figures, code, and math must not split across columns */
@@ -544,6 +557,10 @@ ul {
 @media (max-width: 900px) {
   .container .two-column {
     columns: 1;
+  }
+
+  .container .two-column::before {
+    display: none;
   }
 }
 
@@ -580,7 +597,6 @@ ul {
   color: #c9bfae;
   font-size: 1.4em;
   margin-top: 1em;
-  column-span: all; /* sit centered under both columns */
 }
 
 .container .tailpiece::before,
