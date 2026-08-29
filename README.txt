@@ -59128,6 +59128,2666 @@ last-edited: 2025-09-07
 
 
 
+# Circle of Fifths Voicings
+
+```meta
+status: scratch
+created: 2026-03-24
+last-edited: 2026-03-24
+```
+
+```
+Mar 2nd
+--------
+
+play the circle of 5ths in the Cminor key, sounds great.
+Use the voiings that need the minimal movement.
+
+F -> B -> E -> A -> D -> G -> C
+F:FAbCEb -> B:FAbBbD -> E:EbGBbD -> A:(EbGAbC [proper: EbFAbC]) -> D:DFAbB (proper: DFAbC) -> G:DFBBb -> C:CEbGBb
+Fm7 -> Bb7/F -> Eb7 -> 
+
+ EbGAbC or EbFAbC
+ -----------------
+ EbGAbC needs less movement,
+ but EbFAbC is more common.
+
+
+
+DFAbC or DFAbB
+---------------
+
+DFAbB is diminished, and leads to bepop relations, which is nice.
+```
+
+```
+D:(DFAbB[diminished]) -> C#[C#FG#] -> C[C E G] -> FMin[F Ab C]
+```
+
+
+# Euler Characteristic for Polyhedra and Digital Geometry
+
+```meta
+status: scratch
+created: 2020-08-15
+last-edited: 2023-03-26
+```
+
+## The problem definition
+
+## The hammer: Euler characteristic
+
+## Constructing the euler characteristic
+
+### Bootstrapping from 1D
+in 1D, how many types of intervals do we have? 4:
+- open-open: `(a, b)`
+- open-closed: `(a, b]`
+- closed-open: `[a, b)`
+- closed-closed: `[a, b]`.
+
+
+We want to build a function `χ: Intervals -> Z` such that
+`χ(interval) = #of vertices - #of edges`. Specifically:
+
+- **closed-closed**: `[a, b]` has one edge between `a` and `b` and two vertices
+  at `a` and `b`. So `χ([a, b]) = 2 - 1 = 1`.
+- **open-open**: `(a, b)` has one edge between `a` and `b`, and no vertices.
+  So `χ((a, b)) = 0 - 1 = -1`
+- **closed-open**: `[a, b)` has one edge between `a` and `b` and a single vertex
+  at `a`. So `χ([a, b)) = 1 - 1 = 0`.
+
+
+#### Indicator functions
+
+
+```
+Reals and the interval [a, b]:
+
+----[=====]----
+    a     b
+
+f corresponding to [a, b]:
+
+  |
+1 |   x=========x
+  |
+0 *===o---------o======>
+      a         b
+```
+
+
+#### Constructing `χ`:
+
+
+#### `δ[f]`
+
+```
+Reals and the interval [a, b]:
+
+----[=====]----
+    a     b
+
+f corresponding to [a, b]:
+
+  |
+1 |   x=========x
+  |
+0 *===o---------o======>
+      a         b
+
+δ[f](x) = lim[ε → 0+] f(x) - f(x-ε)
+```
+
+#### `χ` of the closed-closed interval:
+
+
+```
+x < a:
+
+    f(x-ε)=0    f(x)=0
+  |   |          |
+1 |   |          |    x=========x
+  |   |          |
+0 *===|==========|====o---------o======>
+      |          |    a         b
+     x-ε         x
+
+δ[f](x) = 0 when x < a
+```
+
+
+```
+x = a:
+
+    f(a-ε)=0
+      |   f(a)=1
+  |   |    |
+1 |   |    x=========x
+  |   |
+0 *===|====o---------o======>
+      |         a         b
+     x-ε
+
+δ[f](a) = lim[ε → 0+]  f(a) - f(a - ε) = 1 - 0 = 1
+```
+
+```
+Case 3: a < x <= b [notice the <= !]
+
+            f(x-ε) = 1
+             |
+             |  f(x) = 1
+  |          |  |
+1 |       x==|==|====x
+  |
+0 *=======o---------o======>
+          a         b
+
+δ[f](x) = 1 - 1 = 0 when a < x <= b
+```
+
+```
+Case 4: b < x
+
+
+                        f(x-ε) = 0
+1 |        x========x   |   f(x) = 0
+  |                     |   |
+0 *=======o---------o===|===|==>
+          a         b
+
+δ[f](x) = 0 - 0 = 0 when b < x
+```
+
+The open-ness at `b` is vital for this to work. Because we are open at `b`, if
+you pick some `x > b`, then I can write `x = b + α`, where `α > 0`.
+I can then choose
+`ε = α/2` to give me:
+
+```
+=  f(x) - f(x-ε)
+= f(b + α) - f(b + α - α/2)
+= f(b + α) - f(b + α/2)    [α/2 > 0 since α > 0]
+= 0 - 0 = 0
+```
+#### `χ` of closed-closed
+
+#### `χ` of open-open
+
+```
+### ----(=====)----
+        a     b
+
+f2
+
+  |
+1 |             o==============o
+  |
+0 *=============x--------------x=========>
+                a              b
+- δ[f2](x <= a) = 0
+- δ[f2](a < x < b) = 0
+- δ[f2](x = b) = 0 - 1 = -1
+- δ[f2](b < x) = 0
+
+χ(f2) = 0 + 0 + -1 + 0 = -1
+```
+
+**What happens at `b`?**
+
+```
+                        f2(b-ε) = 1
+                         |
+                         |     f2(b) = 0
+                         |     |
+  |                      |     |
+1 |             o========|=====o
+  |                            |
+0 *=============x--------------x=========>
+
+δ[f2](x = b) = f2(b) - f2(b-ε) = 0 - 1 = -1
+```
+
+In words:
+
+```
+f(b) - lim[ε->0+] f(b-ε)
+[Let ε = L/2]
+~= f(b) - f(b-L/2)
+~= f(b) - f(a/2 + b/2) [the point a/2 + b/2 is in the middle of `(a, b)`]
+~= 0 [outside] - 1 [inside]
+~= -1
+```
+
+#### `χ` of open-closed: `(a, b]`:
+
+```
+f3:
+
+1 |             o=============x
+  |
+0 *=============x-------------o=========>
+
+- δ[f3](x <= a) = 0
+- δ[f3](a < x <= b) = 0
+- δ[f3](b < x) = 0
+
+χ(f3) = 0 + 0 + 0 = 0
+```
+
+#### `χ` of closed-open
+
+
+```
+f4:
+
+1 |             x=============o
+  |
+0 *=============o-------------x=========>
+
+- δ[f4](x < a) = 0
+- δ[f4](x = a) = 1 - 0 =  1
+- δ[f4](a < x < b) = 0
+- δ[f4](x = b) = 0 - 1 = -1
+- δ[f4](b < x) = 0
+
+χ(f4) = 0 + 1 + 0  -1 = 0
+```
+
+#### `χ` of unions
+
+#### Review: what we have achieved so far
+
+
+#### Upgrading `χ` to 2D:
+
+TODO: add image from barvinok
+
+##### Broke
+
+```
+δ[f](x) = lim[ε → 0+] f(x) - f(x-ε)
+χ(f) = sum up all the jumps as counted by δ across R
+χ(f) = Σ_x δ[f](x)
+```
+
+##### Woke
+
+```
+χ0(∅)   = 0
+χ0(_) = 1
+
+δ1[I](x) = lim[ε → 0+] χ0(I∩{x}) - Χ0(I∩{x-ε})
+χ1(I) = Σ_x δ1[I](x)
+```
+
+- where `I` is the actual _interval_ associated with `f`.
+- `χ0` is the "zero dimensional euler characteristic. It returns `1` if it sees a point, and `0` if it sees an empty set
+- we replace `f(x)` with `χ0(I∩{x})`. See that it does the same thing:
+- `f(x)` returns 1 if `x` is in the interval `I` which corresponds to `f`.
+- `χ0(I∩{x})` returns `1` if `II∩{x}` contans a single point. That is, if `x ∈ I`. Which is the same as what `f` does.
+
+#### Convex, concave and euler characteristic
+
+#### Relationship to connected components:
+
+
+#### References
+- Alexander Barvinok, Integer Points in Polyhedra
+- [Alon Amit's answer on Quora about finding connected components](https://www.quora.com/What-are-some-programming-problems-that-look-hard-at-a-first-glance-but-are-actually-easy/answer/Alon-Amit?ch=10&share=aa23bf2f&srid=TLHW)
+
+
+# Symmetric Polynomials and Tableaux
+
+```meta
+status: scratch
+created: 2020-12-18
+last-edited: 2021-06-04
+```
+
+- Schur polynomials: `\sum_[T in SSYT(N, m/n)] x^[content[T]]`
+- semistandard tableaux (increases in col, does not decrease in row, contains entires from {1..N}) 
+- standard: contain each number in 1..n exactly once
+- standard tableaux (increases in col, increases in row, contains entires from {1..N}) 
+
+- `power sums: p[k] = sum[i] x_i^k`
+- `elementary symmetric polynomials: e[k](x1,...xn) = sum over all k-tuples of [x_1...xn] WITHOUT repetition`
+  eg: e[2](x1, ... x5) = x1x2 + x2x3+  ... + x4x5. So this something like `Sn(x^{subset of K})`
+  or `Sn(x^(2^K))`, or `Σ[i1 < i2 < ... < in] x[i1] x[i2] .. x[in]`
+- complete symmetric polynomials: h[k](x1, ... xn) = sum over all k-tuples of [x1..xn] WITH repetition
+  eg: `e[2](x1...x5) = x1^2 + x2^2 + ... x5^2 + `, or multisets: `Sn(x^{multiset of K})` or
+   `Σ[i1 ≤ i2 ≤ ... ≤ in] x[i1] x[i2] ... x[in]`.
+- monomial symmetric polynomial `m_ρ = Sn (x^ρ)`. 
+
+
+Examples for degree 2 in 3 variables:
+
+- elementary: `XY + YZ + XZ` (variables of power 0/1, of degree 2.) (Alternatively, all subsets of size $2$ of $\{X, Y, Z\})$
+- complete: `X^2 + XY + YZ + XZ + Y^2 + Z^2` (all possible ways to get to degree 2). (Alternatively, all jjj
+- `monomial from 'X^2': 'X^2 + Y^2 + Z^2' (act with $S_3$ on the _variables_, generated by 'X^2').`
+  `monomial from 'XY': 'XY + YZ + XZ' (act with $S_3$ on the _variables_, generated by 'XY').`
+
+
+- we're saying: take ALL possible ways with repetition. of course this will include all possibele ways to take "permuted".
+- We are picking {1...N} with repetition $k$ times
+- `(a1, a2, .. an) | a1 + a2 + ... + an = k`
+- `a[σ1], a[σ2]... a[σn] | aσ1 + aσ2 + ... + an = k [σ is a permutation]`
+- `x1^5 x2^2 x3 + x2^5 x3^2 x4 + ... + x8^1 x7^5 x6^2`
+- mu = mu[1] >= mu[2] >= ... >= mu[n].
+- monominal symmetric polynomial indexed by mu: Informally whose ex-ponent vector can be rearranged to give μ.
+- monomial symmetric polynomial: best way to make the monomial `x^mu` symmetric.
+
+
+```
+let i = σ-1[j]
+
+- f[1] = 5; f[2] = 3; f[3] = 1;
+x[1]^f[1] x[2]^f[2] x[3]^f[3] = x1^5 x2^3 x3
+
+σ 1 <-> 2
+
+x[σ[1]]^f[1] + x[σ[2]]^f[2] + x[σ[3]]^f[3]
+
+x[1]^f[σ-1[1]] + x[2]^f[σ-1[2]] + x[3]^f[σ-1[3]]
+
+g[1] = f[σ-1[1]] 
+g[2] = f[σ-1[2]] 
+g[3] = f[σ-1[3]] 
+
+x[1]^g[1] x[2]^g[2] x[3]^g[3]
+```
+
+sort(f) = sort(g) = [5, 3, 1]
+
+- `Λn` = all symmetric polynomials x1...xn. Vector space.
+- The symmetric polynomials `eα hα pα`: let α be a sequence of [psotive integers (α1, ... αn)
+  `eα = Π_i eαi`
+
+`x1, x1^2, x2, x2^2, ... x_k -> basis`
+- schur polynomials -> basis
+
+- homogenous stuff.
+- `homogenous poly: all terms of the same degree. x1^2 + x2^2: homo. x1 + x2^2 NOT`
+- homogenous poly of degree k: form a vector space: (intuition: adding and scaling don't change degree)
+- some symmetric polynomial:
+- `p(x) = x1x2^2 + x2x1^2 + x1x2 + x2x1 + x1 + x2`
+- `p_1(x) = x1 + x2  ∈ Λ_2[1]`
+- `p_2(x) = x1x2 + x2x1  ∈ Λ_2[2]`
+- `p_3(x) = x1x2^3 + x2^2x1  ∈ Λ_2[3]`
+- `p = p1 + p2 + p3`
+
+- What is a good example of a ring that is not a vector space over some field?
+
+#### Basis for degree k with N variables:
+
+- for each partition μ of k, we will have ONE basis element coresponding to μ, call it B(μ, k)
+- Pick μ a partition of k
+- `B(μ, k) = \sum_{α: sort(α) = μ} x^α`
+- `x^α = x1^α1 . x2^α2 . xN^αN`
+
+#### Example when k = 3, N = 4
+
+
+- `(a) 3 = 3 -> (3) -> (3, 0, 0, 0)`
+- `(b) 3 = 2 + 1 -> (2, 1) -> (2, 1, 0, 0)`
+- `(c) 3 = 1 + 1 + 1 -> (1, 1, 1) -> (1, 1, 1, 0)`
+
+- Consider all `α` such that `sort(α) = (3, 0, 0, 0)`
+- `'(3, 0, 0, 0)': X^3`
+- `'(0, 3, 0, 0)': Y^3`
+- `'(0, 0, 3, 0)': Z^3`
+- `'(0, 0, 0, 3)': W^3`
+- `B(μ, k, N) = \sum_{α: sort(α) = μ} x^α`
+- `B((3, 0, 0, 0), 3, 4) = X^3 + Y^3 + Z^3 + W^3`
+- `B((2, 1, 0, 0), 3, 4) = X^2Y + ...`
+- `B((1, 1, 1, 0), 3, 4) = XYZ + YZW + ZWX + WXY`
+
+#### Partitions of a number $Par_N(k)$ and $Par(k)$
+
+- `$Par(k)$ are numbers $a_1 \geq a_2 \geq \dots$ such that $\sum_i a_i = k$`
+- `$Par_N(k)$ are numbers $a_1 \geq a_2 \geq \dots a_N$ such that $\sum_i a_i = k$.`
+    That is, partitions of $k$ into exactly $N$ parts.
+
+#### Symmetry of Schur polynomials
+
+#### Kostka numbers
+
+For each `m/n` shape and `α` sequence, define `K(m/n, α)` as the coefficient of `x^α`
+in `s(m/n, x1, ..., xN)`.
+
+Equivalenetly, `K(m/n, α)` is the number of semistandard tableaux of shape
+`m/n` and content `α`.
+
+
+- for all skew shapes `m/n` and all alpha `a, b` such that `sort(a) = sort(b)` we have 
+  `K(m/n, a) = K(m/n, b)`.
+
+
+#### 10.41: Theorem: Lexicographic vs. Dominance Ordering.
+
+Find better explanation (picture proof?)
+
+`If you have two non-decrasing functions μ and ν such that (integral_0^i μ < integral_0^i ν) for all i,`
+then there exists a point $p$ such that μ(x < p) = ν(x < p) and μ(p) < ν(p)
+
+
+#### Lemma 0 (Diaconis):
+
+#### Definition of Raising Operation:
+
+Restrict $R$ such that it only works for adjacent elements. May make life easier.
+Currently, we can move index $i$ to $j$ for $j < i$. 
+
+
+- ith row of t2:mu -> different columns of t1:lambda => lambda > mu
+- ith row of t2:mu -> different columns of t1:lambda => mu < lambda
+
+
+#### 1st row of mu
+
+```
+*1 *2 * * * * .. *p
+```
+
+#### 1st row of mu in lambda
+
+```
+  |  |  |  |..|..|  |..|    
+  |  |  |  |..|..|  |>= p cols
+*3|  |*1|  |..|..|  |..|
+  |*4|  |  |..|..|  |..|
+  |  |  |*p|..|..|  |..|
+  |  |  |  |..|..|*2|..|
+
+```
+- #of cols of lambda >= # of cols of mu. l1 >= m1
+
+
+#### 2nd row of mu
+
+```
+@1  @2 ... @q
+```
+
+#### 2nd row of mu in lambda
+```
+                         >= p cols
+*3|  |*1|  |..|..|  |..|..|
+@2|*4|  |  |@4|..|  |..|..|
+  |  |  |*p|..|..|  |..|..|
+  |  |  |  |..|..|*2|..|..|
+  |@1|  |  |..|..|@3|..|..| 
+  |  |@q|  |..|..|  |..|..|       
+```
+
+pull up
+
+
+```
+                         >= p cols
+*3|*4|*1|*p|@4|..|*2|..|..|
+@2|@1|@q|  |..|..|@3|..|..|
+  |  |  |  |..|..|  |..|..|
+  |  |  |  |..|..|  |..|..|
+  |  |  |  |..|..|  |..|..| 
+  |  |  |  |..|..|  |..|..|       
+```
+
+- the numbers fit in the first two rows.
+- lambda have more space in the first two rows than mu.
+- l1 + l2 >= m1 + mu.
+- And so on. Pull up the values. We will have room in the first i rows.
+- We can't just CHOP OFF the first row in lambda, because it has more cells, so we may lose some 
+  cells from mu. The only way to retain all the cells till step `i` is to argue about `tableaux[:i]`.
+
+#### Lemma 1 (diaconis):
+
+Let $a, b$ be in the same row of $s$ and the same column of $t$. Consider $(a, b)$. Then $(a, b)e{s} = e{s}$,
+since ${s}$ is invariant under row permutation.
+
+`Also note that $[id, (a, b)]$ belong to $C_t$ as $a, b$ are in the same column of $t$. Consider the`
+`cosets of $[a, b]$ in $C_t$. This decomposes the full $C_t$ into .... This change the action into`
+
+`sum_i (x_i id sgn(x_i id) + x_i (a, b) sgn (x_i (a,b))) = x_i (id - (a, b)) as sgn(id) = 1, sgn((a, b)) = -1`
+
+
+`$M^\mu: module generated by all e_t$`
+
+### Lemma 2(diaconis):
+
+Recall that `e[t]= Σ[pi ∈ Ct] sgn(π) e[pi{t}]`
+
+Let `u in M_mu`, that is, u is a linear combination of tabloids of shape mu. 
+t is a mu-tableaux (not a TABLOID). Then for some scalar c, 
+
+```
+Σ[pi ∈ Ct] sgn(pi) pi u = c e_t
+```
+
+```
+A_t(u) = sgn(pi) pi (u) = c e_t
+```
+
+`A_t(u)` is the projector onto the `e_t` subspace.
+
+`Prove that A_t is idempotent, because 'A_t(e{t}) = +- e{t}' and 'A_t(e{s}) = 0' or 'A_t(e{s}) = +-e{s}'.`
+`So A_t projects onto at least the e[t] subspace. Can it project onto more?  No,`
+because we've seen that `A_t(e{s}) = 0` or `A_t(e{s}) = +-e{t}`. 
+
+Next impose an inner product that makes the `e{s}` orthogonal. This shows that
+`At` is hermitian.
+- `S^λ = subspace spanned by e[t] of shape μ. Ie, the polytabloids.`
+
+#### Lemma 3
+
+Vyn likes the statement as-is, since it talks about a fixed Slambda v/s varying U. I prefer to write
+it as `Slambda in U` or `Slambda in Uperp`.
+
+
+consider `A_t(U)` for all `t`. It's either going to be `et` for SOME set of `t`'s, or it's going to be identically zero.
+If it is identically zero, then we have Slambda perpendicular to `U` because Slambda is spanned by `et`.
+On the other hand, suppose `A_x(U)` is nonzero for some `ex.` Then, for all other `y`, we can find some permutation
+such that `σ(x) = y`. Since `ex in U`, and since `U` is invariant, we have that `σ(ex) = eσ(x) = ey in U`, which
+means that `S` is a subspace of `U`. So we show that one `A_x` being non-zero implies all the `A_y` are non-zero.
+Alternatively, I guess one can see that `A_y = sgn(σ)σ A_x`.
+
+
+# Mnemonica Stack
+
+```meta
+status: scratch
+created: 2021-01-09
+last-edited: 2021-01-09
+```
+
+```
+4 c♣
+2 h♡ 
+7 d♢
+3 c♣
+4 h♡
+6 d♢
+A s♠
+5 h♡
+9 s♠
+2 s♠
+Q h♡
+3 d♢
+Q c♣
+8 h♡
+6 s♠
+5 s♠
+9 h♡
+K c♣
+2 d♢
+J h♡
+3 s♠
+8 s♠
+6 h♡
+10 c♣
+5  d♢
+K  c♣
+2  s♠
+3  h♡
+8  d♢
+5  c♣
+K  s♠
+J  d♢
+8  c♣
+10 s♠
+K  h♡
+J  c♣
+7  s♠
+10 h♡
+A  d♢
+4  s♠
+7  h♡
+4  d♢
+A  c♣
+9  c♣
+J  s♠
+Q  d♢
+7  c♣
+Q  s♠
+10 d♢
+6  c♣
+A  h♡
+9  d♢
+♠ ♡ ♣ ♢
+```
+
+
+# Snooker on a Doughnut
+
+```meta
+status: essay
+created: 2020-04-16
+last-edited: 2021-05-23
+blurb: A future history of geometric computation theory: billiard balls on symplectic manifolds, and the fall of the EDA industry.
+```
+
+## Paper Abstract
+
+We consider the hamiltonian evolution of systems on 
+symplectic manifolds. We perform classical 
+computations on these manifolds using the billiard ball
+model of computation. We investigate the relationship
+of time complexity, space complexity (volume of phase space),
+and gate complexity (billiard ball count)
+as a function of the manifold. We also exhibit 
+concrete examples of where this model returns results which are
+exponentially better than the best known lower bounds
+for space and gate complexity. Intuitively, the power
+of this model comes from allowing rearrangements of the billiard
+ball evolution. The balls act as inputs, outputs, and
+gates. As a result, a curious form of self-modifying
+programming (which allows access to better complexity classes) is formed.
+We propose three new lines of research: uncovering the
+complexity theoretic phenomena that is present, studying the symplectic geometry 
+that is controlling the situation, and the intruguing 
+possibility of building such a machine.
+
+
+## Reflections
+
+A quest for truth, flashes of brilliance, a suicide: the tangled
+history of geometric computation theory has it all. Here, we narrate the
+story, not for the layperson as has been done by many excellent
+expositions, but for the advanced undergraduate who wishes to learn
+the mathematical morphogenisis of modern geometric computation theory.
+
+It was a well known fact that billiard balls could be
+used to model classical computation. However, this avenue was never deeply
+explored, due to the existence of "universal computability" results among
+the theoretical computer science community.
+
+In parallel, There were curious artefacts discovered by those studying
+molecular modelling --- they had recently received incredible speedups
+by quantizing their models using finite-element-style methods, only amplified
+by the use of discrete differential geometry. Discrete morse theory made it
+possible to study the critical points of extremely complicated functions,
+which created a new wave of software (and programming languages) decicated to
+expressing discrete geometry. A grad student, performing incorrect floating
+point initialization found that his computations terminated far too quickly.
+More intruguingly, the rendering of the final electron potential appeared to
+look like the spacetime of the evolution of the heat equation in 1D.
+
+Excited, a short monograph was published in Physical Review A. In the span
+of a month, a new model of computation was rapidly being uncovered. It turned
+out that the manifold that had been expressed from the incorrect initialization
+was in fact the n-fold torus. This led to the electrons bouncing and re-arranging,
+leading to the ability to freely mix inputs, computation, and outputs. For example,
+balls that had been used to form gates would fly apart on receiving input,
+spiral around the hypertorus, and then reconvene at precisely the right
+moment to create _new gates_. This way, self-organising computation could be
+arranged on compact manifolds, with far greater performance (sometimes asymptotically)
+than the best-known classical algorithms. [The compactness is a technical condition
+required for conservation of billiard balls in a finite volume of spacetime].
+
+
+New complexity classes such as $BILLIARD(n, M, \omega, T)$ were invented --- 
+the class of decision problems solvable using $n$ billiard balls on a compact,
+symplectic manifold $(M, \omega)$ using $T(\cdot)$ time.
+
+Geometric complexity theory, which had languished after the Pfaffians was
+revitalized. Three quantities were discovered to be intimately related:
+
+1. The perimeter of the manifold, which parametrized the space of possible
+   inputs --- by Aaronson's theorem, we can always be setup the inputs of a 
+   billiard ball computation to lie on the boundary of the manifold.
+2. The length of the longest period of time that could be spent before
+   the system reached back to its initial state, which was a measure of
+   time.
+3. The volume of the manifold, which is a measure of space.
+
+The trinity of space-time-inputs were mutually bounded using generalizations of the
+isoperimetric inequality which were adapted to this setting. This led to
+the resolution of the `logspace` versus `ptime` hierarchy, but complicated
+the messy waters of circuit complexity with _new_ classes of circuits.
+
+In the meantime, experimentallists gradually learnt how to  completely control
+spacetime locally, to reshape it to any compact manifold we desire. This led
+to an explosion of interest in realising billiard ball models of computation,
+since under certain hypotheses, it was possible to _calculate_ initial billiard
+ball positions for very complicated calculations --- the evolution of the solution
+of the schrodinger wave equation for the helium atom in 3D required only 100
+billiard balls self-organising on the algebraic variety generated
+by the Vakil equations (recall that algebraic varieties in $\mathbb C^n$ 
+are Kahler manifolds, and are hence Symplectic). 
+
+What was very unclear was whether we could _setup_ these initial positions
+as necessary. Initial complexity theoretic considerations were unsettling. 
+Finding optimal configurations was proven to be `EXPSPACE`-complete. However,
+heuristic algorithms run fast enough that many conjecture that understanding
+the class of "good" heuristics may provide breakthroughs into
+average-case-complexity: the gap between what is really possible and what the
+theory predicts is far too wide.
+
+Intel, desperate to make the "law" their founder had setup made an unprecedented
+pivot into billiard ball computing. They rebranded it into the fashionable
+"symplectic computing units (SPUs)", which were capable of delivering massive
+parallelism and far better clock speeds than their CPU counterparts. Funnily
+enough, this also sunk the EDA industry. All their IP-protected coveted tools
+for place-and-route were made obsolete by the new, open-source tools by Intel
+that could place and route symplectic computations. Someone found a cute hack
+to redo classical place-and-route in terms of symplectic optimisation. Just like
+that, a billion dollar industry came crashing down.
+
+In the end, I suppose the complexity theorists are the saddest of the lot:
+they're saddled with many new conjectures, but haven't
+resolved any of the old ones.
+
+## Exercises 
+
+Prove that analogue of $P \neq NP$ in the symplectic regime by using:
+
+- $NP$ corresponds to trajectories for many particles, each along a leaf of a foliation of the manifold.
+- The foliated space has a larger cicardin rhythm $\Lambda$, thereby allowing
+  for longer-time orbits than the base space.
+- Design a manifold whose foliation allows for an asymptotic difference
+  in $\Lambda$, thereby proving $P \neq NP$ 
+
+# Analytic Dependent Type Theory
+
+```meta
+status: essay
+created: 2020-04-16
+last-edited: 2021-05-23
+blurb: A future history of type theory: logics of relations, prolog-like computation, and topology coming online.
+```
+
+_Fiction, in the tradition of [Stanislaw Lem's reviews of imaginary books](https://en.wikipedia.org/wiki/A_Perfect_Vacuum)._
+
+Till the early half of the 21st century, we were building type theories
+built with algebraic substrates. This made them excellent for reasoning
+about `A = B`, but lousy for reasoning with `forall epsilon > 0, |A - B| < epsilon`.
+The breakthrough came with three crucial, intertwined insights:
+
+- We should build logics of _relations_, not _functions_.
+
+- To compute with relations, we should use _prolog_-like languages, where
+  computations are non-deterministic, and whose computational content
+  is about relations.
+
+- Relations power order theory, which powers topology. Once topology comes
+  online, we have the world. Computation follows from denotation. 
+
+
+This new breed of languages begin with a theory built of first order logic 
+and [_order theory_](https://en.wikipedia.org/wiki/Order_theory), contrasting the
+[Calculus of constructions](https://en.wikipedia.org/wiki/Calculus_of_constructions),
+which begins with first-order logic with _equality_. One quickly builds
+up topology from this, either ala [Scott](https://en.wikipedia.org/wiki/Scott_continuity),
+or via [Locales](https://en.wikipedia.org/wiki/Pointless_topology). 
+
+Working topologically, we forgo the notion of equality for the notion of
+limits. We never state that `x = y`. Rather, we state that for any sequence of
+radii `epsilon_i`, we will always have that `|x - y| < epsilon_i`, where the
+partial order `<` is a primitive of our logic.  This is of course, horrid for
+algebra. The upshot is that we can do analysis.
+
+
+We discover that programming language semantics, which is really the study of
+computability, which is really topology, works out beautifully in this
+setting, as first discovered by [Scott and Stratchey](https://en.wikipedia.org/wiki/Denotational_semantics), later
+vigorously expanded under the cumbersome title of [synthetic topology of data types and classical spaces](https://www.sciencedirect.com/science/article/pii/S1571066104051357). Cumbersome proofs
+of program properties are the exception, rather than the norm.
+
+# Samples from the Moduli Space of Mathematics
+
+```meta
+status: scratch
+created: 2020-04-16
+last-edited: 2021-05-23
+```
+
+_Fiction, in the tradition of [Stanislaw Lem's reviews of imaginary books](https://en.wikipedia.org/wiki/A_Perfect_Vacuum)._
+
+Samples from the moduli space of all possible mathematics.
+
+## Hamiltonian FRP
+
+We should be able to write functional reactive programming in a style that's reminiscent
+of classical mechanics. We currently write it in terms of newton's laws. We should be writing
+it in terms of hamiltonians --- conserved quantities. What does this mean? I don't really know.
+[Here is a post by Baez about getting to the bottom of noether's theorem](https://golem.ph.utexas.edu/category/2020/06/getting_to_the_bottom_of_noeth.html)
+which seems relevant.
+
+## Consensus complexity theory
+
+Consensus is a physical resource. We are currently running out of it, fast.
+
+## Cohomology of haskell types
+
+We know that some types such as $3x^2$ can be integrated to fill
+a hole, giving us $x^3$. On the other hand, $x^2$ cannot be integrated:
+it gives $x^3/3$. Is there some kind of cohomology that governs this?
+Note that right now we don't have $d^2 = 0$ --- This is something we will
+need to find.
+
+
+This sort of thinking might help if we are trying to identify how to lay
+data down in memory; having zero homology would imply that there's no gaps,
+so we can lay it out contiguously in-memory.
+
+## Finite differences of haskell types
+
+- What happens if we take finite differences? We know that real derivatives
+  give us one-hole contexts.
+
+$$
+\begin{aligned}
+&fdiff(list x) \\
+&= fdiff(1/[1-x])  \\
+&= 1/[1-(x+h)] - 1/[1-x]  \\
+&= ([1-x] - [1-(x+h)])/[1-x][1 - (x+h)]  \\
+&= ([1-x] - [1-x-h])/[1-x][1 - (x+h)]  \\
+&= (1 - x - 1 + x + h)/[1-x][1 - (x + h)]   \\
+&= h/[1-x][1 - (x + h)]   \\
+&= (h, list x, list (either x h))
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&bdiff(list x) \\
+&= fdiff(1/[1-x])  \\
+&= 1/[1-x] - 1/[1-(x - h)]  \\
+&= ([1-x] - [1-(x-h)])/[1-x][1-(x-h)] \\
+&= ([1-x] - [1-x+h])/[1-x][1-(x-h)] \\
+&= (1-x - 1 +x-h))/[1-x][1-(x-h)] \\
+&= -h/[1-x][1-(x-h)] \\
+\end{aligned}
+$$
+
+- [Divided differences](https://en.wikipedia.org/wiki/Divided_differences)
+
+## Derivatives of function spaces
+
+we can write $\texttt{list}(x)$ as $f: \texttt{nat} \rightarrow x \simeq  x^{\texttt{nat}}$.
+If we attempt to compute the derivative, we get:
+
+$$
+\begin{aligned}
+&\frac{d}{dx} (x^{\texttt{nat}}) \\
+&= \texttt{nat} x^{\texttt{nat} - 1}
+\end{aligned}
+$$
+
+which is saying "tell me the index of the missing element" --- that is `nat`,
+and also keep a list with a hole: that is, $x^{\texttt{nat} - 1}$.
+
+## Segment Trees from Mobius Inversion
+
+- Mobius inversion allows us to collect information about $g(\leq x)$ in a
+  function $f$
+
+- Segment trees / fenwick trees also let us do this. They let us collect
+  information about lists.
+
+- If we have an algebra of indexees `Ix List` and an algebra of 
+  'segments of a list' `Seg List`, then the fenwick tree is a way to go
+  from repr. to the other. Refer to the orbit representation.
+
+- What happens if we replace `List` with `Tree`? `Ix` is easy. What about
+  `Seg`? Can we have the euler tour 'pop out' from this? How?
+
+
+This is quite easy. We can use `Traversable` to fill any data structure;
+we can use the APL technique of `fold /= 0` to check for beginning-and-ending
+of matching parity.
+
+## On the geometry of distributed algorithms
+
+##### Abstract
+
+We begin with what a model of
+computation for distributed systems: processes on a graph
+which send values from semi-lattices; state variables updated with
+a monotonic join; conditionals are upward
+filters. This implicitly ensures parallelism, idempotence,
+and strong eventual consistency. We then recast this
+setting into a more computational regime, where
+states are vectors in $\mathbb Z^n$, join is
+pointwise `max`, and 
+computations are piecewise-linear functions.
+We then proceed to move to tropical geometry, to associate 
+a tropical varietry to the above distributed algorithm. This
+allows us re-interpret all previously known ideas of 
+distributed algorithms in a purely geometric setting.
+From this pivot, we compute cohomology groups, from which 
+we derive clasically known impossibilities --- 
+the PAC theorem, byzantine one-in-third-impossibility,
+as statements about the non-triviality of the first and higher
+cohomology groups of the geometry. Finally, present many previously
+known communication complexity invariants as being
+topological invariants of the scheme.
+
+## Compilers as commutative algebra
+
+## Complexity theory as monad composition
+
+## Coinduction as coarse space theory
+
+# The Continued Fraction of Sqrt(2)
+
+```meta
+status: scratch
+created: 2020-08-25
+last-edited: 2020-08-25
+```
+
+_Fiction, in the tradition of [Stanislaw Lem's reviews of imaginary books](https://en.wikipedia.org/wiki/A_Perfect_Vacuum)._
+
+Fun number theory fact: how to compute the continued fraction expansion of `sqrt(2)`:
+
+Assume we are given `sqrt(2)`, and the only thing we know about it is
+that `sqrt(2)^2 = 2`. So, how do we actually compute its value that we 
+know and love: `1.4142...`?
+
+We start by using the only thing we know:
+
+```
+sqrt(2)^2 = 2
+```
+
+and we try to bound it with inequalites
+
+```
+1 < sqrt(2)^2 = 2 < 4
+sqrt(1) < sqrt(2) < sqrt(4)
+1 < sqrt(2) < 2
+```
+
+so we know that `sqrt(2) = 1.______` where the `__` is unknown. We've managed
+to find its integral part! OK, let's keep going:
+
+```
+1 - 1 < sqrt(2) - 1 < 2
+0 < sqrt(2) - 1 < 1
+```
+
+Now what? Well, we can try to get a number that's larger than `1` by
+taking the reciprocal of `sqrt(2) - 1`, and then trying to write down
+its expansion. So we are performing the steps:
+
+```
+sqrt(2) = 1 + (sqrt(2) - 1)
+sqrt(2) = 1 + 1/[1/(sqrt(2) - 1)]
+```
+
+
+
+```
+1/[sqrt(2) - 1]
+= [sqrt(2)+1]/[(sqrt(2) - 1)(sqrt(2) + 1)]
+= [sqrt(2)+1]/[2-1]
+= [sqrt(2)+1]
+```
+
+So we can factor the above expression as:
+
+```
+sqrt(2) = 1 + (sqrt(2) - 1)
+sqrt(2) = 1 + 1/[1/(sqrt(2) - 1)]
+sqrt(2) = 1 + 1/[sqrt(2) + 1]
+sqrt(2) = 1 + 1/[1 + sqrt(2)]
+```
+
+and we're back to square one, because we have a dangling `sqrt(2)` term.
+Well, we can just "expand the recursive equation", to get:
+
+```
+sqrt(2)
+= 1 + 1/[1 + sqrt(2)]
+= 1 + 1/[1 + {1  + 1/[1 + sqrt(2)]}]
+= 1 + 1/[2 + 1/[1 + sqrt(2)]]
+= 1 + 1/[2 + 1/[2 + 1/sqrt(2)]]
+= 1 + 1/[2 + 1/[2 + 1/[2 + ...
+```
+
+So we've gotten our hands on the continued fraction expansion of `sqrt(2)`.
+OK, but how does this actually **help us**? How can I extract the first
+decimal digit of the value of `sqrt(2)` from this? Well, here's how. We 
+truncate the continued fraction expansion to the first `k` fractions.
+Let's call this `tk` for the "kth" truncation. Let's compute some of them:
+
+(TODO: take the table of truncations from Hatcher.)
+
+Notice how once some initial string of digits occurs twice in succession,
+it remains fixed forever after.
+
+
+# The Ceiling Monad
+
+```meta
+status: technical-note
+created: 2020-08-19
+last-edited: 2020-08-19
+blurb: Sequencing analog machines over digital wires gives a monad.
+```
+
+If anyone is interested in the "fleshed out version" of the 'ceiling gives us a monad':
+
+We are thinking of building analog machines, which run on analog data [pure]. Unfortunately, the world is digital, so we can only interact with them by discretizing input and output [impure I/O]. This gives us the following types:
+
+
+```hs
+-- | naming convention
+-- |allows us to use f for function
+-- | and r for real w/o confusion
+type Real = Float;
+
+-- | inject the integers into the reals
+-- | inject(floor(r)) <= r for real
+-- | inject(floor(i)) <= i for int
+inject :: Int -> Real
+inject = GHC.Real.fromIntegral
+-- | floor(inject(i)) = i
+floor :: Real -> Int
+floor = GHC.Real.floor
+```
+
+That's the data for out adjunction above. Now, the collection of analog programs  is represented by:
+
+```hs
+-- | Programs on an analog machine
+type Prog = (Float -> Float)
+```
+
+To run an analog machine, we give it an `Int` input, and expect an `Int` output.
+```hs
+-- | Run an analog machine pipeline
+-- | with discrete inputs and outputs
+runProgram :: Prog -> (Int -> Int)
+runProgram p = floor . p . inject
+```
+
+We need to be able to sequence these analog machines together [the hallmark
+of a monad, after all]. But we can't sequence them in any old way: we need
+to connect them with **digital wires** which will discretize their outputs.
+Such is the structure of our world, since being able to run code
+perfectly on analog machines allows us to solve the halting problem!
+
+
+```hs
+-- | sequence two analog machines
+-- with a digital wire. 
+-- Data will
+-- be discretized between
+-- [machine f] and [machine g]
+(>=>) :: Prog -> Prog -> Prog
+(>=>) f g = (f . inject . floor . g)
+```
+
+Note that the discretization is given by `inject . floor`: That is,
+floor down a real valued input to an `int`, and then make it a `Real` again
+with an `inject`.
+
+Finally, we implement the odds and ends a `Monad` asks us for:
+
+```hs
+return :: Float -> Prog; return r = \ignore -> r
+```
+a `return` analog machine ignores whatever input you feed it, and just 
+outputs a constant value.
+
+```hs
+-- | identity analog machine, does nothing.
+idProg :: Prog; idProg = (\r -> r)
+```
+The identity analog machine outputs whatever input was fed into it.
+
+We can check that the monad laws are satisfied (in terms of `>=>`). See that
+associativity is immediately satisfied, because we have defined `>=>` using
+function composition (`(.)`) which is associative.
+
+```
+1. Left identity:
+runProgram (idProg >=> p) i = runProgram p i
+
+runProgram (idProg >=> p) i
+[substitute >=>, runProgram]
+  := floor . (idProg . inject . floor . p) . inject i
+[idProg = identity function]
+  := floor . (inject . floor . p) . inject i
+[idProg = identity function]
+  := floor . (inject . floor . p) . inject i
+[associativity]
+  := (floor . inject) . floor . p . inject i
+[floor(inject(i)) = i]
+  :=  floor . p . inject i
+[defn of runProgram]
+  :=  runProgram p i
+```
+
+Similarly, we can prove right identity:
+
+```
+2. Right identity
+runProgram (p >=> idProg) i = runProgram p i
+
+runProgram (p >=> idProg) i
+[substitute >=>, runProgram]
+  := floor . (p . inject . floor . idProg) . inject i
+[idProg = identity function, can be removed]
+  := floor . (p . inject . floor) . inject i
+[associativity]
+  := (floor . p . inject) . (floor . inject) i
+[floor(inject(i)) = i]
+  := (floor . p . inject) i
+[defn of runProgram]
+  :=  runProgram p i
+```
+
+So, we have a monoid `>=>` with identity `idProg`. Hence, we have a monad.
+Our monad is the monad of analog computations, with impurity coming from
+the discretization given by the external world. We can check that this
+is indeed the case:
+
+```hs
+*Main> [runProgram (sin >=> cos) x | x <- [0..10]]
+[1,1,1,1,0,0,0,1,1,1,0]
+*Main> [(floor.cos.inject.floor.sin.inject$x) | x <- [0..10]]
+[1,1,1,1,0,0,0,1,1,1,0]
+```
+
+
+# Tensors as Equivariant Maps
+
+```meta
+status: scratch
+created: 2020-07-14
+last-edited: 2020-07-14
+```
+
+From a [reddit comment](https://www.reddit.com/r/math/comments/hqrd1x/how_do_mathematicians_think_about_tensors/fy0ni6r/)
+on how mathematicians think about tensors:
+
+> I think it's very common for mathematicians to be extremely superficial about this, and you can even see some of that in (most of the responses in) this thread. For instance, insisting on a multilinear understanding, as many do, will inevitably make you consider spinors and spinor fields as overly formal and strange. Insisting on understanding them by their universal property, as some mathematicians will say is "the most truly mathematical way to understand them," is similar but slightly worse. It is similar to the common claim that linear transformations are more natural or "mathematical" than matrices, and that one should try to avoid bases if possible -- maybe we can all agree that the choice of a basis is often "unnatural", but the collection of all bases is a beautiful object ("homogeneous space") which is extremely natural. For me, this object is key to mathematically understanding tensors, as follows. The prerequisite is comfort with the notions of "vector space", "basis", and "group action"
+>
+> (I think it's interesting that I have never seen mathematicians make the following comment, except in the context of highly formalized presentations of principal bundles and representation theory. Maybe I've read the wrong books.)
+>
+>   Let V be a n-dimensional real vector space. Let B be the set of bases of V, and let G be the group of invertible n by n real matrices. Then G naturally acts on B by having the matrix [aij] act on [v1,....,vn] to get [a11v1+...+a1nvn,...,an1v1+...+annvn]. You can check that this is a transitive left action.
+>   Now, given a vector v of V, consider the map fv from B to Rn which sends v to its coordinates relative to the basis. This isn't an arbitrary map; it has the special symmetry that fv(Ab)=ATfv(b) for any basis b and any n by n invertible matrix A. This mapping, from V to the set of mappings from B to Rn which satisfy this symmetry, is a bijection.
+>   From a high-level view, this can be summed up as saying that "vectors in V can be viewed as certain G-equivariant maps from B to Rn."
+>   Without the terminology, this is just a sophisticated way to say that one can consider the coordinates of a vector relative to a basis, and that the coordinates of a vector change in a simple way, based on the change-of-basis matrix, when you change the basis.
+>   To get to tensors, one considers the key phrase "a vector has coordinates" as fundamental and amenable to generalization: to define k-tensors, replace Rn by the vector space of real-valued maps on the (k-times) set product {1,...,n}×...×{1,...,n}. So, for instance, while a vector associates to each basis a list of n numbers, a 2-tensor associates to each basis a list of n2 numbers, although for the sake of understanding the equivariance of a 2-tensor it is not useful to consider it as a list; it is better to consider it as a map from {1,...,n}×{1,...,n} into R; in this case (k=2) one could also consider it as a matrix. Note that one can consider a list of n numbers as a map from {1,...,n} into R.
+>   This also clarifies the common confusion "is a matrix a tensor"? A 2-tensor is a mapping from the space of bases into the space of matrices. So matrices and tensors are fundamentally different objects; one is a matrix and one is a mapping from a set into the space of matrices. However, the mapping is fully determined by its value on any single input, and so one may use a matrix to define a tensor.
+>
+> This is the direct mathematical formalization of the physicist's definition, and fully exposes the "tensor transforms like a tensor" comment as an equivariance. There are advantages and disadvantages to working with this definition. It is certainly impossible to fully understand and work with tensors without also understanding the multilinear formulation. But mathematicians should take the physicist's definition seriously, since it has a wider scope and admits important generalizations and extensions which are inaccessible to the multilinear formulation.
+>
+> Important manifold constructions, such as the Riemann curvature tensor, can also be easily put into this framework.
+
+
+# Binary Search Implementation Discussion
+
+```meta
+status: scratch
+created: 2020-06-29
+last-edited: 2025-02-06
+```
+
+```
+int left = range_left - 1, right = range_right + 1;
+while(right - left > 1) {
+  int mid = (left + right) / 2;
+  if (as[mid] >= val) {
+    right = mid;
+  } else {
+    left = mid
+  }
+}
+
+[
+12:15 AM
+]
+Shaanjeet
+:
+for your second point, i wouldnt treat it as < or <=. I treat it as if the condition is satisfied or not. Writing this way gives you the leftmost element satisfying the condition
+[ 12:19 AM ] Siddharth Bhat : Can you please elaborate on what you mean why you say I treat it as if the condition is satisfied or not
+
+[ 12:20 AM ] Shaanjeet : when you do this part ->
+if (as[mid] >= val)
+
+
+I like to treat it this way 
+
+if (cond(mid))
+
+
+where cond(i) returns true if the condition is satisfied or not. This type of binary search returns the leftmost element satisfying cond(i)
+[ 12:22 AM ] Shaanjeet : condition in your case is as[mid] >= val
+[ 12:22 AM ] Shaanjeet : it doesnt matter if you put it as > >=
+[ 12:22 AM ] Siddharth Bhat : Right, thanks, that makes a lot of sense.
+[ 12:22 AM ] Siddharth Bhat : And as for #1 and #3?
+[ 12:23 AM ] Shaanjeet : it depends on implementation. I use my implementation because it always works [
+12:23 AM ] Siddharth Bhat : Indeed.
+[ 12:23 AM ] Shaanjeet :
+i tried to eleminate the mid + 1 and mid -1 so that i dont have to think during a contest
+[ 12:24 AM ] Shaanjeet : im not sure if it is good from theory point of view but in practise it always works for me
+[ 12:24 AM ] Shaanjeet :
+also i prefer to keep the bound always greater by 1, as right = right_range + 1.
+[ 12:25 AM ] Shaanjeet : So that i can identify if there is no element that satisfy the condition in my range
+[ 12:25 AM ] Shaanjeet : another good thing about my way is that at the end it gives you 2 values. right = leftmost element satisfying the condition and left = rightmost element not satisfying the condition
+[ 12:26 AM ] Shaanjeet :
+so i never have to change it for rightmost or leftmost
+[ 12:26 AM ] Shaanjeet : it works almost as a template
+[ 12:35 AM ] Siddharth Bhat : @Shaanjeet When you say
+
+    right = leftmost element satisfying the condition, 
+    left = rightmost element not satisfying the condition
+
+Can you tell me what happens when my cond(mid)  = as[mid] <= 10, and I search on the array
+
+as:  [1, 2, 10, 10, 10, 10, 10, 25, 35, 45
+ix:   0  1  2   3   4   5   6   7   8    9
+cond: T  T  T   T   T   T   T   F   F    F
+
+
+using your implementation? Where will left and right be at the end?
+Sorry, I found interpreting what you said hard.
+[ 12:37 AM ] Shaanjeet : ok i shouldve mentioned that the condition should be of the form F F F F F F F T T T as i assume a increasing sequence
+[ 12:37 AM ] Shaanjeet : which is easy to do by negating the cond(mid)
+[ 12:38 AM ] Siddharth Bhat : Sure, let me take cond(mid) = mid >= 10?
+[ 12:38 AM ] Siddharth Bhat :
+as:  [1, 2, 10, 10, 10, 10, 10, 25, 35, 45
+ix:   0  1  2   3   4   5   6   7   8    9
+cond: F  F  T   T   T   T   T   T   T    T
+
+[ 12:39 AM ] Siddharth Bhat : Now where will left and right be? Will it be left=2, right=3?
+[ 12:39 AM ] Shaanjeet : no
+[ 12:39 AM ] Shaanjeet : left = 1, right = 2
+[ 12:40 AM ] Siddharth Bhat : argh yes :smile:
+[ 12:41 AM ] Shaanjeet :
+
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto &it : arr) {
+        cin >> it;
+    }
+
+    int left = -1, right = n;
+    while (right - left > 1) {
+        int mid = (left + right) / 2;
+        if (arr[mid] >= 10) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+
+    cout << left << " " << right << "\n";
+
+[ 12:41 AM ] Shaanjeet : i used this to find it [
+[ 12:42 AM ] Siddharth Bhat :
+And if such an element does not exist, eg. something like:
+
+as: [0, 0, 0, 0]
+ix:  0  1  2  3
+cond:F  F  F  F
+
+
+
+I'll have right=4, left=3?
+[ 12:42 AM ] Shaanjeet : yes
+[ 12:43 AM ] Shaanjeet : and if it was T T T T then you would get left = -1
+[ 12:43 AM ] Shaanjeet : and right = 0
+[ 12:44 AM ] Siddharth Bhat : neat, thanks.
+```
+
+
+# Dirichlet Characters
+
+```meta
+status: scratch
+created: 2020-05-17
+last-edited: 2020-05-17
+```
+
+Finite Abelian grouos and their Charactera
+The Chapter starts with Postulates of a group.
+
+- A group is a three tuple $\langle G,., e \rangle$, where $G$ is a non-empty set of elements and $.$ is the group operator, $e$ is the identity.
+
+Postulates of a Group
+- Closure
+- Associativity
+- Existence of Identity
+- Inverse. 
+
+An Abelian Group is a commutative group.
+
+$\forall a,b \in G : ab=ba$
+
+Finite Groups : If G is a finite set.
+Subgroup : A non empty Subset of $G$, $G'$, which itself is a group with the same group operator.
+
+#### Thm 6.1:
+If Elements $a,b,c \in G$ satisfy:
+
+ $$ ac=bc \lor ca=cb $$
+
+then $a=b$.
+
+If $G'$ is a subgroup of $G$, then for any element $a \in G$
+we call $n \in \mathbb N$ to be an Indicator of $a$ if $a^n \in G'$,
+and $n$ is the smallest positive integer $[\neq 0]$.
+
+#### Thm 6.6
+
+Let $G'$ be a subgroup of a finite abelian group $G$, where $G \neq G'$. 
+Choose an element $a \in G / G'$ and let $h$ be it's indicator.
+Then the set of products:
+
+$$ G'' = \{ xa^k : x \in G' \land k = 0,1,2\dots,h-1 \} $$
+is a subgroup of $G$ which contains $G'$. Order of $G''$ is $h$ times that of $G'$.
+
+
+#### Charaters of Finite abelian groups
+
+##### Definition of Character:
+Let $G$ be an arbitrary finite group. A complex valued function $f: G \rightarrow \mathbb C^\times$ defined on $G$ is called a character if $f$ is a 
+group homomorphism. That is, it has the multiplicative property:
+$$ f(ab) = f(a)f(b) $$
+
+##### Theorem  6.7
+
+If f defined over FAG $G$ which has indentity $e$, then $f(e)=1$
+and each function value f(a) is a root of unity.
+$$
+a^n =e \quad f(a)^n=1
+$$
+
+Hence, to be more accurate, we can write $f: G \rightarrow U(1)$ where
+$U(1) \equiv \{ c \in C : |c| = 1 \}$
+
+
+#### Theorem  6.8
+A FAG of order $n$ has exactly $n$ distinct characters.
+
+$G'$ is a proper subgroup of $G$..
+$G''$ is constructed from $G'$ using 
+- $G_1=\{ e \}$
+- $G_2 = \langle G_1,a_1 \rangle$
+- $G_3 = \langle G_2,a_2 \rangle$
+- $G_{r+1} = \langle G_r,a_r \rangle$
+
+$$ G_1 \subsetneq G_2 \subsetneq  G_3 \dots \subsetneq G_{t+1}  = G$$
+
+- $G_1$ cleary has 1 distinct character: $f(e) = 1$.
+- assume for induction that $G_r$ has $r$ distinct characters.
+- Let  $h$ be the indicator of $a_r$ in $G_{r+1} = \langle G_r, a_r \rangle$
+
+- From $G_r$ to $G_r+1$ there are exactly $h$ different ways to extend each character of $G_r$
+
+- We'll have $mh$ characters of $G_{r+1}$ which is the same as it's order.
+
+##### How do we extend?
+
+- $f$ is a character on $G_{r+1}$, 
+- any element in $G_{r+1}$ is of the form $x.a_r^k$ 
+- Let's we extend some character $f$ to $f'$.
+- $f'(x \cdot a_r^k)= f'(x)f'(a_r)^k$.
+- since $x \in G_r,  f'(x) = f(x)$.
+- How many choices do we have for $f'(a_r)$?
+- Let $h$ be the indicator of $a_r \in G_{r+1}$ relative to $G_r$.
+  That is, $a_r \not \in G_r$, but $a_r^h \in G_r$.
+  
+If we have an element $c =a_r^h$
+$c \in G_r$,
+$f'(c) = f(c)$
+
+$f'(a_r)^h = f(c)$
+$f'(a_r)^h = 1 \cdot f(c)$
+$f'(a_r) = e^{2\pi k/h} \cdot f(c)^{1/h}$
+
+
+So now for the value of $f'(a_r)$ we have h choices.
+So we can extend f into h new f'.
+
+TODO: show that this is a legit group hom. [I believe this]
+$f'(xa_r^k.ya_r^j) = f'(xa_r^k)f'(ya_r^j)$ [Can be proved]
+
+#### The Charater Group
+
+This section $G$ is a FAG of order n.
+The principle/principal character is called $f_1$, is the function $f_1(\_) = 1$. The others, denoted by $f_2,f_3, \dots f_n$ ar called non-principal charactes. They have the property that $f(a)\neq 1$ for some $a \in G$.
+
+
+##### Thm 6.9
+
+If multiplication of characters is defined by the relation:
+- $(f_i \cdot f_j)(a) \equiv f_i(a)f_j(a)$ for each $a \in G$
+
+then set of characters forms an Abelian group of order $n$. The group is dentoed by $\hat G$. The identity is $f_1$. The inverse is of $f_i$ is the reciprocal $1/f_i$.
+
+**Note:** For each $f$ we have $|f(a)| = 1$, since it is the character of a FAG.
+- $1/f(a)$ becomes congugate of f(a).
+- $\overline{f}(a) \equiv \overline{f(a)}$ is also a character of G.
+
+$$
+\overline{f}(a) = \frac{1}{f(a)} = f(a^{-1})
+$$
+
+Does there exist a morphism $\phi: G \rightarrow \hat G$?
+
+#### Orthogonality relations for characters
+
+$G$ = FAG of order n with elements $a_1, a_2, ... a_n$
+and let $f_1, f_2,...,f_n$ be the characters of G, with $f_1$ being principal character.
+
+- We denote $A = A(G)$ the $n\times n$ matrix $[a_{ij}]$ whose element $a_{ij}$ in the $i$th row and $j$th column is 
+
+$$
+a_{ij} \equiv f_{i}(a_{j})
+$$
+
+##### Thm 6.10
+The sum of entries in the $i$th row of $A$ is given by
+$$
+\sum_{r=1}^n  f_{i}(a_r) \equiv \begin{cases}
+n & \text{if  $f_i$ is the principal character ($i=1$)} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+- For f_i = f_1 every value is 1 so sum is n.
+
+- For $f_i \neq f_1$, there is an element $b \in G$ such that $f(b) \neq 1$ as $a_r$ runs through elements of G so does product $b \cdot a_r$, hence:
+
+
+$$
+S =\sum_{r=1}^n  f_{i}(ba_r) = f_i(b)\sum_{r=1}^n  f_{i}(a_r) = f_i(b)S
+$$
+
+- $S(1-f_i(b)) =0$
+- $f_i(b) \neq 1$ so $S=0$ [slick how $f_i(b) \neq 1$ shows up.]
+
+
+##### Thm 6.11
+Let $A^\star$ be the transpose conjugate of $A$. Then we have
+- $AA^\star = nI$,
+
+where $I$ is $n\times n$ identity matrix. Hence $n^{-1} A^\star$ is the Inverse of $A$.
+
+Let $B = AA^\star$
+The entry $b_{ij}$ in the ith row and jth column of B is
+$$
+b_{ij} \equiv 
+\sum_{r=1}^{n} f_i(a_r)\overline{f_j}(a_r) 
+= \sum_{r=1}^n (f_i\overline{f_j})(a_r) 
+= \sum_{r=1}^n f_k(a_r)
+$$
+Where $f_k = f_i\overline{(f_j)} = f_i/f_j$. Now $f_i/f_j = f_1$ if and only if $i=j$, Hence by thm 6.10 we have:
+$$
+b_{ij} = n \delta_{ij}
+$$
+$B = nI$
+
+- TODO: this reminds me of a fourier transform; what's the relation?
+
+#### Thm 6.12  ---  Orhtogonatilty Relations for Characters
+We have:
+
+$$
+\sum_{r=1}^{n} \overline{f_r}(a_i)f_r(a_j) = n \delta{a_i,a_j}
+$$
+
+##### Proof:
+
+$$
+AA^\star = nI \\
+C=A^{\star}A=nI. \\
+$$
+Then the left side of the sum is $c_{ij}$.
+Now since $\overline{f_r}(a_i) = f_r(a_i)^{-1} = f_r(a_i^{-1})$
+
+$$
+\sum_{r=1}^n f_r(a_i^{-1}a_j) = n\delta{a_i,a_j}
+$$
+
+
+If $a_i = e$
+then we have 
+#### Thm 6.13:
+The sum of entries of jth column of A is given by:
+$$\sum_{r=1}^n f_r(a_j) = n\delta{aj,e}$$
+
+
+
+16/05/2020
+
+#### Dirichlet Characters
+
+From here $G$ is group of reduced residue classes modulo a fixed positive integer $k$.
+
+First we prove that $G$ is a group if a multiplication is suitably defined.
+
+#### Reduced Residue system modulo $k$
+A set of $\varphi(k)$ integers $\{a_{1},a_{2},\dots,a_{\varphi(k)}\}$ incongruent modulo $k$, each of which is relatively prime to $k$.
+
+- $a_i \not \equiv a_j \mod k \quad \forall i \neq j$
+- $\gcd(a_i, k) = 1 \quad \forall i$
+
+For each integer $a$ the corresponding residue class $\hat{a}$ is the set of all integers congruent to $a$ modulo $k$:
+$$
+\hat{a}=\{x:x\equiv a \mod k\}
+$$
+
+We define multiplication of residue classes by the relation:
+$$
+\hat{a}\ . \hat{b} = \hat{ab}
+$$
+
+#### Thm 6.14
+
+With multiplication defined as above, the set of reduced residue classes modulo k is finite abelian group of order $\varphi(k)$. Isn't this group  $\mathbb Z/k \mathbb Z^\times$?
+- Identity : $\hat{1}$
+- Inverse of $\hat{a}$ : $\hat{b}$ such that $ab \equiv1\ mod\ k$.
+
+
+### Definition of Dirichlet Characters:
+Let $G$ be the group of reduced residue classes modulo k. ($G = \mathbb Z/k\mathbb Z^\times$)
+Coressponding to each character f of G, we define an arithmetic function $\chi = \chi_f$ as follows:
+
+$$
+\begin{aligned}
+&\chi_f: \mathbb N (?) \rightarrow \mathbb C \\
+&\chi_f(n) =
+ \begin{cases}
+ f(\hat{n}) & \text{if $(n,k)=1$} \\
+ 0 & \text{if $(n,k)>1$ }
+ \end{cases} \\
+&\chi_1 \equiv \text{$1$ if $(n, k) = 1$ else $0$}
+\end{aligned}
+$$
+
+
+#### Thm 6.15 
+There are $\varphi(k)$ characters modulo k, each of which is completely multiplicative and periodic with period k.
+i.e. 
+$$
+\chi(mn)=\chi(m)\chi(n)\\
+\chi(n+k) = \chi(n)
+$$
+
+```
+Commentary (bollu, crypt)
+k = 3
+n:     0, 1,        2, 3, 4, 5, 6, 7
+chi n: 0, f(1),f(2),   0, f(1), f(2), 0
+this cannot  have period less than 3
+because f(_) is in nth roots of unity,
+cannot become 0.
+```
+
+
+
+
+
+Conversly, if $\chi$ is completely multiplicative and preiodic with period $k$ and if $\chi(n) = 0~\text{if}~ (n,k) >1$ then $\chi$ is one of the dirichlet character modulo k.
+
+#### Proof Thm 6.15 (forward): 
+There are $\varphi(k)$ characters f of G, hence there are $\varphi(k)$ characters $\chi_f$ modulo $k$. The multiplicative property follows from f when both m,n are relatively prime to k. If one of them is not relatively prime, then neither is $mn$ hence both values become 0. 
+The periodicity  property follows from the fact that $\chi_f(n) = f(\hat{n})$ and that $a\equiv b \mod k$ implies $\gcd(a,k) = \gcd(b,k)$.
+
+#### Thm 6.15: Proof of converse
+To prove the converse, we note that the function f defined on the group G by the equation:
+
+$$
+f(\hat{n}) = \chi(n)\ \text{if}~ (n,k)=1
+$$
+
+is a character of G, so \chi is a dirichlet character mod k.
+
+The image of $\chi$ must be a root of unity because
+
+$$
+\begin{aligned}
+&\chi(1 \times 1) = \chi(1) \implies \chi(1) = 1 \\
+&\chi(a)^{\varphi(k)} = \chi(a^{\varphi(k)}) = \chi(1 \mod k) = \chi(1) = 1 \\
+&\chi(a)^{\varphi(k)} = 1 \\
+&\chi(a) = \text{$\varphi(k)$th root of unity}
+\end{aligned}
+$$
+
+
+#### Thm 6.16
+
+
+Let $\chi_1, \chi_2 \dots \chi_{\varphi(k)}$ denote the $\varphi(k)$ dirichlet characters modulo k.
+Let m and n be two integers with $\gcd(n,k)=1$
+Then we have:
+
+$$
+\sum_{r=1}^{\varphi(k)} \chi_{r}(m)\overline{\chi_r(n)} =
+\begin{cases}
+\varphi(k) & \text{if $m\equiv n \mod k$} \\
+0 & \text{if $m \not \equiv n \mod k$}
+\end{cases}
+$$
+
+##### Proof:
+
+- If $\gcd(m,k)=1$ take $a_i = \hat{n}$ and $a_j = \hat{m}$ in the orthogonailty relation of theorem 6.12 and note that $\hat{m} = \hat{n}$ if and only if $ m\equiv n \mod k$.
+- If $\gcd(m,k) > 1$ each term in the sum vanishes and 
+
+$m \not \equiv n \mod k$.
+
+
+
+### Sums Involving Dirichlet characters:
+
+#### Thm 6.17
+Let $\chi$ be any non-principal character modulo k, let $f$ be a non-negative function which has a continuous negative derivative $f'(x)$ for all $x \ge x_0$. Then if $y \ge x \ge x_0$ we have:
+
+$$
+\sum_{x<n\le y} \chi(n)f(n) = O (f(x)) - (7)
+$$
+
+If in addition $f(x) \rightarrow 0$ as $x \rightarrow \infty$ then the infinte series 
+
+$$
+\sum_{n=1}^{\infty} \chi(n)f(n)
+$$
+
+converges and we have for $x\ge x_0$,
+$$
+\sum_{n\le x} \chi(n)f(n) = \sum_{n=1}^{\infty}\chi(n)f(n) + O(f(x)) - (8)
+$$
+Proof: Let $A(x) = \sum_{n\le x} \chi(n)$. Since $\chi$ is non principal we have
+$$
+A(k) = \sum_{n=1}^{k} \chi(n) = 0
+$$
+
+Because sum of nth roots of unity is equal to 0 for n strictly greater than 1. $\chi$ evaluates to nth roots of unity plus some extra zeroes over `[1..k]`
+
+By periodicity it follows that A(nk) = 0 for n=2,3.... hence $|A(x)| < \varphi(k)$ for all x. i.e A(x) = O(1).
+
+Notice that we only need to care about the last unevaluated period. This period has to be of length less that $\phi(k)$. If it were equal to $\phi(k)$, the
+sum over this would be $0$. Now in this last period, which we shift to $[0\dots \texttt{leftover}]$, we get:
+
+$$
+|A(n)| = 
+\left| \sum_{n=0}^{\texttt{leftover}} \chi(n) \right| \leq 
+\sum_{n=0}^{\texttt{leftover}} | \chi(n) |\leq
+\sum_{n=0}^{\texttt{leftover}} 1 \lneq \varphi(k)
+$$
+
+Note that $|\chi(n)| \leq 1$ since $\chi(n)$ evaluates to either 0 or a $\varphi(k)$ th root of unity whose absolute value is 1. 
+
+#### Chapter 4 thm 4.2:
+
+**Abel's Identity**: For any arithmetical function $a(n)$ let
+$$
+A(x) = \sum_{n\le x} a(n)
+$$
+
+where $A(x) = 0$ if $x<1$. Assume $f$ has a continuous derivative on the interval $[y,x]$ where $0<y<x$. Then we have:
+
+$$
+\sum_{y<n\le x} a(n)f(n) = A(x)f(x) - A(y)f(y) - \int_{y}^{x} A(t)f'(t) dt
+$$
+
+##### Proof:
+Let $k =[x]$ and $m=[y]$ so that $A(x)=A(k)$ and $A(y)=A(m)$.
+Then:
+
+$$
+\begin{aligned}
+&1. \sum_{y<n\le x}a(n)f(n) = \sum_{n=m+1}^{k} a(n)f(n) = \sum_{n=m+1}^{k}  \{A(n)-A(n-1)\}f(n)\\
+&2.  = \sum_{n=m+1}^{k} A(n)f(n) - \sum_{n=m}^{k+1} A(n)f(n+1)\\
+&3.  = \sum_{n=m+1}^{k-1} A(n)\{f(n)-f(n+1)\} + A(k)f(k) -A(m)f(m+1)\\
+&4.  = - \left[ \sum_{n=m+1}^{k-1}A(n) \left ( \int_{n}^{n+1}f'(t)dt \right) \right] + A(k)f(k) - A(m)f(m+1)\\
+&5.  = - \left[\sum_{n=m+1}^{k-1}\int_{n}^{n+1} A(t)f'(t)\right] + A(k)f(k) -A(m)f(m+1) \\
+&6.  = -\int_{m+1}^{k} A(t)f'(t) + A(x)f(x) - \int_{k}^{x} A(t)f'(t)dt - A(y)f(y) - \int_{y}^{m+1} A(t)f'(t)dt\\
+&6. = A(x)f(x) - A(y)f(y) - \int_{y}^{x}A(t)f'(t)dt
+\end{aligned}
+$$
+
+- [Link to proof on wikibooks](https://en.wikibooks.org/wiki/Analytic_Number_Theory/Useful_summation_formulas)
+
+##### Proof of (7) 
+
+$$
+\sum_{x<n\le y} \chi(n)f(n) = f(y)\chi(y) - f(x)\chi(x) - \int_{x}^{y} A(t)f'(t)dt \\
+ =  O(f(y)) + O(f(x)) + O(\int_{x}^{y}A(t)f'(t)dt)\\
+ = O(f(x))
+
+$$
+
+We note that
+
+$$
+\int_x^y A(t) f'(t) dt 
+\leq \int_x^y |A(t)| f'(t) dt
+\leq |1| \int f'(t) dt
+\leq \int_x^y f'(t) dt = f(y) - f(x)
+$$
+
+by using the fact that (1) $f'(t)$ does not change sign, (2) $|A(x)| \leq 1$.
+
+If $f(x) \rightarrow 0$ as $x \rightarrow \infty$ then eqn 7 shows that the series 
+$$
+\sum_{n=1}^{\infty} \chi(n)f(n)
+$$
+converges because of cauchy convergence (TODO) criterion. Mayhaps the proof is:
+
+$$
+\lim_{k \rightarrow \infty} \sum_{n=1}^{k} \chi(n)f(n) \lneq \phi(k) f(n)\\
+\forall \epsilon > 0, \exists N, \forall n \geq N, |\phi(k) f(n+1) - \phi(k)f(n)| < \epsilon \\
+$$
+
+To prove eqn 8 we simply note that 
+$$
+\sum_{n=1}^{\infty}\chi(n)f(n) = \sum_{n\le x}\chi(n)f(n) + \lim_{y\rightarrow \infty} \sum_{x<n\le y} \chi(n)f(n)
+$$
+Because of eqn 7, the limit on the right if O(f(x)). This completes the proof.
+
+Mow we apply thm 6.17 successively with f(x) = 1/x, f(x) = (log(x))/x and f(x) = 1/\sq
+THm 6.18 
+
+
+# Church Encodings via Continuations
+
+```meta
+status: scratch
+created: 2020-04-18
+last-edited: 2020-04-18
+```
+
+```
+ the story is this:
+- a value is a isomorphic to a continuation acont := forall r. (a -> r) -> r. that is, you tell me how you want to process a, and I'll do the processing for you
+- You can write down what the continuation for nat is supposed to be: natcont: forall r. (nat -> r) -> r.
+- You can massage the type to arrive at forall r. (r -> r) [how to handle S] -> r [how to handle Z] -> r [output]
+[11:29 AM] Siddharth Bhat: for example, the continuation for bool is going to be this:
+
+boolcont := forall r. (bool -> r) -> r
+ := forall r. (r, r) -> r
+
+
+this is because a function A -> B is ismorphic to B^|A|. so, bool -> r is isomorphic to r^|bool| = r^2 = (r, r)
+[11:30 AM] Siddharth Bhat: so, the intuition we get from this case is:
+- sums turn into products.
+[11:31 AM] Siddharth Bhat: we can continue to massage the type further:
+
+boolcont := forall r. (bool -> r) -> r
+ := forall r. (r, r) -> r [bool -> r ~= r^|bool| ~= (r, r)]
+ := forall r. r -> r -> r [currying: (a, b) -> c ~= a -> b -> c]
+[11:31 AM] Siddharth Bhat: so we can encapsulate the rule as:
+- for every "choice" in a sum type, take a new parameter in the "continuation type"
+[11:31 AM] Siddharth Bhat: @Aditya Bharti tell me if this is making sense at all
+[11:31 AM] Siddharth Bhat: I should probably explain how a ~= forall r. ( a-> r) -> r first?
+[11:32 AM] Siddharth Bhat: ie, since bool = true | false, we get two parameters, one r for true, one r for false: boolcont := forall r. r [for true] -> r[for false] -> r.
+[11:33 AM] Aditya Bharti:
+I should probably explain how a ~= forall r. ( a-> r) -> r first?
+@Siddharth Bhat nope, that much I got
+[11:33 AM] Aditya Bharti: You lost me at "massage the type to get ..."
+[11:33 AM] Siddharth Bhat: OK. does the bool thing make sense?
+[11:33 AM] Siddharth Bhat:
+boolcont := forall r. (bool -> r) -> r -- (1)
+ = forall r. (r, r) -> r [bool -> r ~= r^|bool| ~= (r, r)] -- (2)
+ = forall r. r -> r -> r [currying: (a, b) -> c ~= a -> b -> c] -- (3)
+
+
+does the above derivation make sense?
+[11:33 AM] Aditya Bharti: Nope.
+[11:33 AM] Siddharth Bhat: I'm using identities of types to convert from one representation to another isomorphic representation
+[11:34 AM] Siddharth Bhat: OK, which step doesn't make sense
+[11:34 AM] Aditya Bharti: So this is natcont, which is fine natcont: forall r. (nat -> r) -> r
+[11:34 AM] Siddharth Bhat: indeed.
+[11:34 AM] Aditya Bharti: Then this is boolcont: boolcont: forall r. (bool -> r) -> r
+[11:34 AM] Siddharth Bhat: yeah
+[11:35 AM] Aditya Bharti: How did you massage this into the behemoth above?
+[11:35 AM] Siddharth Bhat: well, like I wrote in step 2
+[11:35 AM] Aditya Bharti: And in coq what does multiple definitions ( := ) mean?
+[11:35 AM] Siddharth Bhat: let me change that to =
+[11:35 AM] Siddharth Bhat: I meant that (1) is equal to (2)
+[11:36 AM] Aditya Bharti: oh boy
+[11:36 AM] Aditya Bharti: Let me re-examine the entire thing
+[11:36 AM] Aditya Bharti: one moment
+[11:36 AM] Siddharth Bhat: mmhm
+[11:37 AM] Aditya Bharti:
+ie, since bool = true | false, we get two parameters, one r for true, one r for false: boolcont := forall r. r [for true] -> r[for false] -> r.
+@Siddharth Bhat this I don't get
+[11:37 AM] Siddharth Bhat: OK
+[11:37 AM] Siddharth Bhat: you understand till step  (3) , yes?
+[11:38 AM] Aditya Bharti: Which message are you referring to?
+[11:38 AM] Aditya Bharti: let's step back a bit
+[11:38 AM] Aditya Bharti: As of now, here is what I got
+[11:38 AM] Siddharth Bhat:
+boolcont := forall r. (bool -> r) -> r -- (1)
+ = forall r. (r, r) -> r [bool -> r ~= r^|bool| ~= (r, r)] -- (2)
+ = forall r. r -> r -> r [currying: (a, b) -> c ~= a -> b -> c] -- (3)
+[11:39 AM] Aditya Bharti: Right ok so I only got step (1)
+[11:39 AM] Aditya Bharti: How did you replace (bool -> r) with the pair (r,r)?
+[11:40 AM] Siddharth Bhat: so, if you give me f: bool -> r, this is ismorphic to the tuple (f true, f false) ?
+[11:40 AM] Aditya Bharti: Yup ok.
+[11:41 AM] Siddharth Bhat: and we know that (r, r) -> r is isomorphic to r -> r -> r by currying?
+[11:41 AM] Aditya Bharti: ah (r, r) is a pair of the same type r
+[11:41 AM] Aditya Bharti: my bad
+[11:42 AM] Aditya Bharti:
+and we know that (r, r) -> r is isomorphic to r -> r -> r by currying?
+@Siddharth Bhat yup
+[11:42 AM] Siddharth Bhat: yeah I think in coq it's called r * r
+[11:42 AM] Aditya Bharti: Yes
+[11:42 AM] Aditya Bharti: I thought (r,r) meant repeating the same value
+[11:43 AM] Aditya Bharti: ok go on, I got this much
+[11:45 AM] Siddharth Bhat:
+Definition boolcont1 := forall (r: Type), (bool -> r) -> r.
+Definition boolcont2 := forall (r: Type), (r * r) -> r.
+Definition boolcont3 := forall (r: Type), r -> r -> r.
+
+Definition use_boolcont1 (b: bool): boolcont1.
+Proof.unfold boolcont1. intros r buser. exact (buser b). Qed.
+
+Print use_boolcont1.
+(* use_boolcont1 = 
+  fun (b : bool) (r : Type) (buser : bool -> r) 
+    => buser b
+     : bool -> boolcont1
+*)
+
+Definition use_boolcont3 (b: bool): boolcont3.
+Proof. unfold boolcont3. intros r rtrue rfalse.
+       destruct b.
+       + (* b = true *) exact rtrue.
+       + (* b = false *) exact rfalse.
+Qed.
+
+Print use_boolcont3.
+(* use_boolcont3 = 
+  fun (b : bool) (r : Type) (rtrue rfalse : r)
+    => if b then rtrue else rfalse
+     : bool -> boolcont3
+*)
+[11:46 AM] Siddharth Bhat: so I implemented how to convert from bool to boolcont1, from bool to boolcont3.
+[11:47 AM] Siddharth Bhat: does the implementation make sense?
+[11:47 AM] Siddharth Bhat: (I wrote it in proof mode so you can think about it step-by-step. I wrote the commented output from Print for the full view)
+[11:48 AM] Aditya Bharti: I'm stil uneasy about proving definitions, since, definitions cannot be false, in my head
+[11:48 AM] Siddharth Bhat: @Aditya Bharti 
+Definition x: 1 = 2. Proof. Abort.
+[11:49 AM] Aditya Bharti: yes, but this is an equality right?
+[11:50 AM] Aditya Bharti: You're just renaming, not sure what's there to prove about that.
+[11:50 AM] Siddharth Bhat: how do you know that boolcont1 is inhabited?
+[11:50 AM] Siddharth Bhat: consider this:
+[11:50 AM] Siddharth Bhat:
+Definition amiinhabited: forall (X Y:Type), X -> Y. Proof. Abort.
+[11:50 AM] Siddharth Bhat: is amiinhabited inhabited/
+[11:50 AM] Siddharth Bhat: it's not an equality.
+[11:51 AM] Aditya Bharti: What do you mean inhabited?
+[11:51 AM] Siddharth Bhat: can you give a Proof for it hat will let you write a Qed at the end
+[11:51 AM] Aditya Bharti: You're asking me, does there exist a function from X -> Y?
+[11:51 AM] Siddharth Bhat: can you construct a value of the type
+[11:51 AM] Siddharth Bhat: yeah
+[11:51 AM] Siddharth Bhat: just like what it means to prove boolcon1 is to give a value of the type forall (r: Type), (bool -> r) -> r
+[11:52 AM] Siddharth Bhat: proving amiinhabited is providing a value of the type forall (X Y:Type), X -> Y
+[11:53 AM] Siddharth Bhat: so, is it inhabited? :smile:
+[11:53 AM] Aditya Bharti: I mean, from coq perspective, I'm not sure how to prove it. But from a math perspective, yes. There do exist functions from X -> Y for any types X and Y.
+[11:53 AM] Aditya Bharti: Yes.
+[11:53 AM] Siddharth Bhat: for any types under my control?
+[11:53 AM] Siddharth Bhat: can you give a uniform defintion
+[11:53 AM] Siddharth Bhat: that will work for any choice of mine of X and Y?
+[11:54 AM] Aditya Bharti: As long you have at least one value of types X and Y, it should be possible.
+[11:54 AM] Siddharth Bhat: I think you should try to write the above in coq
+[11:54 AM] Siddharth Bhat:
+  X : Type
+  Y : Type
+  X0 : X
+  ============================
+  Y
+[11:54 AM] Siddharth Bhat: this is your proof state
+[11:54 AM] Siddharth Bhat: how will you produce a Y?
+[11:54 AM] Aditya Bharti:
+that will work for any choice of mine of X and Y?
+@Siddharth Bhat no. my math construction involves axiom of choice at multiple stages.
+[11:55 AM] Aditya Bharti: I cannot produce a Y. but math tells me that there must be a procedure for constructing Y.
+[11:55 AM] Anurudh Peduri: Y could be empty right?
+[11:55 AM] Aditya Bharti: It can even be a constant function
+[11:55 AM] Aditya Bharti:
+As long you have at least one value of types X and Y, it should be possible.
+@Anurudh Peduri
+[11:56 AM] Anurudh Peduri: yeah, but he asked for any X and Y
+[11:56 AM] Siddharth Bhat: @Aditya Bharti yeah, so it doesn't work for any choice of X and Y
+[11:56 AM] Anurudh Peduri: so even false propositions (equivalent to empty sets/types) are allowed to be Y
+[11:57 AM] Aditya Bharti: hmmm...
+[11:57 AM] Aditya Bharti: So you're contructing values of type boolcont ...
+[11:57 AM] Siddharth Bhat: as the definition states:
+
+Definition amiinhabited: forall (X Y:Type), X -> Y.
+
+forall is indeed forall, not for all that are provable. :slight_smile:
+[11:57 AM] Aditya Bharti: ... or proofs of proposition boolcont?
+[11:57 AM] Siddharth Bhat: what's the difference :smile:
+[11:57 AM] Aditya Bharti: exactly my point
+[11:57 AM] Siddharth Bhat: indeed
+[11:57 AM] Aditya Bharti: It just clicked
+[11:58 AM] Aditya Bharti: curry howard still boggles my mind
+[11:58 AM] Siddharth Bhat: mm
+[11:58 AM] Siddharth Bhat: it's curry-howard-lambek BTW :stuck_out_tongue:
+[11:58 AM] Siddharth Bhat: idk why but people tend to drop the third dude :frowning:
+[11:58 AM] Siddharth Bhat: anyway
+[11:58 AM] Siddharth Bhat: citations aside.
+[11:58 AM] Aditya Bharti: I've only heard you say curry howard.
+[11:58 AM] Aditya Bharti: yeah
+[11:59 AM] Siddharth Bhat: right, so we know that boolcont1 and boolcont3 are sensible
+[12:00 PM] Siddharth Bhat: We can in fact prove that boolcont3 is isomorphic to bool
+[12:04 PM] Siddharth Bhat: hmm
+[12:04 PM] Siddharth Bhat: OK, doing the proofs in coq is getting into stuff that's not strictly necessary at this point
+[12:04 PM] Siddharth Bhat: but I'll do it anyway
+[12:10 PM] Siddharth Bhat: mh, OK
+[12:10 PM] Siddharth Bhat: this is taking me too far away from the point
+[12:10 PM] Siddharth Bhat: I can show one side of the isomorphism easily
+[12:10 PM] Siddharth Bhat:
+Definition bool_to_boolcont3 (b: bool): boolcont3.
+Proof. unfold boolcont3. intros r rtrue rfalse.
+       destruct b.
+       + (* b = true *) exact rtrue.
+       + (* b = false *) exact rfalse.
+Defined.
+
+
+Definition boolcont3_to_bool (bc: boolcont3): bool := bc bool true false.
+
+Lemma iso_fwd: forall (b: bool), boolcont3_to_bool(bool_to_boolcont3 b) = b.
+Proof.
+  intros.
+  unfold boolcont3_to_bool.
+  unfold bool_to_boolcont3.
+  destruct b; auto.
+Qed.
+[12:10 PM] Siddharth Bhat: The backward direction is harder, because you need to rely on classical logic
+[12:11 PM] Siddharth Bhat: but OK, we believe that bool = forall r. (bool -> r) -> r = forall r. r -> r -> r.
+[12:11 PM] Siddharth Bhat: right?
+[12:11 PM] Siddharth Bhat: @Aditya Bharti
+[12:11 PM] Siddharth Bhat: because intuitively,
+- a boolean is a choice between true and false
+[12:11 PM] Siddharth Bhat: - each choice corresponds to one value of r that we pass into the function, which is "picked" correctly by the right branch.
+[12:12 PM] Siddharth Bhat: @Aditya Bharti yes/no/maybe?
+[12:15 PM] Siddharth Bhat: @Aditya Bharti ping me when you're back, I'll continue and relate this to nat
+[12:15 PM] Siddharth Bhat: we have seen how disjoint unions transform into different parameters in the continuation representation
+[12:15 PM] Siddharth Bhat: we will next see how to handle recursion by considering list a := cons a (list) a| nil
+[12:15 PM] Aditya Bharti: ping
+[12:15 PM] Siddharth Bhat: we will then show how this naturally also leads to nat a := z | s nat
+[12:15 PM] Aditya Bharti: so I'm looking at the isomorphism now
+[12:16 PM] Siddharth Bhat: to be equivalent to forall r. (r -> r) ->  r -> r
+[12:16 PM] Siddharth Bhat: OK
+[12:18 PM] Aditya Bharti: So fine, the isomorphism is cool with me.
+[12:18 PM] Aditya Bharti: What's next.
+[12:19 PM] Siddharth Bhat: next, we'll study lists
+[12:27 PM] Siddharth Bhat: mh
+[12:27 PM] Siddharth Bhat: I'm trying to see what the most "natural" way to show this is
+[12:27 PM] Siddharth Bhat: I "know the answer" so to speak
+[12:28 PM] Siddharth Bhat: gimme a bit
+[12:54 PM] Siddharth Bhat:
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE Rank2Types #-}
+
+data NatF f = ZF | SF f deriving(Show, Functor)
+data Mu f = Mu { unMu :: f (Mu f) }
+
+instance (Show (Mu f),  Show (f (Mu f))) => Show (Mu f) where
+    show (Mu x) = show x
+type Nat = Mu NatF 
+data Peano = Z | S Peano deriving(Show)
+
+p2n :: Peano -> Nat
+p2n Z = Mu ZF
+p2n (S n) = Mu $ SF (p2n n)
+
+n2p :: Nat -> Peano
+n2p (Mu ZF) = Z
+n2p (Mu (SF x)) = S (n2p x)
+
+
+
+knatF :: NatF f -> (forall r. r -> (f -> r) -> r)
+knatF ZF zfuser sfuser = zfuser
+knatF (SF f) zfuser sfuser = sfuser f
+
+kmu :: Mu f -> (forall r. (Mu f -> r) -> r)
+kmu mu muuser = muuser mu
+
+
+kmu' :: Functor f => Mu f -> (forall r. (f r -> r) -> r)
+kmu' (Mu fmuf) muuser = muuser $ fmap (\mu -> kmu' mu muuser) fmuf
+
+
+The TLDR is we build Mu which is the fixpoint combinator on the datatype level. We see that the continuation version of it when f is a Functor is of the type (f r -> r) -> r, suggesting that we can simply "normalize" the inner layers to be an r. Hence, when we writeNat  as the fixpoint of a functor NatF, we can simply replace all occurences of f with an r
+[12:54 PM] Siddharth Bhat: so I don't have the bandwidth to explain this till the exams end :stuck_out_tongue:
+[12:54 PM] Siddharth Bhat: but this contains the story of "how" if you care. You can google things like "haskell <mu>" and whatnot to reconstruct the story of "why the conversion is so"
+[12:55 PM] Siddharth Bhat: I will provide scam intuition for now
+[12:55 PM] Siddharth Bhat: and fix this on 29th once everything is done
+[12:55 PM] Siddharth Bhat: I tried doing it in Coq; I get universe inconsitencies.
+[12:56 PM] Siddharth Bhat: so the scam is this: let's consider nat:
+
+Inductive nat := NZ: nat | NS: nat -> nat.
+(* k for 'k'ontinuation --- this is standard in haskell circles *)
+(* r for the 'r'eturn value in (nat -> r) -> r *)
+Definition knat := forall r, (nat -> r) -> r.
+[12:57 PM] Siddharth Bhat: @Aditya Bharti so far so good?
+[12:57 PM] Aditya Bharti: yup
+[12:58 PM] Siddharth Bhat: OK
+[12:58 PM] Siddharth Bhat: so let's do our standard thing, and write this as:
+[1:02 PM] Siddharth Bhat:
+Definition knat2 := forall r, r -> (nat -> r) -> r.
+Definition nat_to_knat2 (n: nat): knat2 := fun r nzuser nsuser =>  
+  match n with
+  | NZ => nzuser
+  | NS n' => nsuser n'
+  end.
+
+1. r is what we will do in case we see a NZ. nat -> r is what we will do when we see a NS.
+[1:02 PM] Siddharth Bhat: so far so good, again?
+[1:02 PM] Siddharth Bhat: I have expanded (nat -> r) -> r into (r -> (nat -> r) -> r)
+[1:02 PM] Siddharth Bhat: by "peeling off" the NZ case and the NS case.
+[1:04 PM] Aditya Bharti:
+I have expanded (nat -> r) -> r into (r -> (nat -> r) -> r)
+@Siddharth Bhat after this expansion, do you still need the forall r there?
+[1:04 PM] Aditya Bharti: Acutally, you probably do. nvm
+[1:04 PM] Siddharth Bhat: Yeah, because I need to be able to allow you to give me "any user of nat"
+[1:04 PM] Siddharth Bhat: right?
+[1:05 PM] Aditya Bharti: yup cool that works
+[1:05 PM] Siddharth Bhat: OK
+[1:05 PM] Siddharth Bhat: but notice that I am not using the "power" of recursion in nat_to_knat2
+[1:05 PM] Siddharth Bhat: ie, it is only Definition, not Fixpoint
+[1:05 PM] Siddharth Bhat: hmm, how would I use Fixpoint?
+[1:06 PM] Siddharth Bhat: notice that inductively, I can use Fixpoint to convert the inner n': nat into an r
+[1:06 PM] Siddharth Bhat: because nat_to_knat2 is essentially saying "I will tell you how I can use a nat to produce an r"
+[1:06 PM] Siddharth Bhat: that's what a knat is: a  thing that can use a nat to produce an r
+[1:09 PM] Siddharth Bhat: this suggests the natural definition:
+
+  
+Definition knat3 := forall r, r -> (r -> r) -> r.
+Fixpoint nat_to_knat3 (n: nat): knat3 := fun r nzuser nsuser =>  
+  match n with
+  | NZ => nzuser
+  | NS n' => nsuser (nat_to_knat3 n' r nzuser nsuser)
+  end.
+[1:09 PM] Siddharth Bhat: so far so good?
+[1:10 PM] Siddharth Bhat: compare and contrast with:
+
+Definition knat2 := forall r, r -> (nat -> r) -> r.
+Definition nat_to_knat2 (n: nat): knat2 := fun r nzuser nsuser =>  
+  match n with
+  | NZ => nzuser
+  | NS n' => nsuser n'
+  end.
+[1:10 PM] Siddharth Bhat: in nat_to_knat3, I am not passing n'. Rather, I am recursively processing it, using nat_to_knat3 on n'.
+[1:11 PM] Siddharth Bhat: that's the only diff: n' |-> (nat_to_knat3 n' r nzuser nsuser)
+[1:13 PM] Aditya Bharti: This makes sense, although I'll have to spend time to understand it better. :stuck_out_tongue:
+[1:13 PM] Aditya Bharti: What were we doing again?
+[1:13 PM] Aditya Bharti: Lists, right.
+[1:14 PM] Siddharth Bhat: No, we're done
+[1:14 PM] Siddharth Bhat: we don't need lists
+[1:14 PM] Siddharth Bhat: now look at the type
+[1:16 PM] Siddharth Bhat:
+Definition knat3 := forall r, r -> (r -> r) -> r.
+ = forall r, (r -> r) -> r -> r [moving arguments: (a->b->c) = (b->a->c)]
+ = forall (X: Type), (X -> X) -> X -> X 
+ = cnat
+[1:16 PM] Siddharth Bhat: ^_^
+[1:16 PM] Siddharth Bhat: so this is why cnat represents nat
+```
+
+
+# Humanities Notes
+
+```meta
+status: scratch
+created: 2020-04-06
+last-edited: 2020-04-12
+```
+
+## Supernormal stimulus and Hyper-reality
+
+- [Hyperreality](https://en.wikipedia.org/wiki/Hyperreality)
+- [Supernormal stimulus](https://en.wikipedia.org/wiki/Supernormal_stimulus)
+
+## Lycurgus of Sparta
+## Reactionary philosophy
+
+https://slatestarcodex.com/2013/03/03/reactionary-philosophy-in-an-enormous-planet-sized-nutshell/
+
+## Sword of democles
+
+## Musing on the structure of scientific revolutions
+
+> One of the things that really struck me reading The Structure of Scientific
+> Revolutions was the observation in it that you could almost always
+> distinguish scientific fields from other by whether they taught students
+> using the original works of those who made important discoveries or if they
+> re-wrote them into easier to understand textbooks. If you can't separate the
+> truth of what someone said from the way they said it you might be doing
+> something useful but you don't have the tools to be making actual progress.
+
+
+# Entropy and KL Divergence
+
+```meta
+status: scratch
+created: 2020-04-06
+last-edited: 2020-04-06
+```
+
+```
+[9:34 PM] Siddharth Bhat: @Tanmay Kumar Sinha I can do entropy and KL divergence
+[9:34 PM] Siddharth Bhat: @Tanmay Kumar Sinha ping when you're around
+[9:41 PM] Siddharth Bhat: The TL;DR is this:
+0. All my logs will be base 2.
+1. We wish to measure how "surprising" something is. We will measure this as Surprise(q) = -log(q) where q is the probability of an event. This way, if an event is deterministic [q=1] then its surprise is 0. If an event is impossible [q=0], then its surprise is infinite. So surprise of an event whose probability is 2^{-n} is going to be n.
+2. The entropy of a random variable is the expected surprise we are going to get from it. So:
+
+Entropy(X) =(defn) \sum_{x \in X} Surprise(p(x)) . p(x)
+           = E_{x ~ p} (Surprise . p) [ . is function composition ]
+[9:41 PM] Siddharth Bhat: So, entropy is "expected surprise"
+[9:43 PM] Siddharth Bhat: For example, given a binary random variable, which takes on heads probability q and tails with probability (1 - q). the entropy is going to be:
+
+Entropy(coin_p) = \sum_{x \in {heads, tails}} Surprise(p(x)) . p(x)
+                = Surprise(p(heads)) p(heads) + Surprise(p(tails) p(tails)
+                = -log(q)q - log(1-q) (1 - q)
+[9:44 PM] Siddharth Bhat: We can prove that this is maximum when q = 0.5. This ought to be intuitive, because when q = 0.5, we can't predict anything about the coin toss. If it were slightly higher, then we could guess that it's more likely for it to be heads, so we "know more" about it.
+[9:45 PM] Siddharth Bhat: https://en.wikipedia.org/wiki/File:Binary_entropy_plot.svg
+File:Binary entropy plot.svg
+
+[9:46 PM] Siddharth Bhat: OK, now we move to the coding theory perspective on all this, which is the one true way (and is, BTW, also the right way to understand K-L divergence IMO)
+[9:48 PM] Siddharth Bhat: Note that to define the entropy, all we needed was p(x): X -> [0, 1]. So really, entropy is the property of a probability distribution.
+[9:50 PM] Siddharth Bhat: and if we think about it a little carefully [ie, stare at the equation and fiddle with it], we come to the intuition that entropy is high when p(x) is spread out. That is, one can show that the probability distribtution p: X -> R; p(x) = 1/|X| (the uniform distribution) is the unique distribution that has the highest entropy over a set X.
+[9:50 PM] Siddharth Bhat: The intuition is that if the distribution is uniform, you can't really guess [this is the same as the coin case], and hence, it must have highest entropy
+[9:56 PM] Siddharth Bhat: The coding theory perspective of entropy is this: We have a set X, and we have a probability distribution p(x) on it. We have a sender who is sending elements S = x1, x2, x3, ..., xn with each x drawn from the distribution p(x)  [in a nutshell: sequence S is drawn as an IID sample from X with the distribution p].
+
+Now, how many bits do we need to encode S? We want to mimise the number of bits needed over all possible S.
+
+We can design clever schemes and stupid schemes. Coding theory proves that on average/in expectation, the best encoding scheme will need Entropy(p)  bits to encode each  x_i.   It might spend more bits on some x0 and less bits on some x100, but on average we will need Entropy(p) bits, if the data S is generated using the distribution p.
+
+For an actual example of this, see Huffman coding: it achieves optimal encoding of data, given the probability distributions. It chooses to use a different number of bits for different elements in X. it doesn't clash because it's prefix-free and blah. [https://en.wikipedia.org/wiki/Huffman_coding]
+[9:56 PM] Siddharth Bhat: So, the entropy is a measure of a probability distribution that tells us how well we can encode it for communication / how much we can compress information (because we're trying to use the least number of bits possible)
+[9:57 PM] Siddharth Bhat: ### K-L divergence
+[9:57 PM] Siddharth Bhat: sad, markdown headers don't work
+[10:02 PM] Siddharth Bhat: For some intuition about this entropy-as-an-encoding-cost
+[10:04 PM] Siddharth Bhat: Q1: assume we go back to the coin C1, and we know that the coin is biased such that it only outputs heads. We're going to be sending the results of the coin flips. How many bits do we need to encode this?
+
+A1: it's zero, because we don't need to transmit anything: the receiver already knows what's going to be sent since the event is deterministic. The sequence of coin flips must be [heads, heads, heads, heads, ...] so there's no point in transmitting it.
+[10:05 PM] Siddharth Bhat: This is actually somewhat of a failing of entropy: it only considers the unknown to be information. If you have some complex, deterministic thing, it's not information (in this perspective). Other perspectives such as descriptive complexity (https://en.wikipedia.org/wiki/Kolmogorov_complexity) remedy this.
+[10:19 PM] Siddharth Bhat: Q2. we have a coin C2 that takes heads and tails in equal likelihood. How many bits do we need to encode this?
+
+A2: We are forced to encode this using 1 bit, since -log_2(0.5) = 1. This is from Shannon's source coding theorem(https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem).
+[10:22 PM] Siddharth Bhat: Q3. what is the "good" encoding of a coin that is better than just 0 and 1 in the case, where, say,  heads occurs with probability 0.9 and tails with probability 0.1?
+
+A3. I don't know, I'd like to know. Huffman coding is useless. Entropy tells us that we ought to be able to do this with -0.9 log(0.9) - 0.1 log(0.1) = 0.468 bits. Pinging people who might know:    @Athreya C  ?
+[10:25 PM] Siddharth Bhat: OK, now we move on to K-L divergence, now that we've taken a look at entropy-as-surprise and entropy-as-bits-we-have-to-pay
+[10:26 PM] Siddharth Bhat: K-L divergence is a divergence (not a distance) between two probability distribution p, q: X -> [0, 1] which tells us how many extra bits  we pay on average if the data came from distribution p but we encoded it as if it came from distribution q.
+[10:28 PM] Siddharth Bhat: That is:
+- I was given S = [x0, x1, ... xn], which was sampled from X^n ~ p^n. 
+- S is handed to an encoder Enc_q which _assumes the data S was sampled from X^n ~ q^n (notice, q not p).
+- Enc_q(S) uses more bits than Enc_p(S), since it will have inefficiencies. How much more inefficient? That's the K-L divergence between p and q.
+[10:32 PM] Athreya C:
+K-L divergence is a divergence (not a distance) between two probability distribution p, q: X -> [0, 1] which tells us how many extra bits  we pay on average if the data came from distribution p but we encoded it as if it came from distribution q.
+@Siddharth Bhat This is all GV had to say smh
+[10:32 PM] Siddharth Bhat: lmao
+[10:32 PM] Siddharth Bhat: wait, I'm writing more
+[10:38 PM] Siddharth Bhat: so the formula is defined as:
+
+DKL(P||Q) =
+  =\sum_{x \in X} (Surprise(q(x)) - Surprise(p(x))) * p(x)
+  =\sum_{x \in X} (-log(q(x)) + log(p(x))) * p(x)    
+  =\sum_{x \in X} p(x) * [log(p(x)) - log(q(x))]
+
+
+I don't have much to offer just from this formula. I take it as a given. I know weird explanations in terms of information geometry, but we won't do that right now.
+[10:39 PM] Siddharth Bhat: so let's experiment with it to gain an intuition. 
+1. We notice that if p(x) = q(x), it's going to KL(P||Q) is 0
+2. It's unclear if it can be negative
+3. It's unclear if it's symmetric
+[10:40 PM] Siddharth Bhat: I'll show a striking example that will tel us that it is indeed not symmetric, and will help with remembering if the formula is (1) or (2) in the future:
+
+1. p(x) * [log(p(x)) - log(q(x))]
+2. p(x) * [log(q(x)) - log(p(x))]
+[10:40 PM] Siddharth Bhat: [I'm actually really unsure if anyone will read this at this point. I'm now writing it for my own sake so I can copy-paste and it put it up on my blog :stuck_out_tongue: ]
+[10:42 PM] Siddharth Bhat: we go back to the humble unfair coin, for we are gamblers. Assume we have two coins, one which is fair. So this is governed by a distribution called F: {heads, tails} -> [0, 1]. (F for fair). F(heads) = F(tails) = 0.5.
+
+We have another coin which only tosses heads.  This has a distribution H: {heads, tails} -> [0, 1]. H(heads) = 1; H(tails) = 0.
+[10:42 PM] Siddharth Bhat: let's compute DKL(F||H) and DKL(H||F).
+[10:42 PM] Siddharth Bhat: Before we do that, let's talk intuitions
+[10:43 PM] Siddharth Bhat: how do we encode the fair coin? we encode heads as 0 and we encode tails as 1.
+[10:43 PM] Siddharth Bhat: how do we encode the heads coin? well, coding theory says "don't". There's nothing to send, so don't bother sending information.
+[10:45 PM] Aditya Bharti: Did you stop because you think no one is reading?
+[10:46 PM] Siddharth Bhat: no no
+[10:46 PM] Siddharth Bhat: I'm deciding how to present this.
+[10:49 PM] Aditya Bharti: I've actually seen a derivation of KLD formula based on the "extra bits" concept.
+[10:49 PM] Aditya Bharti: Helps to remember the formula (1 vs 2) as well.
+[10:49 PM] Aditya Bharti: Please continue for now. I don't have access to a laptop.
+[10:49 PM] Siddharth Bhat: - 1A. If I have an encoder Enc_F and I hand it the sequence generated from the heads coin, say HHH, it'll spend 3 bits encoding it as 000.
+ 
+-1B.  If I have an encoder Enc_H and I hand it the sequence HHH, it'll do fine (and not send anything) because there's nothing to be sent, since it assumes anything it has to send will be of the form HHHHH....
+
+So in this case, Enc_F used 3 more bits than Enc_H, assuming the underlying distribution was H.
+
+- 2A.  If I have an encoder Enc_F and I hand it another sequence generated from the fair coin, say HTH, it'll spend 3 bits encoding it as 010.
+
+- 2B. If I have an encoder Enc_H and I hand it HTH it's out of luck. how the fuck is it supposed to send T? It needs to spend infinitely more bits than H to do anything (intuitively)
+
+
+So in this case, Enc_H used infinitely more bits than Enc_F, assuming the underlying distribution was F.
+[10:51 PM] Siddharth Bhat: so, well, clearly, this is not a symmetric concept. If there are things I literally cannot encode, I might spend infinite amount of bits in trying to encode them; If there are things I can encode but am bad at, then you'll spend more bits trying to encode it;
+[10:51 PM] Siddharth Bhat: but you'll always need to spend more bits (on average)
+[10:51 PM] Siddharth Bhat: So by analyzing the formula, you can check whether (1) or (2) gives you the answer infinity in the case I mentioned above :smile:
+[10:51 PM] Siddharth Bhat: and that's how I remember the formula
+[10:52 PM] Athreya C:
+Interesting choice of an example :3
+[10:53 PM] Siddharth Bhat: so, to recap, the K-L divergence of two distributions tells us how "far away" one distribution is at optimally coding data that has been drawn from the other distribution. You can look at it from an adverserial perspective:
+
+[data ~ P(x)] --> [encoder ~ p(x)] (optimal) [baseline]
+[data ~ P(x)] --> [encoder ~ q(x)] (adverserial) [how bad are you?]
+[10:53 PM] Aditya Bharti: I'm surprised you remember the formula through a slightly contrived example. :stuck_out_tongue:
+[10:53 PM] Siddharth Bhat: shrug it's a quick check. if q(x) = 0, then p(x) log(p(x)/q(x)) becomes infinity, so the target distribution is the one in the denominator
+[10:53 PM] Siddharth Bhat: aka "out of band stuff costs infinite bits"
+[10:54 PM] Aditya Bharti: I like your edits :joy:
+[10:54 PM] Siddharth Bhat: argh xD I'm trying to keep the notation consistent xD
+[10:54 PM] Siddharth Bhat: (I usually think of it as e(x) and d(x) for encoder and decoder)
+[10:54 PM] Athreya C: I mean if you know its positive
+[10:55 PM] Athreya C: isn't it easier to check which quantity is positive :stuck_out_tongue:
+[10:55 PM] Siddharth Bhat: how?
+[10:55 PM] Siddharth Bhat: you can have cancellations
+[10:55 PM] Siddharth Bhat: it's a summation
+[10:55 PM] Siddharth Bhat: some terms in the sum can be negative, the overall sum is positive
+[10:55 PM] Siddharth Bhat: (it's an expectation)
+[10:56 PM] Siddharth Bhat: so, how I remember the formula:
+[10:58 PM] Siddharth Bhat: 1. it has to be KL(P||Q) = \sum_{x \in X} p(x) * <???> since we're riffing off of entropy
+2. it is either log(p(x)/q(x)) or log(q(x)/p(x))
+3. it has to be p(x)/q(x) since if q(x) = 0 (ie, q cannot represent something), it is infinitely far away from p, since [log p(x)/0 = log(infty) = infty]
+3. it has to be p(x)/q(x) because if p(x) = 0 (ie, the source never gives you this data), I don't care if encode it or not. [following the infotheory convention that [log(0) = 0]
+[11:02 PM] Siddharth Bhat: @Aditya Bharti I await your comment; I'm pausing to collect my thoughts
+[11:11 PM] Aditya Bharti:
+so the formula is defined as:
+
+DKL(P||Q) =
+  =\sum_{x \in X} (Surprise(q(x)) - Surprise(p(x))) * p(x)
+  =\sum_{x \in X} (-log(q(x)) + log(p(x))) * p(x)    
+  =\sum_{x \in X} p(x) * [log(p(x)) - log(q(x))]
+
+
+I don't have much to offer just from this formula. I take it as a given. I know weird explanations in terms of information geometry, but we won't do that right now.
+@Siddharth Bhat so I have some explanation on an admittedly shaky basis.
+
+Let's go back to the "expected number of bits to encode something part". Expected number of bits to encode X ~ p = \sum_{x \in X} p(x)* (-log p(x)). The way I view this formula is:
+1. There's a \sum_{x \in X} p(x) because it's a expectation.
+2. There's a (-log p(x)) because that's how many bits it takes to encode x coming from distribution X. They way I see it, this is an encoder property, in the sense that the encoder knows the underlying distribution is X, so it uses that distribution to calculate the number of bits.
+
+The probability p(x) is the same in both 1 and 2 because the encoder knows which distribution its inputs are coming from. What happens if the encoder makes the wrong assumption? Say the inputs are coming from distribution p(x) but the encoder assumes q(x). In this case term 1 will be the same (since it's still an expectation and p(x) is the actual distribution of input), but term 2 will equal (-log q(x)), since out theoretical encoder tries to achieve optimality under the assumption of "data coming from q(x).
+
+With this intuition in mind, KLD(from P to Q) = KLD(P||Q) = "how many more [expected] bits under assumption Q, than the actual P?" =  \sum_{x \in X}(bits_Q - bits_P) = \sum_{x \in X} [ p(x) * (-log(q(x)) - p(x) * (-log(p(x)) ] = \sum_{x \in X} [ p(x) * [log(p(x) - log(q(x))] ].
+
+Essentially in my mind, "I know its Q - P, but the formula has a -log so it becomes log p - log q.
+[11:12 PM] Aditya Bharti:
+@Aditya Bharti I await your comment; I'm pausing to collect my thoughts
+@Siddharth Bhat Yeah I was apprehensive to post it. It's already pretty shaky, and any errors would only compound problems.
+[11:13 PM] Siddharth Bhat: Go for it, man.
+[11:13 PM] Aditya Bharti:
+Essentially in my mind, "I know its Q - P, but the formula has a -log so it becomes log p - log q
+Does that make sense?
+[11:13 PM] Siddharth Bhat: Ah, you just did :smile:
+[11:15 PM] Siddharth Bhat: hmm, I see. I'm a little iffy because you can write distributions where log p(x) - log q(x) goes negative for some x = x0, but the overall sum remains positive
+[11:15 PM] Siddharth Bhat: which is why I refrain from the "pointwise" perspective
+[11:15 PM] Siddharth Bhat: [the pointwise perspective works when a single element is missing as I was saying above, because, well, once you get an infinity, no finite amount of anything can rectify it]
+[11:16 PM] Siddharth Bhat: but yeah, I can see how it's a useful mnemonic ^_^
+[11:16 PM] Siddharth Bhat: thanks! I suspect it might help me in the future :smile: this is definitely far less roundabout
+[11:17 PM] Aditya Bharti:
+hmm, I see. I'm a little iffy because you can write distributions where log p(x) - log q(x) goes negative for some x = x0, but the overall sum remains positive
+Yup you're right that's why it's a little iffy. In my mind though it just means that, "ok no big deal, just for that particular x, the faulty assumption Q gives less bits than P, but because of more fundamental information theoretic principles, the overall sum must be positive, since P is the true distribution"
+[11:18 PM] Aditya Bharti:
+thanks! I suspect it might help me in the future :smile: this is definitely far less roundabout
+Thank god you agree. I was afraid this plebain logic wouldn't fit with your "one true way" of thinking. :stuck_out_tongue:
+[11:20 PM] Siddharth Bhat: xD I mean, even if I disagree, there's nothing "plebian" about it :stuck_out_tongue: If anything, I'm the pleb for rejecting alternative useful perspectives :p
+[11:22 PM] Siddharth Bhat: OK, we have not yet proved that K-L divergence is always going to be non-negative
+[11:22 PM] Siddharth Bhat: @Aditya Bharti @Athreya C any slick proofs?
+[11:23 PM] Siddharth Bhat: so let's do that next
+[11:23 PM] Athreya C: Do you have a proof that doesn't rely on concavity/convexity(forgot which)?
+[11:26 PM] Aditya Bharti:
+@Aditya Bharti @Athreya C any slick proofs?
+@Siddharth Bhat I don't remember the formal proofs, only this. Given that we're calculating how inefficient Q is, the total quantity has to be non-negative, since if assumption Q encodes P with less bits than -p log(p), then our assertion that P is the true distribution is false, because information theory (IIRC, maybe some other theorem) tell us -p log(p) is optimal for distribution P.
+[11:28 PM] Siddharth Bhat: sure sure :stuck_out_tongue:
+[11:29 PM] Siddharth Bhat: OK, I know an extremely slick one (using Bregman divergence), an OK one that requires some work (using Jensen).
+[11:29 PM] Siddharth Bhat: I'll do the slick one first
+[11:29 PM] Siddharth Bhat: because it's.. nice
+[11:29 PM] Athreya C: Jensen in turn relies on Convexity/Concavity though
+[11:29 PM] Siddharth Bhat: yeah the slick one does too
+[11:42 PM] Siddharth Bhat: OK, back
+[11:43 PM] Siddharth Bhat: so, I'm going to define a weird geometric distance that's only valid for convex functions
+[11:43 PM] Siddharth Bhat: into which when you plug in our surprisal, life is going to be dandy, and we regenerate the K-L divergence
+[11:43 PM] Siddharth Bhat: this gadget is called as the "bregman divergence"
+[11:43 PM] Siddharth Bhat: So, the idea is as follows
+[11:46 PM] Aditya Bharti: Ok that's got to be the first time I've heard Bregman as a weird gadget :joy:
+[11:46 PM] Aditya Bharti: Also one thing before we start @Siddharth Bhat
+[11:46 PM] Siddharth Bhat: yes?
+[11:47 PM] Siddharth Bhat: wait you've seen this before? xD
+[11:48 PM] Aditya Bharti: KLD(P || Q) is said to be "from Q to P", where we still encode P using Q. Idk why the direction of from is reversed
+[11:48 PM] Aditya Bharti: Also we plug in "negative surprisal" in Bregman
+[11:49 PM] Siddharth Bhat: oh yeah, sure. (for the negative surprisal thing)
+[11:49 PM] Aditya Bharti:
+wait you've seen this before? xD
+@Siddharth Bhat  yeah I had to study this for something else, I forget
+[11:50 PM] Siddharth Bhat: it's "from Q to P" because P is the "base" which you're mutating? P is the true distribution?
+[11:50 PM] Siddharth Bhat: so you're trying to see how "divergent" you are from Q to P
+[11:51 PM] Aditya Bharti: I guess that's the way convention sees it, but it's still something I have to grok
+[11:51 PM] Aditya Bharti: Anyway, that ends my side note. Please continue.
+[11:53 PM] Siddharth Bhat: So, let us begin with the humble equation of d(x, y) = ||x-y||^2 = <x - y | x - y> where I use < a | b > for the dot-product (a . b) [yay quantum notation
+[11:57 PM] Siddharth Bhat: now, we can algebraically manipulate it to get:
+
+lensq(x) = x^2 [assume 1D]
+d(x, y) 
+  = lensq(x-y)^2 
+  = <x - y | x - y> 
+  = <x|x> + <y|y> - 2<x|y> [linearity of dot product]
+  = <x|x> - <y|y> - 2 <y|x - y> [add and sub 2<y|y>]
+  = lensq(x) - lensq(y) - <lensq'(y)|x-y>
+
+since lensq'(y) = d/dy(y^2) = 2y
+[11:59 PM] Siddharth Bhat: We can interpret this as:
+
+lensq(x) - (lensq(y) + <lensq'(y)|x-y>)
+[11:59 PM] Siddharth Bhat: but 
+
+(lensq(y) + <lensq'(y)|x-y>)
+
+
+is the equation of a point on a line, starting at y, with slope lensq'(y), moving for a distance of (x - y).
+[11:59 PM] Siddharth Bhat: Drawing this out:
+[12:15 AM] Siddharth Bhat:
+
+[12:15 AM] Siddharth Bhat: Apologies for the somewhat shitty drawing
+[12:15 AM] Siddharth Bhat: the distance we are measuring is f(x) - [f(y) + 2y(x-y)] where f(x) = x^2
+[12:15 AM] Siddharth Bhat: So, now, we can choose to generalize this for any convex function f, and it will give us an analogous "distance"
+[12:16 AM] Siddharth Bhat: one that measures distance from the value of the function at a point to that of the tangent drawn at another point
+[12:16 AM] Siddharth Bhat: this will always be positive (it
+[12:16 AM] Siddharth Bhat: (it's clear by just looking at the above figure; for a formal proof, please the convexity of f)
+[12:17 AM] Siddharth Bhat: Also note that the same argument will hold in |R^n. We used nothing special about |R here
+[12:17 AM] Siddharth Bhat: so we can plug in f((p1, p2, ..., pn)) = \sum_i p[i] log (p[i])  as our convex function f: R^n -> R
+[12:18 AM] Siddharth Bhat: and then define the "divergence" D: R^n x R^n -> R; D(x, y) = f(x) - [f(y) + <f'(y)|x-y>]
+[12:19 AM] Athreya C: Sorry for interrupting the flow. https://www.youtube.com/watch?v=ZqIlc1ZNbTE (live right now)
+A 3 part workshop on MIP* vs RE.
+YouTube
+Simons Institute
+Quantum Protocols: Testing & Quantum PCPs
+
+[12:22 AM] Siddharth Bhat: which on simplification yields:
+
+D(x, y) = f(x) - f(y) - <f'(y)|x-y>
+        = f(x) - f(y) - \sum_i (df/dxi)(y) * [x[i] - y[i]]
+        = \sum_i x[i] log x[i] - \sum_i y[i] log y[i] -  
+          \sum_i [1 + log y[i]] * [x[i] - y[i]]
+       = \sum_i x[i] log x[i] + 
+         - \sum_i y[i] log y[i] +  \sum_i y[i] log y[i] (= 0)
+         (- \sum_i x[i] + \sum_i y[i]) = 0
+        - \sum_i x[i] log y[i]
+     = \sum_i x[i] (log x[i] - log y[i])
+[12:22 AM] Siddharth Bhat: hence, this "divergence" which is K-L divergence derived from the bergemen divergence by using F(x) = sum_i x[i] log x[i]
+[12:23 AM] Siddharth Bhat: here is a great visualization link for bergemen divergences: http://mark.reid.name/blog/meet-the-bregman-divergences.html
+Meet the Bregman Divergences
+An introduction to and survey of some interesting results about Bregman divergences.
+[12:23 AM] Siddharth Bhat: anyway, that's my preferred proof for K-L divergence being non-negative
+[12:23 AM] Siddharth Bhat: @Athreya C can you give the jensen based one?
+[12:24 AM] Siddharth Bhat: or @Aditya Bharti
+[12:24 AM] Siddharth Bhat: feel free to ask questions :smile:
+[12:29 AM] Tanmay Kumar Sinha: Ι guess the coding theory perspective makes it clear why we use a log in the definition of entropy. But, is there a particular intuition for using log when thinking about it as a measure of 'surprise', apart from the useful property of it being 0 when p is 1( which other functions may satisfy as well)?
+[12:30 AM] Siddharth Bhat: if you add the condition that entropy (XY) = entropy(X) + entropy(Y) where X, Y are independent random variables, along with some other intuitive conditions: https://math.stackexchange.com/a/331128/261373
+Mathematics Stack Exchange
+Intuitive explanation of entropy
+I have bumped many times into entropy, but it has never been clear for me why we use this formula:
+
+If $X$ is random variable then its entropy is:
+
+$$H(X) = -\displaystyle\sum_{x} p(x)\log p(x).$$
+...
+
+[12:31 AM] Tanmay Kumar Sinha: What does surprise(XY) mean here? Surprise of X and Y?
+[12:31 AM] Tanmay Kumar Sinha: As in the event X and Y
+[12:35 AM] Siddharth Bhat: you can show that entropy is uniquely characterised by information theoretic considerations
+[12:46 AM] Tanmay Kumar Sinha: Nice. Thanks for the explanation.
+[12:51 AM] Siddharth Bhat: Hmm, I'm still somewhat dis-satisfied with my K-L divergence explanation
+[12:51 AM] Siddharth Bhat: I'll do the fisher information based motivation tomorrow
+```
+
+
+# Lagrange Multipliers Discussion
+
+```meta
+status: scratch
+created: 2020-04-06
+last-edited: 2020-04-06
+```
+
+```
+ Aliens was an easy trick, so didn't really feel like there was enough content. Just a binary search. And aliens cause it popularised the problem, Lagrange multipliers are known since 1800s I guess, but IOI was the big problem with the only solution.
+[5:02 PM] Shashwat Goel: idk what lagrange multipliers are so ok
+[5:03 PM] Animesh Sinha: They are the just terms you add to model constraints, as in Aliens.
+[5:04 PM] Animesh Sinha: But you differentiate and set them to zero, instead of binary searching over them, to get nice results in Physics.
+[5:04 PM] Siddharth Bhat: that's a sick explanation @Animesh Sinha  :stuck_out_tongue: they're in fact very geometric
+[5:05 PM] Siddharth Bhat: @Animesh Sinha go on xD
+[5:05 PM] Siddharth Bhat: I'm interested to know how you think of them
+[5:07 PM] Animesh Sinha: So plebian explanation here, treating it as a tool and not a geometric object. Basically, if there are some constraints and a function to minimize under those constraints. Take function + \alpha*constraint, differentiate with the variables you would have, and set it to 0. If this is invariant under alpha, well the constraint you modelled has been satisfied.
+[5:07 PM] Animesh Sinha: Alpha, Beta so on for however many constraints.
+[5:07 PM] Siddharth Bhat: Why does it work?
+[5:08 PM] Animesh Sinha: Cause if the constraint is non-zero, then the derivative will change with change in alpha.
+[5:09 PM] Animesh Sinha: Why do you think it works?
+[5:09 PM] Siddharth Bhat: I don't understand your reasoning
+[5:09 PM] Animesh Sinha: Ah, I saw your saddle point reasoning.
+[5:09 PM] Siddharth Bhat: mm? where did you see my reasoning xD
+[5:10 PM] Animesh Sinha: I know there will be more, but Wikipedia usually has some lovers of shape and geometry.
+[5:11 PM] Siddharth Bhat: this is how I think of it: 
+http://bollu.github.io/#the-geometry-of-lagrange-multipliers
+
+[I need to add pictures, will do sometime]
+bollu.github.io
+bollu.github.io
+code + contents of my website, and programming life
+[5:11 PM] Siddharth Bhat: [I also need to fix the rendering, to split into multiple pages. Currently MathJax just.. dies trying to render the page]
+[5:12 PM] Siddharth Bhat: the TLDR of how I think of it is as follows:
+- we have L(x, l) = f(x) + l g(x)
+[5:12 PM] Siddharth Bhat: @Animesh Sinha wait, can you explain your reasoning?
+[5:13 PM] Siddharth Bhat: @Animesh Sinha because I think you already understood mine?
+[5:13 PM] Siddharth Bhat: I want to learn a new way to think about these :smile:
+[5:14 PM] Animesh Sinha: Okay, I read, but did not understand fully. My reasoning is the first 3 lines of your reasoning. I never felt that there was a need to go further.
+[5:14 PM] Animesh Sinha: You modelled the constraint, and god helps you minimize the function. Reading the levelset thing.
+[5:14 PM] Siddharth Bhat: xD
+[5:15 PM] Animesh Sinha: Also, the idea that the minima is a Saddle point of the Lagrange function is nice to know.
+[5:18 PM] Siddharth Bhat: mm, does the level set idea make sense?
+[5:18 PM] Siddharth Bhat: I really wish we could draw pictures in 3D easily
+[5:18 PM] Siddharth Bhat: blender is such a bitch to draw math in
+[5:19 PM] Animesh Sinha: I didn't get it yet.
+[5:20 PM] Siddharth Bhat: OK
+[5:20 PM] Siddharth Bhat: so, shall I explain it?
+[5:20 PM] Animesh Sinha: Please do.
+[5:22 PM] Siddharth Bhat: we know that the direction of the gradient of a function is represented by ∇g. If we move perpendicular to ∇g for some infinitesimal distance, the value of g does not change, yes?
+[5:22 PM] Animesh Sinha: Agreed.
+[5:23 PM] Animesh Sinha: Wait, what is a levelset, that's where I lost you?
+[5:23 PM] Siddharth Bhat: So, given a space V, at some point α, I will decompose the space into V = subspace(∇g(α)) + subspace(∇g(α)_perpendicular)
+[5:24 PM] Siddharth Bhat: I'll get to it
+[5:24 PM] Siddharth Bhat: does the decomposition make sense?
+[5:24 PM] Animesh Sinha: Yep.
+[5:24 PM] Siddharth Bhat: ie, we know that ∇g will give us some vector. That the subspace spanned by that vector
+[5:24 PM] Siddharth Bhat: and then consider the subspace "perpendicular" to that subspace
+[5:24 PM] Siddharth Bhat: so we decompose our original space into these two parts
+[5:25 PM] Siddharth Bhat: the part that is "perpendicular" to the gradient subspace what I call the level set. In general, a level set of a function f: V -> W is the set of points that have the same value:
+
+level(w_0) = { v in V : f(v) = w_0 }
+[5:26 PM] Siddharth Bhat: so we're interested in:
+
+levelset(g, x_0) = { v in V: g(x) = g(x_0) } 
+[5:26 PM] Siddharth Bhat: because we want to keep g(x) = g(x_0) = 0
+[5:26 PM] Siddharth Bhat: [we want to keep the constraint satisfied]
+[5:26 PM] Siddharth Bhat: while improving on f
+[5:27 PM] Siddharth Bhat: we can show that if we are at a point x_0, on moving from x_0 to x_0 + e:
+- if we want x_0 + e \in levelset(g, x_0) [g(x_0 + e) = g(x_0)]
+-  then (x_0 + e) ⊥ ∇g(x_0)
+[5:28 PM] Animesh Sinha: Okay, so each level set has it's own value of g(x), we can think of it as potential energy surfaces, deleting all the other surfaces, taking only g(x) = 0, we should be able to reach the minima of this surface.
+[5:28 PM] Siddharth Bhat: yeah
+[5:29 PM] Siddharth Bhat: and if we are at some point on the level set g(x) = 0, we want to see how to wiggle from this point
+[5:29 PM] Siddharth Bhat: and how this wiggling interacts with the gradient
+[5:29 PM] Siddharth Bhat: so, we argue that:
+[5:30 PM] Siddharth Bhat: - if we move along ∇g(x_0), then g(x) != g(x + e), because, well, by definition, we have some gradient.
+[5:31 PM] Siddharth Bhat: on the other hand, in our lagrange multipler, we get the constraint that
+1. ∇g(x_0) is parallel to ∇f(x_0). 
+2.if we want to  improve on f, we need to move along ∇f(x_0)
+3. ... which means we will also move along ∇g(x_0)
+4. ... which means that g(x_0+e) will change [it will not be equal to g(x_0) = 0]
+5. ... which means our constraint is no longer satisfied
+[5:32 PM] Siddharth Bhat: so the lagrange multipler constraint of ∇f(x_0) + λ∇g(x_0) = 0 can be read as "to improve f, you must change g)
+[5:32 PM] Siddharth Bhat: while the second condition g(x_0) = c can be read as "but you are locally satisfied with g
+[5:34 PM] Siddharth Bhat: We have L(x, l) = f(x) + l(g). The derivatives read:
+1. g(x) = 0.
+2. ∇f(x) + l∇g(x) = 0
+
+so in toto, it reads:
+1. g(x_0) = 0: you are currently satisfied with g(x_0)
+2. ∇f(x_0) + λ∇g(x_0) = 0: to improve f(x) to f(x+e) by wiggling with e, you must change g(x+e) != g(x).
+
+which implies that:
+3. to improve f(x) to f(x+e), you must become dis satisfied with g(x+e) != g(x) => g(x+e) != 0
+4. hence, the point x_0 is a local optima
+[5:34 PM] Siddharth Bhat: @Animesh Sinha thoughts?
+[5:35 PM] Animesh Sinha: Wait, reading and rendering.
+[5:35 PM] Siddharth Bhat: OK
+[5:36 PM] Animesh Sinha: How did we get 1?
+[5:37 PM] Animesh Sinha: L(x) = f(x) + \lambda g(x), right?
+[5:37 PM] Siddharth Bhat: @Animesh Sinha that's the second condition from our lagrange multipliers gradient, right?
+[5:37 PM] Siddharth Bhat: well,it depends on how you pose the problem
+[5:37 PM] Siddharth Bhat: you can also pose it as L(x) = f(x) + lambda (g(x) - c)
+[5:38 PM] Siddharth Bhat: or you can define it as g'(x) = g(x) - c, and then write it as L(x) = f(x) + lambda g'(x)
+[5:38 PM] Siddharth Bhat: [change c <-> 0 approporiately depending on which formulation you're using. I wrote this assuming L(x) = f(x) + lambda (g(x) - c), sorry for the confusion. ]
+[5:38 PM] Siddharth Bhat: do you want me to reset everything back to 0?
+[5:38 PM] Siddharth Bhat: actually let me do that
+[5:39 PM] Animesh Sinha: No, that's okay.
+[5:39 PM] Animesh Sinha: I just don't get 1.
+[5:40 PM] Siddharth Bhat: can you spell out what 1. is?
+[5:40 PM] Siddharth Bhat: there are multiple 1.s floating around :laughing:
+[5:40 PM] Animesh Sinha: Ah, got it. X_0/
+[5:40 PM] Siddharth Bhat: mm?
+[5:40 PM] Animesh Sinha: ∇g(x_0) is parallel to ∇f(x_0). This one.
+[5:40 PM] Siddharth Bhat: can you explain to me what you got?
+[5:40 PM] Siddharth Bhat: yes
+[5:41 PM] Animesh Sinha: I just missed x_0. Okay got it.
+[5:41 PM] Siddharth Bhat: OK
+[5:41 PM] Animesh Sinha: I always thought of lambda being a cost function multipler, the cost to break the rules.
+[5:41 PM] Siddharth Bhat: yeah, that's the "shadow variable" convex optimisation interpretation
+[5:41 PM] Siddharth Bhat: I leant that from Boyd
+[5:41 PM] Siddharth Bhat: but I find this very natural as well
+[5:41 PM] Animesh Sinha: And that if you set the cost to infinity, and the minima still holds, it's the correct one. Yeah, this is great.
+[5:42 PM] Animesh Sinha: Very gradient descenty.
+[5:42 PM] Siddharth Bhat: indeed.
+[5:42 PM] Siddharth Bhat: I learnt it trying to figure out why the fuck lagrange multipliers works geometrically
+[5:43 PM] Siddharth Bhat: I think I should clean up the description on my blog; the level sets don't seem to help the explanation. I can just say "along ∇g",  perp. to ∇g. And add the level set stuff at the bottom, perhaps
+[5:43 PM] Siddharth Bhat: I find it natural to think of it in terms of level sets, but I can see how it's just extra baggage
+[5:44 PM] Siddharth Bhat: go on guys xD @Animesh Sinha @Aditya Bharti
+[5:44 PM] Animesh Sinha: Also, I need to learn blender. Maybe I get better at visualising by having something too see. And you can just add this explanation there.
+[5:44 PM] Siddharth Bhat: where is "there"?
+[5:44 PM] Siddharth Bhat: oh, you mean the blog?
+[5:44 PM] Animesh Sinha: Yep.
+[5:45 PM] Aditya Bharti: So yeah I agree, the levelset stuff is probably extra. Either explain it more or remove it, it doesn't add to the quality of the argument.
+[5:45 PM] Aditya Bharti: My explanation is quite similar.
+[5:46 PM] Aditya Bharti: Let's work in 3D for now, where we have to minimize the cost z = f(x,y). The 3D example will become clear in a moment, but it's essentially the same.
+[5:47 PM] Aditya Bharti: Since we want to minimize it, we need to move in the direction of -\grad f(x,y). Moving out of the notation.
+[5:47 PM] Aditya Bharti: Imagine the 3D surface of f. To minimize it, we just want to move along it's normal. And we will move along it's normal as long as we're allowed to, by the constraints.
+[5:49 PM] Aditya Bharti: Once we arrive at the boundary of the feasible region, can't go further "along the normal", but we can still go "at an angle to the normal", if the boundary of the feasible region is at an angle.
+[5:50 PM] Aditya Bharti: So the point at which the "boundary of the feasible region" is tangential to the "surface of f", that's the minima we need.
+[5:50 PM] Aditya Bharti: It's essentially the same @Siddharth Bhat 's blog post. I'm surprised he didn't mention the words "manifolds" and "tangent spaces" somewhere. I thought this would be a natural argument for him to make.
+[5:51 PM] Aditya Bharti: ( I know the current blog post boils down to the same thing, just thought that would be your first thought at explanation :stuck_out_tongue: )
+[5:52 PM] Siddharth Bhat: @Aditya Bharti  mm, I don't think the manifold machinery helps much here. What do you have in mind?
+[5:53 PM] Aditya Bharti: Locally, the minima is the point where the tangent space of the "cost function manifold/surface" is the constraint function boundary.
+[5:54 PM] Siddharth Bhat: ah, sure
+[5:58 PM] Siddharth Bhat: Yeah, you can also explain with too much machinery if that is your taste:
+- the manifold is defined by M = g^{-1}(0), which is a manifold by using inverse function theorem and whatnot. [It's non-trivial to show that this thing is actually a manifold]
+- We wish to move along ∇f to improve f, where ∇ is now the covariant derivative.
+- but recall that the covariant derivative on using the levi-cevita connection is precisely the projection of the "real" derivative to the surface of the manifold.
+- hence, ∇f = 0, at the constrained optima, since at ∇f = 0, f has no component of the gradient along g.
+
+but is this really how you want to think about the situation @Aditya Bharti ? :stuck_out_tongue:
+[5:59 PM] Aditya Bharti: absolutely, most decidedly not
+[6:00 PM] Aditya Bharti: I was just mildly, and happily, surprised that you hadn't though. I found your blog post refreshingly plebian and devoid of higher math.
+```
+
+
+# Cycle Density
+
+```meta
+status: scratch
+created: 2020-04-06
+last-edited: 2020-04-06
+```
+
+```
+ Has anyone come across any heuristic/algorithm related to "cycle-density", defined as:
+Take the vertices of the cycle. Find the number of edges among them and divide by C(num_vertices, 2)
+[10:20 PM] Shashwat Goel: Could be maximum cycle density, sum of cycle densitites over all cycles modulo prime, etc. etc.
+pkman630
+ just landed.
+Last Friday at 12:11 PM
+[4:37 PM] Siddharth Bhat: Nice, I haven't seen "you may construct additional pylons" before. That's a cool message
+[4:40 PM] Siddharth Bhat: @Shashwat Goel regarding cycle density, doesn't nC2 seem like overkill? Like, you're expecting "fully connected cycles"? What's the setting? My intuition for a reasonable definition of cycle density would have been to measure how far away a graph is from chordal, so I would have taken a cycle and computed (#of cycles induced by vertices in C) / (|C| - 3)
+[4:41 PM] Siddharth Bhat: (I chose chordal because it's the only class of graphs I know that have extremely nice cycles, perhaps there are other classes...). I'm interested to understand what your conjecture is :D
+[5:49 PM] Shashwat Goel: @Siddharth Bhat Is number of induced cycles easier to calculate? Plus your formula doesn't really give an output b/w 0 and 1 by itself right?
+[5:50 PM] Siddharth Bhat: @Shashwat Goel oh yeah, I had a particular model in mind; I'll fix the counting, but, like, what are you trying to measure? :slight_smile:
+[6:04 PM] Shashwat Goel: https://www.aclweb.org/anthology/L16-1140.pdf - The paper I'm trying to build on.
+[6:05 PM] Shashwat Goel: They use cycle density, so I was quite sure at one point more optimized methods to compute cycle density exist, however when I began looking for literature couldn't find any.
+[6:05 PM] Shashwat Goel: It's quite an interesting application
+[6:07 PM] Shashwat Goel: And even if there are alternate ways to measure 'density' of a cycle different from the edge ratio to completeness, I found this interesting none the less. How to count fast how many chords a cycle has
+[6:10 PM] Shashwat Goel: Also in your formula, why |C| - 3? Why not a different denominator.
+[12:55 AM] Siddharth Bhat: Hm, because I was thinking of a chordal graph, where you've "triangulated" every cycle so speak, so you have |C| - 3 cycles, I think
+[12:55 AM] Siddharth Bhat: well, "fundamental cycle" / "generator of the cycle space"
+[12:57 AM] Siddharth Bhat: anyway, I don't know much any graph theory. I know of chordal indirectly since you can color it in polytime, and that's useful because register allocation 'is the same as' (in theory) graph coloring
+[12:59 AM] Shashwat Goel: Wait, then what is |C|
+[1:00 AM] Siddharth Bhat: |C| is the number of elements in the cycle?
+[1:00 AM] Siddharth Bhat: in a chordal graph, every cycle larger than a 3-cycle has  a smaller cycle inside it
+[1:00 AM] Siddharth Bhat: so your graph has essentially "triangulated" all the cycles
+[1:01 AM] Siddharth Bhat: like, if you take a square, and ask it to be chordal, it will force you to join the diagonal, thereby giving you 2 "small" cycles
+[1:01 AM] Siddharth Bhat: and the large cycle (the square) is the sum of the two cycles in cycle space
+[1:02 AM] Siddharth Bhat: (I really hope I'm not fucking up, anyone who actually knows graph theory plz step in)
+[1:07 AM] Siddharth Bhat: @Shashwat Goel does that..help?
+[2:08 AM] Shashwat Goel: no. of elements being no. of vertices?
+[2:09 AM] Shashwat Goel: or no. of triangles
+[2:09 AM] Shashwat Goel: ig triangles, it makes sense that way.
+[2:13 AM] Shashwat Goel: but then, isnt calculating no. of cycles induced cycles kind of equivalent to calculating number of edges among the cycle vertices
+[2:22 AM] Siddharth Bhat: mm, I think of it more as counting fundamental cycles in cycle space
+[2:22 AM] Siddharth Bhat: which was why the (n 2) count had me surprised
+[12:41 PM] Shashwat Goel: Okay, irrespective of the denominator. Any ideas on counting induced cycles/edges within the cycle nodes
+[11:36 PM] Siddharth Bhat: what kind of ideas are you looking for?
+[11:36 PM] Siddharth Bhat: I don't think I understand your question well
+[11:37 PM] Siddharth Bhat: ah, I see, you want an efficient algorithm
+[11:47 PM] Siddharth Bhat: for the thing that  I was interested in counting, I believe you can find a basis for the cycle space by computing a spanning tree. then every edge you can add into the spanning tree provides a base cycle. 
+
+We will represent each base cycle as a vector in Z/2Z^E. Each edge E is given a coefficient 1 or 0. It is 1 if it occurs in the cycle, and 0 if not.
+
+Let us call the basic cycles B_i \in Z/2Z^|E|
+
+Now, from the [cycle space theory](https://en.wikipedia.org/wiki/Cycle_basis), we know that we can write any cycle in the graph as a linear combination (over Z/2Z) of the basic cycles B_i. That is, given a cycle C \in Z/2Z^|E|, we decompose it as  C = \sum_i c_i B_i. You can solve for the c_i \in Z/2Z using gaussian elimination, I guess.  Then, the number of "smaller cycles" inside your large cycle C is 2^{number of nonzero c_i}: any "smaller cycle" inside the cycle C can be made by putting together elements of the cycle basis B_i which contribute to C.
+
+Was this like what you were looking for, or did I totally miss the mark? :slight_smile: 
+
+- A link: https://www.codeproject.com/Articles/1158232/Enumerating-All-Cycles-in-an-Undirected-Graph
+Enumerating All Cycles in an Undirected Graph
+Finding a fundamental Cycle Set forming a complete basis to enumerate all cycles of a given undirected graph
+[4:35 AM] Shashwat Goel: I like the approach/perspective a lot. However, just counting edges between cycle nodes is O(N^2) and that is enough to know the number of induced cycles I believe (2*Num_cross_edges + 1?). I believe the gaussian elimination step will be slower here?
+[4:36 AM] Shashwat Goel: In any case, this seems to be a nice way of counting once you iterate over all cycles. However the number of cycles can be quite large. I was wondering if there are faster ways to find the most dense cycle through some heuristic, without having to go through all the cycles.
+[5:08 AM] Siddharth Bhat: @Shashwat Goel I'm unconvinced that gaussian elimination will be actually slow in practice --- how large are your graphs?
+[5:08 AM] Siddharth Bhat: I mean, it might be fun to find the cheapest algorithm, but people have spend quite a lot of time optimising gaussian elimination. It's even cheaper over 0/1 matrices AFAIK
+[10:17 AM] Shashwat Goel: Having something fast inside is necessary because remember that there is an outerloop that is quite heavy which justs selects every cycle for counting. The gaussian elimination step takes something ~O(M^3) whereas as I said a 4 line edge counting takes O(N^2logM). Ofc I don't know if implementations make it work faster in practice. I can try checking that.
+
+In any case, a density formula that allows me to prune the cycles, i.e. not compute for every cycle would help cut down the outer loop which is heavier. If I have a step like gaussian elimination inside, I don't find it intuitive enough to find a heuristic to skip cycles from outside. Perhaps I would find it easier with just #no. of edges, and maybe that's just me being a noob.
+[10:20 AM] Shashwat Goel: Also, I'm pretty sure speed matters because it takes a noticeable amount of time on toy graphs with ~150 nodes and 500 edges right now. I have to eventually run it for upto 1e4 nodes and 5e4 edges and I wouldn't want each run to take a day
+[10:22 AM] Siddharth Bhat: so correct me if I am wrong, but we want to solve for coeff in Cvec = \sum_i coeff_i Bvec_i , or Cvec = coeff Bmat, where Cvec, coeff are 1xn and Bmat is nxn. So, coeff = Cvec Bmat^-1. We only need to invert Bmat once? after which it's's a matmul. But it's really not a matmul, since CVec contains entries that are {0, 1}, so it's really a gather rows of BVec and XOR the bit-vectors, which should be  N^2 in the worst case? It should be something like N^2/4 because you have vector instructions that let you perform 4-8 of the same operations in the same clock cycle, even more if you have a GPU.
+[10:24 AM] Siddharth Bhat: and really, it's bitwise XOR, not even add, which ought to be ~2-4x faster than the usual arithmetic stuff thanks to vector instructions?
+[10:29 AM] Siddharth Bhat: what am I missing? xD
+[10:31 AM] Shashwat Goel: Perhaps you're right. I can't say because this is the first time I'm seeing the cycle space thing :P
+[10:31 AM] Siddharth Bhat: ah :slight_smile:
+```
+
+
 # Valley
 
 ```meta
