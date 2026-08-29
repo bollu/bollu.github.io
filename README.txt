@@ -2138,7 +2138,7 @@ last-edited: 2025-06-03
 # I Like Art Nouveau
 
 ```meta
-status: scratch
+status: i-like
 created: 2025-02-19
 last-edited: 2025-10-05
 ```
@@ -2230,7 +2230,7 @@ last-edited: 2025-02-26
 # Pop Piano Covers I Admire
 
 ```meta
-status: scratch
+status: i-like
 created: 2025-02-26
 last-edited: 2025-02-26
 ```
@@ -4127,7 +4127,7 @@ last-edited: 2024-09-29
 # I Like To Play Dances, Waltzes and Ragtime
 
 ```meta
-status: scratch
+status: i-like
 created: 2024-09-21
 last-edited: 2024-09-22
 ```
@@ -4635,7 +4635,7 @@ last-edited: 2024-09-21
 # I Like Piano Sonatas
 
 ```meta
-status: scratch
+status: i-like
 created: 2024-09-21
 last-edited: 2024-09-21
 ```
@@ -4647,7 +4647,7 @@ last-edited: 2024-09-21
 # I Like New Formalism Poetry
 
 ```meta
-status: scratch
+status: i-like
 created: 2024-08-31
 last-edited: 2024-09-01
 ```
@@ -4667,7 +4667,7 @@ last-edited: 2024-09-01
 # Kinds of Fiction Genres I Like
 
 ```meta
-status: scratch
+status: i-like
 created: 2024-09-01
 last-edited: 2024-09-04
 ```
@@ -48474,7 +48474,7 @@ which is indeed the right expression for the inverse.
 # My Favourite APLisms
 
 ```meta
-status: scratch
+status: i-like
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -58314,7 +58314,7 @@ last-edited: 2024-01-31
 # Favourite OP1 Tutorials
 
 ```meta
-status: scratch
+status: i-like
 created: 2024-04-04
 last-edited: 2024-04-04
 ```
@@ -58330,7 +58330,7 @@ last-edited: 2024-04-04
 # Favourite Demoscenes
 
 ```meta
-status: scratch
+status: i-like
 created: 2021-08-19
 last-edited: 2024-04-06
 ```
@@ -59115,7 +59115,7 @@ w: dan-cing un-der-neath the skies of lust
 # Big List of Art and Paintings I Enjoy
 
 ```meta
-status: big-list
+status: i-like
 created: 2024-08-04
 last-edited: 2026-08-28
 ```
