@@ -279,6 +279,7 @@ struct InlineTm {
     Latex,  // $...$  (span includes the dollars).
     Italic, // *...* / _..._ ; **...** parses as nested Italic.
     Link,   // [text](url)
+    Image,  // @img("path", key: value, ...)
   };
   const Kind kind;
   Span span;
@@ -316,6 +317,24 @@ struct InlineLink : public InlineTm {
       : InlineTm(Kind::Link, span), text(text), url(url) {}
 };
 
+// attributes of an @img(...) directive.
+struct ImgAttrs {
+  enum class Size { S, M, L };
+  enum class Placement { None, Left, Right, MarginLeft, MarginRight };
+  Size size = Size::M;
+  Placement placement = Placement::None;
+  std::string width;   // explicit CSS width; overrides size when nonempty.
+  std::string caption; // block figures render this as the <figcaption>.
+  std::string alt;     // defaults to caption when empty.
+};
+
+struct InlineImage : public InlineTm {
+  std::string url;
+  ImgAttrs attrs;
+  InlineImage(Span span, std::string url, ImgAttrs attrs)
+      : InlineTm(Kind::Image, span), url(url), attrs(attrs) {}
+};
+
 // one list item: the marker location plus one entry per content line
 // (continuation indentation already stripped).
 struct ListItemTm {
@@ -347,6 +366,7 @@ struct BlockTm {
     Html,         // <script> ... </script>, emitted verbatim.
     Comment,      // <!-- ... -->, emitted as nothing.
     Meta,         // ```meta fence; renders as nothing.
+    Figure,       // @img(...) alone on a line: a block figure.
   };
   const Kind kind;
   Span span;
@@ -397,6 +417,16 @@ struct BlockCode : public BlockTm {
 // (Kind::Html), or a comment (Kind::Comment).
 struct BlockRaw : public BlockTm {
   BlockRaw(Kind kind, Span span) : BlockTm(kind, span) {}
+};
+
+// an @img(...) directive alone on its line. written directly above a
+// paragraph/list/heading, a floated figure anchors to that block: it is
+// emitted just before it, so the float top-aligns with it.
+struct BlockFigure : public BlockTm {
+  std::string url;
+  ImgAttrs attrs;
+  BlockFigure(Span span, std::string url, ImgAttrs attrs)
+      : BlockTm(Kind::Figure, span), url(url), attrs(attrs) {}
 };
 
 // article metadata from a ```meta fenced block.
@@ -467,10 +497,115 @@ L strconsume(L l, const char *raw_input, const char *delim, const char *errfmt,
 
 InlineTm *tryParseLink(const char *s, const ll len, const L opensq);
 
-// one inline term starting at lbegin: a link, `code`, $latex$, *italic*, or a
-// run of raw text up to the next special character.
+// scan one argument of an @img(...) directive: raw text up to a top-level
+// `,` or `)`, with double quotes protecting their contents. false if the
+// line (or file) ends first.
+static bool scanImgArg(const char *s, L &lcur, std::string &arg) {
+  arg.clear();
+  bool in_quotes = false;
+  while (1) {
+    const char c = s[lcur.si];
+    if (c == '\n' || c == '\0') { return false; }
+    if (!in_quotes && (c == ',' || c == ')')) { return true; }
+    if (c == '"') { in_quotes = !in_quotes; }
+    arg.push_back(c);
+    lcur = lcur.next(c);
+  }
+}
+
+static std::string trimSpaces(const std::string &x) {
+  const size_t b = x.find_first_not_of(" \t");
+  if (b == std::string::npos) { return ""; }
+  const size_t e = x.find_last_not_of(" \t");
+  return x.substr(b, e - b + 1);
+}
+
+static std::string unquote(const std::string &x) {
+  const std::string v = trimSpaces(x);
+  if (v.size() >= 2 && v.front() == '"' && v.back() == '"') {
+    return v.substr(1, v.size() - 2);
+  }
+  return v;
+}
+
+// an @img("path", key: value, ...) directive, typst-style. the first
+// positional argument is the path; named arguments are size (s/m/l),
+// float (left/right/margin-left/margin-right), width, caption, alt.
+// returns nullptr if the directive is malformed (unclosed on its line).
+InlineTm *tryParseImg(const char *s, const ll len, const L lat) {
+  assert(strpeek(s + lat.si, "@img("));
+  L lcur = lat.next("@img(");
+
+  std::string url;
+  ImgAttrs attrs;
+
+  while (1) {
+    if (s[lcur.si] == ')') { lcur = lcur.next(')'); break; }
+    std::string arg;
+    if (!scanImgArg(s, lcur, arg)) { return nullptr; } // unclosed directive.
+    if (s[lcur.si] == ',') { lcur = lcur.next(','); }
+
+    if (trimSpaces(arg).empty()) { continue; }
+
+    // `key: value` if the text before the first ':' is a bare word.
+    const size_t colon = arg.find(':');
+    std::string key = colon == std::string::npos ? "" : trimSpaces(arg.substr(0, colon));
+    const bool keyed = !key.empty() &&
+        key.find_first_not_of("abcdefghijklmnopqrstuvwxyz-") == std::string::npos;
+    if (!keyed) {
+      if (url.empty()) {
+        url = unquote(arg);
+      } else {
+        printf_err_loc(lat, s, "@img: unexpected extra positional arg: |%s|",
+                       arg.c_str());
+      }
+      continue;
+    }
+
+    const std::string val = unquote(arg.substr(colon + 1));
+    if (key == "size") {
+      if (val == "s") { attrs.size = ImgAttrs::Size::S; }
+      else if (val == "m") { attrs.size = ImgAttrs::Size::M; }
+      else if (val == "l") { attrs.size = ImgAttrs::Size::L; }
+      else { printf_err_loc(lat, s, "@img: size must be s/m/l: |%s|", val.c_str()); }
+    } else if (key == "float") {
+      if (val == "left") { attrs.placement = ImgAttrs::Placement::Left; }
+      else if (val == "right") { attrs.placement = ImgAttrs::Placement::Right; }
+      else if (val == "margin-left") { attrs.placement = ImgAttrs::Placement::MarginLeft; }
+      else if (val == "margin-right") { attrs.placement = ImgAttrs::Placement::MarginRight; }
+      else {
+        printf_err_loc(lat, s,
+            "@img: float must be left/right/margin-left/margin-right: |%s|",
+            val.c_str());
+      }
+    } else if (key == "width") {
+      attrs.width = val;
+    } else if (key == "caption") {
+      attrs.caption = val;
+    } else if (key == "alt") {
+      attrs.alt = val;
+    } else {
+      printf_err_loc(lat, s, "@img: unknown key: |%s|", key.c_str());
+    }
+  }
+
+  if (url.empty()) {
+    printf_err_loc(lat, s, "@img: missing image path");
+    return nullptr;
+  }
+  return new InlineImage(Span(lat, lcur), url, attrs);
+}
+
+// one inline term starting at lbegin: a link, `code`, $latex$, *italic*, an
+// @img(...), or a run of raw text up to the next special character.
 InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
   assert(lbegin.si < len);
+
+  if (strpeek(s + lbegin.si, "@img(")) {
+    InlineTm *img = tryParseImg(s, len, lbegin);
+    if (img) { return img; }
+    printf_err_loc(lbegin, s, "malformed @img(...); rendering it as text");
+  }
 
   InlineTm *link = nullptr;
   if (s[lbegin.si] == '[' && (link = tryParseLink(s, len, lbegin))) {
@@ -523,7 +658,8 @@ InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
     }
     return new InlineItalic(Span(lbegin, lcur.next(delim)), items);
   }
-  // raw text: consume up to the next special character.
+  // raw text: consume up to the next special character (or an @img( opener;
+  // a lone '@' stays ordinary text so emails don't split).
   L lcur = lbegin;
   while (1) {
     lcur = lcur.next(s[lcur.si]);
@@ -532,6 +668,7 @@ InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
         c == '\n' || c == '\0') {
       break;
     }
+    if (c == '@' && strpeek(s + lcur.si, "@img(")) { break; }
   }
   return new InlineText(Span(lbegin, lcur));
 }
@@ -926,6 +1063,28 @@ vector<BlockTm *> parseBlocks(const char *s, const ll len) {
     continue;
   }
 
+  // ===@img(...) alone on its line: a block figure===
+  if (strpeek(s + lcur.si, "@img(")) {
+    L limg = lcur;
+    InlineTm *img = tryParseImg(s, len, limg);
+    if (img) {
+      // block form only when nothing but whitespace follows on the line;
+      // otherwise the prose path parses it as an inline image.
+      L lend = img->span.end;
+      while (s[lend.si] == ' ' || s[lend.si] == '\t') {
+        lend = lend.next(s[lend.si]);
+      }
+      if (s[lend.si] == '\n') {
+        closePara();
+        const InlineImage *inline_img = (const InlineImage *)img;
+        ts.push_back(
+            new BlockFigure(img->span, inline_img->url, inline_img->attrs));
+        lcur = lend.nextline();
+        continue;
+      }
+    }
+  }
+
   // ===prose line: open or continue a paragraph===
   if (!para) {
     para = new BlockParagraph(Span(lcur, lcur));
@@ -1185,6 +1344,8 @@ void inlineToPlaintext(const char *s, const InlineTm *t, char *outs,
   case InlineTm::Kind::Link:
     inlineLineToPlaintext(s, ((InlineLink *)t)->text, outs, outlen);
     break;
+  case InlineTm::Kind::Image:
+    break; // images contribute nothing to plaintext (or slugs).
   }
 }
 
@@ -1313,6 +1474,36 @@ bool renderInlineLine(duk_context *katex_ctx, duk_context *prism_ctx,
   return success;
 }
 
+// minimal escaping for text placed inside single-quoted HTML attributes.
+static std::string escapeHtmlAttr(const std::string &x) {
+  std::string out;
+  for (const char c : x) {
+    if (c == '&') { out += "&amp;"; }
+    else if (c == '<') { out += "&lt;"; }
+    else if (c == '\'') { out += "&#39;"; }
+    else { out.push_back(c); }
+  }
+  return out;
+}
+
+// the css classes for a figure's size and float attributes.
+static std::string imgFigureClasses(const ImgAttrs &attrs) {
+  std::string cls = "fig";
+  switch (attrs.size) {
+  case ImgAttrs::Size::S: cls += " fig-s"; break;
+  case ImgAttrs::Size::M: cls += " fig-m"; break;
+  case ImgAttrs::Size::L: cls += " fig-l"; break;
+  }
+  switch (attrs.placement) {
+  case ImgAttrs::Placement::None: break;
+  case ImgAttrs::Placement::Left: cls += " fig-left"; break;
+  case ImgAttrs::Placement::Right: cls += " fig-right"; break;
+  case ImgAttrs::Placement::MarginLeft: cls += " fig-margin-left"; break;
+  case ImgAttrs::Placement::MarginRight: cls += " fig-margin-right"; break;
+  }
+  return cls;
+}
+
 bool renderInline(duk_context *katex_ctx, duk_context *prism_ctx,
                   const char *raw_input, const InlineTm *t, ll &outlen,
                   char *outs) {
@@ -1367,6 +1558,16 @@ bool renderInline(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "</a>");
     return success;
   }
+
+  case InlineTm::Kind::Image: {
+    const InlineImage *img = (const InlineImage *)t;
+    const std::string alt =
+        img->attrs.alt.empty() ? img->attrs.caption : img->attrs.alt;
+    outlen += sprintf(outs + outlen, "<img class='img-inline' src='%s' alt='%s'>",
+                      escapeHtmlAttr(img->url).c_str(),
+                      escapeHtmlAttr(alt).c_str());
+    return true;
+  }
   }
   assert(false && "unreachable");
 }
@@ -1378,6 +1579,27 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
                  char *outs) {
   switch (t->kind) {
   case BlockTm::Kind::Comment: {
+    return true;
+  }
+
+  case BlockTm::Kind::Figure: {
+    const BlockFigure *fig = (const BlockFigure *)t;
+    const std::string alt =
+        fig->attrs.alt.empty() ? fig->attrs.caption : fig->attrs.alt;
+    std::string style;
+    if (!fig->attrs.width.empty()) {
+      style = " style='width:" + escapeHtmlAttr(fig->attrs.width) + "'";
+    }
+    outlen += sprintf(outs + outlen, "<figure class='%s'%s>",
+                      imgFigureClasses(fig->attrs).c_str(), style.c_str());
+    outlen += sprintf(outs + outlen, "<img src='%s' alt='%s'>",
+                      escapeHtmlAttr(fig->url).c_str(),
+                      escapeHtmlAttr(alt).c_str());
+    if (!fig->attrs.caption.empty()) {
+      outlen += sprintf(outs + outlen, "<figcaption>%s</figcaption>",
+                        escapeHtmlAttr(fig->attrs.caption).c_str());
+    }
+    outlen += sprintf(outs + outlen, "</figure>");
     return true;
   }
 
@@ -1833,6 +2055,8 @@ struct RSS {
         // at the end of raw text, write a space.
         writeEscapedCharacter(' ', out);
         break;
+      case InlineTm::Kind::Image:
+        break; // images contribute nothing to RSS titles.
       }
     }
   }

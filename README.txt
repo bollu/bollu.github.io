@@ -2143,11 +2143,11 @@ created: 2025-02-19
 last-edited: 2025-10-05
 ```
 
-<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right, caption: "Klimt")
 
-<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
 
-<img class="marginpicright" src="/static/art-nouveau/klimt.jpg" />
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
 
 - [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
 - [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"

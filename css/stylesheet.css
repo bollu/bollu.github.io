@@ -62,8 +62,9 @@ img {
 /* wide layout: a roomier column than the old 800px box, but still capped
    so lines stay readable on large screens. */
 .container {
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* margin figures hang into the page gutters via negative margins; the
+     container must not clip or scroll them. <pre> keeps its own overflow. */
+  overflow: visible;
   height: 100%;
   min-height: 100%;
   max-width: 1150px;
@@ -231,6 +232,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  clear: both; /* a tall floated figure must not leak past the post. */
 }
 
 #footer .footer-item {
@@ -374,4 +376,80 @@ blockquote {
 
 .big-lists-row .big-lists-label {
   color: #777;
+}
+
+/* === @img(...) figures === */
+
+:root {
+  --fig-s: 14em;
+  --fig-m: 24em;
+  --fig-hang: 9em; /* how far margin figures reach into the gutter */
+}
+
+.container .fig {
+  margin: 1em auto;
+  max-width: 100%;
+}
+
+.container .fig img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container .fig figcaption {
+  font-size: 0.75em;
+  color: #777;
+  margin-top: 0.3em;
+  text-align: left;
+}
+
+.container .fig-s { width: var(--fig-s); }
+.container .fig-m { width: var(--fig-m); }
+.container .fig-l { width: 100%; }
+
+/* wrapfig floats: inside the column, prose wraps around them */
+.container .fig-left  { float: left;  margin: 0.25em 1.2em 0.6em 0; }
+.container .fig-right { float: right; margin: 0.25em 0 0.6em 1.2em; }
+
+/* tufte margin figures: emitted just before their anchor block, so the
+   float top-aligns with it; the negative margin hangs it into the gutter */
+.container .fig-margin-right {
+  float: right;
+  clear: right; /* consecutive margin figures stack, not sit side by side */
+  width: var(--fig-s);
+  margin: 0 calc(-1 * var(--fig-hang)) 0.6em 1.2em;
+}
+
+.container .fig-margin-left {
+  float: left;
+  clear: left;
+  width: var(--fig-s);
+  margin: 0 1.2em 0.6em calc(-1 * var(--fig-hang));
+}
+
+/* inline images: text-height, sitting on the baseline */
+.container img.img-inline {
+  display: inline-block;
+  height: 1.4em;
+  width: auto;
+  vertical-align: text-bottom;
+}
+
+/* 1150px column + two 9em hangs needs ~1450px; below that, margin
+   figures fall back to in-column wrapfig floats */
+@media (max-width: 1450px) {
+  .container .fig-margin-right { margin-right: 0; }
+  .container .fig-margin-left  { margin-left: 0; }
+}
+
+/* phones: no floats at all; every figure is a centered block */
+@media (max-width: 560px) {
+  .container .fig-left, .container .fig-right,
+  .container .fig-margin-left, .container .fig-margin-right {
+    float: none;
+    width: auto;
+    max-width: 100%;
+    margin: 1em auto;
+  }
 }
