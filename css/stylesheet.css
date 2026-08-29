@@ -27,7 +27,6 @@ html, body {
 
 body {
   min-height: 100vh;
-  /* line-height: 1.5em; */
   color: #000000;
   font-family: 'Blog Serif';
   font-size: 12px;
@@ -37,7 +36,7 @@ body {
   padding-bottom: 0px;
   max-width: 100%;
   overflow-x: hidden;
-  background: #ffffff;
+  background: #f0ece4; /* the desk the white sheet sits on */
 }
 
 h1, h2, h3, h4, h5 {
@@ -74,10 +73,12 @@ img {
   hyphens: auto;
   -webkit-hyphens: auto;
   overflow-wrap: break-word;
-  margin: 48px auto 0 auto;
-  padding-left: 48px;
-  padding-right: 48px;
+  margin: 48px auto 48px auto;
+  padding: 40px 48px 48px 48px;
   background: #ffffff;
+  border: 1px solid #ddd6c8;
+  border-radius: 2px;
+  box-shadow: 0 2px 14px rgba(60, 50, 30, 0.10);
 }
 
 .marginpicright {
@@ -87,9 +88,11 @@ img {
 
 @media (max-width: 480px) {
   .container {
-    margin-top: 16px;
-    padding-left: 14px;
-    padding-right: 14px;
+    margin: 0;
+    padding: 16px 14px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
@@ -131,7 +134,7 @@ img {
   margin-bottom: 0.15em;
 }
 
-.container pre, .container .latexblock, .container blockquote {
+.container pre, .container .latexblock {
   margin-top: 0.8em;
   margin-bottom: 0.8em;
   padding: 5px 10px;
@@ -163,12 +166,7 @@ a:active {
   text-decoration: none;
 }
 
-blockquote {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-pre, .latexblock, blockquote {
+pre, .latexblock {
   border-left-color: #BBB;
   border-left-style: solid;
   border-left-width: 5px;
@@ -177,11 +175,32 @@ pre, .latexblock, blockquote {
   padding-bottom: 5px;
   padding-top: 5px;
   background-color: #FEFEFE;
-
 }
 
-pre, blockquote {
+pre {
   padding-left: 10px;
+}
+
+/* quote-y quotes: an oversized hanging quotation mark, italic text */
+.container blockquote {
+  position: relative;
+  font-style: italic;
+  background: #faf8f3;
+  border-left: 2px solid #ddd6c8;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  padding: 0.6em 1em 0.6em 2.4em;
+}
+
+.container blockquote::before {
+  content: '\201C';
+  position: absolute;
+  left: 0.12em;
+  top: 0.02em;
+  font-size: 2.8em;
+  line-height: 1;
+  color: #c9bfae;
+  font-family: 'Blog Serif', serif;
 }
 
 pre {
@@ -238,10 +257,6 @@ ul {
 #footer .footer-item {
   padding-left: 1em;
   padding-right: 1em;
-}
-
-blockquote {
-  padding-left: 0.2em;
 }
 
 /* === homepage filter: article/scratch toggle === */
@@ -459,6 +474,9 @@ blockquote {
 .container .two-column {
   columns: 2;
   column-gap: 2.5em;
+  column-rule: 1px solid #ddd; /* the newspaper hairline in the gutter */
+  orphans: 2;
+  widows: 2;
 }
 
 /* figures, code, and math must not split across columns */
@@ -474,4 +492,36 @@ blockquote {
   .container .two-column {
     columns: 1;
   }
+}
+
+/* === magazine touches === */
+
+/* the kicker: section label above the headline */
+.container .kicker {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #777;
+  margin-bottom: 0.4em;
+}
+
+.container .kicker-technical-note { color: #188038; }
+.container .kicker-essay { color: #1a73e8; }
+.container .kicker-scratch { color: #b3261e; }
+.container .kicker-big-list { color: #1a73e8; }
+
+/* drop cap on the opening paragraph of essays */
+.article-body.status-essay > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 0.85;
+  padding-right: 0.08em;
+  font-family: 'Blog Serif', serif;
+}
+
+/* the end-of-article mark */
+.container .tailpiece {
+  color: #b5b5b5;
+  margin-top: 1em;
+  text-align: left;
 }

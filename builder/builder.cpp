@@ -1620,12 +1620,10 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
   }
 
   case BlockTm::Kind::Meta: {
-    // article metadata renders as a small line under the heading.
+    // the dates line under the heading; the kicker above the headline
+    // carries the status.
     const BlockMeta *meta = (const BlockMeta *)t;
-    if (!meta->created[0] && !meta->last_edited[0] &&
-        meta->status == MetaStatus::TechnicalNote) {
-      return true;
-    }
+    if (!meta->created[0] && !meta->last_edited[0]) { return true; }
 
     outlen += sprintf(outs + outlen, "<div class='article-meta'>");
     const char *sep = "";
@@ -1637,23 +1635,6 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     if (meta->last_edited[0] && strcmp(meta->last_edited, meta->created) != 0) {
       outlen += sprintf(outs + outlen, "%slast edited %s", sep,
                         meta->last_edited);
-      sep = " · ";
-    }
-    if (meta->status == MetaStatus::Scratch) {
-      outlen += sprintf(
-          outs + outlen,
-          "%s<span class='article-meta-scratch'>scratch</span>", sep);
-    } else if (meta->status == MetaStatus::Essay) {
-      outlen += sprintf(outs + outlen,
-                        "%s<span class='article-meta-essay'>essay</span>", sep);
-    } else if (meta->status == MetaStatus::BigList) {
-      outlen += sprintf(
-          outs + outlen,
-          "%s<span class='article-meta-biglist'>big list</span>", sep);
-    } else if (meta->status == MetaStatus::ILike) {
-      outlen += sprintf(
-          outs + outlen,
-          "%s<span class='article-meta-biglist'>i like</span>", sep);
     }
     outlen += sprintf(outs + outlen, "</div>");
     return true;
@@ -2310,25 +2291,55 @@ int main(int argc, char **argv) {
     outlen += sprintf(outbuf + outlen, "%s", html_preamble);
     bool success = true;
     ll i = ix_start;
-    // the title (and the meta/date line, when present) span the full width;
-    // a two-column layout applies to the body that follows them.
+    // peek the meta block (it follows the heading) for the kicker, the
+    // layout, and the essay drop-cap class.
+    const BlockMeta *meta = nullptr;
+    if (ix_start + 1 < ix_h1 &&
+        ts[ix_start + 1]->kind == BlockTm::Kind::Meta) {
+      meta = (const BlockMeta *)ts[ix_start + 1];
+    }
+    const MetaStatus status = meta ? meta->status : MetaStatus::Scratch;
+
+    // ===kicker: the magazine-style section label above the headline===
+    const char *kicker = nullptr, *kicker_cls = nullptr;
+    switch (status) {
+    case MetaStatus::TechnicalNote:
+      kicker = "technical note"; kicker_cls = "technical-note"; break;
+    case MetaStatus::Essay: kicker = "essay"; kicker_cls = "essay"; break;
+    case MetaStatus::Scratch: kicker = "scratch"; kicker_cls = "scratch"; break;
+    case MetaStatus::BigList:
+      kicker = "big list"; kicker_cls = "big-list"; break;
+    case MetaStatus::ILike: kicker = "i like"; kicker_cls = "big-list"; break;
+    }
+    outlen += sprintf(outbuf + outlen,
+                      "<div class='kicker kicker-%s'>%s</div>", kicker_cls,
+                      kicker);
+
+    // the title and meta/date line span the full width; the body below
+    // flows in the article-body wrapper (two-column by default).
     success &=
         renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     i++;
-    LayoutKind layout = LayoutKind::TwoColumn;
-    if (i < ix_h1 && ts[i]->kind == BlockTm::Kind::Meta) {
-      layout = ((const BlockMeta *)ts[i])->layout;
+    if (meta) {
       success &=
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
       i++;
     }
-    const bool two_col = layout == LayoutKind::TwoColumn;
-    if (two_col) { outlen += sprintf(outbuf + outlen, "<div class='two-column'>"); }
+
+    std::string body_cls = "article-body";
+    if (!meta || meta->layout == LayoutKind::TwoColumn) {
+      body_cls += " two-column";
+    }
+    if (status == MetaStatus::Essay) { body_cls += " status-essay"; }
+    outlen +=
+        sprintf(outbuf + outlen, "<div class='%s'>", body_cls.c_str());
     for (; i < ix_h1; ++i) {
       success &=
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
-    if (two_col) { outlen += sprintf(outbuf + outlen, "</div>"); }
+    // ===tailpiece: the end-of-article mark===
+    outlen += sprintf(outbuf + outlen, "<div class='tailpiece'>∎</div>");
+    outlen += sprintf(outbuf + outlen, "</div>");
 
     if (!success) {
       fprintf(stdout, "===ERROR: compile [%s] failed. skipping. ", url);
