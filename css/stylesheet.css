@@ -296,112 +296,83 @@ ul {
   padding-right: 1em;
 }
 
-/* === homepage filter: article/scratch toggle === */
+/* === homepage contents === */
 
-#filter-bar {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-#status-filter {
+/* ruled section titles (the old big-lists look) */
+.container .toc-title {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  row-gap: 0.4em;
-}
-
-/* on phones the filters river down, one below the other */
-@media (max-width: 560px) {
-  #status-filter {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #status-filter .pill {
-    text-align: left;
-    padding-left: 0;
-  }
-
-  #status-filter .garage-door {
-    padding-left: 0;
-    margin-top: 0.4em;
-  }
-}
-
-/* minimal tab-style buttons: a colored line under the selected one. */
-#filter-bar .pill {
-  font-family: 'Blog Serif', serif;
-  font-size: 0.75em;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.7em;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  background: none;
-  color: #000000;
-  border: none;
-  border-bottom: 2px solid #cccccc;
-  padding: 0.15em 0.8em;
-  margin-right: 0.3em;
-  cursor: pointer;
-  line-height: 1.4em;
+  letter-spacing: 0.18em;
+  color: #777;
+  margin-bottom: 0.5em;
 }
 
-#filter-bar .pill:hover {
-  color: #1a73e8;
+.container .toc-title::before,
+.container .toc-title::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #ddd6c8;
 }
 
-#filter-bar .pill.is-active {
-  color: #1a73e8;
-  border-bottom-color: #1a73e8;
+/* the polished trio: three mini-columns */
+.container .toc-top {
+  display: flex;
+  gap: 2.2em;
+  margin: 1.4em 0;
 }
 
-#post-list .post-row.hidden {
-  display: none;
+.container .toc-top .toc-group {
+  flex: 1;
+  min-width: 0;
 }
 
-#post-list .post-meta {
-  padding-left: 0.6em;
+/* technical notes and scratch: two columns */
+.container .toc-bottom {
+  display: flex;
+  gap: 2.5em;
+  align-items: flex-start;
+}
+
+.container .toc-bottom .toc-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.container .toc-list {
+  text-align: left;
+}
+
+.container .toc-list li {
+  margin-bottom: 0.25em;
+}
+
+.container .garage-door-line {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.container .garage-door-author {
+  color: #777;
+}
+
+/* narrow screens: everything stacks */
+@media (max-width: 900px) {
+  .container .toc-top,
+  .container .toc-bottom {
+    flex-direction: column;
+  }
+}
+
+.container .toc-list .post-meta {
+  padding-left: 0.5em;
   font-size: 0.8em;
   color: #777;
   white-space: nowrap;
-}
-
-#post-list .post-year {
-  padding-right: 0.5em;
-}
-
-#post-list .status-label {
-  font-style: italic;
-}
-
-#post-list .status-label.status-technical-note {
-  color: #188038;
-}
-
-#post-list .status-label.status-essay {
-  color: #1a73e8;
-}
-
-#post-list .status-label.status-scratch {
-  color: #999;
-}
-
-#post-list .status-label.status-exposition {
-  color: #7b52ab;
-}
-
-#post-list .status-label.status-big-list {
-  color: #1a73e8;
-}
-
-#status-filter .garage-door {
-  font-size: 0.85em;
-  padding-left: 0.6em;
-  font-style: italic;
-}
-
-#status-filter .garage-door-author {
-  font-size: 0.85em;
-  font-style: italic;
-  color: #777;
 }
 
 /* the created / last-edited / draft line under each article's title */

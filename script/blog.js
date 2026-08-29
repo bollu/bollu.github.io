@@ -1,31 +1,3 @@
-// === homepage filter: done/draft toggle ===
-// article pages have no #filter-bar, so this is a no-op there.
-document.addEventListener('DOMContentLoaded', function () {
-	var bar = document.getElementById('filter-bar');
-	if (!bar) return;
-
-	var rows = document.querySelectorAll('#post-list .post-row');
-	var statusPills = bar.querySelectorAll('[data-status-filter]');
-
-	function applyFilter(activeStatus) {
-		for (var i = 0; i < rows.length; i++) {
-			var row = rows[i];
-			row.classList.toggle('hidden', activeStatus !== 'all' &&
-				row.getAttribute('data-status') !== activeStatus);
-		}
-		for (var i = 0; i < statusPills.length; i++) {
-			statusPills[i].classList.toggle('is-active',
-				statusPills[i].getAttribute('data-status-filter') === activeStatus);
-		}
-	}
-
-	for (var i = 0; i < statusPills.length; i++) {
-		statusPills[i].addEventListener('click', function () {
-			applyFilter(this.getAttribute('data-status-filter'));
-		});
-	}
-});
-
 window.onload = function () {
 	var abcElements = document.querySelectorAll('.abc');
 	for(var i = 0; i < abcElements.length; i++){

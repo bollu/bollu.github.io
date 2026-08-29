@@ -1912,8 +1912,25 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
 }
 
 // returns number of characters written.
-// homepage: the done/draft filter and the (filterable) chronological post
-// list; big lists live in their own section (writeBigListsHTML).
+// the homepage contents: the three curated categories (essays,
+// expositions, big lists) in full as three ruled mini-columns, then
+// technical notes and scratch as two ruled columns below.
+static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
+                       const char *raw_input, const ArticleInfo &a,
+                       KEEP char *outs) {
+  ll outlen = 0;
+  outlen += sprintf(outs + outlen, "<li><a href='%s.html'>", a.url);
+  renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line, outlen,
+                   outs);
+  outlen += sprintf(outs + outlen, "</a>");
+  if (a.meta && a.meta->created[0]) {
+    outlen += sprintf(outs + outlen,
+                      " <span class='post-meta'>%.4s</span>", a.meta->created);
+  }
+  outlen += sprintf(outs + outlen, "</li>");
+  return outlen;
+}
+
 long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
                            const char *raw_input,
                            const vector<ArticleInfo> &articles,
@@ -1921,57 +1938,61 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   printf("===writing homepage TOC===\n");
   ll outlen = 0;
 
-  // ===filter bar===
-  outlen += sprintf(outs + outlen,
-      "<div id='filter-bar'>"
-      "<div id='status-filter'>"
-      "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
-      "<button class='pill status-pill' data-status-filter='technical-note'>technical notes</button>"
-      "<button class='pill status-pill' data-status-filter='exposition'>expositions</button>"
-      "<button class='pill status-pill' data-status-filter='essay'>essays</button>"
-      "<button class='pill status-pill' data-status-filter='big-list'>big lists</button>"
-      "<button class='pill status-pill' data-status-filter='scratch'>scratch</button>"
-      "<a class='garage-door' "
-      "href='https://notes.andymatuschak.org/About_these_notes"
-      "?stackedNotes=zCMhncA1iSE74MKKYQS5PBZ'>"
-      "Work With The Garage Door Open</a>"
-      "<span class='garage-door-author'> — Andy Matuschak</span>"
-      "</div>"
-      "</div>");
+  const auto status_of = [](const ArticleInfo &a) {
+    return a.meta ? a.meta->status : MetaStatus::Scratch;
+  };
 
-  // ===post list===
-  outlen += sprintf(outs + outlen, "<ol reversed id='post-list'>");
-  for (const ArticleInfo &a : articles) {
-    const char *status = "scratch", *label = "scratch";
-    if (a.meta && a.meta->status == MetaStatus::TechnicalNote) {
-      status = "technical-note"; label = "technical";
-    } else if (a.meta && a.meta->status == MetaStatus::Essay) {
-      status = "essay"; label = "essay";
-    } else if (a.meta && a.meta->status == MetaStatus::Exposition) {
-      status = "exposition"; label = "exposition";
-    } else if (a.meta && a.meta->status == MetaStatus::BigList) {
-      status = "big-list"; label = "big list";
-    }
-    char year[5] = {0};
-    if (a.meta && a.meta->created[0]) { strncpy(year, a.meta->created, 4); }
-
+  // ===the curated trio, in full===
+  struct Group { MetaStatus status; const char *title; };
+  const Group top[] = {{MetaStatus::Essay, "Essays"},
+                       {MetaStatus::Exposition, "Expositions"},
+                       {MetaStatus::BigList, "Big Lists"}};
+  outlen += sprintf(outs + outlen, "<div class='toc-top'>");
+  for (const Group &g : top) {
     outlen += sprintf(outs + outlen,
-        "<li class='post-row' data-status='%s' data-year='%s'>", status, year);
-    outlen += sprintf(outs + outlen, "<a href='%s.html' class='post-title'>", a.url);
-    renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line,
-                     outlen, outs);
-    outlen += sprintf(outs + outlen, "</a>");
-    outlen += sprintf(outs + outlen, "<span class='post-meta'>");
-    if (year[0]) {
-      outlen += sprintf(outs + outlen, "<span class='post-year'>%s</span>", year);
+                      "<div class='toc-group'>"
+                      "<div class='toc-title'>%s</div><ul class='toc-list'>",
+                      g.title);
+    for (const ArticleInfo &a : articles) {
+      if (status_of(a) != g.status) { continue; }
+      outlen += writeTocItem(katex_ctx, prism_ctx, raw_input, a,
+                             outs + outlen);
     }
-    outlen += sprintf(outs + outlen,
-        "<span class='status-label status-%s'>%s</span>", status, label);
-    outlen += sprintf(outs + outlen, "</span></li>");
+    outlen += sprintf(outs + outlen, "</ul></div>");
   }
-  outlen += sprintf(outs + outlen, "</ol>");
+  outlen += sprintf(outs + outlen, "</div>");
+
+  // ===technical notes and scratch, two columns===
+  const Group bottom[] = {{MetaStatus::TechnicalNote, "Technical Notes"},
+                          {MetaStatus::Scratch, "Scratch"}};
+  outlen += sprintf(outs + outlen, "<div class='toc-bottom'>");
+  for (const Group &g : bottom) {
+    outlen += sprintf(outs + outlen,
+                      "<div class='toc-group'>"
+                      "<div class='toc-title'>%s</div>",
+                      g.title);
+    if (g.status == MetaStatus::Scratch) {
+      outlen += sprintf(
+          outs + outlen,
+          "<div class='garage-door-line'>"
+          "<a class='garage-door' "
+          "href='https://notes.andymatuschak.org/About_these_notes"
+          "?stackedNotes=zCMhncA1iSE74MKKYQS5PBZ'>"
+          "Work With The Garage Door Open</a>"
+          "<span class='garage-door-author'> — Andy Matuschak</span></div>");
+    }
+    outlen += sprintf(outs + outlen, "<ol reversed class='toc-list'>");
+    for (const ArticleInfo &a : articles) {
+      if (status_of(a) != g.status) { continue; }
+      outlen += writeTocItem(katex_ctx, prism_ctx, raw_input, a,
+                             outs + outlen);
+    }
+    outlen += sprintf(outs + outlen, "</ol></div>");
+  }
+  outlen += sprintf(outs + outlen, "</div>");
   return outlen;
 }
+
 
 struct RSS {
 
