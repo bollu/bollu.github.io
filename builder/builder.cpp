@@ -1935,9 +1935,14 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
   outlen += sprintf(outs + outlen, "<li><a href='%s.html'>", a.url);
   renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line, outlen,
                    outs);
+  // trim the renderer's trailing spaces, then glue the date to the title's
+  // last word with a no-break space so the date never wraps alone.
+  while (outlen > 0 && outs[outlen - 1] == ' ') { outlen--; }
+  outs[outlen] = 0;
   outlen += sprintf(outs + outlen, "</a>");
   if (a.meta && a.meta->created[0]) {
-    outlen += sprintf(outs + outlen, " <span class='post-meta'>%s</span>",
+    outlen += sprintf(outs + outlen,
+                      "&#160;<span class='post-meta'>%s</span>",
                       shortDate(a.meta->created).c_str());
   }
   outlen += sprintf(outs + outlen, "</li>");

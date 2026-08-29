@@ -555,3 +555,49 @@ ul {
   flex: 1;
   border-top: 1px solid #ddd6c8;
 }
+
+/* === print: the page prints as it renders === */
+@media print {
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    margin: 12mm;
+  }
+
+  body {
+    overflow-x: visible;
+  }
+
+  .container {
+    box-shadow: none;
+    border: none;
+    margin: 0 auto;
+  }
+
+  /* the paper is narrower than 900px in css terms; keep the two-column
+     layout rather than letting the mobile fallback fire. */
+  .container .two-column {
+    columns: 2;
+  }
+
+  .container .two-column::before {
+    display: block;
+  }
+
+  .container .fig,
+  .container pre,
+  .container .latexblock,
+  .container blockquote {
+    break-inside: avoid;
+  }
+
+  /* navigation and comments are meaningless on paper */
+  #footer,
+  .utterances,
+  script {
+    display: none !important;
+  }
+}
