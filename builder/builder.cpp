@@ -151,6 +151,14 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
 }
 
 
+// ANSI colors for error output; empty when stderr is not a terminal.
+static const char *err_color(const char *code) {
+  return isatty(fileno(stderr)) ? code : "";
+}
+#define ERR_RED "\033[1;31m"
+#define ERR_YELLOW "\033[1;33m"
+#define ERR_RESET "\033[0m"
+
 void print_span(FILE *f, Span span, const char *data) {
   const L l = span.begin;
   const L m = span.end;
@@ -174,7 +182,8 @@ void print_span(FILE *f, Span span, const char *data) {
       fputc(data[i], f);
     }
     fputc('\n', f);
-    fprintf(f, "%4lld>%s\n", l.line, squiggle.c_str());
+    fprintf(f, "%4lld>%s%s%s\n", l.line, err_color(ERR_YELLOW),
+            squiggle.c_str(), err_color(ERR_RESET));
   }
 
   if (l.line == m.line)  {
@@ -192,7 +201,8 @@ void print_span(FILE *f, Span span, const char *data) {
       fputc(data[i], f);
   }
   fputc('\n', f);
-  fprintf(f, "%4lld>%s\n", m.line, squiggle.c_str());
+  fprintf(f, "%4lld>%s%s%s\n", m.line, err_color(ERR_YELLOW),
+          squiggle.c_str(), err_color(ERR_RESET));
   fprintf(f, "^^..raw file..^^\n");
   fflush(f);
 }
@@ -210,7 +220,7 @@ void vprintf_err_loc(L loc, const char *raw_input, const char *fmt, va_list args
   char *outstr = (char *)malloc(sizeof(char) * 1e5);
   vsprintf(outstr, fmt, args);
   assert(outstr);
-  cerr << outstr;
+  cerr << err_color(ERR_RED) << outstr << err_color(ERR_RESET);
   cerr << "\n===" << std::endl;
   free(outstr);
 }
@@ -229,7 +239,7 @@ void vprintf_err_span(Span span, const char *raw_input, const char *fmt, va_list
   char *outstr = (char *)malloc(sizeof(char) * 1e5);
   vsprintf(outstr, fmt, args);
   assert(outstr);
-  cerr << outstr;
+  cerr << err_color(ERR_RED) << outstr << err_color(ERR_RESET);
   cerr << "\n===" << std::endl;
   free(outstr);
 }
@@ -2225,8 +2235,13 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "<script src='/script/masonry.pkgd.min.js'></script>"
       "<script>document.addEventListener('DOMContentLoaded',function(){"
       "var m=document.querySelector('.mosaic');"
-      "if(m&&window.Masonry){new Masonry(m,{itemSelector:'.brick',"
-      "columnWidth:'.brick-sizer',percentPosition:true,gutter:18});}});"
+      "if(m&&window.Masonry){var ms=new Masonry(m,{itemSelector:'.brick',"
+      "columnWidth:'.brick-sizer',percentPosition:true,gutter:18});"
+      // web fonts change caption heights after the first layout; re-measure
+      // once they are in (and again on full load, for belt and braces).
+      "var re=function(){ms.layout();};"
+      "if(document.fonts){document.fonts.ready.then(re);}"
+      "window.addEventListener('load',re);}});"
       "</script>");
 
   // ===technical notes and scratch, two columns===

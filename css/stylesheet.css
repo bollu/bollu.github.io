@@ -756,6 +756,7 @@ ul {
 .container .masthead-text {
   flex: 1;
   min-width: 0;
+  text-align: left; /* justified link rows stretch badly when narrow. */
 }
 
 .container .masthead-photo {

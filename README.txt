@@ -59767,6 +59767,8 @@ last-edited: 2021-05-23
 blurb: A future history of geometric computation theory: billiard balls on symplectic manifolds, and the fall of the EDA industry.
 ```
 
+_Fiction, in the tradition of [Stanislaw Lem's reviews of imaginary books](https://en.wikipedia.org/wiki/A_Perfect_Vacuum)._
+
 ## Paper Abstract
 
 We consider the hamiltonian evolution of systems on 
@@ -60077,8 +60079,6 @@ status: scratch
 created: 2020-08-25
 last-edited: 2020-08-25
 ```
-
-_Fiction, in the tradition of [Stanislaw Lem's reviews of imaginary books](https://en.wikipedia.org/wiki/A_Perfect_Vacuum)._
 
 Fun number theory fact: how to compute the continued fraction expansion of `sqrt(2)`:
 
