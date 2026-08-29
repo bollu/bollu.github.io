@@ -641,27 +641,6 @@ ul {
   }
 }
 
-/* === masthead: header text beside the portrait === */
-
-.container .masthead {
-  display: flex;
-  gap: 2.5em;
-  align-items: center;
-  margin-bottom: 1em;
-}
-
-.container .masthead-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.container .masthead-photo {
-  width: 44%;
-  max-width: 520px;
-  height: auto;
-  border-radius: 2px;
-}
-
 /* === the photo strip below the masthead === */
 
 .container .photo-strip {
@@ -681,13 +660,4 @@ ul {
   display: block;
 }
 
-@media (max-width: 900px) {
-  .container .masthead {
-    flex-direction: column;
-  }
 
-  .container .masthead-photo {
-    width: 100%;
-    max-width: 520px;
-  }
-}
