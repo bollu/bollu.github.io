@@ -12,140 +12,12 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
  
-# Big List of Jazz
-
-```meta
-status: big-list
-created: 2026-03-04
-last-edited: 2026-08-28
-```
-
-## Funk Jazz Standards
-
-- [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
-- Vamp: repeating pattern with chromaticism (by eg side slipping).
-- Use dorian, myxolydian modes.
-- Rhythmically interesting.
-- Bassline is most important part.
-
-#### Rhythm
-
-- Slower tempo.
-- 16th notes (1-e-and-a, 2-e-and-a)
-- Backbeat, so snare on 2 & 4
-- Emphasis on "The One" 
-- Strong 'downbeat' feel on 1, 2 and 4
-- use of syncopation.
-
-#### Left Hand
-
-- Bassline that hits the root note strongly on beat 1
-- Use 16th note feel
-- Use syncopation
-- The 2nd and 4th 16notes give the 16th note feel, since 1st and 3rd 16th notes sound like 8ths.
-  This also makes it sound syncopated.
-
-#### Right Hand
-
-- Use 16th note feel 
-- Use syncopation
-
-#### Most Common Standards
-
-- Superstition — Stevie Wonder
-- Chameleon — Herbie Hancock / The Headhunters
-- Watermelon Man — Herbie Hancock
-- What's Going On — Marvin Gaye
-- I Wish — Stevie Wonder
-- Brick House — Commodores
-- Pick Up the Pieces — Average White Band
-- Get Down On It — Kool & The Gang
-- Cissy Strut — The Meters
-- Give It to Me Baby — Rick James
-- Get Up (I Feel Like Being a) Sex Machine — James Brown
-- Get Up Offa That Thing — James Brown
-- Flash Light — Parliament
-- Freedom Jazz Dance — Eddie Harris (Real Book standard)
-
-#### Standards
-
-- The Chicken — Pee Wee Ellis (via The J.B.'s / Jaco Pastorius)
-- Mister Magic — Grover Washington Jr.
-- Too High — Stevie Wonder
-- Tutu — Miles Davis / Marcus Miller
-- Cold Duck Time — Eddie Harris
-- Some Skunk Funk — The Brecker Brothers
-- Red Baron — Billy Cobham
-- Thank You (Falettinme Be Mice Elf Agin) — Sly & The Family Stone
-- If You Want Me to Stay — Sly & The Family Stone
-- Shakey Ground — The Temptations
-- Pass the Peas — The J.B.'s
-
-
-
-
-
-
-
-
-## Jazz Voicings
-
-- [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
-- don't want doublings (same note played twice, lower and higher).
-  Can be using the fingers to play more colorful tones,
-  also, it shuts down the resonance of a sound.
-- Some use doublings on purpose, but we avoid them.
-- Don't want to just have a stack of thirds, sounds a litle less sophisticated.
-- We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
-- The essential tones are te 3rd and the 7th.
-
-#### Type A/B Voicings
-
-- Only uses essential tones. Learn inversions of these
-  (Type A: 3rd below) followed by (Type B: 7th below).
-  When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
-  This leads to a smooth ascent.
-- NOTE: sounds crazy dissonant?
-
-## Thickened Line Voicings
-
-- Kinds of voicings that are useful to enforcing a melody.
-
-#### Thickened Line: Closed Position / Shearing Voicing
-
-- The melody notes are bottom and top.
-- Use "mary had a little lamb" to play this.
-- Play on the bepop scale
-
-#### Thickcened Line: Drop 2 Voicings
-
-- Start with a closed position voicing, get rid of the lowest/bottom note,
-  and move the second note from the top *down* an ocatve.
-- These are 'lighter' sounding than closed position voicings.
-
-#### Thickcened Line: Drop 3 Voicings (Can Learn Later)
-
-- Start with a closed position voicing, get rid of the lowest/bottom note,
-  and move the third note from the top *down* an ocatve.
-- Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
-
-#### Modal: So What Voicing
-
-- Pick a mode, say, D dorian.
-- In modal jazz, all notes are 'equal' (so there is no 'essential tones', or 'chord and non chord tones').
-- Play 3rd or 4th intervals *from the mode*.
-- Stack 4th, 4th, 4th, and 3rd from within the mode. 5 notes in total.
-- For example, in D dorian, we can play `low:D G C F E`, which is `3rd 4th 4th 4th 3rd` from the mode.
-- Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
-- These two make the classic 'so-what' call and response pattern:
-  `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
-
-# Big List of Hosting 20 People For Wine And Cheese
+# Big List of Hosting
 
 ```meta
 status: big-list
 created: 2026-08-23
-last-edited: 2026-08-26
+last-edited: 2026-08-29
 ```
 
 #### Cooking
@@ -4606,6 +4478,126 @@ Ragtime-like piano style, typically played in bars, featuring lively rhythms and
 
 Fast, complex, with intricate chord changes and syncopation. It emphasizes individual improvisation.
 
+
+## Funk Jazz Standards
+
+- [How to play Funk Piano by the jazz piano site](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-genres/how-to-play-funk-piano/?amp=1)
+- Vamp: repeating pattern with chromaticism (by eg side slipping).
+- Use dorian, myxolydian modes.
+- Rhythmically interesting.
+- Bassline is most important part.
+
+#### Rhythm
+
+- Slower tempo.
+- 16th notes (1-e-and-a, 2-e-and-a)
+- Backbeat, so snare on 2 & 4
+- Emphasis on "The One" 
+- Strong 'downbeat' feel on 1, 2 and 4
+- use of syncopation.
+
+#### Left Hand
+
+- Bassline that hits the root note strongly on beat 1
+- Use 16th note feel
+- Use syncopation
+- The 2nd and 4th 16notes give the 16th note feel, since 1st and 3rd 16th notes sound like 8ths.
+  This also makes it sound syncopated.
+
+#### Right Hand
+
+- Use 16th note feel 
+- Use syncopation
+
+#### Most Common Standards
+
+- Superstition — Stevie Wonder
+- Chameleon — Herbie Hancock / The Headhunters
+- Watermelon Man — Herbie Hancock
+- What's Going On — Marvin Gaye
+- I Wish — Stevie Wonder
+- Brick House — Commodores
+- Pick Up the Pieces — Average White Band
+- Get Down On It — Kool & The Gang
+- Cissy Strut — The Meters
+- Give It to Me Baby — Rick James
+- Get Up (I Feel Like Being a) Sex Machine — James Brown
+- Get Up Offa That Thing — James Brown
+- Flash Light — Parliament
+- Freedom Jazz Dance — Eddie Harris (Real Book standard)
+
+#### Standards
+
+- The Chicken — Pee Wee Ellis (via The J.B.'s / Jaco Pastorius)
+- Mister Magic — Grover Washington Jr.
+- Too High — Stevie Wonder
+- Tutu — Miles Davis / Marcus Miller
+- Cold Duck Time — Eddie Harris
+- Some Skunk Funk — The Brecker Brothers
+- Red Baron — Billy Cobham
+- Thank You (Falettinme Be Mice Elf Agin) — Sly & The Family Stone
+- If You Want Me to Stay — Sly & The Family Stone
+- Shakey Ground — The Temptations
+- Pass the Peas — The J.B.'s
+
+
+
+
+
+
+
+
+## Jazz Voicings
+
+- [Jazz Voicings in Under An Hour by Jeremy Siskind](https://www.youtube.com/watch?v=eO9-coEbQK8)
+- don't want doublings (same note played twice, lower and higher).
+  Can be using the fingers to play more colorful tones,
+  also, it shuts down the resonance of a sound.
+- Some use doublings on purpose, but we avoid them.
+- Don't want to just have a stack of thirds, sounds a litle less sophisticated.
+- We want to avoid the minor 9th (octave plus half-step), as it sounds crazy dissonant.
+- The essential tones are te 3rd and the 7th.
+
+#### Type A/B Voicings
+
+- Only uses essential tones. Learn inversions of these
+  (Type A: 3rd below) followed by (Type B: 7th below).
+  When playing  `E A D G C` chord sequence for Cmaj7 (III-VI-II-V-I).
+  This leads to a smooth ascent.
+- NOTE: sounds crazy dissonant?
+
+## Thickened Line Voicings
+
+- Kinds of voicings that are useful to enforcing a melody.
+
+#### Thickened Line: Closed Position / Shearing Voicing
+
+- The melody notes are bottom and top.
+- Use "mary had a little lamb" to play this.
+- Play on the bepop scale
+
+#### Thickcened Line: Drop 2 Voicings
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the second note from the top *down* an ocatve.
+- These are 'lighter' sounding than closed position voicings.
+
+#### Thickcened Line: Drop 3 Voicings (Can Learn Later)
+
+- Start with a closed position voicing, get rid of the lowest/bottom note,
+  and move the third note from the top *down* an ocatve.
+- Not as harmonious as drop-2. Can be mixed with drop-2 for a more 'colorful' sound.
+
+#### Modal: So What Voicing
+
+- Pick a mode, say, D dorian.
+- In modal jazz, all notes are 'equal' (so there is no 'essential tones', or 'chord and non chord tones').
+- Play 3rd or 4th intervals *from the mode*.
+- Stack 4th, 4th, 4th, and 3rd from within the mode. 5 notes in total.
+- For example, in D dorian, we can play `low:D G C F E`, which is `3rd 4th 4th 4th 3rd` from the mode.
+- Can start on any note from the mode. Starting from C, we get `low:C F E B G`.
+- These two make the classic 'so-what' call and response pattern:
+  `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
 
 # I Like New Formalism Poetry
 
