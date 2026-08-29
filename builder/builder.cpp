@@ -351,8 +351,10 @@ struct ListItemTm {
 // absent-status default). TechnicalNote and Essay mark the curated best: a
 // complete technical note, or a piece of reflective prose. Exposition marks
 // longform pedagogical series (e.g. the homology invitation). BigList marks
-// living list documents.
-enum class MetaStatus { Scratch, TechnicalNote, Essay, Exposition, BigList };
+// living list documents. Photo is a photograph: the meta block carries the
+// image path, location, and blurb caption.
+enum class MetaStatus { Scratch, TechnicalNote, Essay, Exposition, BigList,
+                        Photo };
 
 struct BlockTm {
   enum class Kind {
@@ -440,7 +442,9 @@ struct BlockMeta : public BlockTm {
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   LayoutKind layout = LayoutKind::TwoColumn;
-  std::string blurb; // one-line teaser, shown on the homepage mosaic tile.
+  std::string blurb;    // one-line teaser, shown on the homepage mosaic tile.
+  std::string location; // where a photo was taken (status: photo).
+  std::string photo;    // site-absolute image path (status: photo).
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -827,10 +831,12 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         meta->status = MetaStatus::Exposition;
       } else if (val == "big-list") {
         meta->status = MetaStatus::BigList;
+      } else if (val == "photo") {
+        meta->status = MetaStatus::Photo;
       } else {
         printf_err_span(span, s,
             "meta status must be 'technical-note', 'essay', 'exposition', "
-            "'scratch', or 'big-list', got: |%s|", val.c_str());
+            "'scratch', 'big-list', or 'photo', got: |%s|", val.c_str());
       }
     } else if (key == "created") {
       if (!parseMetaDate(val, meta->created)) {
@@ -854,6 +860,10 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
       }
     } else if (key == "blurb") {
       meta->blurb = val;
+    } else if (key == "location") {
+      meta->location = val;
+    } else if (key == "photo") {
+      meta->photo = val;
     } else {
       printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
     }
@@ -1664,20 +1674,37 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     // the dates line under the heading; the kicker above the headline
     // carries the status.
     const BlockMeta *meta = (const BlockMeta *)t;
-    if (!meta->created[0] && !meta->last_edited[0]) { return true; }
-
-    outlen += sprintf(outs + outlen, "<div class='article-meta'>");
-    const char *sep = "";
-    if (meta->created[0]) {
-      outlen += sprintf(outs + outlen, "created %s", meta->created);
-      sep = " · ";
+    if (meta->created[0] || meta->last_edited[0] || !meta->location.empty()) {
+      outlen += sprintf(outs + outlen, "<div class='article-meta'>");
+      const char *sep = "";
+      if (!meta->location.empty()) {
+        outlen += sprintf(outs + outlen, "%s", meta->location.c_str());
+        sep = " · ";
+      }
+      if (meta->created[0]) {
+        outlen += sprintf(outs + outlen, "%s%s%s", sep,
+                          meta->status == MetaStatus::Photo ? "" : "created ",
+                          meta->created);
+        sep = " · ";
+      }
+      // showing last-edited only makes sense once it differs from created.
+      if (meta->last_edited[0] &&
+          strcmp(meta->last_edited, meta->created) != 0) {
+        outlen += sprintf(outs + outlen, "%slast edited %s", sep,
+                          meta->last_edited);
+      }
+      outlen += sprintf(outs + outlen, "</div>");
     }
-    // showing last-edited only makes sense once it differs from created.
-    if (meta->last_edited[0] && strcmp(meta->last_edited, meta->created) != 0) {
-      outlen += sprintf(outs + outlen, "%slast edited %s", sep,
-                        meta->last_edited);
+    // a photo article's page is the photograph itself plus its caption.
+    if (meta->status == MetaStatus::Photo && !meta->photo.empty()) {
+      outlen += sprintf(outs + outlen,
+                        "<img class='photo-page-img' src='%s'>",
+                        meta->photo.c_str());
+      if (!meta->blurb.empty()) {
+        outlen += sprintf(outs + outlen, "<div class='photo-caption'>%s</div>",
+                          meta->blurb.c_str());
+      }
     }
-    outlen += sprintf(outs + outlen, "</div>");
     return true;
   }
 
@@ -1919,22 +1946,31 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
 // static/photos/strip/, newest first, each linking to the public album.
 // the directory is gitignored and synced by scripts/sync_photos.py; when
 // it is missing or empty, no strip is emitted.
-// the strip photos, newest first, from the manifest written by
-// scripts/sync_photos.py. Missing manifest => no photos (offline-safe).
-struct StripPhoto { long long id; int w, h; };
-static vector<StripPhoto> readPhotoManifest() {
-  vector<StripPhoto> photos;
-  char path[1024];
-  sprintf(path, "%sstatic/photos/strip/manifest.txt",
-          BLOG_ROOT_FOLDER_TRAILING_SLASH);
+// width/height from a JPEG's SOF marker so photo bricks can reserve their
+// space before the image loads. false if the file is missing/unparseable.
+static bool jpegDimensions(const char *path, int *w, int *h) {
   FILE *f = fopen(path, "rb");
-  if (f == nullptr) { return photos; }
-  StripPhoto p;
-  while (fscanf(f, "%lld %d %d", &p.id, &p.w, &p.h) == 3) {
-    photos.push_back(p);
-  }
+  if (f == nullptr) { return false; }
+  unsigned char buf[1 << 16];
+  const size_t n = fread(buf, 1, sizeof(buf), f);
   fclose(f);
-  return photos;
+  size_t i = 2; // past SOI.
+  while (i + 9 < n) {
+    if (buf[i] != 0xFF) { return false; }
+    while (i < n && buf[i] == 0xFF) { i++; } // fill bytes.
+    const unsigned char marker = buf[i];
+    i++;
+    if (marker == 0x01 || (marker >= 0xD0 && marker <= 0xD9)) { continue; }
+    const size_t seglen = ((size_t)buf[i] << 8) | buf[i + 1];
+    if (marker >= 0xC0 && marker <= 0xCF && marker != 0xC4 &&
+        marker != 0xC8 && marker != 0xCC) {
+      *h = ((int)buf[i + 3] << 8) | buf[i + 4];
+      *w = ((int)buf[i + 5] << 8) | buf[i + 6];
+      return true;
+    }
+    i += seglen;
+  }
+  return false;
 }
 
 // returns number of characters written.
@@ -1963,6 +1999,7 @@ static void statusKicker(MetaStatus status, const char **name,
   case MetaStatus::Scratch: *name = "scratch"; *cls = "scratch"; return;
   case MetaStatus::Exposition: *name = "exposition"; *cls = "exposition"; return;
   case MetaStatus::BigList: *name = "big list"; *cls = "big-list"; return;
+  case MetaStatus::Photo: *name = "photo"; *cls = "photo"; return;
   }
   assert(false && "unreachable");
 }
@@ -2030,26 +2067,45 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   };
 
   // ===the mosaic: every polished article as its own tile, interleaved
-  // with the album photos. masonry.js places bricks in source order into
+  // with the photo articles. masonry.js places bricks in source order into
   // the shortest column, so the interleave becomes a mixed wall.
   const MetaStatus top[] = {MetaStatus::Essay, MetaStatus::Exposition,
                             MetaStatus::BigList};
-  vector<const ArticleInfo *> polished;
+  vector<const ArticleInfo *> polished, photos;
   for (MetaStatus status : top) {
     for (const ArticleInfo &a : articles) {
       if (status_of(a) == status) { polished.push_back(&a); }
     }
   }
-  const vector<StripPhoto> photos = readPhotoManifest();
-  const char *album =
-      "https://nx72119.your-storageshare.de/apps/photos/public/"
-      "3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5";
-  const auto writePhoto = [&](const StripPhoto &p) {
+  for (const ArticleInfo &a : articles) {
+    if (status_of(a) == MetaStatus::Photo && !a.meta->photo.empty()) {
+      photos.push_back(&a);
+    }
+  }
+  const auto writePhoto = [&](const ArticleInfo &a) {
+    char fspath[1024];
+    sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
+            a.meta->photo.c_str() + 1); // skip the leading '/'.
+    int w = 0, h = 0;
+    const bool have_wh = jpegDimensions(fspath, &w, &h);
     outlen += sprintf(outs + outlen,
-                      "<div class='brick brick-photo'><a href='%s'>"
-                      "<img loading='lazy' src='/static/photos/strip/%lld.jpg'"
-                      " width='%d' height='%d'></a></div>",
-                      album, p.id, p.w, p.h);
+                      "<div class='brick brick-photo'><a href='%s.html'>"
+                      "<img loading='lazy' src='%s'",
+                      a.url, a.meta->photo.c_str());
+    if (have_wh) {
+      outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
+    }
+    outlen += sprintf(outs + outlen, "></a><div class='photo-caption'>");
+    if (!a.meta->blurb.empty()) {
+      outlen += sprintf(outs + outlen, "%s ", a.meta->blurb.c_str());
+    }
+    outlen += sprintf(outs + outlen, "<span class='photo-loc'>%s",
+                      a.meta->location.c_str());
+    if (a.meta->created[0]) {
+      outlen += sprintf(outs + outlen, " · %s",
+                        shortDate(a.meta->created).c_str());
+    }
+    outlen += sprintf(outs + outlen, "</span></div></div>");
   };
   outlen += sprintf(outs + outlen,
                     "<div class='mosaic'><div class='brick-sizer'></div>");
@@ -2060,9 +2116,9 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += writeMosaicCard(katex_ctx, prism_ctx, raw_input,
                               *polished[ci], outs + outlen);
     const size_t target = ((ci + 1) * photos.size()) / polished.size();
-    for (; pi < target; ++pi) { writePhoto(photos[pi]); }
+    for (; pi < target; ++pi) { writePhoto(*photos[pi]); }
   }
-  for (; pi < photos.size(); ++pi) { writePhoto(photos[pi]); }
+  for (; pi < photos.size(); ++pi) { writePhoto(*photos[pi]); }
   outlen += sprintf(outs + outlen, "</div>");
   // masonry only loads on the homepage.
   outlen += sprintf(outs + outlen,
@@ -2182,6 +2238,10 @@ struct RSS {
             CONFIG_WEBSITE_RSS_DESCRIPTION);
 
     for (const ArticleInfo &article : articles) {
+      // photographs live on the homepage mosaic, not in the feed.
+      if (article.meta && article.meta->status == MetaStatus::Photo) {
+        continue;
+      }
       // <item>
       // <title>News for September the Second</title>
       // <link>http://example.com/2002/09/01</link>

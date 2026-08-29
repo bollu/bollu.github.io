@@ -370,6 +370,32 @@ ul {
   border-radius: 2px;
 }
 
+.container .brick-photo .photo-caption {
+  font-size: 0.8em;
+  color: #444;
+  margin-top: 0.35em;
+  text-align: left;
+}
+
+.container .photo-loc {
+  color: #777;
+  white-space: nowrap;
+}
+
+/* the photograph on its own article page. */
+.container .photo-page-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  margin: 1em 0 0.6em 0;
+}
+
+.container .single-column .photo-caption {
+  font-style: italic;
+  color: #444;
+}
+
 .container .brick-card {
   box-sizing: border-box; /* padding+border stay inside the column width. */
   background: #faf8f3;
@@ -601,6 +627,7 @@ ul {
 .container .kicker-scratch { color: #b3261e; }
 .container .kicker-exposition { color: #7b52ab; }
 .container .kicker-big-list { color: #1a73e8; }
+.container .kicker-photo { color: #b06000; }
 
 /* drop cap on the opening paragraph of essays */
 .article-body.status-essay > p:first-of-type::first-letter {

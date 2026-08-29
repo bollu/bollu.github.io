@@ -17,4 +17,4 @@ out/*
 
 # Local Netlify folder
 .netlify
-static/photos/strip/
+photos-sync/
