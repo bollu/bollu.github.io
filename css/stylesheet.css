@@ -415,16 +415,44 @@ ul {
   font-style: italic;
 }
 
-/* the big-list / i-like lines, placed by the preamble's marker comment */
-.container .big-lists-row {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  text-align: left; /* the container justifies; keep these lines ragged. */
-  line-height: 1.6em;
+/* the big-lists section, placed by the preamble's marker comment:
+   a centered label nested in a hairline, the names centered below,
+   and a closing hairline (echoes the tailpiece). */
+#big-lists {
+  margin: 1.4em 0;
 }
 
-.big-lists-row .big-lists-label {
+#big-lists .big-lists-title {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
   color: #777;
+}
+
+#big-lists .big-lists-title::before,
+#big-lists .big-lists-title::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #ddd6c8;
+}
+
+#big-lists .big-lists-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 1.8em;
+  row-gap: 0.3em;
+  padding: 0.6em 1em;
+  text-align: center;
+}
+
+#big-lists::after {
+  content: '';
+  display: block;
+  border-top: 1px solid #ddd6c8;
 }
 
 /* === @img(...) figures === */

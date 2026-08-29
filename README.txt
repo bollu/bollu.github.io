@@ -4602,7 +4602,7 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 # I Like New Formalism Poetry
 
 ```meta
-status: i-like
+status: big-list
 created: 2024-08-31
 last-edited: 2024-09-01
 ```
@@ -48432,7 +48432,7 @@ which is indeed the right expression for the inverse.
 # My Favourite APLisms
 
 ```meta
-status: i-like
+status: big-list
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
