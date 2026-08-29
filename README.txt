@@ -59073,10 +59073,10 @@ last-edited: 2025-09-07
 ```meta
 status: photo
 created: 2025-07-30
-location: Himachal, India
+location: Val di Rabbi, Italy
+location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480334.jpg
-layout: single-column
-blurb: Looking down a Himalayan valley that keeps going without us.
+blurb: Luisa looks down a valley that keeps going without us.
 ```
 
 
@@ -59085,9 +59085,9 @@ blurb: Looking down a Himalayan valley that keeps going without us.
 ```meta
 status: photo
 created: 2025-07-29
-location: Himachal, India
+location: Val di Rabbi, Italy
+location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480247.jpg
-layout: single-column
 blurb: A yellow butterfly hiding in plain sight among the needles.
 ```
 
@@ -59097,10 +59097,10 @@ blurb: A yellow butterfly hiding in plain sight among the needles.
 ```meta
 status: photo
 created: 2025-07-29
-location: Himachal, India
+location: Campisol Alto, Val di Rabbi
+location-url: https://maps.google.com/?q=Campisol+Alto,+Val+di+Rabbi
 photo: /static/photos/479917.jpg
-layout: single-column
-blurb: A friend scales the shingles of a shepherd's hut for the view.
+blurb: Luisa scales the shingles of the shepherd's hut at Campisol Alto.
 ```
 
 
@@ -59109,9 +59109,9 @@ blurb: A friend scales the shingles of a shepherd's hut for the view.
 ```meta
 status: photo
 created: 2025-07-27
-location: Himachal, India
+location: Val di Rabbi, Italy
+location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480133.jpg
-layout: single-column
 blurb: A mountain village kitten claims the woodpile.
 ```
 
@@ -59122,8 +59122,8 @@ blurb: A mountain village kitten claims the woodpile.
 status: photo
 created: 2025-05-19
 location: Istanbul
+location-url: https://maps.google.com/?q=Sultan+Ahmed+Mosque,+Istanbul
 photo: /static/photos/473800.jpg
-layout: single-column
 blurb: Gold calligraphy banding a fluted column of the Blue Mosque.
 ```
 
@@ -59134,9 +59134,9 @@ blurb: Gold calligraphy banding a fluted column of the Blue Mosque.
 status: photo
 created: 2025-05-19
 location: Istanbul
+location-url: https://maps.google.com/?q=Hagia+Sophia,+Istanbul
 photo: /static/photos/473590.jpg
-layout: single-column
-blurb: A friend under the medallions of Hagia Sophia.
+blurb: Luisa under the medallions of Hagia Sophia.
 ```
 
 
@@ -59146,8 +59146,8 @@ blurb: A friend under the medallions of Hagia Sophia.
 status: photo
 created: 2025-05-19
 location: Istanbul
+location-url: https://maps.google.com/?q=Sultanahmet,+Istanbul
 photo: /static/photos/470974.jpg
-layout: single-column
 blurb: An arch carrying its whole garden of illumination.
 ```
 
@@ -59158,8 +59158,8 @@ blurb: An arch carrying its whole garden of illumination.
 status: photo
 created: 2025-05-19
 location: Istanbul
+location-url: https://maps.google.com/?q=Sultanahmet,+Istanbul
 photo: /static/photos/470929.jpg
-layout: single-column
 blurb: Calligraphy wheeling across a gilded dome.
 ```
 
@@ -59170,8 +59170,8 @@ blurb: Calligraphy wheeling across a gilded dome.
 status: photo
 created: 2025-05-18
 location: Istanbul
+location-url: https://maps.google.com/?q=Istanbul
 photo: /static/photos/470854.jpg
-layout: single-column
 blurb: An Istanbul cat, unimpressed, on marble.
 ```
 
@@ -59182,8 +59182,8 @@ blurb: An Istanbul cat, unimpressed, on marble.
 status: photo
 created: 2025-05-18
 location: Istanbul
+location-url: https://maps.google.com/?q=Balat,+Istanbul
 photo: /static/photos/470791.jpg
-layout: single-column
 blurb: Balat trades plaster for color; bread left on the roof for the birds.
 ```
 
@@ -59194,8 +59194,8 @@ blurb: Balat trades plaster for color; bread left on the roof for the birds.
 status: photo
 created: 2025-05-18
 location: Istanbul
+location-url: https://maps.google.com/?q=Istanbul
 photo: /static/photos/470518.jpg
-layout: single-column
 blurb: A mosque cat keeps the door.
 ```
 
@@ -59206,8 +59206,8 @@ blurb: A mosque cat keeps the door.
 status: photo
 created: 2025-03-27
 location: Cambridge
+location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/472618.jpg
-layout: single-column
 blurb: Lilac jumper, pink wall; spring does the color grading.
 ```
 
@@ -59218,8 +59218,8 @@ blurb: Lilac jumper, pink wall; spring does the color grading.
 status: photo
 created: 2025-03-09
 location: Cambridge
+location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473338.jpg
-layout: single-column
 blurb: The blog's portrait: me not noticing a soap bubble taking its chance.
 ```
 
@@ -59230,8 +59230,8 @@ blurb: The blog's portrait: me not noticing a soap bubble taking its chance.
 status: photo
 created: 2025-03-08
 location: Cambridge
+location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473197.jpg
-layout: single-column
 blurb: The bronze vase of a quiet grave, holes waiting for stems.
 ```
 
@@ -59242,8 +59242,8 @@ blurb: The bronze vase of a quiet grave, holes waiting for stems.
 status: photo
 created: 2025-03-08
 location: Cambridge
+location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473194.jpg
-layout: single-column
 blurb: Copper baubles nesting in silvered ivy.
 ```
 
@@ -59254,8 +59254,8 @@ blurb: Copper baubles nesting in silvered ivy.
 status: photo
 created: 2025-02-24
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Sumatra
 photo: /static/photos/877288.jpg
-layout: single-column
 blurb: A white slab --- tofu, most likely --- on boards dark with use.
 ```
 
@@ -59266,8 +59266,8 @@ blurb: A white slab --- tofu, most likely --- on boards dark with use.
 status: photo
 created: 2025-02-24
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Sumatra
 photo: /static/photos/877285.jpg
-layout: single-column
 blurb: Pink water lilies on pewter water.
 ```
 
@@ -59278,8 +59278,8 @@ blurb: Pink water lilies on pewter water.
 status: photo
 created: 2025-02-24
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Berastagi,+Sumatra
 photo: /static/photos/877210.jpg
-layout: single-column
 blurb: A volcano exhales under a grey sky.
 ```
 
@@ -59290,8 +59290,8 @@ blurb: A volcano exhales under a grey sky.
 status: photo
 created: 2025-02-23
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877174.jpg
-layout: single-column
 blurb: Coffee service on a well-worn table.
 ```
 
@@ -59302,8 +59302,8 @@ blurb: Coffee service on a well-worn table.
 status: photo
 created: 2025-02-23
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877171.jpg
-layout: single-column
 blurb: A tabby with opinions, somewhere in Sumatra.
 ```
 
@@ -59314,8 +59314,8 @@ blurb: A tabby with opinions, somewhere in Sumatra.
 status: photo
 created: 2025-02-23
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877162.jpg
-layout: single-column
 blurb: A tin-hat streetlamp holding court among the wires.
 ```
 
@@ -59326,9 +59326,9 @@ blurb: A tin-hat streetlamp holding court among the wires.
 status: photo
 created: 2025-02-23
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877150.jpg
-layout: single-column
-blurb: A friend watercolors the river that is sitting for its portrait.
+blurb: Luisa watercolors the river that is sitting for its portrait.
 ```
 
 
@@ -59338,8 +59338,8 @@ blurb: A friend watercolors the river that is sitting for its portrait.
 status: photo
 created: 2025-02-22
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877078.jpg
-layout: single-column
 blurb: A pig-tailed macaque watches the canopy.
 ```
 
@@ -59350,8 +59350,8 @@ blurb: A pig-tailed macaque watches the canopy.
 status: photo
 created: 2025-02-22
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877048.jpg
-layout: single-column
 blurb: A male orangutan works through a banana leaf in Bukit Lawang.
 ```
 
@@ -59362,8 +59362,8 @@ blurb: A male orangutan works through a banana leaf in Bukit Lawang.
 status: photo
 created: 2025-02-22
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877024.jpg
-layout: single-column
 blurb: A splintered limb showing its grain.
 ```
 
@@ -59374,8 +59374,8 @@ blurb: A splintered limb showing its grain.
 status: photo
 created: 2025-02-22
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877003.jpg
-layout: single-column
 blurb: Sun through the canopy turns leaves into lanterns.
 ```
 
@@ -59386,8 +59386,8 @@ blurb: Sun through the canopy turns leaves into lanterns.
 status: photo
 created: 2025-02-22
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876949.jpg
-layout: single-column
 blurb: Palm thatch and bamboo: the roof of a jungle camp.
 ```
 
@@ -59398,8 +59398,8 @@ blurb: Palm thatch and bamboo: the roof of a jungle camp.
 status: photo
 created: 2025-02-21
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876937.jpg
-layout: single-column
 blurb: A forest ant negotiates a branch in the understory.
 ```
 
@@ -59410,8 +59410,8 @@ blurb: A forest ant negotiates a branch in the understory.
 status: photo
 created: 2025-02-21
 location: Sumatra, Indonesia
+location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876931.jpg
-layout: single-column
 blurb: A lump of forest resin takes the flame.
 ```
 
@@ -59422,9 +59422,9 @@ blurb: A lump of forest resin takes the flame.
 status: photo
 created: 2025-02-18
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876565.jpg
-layout: single-column
-blurb: A friend, a beer, and the clatter of a night food market.
+blurb: Luisa, a beer, and the clatter of a night food market.
 ```
 
 
@@ -59434,8 +59434,8 @@ blurb: A friend, a beer, and the clatter of a night food market.
 status: photo
 created: 2025-02-18
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876295.jpg
-layout: single-column
 blurb: Skyscrapers wearing their gardens at dusk.
 ```
 
@@ -59446,8 +59446,8 @@ blurb: Skyscrapers wearing their gardens at dusk.
 status: photo
 created: 2025-02-17
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876274.jpg
-layout: single-column
 blurb: The crown of a red lantern against the street's bokeh.
 ```
 
@@ -59458,8 +59458,8 @@ blurb: The crown of a red lantern against the street's bokeh.
 status: photo
 created: 2025-02-17
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876262.jpg
-layout: single-column
 blurb: Red lanterns queue down an alley into the night.
 ```
 
@@ -59470,8 +59470,8 @@ blurb: Red lanterns queue down an alley into the night.
 status: photo
 created: 2025-02-17
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876247.jpg
-layout: single-column
 blurb: Glazed ceramic blossoms catching red lantern light.
 ```
 
@@ -59482,8 +59482,8 @@ blurb: Glazed ceramic blossoms catching red lantern light.
 status: photo
 created: 2025-02-17
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876232.jpg
-layout: single-column
 blurb: A string-light bulb holding its own against the dark.
 ```
 
@@ -59494,8 +59494,8 @@ blurb: A string-light bulb holding its own against the dark.
 status: photo
 created: 2025-02-14
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876199.jpg
-layout: single-column
 blurb: Folding fans stacked wing over wing.
 ```
 
@@ -59506,8 +59506,8 @@ blurb: Folding fans stacked wing over wing.
 status: photo
 created: 2025-02-14
 location: Hong Kong
+location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876193.jpg
-layout: single-column
 blurb: A barbecue joint announces itself on the face of an old shophouse.
 ```
 
@@ -59519,7 +59519,6 @@ status: photo
 created: 2024-12-28
 location: India
 photo: /static/photos/466768.jpg
-layout: single-column
 blurb: A working boat in its best teal, waiting on still water.
 ```
 
@@ -59531,7 +59530,6 @@ status: photo
 created: 2024-12-28
 location: India
 photo: /static/photos/472765.jpg
-layout: single-column
 blurb: Watching someone watch the room.
 ```
 
@@ -59543,7 +59541,6 @@ status: photo
 created: 2024-12-27
 location: India
 photo: /static/photos/472750.jpg
-layout: single-column
 blurb: The sun sets past the islets; the sea disagrees quietly.
 ```
 
@@ -59555,7 +59552,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/466993.jpg
-layout: single-column
 blurb: A flowerpot firework throws its sparks at a wedding night.
 ```
 
@@ -59567,7 +59563,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/464170.jpg
-layout: single-column
 blurb: Mehendi hands cradling a gerbera.
 ```
 
@@ -59579,7 +59574,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/463972.jpg
-layout: single-column
 blurb: Caught mid-laugh in wedding finery.
 ```
 
@@ -59591,7 +59585,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/472741.jpg
-layout: single-column
 blurb: An ear cuff sparkling back at a hurricane lantern.
 ```
 
@@ -59603,7 +59596,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/472729.jpg
-layout: single-column
 blurb: A bouquet wrapped in newsprint, and a smile to go with it.
 ```
 
@@ -59615,7 +59607,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/472711.jpg
-layout: single-column
 blurb: A red kurta under festival lights.
 ```
 
@@ -59627,7 +59618,6 @@ status: photo
 created: 2024-12-26
 location: India
 photo: /static/photos/472666.jpg
-layout: single-column
 blurb: That face, when the fairy lights are doing their job.
 ```
 
@@ -59637,9 +59627,9 @@ blurb: That face, when the fairy lights are doing their job.
 ```meta
 status: photo
 created: 2024-09-24
-location: Cambridge
+location: Austin, Texas
+location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472540.jpg
-layout: single-column
 blurb: A garden gig under porch light.
 ```
 
@@ -59649,9 +59639,9 @@ blurb: A garden gig under porch light.
 ```meta
 status: photo
 created: 2024-09-22
-location: Cambridge
+location: Austin, Texas
+location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472609.jpg
-layout: single-column
 blurb: A painted rail losing itself in September light.
 ```
 
@@ -59661,9 +59651,9 @@ blurb: A painted rail losing itself in September light.
 ```meta
 status: photo
 created: 2024-08-24
-location: Cambridge
+location: Austin, Texas
+location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472645.jpg
-layout: single-column
 blurb: A fountain floor's worth of small change.
 ```
 
@@ -59673,8 +59663,8 @@ blurb: A fountain floor's worth of small change.
 ```meta
 status: photo
 created: 2024-06-22
-location: Cambridge
+location: Austin, Texas
+location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472726.jpg
-layout: single-column
 blurb: Ribs of a ceiling converging on a skylight.
 ```
