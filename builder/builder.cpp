@@ -430,10 +430,16 @@ struct BlockFigure : public BlockTm {
 };
 
 // article metadata from a ```meta fenced block.
+// how an article's body is laid out. TwoColumn (the default) flows the
+// body below the title/date line in two columns; SingleColumn opts out
+// via `layout: single-column`.
+enum class LayoutKind { SingleColumn, TwoColumn };
+
 struct BlockMeta : public BlockTm {
   MetaStatus status = MetaStatus::Scratch;
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
+  LayoutKind layout = LayoutKind::TwoColumn;
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -834,6 +840,16 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
       if (!parseMetaDate(val, meta->last_edited)) {
         printf_err_span(span, s,
             "meta last-edited must be YYYY-MM-DD, got: |%s|", val.c_str());
+      }
+    } else if (key == "layout") {
+      if (val == "two-column") {
+        meta->layout = LayoutKind::TwoColumn;
+      } else if (val == "single-column") {
+        meta->layout = LayoutKind::SingleColumn;
+      } else {
+        printf_err_span(span, s,
+            "meta layout must be 'single-column' or 'two-column', got: |%s|",
+            val.c_str());
       }
     } else {
       printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
@@ -2293,10 +2309,26 @@ int main(int argc, char **argv) {
     ll outlen = 0;
     outlen += sprintf(outbuf + outlen, "%s", html_preamble);
     bool success = true;
-    for (int i = ix_start; i < ix_h1; ++i) {
+    ll i = ix_start;
+    // the title (and the meta/date line, when present) span the full width;
+    // a two-column layout applies to the body that follows them.
+    success &=
+        renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
+    i++;
+    LayoutKind layout = LayoutKind::TwoColumn;
+    if (i < ix_h1 && ts[i]->kind == BlockTm::Kind::Meta) {
+      layout = ((const BlockMeta *)ts[i])->layout;
+      success &=
+          renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
+      i++;
+    }
+    const bool two_col = layout == LayoutKind::TwoColumn;
+    if (two_col) { outlen += sprintf(outbuf + outlen, "<div class='two-column'>"); }
+    for (; i < ix_h1; ++i) {
       success &=
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
+    if (two_col) { outlen += sprintf(outbuf + outlen, "</div>"); }
 
     if (!success) {
       fprintf(stdout, "===ERROR: compile [%s] failed. skipping. ", url);

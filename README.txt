@@ -34097,7 +34097,6 @@ number is signed/unsigned.
 status: scratch
 created: 2021-01-09
 last-edited: 2022-05-30
-layout: two-column
 ```
 
 

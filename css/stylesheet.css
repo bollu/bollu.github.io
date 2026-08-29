@@ -453,3 +453,25 @@ blockquote {
     margin: 1em auto;
   }
 }
+
+/* === per-article two-column layout (meta: layout: two-column) === */
+
+.container .two-column {
+  columns: 2;
+  column-gap: 2.5em;
+}
+
+/* figures, code, and math must not split across columns */
+.container .two-column .fig,
+.container .two-column pre,
+.container .two-column .latexblock,
+.container .two-column blockquote {
+  break-inside: avoid;
+}
+
+/* narrow screens: fall back to one column */
+@media (max-width: 900px) {
+  .container .two-column {
+    columns: 1;
+  }
+}
