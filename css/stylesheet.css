@@ -575,6 +575,10 @@ ul {
     box-shadow: none;
     border: none;
     margin: 0 auto;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
   }
 
   /* the paper is narrower than 900px in css terms; keep the two-column
