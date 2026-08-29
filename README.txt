@@ -291,7 +291,7 @@ last-edited: 2026-08-28
 
 
 
-# How to learn the altered scale
+# How to Learn the Altered Scale
 
 ```meta
 status: scratch
@@ -337,7 +337,7 @@ last-edited: 2026-08-12
   and the variance is the squared length of this orthogonal component!
 
 
-# Jazzy blues improv
+# Jazzy Blues Improv
 
 ```meta
 status: scratch
@@ -643,7 +643,7 @@ last-edited: 2026-08-08
   This gives us an estimate of $|M \models \phi|$ as $2^k * |M \models \phi \land A_k|$!
 - Why does this work so well in practice? I don't know! I should read Kuldeep Meel's paper to find out.
 
-# Learning all 7th inversions
+# Learning All 7th Inversions
 
 ```meta
 status: scratch
@@ -676,7 +676,7 @@ last-edited: 2026-04-27
   on the right hand side.
 
 
-# A different derivation of the bepop notes
+# A Different Derivation of the Bepop Notes
 
 ```meta
 status: scratch
@@ -708,7 +708,7 @@ last-edited: 2026-02-05
 - The notes in the scale that are not in the chord are `D F Bb`.
 - No way to make the semitone steps even :(
 
-# Playing over a ii V I with a 3rd scale.
+# Playing over a ii V I with a 3rd Scale.
 
 ```meta
 status: scratch
@@ -789,7 +789,7 @@ last-edited: 2026-03-24
 - peace piece vamp chords
 
 
-# Stuff I learnt in 2025 
+# Stuff I Learnt in 2025 
 
 ```meta
 status: scratch
@@ -1006,7 +1006,7 @@ last-edited: 2025-11-16
 - [Reference: How to Improvise a Two-Part Invention - YouTube](https://www.youtube.com/watch?v=5kNNVNx9TnY)
 - [Graham Buckland: Composer on Composing Renaissance](https://www.youtube.com/watch?v=B-NX8qIiaZE)
 
-# Improvise Polyphony in four voices
+# Improvise Polyphony in Four Voices
 
 ```meta
 status: scratch
@@ -1073,7 +1073,7 @@ last-edited: 2025-11-05
 
 
 
-# Non Linear Theory of 2-adics does not mix with bitwise operations
+# Non Linear Theory of 2-Adics Does Not Mix with Bitwise Operations
 
 ```meta
 status: technical-note
@@ -1400,7 +1400,7 @@ last-edited: 2025-08-17
 - We keep recursing until we manage to show that $\lnot s$ is in fact inductive relative to $F[k]$.
 
 
-# Transitioning from Major to Minor chord
+# Transitioning from Major to Minor Chord
 
 ```meta
 status: scratch
@@ -1471,7 +1471,7 @@ last-edited: 2025-05-21
 > holds consecutively for k steps, it will continue to hold for the successor
 > states.
 
-# Formal Verification of Multiplier Circuits using Computer Algebra
+# Formal Verification of Multiplier Circuits Using Computer Algebra
 
 ```meta
 status: scratch
@@ -1492,7 +1492,7 @@ last-edited: 2025-05-21
 > and Boolean value constraints.
 
 
-# Pairwise Independent Events that are Not 3-way Independent
+# Pairwise Independent Events That Are Not 3-Way Independent
 
 ```meta
 status: scratch
@@ -1504,7 +1504,7 @@ last-edited: 2025-06-03
 - Any two are completely independent, if `x, y` are sampled IID.
 - But given any two, the third is determined.
 
-# Big list of Italian Learning
+# Big List of Italian Learning
 
 ```meta
 status: big-list
@@ -1802,7 +1802,7 @@ last-edited: 2025-07-18
 - use : may (he/she/it) use (subjunctive of usare)
 - usi : customs / habits / (you) use
 
-# Notes on CwFs and categorical NbE
+# Notes on CwFs and Categorical NbE
 
 ```meta
 status: scratch
@@ -1846,7 +1846,7 @@ last-edited: 2025-07-18
 - The magic loop is the same as a [noose knot](https://www.animatedknots.com/noose-knot),
   except we are making the noose around an *existing loop*.
 
-# The Euclidean Definitions of The Functions div and mod
+# The Euclidean Definitions of The Functions Div and Mod
 
 ```meta
 status: scratch
@@ -1998,7 +1998,7 @@ last-edited: 2025-04-02
 - See that from monodromy, we can view automata morphisms as covering spaces morphisms.
 - TODO: Think about [Nielsen Transformations](https://en.wikipedia.org/wiki/Nielsen_transformation) in this context.
 
-# The Metamathematical implications of the Strong Church Turing Thesis
+# The Metamathematical Implications of the Strong Church Turing Thesis
 
 ```meta
 status: scratch
@@ -2060,7 +2060,7 @@ last-edited: 2025-04-03
 - Feeling and Form
 - Philosophy in a new Key: A Study in the Symbolism of Reason, Rite, and Art.
 
-# Projective Varieties are Complete
+# Projective Varieties Are Complete
 
 ```meta
 status: scratch
@@ -2269,7 +2269,7 @@ x * BitVec.twoPow y = x <<< y
 (BitVec.twoPow x) <<< y = BitVec.twoPow (x + y)
 ```
 
-# Stuff I learnt in 2024
+# Stuff I Learnt in 2024
 
 ```meta
 status: essay
@@ -3114,7 +3114,7 @@ last-edited: 2024-12-22
 - leanTAP: tableaux prover in five lines of prolog!
 
 
-# Geomeans and ratios
+# Geomeans and Ratios
 
 ```meta
 status: scratch
@@ -3130,7 +3130,7 @@ last-edited: 2024-12-12
 - The interesting property
 
 
-# Setting up mosh on google cloud
+# Setting up Mosh on Google Cloud
 
 ```meta
 status: scratch
@@ -3509,7 +3509,7 @@ last-edited: 2024-10-15
 - One more table with the inverted subject. One more table with subject plus inverted.
 
 
-# Hip hop on piano
+# Hip Hop on Piano
 
 ```meta
 status: scratch
@@ -3547,7 +3547,7 @@ V: LH
 A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 | A,,/2A,/2A,, [A,c,e,]3/2E,/2 E,,/2E,/2E,, [A,c,e,]3/2A,/2 |
 ```
 
-# Pachabel's series
+# Pachabel's Series
 
 ```meta
 status: scratch
@@ -3592,7 +3592,7 @@ Eb G Db: AbM: AbM7 (skip root) (sus6)
 Ab C: Ab Major 3 interval
 ```
 
-# Bach: Art of the fugue
+# Bach: Art of the Fugue
 
 ```meta
 status: scratch
@@ -3625,7 +3625,7 @@ last-edited: 2024-10-15
 - The first contrapicture: Book by back
 - Fugue by ebenezer prout
 
-# Bach style: Suspensions
+# Bach Style: Suspensions
 
 ```meta
 status: scratch
@@ -3652,7 +3652,7 @@ last-edited: 2024-10-11
 
 - [Reference: Write a Musical Suspension in Three Easy Steps by Brian Kehlenbach](https://www.youtube.com/watch?v=zM1LV2JZgk4)
 
-# Example of needing uniform convergence / troll proof of pi equals 4
+# Example of Needing Uniform Convergence / Troll Proof of Pi Equals 4
 
 ```meta
 status: scratch
@@ -3836,7 +3836,7 @@ last-edited: 2024-12-26
 - Here, `f(x, t)` is a `15x1` size vector. Essentially, time just becomes another dimension, and we vectorize everything to get a gigantic matrix.
 
 
-# Categorification of sets works because it's a presheaf on a single point
+# Categorification of Sets Works Because It's a Presheaf on a Single Point
 
 ```meta
 status: scratch
@@ -3899,7 +3899,7 @@ last-edited: 2024-10-03
 - `doo ba daa ba doo`
 - [Chord Progression: `I I vi vi II II I I`](https://www.perfessorbill.com/ragtime12.shtml)
 
-# When to generalize an argument to a function for an inductive proof
+# When to Generalize an Argument to a Function for an Inductive Proof
 
 ```meta
 status: scratch
@@ -3965,7 +3965,7 @@ last-edited: 2024-09-29
 - Dichotomy of wasteful luxury and poverty.
 - Cello suite #1 -- Prelude
 
-# Transformer Architecture is based on sets, not sequences
+# Transformer Architecture Is Based on Sets, Not Sequences
 
 ```meta
 status: scratch
@@ -4406,7 +4406,7 @@ last-edited: 2024-09-21
 - [Lecture notes on nelson oppen](https://rg1-teaching.mpi-inf.mpg.de/autrea2-ss18/script-1.11.pdf)
 
 
-# Gosper's algorithm
+# Gosper's Algorithm
 
 ```meta
 status: scratch
@@ -4538,7 +4538,7 @@ $$
 - [BA thesis by Richard B. Reeves: gosper's algorithm - a decision procedure for partial hypergeometric sums.](https://digital.auraria.edu/work/sc/3bc51c29-17c7-43e3-8cca-89dc4613acd6)
 - [Algorithm hyper lecture notes](https://vferay.perso.math.cnrs.fr/Teaching/Stefan_Herytash_Algorithm_Hyper.pdf)
 
-# WZ (Wilf Zeilberger) pairs
+# WZ (Wilf Zeilberger) Pairs
 
 ```meta
 status: scratch
@@ -4573,7 +4573,7 @@ last-edited: 2024-09-21
 - Concrete Mathematics
 
 
-# Software bugs are real bugs?
+# Software Bugs Are Real Bugs?
 
 ```meta
 status: scratch
@@ -4644,7 +4644,7 @@ last-edited: 2024-09-21
   well packaged.
 - This is perfect, because it's exactly the type of thing I like to play :)
 
-# I like New Formalism Poetry
+# I Like New Formalism Poetry
 
 ```meta
 status: scratch
@@ -4820,7 +4820,7 @@ last-edited: 2024-10-09
 - Executing on a plan is easy, and isolates the act of agonizing on what to do in the day to a single focal point.
 - Also, planning out one's day just seems like a good idea in general.
 
-# The Two Modes of my Work
+# The Two Modes of My Work
 
 ```meta
 status: essay
@@ -5011,7 +5011,7 @@ last-edited: 2024-08-26
 - `MetavarContext` *contains* `Metavar`s, and is *owned* by a `MetaM`.
 - `TacticM` *contains* the list of goal `[goal : MVarId]`.
 
-# Right hand for arpeggios
+# Right Hand for Arpeggios
 
 ```meta
 status: scratch
@@ -5141,7 +5141,7 @@ last-edited: 2024-08-31
   he's a much better musician than I ever will be!
 
 
-# Inductive Predicate as Least Fixed Point, directly
+# Inductive Predicate as Least Fixed Point, Directly
 
 ```meta
 status: scratch
@@ -5441,7 +5441,7 @@ day 2| x  x
 - So we can find a letter (which is the transition between these two elements) to kill.
 
 
-# Proving False with partial functions even with Inhabited types 
+# Proving False with Partial Functions Even with Inhabited Types 
 
 ```meta
 status: scratch
@@ -5490,7 +5490,7 @@ last-edited: 2024-06-14
 - Fine arts today has now become a vessel for philosophy. It seems to be disconnected from [techne](https://en.wikipedia.org/wiki/Techne)
 
 
-# Ffmpeg one liner to re-encode mp4 so chrome can open it 
+# Ffmpeg One Liner to Re-encode Mp4 so Chrome Can Open It 
 
 ```meta
 status: scratch
@@ -5514,7 +5514,7 @@ last-edited: 2024-07-20
 - [quenya.lean](git@github.com:bollu/quenya.lean.git)
 
 
-# Setting up SAIL for porting to Lean
+# Setting up SAIL for Porting to Lean
 
 ```meta
 status: scratch
@@ -5588,7 +5588,7 @@ root$ cd sail && make -j $(nproc) && make install
 > It's probably worth looking at katamaran, though. I don't think a deep embedding is too hard,
 > it's partly just a case of deciding what the output language should look like.
 
-# Gregorian chant and numes
+# Gregorian Chant and Numes
 
 ```meta
 status: scratch
@@ -5644,7 +5644,7 @@ end
 - In general, I guess this is how we want the termination criteria to be.
 - I should read the Isabelle docs on how they prove termination. 
 
-# FOL + Fixpoint + Counting does not capture P
+# FOL + Fixpoint + Counting Does Not Capture P
 
 ```meta
 status: scratch
@@ -5888,7 +5888,7 @@ $$
 - Suppose that $G$ is the above toroidal graph such that the robber has a winning strategy for the $2k$ cops and robbers game played on $G$.
 - We can use this to construct a winning strategy for the duplication in the $k$ pebble bijection game on $E_G$ and $E_{\tilde{G}}$.
 
-# Building an ELF by hand
+# Building an ELF by Hand
 
 ```meta
 status: scratch
@@ -5898,7 +5898,7 @@ last-edited: 2024-02-12
 
 - Blog post posted over at repo:
 
-# Resolution is Refutation Complete
+# Resolution Is Refutation Complete
 
 ```meta
 status: technical-note
@@ -5935,7 +5935,7 @@ last-edited: 2024-02-12
   a resolution DAG of the form `S', {C, L} |- ... |- L`. We then "graft" this tree onto the one with `S', {L} |- ... |- False` to get the full
   resolution proof for `S', {C, L} |- ... |- False`!
 
-# Fagin's theorem
+# Fagin's Theorem
 
 ```meta
 status: scratch
@@ -5965,7 +5965,7 @@ last-edited: 2024-02-05
 - Sweet, now run cook-levin inside the model using our arithmetic. sugoi!
 
 
-# EF (Ehrenfeucht–Fraïssé) games
+# EF (Ehrenfeucht–Fraïssé) Games
 
 ```meta
 status: technical-note
@@ -6053,7 +6053,7 @@ last-edited: 2024-01-31
 
 - Clause `{A, B}` subsumes a clause `{A, B, C}`, so delete larger clauses that are subsumed by smaller clauses.
 
-# Why FOL models must be nonempty
+# Why FOL Models Must Be Nonempty
 
 ```meta
 status: scratch
@@ -6063,7 +6063,7 @@ last-edited: 2024-01-31
 
 - We ask for nonemptiness to ensure rules like `(forall x. x = x)` is equialent to `exists x. x != x`.
 
-# Concrete calculation of hopf fibration
+# Concrete Calculation of Hopf Fibration
 
 ```meta
 status: scratch
@@ -6099,7 +6099,7 @@ last-edited: 2024-04-24
 #### References
 - An Elementary Introduction to the Hopf Fibration, by David W Lyons.
 
-# Canonical bundle over RP2 is not trivial
+# Canonical Bundle over RP2 Is Not Trivial
 
 ```meta
 status: scratch
@@ -6161,7 +6161,7 @@ last-edited: 2023-11-22
 - We will show that `λ` must be zero somewhere.
 - consider the scalar field on `S^2` that sends `x` to `λ(x)`. 
 
-# Concrete description of spinors
+# Concrete Description of Spinors
 
 ```meta
 status: scratch
@@ -6233,7 +6233,7 @@ $$
 - For spinors, they have chirality as well, so we get `{left, right} x {co, contra}`.
 - This notation for denoting chirality based on dots is the [Van der waerden notation](https://en.wikipedia.org/wiki/Van_der_Waerden_notation).
 
-# Paracompact spaces
+# Paracompact Spaces
 
 ```meta
 status: scratch
@@ -6267,7 +6267,7 @@ last-edited: 2023-11-22
 - Oh god, this proof needs baire category to "push around" an infinite intersection of dense subsets.
 
 
-# Latin prefixes for words
+# Latin Prefixes for Words
 
 ```meta
 status: scratch
@@ -6323,7 +6323,7 @@ A sight so touch-ing in its maj-es-ty
 - `x/x/` to `xx//`: double iamb. ANYWHERE.
 - `x/` to `xx/`: anapest. [UNCOMMON]
 
-# What the hell is a nix flake?
+# What the Hell Is a Nix Flake?
 
 ```meta
 status: scratch
@@ -6372,7 +6372,7 @@ I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixO
 
 
 
-# How to prove `noConfusion`
+# How to Prove `noConfusion`
 
 ```meta
 status: technical-note
@@ -6457,7 +6457,7 @@ abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :
 ```
 
 
-# Origami box pleating
+# Origami Box Pleating
 
 ```meta
 status: scratch
@@ -6538,7 +6538,7 @@ last-edited: 2024-04-24
 - Define a continuous function $W[n](t) \equiv 1/\sqrt{n} \sum_{i=1}^{\texttt{floor}(tn)} X_i$ for $t \in [0, 1]$.
 - **Donsker's theorem**: As $n \to \infty$, $W_n$ converges ()
 
-# Forward versus backward euler
+# Forward Versus Backward Euler
 
 ```meta
 status: technical-note
@@ -6673,7 +6673,7 @@ $$
   which establishes the bound.
 
 
-# Coercive operator
+# Coercive Operator
 
 ```meta
 status: scratch
@@ -6708,7 +6708,7 @@ last-edited: 2023-09-22
 
 - We can thus define $A^{-1} : Range(A) \to X$
 
-# It suffices to check for weak convergence on a spanning set.
+# It Suffices to Check for Weak Convergence on a Spanning Set.
 
 ```meta
 status: technical-note
@@ -6733,7 +6733,7 @@ last-edited: 2023-09-22
 - Thus we have shown that we can make stuff arbitrarily small, and we are done!
 
 
-# Sequence that converges weakly but not strongly in $l^p$.
+# Sequence That Converges Weakly but Not Strongly In $l^p$.
 
 ```meta
 status: technical-note
@@ -6757,7 +6757,7 @@ last-edited: 2023-09-22
 
 
 
-# Axioms for definite integration
+# Axioms for Definite Integration
 
 ```meta
 status: scratch
@@ -6785,7 +6785,7 @@ last-edited: 2023-09-22
 - By the third axiom, we see that $F(x) - F(c) = \int_a^x f - \int_a^c F = \int_c^x f$.
 - TODO.
 
-# Quotient spaces of Banach space
+# Quotient Spaces of Banach Space
 
 ```meta
 status: technical-note
@@ -6922,7 +6922,7 @@ last-edited: 2023-09-22
 - Combine the two estimates to see tha $d(f, M) = (<1)/(>1)$, which is indeed less than $1$. Done.
 
 
-# Using LLL to discover minimal polynomial for floating point number
+# Using LLL to Discover Minimal Polynomial for Floating Point Number
 
 ```meta
 status: scratch
@@ -6946,7 +6946,7 @@ last-edited: 2023-08-03
 - LLLing on these vectors `v_i` will attempt to find an integer relation on the last
   coefficient, which will be the minpoly.
 
-# Total Boundedness in a metric space
+# Total Boundedness in a Metric Space
 
 ```meta
 status: scratch
@@ -7031,7 +7031,7 @@ def mk_cauchy_sequence(S):
 
 
 
-# Holonomic v/s non holonomic constraints
+# Holonomic v/s Non Holonomic Constraints
 
 ```meta
 status: scratch
@@ -7084,7 +7084,7 @@ last-edited: 2023-08-02
   calls these as $(u, v, s, t)$. This coordinate system they call a _light slab_, and represents light starting
   from the point $(u, v)$ at the first plane and ending at $(s, t)$ at the second plane.
 
-# Precision, Recall, and all that.
+# Precision, Recall, and All That.
 
 ```meta
 status: technical-note
@@ -7236,7 +7236,7 @@ last-edited: 2023-09-22
 - Thus, we only have finitely many points, $q_{\leq n}$ to cover. Cover each of these by their own ball.
 - We have thus successfully found a covering for the full sequence!
 
-# The conceit of self loathing
+# The Conceit of Self Loathing
 
 ```meta
 status: scratch
@@ -7261,7 +7261,7 @@ last-edited: 2023-05-31
 > speculation, and how I might plan to be.
 
 
-# Inverse scattering transform
+# Inverse Scattering Transform
 
 ```meta
 status: scratch
@@ -7280,7 +7280,7 @@ last-edited: 2023-05-28
 - The geometry of the KDv equation describes this on a circle
 
 
-# Differentiating through sampling from a random normal distribution
+# Differentiating Through Sampling from a Random Normal Distribution
 
 ```meta
 status: scratch
@@ -7359,7 +7359,7 @@ last-edited: 2023-05-19
 ```
 - Activity analysis
 
-# Vector Bundles and K theory, 1.1
+# Vector Bundles and K Theory, 1.1
 
 ```meta
 status: scratch
@@ -7451,7 +7451,7 @@ last-edited: 2023-09-22
 
 
 
-# Practical example of semidirect product
+# Practical Example of Semidirect Product
 
 ```meta
 status: scratch
@@ -7479,7 +7479,7 @@ instance Semigroup IndexedString where
   then the bundled up abstraction of (data+pointers into data) should have a semidirect
   structure.
 
-# Algebraic graph calculus
+# Algebraic Graph Calculus
 
 ```meta
 status: scratch
@@ -7490,7 +7490,7 @@ last-edited: 2023-05-19
 - The gradient corresponds to the incidence matrix, which takes values on
   vertices and spits out values on edges.
 
-# Change of basis from triangle x y to barycentric
+# Change of Basis from Triangle X Y to Barycentric
 
 ```meta
 status: scratch
@@ -7504,7 +7504,7 @@ last-edited: 2023-05-19
 - Note that when we parametrize $p, q$ by as $\{ (p, q) : p \in [0, 1], q \in [0, p] \}$, we are
   drawing a right triangle whose base is on the $x$ axis.
 
-# Lean4 access metam and so forth
+# Lean4 Access Metam and so Forth
 
 ```meta
 status: scratch
@@ -7517,7 +7517,7 @@ last-edited: 2023-05-31
   return 0
 ```
 
-# Harmonic function
+# Harmonic Function
 
 ```meta
 status: scratch
@@ -7529,7 +7529,7 @@ last-edited: 2023-05-31
 - is a vector field $V = ∇f$ arose from a potential, then it
   satisfies $∇ x(∇f) = 0$ (by the exact sequence).
 
-# Lax Milgram theorem
+# Lax Milgram Theorem
 
 ```meta
 status: scratch
@@ -7543,7 +7543,7 @@ last-edited: 2023-05-31
 - This is useful to solve elliptic equation problems, for which one can find
   some kind of inner product $B(., .)$ that represents "energy".
 
-# Why L2 needs a quotient upto almost everywhere
+# Why L2 Needs a Quotient Upto Almost Everywhere
 
 ```meta
 status: scratch
@@ -7560,7 +7560,7 @@ last-edited: 2023-04-04
 - This has the side effect such that $f = g$ iff $|(f - g)| = 0$, or that functions agree
   almost everywhere.
 
-# Repulsive curves
+# Repulsive Curves
 
 ```meta
 status: scratch
@@ -7608,7 +7608,7 @@ last-edited: 2023-09-22
 
 
 
-# Why NuPRL and Realisability makes it hard to communicate math
+# Why NuPRL and Realisability Makes It Hard to Communicate Math
 
 ```meta
 status: scratch
@@ -7657,7 +7657,7 @@ last-edited: 2023-03-28
 > mathematics wrong? Back when I was building tools based on Nuprl, I believed
 > that normal mathematics was wrong. I no longer believe that though.
 
-# Lean does not allow nested inductive families
+# Lean Does Not Allow Nested Inductive Families
 
 ```meta
 status: scratch
@@ -7682,7 +7682,7 @@ inductive E : Const → Type
 ```
 
 
-# Weakly implicit arguments in Lean
+# Weakly Implicit Arguments in Lean
 
 ```meta
 status: scratch
@@ -7760,7 +7760,7 @@ last-edited: 2023-05-31
 - [Stack overflow reference for difference between objdump and readelf](https://stackoverflow.com/a/8979687/5305365)
 
 
-# Regular epi and regular category
+# Regular Epi and Regular Category
 
 ```meta
 status: scratch
@@ -7772,7 +7772,7 @@ last-edited: 2023-03-28
   an object `R` and two morphisms `f: R -> c` and `g: R -> c`) such that `d` is `c` module `R`, i.e. the quotient of `c` by `R`
 - A regular category is one where every arrow has a (regular epi-mono) factorization.
 
-# Focal point
+# Focal Point
 
 ```meta
 status: scratch
@@ -7792,7 +7792,7 @@ last-edited: 2023-04-04
   "one point focalization".
 
 
-# Operational versus Denotational semantics
+# Operational Versus Denotational Semantics
 
 ```meta
 status: scratch
@@ -7809,7 +7809,7 @@ last-edited: 2023-04-04
 > of Nat in Prop.
 
 
-# Minimising L2 norm with total constraint
+# Minimising L2 Norm with Total Constraint
 
 ```meta
 status: scratch
@@ -7859,7 +7859,7 @@ last-edited: 2023-04-04
 
 - What is the geometric intution for this being related to "below a line"?
 
-# Bounding L2 norm by L1 norm and vice versa
+# Bounding L2 Norm by L1 Norm and Vice Versa
 
 ```meta
 status: scratch
@@ -7889,7 +7889,7 @@ last-edited: 2023-04-04
 - but l1 error will reduce all values equally.
 - thus, l1 norm is larger than l2 norm.
 
-# Example of unbounded linear operator
+# Example of Unbounded Linear Operator
 
 ```meta
 status: scratch
@@ -7927,7 +7927,7 @@ last-edited: 2023-04-04
   while $f(\lim_i p_i) = f(\pi) = 1$. This shows that $f$ is not continuous, but is linear.
 
 
-# Direct sum of topological vector spaces
+# Direct Sum of Topological Vector Spaces
 
 ```meta
 status: scratch
@@ -7952,7 +7952,7 @@ last-edited: 2023-04-02
 - This means that $(A + B)$ is not closed. If it were closed, it would contain the full space (because it's dense).
 - Thus, we have an example of the direct sum of two closed subspaces which is not closed, because it is dense.
 
-# Subspaces need not have complement
+# Subspaces Need Not Have Complement
 
 ```meta
 status: scratch
@@ -7986,7 +7986,7 @@ last-edited: 2023-09-22
 - Since $l^\infty / c_0$ is isomorphic to $R$.
 - TODO
 
-# $L^\infty$ is HUGE
+# $L^\infty$ Is HUGE
 
 ```meta
 status: scratch
@@ -8001,7 +8001,7 @@ last-edited: 2023-04-02
 #### Continuous functions are dense in $L^2$
 #### Continuous functions is NOT dense in $L^\infty$
 
-# Banach space that does not admit Schrauder basis
+# Banach Space That Does Not Admit Schrauder Basis
 
 ```meta
 status: scratch
@@ -8018,7 +8018,7 @@ last-edited: 2023-04-02
 
 
 
-# Open mapping theorem
+# Open Mapping Theorem
 
 ```meta
 status: scratch
@@ -8098,7 +8098,7 @@ last-edited: 2024-04-24
 - The latter map is a 
 
 
-# Closed graph theorem
+# Closed Graph Theorem
 
 ```meta
 status: scratch
@@ -8184,7 +8184,7 @@ $$
 - Thus, no point $(p, q)$ that is outside of $\Delta$ is a limit point, which means that $\Delta$
   contains all its limit points, and is thus closed.
 
-# Bounded inverse theorem
+# Bounded Inverse Theorem
 
 ```meta
 status: scratch
@@ -8205,7 +8205,7 @@ last-edited: 2023-04-02
   $V \equiv T^{-1}(U)$ is open, as $L = T^{-1}$. Hence done.
 
 
-# Nonexistence of solutions for ODE and PDE
+# Nonexistence of Solutions for ODE and PDE
 
 ```meta
 status: scratch
@@ -8388,7 +8388,7 @@ last-edited: 2023-03-27
 - If it were the case that the kernel also links in
 
 
-# Stuff I learnt in 2022
+# Stuff I Learnt in 2022
 
 ```meta
 status: essay
@@ -8667,7 +8667,7 @@ That looks like an ambitious list, and I'm glad it is. I'd like my years to be f
 interesting challenges and neat things I can point to at the end of year! With that said, happy new year!
 
 
-# You don't know jack about data races
+# You Don't Know Jack About Data Races
 
 ```meta
 status: scratch
@@ -8735,7 +8735,7 @@ P2: if(y) { x = true; }
 
 
 
-# Training a custom model for Lean4
+# Training a Custom Model for Lean4
 
 ```meta
 status: scratch
@@ -8758,7 +8758,7 @@ last-edited: 2023-01-01
   million. That's number of lines in mathlib. But how do we generate correct proofs of weird looking
   compilers statements? what do we start with?
 
-# Stratified synthetsis
+# Stratified Synthetsis
 
 ```meta
 status: scratch
@@ -8778,7 +8778,7 @@ last-edited: 2023-03-27
 
 
 
-# Mutual recursion elaboration in Lean
+# Mutual Recursion Elaboration in Lean
 
 ```meta
 status: scratch
@@ -8902,7 +8902,7 @@ This could be very expensive in case we have complicated mutual
 definitions, since Lean can blow up if we have many inductives.
 
 
-# Subject reduction in Lean
+# Subject Reduction in Lean
 
 ```meta
 status: scratch
@@ -8977,7 +8977,7 @@ last-edited: 2023-03-27
 
 Use `nm` to list all symbols in a file.
 
-# Axiom K versus UIP
+# Axiom K Versus UIP
 
 ```meta
 status: scratch
@@ -9013,7 +9013,7 @@ K refl = refl
 - [Pattern matching without K](https://stackoverflow.com/questions/39264130/is-agda-without-k-less-powerful?noredirect=1&lq=1)
 
 
-# Linear vs uniqueness types
+# Linear vs Uniqueness Types
 
 ```meta
 status: scratch
@@ -9023,7 +9023,7 @@ last-edited: 2022-11-24
 - A function `A -o B` which is linear in `A` guarantees that the function *consumes* A
 - A function `Unique<A> -> B` guarantees that the function holds the *only reference* to `A`.
 
-# Any model of lean must have all inductives
+# Any Model of Lean Must Have All Inductives
 
 ```meta
 status: scratch
@@ -9052,7 +9052,7 @@ exact h2 (h1 two.t1 two.t2)
 ```
 
 
-# Index over the past, fiber over the future
+# Index over the Past, Fiber over the Future
 
 ```meta
 status: scratch
@@ -9067,7 +9067,7 @@ last-edited: 2023-03-27
 
 
 
-# Type formers need not be injective
+# Type Formers Need Not Be Injective
 
 ```meta
 status: scratch
@@ -9083,7 +9083,7 @@ abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collecti
 - This means that inductives are indeed special, for us to be able to have that, eg, `cons a as = cons b bs` implies
   that `a = b /\ b = bs`.
 
-# There cannot be a type of size the universe
+# There Cannot Be a Type of Size the Universe
 
 ```meta
 status: scratch
@@ -9107,7 +9107,7 @@ noncomputable def cantor (UcodedU: Powerset codedU): codedU := -- use the fact t
 -- Now run cantor diagonalization.
 ```
 
-# The dependently typed expression problem
+# The Dependently Typed Expression Problem
 
 ```meta
 status: scratch
@@ -9120,7 +9120,7 @@ We can either write Ohad/OOP, where we have data and proofs (behaviour)
 next to each other. Or we can write in Xavier/functional style, where
 the data is separate from the proofs (behaviour).
 
-# Motivation for modal logic
+# Motivation for Modal Logic
 
 ```meta
 status: scratch
@@ -9172,7 +9172,7 @@ last-edited: 2022-11-02
 - [Scones, logical relations, parametricity](https://golem.ph.utexas.edu/category/2013/04/scones_logical_relations_and_p.html)
 
 
-# Presheaf models of type theory
+# Presheaf Models of Type Theory
 
 ```meta
 status: scratch
@@ -9191,7 +9191,7 @@ last-edited: 2023-03-26
 - [A presheaf model of dependent type theory by Alexis Laouar](https://perso.crans.org/alaouar/rapportm1.pdf)
 - [Ref: Cubical type theory with several universes in nuprl](https://www.youtube.com/watch?v=ioa-f_nCNuE)
 
-# Weighted limits via collages
+# Weighted Limits via Collages
 
 ```meta
 status: scratch
@@ -9298,7 +9298,7 @@ theorem Leibniz_implies_defeq (x y: A) (LEQ: Leibniz x y):
   x = y := LEQ (fun a => x = a) rfl
 ```
 
-# Strong normalization of STLC
+# Strong Normalization of STLC
 
 ```meta
 status: scratch
@@ -9361,7 +9361,7 @@ body ∈ LType(B); (∀ aval∈ Ltype(A), body[a/aval] ∈ Ltype(B))
   this means that if `(x:T)∈ Γ`, then `γ(x):T`, and `γ(x)∈ LType(T)`. That is, `γ` is a set of assignments
   for the typing context `Γ` where each assignment is strongly normalizing.
 
-# Subobject classifiers of $N \to FinSet$, or precosheaf of $FinSet$
+# Subobject Classifiers of $N \to FinSet$, or Precosheaf Of $FinSet$
 
 ```meta
 status: scratch
@@ -9425,7 +9425,7 @@ X1 - Χ[f]1- -> Ο1
 - We claim this category
 
 
-# Dimensions versus units
+# Dimensions Versus Units
 
 ```meta
 status: scratch
@@ -9436,7 +9436,7 @@ last-edited: 2022-10-27
   the conversion ratio between grams versus kilograms.
 
 
-# HoTTesT: Identity types
+# HoTTesT: Identity Types
 
 ```meta
 status: scratch
@@ -9471,7 +9471,7 @@ last-edited: 2023-05-31
 - `=`-intro: `a:A| r_a: a =A a`. (`r` = reflexivity).
 - `=`-elim: `x: A, y: A, z: x =A y |- D(x, y, z) type`, and given `x:A |- d: D(x, x, r_x)`, then we have  `ind=(d, x, y, z): D(x, y, z)`
 
-# Left and right adjoints to inverse image
+# Left and Right Adjoints to Inverse Image
 
 ```meta
 status: scratch
@@ -9519,7 +9519,7 @@ b1 b2 b3
 - TODO
 
 
-# Paredit via adjoints
+# Paredit via Adjoints
 
 ```meta
 status: scratch
@@ -9537,7 +9537,7 @@ last-edited: 2023-04-02
 - Hopf algebras and rooted trees (https://personal.math.ubc.ca/~thomas/TeXthings/HopfAlgebras-1.1.pdf)
 
 
-# Less than versus Less than or equals over Z
+# Less than Versus Less than or Equals over Z
 
 ```meta
 status: scratch
@@ -9569,7 +9569,7 @@ last-edited: 2022-09-28
 - An allegory is a category enriched over posets, where each morphism $r: A \to B$
   has a converse $r': B \to A$.
 
-# Partial function as span
+# Partial Function as Span
 
 ```meta
 status: scratch
@@ -9583,7 +9583,7 @@ last-edited: 2022-09-28
   subobjects.
 
 
-# Turing degree
+# Turing Degree
 
 ```meta
 status: scratch
@@ -9612,7 +9612,7 @@ last-edited: 2023-04-02
 - Cutland, N. Computability. Cambridge University
 
 
-# Proof that there is a TM whose halting is independent of ZFC
+# Proof That There Is a TM Whose Halting Is Independent of ZFC
 
 ```meta
 status: scratch
@@ -9628,7 +9628,7 @@ last-edited: 2022-09-25
   ZFC in ZFC, which contradicts Godel's incompleteness theorem.
 - Thus, it is independent of ZFC whether TM M halts or not.
 
-# Contradiction from non-positive occurence
+# Contradiction from Non-positive Occurence
 
 ```meta
 status: scratch
@@ -9656,7 +9656,7 @@ inhab = FnSpace contra
 ```
 
 
-# The constructible universe L
+# The Constructible Universe L
 
 ```meta
 status: scratch
@@ -9681,7 +9681,7 @@ last-edited: 2023-04-02
 - Theorem which says that constructible sets are those that can be built from godel operations.
 
 
-# Godel completeness theorem
+# Godel Completeness Theorem
 
 ```meta
 status: scratch
@@ -9709,7 +9709,7 @@ last-edited: 2022-09-19
 - [References](https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem)
 
 
-# Uniform proofs, focused proofs, polarization, logic programming
+# Uniform Proofs, Focused Proofs, Polarization, Logic Programming
 
 ```meta
 status: scratch
@@ -9725,7 +9725,7 @@ last-edited: 2022-09-28
 
 
 
-# Why cut elimination?
+# Why Cut Elimination?
 
 ```meta
 status: scratch
@@ -9755,7 +9755,7 @@ last-edited: 2023-04-02
 - [An introduction to the complexity and combinatorics of cut elimination](https://www.ams.org/journals/bull/1997-34-02/S0273-0979-97-00715-5/S0273-0979-97-00715-5.pdf)
 - [Reference](https://mathoverflow.net/questions/8632/cut-elimination)
 
-# Forcing to add a function
+# Forcing to Add a Function
 
 ```meta
 status: technical-note
@@ -9784,7 +9784,7 @@ last-edited: 2022-09-07
 - Cool, we've now seen how to enlarge the universe to add a _single_ function of interest.
 - [Reference](https://math.stackexchange.com/questions/1311667/what-are-some-simple-example-of-forcing-in-set-theory)
 
-# Diaconescu's theorem
+# Diaconescu's Theorem
 
 ```meta
 status: scratch
@@ -9807,7 +9807,7 @@ last-edited: 2023-04-02
 - Therefore, by contraposition $(f(U) \neq f(V)) \implies \lnot P$.
 - This means we have $P \lor \lnot P$!
 
-# Forcing machinery
+# Forcing Machinery
 
 ```meta
 status: scratch
@@ -10095,7 +10095,7 @@ last-edited: 2023-04-02
 - Apply `comp(source)`. This gives us `comp(source) = mix(mix, interp)(source) = mix(interp, source) = target`.
 - Thus, we have create a compiler generator, which takes an interpreter and produces a compiler.
 
-# Diagonal lemma for monotone functions
+# Diagonal Lemma for Monotone Functions
 
 ```meta
 status: scratch
@@ -10130,7 +10130,7 @@ $$
 
 - See that we used the diagonal lemma to convert the union over $f, g$ into a union over $f$.
 
-# Cantor Schroder Bernstein via fixpoint
+# Cantor Schroder Bernstein via Fixpoint
 
 ```meta
 status: scratch
@@ -10154,7 +10154,7 @@ last-edited: 2022-09-28
 - Thus, the set that we need to fiddle in $f'$ is $Y \mapsto (T-f(S))\cup F(G(Y))$.
 
 
-# Maximal Ideals of Boolean Algebras are Truth Values
+# Maximal Ideals of Boolean Algebras Are Truth Values
 
 ```meta
 status: scratch
@@ -10199,7 +10199,7 @@ last-edited: 2023-04-02
 - In this way, maximal ideals of posets completed to rings correspond to truth values.
 - Dualize the story via Grothendieck/Geometry to talk about filters :)
 
-# Crash course on DCPO: formalizing lambda calculus
+# Crash Course on DCPO: Formalizing Lambda Calculus
 
 ```meta
 status: scratch
@@ -10364,7 +10364,7 @@ than $a$, and hence implies $a$.
 
 
 
-# Resolution algorithm for propositional logic
+# Resolution Algorithm for Propositional Logic
 
 ```meta
 status: scratch
@@ -10407,7 +10407,7 @@ F \/ l; G \/ not(l)
 - But this cannot be, since we assumed that the set of clauses was saturated.
 
 
-# Completeness for first order logic
+# Completeness for First Order Logic
 
 ```meta
 status: scratch
@@ -10429,7 +10429,7 @@ last-edited: 2022-09-07
 - Thus, this shows that every element of `consistent` (proofs of sequent calculus) in fact has a model, and thus we are complete.
 
 
-# Compactness theorem of first order logic
+# Compactness Theorem of First Order Logic
 
 ```meta
 status: scratch
@@ -10487,7 +10487,7 @@ last-edited: 2023-04-02
 
 
 
-# First order logic: Semantics
+# First Order Logic: Semantics
 
 ```meta
 status: scratch
@@ -10515,7 +10515,7 @@ last-edited: 2022-09-07
 - his fells close to the notion of **adequacy**, when the operational and denotational semantics
   agree.[HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
 
-# full abstraction in semantics
+# Full Abstraction in Semantics
 
 ```meta
 status: scratch
@@ -10554,7 +10554,7 @@ last-edited: 2023-03-27
 - [HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
 
 
-# You could have invented Sequents
+# You Could Have Invented Sequents
 
 ```meta
 status: technical-note
@@ -10576,7 +10576,7 @@ last-edited: 2022-08-22
 - Great, we have successfully invented sequents.
 
 
-# Fibrational category theory, sec 1.1, sec 1.2
+# Fibrational Category Theory, Sec 1.1, Sec 1.2
 
 ```meta
 status: scratch
@@ -10734,7 +10734,7 @@ last-edited: 2022-08-22
 
 
 
-# Realisability models
+# Realisability Models
 
 ```meta
 status: scratch
@@ -10795,7 +10795,7 @@ of terms, … My favourite is Krivine's realisability with both terms and stacks
 and magic happening when they interact. But this is another story and shall be
 told another time. 10/10
 
-# Naming left closed, right open with start/stop
+# Naming Left Closed, Right Open with Start/stop
 
 ```meta
 status: scratch
@@ -10806,7 +10806,7 @@ last-edited: 2022-08-22
 Call the variables `startPos` and `stopPos`. Since it's called stop,
 it's a little more intuitive that it's exclusive!
 
-# Nested vs mutual inductive types:
+# Nested vs Mutual Inductive Types:
 
 ```meta
 status: scratch
@@ -10859,7 +10859,7 @@ def ifProp (p: Prop) (t: a) (e: a) : a := by
 def Model := Σ (s: Sets), s.denote
 ```
 
-# Module system for separate compilation
+# Module System for Separate Compilation
 
 ```meta
 status: scratch
@@ -10872,7 +10872,7 @@ last-edited: 2022-08-22
 - https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/phd-defence.pdf
 - https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/thesis.pdf
 
-# Second order arithmetic
+# Second Order Arithmetic
 
 ```meta
 status: scratch
@@ -11025,7 +11025,7 @@ elab tk:"foo" val:term : tactic => do
 > it would make the search very expensive.
 
 
-# Categorical model of dependent types
+# Categorical Model of Dependent Types
 
 ```meta
 status: scratch
@@ -11323,7 +11323,7 @@ extract (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = fmap i2o gi
 ```
 
 
-# Natural Transformations as ends
+# Natural Transformations as Ends
 
 ```meta
 status: scratch
@@ -11408,7 +11408,7 @@ dimap id(a) k τa    dimap k id(b) τb
 - So we can write this as a "point-full" notation!
 - In haskell, this would be `forall x. (a -> x) -> f x ~= f a`.
 
-# Ends and diagonals
+# Ends and Diagonals
 
 ```meta
 status: scratch
@@ -11554,7 +11554,7 @@ q a a         q b b
 - Now, a wedge is a dinatural transformation from constant functor to this new thingie.
 
 
-# Parabolic dynamics and renormalization
+# Parabolic Dynamics and Renormalization
 
 ```meta
 status: scratch
@@ -11564,7 +11564,7 @@ last-edited: 2022-06-26
 
 - [Video](https://www.youtube.com/watch?v=Z77mTqj_Wnk)
 
-# Quantifiers as adjoints
+# Quantifiers as Adjoints
 
 ```meta
 status: scratch
@@ -11652,7 +11652,7 @@ last-edited: 2023-04-02
 - Furthermore, it is the right adjoint to `π*(Z)` because the ???
 
 
-# TLDP pages for bash conditionals
+# TLDP Pages for Bash Conditionals
 
 ```meta
 status: scratch
@@ -11673,7 +11673,7 @@ last-edited: 2022-10-13
 - remainder takes the sign of the first operand.
 - modulo takes the sign of the second operand.
 
-# Parameters cannot be changed *anywhere*, not just in return location
+# Parameters Cannot Be Changed *anywhere*, Not Just in Return Location
 
 ```meta
 status: scratch
@@ -11789,7 +11789,7 @@ T(a) type
 
 
 
-# Testing infra in Lean4
+# Testing Infra in Lean4
 
 ```meta
 status: scratch
@@ -11816,7 +11816,7 @@ $ elan toolchain add my-lean-copy /path/to/my-lean-copy/build/stage0
 $ elan override my-lean-copy
 ```
 
-# Inductive types
+# Inductive Types
 
 ```meta
 status: scratch
@@ -11876,7 +11876,7 @@ inductive T
 ##### Computational content
 
 
-# Parameter verus Index
+# Parameter Verus Index
 
 ```meta
 status: scratch
@@ -11889,7 +11889,7 @@ last-edited: 2022-10-13
 - Indexes rep
 - Coq calls indexes "non-uniform".
 
-# HNF versus WHNF
+# HNF Versus WHNF
 
 ```meta
 status: scratch
@@ -11901,7 +11901,7 @@ last-edited: 2022-10-13
 - a data constructor applied to arguments which are in normal form
 - a lambda abstraction whose body is in normal form
 
-# Different types of arguments in Lean4:
+# Different Types of Arguments in Lean4:
 
 ```meta
 status: scratch
@@ -11916,7 +11916,7 @@ last-edited: 2022-07-27
 
 In Coq people shun away from this binder. I'm not sure why, I guess there are issues with it at a larger scale. We could get rid of it. For the paper it's utterly irrelevant in my opinion
 
-# Lean tactics
+# Lean Tactics
 
 ```meta
 status: scratch
@@ -12010,7 +12010,7 @@ last-edited: 2022-05-30
 - https://fredrikj.net/math/fungrim2022.pdf
 - They want to integrate with mathlib to have formal definitions.
 
-# Category where coproducts of computable things is not computable
+# Category Where Coproducts of Computable Things Is Not Computable
 
 ```meta
 status: scratch
@@ -12026,7 +12026,7 @@ last-edited: 2023-04-02
   lattice on 5 generators, because $F(2 \cup 3) = F(2) \sqcup F(3)$  (where $2, 3$ are two and three element sets),
   because free is left adjoint to forgetful, and the left adjoint $F$ preserve colimits!
 
-# Homotopy continuation
+# Homotopy Continuation
 
 ```meta
 status: scratch
@@ -12037,7 +12037,7 @@ last-edited: 2022-05-30
 
 - [Rigorous arithmetic with approximate roots of polynomials --- CAG L16](https://www.youtube.com/watch?v=XC_tfjjBPLc&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=38)
 
-# Relationship between linearity and contradiction
+# Relationship Between Linearity and Contradiction
 
 ```meta
 status: scratch
@@ -12352,7 +12352,7 @@ last-edited: 2023-04-02
 - Compare: $|ker(f)| \cdot |Y| \geq |X|^2$ with $(x_1^2 + x_2^2 + x_3^2) \cdot n \geq (x_1 + x_2 + x_3)^2$. Cardinality replaces
   the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares.
 
-# Bezout's theorem
+# Bezout's Theorem
 
 ```meta
 status: scratch
@@ -12506,7 +12506,7 @@ $$
 - [Borcherds Video](https://www.youtube.com/watch?v=UJssbO-e2yw)
 - [On Bezout's Theorem: Dathan Ault-McCoy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
 
-# Example for invariant theory
+# Example for Invariant Theory
 
 ```meta
 status: scratch
@@ -12522,7 +12522,7 @@ last-edited: 2023-04-02
 
 - [IAS lecture](https://www.youtube.com/watch?v=3jksqrYuvuk)
 
-# Counterexample to fundamental theorem of calculus?
+# Counterexample to Fundamental Theorem of Calculus?
 
 ```meta
 status: scratch
@@ -12534,7 +12534,7 @@ last-edited: 2022-05-30
 - But this is absurd since $1/x^2$ is always positive in $[-1, 1]$.
 - What's going wrong?
 
-# Why a sentinel of `-1` is sensible
+# Why a Sentinel of `-1` Is Sensible
 
 ```meta
 status: scratch
@@ -12545,7 +12545,7 @@ last-edited: 2022-05-30
 - See that when we have an array, we usually index it with an array index of `0 <= i < len`.
 - If `len = 0`, then the only "acceptable" `i` is `-1`, since it's the greatest integer that is less that `len=0`.
 
-# Data structure to maintain mex
+# Data Structure to Maintain Mex
 
 ```meta
 status: scratch
@@ -12600,7 +12600,7 @@ int mex_mex() {
 }
 ```
 
-# Scatted algebraic number theory ideas: Ramification
+# Scatted Algebraic Number Theory Ideas: Ramification
 
 ```meta
 status: scratch
@@ -12705,7 +12705,7 @@ last-edited: 2022-08-22
   called $BG^\delta$.
 
 
-# Better `man` Pages via `info`
+# Better `man` Pages Via `info`
 
 ```meta
 status: scratch
@@ -12717,7 +12717,7 @@ last-edited: 2022-05-30
 - `info` pages about things like `sed` and `awk` are actually useful.
 
 
-# The Zen of juggling three balls
+# The Zen of Juggling Three Balls
 
 ```meta
 status: technical-note
@@ -12745,7 +12745,7 @@ last-edited: 2023-04-02
   of actually freeing a hand and accurately catching the ball. One can then focus attention
   on the other side and solve the same problem again.
 
-# Example of lattice that is not distributive
+# Example of Lattice That Is Not Distributive
 
 ```meta
 status: scratch
@@ -12790,7 +12790,7 @@ last-edited: 2022-05-30
       (loop for y in `(,x ,x) collect (* y y))
 ```
 
-# Mitchell-Bénabou language
+# Mitchell-Bénabou Language
 
 ```meta
 status: scratch
@@ -12819,7 +12819,7 @@ last-edited: 2023-04-02
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
 - https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
 
-# Why is product in Rel not cartesian product?
+# Why Is Product in Rel Not Cartesian Product?
 
 ```meta
 status: scratch
@@ -12856,7 +12856,7 @@ last-edited: 2022-06-03
 - That is, all $n$-ary categorical products (including $0$-ary) exist in the slice category of each object.
 - MLTT corresponds to [locally cartesian categories](https://www.math.mcgill.ca/rags/LCCC/LCCC.pdf)
 
-# `simp` in Lean4
+# `simp` In Lean4
 
 ```meta
 status: scratch
@@ -12904,7 +12904,7 @@ last-edited: 2022-06-03
 - Make Lean4 goals go to line number when pressing `<Enter>`
 - Convert lean book into `Jupyter` notebook?
 
-# `unsafePerformIO` in Lean4:
+# `unsafePerformIO` In Lean4:
 
 ```meta
 status: scratch
@@ -12944,7 +12944,7 @@ last-edited: 2022-06-03
 
 
 
-# Sheaves in geometry and logic 1.2: Pullbacks
+# Sheaves in Geometry and Logic 1.2: Pullbacks
 
 ```meta
 status: scratch
@@ -12962,7 +12962,7 @@ last-edited: 2022-05-04
 - The pullback of a monic along any arrow is monic.
 - The pullback of an epi along any arrow is epi in set, but not necessarily always!
 
-# Sheaves in geometry and logic 1.3: Characteristic functions of subobjects
+# Sheaves in Geometry and Logic 1.3: Characteristic Functions of Subobjects
 
 ```meta
 status: scratch
@@ -13106,7 +13106,7 @@ last-edited: 2023-09-22
 - Step 3: confidently draw a line. LIFT THE PEN UP to stop the pen, don't slow down!
 
 
-# Common Lisp Beauty: paths
+# Common Lisp Beauty: Paths
 
 ```meta
 status: scratch
@@ -13285,7 +13285,7 @@ $$
 - Since we are in an integral domain (really a field), this means that $x^{(p-1)/2} \equiv \pm 1 (\mod p)$.
 
 
-# Pointless topology: Frames
+# Pointless Topology: Frames
 
 ```meta
 status: scratch
@@ -13315,7 +13315,7 @@ last-edited: 2022-09-25
 - Joke: A sober space is one where what you see is there, and you don't see double.
   What you see is there: every completely prime filter is the nbhd of some point. You don't see double: the pt is unique.
 
-# Introduction to substructural logics: Ch1
+# Introduction to Substructural Logics: Ch1
 
 ```meta
 status: scratch
@@ -13368,7 +13368,7 @@ last-edited: 2023-09-22
 - In general, a theory is admissible to some axiom $A$ if the axioms of the theory allows one to prove $A$.
 
 
-# Integrating against ultrafilers
+# Integrating Against Ultrafilers
 
 ```meta
 status: scratch
@@ -13406,7 +13406,7 @@ last-edited: 2022-09-28
 
 
 
-# wegli: Neat tool for semantically grepping C++
+# Wegli: Neat Tool for Semantically Grepping C++
 
 ```meta
 status: scratch
@@ -13470,7 +13470,7 @@ last-edited: 2023-04-02
 
 - [Reference: book of proofs](https://www.bookofproofs.org/branches/mostowski-function-and-collapse/)
 
-# Spaces that have same homotopy groups but not the same homotopy type
+# Spaces That Have Same Homotopy Groups but Not the Same Homotopy Type
 
 ```meta
 status: scratch
@@ -13487,7 +13487,7 @@ last-edited: 2022-04-28
 - See that the map backward can send $\star$ somewhere, so we are picking a point on $W$.
 - The composite smooshes all of $W$ to a single point. For this to be homotopic to the identity is to say that the space is contractible.
 
-# Fundamental group functor does not preserve epis
+# Fundamental Group Functor Does Not Preserve Epis
 
 ```meta
 status: scratch
@@ -13501,7 +13501,7 @@ last-edited: 2023-04-02
 - Maybe even more simply, the map $f: [0, 1] \to S^1$ is an epi
 - Thus, fundamental group functor does not preserve epis.
 
-# Epi in topological spaces
+# Epi in Topological Spaces
 
 ```meta
 status: scratch
@@ -13513,7 +13513,7 @@ last-edited: 2022-04-28
 - Epis in the category of topological spaces are continuous functions that have dense image.
 - Proof: TODO
 
-# Permutation models
+# Permutation Models
 
 ```meta
 status: scratch
@@ -13534,7 +13534,7 @@ last-edited: 2022-04-28
   a non-trivial automorphism.
 - Thus, we have contradiction. Ths means that `A` cannot be well-ordered, ie, there cannot be an injection `f: ordinal -> A`.
 
-# Almost universal class
+# Almost Universal Class
 
 ```meta
 status: scratch
@@ -13547,7 +13547,7 @@ last-edited: 2023-04-02
 - $L$ is almost universal if for any subset $A \subset L$ (where $A$ is a set), there is some $B \in L$ such that $A \subseteq B$,
   but $A$ in itself need not be in $L$.
 
-# Godel operations
+# Godel Operations
 
 ```meta
 status: scratch
@@ -13581,7 +13581,7 @@ last-edited: 2022-04-03
 - The factorization is _functorial_:
 - [Reference: Riehl on factorization systems](https://math.jhu.edu/~eriehl/factorization.pdf)
 
-# Orthogonal morphisms
+# Orthogonal Morphisms
 
 ```meta
 status: scratch
@@ -13656,7 +13656,7 @@ last-edited: 2022-04-03
 
 - [link](https://en.wikipedia.org/wiki/Remez_algorithm)
 
-# Permission bits reference
+# Permission Bits Reference
 
 ```meta
 status: scratch
@@ -13702,7 +13702,7 @@ last-edited: 2022-04-03
 - A data structure for a uniform approach to computations with finite groups.
 - A fast implementatoin of the monster group.
 
-# Kan Extensions: Key idea
+# Kan Extensions: Key Idea
 
 ```meta
 status: scratch
@@ -13717,7 +13717,7 @@ last-edited: 2022-04-03
 
 
 
-# Interleaved dataflow analysis and rewriting
+# Interleaved Dataflow Analysis and Rewriting
 
 ```meta
 status: scratch
@@ -13757,7 +13757,7 @@ T -> analysis
 
 
 
-# Central variable as `focal`
+# Central Variable As `focal`
 
 ```meta
 status: scratch
@@ -13771,7 +13771,7 @@ last-edited: 2022-05-30
 - I find the name `focal` very evocative for what we are currently focused on! It is free of the implications
   of a word like `current`.
 
-# Wilson's theorem
+# Wilson's Theorem
 
 ```meta
 status: scratch
@@ -13788,7 +13788,7 @@ last-edited: 2022-02-03
   or that $p$ is congruent to $1$ mod $4$.
 - It's really nice to be able to see where this condition comes from!
 
-# General enough special cases
+# General Enough Special Cases
 
 ```meta
 status: scratch
@@ -13816,7 +13816,7 @@ void editor_state_backspace_char(EditorState& s) {
 ```
 
 
-# XOR and AND relationship
+# XOR and AND Relationship
 
 ```meta
 status: scratch
@@ -13826,7 +13826,7 @@ last-edited: 2022-02-03
 
 -  `a xor b = a + b - 2 (a & b)`
 
-# Geometry of complex integrals
+# Geometry of Complex Integrals
 
 ```meta
 status: scratch
@@ -13837,7 +13837,7 @@ last-edited: 2022-02-03
 - integral f(z) dz is work in real part, flux in imaginary part.
 - https://www.youtube.com/watch?v=EyBDtUtyshk
 
-# Green's functions
+# Green's Functions
 
 ```meta
 status: scratch
@@ -13851,7 +13851,7 @@ last-edited: 2022-05-30
   $\partial_t \partial_t \alpha f + \beta g = \alpha (\partial_t \partial_t f) + \beta (\partial_t \partial_t g)$
 - [Video reference](https://www.youtube.com/watch?v=ism2SfZgFJg)
 
-# CP trick: writing exact counting as counting less than
+# CP Trick: Writing Exact Counting as Counting Less Than
 
 ```meta
 status: scratch
@@ -13864,7 +13864,7 @@ last-edited: 2022-01-28
 - While simple, this is hugely benificial in many situations because `<=k` can be implement as some kind of
   prefix sum data structure plus binary search, which is much less error prone to hack up than exact equality.
 
-# CP trick: Heavy Light Decomposition euler tour tree
+# CP Trick: Heavy Light Decomposition Euler Tour Tree
 
 ```meta
 status: scratch
@@ -13881,7 +13881,7 @@ last-edited: 2022-01-28
   that lives within this subtree.
 
 
-# Counting with repetitions via pure binomial coefficients
+# Counting with Repetitions via Pure Binomial Coefficients
 
 ```meta
 status: scratch
@@ -13899,7 +13899,7 @@ last-edited: 2022-05-30
   which is equal to the usual $n!/a!b!c!$ by cancelling and setting $c = n - a - b$.
 - Generalization is immediate.
 
-# Fundamental theorem of homological algebra [TODO]
+# Fundamental Theorem of Homological Algebra [TODO]
 
 ```meta
 status: scratch
@@ -13953,7 +13953,7 @@ P1---   P0 -> M -> 0
 
 ## Chain homotopy classes of chain maps
 
-# Projective modules in terms of universal property
+# Projective Modules in Terms of Universal Property
 
 ```meta
 status: technical-note
@@ -14104,7 +14104,7 @@ E ->>B <--       g~
 - [video](https://www.youtube.com/watch?v=odva24Ro-44&list=PL2Rb_pWJf9JqgIR6RR3VFF2FwKCyaUUZn&index=37)
 
 
-# How ideals recover factorization [TODO]
+# How Ideals Recover Factorization [TODO]
 
 ```meta
 status: scratch
@@ -14191,7 +14191,7 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
 
 - [Video lectures: Intro to algebraic number thory via fermat's last theorem](https://www.youtube.com/watch?v=1f0-pc9zYPQ&list=PLSibAQEfLnTwq2-zCB-t9v2WvnnVKd0wn)
 
-# Centroid of a tree
+# Centroid of a Tree
 
 ```meta
 status: technical-note
@@ -14288,7 +14288,7 @@ int centroid(int v, int p) {
 - If we find the centroids of the subtrees that hang from the centroid, then we decompose the graph
   into a **centroid decomposition**.
 
-# Path query to subtree query
+# Path Query to Subtree Query
 
 ```meta
 status: scratch
@@ -14304,7 +14304,7 @@ last-edited: 2022-01-28
 
 
 
-# Pavel: bridges, articulation points for UNDIRECTED graphs
+# Pavel: Bridges, Articulation Points for UNDIRECTED Graphs
 
 ```meta
 status: scratch
@@ -14336,7 +14336,7 @@ last-edited: 2023-04-02
 
 
 
-# Monadic functor
+# Monadic Functor
 
 ```meta
 status: scratch
@@ -14362,7 +14362,7 @@ last-edited: 2022-05-30
   other alleged "monad" takes a monoid $M$ to the free monoid on the element of $M$. We've lost structure.
 
 
-# Injective module
+# Injective Module
 
 ```meta
 status: scratch
@@ -14387,7 +14387,7 @@ last-edited: 2022-05-30
   given by $i(z) = 3z$. We also have the quotient map $f: Z \to Z/3Z$. We want to factor $f = qi$ where
   $q: Q \to Z/3Z$. This is given by $q(x) = $
 
-# Proof that $Spec(R)$ is a sheaf [TODO]
+# Proof That $Spec(R)$ Is a Sheaf [TODO]
 
 ```meta
 status: scratch
@@ -14431,7 +14431,7 @@ last-edited: 2022-02-06
 - [Borcherds](https://www.youtube.com/watch?v=AYDq0qY34HU&list=PL8yHsr3EFj50Un2NpfPySgXctRQK7CLG-&index=9)
 
 
-# Projections onto convex sets
+# Projections onto Convex Sets
 
 ```meta
 status: scratch
@@ -14442,7 +14442,7 @@ last-edited: 2026-08-28
 - [Link](https://en.wikipedia.org/wiki/Projections_onto_convex_sets)
 
 
-# BGFS algorithm for unconstrained nonlinear optimization
+# BGFS Algorithm for Unconstrained Nonlinear Optimization
 
 ```meta
 status: scratch
@@ -14452,7 +14452,7 @@ last-edited: 2022-02-06
 
 - [Link](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
 
-# LM algorithm for nonlinear least squares
+# LM Algorithm for Nonlinear Least Squares
 
 ```meta
 status: scratch
@@ -14463,7 +14463,7 @@ last-edited: 2022-02-06
 - [Link](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
 
 
-# Backward dataflow and continuations
+# Backward Dataflow and Continuations
 
 ```meta
 status: scratch
@@ -14475,7 +14475,7 @@ last-edited: 2022-04-03
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
 
-# Coordinate compression with `set` and `vector`
+# Coordinate Compression with `set` And `vector`
 
 ```meta
 status: scratch
@@ -14495,7 +14495,7 @@ int compressed = int(lower_bound(index.begin(), index.end(), key) - index.begin(
 assert(xs[compressed] == uncompressed);
 ```
 
-# Hilbert polynomial and dimension
+# Hilbert Polynomial and Dimension
 
 ```meta
 status: scratch
@@ -14514,7 +14514,7 @@ last-edited: 2022-01-18
   singular points.
 - TODO: show that at $y^2 = x^3$, we have dimension two (we expect dimension one)
 
-# Cost of looping over all multiples of $i$ for $i$ in $1$ to $N$
+# Cost of Looping over All Multiples of $i$ for $i$ in $1$ To $N$
 
 ```meta
 status: scratch
@@ -14531,7 +14531,7 @@ last-edited: 2022-01-18
 
 
 
-# Stuff I learnt in 2021
+# Stuff I Learnt in 2021
 
 ```meta
 status: scratch
@@ -15006,7 +15006,7 @@ to the back-end. In short, I want to become an expert on the Lean4 compiler `:)`
 far along I get!
 
 
-# Cayley hamilton for 2x2 matrices in sage via AG
+# Cayley Hamilton for 2x2 Matrices in Sage via AG
 
 ```meta
 status: scratch
@@ -15046,7 +15046,7 @@ last-edited: 2023-04-02
 - Then see that since the space is irreducible, the closure of `U` (an open) must be the whole space.
 - This means that all matrices satisfy cayley hamilton!
 
-# LispWorks config
+# LispWorks Config
 
 ```meta
 status: scratch
@@ -15058,7 +15058,7 @@ last-edited: 2022-01-02
 - https://www.nicklevine.org/declarative/lectures/additional/key-binds.html
 
 
-# Birkhoff Von Neumann theorem
+# Birkhoff Von Neumann Theorem
 
 ```meta
 status: scratch
@@ -15279,7 +15279,7 @@ r + s = n + 1
 - Take minimumin each col, subtract.
 
 
-# Interpolating homotopies
+# Interpolating Homotopies
 
 ```meta
 status: scratch
@@ -15292,7 +15292,7 @@ last-edited: 2022-05-30
   theta(x, 2k) : k <= 1/2 and theta (y, 1-2(k - 1/2))or theta (y, 2-2k)
 - This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy.
 
-# Example where MIP shows extra power over IP
+# Example Where MIP Shows Extra Power over IP
 
 ```meta
 status: scratch
@@ -15304,7 +15304,7 @@ last-edited: 2021-12-28
 - If two Gods, can make one God play against the other. So if one says draw, other says win, can have them play and find out who is lying!
 - Hence, MIP has more power than IP? (Intuitively at least).
 
-# Lazy reversible computation?
+# Lazy Reversible Computation?
 
 ```meta
 status: scratch
@@ -15314,7 +15314,7 @@ last-edited: 2021-12-28
 - Lazy programs are hard to analyze because we need to reason abot them backwards.
 - Suppose we limit ourselves to reversible programs. Does it then become easy?
 
-# Theorem coverage as an analogue to code coverage
+# Theorem Coverage as an Analogue to Code Coverage
 
 ```meta
 status: scratch
@@ -15323,7 +15323,7 @@ last-edited: 2022-05-30
 ```
 - Theorem coverage: how many lines of code are covered by correctness theorems?
 
-# Lazy GPU programming
+# Lazy GPU Programming
 
 ```meta
 status: scratch
@@ -15370,7 +15370,7 @@ last-edited: 2023-04-02
 - Have quantitative: `0,1,fin,inf`?
 
 
-# Backward dataflow and continuations
+# Backward Dataflow and Continuations
 
 ```meta
 status: scratch
@@ -15382,7 +15382,7 @@ last-edited: 2022-04-03
 - Backward dataflow deals with facts about _the future_, or the _rest of the program_.
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
-# The tyranny of structurelessness
+# The Tyranny of Structurelessness
 
 ```meta
 status: scratch
@@ -15449,7 +15449,7 @@ last-edited: 2022-01-02
 
 
 
-# Counting permutations with #MAXSAT
+# Counting Permutations with #MAXSAT
 
 ```meta
 status: scratch
@@ -15463,7 +15463,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 
-# Coloring `cat` output with `supercat`
+# Coloring `cat` Output With `supercat`
 
 ```meta
 status: scratch
@@ -15473,7 +15473,7 @@ last-edited: 2021-12-26
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
-# Reader monoid needs a hopf algebra?!
+# Reader Monoid Needs a Hopf Algebra?!
 
 ```meta
 status: scratch
@@ -15484,7 +15484,7 @@ last-edited: 2021-12-26
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
 
-# Monads mnemonic
+# Monads Mnemonic
 
 ```meta
 status: scratch
@@ -15495,7 +15495,7 @@ last-edited: 2021-12-26
 - multiplication is $\mu$ because Mu.
 - return is $\eta$ because return is unit is Yeta.
 
-# Card stacking
+# Card Stacking
 
 ```meta
 status: scratch
@@ -15510,7 +15510,7 @@ last-edited: 2023-04-02
 
 
 
-# SSH into google cloud
+# SSH into Google Cloud
 
 ```meta
 status: scratch
@@ -15523,7 +15523,7 @@ last-edited: 2021-12-26
 
 
 
-# Comma & Semicolon in index notation
+# Comma & Semicolon in Index Notation
 
 ```meta
 status: scratch
@@ -15536,7 +15536,7 @@ last-edited: 2022-05-30
 
 - Thus, the divergence may be written as `v_i,i`
 
-# Spin groups
+# Spin Groups
 
 ```meta
 status: scratch
@@ -15558,7 +15558,7 @@ last-edited: 2022-05-30
   $\langle, \rangle$ on $H$.
 - [Reference](https://www.youtube.com/watch?v=Way8FfcMpf0&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=27)
 
-# Undefined behaviour is like compactification [TODO]
+# Undefined Behaviour Is Like Compactification [TODO]
 
 ```meta
 status: scratch
@@ -15570,7 +15570,7 @@ last-edited: 2022-02-03
 - What does Stone Cech give us?
 - Read abstract stone duality!
 
-# God of areppo
+# God of Areppo
 
 ```meta
 status: scratch
@@ -15686,7 +15686,7 @@ last-edited: 2022-05-30
 > -by Chris Sawyer
 
 
-# Classification of lie algebras, dynkin diagrams
+# Classification of Lie Algebras, Dynkin Diagrams
 
 ```meta
 status: scratch
@@ -15846,7 +15846,7 @@ last-edited: 2022-05-30
 
 
 
-# Weird free group construction from adjoint functor theorem
+# Weird Free Group Construction from Adjoint Functor Theorem
 
 ```meta
 status: technical-note
@@ -15881,7 +15881,7 @@ last-edited: 2022-05-30
 - This implies we can project the group $\Gamma S$ at the $k$th index to get a map from $\Gamma S$ into $H_{im}$.
 - We can then inject $H_{im}$ into $H$, giving us the desired map!
 
-# bashupload
+# Bashupload
 
 ```meta
 status: scratch
@@ -15895,7 +15895,7 @@ curl bashupload.com -T your_file.txt
 
 - Super useful if one wants to quickly send a file from/to a server.
 
-# When are the catalan numbers odd
+# When Are the Catalan Numbers Odd
 
 ```meta
 status: scratch
@@ -15914,7 +15914,7 @@ last-edited: 2023-04-02
 - [Reference](https://mathoverflow.net/a/409029)
 
 
-# Geodesic equation, Extrinsic
+# Geodesic Equation, Extrinsic
 
 ```meta
 status: scratch
@@ -15965,7 +15965,7 @@ $$
 
 - [EigenChris videos](https://www.youtube.com/watch?v=1CuTNveXJRc)
 
-# Connections, take 2
+# Connections, Take 2
 
 ```meta
 status: scratch
@@ -16016,7 +16016,7 @@ last-edited: 2022-05-30
 - But we want a $w: I \to E$. See that the place where we needed a $TI$ was to produce
 
 
-# Dropping into tty on manjaro/GRUB
+# Dropping into Tty on manjaro/GRUB
 
 ```meta
 status: scratch
@@ -16028,7 +16028,7 @@ last-edited: 2021-12-26
 -  add a suffix `rw 3` on the GRUB config line that loads `linux ...`
 
 
-# Why the zero set of a continuous function must be a closed set
+# Why the Zero Set of a Continuous Function Must Be a Closed Set
 
 ```meta
 status: scratch
@@ -16046,7 +16046,7 @@ last-edited: 2022-05-30
 - This also motivates zariski; we want a topology that captures polynomial behaviour. Well, then the closed sets _must_ be the zero
   sets of polynomials!
 
-# Derivatives in diffgeo
+# Derivatives in Diffgeo
 
 ```meta
 status: scratch
@@ -16076,7 +16076,7 @@ last-edited: 2022-01-02
   treating it as a curve $d_p: [-1, 1] \to M$ such that $d_p(0) = p$ and $d_p'(0) = D(p)$, and then finally taking $V()$.
 
 
-# Building stuff with Docker
+# Building Stuff with Docker
 
 ```meta
 status: scratch
@@ -16100,7 +16100,7 @@ last-edited: 2024-01-31
 
 
 
-# Lie derivative versus covariant derivative
+# Lie Derivative Versus Covariant Derivative
 
 ```meta
 status: scratch
@@ -16124,7 +16124,7 @@ last-edited: 2022-01-02
 
 
 
-# The Tor functor
+# The Tor Functor
 
 ```meta
 status: scratch
@@ -16171,7 +16171,7 @@ $$
 23:49 <bollu> thanks, the big picture is really useful
 ```
 
-# Sum of quadratic errors
+# Sum of Quadratic Errors
 
 ```meta
 status: scratch
@@ -16197,7 +16197,7 @@ last-edited: 2021-11-18
 - [TedX talk by  Akala](https://www.youtube.com/watch?v=DSbtkLA3GrY)
 
 
-# Write thin to write well
+# Write Thin to Write Well
 
 ```meta
 status: scratch
@@ -16244,7 +16244,7 @@ let g:goyo_margin_bottom = 0
 
 - [Write thin to write fast](https://breckyunits.com/write-thin-to-write-fast.html)
 
-# Hidden symmetries of alg varieties
+# Hidden Symmetries of Alg Varieties
 
 ```meta
 status: scratch
@@ -16266,7 +16266,7 @@ last-edited: 2022-05-30
 - Category of coverings is equivalent to category of sets with action of fundamental group.
 - [Abel Prize: Pierre Delinge](https://www.youtube.com/watch?v=9WavaUED5i8)
 
-# `fd` for `find`
+# `fd` For `find`
 
 ```meta
 status: scratch
@@ -16276,7 +16276,7 @@ last-edited: 2021-11-11
 
 - `fd` seems to be much, much faster at `find` than, well, `find`.
 
-# Thu Morse sequence for sharing
+# Thu Morse Sequence for Sharing
 
 ```meta
 status: scratch
@@ -16294,7 +16294,7 @@ last-edited: 2021-11-18
 - And so on. Write the recurrence down `:)`
 - [Reference](https://www.youtube.com/watch?v=prh72BLNjIk)
 
-# Elementary and power sum symmetric polynomials
+# Elementary and Power Sum Symmetric Polynomials
 
 ```meta
 status: scratch
@@ -16421,7 +16421,7 @@ $$
 ```
 
 
-# Projective spaces and grassmanians in AG
+# Projective Spaces and Grassmanians in AG
 
 ```meta
 status: technical-note
@@ -16598,7 +16598,7 @@ $$
 - [Borcherds](https://www.youtube.com/watch?v=bKB4Qu8ETNE&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=19)
 
 
-# Mnemonic for why `eta` is unit:
+# Mnemonic for Why `eta` Is Unit:
 
 ```meta
 status: scratch
@@ -16611,7 +16611,7 @@ last-edited: 2021-11-11
 - $\eta$ is `unit`, since when you flip it, you get $\mu$, which is $\mu$-ltiplication (multiplication). Hence $\eta$ is the unit for the multiplication
   to form a monoidal structure for the monad.
 
-# Fundamental theorem of galois theory
+# Fundamental Theorem of Galois Theory
 
 ```meta
 status: scratch
@@ -16671,7 +16671,7 @@ last-edited: 2022-05-30
   must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$].
 - There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
 
-# Counter-intuitive linearity of expectation [TODO]
+# Counter-intuitive Linearity of Expectation [TODO]
 
 ```meta
 status: scratch
@@ -16708,7 +16708,7 @@ last-edited: 2021-11-11
 
 > Sometimes it might be other Ares-worshippers, as when Iran and Iraq went to war and no one cared who won. But if Ares-worshippers aren't going to end up running the whole world, someone needs to do violence to them. This isn't very nice, but it's a fact: civilization requires an Aegis. And the only way to fight the bastards off in the end is through intelligence. Cunning. Metis.
 
-# Tooling for performance benchmarking
+# Tooling for Performance Benchmarking
 
 ```meta
 status: scratch
@@ -16723,7 +16723,7 @@ last-edited: 2021-12-26
 - `perf stat -x` apparently gives CSV?
 
 
-# Normal field extensions
+# Normal Field Extensions
 
 ```meta
 status: scratch
@@ -16797,7 +16797,7 @@ last-edited: 2022-05-30
 - NO! The problem is that $\sigma$ is not a legal automorphism of $M/L$, since $\sigma$ fixes $L$ as a *set* ($\sigma L \subseteq L$),
   and not *pointwise* ($\sigma(l) = l$ for all $l \in L$.)
 
-# Eisenstein Theorem for checking irreducibility
+# Eisenstein Theorem for Checking Irreducibility
 
 ```meta
 status: technical-note
@@ -16829,7 +16829,7 @@ last-edited: 2022-05-30
   (2) This allows us to "domino" and show that all $b_i$ are divisible by $p$ (This uses $p | a_i$). (3) This
   show that $a_n$ is divisible by $p$, a contradiction. (This uses $p \not | a_n$).
 
-# Gauss Lemma for polynomials
+# Gauss Lemma for Polynomials
 
 ```meta
 status: technical-note
@@ -16871,7 +16871,7 @@ last-edited: 2022-05-30
 - Proof that $Z/\alpha Z[x]$ is an integral domain: note that $Z/\alpha Z$ is a field, thus $Z/ \alpha Z[x]$ is a Euclidean domain (run Euclid algorithm).
   This implies it is integral.
 
-# How GHC does typeclass resolution
+# How GHC Does Typeclass Resolution
 
 ```meta
 status: scratch
@@ -16903,7 +16903,7 @@ last-edited: 2021-11-01
   candidate. Otherwise the search fails.
 - [GHC manual](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/instances.html#overlapping-instances)
 
-# Defining continuity covariantly
+# Defining Continuity Covariantly
 
 ```meta
 status: scratch
@@ -16932,7 +16932,7 @@ last-edited: 2022-05-30
 - Now generalize $\mathbb N_\infty$
 - https://twitter.com/EscardoMartin/status/1444791065735729155
 
-# Why commutator is important for QM
+# Why Commutator Is Important for QM
 
 ```meta
 status: scratch
@@ -16960,7 +16960,7 @@ $$
 - This is how we get "ladder operators" which raise and lower the state. If we have a state $x$ with some eigenvalue $\lambda$, the operator like $N$
   gives us an "excited state" from $x$ which eigenvalue $\kappa + \lambda$.
 
-# Deriving pratt parsing by analyzing recursive descent [TODO]
+# Deriving Pratt Parsing by Analyzing Recursive Descent [TODO]
 
 ```meta
 status: scratch
@@ -16969,7 +16969,7 @@ last-edited: 2022-02-03
 ```
 
 
-# Level set of a continuous function must be closed
+# Level Set of a Continuous Function Must Be Closed
 
 ```meta
 status: scratch
@@ -16987,7 +16987,7 @@ last-edited: 2022-05-30
   level sets of polynomials.
 
 
-# HPNDUF - Hard problems need design up front!
+# HPNDUF - Hard Problems Need Design up Front!
 
 ```meta
 status: scratch
@@ -16997,7 +16997,7 @@ last-edited: 2021-10-31
 - [Norvig v/s some TDD due try to solve sudoku](http://ravimohan.blogspot.com/2007/04/learning-from-sudoku-solvers.html)
 
 
-# Separable Extension is contained in Galois extension
+# Separable Extension Is Contained in Galois Extension
 
 ```meta
 status: scratch
@@ -17015,7 +17015,7 @@ last-edited: 2022-05-30
 - This is separable, since it is generated by separable elements $\alpha$, $\beta$, $\gamma$, and so on.
 
 
-# Primitive element theorem
+# Primitive Element Theorem
 
 ```meta
 status: technical-note
@@ -17135,7 +17135,7 @@ last-edited: 2023-09-22
 - [Reference 3: ](https://sites.math.washington.edu/~greenber/MATH404-PrimElem.pdf)
 
 
-# Separable extension via embeddings into alg. closure
+# Separable Extension via Embeddings into Alg. Closure
 
 ```meta
 status: technical-note
@@ -17204,7 +17204,7 @@ last-edited: 2022-05-30
 - https://math.stackexchange.com/questions/1248781/primitive-element-theorem-without-galois-group
 
 
-# Separable extensions via derivation
+# Separable Extensions via Derivation
 
 ```meta
 status: scratch
@@ -17293,7 +17293,7 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
   then we have a separable extension. If the unique lifts fail, then the extension is not separable.
 - The lift can only succeed to uniquely lift iff the final extension $L$ is separable.
 
-# Irreducible polynomial over a field divides any polynomial with common root
+# Irreducible Polynomial over a Field Divides Any Polynomial with Common Root
 
 ```meta
 status: scratch
@@ -17307,7 +17307,7 @@ last-edited: 2021-11-06
 - Further, we have $g | p$ since $g$ is GCD. But $p$ is irreducible, it cannot be written as product of smaller polynomials, and thus $g = p$.
 - Now, we have $g | q$, but since $g = p$, we have $g | q$. This implies $p | q$ for any $q$ that shares a root with $p$.
 
-# Galois extension
+# Galois Extension
 
 ```meta
 status: scratch
@@ -17342,7 +17342,7 @@ last-edited: 2022-05-30
 - [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)
 
 
-# Separability of field extension as diagonalizability
+# Separability of Field Extension as Diagonalizability
 
 ```meta
 status: scratch
@@ -17357,7 +17357,7 @@ last-edited: 2021-10-31
 - Recall that the minimal polynomial is the lowest degree polynomial that annhilates the linear operator.
   So $minpoly(I) = x - 1$, $charpoly(I) = (x - 1)^n$.
 
-# Motivation for the compact-open topology
+# Motivation for the Compact-open Topology
 
 ```meta
 status: scratch
@@ -17374,7 +17374,7 @@ last-edited: 2021-10-31
 - Since $Y$ is Hausdorff, $K \subseteq X$
 
 
-# Example of covariance zero, and yet "correlated"
+# Example of Covariance Zero, and yet "correlated"
 
 ```meta
 status: scratch
@@ -17459,7 +17459,7 @@ last-edited: 2022-05-30
 
 
 
-# Dumb mnemonic for remembering adjunction turnstile
+# Dumb Mnemonic for Remembering Adjunction Turnstile
 
 ```meta
 status: scratch
@@ -17471,7 +17471,7 @@ last-edited: 2021-10-31
   side, so it must be `F -| G` where `-|` allows `F` to "crush" `G` with the
   flat surface `|`.
 
-# Delta debugging
+# Delta Debugging
 
 ```meta
 status: scratch
@@ -17644,7 +17644,7 @@ MX17004 2010-05-27 33.2 18.2
   choices `tmin`, `tmax`. So it seems to be preferred that if one has a categorical variable, we make its observations into columns.
 - This suggests that I order my bench data as `[foo.test | O1-runtime=_ | O2-runtime=_ | O3-runtime=_ ]`.
 
-# Normal subgroups through the lens of actions
+# Normal Subgroups Through the Lens of Actions
 
 ```meta
 status: scratch
@@ -17661,7 +17661,7 @@ last-edited: 2021-10-31
 
 - topology onS: closed sets are the common fixpoints of a set of group elements.
 
-# Writing rebuttals, Tobias style
+# Writing Rebuttals, Tobias Style
 
 ```meta
 status: scratch
@@ -17678,7 +17678,7 @@ last-edited: 2022-09-19
   Ratther, we should write "While there was a bug in our compiler, we fixed it ...". The `While` makes it
   clear
 
-# LCS DP: The speedup is from filtration
+# LCS DP: The Speedup Is from Filtration
 
 ```meta
 status: scratch
@@ -17703,7 +17703,7 @@ last-edited: 2022-05-30
 - To find a DP, think of the entire state space, then think of filtrations, such that the solution function becomes a monotone map, and the solution
   function is effeciently computable given the values of filters below it.
 
-# Poisson distribution
+# Poisson Distribution
 
 ```meta
 status: scratch
@@ -17721,7 +17721,7 @@ last-edited: 2021-11-01
 
 
 
-# F1 or Fun : The field with one element
+# F1 or Fun : The Field with One Element
 
 ```meta
 status: scratch
@@ -17761,7 +17761,7 @@ last-edited: 2022-05-30
 
 - [Reference: This week's finds 184 by baez](https://math.ucr.edu/home/baez/week184.html)
 
-# McKay's proof of Cauchy's theorem for groups [TODO]
+# McKay's Proof of Cauchy's Theorem for Groups [TODO]
 
 ```meta
 status: scratch
@@ -17778,7 +17778,7 @@ last-edited: 2022-05-30
 - [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
 
 
-# ncdu for disk space measurement
+# Ncdu for Disk Space Measurement
 
 ```meta
 status: scratch
@@ -17790,7 +17790,7 @@ last-edited: 2021-10-31
   since it's an ncurses based TUI.
 
 
-# nmon versus htop
+# Nmon Versus Htop
 
 ```meta
 status: scratch
@@ -17801,7 +17801,7 @@ last-edited: 2021-10-31
 - I've switched to using `nmon` instead of `htop` for viewing system load. It's TUI looks much nicer than `htop`,
   and I find its process list much easier to parse.
 
-# Schrier sims --- why purify generators times coset
+# Schrier Sims --- Why Purify Generators Times Coset
 
 ```meta
 status: scratch
@@ -17815,7 +17815,7 @@ last-edited: 2021-10-31
 - If I now consider `p * orbit(k)` then I get `p, p^2, p^3`, where `purify(p) = id`, `purify(p^2) = id`, `purify(p^3) = p^3`.
 - Thus we find the nontrivial generator `p^3`.
 
-# Vyn's feeling about symmetry
+# Vyn's Feeling About Symmetry
 
 ```meta
 status: scratch
@@ -17829,7 +17829,7 @@ last-edited: 2021-10-31
 - Indeed, one can only recover translations by considering a line on the space and then considering the orbit of the line under
   a specific translation $T$.
 
-# Convergence in distribution is very weak
+# Convergence in Distribution Is Very Weak
 
 ```meta
 status: scratch
@@ -17880,7 +17880,7 @@ last-edited: 2022-05-30
 
 
 
-# Class equation, P-group structure
+# Class Equation, P-group Structure
 
 ```meta
 status: technical-note
@@ -18037,7 +18037,7 @@ stabilizer could have!
 
 
 
-# Fuzzing book
+# Fuzzing Book
 
 ```meta
 status: scratch
@@ -18170,7 +18170,7 @@ def permutation(draw, n):
 ```
 
 
-# Bucchberger algorithm
+# Bucchberger Algorithm
 
 ```meta
 status: scratch
@@ -18198,7 +18198,7 @@ last-edited: 2022-05-30
 
 
 
-# GAP permutation syntax
+# GAP Permutation Syntax
 
 ```meta
 status: scratch
@@ -18211,7 +18211,7 @@ last-edited: 2021-09-28
 - Thus the identity permutation must be `1`, and it's true that any number `n^1 = n`,
   so the identity permutation `1` fixes everything.
 
-# Why division algorithm with multiple variables go bad
+# Why Division Algorithm with Multiple Variables Go Bad
 
 ```meta
 status: scratch
@@ -18225,7 +18225,7 @@ last-edited: 2021-10-04
 - Proof: suppose for contradiction that there do exist `k, l` such that `kx + ly = 1`. Modulo `x`, this means that `ly = 1` which is absurd,
   and similarly modulo `x` it means `kx = 1` which is also absurd.
 
-# Integral elements of a ring form a ring [TODO]
+# Integral Elements of a Ring Form a Ring [TODO]
 
 ```meta
 status: scratch
@@ -18243,7 +18243,7 @@ last-edited: 2022-02-03
 - Create the polynomial $c(x)$ (for construction) given by $c(x) \equiv p(x)q(x) \in A[x]$. See that $c(x)$ has both $a$ and $b$
   as roots, and lies in $A[x]$.
 
-# "Cheap" proof of euler characteristic
+# "Cheap" Proof of Euler Characteristic
 
 ```meta
 status: scratch
@@ -18267,7 +18267,7 @@ last-edited: 2022-02-03
 - If we find a surface, then the genus of the boundary is one minus the genus of the surface.
 - Compute genus via classification of surfaces.
 
-# Cap product [TODO]
+# Cap Product [TODO]
 
 ```meta
 status: scratch
@@ -18286,7 +18286,7 @@ last-edited: 2022-02-03
 - Cap product will be nonzero if the chain *must* always intersect the cochain.
 - This is why it's also called as the intersection product, since it somehow counts intersections.
 
-# Cup product [TODO]
+# Cup Product [TODO]
 
 ```meta
 status: scratch
@@ -18310,7 +18310,7 @@ last-edited: 2022-05-30
   which gives non-zero
 
 
-# Colimits examples with small diagram categories
+# Colimits Examples with Small Diagram Categories
 
 ```meta
 status: scratch
@@ -18328,7 +18328,7 @@ last-edited: 2021-09-24
 - A colimit of the form $A \xleftarrow{f} B \xrightarrow{g} C$ will construct $A \cup B \cup C$ and impose the relations $b \sim f(b) \in A$ and $b \sim g(b) \in C$.
   Thus, we take $A, B, C$ and we glue $A$ and $C$ along $B$ via $f, g$. Imagine gluing the upper and lower hemispheres of a sphere by a great circle.
 
-# Limits examples with small diagram categories
+# Limits Examples with Small Diagram Categories
 
 ```meta
 status: scratch
@@ -18339,7 +18339,7 @@ last-edited: 2021-09-24
 - Given a limit, compute the value as taking product of all objects, and taking only those tuples which obey the relations
   the relation $f(a) = b$ for all arrows $f \in Hom(X, Y)$.
 
-# Classification of compact 2-manifolds [TODO]
+# Classification of Compact 2-Manifolds [TODO]
 
 ```meta
 status: scratch
@@ -18401,7 +18401,7 @@ last-edited: 2022-02-03
 
 https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=27
 
-# Gauss, normals, fundamental forms [TODO]
+# Gauss, Normals, Fundamental Forms [TODO]
 
 ```meta
 status: scratch
@@ -18426,7 +18426,7 @@ last-edited: 2022-05-30
 
 https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=34
 
-# Second fundamental form
+# Second Fundamental Form
 
 ```meta
 status: scratch
@@ -18486,7 +18486,7 @@ $$
   is determined by the equation:
 - $\partial_i \mathbf N = -S_{ji} \mathbf X_b$
 
-# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [TODO]
+# Theorem Egregium / Gauss's Theorem (Integrating curvature in 2D) [TODO]
 
 ```meta
 status: scratch
@@ -18526,7 +18526,7 @@ last-edited: 2022-02-03
 - TODO: how to prove that this will be a multiple of $2 \pi$?
 
 
-# Fundamental theorem of symmetric polynomials
+# Fundamental Theorem of Symmetric Polynomials
 
 ```meta
 status: scratch
@@ -18585,7 +18585,7 @@ last-edited: 2022-05-30
   have a $1$ at the $a$ position. Similarly for $b, c$.
 - Solve by the usual back-substitution.
 
-# DP over submasks
+# DP over Submasks
 
 ```meta
 status: scratch
@@ -18619,7 +18619,7 @@ for(int m = N; m >= 0; m--) {
   since `t[i]=s[i]=1`.
 - Thus, for all indexes `i > x` we have `c[i]=s[i]`.
 
-# Dual of Planar Euler graph is bipartite
+# Dual of Planar Euler Graph Is Bipartite
 
 ```meta
 status: technical-note
@@ -18670,7 +18670,7 @@ e----------d
 - So hamiltonian circuits do not correspond (at least in this way) to geometry.
 
 
-# Yoneda preserves limits
+# Yoneda Preserves Limits
 
 ```meta
 status: technical-note
@@ -18696,7 +18696,7 @@ last-edited: 2021-10-04
 
 
 
-# Separable Polynomials and extensions
+# Separable Polynomials and Extensions
 
 ```meta
 status: scratch
@@ -18860,7 +18860,7 @@ last-edited: 2022-05-30
 - Now suppose $f$ factors as $\prod_i f_i$ over $\Omega[x]$. Since $\alpha$ is separable over $J$ and $\Omega$ is an extension of $J$,
   all the $f_i$ are distinct (otherwise it contradicts separability). Thus the family of ideals $\{ (f_i) \}$ is pairwise coprime.
 
-# Limits of a functor category are computed pointwise.
+# Limits of a Functor Category Are Computed Pointwise.
 
 ```meta
 status: scratch
@@ -18951,7 +18951,7 @@ last-edited: 2021-09-24
 - Extend by linearity?
 
 
-# Intuition for why choosing closed-closed intervals of `[1..n]` is $(n+1)C2$
+# Intuition for Why Choosing Closed-closed Intervals of `[1..n]` Is $(n+1)C2$
 
 ```meta
 status: scratch
@@ -18967,7 +18967,7 @@ last-edited: 2021-09-24
 
 
 
-# Thoughtful discussion on the limits of safe spaces
+# Thoughtful Discussion on the Limits of Safe Spaces
 
 ```meta
 status: scratch
@@ -18987,7 +18987,7 @@ each other.
 
 
 
-# Semidirect product: Panning and Zooming
+# Semidirect Product: Panning and Zooming
 
 ```meta
 status: technical-note
@@ -19116,7 +19116,7 @@ int f(vector<int> &xs) {
   This happens for example at `ATLEAST1:`, where we have one element so we know that `best >= 1`, but we don't have two elements to initialize
   the DP array.
 
-# Representation theory of $SU(2)$ [TODO]
+# Representation Theory of $SU(2)$ [TODO]
 
 ```meta
 status: scratch
@@ -19165,7 +19165,7 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 
 - [Reference](https://www.youtube.com/watch?v=bS-UhmV5DaE&list=PLN_4R2IuNuuRgJb00X2J53Iq9qe7k1nyr&index=26)
 
-# Why quaternions work better
+# Why Quaternions Work Better
 
 ```meta
 status: scratch
@@ -19194,7 +19194,7 @@ last-edited: 2022-05-30
   that the lie group has less or more fundamental group.
 
 
-# DFA to CFG via colimits?
+# DFA to CFG via Colimits?
 
 ```meta
 status: scratch
@@ -19208,7 +19208,7 @@ last-edited: 2021-08-25
 - Can we now define a _colimit_ of these DFAs? does this recover the CFG?
 - If so, what is the correct category? And is the colimit completion of DFA correspond to DPDA/CFG?
 
-# Why pointless topology is powerful
+# Why Pointless Topology Is Powerful
 
 ```meta
 status: scratch
@@ -19222,7 +19222,7 @@ last-edited: 2021-08-25
 - Hence, if we take _non distributive lattices_, we have geometry (locale) which _has no incarnation_ as subsets!
 - Yay, extra power.
 
-# Denotational semantics in a few sentences
+# Denotational Semantics in a Few Sentences
 
 ```meta
 status: scratch
@@ -19299,7 +19299,7 @@ B---D
   each row $r$ in a 2D matrix.
 - Now assume that $f(l, r)$ has ascending row minima
 
-# Fixpoint as decorator
+# Fixpoint as Decorator
 
 ```meta
 status: scratch
@@ -19329,7 +19329,7 @@ def fact(f):
 print(fact(5))
 ```
 
-# Combinatorial generation algorithms
+# Combinatorial Generation Algorithms
 
 ```meta
 status: scratch
@@ -19344,7 +19344,7 @@ last-edited: 2021-08-25
 - [Orbital Branching](https://computationalcombinatorics.wordpress.com/2012/10/21/introduction-to-orbital-branching/)
 - [Ranking/Unraking permutations](https://computationalcombinatorics.wordpress.com/2012/09/10/ranking-and-unranking-of-combinations-and-permutations/)
 
-# Perform DP on measures, not indexes.
+# Perform DP on Measures, Not Indexes.
 
 ```meta
 status: scratch
@@ -19401,7 +19401,7 @@ int lcs_len(const vector<int> &xs, const vector<int> &ys) {
   to have this, since it simplifies a TON of the implementation work!
 
 
-# Alternative version of Myhill-Nerode
+# Alternative Version of Myhill-Nerode
 
 ```meta
 status: scratch
@@ -19570,7 +19570,7 @@ e     r     r^2   r^3
 ```
 
 
-# Cycle index polynomial
+# Cycle Index Polynomial
 
 ```meta
 status: scratch
@@ -19685,7 +19685,7 @@ $$
 
 
 
-# Uses of minimal string rotation
+# Uses of Minimal String Rotation
 
 ```meta
 status: scratch
@@ -19869,7 +19869,7 @@ last-edited: 2022-05-30
 - Now starting from $L$, we can build an automata $D^\star$ such that $|D^\star|$ is exactly $|A/\sim L|$.
 - Thus the automata $D^\star$ is a (the) minimal automata for $L$.
 
-# Linearity of expectation for sampling
+# Linearity of Expectation for Sampling
 
 ```meta
 status: scratch
@@ -20021,7 +20021,7 @@ def rhsIV():
 #### For $N=1$, the expected number of turns is $1$.
 
 
-# Min cost flow (TODO)
+# Min Cost Flow (TODO)
 
 ```meta
 status: scratch
@@ -20089,7 +20089,7 @@ last-edited: 2022-05-30
 - [Jeff E: algorithms video](https://www.youtube.com/watch?v=k8A5kSo3EW0)
 
 
-# Clojure: minimal makefile for REPL driven dev with Neovim
+# Clojure: Minimal Makefile for REPL Driven Dev with Neovim
 
 ```meta
 status: scratch
@@ -20125,7 +20125,7 @@ test:
 ```
 
 
-# Delimited continuations
+# Delimited Continuations
 
 ```meta
 status: scratch
@@ -20142,7 +20142,7 @@ last-edited: 2021-08-19
 
 
 
-# Never forget monic again
+# Never Forget Monic Again
 
 ```meta
 status: scratch
@@ -20157,7 +20157,7 @@ last-edited: 2021-08-19
 - Thus, monic is left cancellative!
 
 
-# Weird canonical example of monic and epic: left/right shift
+# Weird Canonical Example of Monic and Epic: Left/right Shift
 
 ```meta
 status: technical-note
@@ -20193,7 +20193,7 @@ last-edited: 2022-05-30
 
 
 
-# Playing guitar: being okay with incorrect chords
+# Playing Guitar: Being Okay with Incorrect Chords
 
 ```meta
 status: scratch
@@ -20219,7 +20219,7 @@ last-edited: 2022-05-30
 - It also mutes  the "open string" sound by the time we get the first finger on, so it helps create
 - TL;DR: **strumming hand >>> chord hand**. Focus on the strumming! It's okay to screw up on chords `:)`
 
-# Sparse table
+# Sparse Table
 
 ```meta
 status: scratch
@@ -20287,7 +20287,7 @@ int query_mins(int l, int r) {
 }
 ```
 
-# Duval's algorithm
+# Duval's Algorithm
 
 ```meta
 status: scratch
@@ -20298,7 +20298,7 @@ last-edited: 2021-08-19
 - https://stackoverflow.com/questions/55642656/how-does-duvals-algorithm-handle-odd-length-strings
 - https://ritukundu.wordpress.com/2016/10/07/algorithm-to-find-the-least-lexicographic-rotation-of-a-circular-string/
 
-# Amortized complexity from the verifier perspective
+# Amortized Complexity from the Verifier Perspective
 
 ```meta
 status: scratch
@@ -20312,7 +20312,7 @@ last-edited: 2021-08-19
 - At the end of *any* sequence of operations, the verifier verifies that `sum (claimed cost)` > `sum of (#cycles)`.
 - This establishes that the claimed/amortized cost is an upper bound on the real cost!
 
-# Relationship betwee permutations and runs
+# Relationship Betwee Permutations and Runs
 
 ```meta
 status: scratch
@@ -20360,7 +20360,7 @@ last-edited: 2021-08-19
 
 
 
-# Brouwer's fixed point theorem
+# Brouwer's Fixed Point Theorem
 
 ```meta
 status: scratch
@@ -20413,7 +20413,7 @@ b===c
 - So if we ever escape the simplex, we must escape from the bottom side $BC$. This removes an even number of
   $bc$ edges from $BC$. But we know there are an odd number of $bc$ from $BC$, so we must find a triangle $ABC$ eventually.
 
-# XOR on binary trie
+# XOR on Binary Trie
 
 ```meta
 status: scratch
@@ -20425,7 +20425,7 @@ If we XOR a number, then it flips the path that were taking on the binary trie! 
 like a handy way to visualize numbers. In particular, to solve question [1554C](https://codeforces.com/contest/1554/problem/C)
 
 
-# Inconvergent: beautiful generative art
+# Inconvergent: Beautiful Generative Art
 
 ```meta
 status: scratch
@@ -20438,7 +20438,7 @@ last-edited: 2021-08-19
 
 
 
-# Prefix/Border function
+# Prefix/Border Function
 
 ```meta
 status: scratch
@@ -20591,7 +20591,7 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 
 
 
-# Shortest walk versus shortest path
+# Shortest Walk Versus Shortest Path
 
 ```meta
 status: scratch
@@ -20609,7 +20609,7 @@ last-edited: 2022-05-30
 
 
 
-# Minimal tech stack
+# Minimal Tech Stack
 
 ```meta
 status: scratch
@@ -20712,7 +20712,7 @@ Consider the tree:
 - Total cost is cost of leaf `n`, plus cost of interior nodes `n log n`.
 
 
-# codeforces rating of some GMs
+# Codeforces Rating of Some GMs
 
 ```meta
 status: scratch
@@ -20781,7 +20781,7 @@ last-edited: 2022-05-30
 
 
 
-# Words to know in target language
+# Words to Know in Target Language
 
 ```meta
 status: scratch
@@ -20898,7 +20898,7 @@ last-edited: 2022-05-30
 - Pronouns: I, you (singular), he, she, it, we, you (plural, as in “y’all”), they.
 
 
-# DP on subarrays
+# DP on Subarrays
 
 ```meta
 status: scratch
@@ -20911,7 +20911,7 @@ where `merge` merges the best results of all subarrays, and `compute(l, r)` comp
 value for `[l..r]`. This guarantees that `dp[l][r]` will track the best value from all
 subarrays. For this DP to work, we iterate by length of the subarray.
 
-# Vis editor cheat sheet
+# Vis Editor Cheat Sheet
 
 ```meta
 status: scratch
@@ -20974,7 +20974,7 @@ The intuition for Jensen's is typically presented as:
   since it's one I don't use often. I've been thinking more along these lines due to competitive programming,
   and I quite enjoy the change!
 
-# The similarity between labellings and representations
+# The Similarity Between Labellings and Representations
 
 ```meta
 status: technical-note
@@ -21022,7 +21022,7 @@ is not isomorphic (though they would be if we forget the numbering), since the c
 
 
 
-# L1 norm is greater than or equal to L2 norm
+# L1 Norm Is Greater than or Equal to L2 Norm
 
 ```meta
 status: scratch
@@ -21070,7 +21070,7 @@ A
 
 - By triangle inequality, $OA + OB \geq AB$, hence $L_1 = \delta_x + \delta_y \geq L_2$
 
-# Z algorithm
+# Z Algorithm
 
 ```meta
 status: technical-note
@@ -21145,7 +21145,7 @@ vector<int> myz(std::string s) {
 
 - Reference: Algorithms on strings, trees, and sequences.
 
-# For a given recurrence, what base cases do I need to implement?
+# For a Given Recurrence, What Base Cases Do I Need to Implement?
 
 ```meta
 status: scratch
@@ -21157,7 +21157,7 @@ last-edited: 2021-07-30
 - For combinations, we step `n` by `1`, `r` by `1`. So we need to define what happens for `n=0` OR `r=0`.
 
 
-# Number of distinct numbers in a partition
+# Number of Distinct Numbers in a Partition
 
 ```meta
 status: scratch
@@ -21175,7 +21175,7 @@ last-edited: 2022-05-30
   is asking to build a "jagged triangle" out of columns $(i, k_i)$  whose area is $n$. Area is $1/2 b h$, which is sorta quadratic (?)
 
 
-# Splitting $f(x) = y$ into indicators
+# Splitting $f(x) = y$ into Indicators
 
 ```meta
 status: scratch
@@ -21198,7 +21198,7 @@ $$
 $$
 
 
-# Why searching for divisors upto `sqrt(n)` works
+# Why Searching for Divisors Upto `sqrt(n)` Works
 
 ```meta
 status: scratch
@@ -21216,7 +21216,7 @@ last-edited: 2022-05-30
   $n$ would also have a smaller factor we would have found.
 
 
-# Heuristics for the prime number theorem
+# Heuristics for the Prime Number Theorem
 
 ```meta
 status: technical-note
@@ -21304,7 +21304,7 @@ This "proves" the prime number theorem.
 - [Heuristic derivation of the prime number theorem](https://sites.williams.edu/Morgan/2008/10/11/heuristic-derivation-of-prime-number-theorem/)
 
 
-# Sum of absolute differences of an array
+# Sum of Absolute Differences of an Array
 
 ```meta
 status: scratch
@@ -21340,7 +21340,7 @@ D =
   So `s[i]` will contribute a coefficient of `+1*(i-1) - 1*(n-i)`
   [using the formula that for intervals `[l, r)` and `(l, r]` the number of elements is `(r-l)`]
 
-# GCD  is at most difference of numbers
+# GCD  Is at Most Difference of Numbers
 
 ```meta
 status: scratch
@@ -21360,7 +21360,7 @@ last-edited: 2022-05-30
 - Why does GCD not vanish at exactly the roots of $r-l$? If $l$ and $r$ both take the same non-zero value
   at some prime then $(r - l)$ does too. But this is not a loacation where $l$ and $r$ vanish.
 
-# implementing GCD and LCM
+# Implementing GCD and LCM
 
 ```meta
 status: scratch
@@ -21375,7 +21375,7 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 ```
 
 
-# Centroid of a tree
+# Centroid of a Tree
 
 ```meta
 status: technical-note
@@ -21406,7 +21406,7 @@ last-edited: 2022-05-30
 - Note that the centroid decomposition of the tree constructs a new tree, which is different from the original tree, sorta how the dominator tree
   is a different tree from the original tree.
 
-# Center of a tree
+# Center of a Tree
 
 ```meta
 status: scratch
@@ -21471,7 +21471,7 @@ median (the center) invariant.
 
 
 
-# Image unshredding as hamiltonian path
+# Image Unshredding as Hamiltonian Path
 
 ```meta
 status: scratch
@@ -21491,7 +21491,7 @@ I think this example is striking enough that I'll never forget that in a hamilto
 vertices exactly one, (in contrast to an euler tour, we must visit each edge exactly once).
 
 
-# Distance between lines in nD
+# Distance Between Lines in nD
 
 ```meta
 status: scratch
@@ -21541,7 +21541,7 @@ $$
 - This gives us the equations $lm \cdot x = 0$, and $lm \cdot y = 0$. We have two variables $\alpha, \beta$ and two equations, so we solve for $\alpha, beta$.
 - This allows us to find the line $lm$ whose length is the shortest distance.
 
-# `lower_bound` binary search with closed intervals
+# `lower_bound` Binary Search with Closed Intervals
 
 ```meta
 status: scratch
@@ -21577,7 +21577,7 @@ ll max_earlier(ll t, vector<P> &ps) {
 ```
 
 
-# Sliding window implementation style
+# Sliding Window Implementation Style
 
 ```meta
 status: scratch
@@ -21667,7 +21667,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
 
 
 
-# Kawaii implementation of `x = min(x, y)`
+# Kawaii Implementation Of `x = min(x, y)`
 
 ```meta
 status: scratch
@@ -21706,7 +21706,7 @@ last-edited: 2022-05-30
   combinatorial objects, and then switching
   it over to counting the number of such objects created.
 
-# Smallest positive natural which can't be represented as sum of any subset of a set of naturals
+# Smallest Positive Natural Which Can't Be Represented as Sum of Any Subset of a Set of Naturals
 
 ```meta
 status: technical-note
@@ -21794,7 +21794,7 @@ void main() {
 
 
 
-# Example of RVs that are pairwise but not 3-way independent.
+# Example of RVs That Are Pairwise but Not 3-Way Independent.
 
 ```meta
 status: scratch
@@ -21806,7 +21806,7 @@ Define `X, Y` to be uniformly random `{0, 1}` variables. `Z = X xor Y`. Each of 
 are independent, but `X, Y` determine `Z` so it's not 3-way independent.
 
 
-# Notes on Liam O Connor's thesis: Cogent
+# Notes on Liam O Connor's Thesis: Cogent
 
 ```meta
 status: scratch
@@ -21938,7 +21938,7 @@ iterators towards the left, and `upperbound` shifts iterators to right.
   returns the half-open interval `[l, r)` where the array has value `val`. This is equivalent to
   returning a pair of `lower_bound`, `upper_bound`.
 
-# Books that impart mental models
+# Books That Impart Mental Models
 
 ```meta
 status: scratch
@@ -21951,7 +21951,7 @@ something I loved in particular about [TiHKAL](https://en.wikipedia.org/wiki/TiH
 reaction mechanisms. I'd love references to other books that do the same.
 
 
-# Subarrays ~= prefixes
+# Subarrays ~= Prefixes
 
 ```meta
 status: scratch
@@ -22004,7 +22004,7 @@ int main() {
 }
 ```
 
-# Operations with modular fractions
+# Operations with Modular Fractions
 
 ```meta
 status: scratch
@@ -22053,7 +22053,7 @@ last-edited: 2022-05-30
 Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arithmetic as usual.
 
 
-# Modular inverse calculation
+# Modular Inverse Calculation
 
 ```meta
 status: scratch
@@ -22086,7 +22086,7 @@ pair<int, int> euc(int x, int y) {
 ```
 
 
-# The number of pairs `(a,b)` such that `ab≤x` is `O(xlogx)`
+# The Number of Pairs `(a,b)` Such That `ab≤x` Is `O(xlogx)`
 
 ```meta
 status: scratch
@@ -22121,7 +22121,7 @@ consider the two functions:
 - Also, $\lim_n f(n) - g(n) = 0$. So these sandwhich something in between, which is the constant $\gamma$.
 
 
-# DP as path independence
+# DP as Path Independence
 
 ```meta
 status: scratch
@@ -22139,7 +22139,7 @@ last-edited: 2022-05-30
   states that it's safe to cache the results of the sub-computation, since all that matters is the final state (inputs).
 
 
-# Binary search to find rightmost index which does not possess some property
+# Binary Search to Find Rightmost Index Which Does Not Possess Some Property
 
 ```meta
 status: technical-note
@@ -22368,7 +22368,7 @@ int lca(int u, int v) {
 ```
 
 
-# Correctness of `lower_bound` search with half-open intervals
+# Correctness of `lower_bound` Search with Half-open Intervals
 
 ```meta
 status: scratch
@@ -22439,7 +22439,7 @@ int tallest(vector<long> &xs, int y) {
 }
 ```
 
-# Greedy Coin change: proof by probing
+# Greedy Coin Change: Proof by Probing
 
 ```meta
 status: technical-note
@@ -22479,7 +22479,7 @@ last-edited: 2022-05-30
 
 
 
-# Clean way to write burnside lemma
+# Clean Way to Write Burnside Lemma
 
 ```meta
 status: scratch
@@ -22535,7 +22535,7 @@ $$
 - [Reference](https://math.mit.edu/~apost/courses/18.204_2018/Jenny_Jin_paper.pdf)
 
 
-# The groupoid interpretation of type theory
+# The Groupoid Interpretation of Type Theory
 
 ```meta
 status: scratch
@@ -22547,7 +22547,7 @@ The monograph by  Martin Hofmann and Thomas Streicher is remarkably lucid. It
 opens by stating that UIP (uniqueness of identity proofs) is false by providing
 a model for the axioms of MLTT where UIP fails --- a groupoid!
 
-# Mnemonics for free = left adjoint
+# Mnemonics for Free = Left Adjoint
 
 ```meta
 status: scratch
@@ -22561,7 +22561,7 @@ last-edited: 2021-06-27
 
 
 
-# Where to scratch a cat
+# Where to Scratch a Cat
 
 ```meta
 status: scratch
@@ -22573,7 +22573,7 @@ Scratch the sides of their rear legs - that's where they can't scratch themselve
 Found this useful to know, since we've recently adopted a stray.
 
 
-# Mnemonic for Specht module actions
+# Mnemonic for Specht Module Actions
 
 ```meta
 status: scratch
@@ -22690,7 +22690,7 @@ last-edited: 2025-06-10
 
 
 
-# Transfinite recursion: Proof
+# Transfinite Recursion: Proof
 
 ```meta
 status: scratch
@@ -22722,7 +22722,7 @@ last-edited: 2021-06-27
 - We have fulfilled the induction hypothesis. So $J_0 = J$, and we have a set of function $\{ f_j : j \in J \}$, all of which are compatible with each other and obey the recursion
   schema. We take their unions and define $f \equiv \cup_j f_j$ and we are done!
 
-# Transfinite induction: Proof
+# Transfinite Induction: Proof
 
 ```meta
 status: technical-note
@@ -22747,7 +22747,7 @@ $$
 - This is contradiction, as we start with $w$ is the smallest element not in $J_0$, and then concluded that $w$ is in $J_0$.
 - Thus, the set $W \equiv J_0 - J$ must be empty, or $J_0 = J$.
 
-# Thoughts on playing Em-Bm
+# Thoughts on Playing Em-Bm
 
 ```meta
 status: scratch
@@ -22763,7 +22763,7 @@ which I first place on the correct string , and then place all other fingers in 
 to it. This seems to help, since the task becomes (a) place root finger (b) naturally place
 other fingers after it.
 
-# An explanation for why permutations and linear orders are not naturally isomorphic
+# An Explanation for Why Permutations and Linear Orders Are Not Naturally Isomorphic
 
 ```meta
 status: scratch
@@ -22782,7 +22782,7 @@ of the same size) but the functors fail to be isomorphic, since they have
 different criteria for "being equal".
 
 
-# We can't define choice for finite sets in Haskell!
+# We Can't Define Choice for Finite Sets in Haskell!
 
 ```meta
 status: scratch
@@ -22816,7 +22816,7 @@ last-edited: 2021-06-27
 
 
 
-# Geomean is scale independent
+# Geomean Is Scale Independent
 
 ```meta
 status: scratch
@@ -22828,7 +22828,7 @@ last-edited: 2021-06-27
 this interesting, since it implies that Geomean is not "biased": arithmetic mean is more sensitive to large values (eg: `(1 + 999)/2 = 500`),
 while harmonic mean is more sensitive to small values. Geomean is neither, so it's more "balanced".
 
-# Thoughts on playing Em Bm.
+# Thoughts on Playing Em Bm.
 
 ```meta
 status: scratch
@@ -22837,7 +22837,7 @@ last-edited: 2021-06-27
 ```
 
 
-# Induction on natural numbers cannot be derived from other axioms
+# Induction on Natural Numbers Cannot Be Derived from Other Axioms
 
 ```meta
 status: scratch
@@ -22854,7 +22854,7 @@ $P(0)$ holds as $succ(0) = 1 \neq 0$. It is also true that if $P(m)$, then $P(m+
 it is NOT true that $\forall m \in M, P(m)$ since it does not hold for $* \in M$. So we really do need
 induction as an axiom to rule out other things.
 
-# Ordinals and cardinals
+# Ordinals and Cardinals
 
 ```meta
 status: scratch
@@ -22974,7 +22974,7 @@ acts as a place to do mathematics safely, while still having access to the "set 
 #### References
 - [Large Sets 3](https://golem.ph.utexas.edu/category/2021/06/large_sets_3.html)
 
-# Musing about Specht modules
+# Musing About Specht Modules
 
 ```meta
 status: scratch
@@ -23036,7 +23036,7 @@ p | q
 - [What is a Coxeter group](https://math.stackexchange.com/questions/2895896/what-is-a-coxeter-group)
 
 
-# Every continuous function on $[a, b]$ attains a maximum
+# Every Continuous Function on $[a, b]$ Attains a Maximum
 
 ```meta
 status: scratch
@@ -23062,7 +23062,7 @@ The high-level machinery proof:
 - Push forward finite subcover: $\{ V_j : j \in J \}$ cover $f(C)$ as $U_j$ cover $C$.
 
 
-# Invisible cities
+# Invisible Cities
 
 ```meta
 status: scratch
@@ -23248,7 +23248,7 @@ last-edited: 2021-06-09
 
 >  It is not the voice that commands the story: it is the ear.’
 
-# Associativity of addition in cubicaltt
+# Associativity of Addition in Cubicaltt
 
 ```meta
 status: technical-note
@@ -23351,7 +23351,7 @@ addA (a b: nat):
 ```
 
 
-# Etymology of fiber bundle $F \rightarrow E \rightarrow B$
+# Etymology of Fiber Bundle $F \rightarrow E \rightarrow B$
 
 ```meta
 status: scratch
@@ -23363,7 +23363,7 @@ last-edited: 2021-06-07
 The $F$ stands for fibre, $E$ for ensemble (total space), and $B$ for base space,
 as told in this [math.stackexchange answer](https://math.stackexchange.com/questions/4165418/etymology-of-mathbfbg-for-category-of-one-object-for-g/4165440#4165440)
 
-# Galois correspondence, functorially
+# Galois Correspondence, Functorially
 
 ```meta
 status: scratch
@@ -23399,7 +23399,7 @@ We now consider the category of a given field extension $L/F$, which has objects
 between $L$ and $F$, and has morphisms as field morphisms which fix $F$.
 
 
-# CubicalTT: sharpening thinking about indexed functions
+# CubicalTT: Sharpening Thinking About Indexed Functions
 
 ```meta
 status: scratch
@@ -23445,7 +23445,7 @@ g1 (b : nat) (c : nat) : nat = b
 --                 suc b' -> b'
 ```
 
-# Functors to motivate adjuntions
+# Functors to Motivate Adjuntions
 
 ```meta
 status: scratch
@@ -23486,7 +23486,7 @@ G(F((A, a)))
 
 Thus, we should come up with a weaker notion of equality : Adjoints!
 
-# Madoka Magica: plot thoughts
+# Madoka Magica: Plot Thoughts
 
 ```meta
 status: scratch
@@ -23498,7 +23498,7 @@ last-edited: 2022-05-30
 - Homura is such a tragic character.
 
 
-# Chain rule functorially
+# Chain Rule Functorially
 
 ```meta
 status: scratch
@@ -23529,7 +23529,7 @@ I feel like we shouldn't use natural numbers for $M$, but we should rather use r
 And as for $Euc$, we should replace this with $ManOpen$ where we use based
 "charted" opens of a differentiable manifold.  This makes the diffgeo clear!
 
-# Lagrange multipliers by algebra
+# Lagrange Multipliers by Algebra
 
 ```meta
 status: scratch
@@ -23606,7 +23606,7 @@ $$
 The langrange multipler procedure is nice since it does not break the symmetry between the two variables.
 
 
-# Specht module construction
+# Specht Module Construction
 
 ```meta
 status: scratch
@@ -24079,7 +24079,7 @@ directly define `A_{t}` on the *tabloids*, by defining it as first sorting the r
 and then using `A_t`.
 
 
-# Even and odd functions through representation theory
+# Even and Odd Functions Through Representation Theory
 
 ```meta
 status: scratch
@@ -24101,7 +24101,7 @@ Since the even and odd functions span the space of all functions, as we can writ
 sum of an even part $e_f(x) \equiv [f(x) + f(-x)]/2$ and an odd part $o_f(x) \equiv [f(x) - f(-x)]/2$. So,
 we have described the action of $\phi$ in terms of subspaces which span the space, so we've found the irrep decomposition.
 
-# Greg egan: Orthogonal
+# Greg Egan: Orthogonal
 
 ```meta
 status: scratch
@@ -24491,7 +24491,7 @@ to reading the book:
 > well.' Clara said, 'If that's what you want, then I believe you'll find a
 > way.'
 
-# Simplicial approximation: maps can be approximated by simplicial maps (TODO)
+# Simplicial Approximation: Maps Can Be Approximated by Simplicial Maps (TODO)
 
 ```meta
 status: scratch
@@ -24501,7 +24501,7 @@ last-edited: 2023-04-02
 
 
 
-# Limit is right adjoint to diagonal
+# Limit Is Right Adjoint to Diagonal
 
 ```meta
 status: scratch
@@ -24543,7 +24543,7 @@ I'm not sure how to proceed further, but I feel that it must be possible to proc
 the technology, unfortunately, to make this go through.
 
 
-# Working out why right adjoints preserve limits.
+# Working out Why Right Adjoints Preserve Limits.
 
 ```meta
 status: technical-note
@@ -24613,7 +24613,7 @@ way round.
 Thus, the two sets are equivalent, and hence `Hom(a, -)` preserves limits (almost by definition).
 
 
-# Limit/Colimit/Cone/Cocone: the arrows are consistent!
+# Limit/Colimit/Cone/Cocone: the Arrows Are Consistent!
 
 ```meta
 status: scratch
@@ -24801,7 +24801,7 @@ Hom(-, y)>-----*
 - [Density theorem proof](https://en.wikipedia.org/wiki/Density_theorem_(category_theory)#Proof)
 
 
-# Why terminal object is a limit
+# Why Terminal Object Is a Limit
 
 ```meta
 status: scratch
@@ -24823,7 +24823,7 @@ last-edited: 2021-05-23
 
 
 
-# Excluded middle is not false in intuitionistic logic
+# Excluded Middle Is Not False in Intuitionistic Logic
 
 ```meta
 status: scratch
@@ -24852,7 +24852,7 @@ lemFalseExplodes :: FALSE (LEM a) -> anything
 lemFalseExplodes lem = absurd (lemNotFalse lem)
 ```
 
-# Yoneda Lemma and embedding
+# Yoneda Lemma and Embedding
 
 ```meta
 status: technical-note
@@ -24987,7 +24987,7 @@ last-edited: 2021-05-16
 - [ghcid](https://hackage.haskell.org/package/ghcid) + tmux is a nice way to get a REPL/IDE
   like experience for haskell with minimal fuss.
 
-# Character theory
+# Character Theory
 
 ```meta
 status: technical-note
@@ -25300,7 +25300,7 @@ is a cofibration if $A \xrightarrow{i} B$ is a cofibration.
 
 Reference: [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMtU)
 
-# Emily Riehl Contrability as uniqueness
+# Emily Riehl Contrability as Uniqueness
 
 ```meta
 status: scratch
@@ -25312,7 +25312,7 @@ last-edited: 2021-05-16
 - dependent lambda calc/topos theoretic interpretation gives extensional mltt. Diagonal is identity type.
 - challenge: intensional in topological setting. Path space is the identity type.
 
-# Cofactor as derivative of determinant
+# Cofactor as Derivative of Determinant
 
 ```meta
 status: scratch
@@ -25326,7 +25326,7 @@ that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\p
 
 
 
-# Homology, the big picture
+# Homology, the Big Picture
 
 ```meta
 status: scratch
@@ -25392,7 +25392,7 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 
 
 
-# Legal Systems very different from ours
+# Legal Systems Very Different from Ours
 
 ```meta
 status: scratch
@@ -25400,7 +25400,7 @@ created: 2021-05-16
 last-edited: 2021-05-16
 ```
 
-# Shrinking wedge of circles / Hawaiian earring (TODO)
+# Shrinking Wedge of Circles / Hawaiian Earring (TODO)
 
 ```meta
 status: scratch
@@ -25417,7 +25417,7 @@ is so different from the hawaiian earring. Here are some thoughts:
   For example, we can take a loop at *each* circle of radius $1/n$ by making it traverse the circle
   of radius $1/n$ in the interval $t \in [(n-1)/n, n/(n+1)]$, and stay at $(0, 0)$ at $t=1$.
 
-# Simplicial approxmation of maps (TODO)
+# Simplicial Approxmation of Maps (TODO)
 
 ```meta
 status: scratch
@@ -25449,7 +25449,7 @@ this map.
 
 #### The correct statement
 
-# Lebesgue number lemma (TODO)
+# Lebesgue Number Lemma (TODO)
 
 ```meta
 status: scratch
@@ -25485,7 +25485,7 @@ containments $O \subseteq B(x, r) \subseteq U_x$.
 TODO
 
 
-# Lean internals Cheat Sheet
+# Lean Internals Cheat Sheet
 
 ```meta
 status: scratch
@@ -25516,7 +25516,7 @@ a [code walkthrough here](https://bollu.github.io/microui/microui-source.html). 
 a nice design pattern for writing such an immediate-mode GUI library in the future.
 
 
-# Proof of tree having (V-1) edges
+# Proof of Tree Having (V-1) Edges
 
 ```meta
 status: scratch
@@ -25534,7 +25534,7 @@ are statically determined, and I am not forced to make an arbitrary choice at ea
 the arbitrariness of the choice breaks my "flow".
 
 
-# Creating PDFs to read code
+# Creating PDFs to Read Code
 
 ```meta
 status: scratch
@@ -25549,7 +25549,7 @@ last-edited: 2021-05-16
 5. Print!
 
 
-# Bias and gain
+# Bias and Gain
 
 ```meta
 status: scratch
@@ -25577,7 +25577,7 @@ function GetGain(t,g) {
 ```
 
 
-# Barycentric subdivision: edge length decreases
+# Barycentric Subdivision: Edge Length Decreases
 
 ```meta
 status: scratch
@@ -25599,7 +25599,7 @@ where $k = i$ will be zero, and the other (n-1) terms are at most $l$, the lengt
 This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a factor of $(n-1)/n$.
 
 
-# Homotopic maps produce same singular homology: Intuition
+# Homotopic Maps Produce Same Singular Homology: Intuition
 
 ```meta
 status: scratch
@@ -25643,7 +25643,7 @@ as $p(t, i) \equiv H(t, l(i))$. We see that $p(0, i) = H(0, l(i)) = f(l(i)) = m$
 So, we get a "prism" whose endpoints are $m = f \circ l$ and $n = g \circ l$.
 
 
-# Singular homology: induced homomorphism
+# Singular Homology: Induced Homomorphism
 
 ```meta
 status: scratch
@@ -25690,7 +25690,7 @@ is well-defined.
 
 
 
-# Demoscene tools
+# Demoscene Tools
 
 ```meta
 status: scratch
@@ -25722,7 +25722,7 @@ last-edited: 2021-05-16
 > perceive a different kind of beating effect.
 
 
-# Low pass filter by delaying
+# Low Pass Filter by Delaying
 
 ```meta
 status: scratch
@@ -25784,7 +25784,7 @@ As to why the Niquist ratio is `1/2`, imagine a circle. a `1/2` is how much
 more than `1/2` of the circle), we will  ????
 
 
-# Octaves are double frequency apart (TODO)
+# Octaves Are Double Frequency Apart (TODO)
 
 ```meta
 status: scratch
@@ -25805,7 +25805,7 @@ a multiple oCochlea and why frequencies are 1:2
 
 > https://physics.stackexchange.com/questions/44469/octave-equivalence-biological-or-more
 
-# Bias and gain
+# Bias and Gain
 
 ```meta
 status: scratch
@@ -25816,7 +25816,7 @@ last-edited: 2021-05-16
 - Bias lets us move the "mean" of the  plot.
 - Gain lets us move "how quickly" we get to the mean.
 
-# Show, don't tell
+# Show, Don't Tell
 
 ```meta
 status: scratch
@@ -25831,7 +25831,7 @@ Think of effects, not causes.
 
 - https://www.youtube.com/watch?v=YAKcbvioxFk
 
-# Try and think of natural transformations as intertwinings
+# Try and Think of Natural Transformations as Intertwinings
 
 ```meta
 status: scratch
@@ -25858,7 +25858,7 @@ is zero. This is quite a lot like Yoneda, where the natural transformation is fi
 by wherever the functor sends the identity element.
 
 
-# Subobject classifier measures how much we need to pay to access fact
+# Subobject Classifier Measures How Much We Need to Pay to Access Fact
 
 ```meta
 status: scratch
@@ -25874,7 +25874,7 @@ last-edited: 2021-05-16
   but close enough to the truth.
 
 
-# Spectral norm of Hermitian matrix equals largest eigenvalue (TODO)
+# Spectral Norm of Hermitian Matrix Equals Largest Eigenvalue (TODO)
 
 ```meta
 status: scratch
@@ -25888,7 +25888,7 @@ The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i
 with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
 $||Av^\star|| = \lambda^*$ is maximal.
 
-# Penrose cohomology [TODO]
+# Penrose Cohomology [TODO]
 
 ```meta
 status: scratch
@@ -25900,7 +25900,7 @@ last-edited: 2023-04-02
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
-# Weingarten map
+# Weingarten Map
 
 ```meta
 status: scratch
@@ -25914,7 +25914,7 @@ last-edited: 2022-05-30
 - The weingarten map is the map $dN$ which can be identified with
 
 
-# When maps cannot be lifted to the universal cover
+# When Maps Cannot Be Lifted to the Universal Cover
 
 ```meta
 status: scratch
@@ -26063,7 +26063,7 @@ as the universal net converges.
 - [Tanuj Gupta: Tychonoff theorem](https://www.math.tamu.edu/~tanujgupta17/tychonoff.pdf)
 
 
-# Limit point compactness from Munkres
+# Limit Point Compactness from Munkres
 
 ```meta
 status: scratch
@@ -26202,7 +26202,7 @@ More elaborately:
 - $T$ is a infinite union of opens. Thus $T$ is open.
 - $S$ is complement of open set $T$. $S$ is closed.
 
-# Alexandrov topology
+# Alexandrov Topology
 
 ```meta
 status: scratch
@@ -26221,7 +26221,7 @@ is the intersection of all opens containing $x$.
 
 
 
-# Zeroth singular homology group: Intuition
+# Zeroth Singular Homology Group: Intuition
 
 ```meta
 status: scratch
@@ -26240,7 +26240,7 @@ identifies all points with each other in $C[0]$. That is, we get $H[0] \equiv \l
 which is isomorphic to $\mathbb Z$. Thus, the zeroth singular homology group is $\mathbb Z$.
 
 
-# Examples of fiber products / pullbacks
+# Examples of Fiber Products / Pullbacks
 
 ```meta
 status: technical-note
@@ -26365,7 +26365,7 @@ The answer is that apparently, it's exactly $Spec(A) \times_{Spec(R)} Spec(B)$.
 
 
 
-# Covariant derivative
+# Covariant Derivative
 
 ```meta
 status: scratch
@@ -26460,7 +26460,7 @@ its value constant along $t_p$. It is as if the values of $Y(0)$ have been trans
 Let $\sigma$ be a $C^\infty$ curve.
 
 
-# Clackety sounds: `bucklespring`
+# Clackety Sounds: `bucklespring`
 
 ```meta
 status: scratch
@@ -26473,7 +26473,7 @@ because it makes the experience of programming so much more tactile. Having left
 in college in the time of the plague, I feel like I was sorely missing this sort of auditory feedback!
 
 
-# Submersions and immersions
+# Submersions and Immersions
 
 ```meta
 status: scratch
@@ -26487,7 +26487,7 @@ submerge a ring (a 1D object) into the ocean (a 3D object). so if anything, I'd 
 to be locally injective. You can only submerge $X$ into $Y$ if $Y$ is "larger" than $X$. The definition
 asks for the precise opposite!
 
-# Ehrsmann connection
+# Ehrsmann Connection
 
 ```meta
 status: scratch
@@ -26544,7 +26544,7 @@ Hence, the function we defined above must be surjective.
 
 NOTE TO SELF: there should be a more direct proof that uses the fact that the fiber is $G$-torsor!
 
-# Quotes from the culture
+# Quotes from the Culture
 
 ```meta
 status: scratch
@@ -26667,7 +26667,7 @@ last-edited: 2022-05-30
 
 
 
-# Lie bracket commutator as infinitesimal conjugation
+# Lie Bracket Commutator as Infinitesimal Conjugation
 
 ```meta
 status: scratch
@@ -26694,7 +26694,7 @@ $$
 - Thus, the linear part/gradient of the conjugation is given by $\epsilon [k, h] = kh - hk$.
 - So, the lie bracket corresonds to infinitesimal conjugation.
 
-# Thoughts on proof of fundamental group of unit circle
+# Thoughts on Proof of Fundamental Group of Unit Circle
 
 ```meta
 status: scratch
@@ -26721,7 +26721,7 @@ and we can thus use induction to path lift.
 - [Kan extension condition](https://www.imsc.res.in/~kapil/geometry/topol/kan.html)
 
 
-# Pasting lemma
+# Pasting Lemma
 
 ```meta
 status: technical-note
@@ -26760,7 +26760,7 @@ $$
 \end{aligned}
 $$
 
-# Tensoring with base ring has no effect
+# Tensoring with Base Ring Has No Effect
 
 ```meta
 status: scratch
@@ -26776,7 +26776,7 @@ convention, we choose the single prime on the left and the double prime on the
 right).
 
 
-# Seeing the semidirect product of the dihedral group.
+# Seeing the Semidirect Product of the Dihedral Group.
 
 ```meta
 status: scratch
@@ -26805,7 +26805,7 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 - 2. Define this "from the view of the edge", as rotating in the direction of the edge.
 
 
-# Animating rotations with quaternion curves
+# Animating Rotations with Quaternion Curves
 
 ```meta
 status: scratch
@@ -26816,7 +26816,7 @@ last-edited: 2021-03-29
 - [Reference: classic paper](http://graphics.cs.cmu.edu/nsp/course/15-464/Fall05/assignments/p245-shoemake.pdf)
 - [Comp.graphics usenet FAQ](http://www.faqs.org/faqs/graphics/algorithms-faq/)
 
-# Mnemonic for hom-tensor and left-right adjoints
+# Mnemonic for Hom-tensor and Left-right Adjoints
 
 ```meta
 status: scratch
@@ -26841,7 +26841,7 @@ last-edited: 2021-03-29
   injectivity, it is left adjoint.
 
 
-# Construction of tensor product: Atiyah macdonald
+# Construction of Tensor Product: Atiyah Macdonald
 
 ```meta
 status: scratch
@@ -26888,7 +26888,7 @@ If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T
 
 
 
-# Recovering topology from sheaf of functions: Proof from Atiyah Macdonald
+# Recovering Topology from Sheaf of Functions: Proof from Atiyah Macdonald
 
 ```meta
 status: scratch
@@ -26963,7 +26963,7 @@ to argue about zero sets of functions.
    maps to what we would expect; it trades the algebraic definition of "does not vanish" to the geometric one,
    while describing the exact same phenomena.
 
-# Urhyson's lemma
+# Urhyson's Lemma
 
 ```meta
 status: scratch
@@ -27121,7 +27121,7 @@ makes sense Urhyson's is involved.
 - [Urhyson's Lemma video](https://www.youtube.com/watch?v=UQas4Cu89D0)
 - [Urhyson's Lemma lecture notes](http://therisingsea.org/notes/mast30026/lecture22.pdf)
 
-# Compact Hausdorff spaces are normal
+# Compact Hausdorff Spaces Are Normal
 
 ```meta
 status: technical-note
@@ -27151,7 +27151,7 @@ sets $U_{c_i D}, V_{c_i D}$ such that the $U_{CD} \equiv \cup_{i=0}^n U_{c_i D}$
 $V_{c_i D}$ cover $D$ (so $V_{CD} \equiv \cap_{i=0}^n V_{c_i} D$ covers $D$). This gives
 us our final opens $U_{CD}$ and $V_{CD}$. that separate $C$ and $D$.
 
-# Stone representation theorem: Proof from Atiyah Macdonald
+# Stone Representation Theorem: Proof from Atiyah Macdonald
 
 ```meta
 status: technical-note
@@ -27329,7 +27329,7 @@ But every clopen set can be written as $D(l')$ for some $l'$.
 #### Bonus: quotient ring $R/p$ for prime ideal $p$ is $F_2$
 
 
-# Covariant Hom is left exact
+# Covariant Hom Is Left Exact
 
 ```meta
 status: scratch
@@ -27377,7 +27377,7 @@ the case with $Z$ and $Z/2Z$
 #### $Hom(-; Z)$
 #### $Hom(-; Z/2Z)$
 
-# Internal versus External semidirect products
+# Internal Versus External Semidirect Products
 
 ```meta
 status: technical-note
@@ -27434,7 +27434,7 @@ So, the collection of elements of the form $NK$ in $G$ is closed. We can check t
 hold as well.
 
 
-# Splitting of semidirect products in terms of projections
+# Splitting of Semidirect Products in Terms of Projections
 
 ```meta
 status: scratch
@@ -27468,7 +27468,7 @@ $\pi_n: G \rightarrow G; \pi_n(g) \equiv g \cdot \pi(k)^{-1}$.
 
 
 
-# Tensor is right exact
+# Tensor Is Right Exact
 
 ```meta
 status: technical-note
@@ -27675,7 +27675,7 @@ Hence, $coker(i) \simeq R \otimes C$.
 
 
 
-# Semidirect product as commuting conditions
+# Semidirect Product as Commuting Conditions
 
 ```meta
 status: scratch
@@ -27721,7 +27721,7 @@ versus rotate-translate.
   pair that mimics our starting `translation;rotation`.
 
 
-# Exact sequences for semidirect products; fiber bundles
+# Exact Sequences for Semidirect Products; Fiber Bundles
 
 ```meta
 status: scratch
@@ -27840,7 +27840,7 @@ We want the final picture to be:
 ```
 
 
-#  Semidirect product is equivalent to splitting of exact sequence
+#  Semidirect Product Is Equivalent to Splitting of Exact Sequence
 
 ```meta
 status: scratch
@@ -27927,7 +27927,7 @@ we need to check that it's an isomorphism, so we need to make sure that this has
 
 
 
-# Intro to topological quantum field theory
+# Intro to Topological Quantum Field Theory
 
 ```meta
 status: scratch
@@ -27962,7 +27962,7 @@ last-edited: 2021-05-16
 
 
 
-# Non examples of algebraic varieties
+# Non Examples of Algebraic Varieties
 
 ```meta
 status: technical-note
@@ -28010,7 +28010,7 @@ In general, we are using a *combinatorial* fact that a $n$ degree polynomial has
 In some cases, we could have used *analytic* facts about continuity of polynomials, but it suffices
 to simply use *combiantorial* data which I find interesting.
 
-# Nilradical is intersection of all prime ideals
+# Nilradical Is Intersection of All Prime Ideals
 
 ```meta
 status: technical-note
@@ -28087,7 +28087,7 @@ nilradical.
   equal to zero.  Hence, for the ring to collapse, we must have $0 = s' \in S$. So, if $S^{-1}R = 0$, then $S$ contains zero.
 
 
-# Exactness of modules is local
+# Exactness of Modules Is Local
 
 ```meta
 status: scratch
@@ -28103,7 +28103,7 @@ is exact for every maximal ideal $m \subset R$. This tells us that exactness is 
 
 
 
-# Quotient by maximal ideal gives a field
+# Quotient by Maximal Ideal Gives a Field
 
 ```meta
 status: scratch
@@ -28124,7 +28124,7 @@ such that $xa + mb = 1$. Modulo $m$, this read $xa \equiv 1 (\text{mod}~$m$)$. T
 is an inverse to $x$, hence every nonzero element is invertible.
 
 
-# Ring of power series with infinite positive and negative terms
+# Ring of Power Series with Infinite Positive and Negative Terms
 
 ```meta
 status: scratch
@@ -28141,7 +28141,7 @@ to be an integral domain, we are forced to accept that $S = 0$. In the Barvinok
 theory of polyhedral point counting, we accept that $S = 0$ and exploit this
 in our theory.
 
-# Mean value theorem and Taylor's theorem. (TODO)
+# Mean Value Theorem and Taylor's Theorem. (TODO)
 
 ```meta
 status: scratch
@@ -28571,7 +28571,7 @@ Which is exactly cramer's rule.
 - [PlanetMath: proof of Cayley Hamilton for commutative rings](https://planetmath.org/proofofcayleyhamiltontheoreminacommutativering)
 
 
-# Nakayama's lemma
+# Nakayama's Lemma
 
 ```meta
 status: scratch
@@ -28589,7 +28589,7 @@ I read the statement as $IM = M \implies M = 0$, when $I$ is in the jacobson rad
    vector of, say, "non-zero elements in each grade" which used to look like $(v_0, v_1, v_2, \dots)$ will now look like $(0, v_0, v_1, \dots)$.
    Equating the two, we get $v_0 = 0, v_1 = v_0 = 0, v_2 = v_1 = 0$ and so on, collapsing the entire ring.
 
-# Vector fields over the 2 sphere
+# Vector Fields over the 2 Sphere
 
 ```meta
 status: scratch
@@ -28653,7 +28653,7 @@ $$
 - [Smooth vector fields over $S^2$ is a projective module](https://math.stackexchange.com/questions/4053091/explicitly-exhibit-that-vector-fields-over-the-2-sphere-is-a-projective-module)
 
 
-# Learning to talk with your hands
+# Learning to Talk with Your Hands
 
 ```meta
 status: scratch
@@ -28843,7 +28843,7 @@ his writing style. Here's a big list of my favourite quotes:
 
 > The aperture was black with a darkness almost material.
 
-# Hairy ball theorem from Sperner's Lemma (TODO)
+# Hairy Ball Theorem from Sperner's Lemma (TODO)
 
 ```meta
 status: scratch
@@ -28950,7 +28950,7 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
   but may not be trivialisable due to a difference in dimension, or compatibility, or some such.
 
 
-# CS and type theory: Talks by vovodesky
+# CS and Type Theory: Talks by Vovodesky
 
 ```meta
 status: scratch
@@ -29143,7 +29143,7 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
   connection: given a path from $x$ to $y$, it lets us transport $E(x)$ to $E(y)$,
   where the $Eq$ is the distortion from the curvature?
 
-# Hilbert basis theorem for polynomial rings over fields (TODO)
+# Hilbert Basis Theorem for Polynomial Rings over Fields (TODO)
 
 ```meta
 status: scratch
@@ -29248,7 +29248,7 @@ First we need a lemma:
 - Cox, Little, O'Shea: computational AG.
 
 
-# Covering spaces
+# Covering Spaces
 
 ```meta
 status: scratch
@@ -29462,7 +29462,7 @@ I sometimes forget which is which. I now remember this as folows:
   and "smash", then "wedge" starts with a "w" which looks like `\/`so it should
   be a union.
 
-# Quotient topology
+# Quotient Topology
 
 ```meta
 status: scratch
@@ -29577,7 +29577,7 @@ Induction on lemma. base case is empty set.
   can add the new zero cell into the maximal element (why does it remain contractible? Fishy!)
 
 
-# Stable homotopy theory
+# Stable Homotopy Theory
 
 ```meta
 status: scratch
@@ -29611,7 +29611,7 @@ This gives us the adjunction between suspension and looping.
 - [Stable homotopy theory 1](https://www.youtube.com/watch?v=neC3HUyqlV0)
 
 
-# Simply connected spaces
+# Simply Connected Spaces
 
 ```meta
 status: scratch
@@ -29639,7 +29639,7 @@ path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
   "continuously crush into a single point".
 
 
-# Finitely generated as vector space v/s algebra:
+# Finitely Generated as Vector Space v/s Algebra:
 
 ```meta
 status: scratch
@@ -29803,7 +29803,7 @@ points such as $(x)$ or $(y)$ which don't exist in variety-land. This is really 
 
 - [Reference video](https://www.youtube.com/watch?v=GyWiyR0vULE)
 
-# Screen recording for kakoune pull request
+# Screen Recording for Kakoune Pull Request
 
 ```meta
 status: scratch
@@ -29819,7 +29819,7 @@ proposing. So I used:
 This was used the create the PR that
 [improves the page up/page down to mimic vim behaviour](https://github.com/mawww/kakoune/pull/4074)
 
-# Intuition for why finitely presented abelian groups are isomorphic to product of cyclics
+# Intuition for Why Finitely Presented Abelian Groups Are Isomorphic to Product of Cyclics
 
 ```meta
 status: scratch
@@ -29839,7 +29839,7 @@ last-edited: 2021-05-16
 - The same argument works for any finitely generated abelian group.
 
 
-# Euler characteristic of sphere
+# Euler Characteristic of Sphere
 
 ```meta
 status: scratch
@@ -29852,7 +29852,7 @@ To connect them, we need two edges. The great circle divdies the spere into two
 faces. This gives $2-2+2=2$.
 
 
-# John Conway: The symmetries of things
+# John Conway: The Symmetries of Things
 
 ```meta
 status: scratch
@@ -29946,7 +29946,7 @@ we maybe able to go the other way. This is the metrization theorem.
 
 - [Video lecture](https://www.youtube.com/watch?v=8z6T-7ovA5Q)
 
-# Semidirect product mnemonic
+# Semidirect Product Mnemonic
 
 ```meta
 status: scratch
@@ -29989,7 +29989,7 @@ Another mnemonic for the semidirect product:
 > being normal is "tasty", and thus needs to be eaten.
 
 
-# Non orthogonal projections
+# Non Orthogonal Projections
 
 ```meta
 status: scratch
@@ -30009,7 +30009,7 @@ $$
 - It's **not** a projection onto the coordinate axis.
 
 
-# Why did maxwell choose his EM wave to be light?
+# Why Did Maxwell Choose His EM Wave to Be Light?
 
 ```meta
 status: scratch
@@ -30034,7 +30034,7 @@ last-edited: 2022-05-30
   statistics” arbitrarily.
 
 
-# Fast string concatenation in python3
+# Fast String Concatenation in Python3
 
 ```meta
 status: scratch
@@ -30054,7 +30054,7 @@ use the `io.StringIO` module. The API is:
 It took quite a bit of trawling the API docs to find this while I was
 helping a friend speed up some data munging.
 
-# Split infinitive
+# Split Infinitive
 
 ```meta
 status: scratch
@@ -30072,7 +30072,7 @@ The infinite "to remove" has been split by "safely".
 to remove %v safely.
 ```
 
-# Yoneda from string concatenation
+# Yoneda from String Concatenation
 
 ```meta
 status: scratch
@@ -30127,7 +30127,7 @@ concatenation. So can we understand yoneda from this model?
  and takes these objects to other objects.
 
 
-# Right Kan extensions as extending the domain of a functor
+# Right Kan Extensions as Extending the Domain of a Functor
 
 ```meta
 status: scratch
@@ -30202,7 +30202,7 @@ than a 1 categorical construct.
 
 - [Art and dan explain an old trick](https://www.cs.ox.ac.uk/ralf.hinze/Kan.pdf)
 
-# Non standard inner products and unitarity of representations
+# Non Standard Inner Products and Unitarity of Representations
 
 ```meta
 status: scratch
@@ -30214,7 +30214,7 @@ last-edited: 2022-05-30
 I stumbled across [this questions about non-standard inner products](https://math.stackexchange.com/questions/4021023/visualization-of-length-and-orthogonality-under-non-standard-inner-product). Can I use this to visualize the weyl
 averaging trick in represention theory?
 
-# take at most 4 letters from 15 letters.
+# Take at Most 4 Letters from 15 Letters.
 
 ```meta
 status: scratch
@@ -30234,7 +30234,7 @@ pick 4 letters from 15 + 4 dummy = 19 letters.
 I find it nice how I used to never look for the combinatorial meaning behind
 massaging the algebra, but I do now.
 
-# Flat functions
+# Flat Functions
 
 ```meta
 status: technical-note
@@ -30285,7 +30285,7 @@ $$
 
 - [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
 
-# Hopf Algebras and combinatorics
+# Hopf Algebras and Combinatorics
 
 ```meta
 status: scratch
@@ -30321,7 +30321,7 @@ $\epsilon(g) = 1$, $s(g) = g^{-1}$.
 
 
 
-# Butcher group
+# Butcher Group
 
 ```meta
 status: scratch
@@ -30339,7 +30339,7 @@ then had far-reaching theoretical applications. Connes remarked:
 
 
 
-# Neovim frontends
+# Neovim Frontends
 
 ```meta
 status: scratch
@@ -30353,7 +30353,7 @@ last-edited: 2021-02-26
   has cool cursor animations that make it "fun" to type with!
 - [goneovim](https://github.com/akiyosi/goneovim)
 
-# A semidirect product worked on in great detail
+# A Semidirect Product Worked on in Great Detail
 
 ```meta
 status: technical-note
@@ -30578,7 +30578,7 @@ In some sense, one can view
 [all semidirect products as notationally the same as this example](http://bollu.github.io/the-cutest-way-to-write-semidirect-products.html)
 so this example provides good intuition for the general case.
 
-# Direct and Inverse limits
+# Direct and Inverse Limits
 
 ```meta
 status: technical-note
@@ -30846,7 +30846,7 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
-# LEAN 4 overfrom from LEAN together 2021
+# LEAN 4 Overfrom from LEAN Together 2021
 
 ```meta
 status: scratch
@@ -30884,7 +30884,7 @@ last-edited: 2022-05-30
 
 - [Lean together 2021](https://www.youtube.com/watch?v=UeGvhfW1v9M&list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&index=5)
 
-# BLM master thesis
+# BLM Master Thesis
 
 ```meta
 status: scratch
@@ -30894,7 +30894,7 @@ last-edited: 2021-02-03
 
 - [link here](https://tspace.library.utoronto.ca/bitstream/1807/101595/3/Khogali_Yusra_201806_MA_thesis.pdf)
 
-# RSK correspondence for permutations
+# RSK Correspondence for Permutations
 
 ```meta
 status: scratch
@@ -31034,7 +31034,7 @@ $P$ and $p^{-1}$.
 
 
 
-# Djikstra's using a segtree
+# Djikstra's Using a Segtree
 
 ```meta
 status: scratch
@@ -31046,7 +31046,7 @@ last-edited: 2021-02-03
 > You like segtrees right :P
 
 
-# Markov and chebyshev from a measure theoretic lens
+# Markov and Chebyshev from a Measure Theoretic Lens
 
 ```meta
 status: scratch
@@ -31098,21 +31098,21 @@ to get a bound.
 
 
 
-# Among any 51 integers, that are 2 with squares having equal value modulo 100
+# Among Any 51 Integers, That Are 2 with Squares Having Equal Value Modulo 100
 
 ```meta
 status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
-# $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
+# $1^n + 2^n + \dots + (n-1)^n$ Is Divisible by $n$ for Odd $n$
 
 ```meta
 status: scratch
 created: 2021-01-29
 last-edited: 2021-01-29
 ```
-# $10^{3n+1}$ cannot be written as sum of two cubes
+# $10^{3n+1}$ Cannot Be Written as Sum of Two Cubes
 
 ```meta
 status: scratch
@@ -31124,7 +31124,7 @@ https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contra
 
 
 
-# Coq-club: the meaning of a specification
+# Coq-club: the Meaning of a Specification
 
 ```meta
 status: scratch
@@ -31163,7 +31163,7 @@ last-edited: 2022-05-30
 
 - [Link to coq-club discussion](https://sympa.inria.fr/sympa/arc/coq-club/2021-01/msg00103.html)
 
-# SQLite opening
+# SQLite Opening
 
 ```meta
 status: scratch
@@ -31181,7 +31181,7 @@ last-edited: 2021-01-29
 ```
 
 
-# Old school fonts
+# Old School Fonts
 
 ```meta
 status: scratch
@@ -31193,7 +31193,7 @@ I've been rolling with the  `Px437 ToshibaSat 8x14` font as my daily driver pure
 
 - [I love the old school fonts website](https://int10h.org/oldschool-pc-fonts/fontlist/?2#toshiba)
 
-# Stalking `syzigies` on hackernews
+# Stalking `syzigies` on Hackernews
 
 ```meta
 status: scratch
@@ -31271,7 +31271,7 @@ define | edge? g e
 ```
 
 
-# Conditional probability is neither causal nor temporal
+# Conditional Probability Is Neither Causal nor Temporal
 
 ```meta
 status: scratch
@@ -31297,7 +31297,7 @@ I'd seen things like:
 but I'd never seen/actively contemplated an example of `P(A|B)` where they
 are temporally reversed/ambiguous.
 
-# Hook length formula
+# Hook Length Formula
 
 ```meta
 status: technical-note
@@ -31451,7 +31451,7 @@ corresponds to an irrep of $S_n$.
 
 
 
-# The tyranny of light
+# The Tyranny of Light
 
 ```meta
 status: scratch
@@ -31463,7 +31463,7 @@ last-edited: 2021-01-23
 > lead to less understanding; more information may undermine trust; and more
 > information may make society less rationally governable.
 
-# Muirhead's inequality
+# Muirhead's Inequality
 
 ```meta
 status: scratch
@@ -31561,7 +31561,7 @@ $$
 
 
 
-# Rearrangement inequality
+# Rearrangement Inequality
 
 ```meta
 status: technical-note
@@ -31646,7 +31646,7 @@ and thus we are done.
 #### References
 - Inequalities: a mathematical olympiad approach
 
-# Triangle inequality
+# Triangle Inequality
 
 ```meta
 status: scratch
@@ -31723,7 +31723,7 @@ zero thickness. In general, because the points are spread out, when we
 project everything on the $AB=c$ line, we will get less-than(`<=`)
 instead of equals (`=`).
 
-# The Heather subculture
+# The Heather Subculture
 
 ```meta
 status: scratch
@@ -31756,7 +31756,7 @@ Let $H$ be a subgroup of $G$. Define $H_g \equiv \{ g h g^{-1} : h \in H \}$.
 
 
 
-# Galois theory by "Abel's theorem in problems and solutions"
+# Galois Theory by "Abel's Theorem in Problems and Solutions"
 
 ```meta
 status: scratch
@@ -31775,7 +31775,7 @@ I found the ideas in the book fascinating. The rough idea was:
 
 
 
-# Galois theory perspective of the quadratic equation
+# Galois Theory Perspective of the Quadratic Equation
 
 ```meta
 status: scratch
@@ -31824,7 +31824,7 @@ $$
 #### References
 - [Abel and the insolubility of the quintic](http://www.math.caltech.edu/~jimlb/abel.pdf)
 
-# Burnside lemma by representation theory.
+# Burnside Lemma by Representation Theory.
 
 ```meta
 status: scratch
@@ -31932,7 +31932,7 @@ many positively review tickets waiting, end of release cycle).
   marked very compliated by `radon`.
 - Fix code that's marked by [lgtm](https://lgtm.com/query)
 
-# Shadow puppet analogy for entanglement
+# Shadow Puppet Analogy for Entanglement
 
 ```meta
 status: scratch
@@ -31965,7 +31965,7 @@ configuration space of image 2 are valid, and vice versa.
 
 
 
-# Books for contest math
+# Books for Contest Math
 
 ```meta
 status: scratch
@@ -32001,7 +32001,7 @@ I wish to spend this year learning nuts and bolts type things.
 - [AoPS list of books](https://artofproblemsolving.com/wiki/index.php?title=Math_books)
 - [Mathematical problem solving: MIT course](https://yufeizhao.com/a34/)
 
-# Analysing simple games
+# Analysing Simple Games
 
 ```meta
 status: scratch
@@ -32034,7 +32034,7 @@ if the move just made by the other player can block it.
 #### References
 - [Mathematical circles: Russian experience](https://bookstore.ams.org/mawrld-7)
 
-# Linear algebraic proof of the handshaking lemma
+# Linear Algebraic Proof of the Handshaking Lemma
 
 ```meta
 status: technical-note
@@ -32098,7 +32098,7 @@ $$
 
 
 
-# Historical contemporaries
+# Historical Contemporaries
 
 ```meta
 status: scratch
@@ -32116,7 +32116,7 @@ Here's a list of contemporaries I would not have guessed:
 - Aurangzeb had a French physician (Francois bernier)
 - Picasso was against the Korean war (1950) and painted about it.
 
-# Rota's twelvefold way
+# Rota's Twelvefold Way
 
 ```meta
 status: scratch
@@ -32173,7 +32173,7 @@ last-edited: 2022-05-30
 
 
 
-# Counting necklackes with unique elements
+# Counting Necklackes with Unique Elements
 
 ```meta
 status: scratch
@@ -32191,7 +32191,7 @@ Count number of ways to form a necklace with $\{1, 2, \dots, n\}$
   of each equivalence class of the form $(1, p, q, r, s)$.
 
 
-# Decomposition of projective space
+# Decomposition of Projective Space
 
 ```meta
 status: scratch
@@ -32261,7 +32261,7 @@ slopes.
 
 
 
-# Childhood: Playing pokemon gold in japanese
+# Childhood: Playing Pokemon Gold in Japanese
 
 ```meta
 status: scratch
@@ -32282,7 +32282,7 @@ This memory just resurfaced, and I spent a solid five minutes thinking about
 just how _insane_ the whole thing is. A kid's determination to play a game
 knows no bounds, indeed.
 
-# Tensor is a thing that transforms like a tensor
+# Tensor Is a Thing That Transforms Like a Tensor
 
 ```meta
 status: technical-note
@@ -32344,7 +32344,7 @@ Physicists (and people who write memory allocators) need such elaborate tracking
 > the singularity at r = rs remained unclear. 
 > In 1921 Paul Painlevé and in 1922 Allvar Gullstrand independently produced a metric, a spherically symmetric solution of Einstein's equations, which we now know is coordinate transformation of the Schwarzschild metric, Gullstrand–Painlevé coordinates, in which there was no singularity at r = rs. They, however, did not recognize that their solutions were just coordinate transform
 
-# Tensor Hom adjunction
+# Tensor Hom Adjunction
 
 ```meta
 status: scratch
@@ -32358,7 +32358,7 @@ last-edited: 2021-01-09
   allowing a contraction with `A*`.
 
 
-# Schur's lemma
+# Schur's Lemma
 
 ```meta
 status: technical-note
@@ -32435,7 +32435,7 @@ constant times the identity. That is, there exists a $\lambda$ such that $f = \l
 
 
 
-# Daughters of destiny
+# Daughters of Destiny
 
 ```meta
 status: scratch
@@ -32447,7 +32447,7 @@ Captures the microcosm of what it means to live in India.
 
 - [Shanti Bhavan](https://www.shantibhavanchildren.org/)
 
-# Stuff I learnt in 2020
+# Stuff I Learnt in 2020
 
 ```meta
 status: scratch
@@ -32478,7 +32478,7 @@ last-edited: 2021-05-16
 - Talk: smallpt-hs
 
 
-# Line bundles, a high level view as I understand them today
+# Line Bundles, a High Level View as I Understand Them Today
 
 ```meta
 status: scratch
@@ -32512,7 +32512,7 @@ So, $\mathbb R \otimes \mathbb  R^* \simeq \mathbb R$. Generalize to bundles.
 
 - [Fiber bundles at physics travel guide](https://physicstravelguide.com/advanced_tools/fiber_bundles#tab__concrete)
 
-# Conversations with a wood carver
+# Conversations with a Wood Carver
 
 ```meta
 status: essay
@@ -33093,7 +33093,7 @@ A treasure trove of smart little Haskell programs is
 [Martín Escardó's so-called Barbados notes, number 46 in `https://www.cs.bham.ac.uk/~mhe/papers/index.html`](https://www.cs.bham.ac.uk/~mhe/papers/index.html)
 
 
-# Topological groups and languages
+# Topological Groups and Languages
 
 ```meta
 status: scratch
@@ -33154,7 +33154,7 @@ the situation.
 - [Post on haskell-cafe by Olaf Klinke](https://mail.haskell.org/pipermail/haskell-cafe/2020-December/133264.html)
 
 
-# The mnemonica stack (TODO)
+# The Mnemonica Stack (TODO)
 
 ```meta
 status: scratch
@@ -33222,7 +33222,7 @@ A  h♡
 
 
 
-# Conversation with Alok about how I read
+# Conversation with Alok About How I Read
 
 ```meta
 status: scratch
@@ -33366,7 +33366,7 @@ last-edited: 2021-05-23
 - [String algorithms: Borders, KMP: video](https://www.youtube.com/watch?v=-YdOWEpZEfc)
 - [Geometric point pattern matching](http://www.jucs.org/jucs_16_14/geometric_point_pattern_matching/jucs_16_14_1902_1911_ukkonen.pdf)
 
-# Reading C declarations
+# Reading C Declarations
 
 ```meta
 status: scratch
@@ -33390,7 +33390,7 @@ int (*(*f)())[3];
 
 
 
-# Make mnemonics
+# Make Mnemonics
 
 ```meta
 status: scratch
@@ -33431,7 +33431,7 @@ instead of computing it using FFT.
 
 - [Codeforces contest comment by Swistakk)[https://codeforces.com/blog/entry/85348?#comment-730898]
 
-# Thoughts on blitz chess: 950 ELO
+# Thoughts on Blitz Chess: 950 ELO
 
 ```meta
 status: scratch
@@ -33466,7 +33466,7 @@ It seems that "getting over" these anxieties took ~20 games, after which I could
 focus on the mechanics. This is a good reference point, since I have the same
 problem with competitive programming --- the exact same anxieties, in fact.
 
-# Periodic tables and make illegal states unrepresentable
+# Periodic Tables and Make Illegal States Unrepresentable
 
 ```meta
 status: scratch
@@ -33481,7 +33481,7 @@ a table of the current state of knowledge becomes valuable because all the
 juggling notattion.
 
 
-# questions on the structure of graphs
+# Questions on the Structure of Graphs
 
 ```meta
 status: scratch
@@ -33500,7 +33500,7 @@ sources of "structural" questions of graphs and answers for these questions.
 > no. of nodes such that all the nodes are in a cycle ?
 
 
-# Combinations notation in bijective combinatorics
+# Combinations Notation in Bijective Combinatorics
 
 ```meta
 status: scratch
@@ -33529,7 +33529,7 @@ second component ($n-r-1$), in the smaller set ($n-1$).
 
 
 
-# Arguments for little endian
+# Arguments for Little Endian
 
 ```meta
 status: scratch
@@ -33582,7 +33582,7 @@ $e_-^2$ that would have given rise to expectiles.
 
 
 
-# Depth first search through linear algebra (TODO)
+# Depth First Search Through Linear Algebra (TODO)
 
 ```meta
 status: scratch
@@ -33619,7 +33619,7 @@ different components. So this means that we have the possible orderings
 Hence, if $x$ implies $\lnot x$, we should set $x$ to $\texttt{false}$. The other
 assignment is _inconsistent_.
 
-# Longest increasing subsequence, step by step (TODO)
+# Longest Increasing Subsequence, Step by Step (TODO)
 
 ```meta
 status: scratch
@@ -33628,7 +33628,7 @@ last-edited: 2021-05-23
 ```
 - [The science of Programming by Gries](https://www.cs.cornell.edu/gries/July2016/The-Science-Of-Programming-Gries-038790641X.pdf)
 
-# On reading how to rule (TODO)
+# On Reading How to Rule (TODO)
 
 ```meta
 status: scratch
@@ -33642,7 +33642,7 @@ last-edited: 2021-05-23
 #### The book of lord shang
 
 
-# Strongly Connected Components via Kosaraju's algorithm
+# Strongly Connected Components via Kosaraju's Algorithm
 
 ```meta
 status: scratch
@@ -33694,7 +33694,7 @@ I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
 - [CS Cornell lecture notes](https://www.cs.cornell.edu/courses/cs410/1998su/Lectures/lect24.txt)
 
 
-# Articulation points
+# Articulation Points
 
 ```meta
 status: scratch
@@ -33871,7 +33871,7 @@ void process_edge(int x, int y) {
 - [A2OJ articulation point problems](https://a2oj.com/category?ID=64)
 - [INOI advanced graph algorithms](https://www.iarcs.org.in/inoi/online-study-material/topics/articulation-points.php)
 
-# Disjoint set union
+# Disjoint Set Union
 
 ```meta
 status: scratch
@@ -33903,7 +33903,7 @@ void mkroot(int newroot, int prevroot) {
   even though we don't actually loop over all our children.
 
 
-# Making GDB usable
+# Making GDB Usable
 
 ```meta
 status: scratch
@@ -33913,7 +33913,7 @@ last-edited: 2020-11-24
 
 - Use [GEF](https://github.com/hugsy/gef)
 
-# Bouncing light clock is an hourglass
+# Bouncing Light Clock Is an Hourglass
 
 ```meta
 status: scratch
@@ -33939,7 +33939,7 @@ This is *exactly* what the two mirror photon clock does --- it bounces a photon
 between two mirrors. We can look at this as us "flipping" the hourglass
 once the photon reaches the bottom of the hourglass.
 
-# Euler tours
+# Euler Tours
 
 ```meta
 status: scratch
@@ -33967,7 +33967,7 @@ up vertices otherwise!
 - [CSTheory.stackexchange question on euler tours](https://cstheory.stackexchange.com/questions/31538/runtime-of-tuckers-algorithm-for-generating-a-eulerian-circuit)
 
 
-# Representation theory of the symmetric group (TODO)
+# Representation Theory of the Symmetric Group (TODO)
 
 ```meta
 status: scratch
@@ -33977,7 +33977,7 @@ last-edited: 2021-05-23
 
 - [Video lectures: Representation theory, a combinatorial viewpoint](https://www.youtube.com/watch?v=QqJIOnTDbLM&list=PLFE2F2CDA55A9EBB6)
 
-# Maximum matchings in bipartite graphs
+# Maximum Matchings in Bipartite Graphs
 
 ```meta
 status: scratch
@@ -33999,7 +33999,7 @@ new ideas.
 - [Slides on matroid intersection](http://swoh.web.engr.illinois.edu/courses/ie512/handout/matching.pdf)
 
 
-# p-adics, 2's complement, intuition for bit fiddling
+# P-adics, 2's Complement, Intuition for Bit Fiddling
 
 ```meta
 status: technical-note
@@ -34091,7 +34091,7 @@ number is signed/unsigned.
 
 
 
-# Diameter of a tree
+# Diameter of a Tree
 
 ```meta
 status: scratch
@@ -34143,7 +34143,7 @@ us the diameter (the distance from $v$ to $w$)
   diameter, "because" it's the distance from a lowest node to another lowest
   node.
 
-# Catalan numbers as popular candidate votes (TODO)
+# Catalan Numbers as Popular Candidate Votes (TODO)
 
 ```meta
 status: scratch
@@ -34168,7 +34168,7 @@ to $1/(n+1) \binom{2n}{n}$ by reasoning about seqences of votes, called as
 #### References
 - [Richard Stanley's slides](https://math.mit.edu/~rstan/transparencies/china.pdf)
 
-# The chromatic polynomial (TODO)
+# The Chromatic Polynomial (TODO)
 
 ```meta
 status: scratch
@@ -34194,7 +34194,7 @@ the single vertex with the $n$ colors we have.
 
 
 
-# Structure theory of finite endo-functions
+# Structure Theory of Finite Endo-functions
 
 ```meta
 status: scratch
@@ -34236,7 +34236,7 @@ Say we have a function $f: V \rightarrow V$ where $|V| = n$ and $f(1) = 1$, $f(n
 #### References
 - [USACO: functional graphs](https://usaco.guide/silver/func-graphs)
 
-# Number of paths in a DAG
+# Number of Paths in a DAG
 
 ```meta
 status: technical-note
@@ -34258,7 +34258,7 @@ we must have that $A^|V| = 0$.
   paths from $i$ to $j$!.
 
 
-# Set partitions
+# Set Partitions
 
 ```meta
 status: scratch
@@ -34392,7 +34392,7 @@ The corresponding "counting" object is called as the signless stirling numbers:
 TODO
 
 
-# Integer partitions: Recurrence
+# Integer Partitions: Recurrence
 
 ```meta
 status: technical-note
@@ -34432,7 +34432,7 @@ The idea is to consider a partition $p[1], p[2], \dots, p[k]$ of $n$ based on th
 - Bijective Combinatorics
 - [Slides by Brian Miceli](http://ramanujan.math.trinity.edu/bmiceli/research/TXState04-09-10.pdf)
 
-# Stars and bars by direct bijection
+# Stars and Bars by Direct Bijection
 
 ```meta
 status: technical-note
@@ -34480,7 +34480,7 @@ we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, m
 
 - Reference: Bijective Combinatorics
 
-# DFS and topological sorting
+# DFS and Topological Sorting
 
 ```meta
 status: scratch
@@ -34693,7 +34693,7 @@ that $v \rightarrow u$. In the other case, we have that $\not u \rightarrow w \x
 
 - [Reference: Math for computer science, lecture 10](https://www.youtube.com/watch?v=DOIp5D7VMS4)
 
-# Matching problems (TODO)
+# Matching Problems (TODO)
 
 ```meta
 status: scratch
@@ -34954,7 +34954,7 @@ But this contradicts the equation $\max{b_2}(g_2, g_2') = g_2' = g_1$ (?)
 - [Knuth: Stable matching and its relation to other combinatorial problems](https://www-cs-faculty.stanford.edu/~knuth/ms.html)
 - [Math for Comp Sci: Optimal stable matching](https://www.youtube.com/watch?v=n4KKgKpp--0)
 
-# Four fundamental subspaces
+# Four Fundamental Subspaces
 
 ```meta
 status: scratch
@@ -35022,7 +35022,7 @@ nullspace by lookinag at $E$, because $E$ gives us $EA = R$.
 - [Gilbert strang, lecture 10: four fundamental subspaces](https://www.youtube.com/watch?v=nHlE7EgJFds)
 
 
-# WHO list of essential medicines (TODO)
+# WHO List of Essential Medicines (TODO)
 
 ```meta
 status: scratch
@@ -35031,7 +35031,7 @@ last-edited: 2021-05-23
 ```
 - [Wikipedia reference](https://en.wikipedia.org/wiki/WHO_Model_List_of_Essential_Medicines)
 
-# why is `int i = i` allowed in C++?
+# Why Is `int i = i` Allowed in C++?
 
 ```meta
 status: scratch
@@ -35060,7 +35060,7 @@ while emitting compile time errors for expressions that use the left-hand-side-n
 as a *value*.
 
 
-# Kakoune cheatsheet
+# Kakoune Cheatsheet
 
 ```meta
 status: scratch
@@ -35101,7 +35101,7 @@ assembly! I had no idea if it's a *good* ecosystem --- my experience with
   developer's manual combined volumes 2A, 2B, 2C, and 2D: Instruction set reference, A-Z.
 - [`cgasm`](https://github.com/bnagy/cgasm) to quickly lookup assembly.
 
-# Cohomology is like holism
+# Cohomology Is Like Holism
 
 ```meta
 status: scratch
@@ -35236,7 +35236,7 @@ for edges whose flow has to shrink.
 > in a way that we still respect capacity constraints.
 
 
-# Amortized analysis
+# Amortized Analysis
 
 ```meta
 status: scratch
@@ -35422,7 +35422,7 @@ to cost 1 + the number of trailing ones. We want to make this **constant**.
 
 
 
-# Shelly Kegan: death --- Suicide and rationality (TODO)
+# Shelly Kegan: Death --- Suicide and Rationality (TODO)
 
 ```meta
 status: scratch
@@ -35511,7 +35511,7 @@ and after. Call this the two state requirement.
 
 - [Shelly Kegan: death, 24. Suicide, Part 1](https://www.youtube.com/watch?v=MajfZIyHP8U&list=PLEA18FAF1AD9047B0&index=24)
 
-# Sam harris and jordan peterson: Vancouver 1 (TODO)
+# Sam Harris and Jordan Peterson: Vancouver 1 (TODO)
 
 ```meta
 status: scratch
@@ -35605,7 +35605,7 @@ last-edited: 2022-05-30
 
 - [Sam harris and jordan peterson: Vancouver 1](https://www.youtube.com/watch?v=jey_CzIOfYE)
 
-# Correctness of binary search
+# Correctness of Binary Search
 
 ```meta
 status: scratch
@@ -35670,7 +35670,7 @@ int binsearch(int l, int r, int val, int *xs) {
 - Thus, we have that: `l` is to the left of `mid=l+1` is to the left of `r>=l+2`.
 - So, the intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate" out `l`, `mid`, and `r`.
 
-# `readlink -f <path>` to access file path
+# `readlink -f <path>` To Access File Path
 
 ```meta
 status: scratch
@@ -35687,7 +35687,7 @@ $ readline -f file
 
 This is useful to `scp`/`rsync` stuff.
 
-# rank/select as compress/decompress
+# Rank/select as Compress/decompress
 
 ```meta
 status: scratch
@@ -35783,7 +35783,7 @@ and that `decompressed` is the decompressed version of _something_
 to the original array linguistically, which I quite like.
 
 
-# Remembering Eulerian and Hamiltonian cycles
+# Remembering Eulerian and Hamiltonian Cycles
 
 ```meta
 status: scratch
@@ -35807,7 +35807,7 @@ the edges once.
 - A hamiltonian tour must (by complementarity) correspond to a tour where we
   over each vertex exactly once.
 
-# Nice way to loop over an array in reverse
+# Nice Way to Loop over an Array in Reverse
 
 ```meta
 status: scratch
@@ -35822,7 +35822,7 @@ for (int i = n-1; i >= 0; i--) { // simp
 ```
 
 
-# Dynamic Programming: Erik Demaine's lectures
+# Dynamic Programming: Erik Demaine's Lectures
 
 ```meta
 status: scratch
@@ -36422,7 +36422,7 @@ v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
 
 
 
-# Accuracy vs precision
+# Accuracy vs Precision
 
 ```meta
 status: scratch
@@ -36455,7 +36455,7 @@ we are, or "how well we hit the mean".
 The accuracy itself is the distance between the mean of our distribution and
 the true reference value we want to hit.
 
-# Why is the gradient covariant?
+# Why Is the Gradient Covariant?
 
 ```meta
 status: scratch
@@ -36465,7 +36465,7 @@ last-edited: 2020-11-17
 
 - [expanation of gradient being covariant in terms of the integral version](https://physics.stackexchange.com/a/127534/129278)
 
-# Politicization of science
+# Politicization of Science
 
 ```meta
 status: scratch
@@ -36475,7 +36475,7 @@ last-edited: 2020-11-17
 
 - [Reference](https://en.wikipedia.org/wiki/Politicization_of_science)
 
-# Multi ꙮ cular O: ꙮ / Eye of cthulu
+# Multi ꙮ Cular O: ꙮ / Eye of Cthulu
 
 ```meta
 status: scratch
@@ -36485,7 +36485,7 @@ last-edited: 2020-11-17
 
 - [Multiocular O](https://en.wikipedia.org/wiki/Multiocular_O)
 
-# You can't measure the one way speed of light
+# You Can't Measure the One Way Speed of Light
 
 ```meta
 status: scratch
@@ -36495,7 +36495,7 @@ last-edited: 2020-11-17
 
 - [Veritasium video](https://www.youtube.com/watch?v=pTn6Ewhb27k)
 
-# Show me the hand strategy
+# Show Me the Hand Strategy
 
 ```meta
 status: scratch
@@ -36521,7 +36521,7 @@ harm your status, so when you reframe their attack as support, they will feel
 compelled to come out in the open and be more direct
 
 
-# Words that can be distinguished from letters if we know the sign of the permutation
+# Words That Can Be Distinguished from Letters If We Know the Sign of the Permutation
 
 ```meta
 status: scratch
@@ -36565,7 +36565,7 @@ for wk in sorted:
     print("---")
 ```
 
-# Easy times don't create weak people, they just allow weak people to survive.
+# Easy Times Don't Create Weak People, They Just Allow Weak People to Survive.
 
 ```meta
 status: scratch
@@ -36576,7 +36576,7 @@ last-edited: 2020-11-17
 Easy times doesn't weaken the _generator_ side of things, it simply weakens
 the _adverserial_ side of things allowing weak people to survive.
 
-# Multiplicative weights algorithm (TODO)
+# Multiplicative Weights Algorithm (TODO)
 
 ```meta
 status: scratch
@@ -36584,7 +36584,7 @@ created: 2020-11-17
 last-edited: 2020-11-17
 ```
 
-# How to fairly compare groups
+# How to Fairly Compare Groups
 
 ```meta
 status: scratch
@@ -36627,7 +36627,7 @@ last-edited: 2020-10-30
 
 - [Link where I first heard of him](https://alexdanco.com/2019/04/28/secrets-about-people-a-short-and-dangerous-introduction-to-rene-girard/)
 
-# Noam Chomsky on anarchism (TODO)
+# Noam Chomsky on Anarchism (TODO)
 
 ```meta
 status: scratch
@@ -36853,7 +36853,7 @@ Zizek:
   Renunciation of pleasure can turn into the pleasure of renunciation.
 -
 
-# Poverty: Who's to blame?
+# Poverty: Who's to Blame?
 
 ```meta
 status: scratch
@@ -36884,7 +36884,7 @@ last-edited: 2020-10-30
 - Doing the best I can
 - Promises I can keep
 
-# Learn Zig in Y minutes
+# Learn Zig in Y Minutes
 
 ```meta
 status: scratch
@@ -37023,7 +37023,7 @@ test "string literals" {
 ```
 
 
-# The algebraic structure of the 'nearest smaller number' question
+# The Algebraic Structure of the 'nearest Smaller Number' Question
 
 ```meta
 status: scratch
@@ -37061,7 +37061,7 @@ diagram associated to it? or a DFS tree?
 
 
 
-# Why loss of information is terrifying: Checking that a context-free language is regular is undecidable
+# Why Loss of Information Is Terrifying: Checking That a Context-free Language Is Regular Is Undecidable
 
 ```meta
 status: scratch
@@ -37080,7 +37080,7 @@ can sometimes be irreversably damaging.
 
 
 
-# Sciences of the artificial
+# Sciences of the Artificial
 
 ```meta
 status: scratch
@@ -37115,7 +37115,7 @@ Why simulation is useful:
 
 
 
-# Numbering nodes in a tree
+# Numbering Nodes in a Tree
 
 ```meta
 status: scratch
@@ -37169,7 +37169,7 @@ $$
   $d$, going deeper into the tree / increasing the height
   needs distance $d/2$. So a particle would "tend to" travel the shorter distance.
 
-# Number of vertices in a rooted tree
+# Number of Vertices in a Rooted Tree
 
 ```meta
 status: scratch
@@ -37191,7 +37191,7 @@ I found this much more intuitive than the inductive argument. I feel like I
 should attempt to "parallelize" inductive arguments so you can see the entire
 counting "at once".
 
-# Median minimizes L1 norm
+# Median Minimizes L1 Norm
 
 ```meta
 status: technical-note
@@ -37255,7 +37255,7 @@ $|y - l| + |y - r|$!
 
 
 
-# LISP quine
+# LISP Quine
 
 ```meta
 status: scratch
@@ -37275,7 +37275,7 @@ I don't understand it yet.
 
 ```
 
-# A slew of order theoretic and graph theoretic results
+# A Slew of Order Theoretic and Graph Theoretic Results
 
 ```meta
 status: scratch
@@ -37348,7 +37348,7 @@ int main() {
 #### Explanation 2: posets and interval orders
 
 
-# Neko to follow your cursor around
+# Neko to Follow Your Cursor Around
 
 ```meta
 status: scratch
@@ -37363,7 +37363,7 @@ $ oneko -idle 0 -speed 100 -time 5120 -bg blue -fg orange -position +20+20
 This is useful for screen sharing tools that can't display the mouse
 pointer, [like Microsoft Teams](https://docs.microsoft.com/en-us/answers/questions/3222/mouse-pointer-not-visible-when-sharing-screen.html)
 
-# Non commuting observables: Light polarization
+# Non Commuting Observables: Light Polarization
 
 ```meta
 status: scratch
@@ -37374,7 +37374,7 @@ last-edited: 2020-10-22
 - [physics.se](https://physics.stackexchange.com/questions/240543/is-there-something-behind-non-commuting-observables)
 
 
-# Statement expressions and other GCC C extensions
+# Statement Expressions and Other GCC C Extensions
 
 ```meta
 status: scratch
@@ -37492,7 +37492,7 @@ struct {
 
 
 
-# A quick look at impredicativity
+# A Quick Look at Impredicativity
 
 ```meta
 status: scratch
@@ -37621,7 +37621,7 @@ Replace the idea of:
 - [Video](https://www.youtube.com/watch?v=ZuNMo136QqI)
 
 
-# Data oriented programming in C++
+# Data Oriented Programming in C++
 
 ```meta
 status: scratch
@@ -37633,7 +37633,7 @@ last-edited: 2020-10-22
 - [Video](https://www.youtube.com/watch?v=rX0ItVEVjHc)
 
 
-# Retro glitch
+# Retro Glitch
 
 ```meta
 status: scratch
@@ -37652,7 +37652,7 @@ last-edited: 2022-05-30
   picture of the lot.
 
 
-# SSA as linear typed language
+# SSA as Linear Typed Language
 
 ```meta
 status: scratch
@@ -37684,7 +37684,7 @@ last-edited: 2022-05-30
        1A
 ```
 
-# Nix weirdness on small machines
+# Nix Weirdness on Small Machines
 
 ```meta
 status: scratch
@@ -37780,7 +37780,7 @@ I don't even know.
 - `derivationArg` in nixos c++
 - `writeDerivation` in nixos c++
 
-# Autodiff over derivative of integrals
+# Autodiff over Derivative of Integrals
 
 ```meta
 status: scratch
@@ -37791,7 +37791,7 @@ last-edited: 2020-10-22
 - [Reynolds transport theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem)
 - [Physics based differential rendering](https://shuangz.com/courses/pbdr-course-sg20/)
 
-# Proof of projective duality
+# Proof of Projective Duality
 
 ```meta
 status: technical-note
@@ -37821,7 +37821,7 @@ equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb
 - The "projective" condition allows us to set points and lines on equal footing:
   lines can be scaled, as can points in this setting.
 
-# Preventing the collapse of civilization
+# Preventing the Collapse of Civilization
 
 ```meta
 status: scratch
@@ -37838,7 +37838,7 @@ last-edited: 2020-10-07
 I am very sympathetic to the perspective that software has gotten far
 less reliable than it used to be.
 
-# Violent deaths in ancient societies (TODO)
+# Violent Deaths in Ancient Societies (TODO)
 
 ```meta
 status: scratch
@@ -37857,7 +37857,7 @@ last-edited: 2021-05-23
 - [Ethnographic and Archaeological Evidence on Violent Deaths](https://ourworldindata.org/ethnographic-and-archaeological-evidence-on-violent-deaths)
 - [Kanun](https://en.wikipedia.org/wiki/Kanun_(Albania))
 
-# An elementary example of a thing that is not a vector
+# An Elementary Example of a Thing That Is Not a Vector
 
 ```meta
 status: scratch
@@ -37882,7 +37882,7 @@ To be more precise, I can phrase it as:
 
 Generalization to tensors is left as an exercise for the reader.
 
-# Elementary probability theory (TODO)
+# Elementary Probability Theory (TODO)
 
 ```meta
 status: scratch
@@ -38320,7 +38320,7 @@ $$
 - [Problem set 11](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn11.pdf)
 - [Problem set 12](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn12.pdf)
 
-# The handshaking lemma
+# The Handshaking Lemma
 
 ```meta
 status: technical-note
@@ -38349,7 +38349,7 @@ complexes.
 - [The amazing world of simplicial complexes](https://arxiv.org/pdf/1804.08211.pdf)
 
 
-# Git for pure mathematicians
+# Git for Pure Mathematicians
 
 ```meta
 status: scratch
@@ -38565,7 +38565,7 @@ print("dz/dx: %s" % x.grad())
 print("dz/dy: %s" % y.grad())
 ```
 
-# Computing the smith normal form
+# Computing the Smith Normal Form
 
 ```meta
 status: scratch
@@ -38699,7 +38699,7 @@ print("## INCONSISTENT (SOLVABLE OVER Q NOT Z) ##")
 out = smith_normal_form(xs,ys)
 ```
 
-# Laziness for C programmers
+# Laziness for C Programmers
 
 ```meta
 status: technical-note
@@ -39118,7 +39118,7 @@ All of this is documented in the excellent paper:
 I am considering extending this blog post that expands on these ideas. If there
 is interest, please do e-mail me at `siddu.druid@gmail.com`.
 
-# Exact sequence of pointed sets
+# Exact Sequence of Pointed Sets
 
 ```meta
 status: scratch
@@ -39209,7 +39209,7 @@ into $*$ [pun intended].
 
 
 
-# What is a syzygy?
+# What Is a Syzygy?
 
 ```meta
 status: technical-note
@@ -39414,7 +39414,7 @@ I wonder how to make this precise.
 
 
 
-# Under the spell of Leibniz's dream
+# Under the Spell of Leibniz's Dream
 
 ```meta
 status: scratch
@@ -39465,7 +39465,7 @@ I found it very quotable. I'm posting some quotes below.
 
 
 
-# Normal operators: Decomposition into Hermitian operators
+# Normal Operators: Decomposition into Hermitian Operators
 
 ```meta
 status: technical-note
@@ -39504,7 +39504,7 @@ $B, C$ are simultaneously diagonalizable in the eigenbasis $\{ |a_k \rangle \}$
 and hence $[B, C] = 0$.
 
 
-# Readable pointers
+# Readable Pointers
 
 ```meta
 status: technical-note
@@ -39593,7 +39593,7 @@ shared, which means the numbers are themselves close.
 
 
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
-# The grassmanian, handwavily
+# The Grassmanian, Handwavily
 
 ```meta
 status: scratch
@@ -39614,7 +39614,7 @@ reasoning for intuition, so I'm going to do all the derivations in that style.
 [TODO]
 
 
-# Lie bracket as linearization of conjugation
+# Lie Bracket as Linearization of Conjugation
 
 ```meta
 status: technical-note
@@ -39671,7 +39671,7 @@ last-edited: 2021-05-16
 - [TreeMaker:]()
 - [Origami Simulator: Tool to simulate origami, going from flat shaped to folded shaped](https://origamisimulator.org/)
 
-# Katex in duktape
+# Katex in Duktape
 
 ```meta
 status: scratch
@@ -39775,7 +39775,7 @@ int main() {
 }
 ```
 
-# Kebab case
+# Kebab Case
 
 ```meta
 status: scratch
@@ -39787,7 +39787,7 @@ last-edited: 2020-09-05
 that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
-# Localization: Introducing epsilons (TODO)
+# Localization: Introducing Epsilons (TODO)
 
 ```meta
 status: scratch
@@ -39801,7 +39801,7 @@ regime of having $\epsilon$. I'll explore this perspective by consider
 $R = \mathbb Z/12 \mathbb Z$.
 
 
-# NaN punning: Storing integers in doubles in JavaScript
+# NaN Punning: Storing Integers in Doubles in JavaScript
 
 ```meta
 status: scratch
@@ -39969,7 +39969,7 @@ solver for linear and quadratic equation systems.
 $ cd /path/to/gurobi90/linux64/src/build/ && make
 ```
 
-# [osqp: convex optimizer in 6000 LoC](osqp-an-industrial-strength-convex-optimizer-in-6000-loc)
+# [osqp: Convex Optimizer in 6000 LoC](osqp-an-industrial-strength-convex-optimizer-in-6000-loc)
 
 ```meta
 status: scratch
@@ -40016,7 +40016,7 @@ code should provide a lot of insight into how to write good convex optimizers!
 I would love to take a course which explains the source code.
 
 
-# stars and bars by generating functions
+# Stars and Bars by Generating Functions
 
 ```meta
 status: scratch
@@ -40102,7 +40102,7 @@ by `2`. This gives:
 
 so we get the answer as `answer = 20/2! = 10`.
 
-# This is not a place of honor
+# This Is Not a Place of Honor
 
 ```meta
 status: scratch
@@ -40112,7 +40112,7 @@ last-edited: 2020-09-05
 
 - [Long term nuclear waste](https://en.wikipedia.org/wiki/Long-time_nuclear_waste_warning_messages)
 
-# Topological proof of infinitude of primes
+# Topological Proof of Infinitude of Primes
 
 ```meta
 status: scratch
@@ -40217,7 +40217,7 @@ So in conclusion, the calculation gives us:
 <img src="./static/burnside/conclusion.png" >
 
 
-# The Ise Grand shrine
+# The Ise Grand Shrine
 
 ```meta
 status: scratch
@@ -40241,7 +40241,7 @@ supercolliders simply to keep the knowledge of how to build it alive.
 > technology as well as Buddhist influence, it gained them over the years.
 
 
-# Edward Kmett's list of useful math
+# Edward Kmett's List of Useful Math
 
 ```meta
 status: scratch
@@ -40304,7 +40304,7 @@ last-edited: 2021-01-09
   and try to muddle through w/ my limited background.
 
 
-# Cokernel is not sheafy
+# Cokernel Is Not Sheafy
 
 ```meta
 status: technical-note
@@ -40361,7 +40361,7 @@ $$
 - Thus, the cokernel is nontrivial globally.
 
 
-# Von neumann: foundations of QM
+# Von Neumann: Foundations of QM
 
 ```meta
 status: scratch
@@ -40395,7 +40395,7 @@ last-edited: 2022-05-30
 - Von neumann: Mathematical foundations of quantum mechanics.
 - [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
 
-# Discrete schild's ladder
+# Discrete Schild's Ladder
 
 ```meta
 status: scratch
@@ -40431,7 +40431,7 @@ from discretizing a grid, can we recover a global sense of orientation?
   [Schild's Ladder](https://en.wikipedia.org/wiki/Schild%27s_ladder)
 
 
-# Derivative of step is dirac delta
+# Derivative of Step Is Dirac Delta
 
 ```meta
 status: technical-note
@@ -40492,7 +40492,7 @@ $$
 
 - Thus, the derivative of the step distribution is the dirac delta distribution.
 
-# Extended euclidian algorithm
+# Extended Euclidian Algorithm
 
 ```meta
 status: scratch
@@ -40603,7 +40603,7 @@ $$
 - Bezout equation as fractions $\omega' + \omega'' p''/p' = g/p'$.
 
 
-# In a PID, all prime ideals are maximal, geometrically
+# In a PID, All Prime Ideals Are Maximal, Geometrically
 
 ```meta
 status: technical-note
@@ -40655,7 +40655,7 @@ ideals are maximal.
 
 - [Andreas Gathmann's notes](https://www.mathematik.uni-kl.de/~gathmann/class/commalg-2013/commalg-2013-c11.pdf)
 
-# Prime numbers as maximal among principal ideals
+# Prime Numbers as Maximal Among Principal Ideals
 
 ```meta
 status: technical-note
@@ -40719,7 +40719,7 @@ Hence, we've constructed a choice function by applying Zorn's Lemma.
 Thus, Zorn's Lemma implies Axiom of Choice.
 
 
-# Local ring in terms of invertibility
+# Local Ring in Terms of Invertibility
 
 ```meta
 status: technical-note
@@ -40783,7 +40783,7 @@ This is supposedly equivalent to the definition:
 
 - [Using the internal language of toposes in algebraic geometry](https://rawgit.com/iblech/internal-methods/master/notes.pdf)
 
-# Nullstellensatz for schemes
+# Nullstellensatz for Schemes
 
 ```meta
 status: scratch
@@ -41089,7 +41089,7 @@ From this perspective, it is trivial to see that:
   since the data given by a natural transformation is somehow "different", in a way
   that I'm not sure how to make precise.
 
-# Germs, Stalks, Sheaves of differentiable functions
+# Germs, Stalks, Sheaves of Differentiable Functions
 
 ```meta
 status: scratch
@@ -41157,7 +41157,7 @@ gives us a discontinuity at $0$.
 - The rising sea by Ravi Vakil.
 
 
-# Connectedness in terms of continuity
+# Connectedness in Terms of Continuity
 
 ```meta
 status: technical-note
@@ -41194,7 +41194,7 @@ is connected, I should be unable to color it continuously with two colors ---
 there should be a point of "breakage" where we suddenly switch colors.
 
 
-# Intuition for limits in category theory
+# Intuition for Limits in Category Theory
 
 ```meta
 status: scratch
@@ -41250,7 +41250,7 @@ projectIn = MkCoLimit
 
 
 
-# Finite topologies and DFS numbering
+# Finite Topologies and DFS Numbering
 
 ```meta
 status: scratch
@@ -41343,7 +41343,7 @@ will get
 ### DFS: the T0 case
 ### DFS: the back edges
 
-# Categorical definition of products in painful detail
+# Categorical Definition of Products in Painful Detail
 
 ```meta
 status: technical-note
@@ -41565,7 +41565,7 @@ a         |   |        b
 
 - [Link to a misconception of the proof I had carried around for ages](https://math.stackexchange.com/questions/3756610/flaw-in-a-proof-of-uniqueness-of-products-in-a-category/3756693#3756693)
 
-# Why is the spectrum of a ring called so?
+# Why Is the Spectrum of a Ring Called So?
 
 ```meta
 status: scratch
@@ -41596,7 +41596,7 @@ Another user said:
 That's a pretty crazy definition. One can apparently find this definition
 in Peter Schloze's notes on AG. [I got an answer for this on `math.se`](https://math.stackexchange.com/questions/3754159/categorical-definition-of-spectrum-of-a-ring-as-a-colimit)
 
-# Ergo proxy
+# Ergo Proxy
 
 ```meta
 status: scratch
@@ -41617,7 +41617,7 @@ with things I find intriguing in the anime.
   sentence for sure.
 
 
-#  [Satisfied and frustrated equations](#satisfied-and-frustrated-equations)
+#  [Satisfied and Frustrated Equations](#satisfied-and-frustrated-equations)
 
 ```meta
 status: scratch
@@ -41633,7 +41633,7 @@ This is far more evocative terminology than UNSAT/unsatisfied, and also
 makes for good haskell like variable names. `ss` for satisfied equations,
 `fs` for frustrated equations!
 
-# Combinatorial intuition for Fermat's little theorem
+# Combinatorial Intuition for Fermat's Little Theorem
 
 ```meta
 status: technical-note
@@ -41753,7 +41753,7 @@ if I counted its equivalence class as having size `4`.
 - [A string of pearls: proofs of Fermat's little theorem](https://ts.data61.csiro.au/publications/nicta_full_text/6061.pdf)
 - [Algorithms thread 1: division under mod](https://www.youtube.com/watch?v=KfTcd0dg0DI&feature=youtu.be&t=815)
 
-# An incorrect derivation of special relativity in 1D
+# An Incorrect Derivation of Special Relativity in 1D
 
 ```meta
 status: scratch
@@ -41840,7 +41840,7 @@ The issue is the equation $x' = vt + ct$.
   correct.
 
 
-#  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
+#  [The Geometry and Dynamics of Magnetic Monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
 
 ```meta
 status: scratch
@@ -41942,7 +41942,7 @@ We have three components:
 - [CLDI: Cuneiform Digital library initiative](http://cdli.ox.ac.uk/wiki/doku.php?id=cuneiform_writing_techniques)
 - [Font: Old persian block](https://www.compart.com/en/unicode/block/U+103A0)
 
-# The code of hammurabi
+# The Code of Hammurabi
 
 ```meta
 status: scratch
@@ -42052,7 +42052,7 @@ Some helpful hints were found from the
   that faith in the justice of the ruling gods was already firmly, though
   somewhat childishly, established in the minds of men
 
-# The implicit and inverse function theorem
+# The Implicit and Inverse Function Theorem
 
 ```meta
 status: technical-note
@@ -42226,7 +42226,7 @@ process to get the full inverse.
 - [Mathematics for economics, Natalia Lazzati](https://people.ucsc.edu/~nlazzati/Courses/Math519/Notes/Note%203.pdf)
 - [Inverse function theorem via Newton's method](http://mtaylor.web.unc.edu/files/2018/04/invfn.pdf)
 
-# Whalesong hyperbolic space in detail
+# Whalesong Hyperbolic Space in Detail
 
 ```meta
 status: scratch
@@ -42290,7 +42290,7 @@ to arrive at Djikstra's
 
 
 
-# Intuitions for hyperbolic space
+# Intuitions for Hyperbolic Space
 
 ```meta
 status: scratch
@@ -42314,7 +42314,7 @@ last-edited: 2020-09-05
 - [The pseudosphere, another surface with constant negative curvature](https://mathworld.wolfram.com/Pseudosphere.html)
 - [Whalesong, selected discography](https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography)
 
-# Product of compact spaces in compact
+# Product of Compact Spaces in Compact
 
 ```meta
 status: scratch
@@ -42324,7 +42324,7 @@ last-edited: 2020-10-22
 
 <img src="./static/product-of-compact-is-compact.png">
 
-# Hyperbolic groups have solvable word problem
+# Hyperbolic Groups Have Solvable Word Problem
 
 ```meta
 status: scratch
@@ -42465,7 +42465,7 @@ We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 - [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
 - [My math.stackexchange question asking about why delta thin triangles help to solve conjugacy](https://math.stackexchange.com/questions/3789681/delta-thin-trianges-implies-solvable-conjugacy-problem-for-hyperbolic-groups)
 
-# Elementary uses of Sheaves in complex analysis
+# Elementary Uses of Sheaves in Complex Analysis
 
 ```meta
 status: scratch
@@ -42543,7 +42543,7 @@ be arbitrary.
 
 <img src="./static/sheaf.png">
 
-# Snake lemma
+# Snake Lemma
 
 ```meta
 status: scratch
@@ -42621,7 +42621,7 @@ this long exact sequence is saatisfied:
   that allows us to compute $H_i(f(G))$ in some convenient fashion.
 
 
-# Kernel, cokernel, image
+# Kernel, Cokernel, Image
 
 ```meta
 status: scratch
@@ -42638,7 +42638,7 @@ Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = 
   the solution set is empty. The cokernel tells us the _obstruction_ to a
   solution.
 
-# The commutator subgroup
+# The Commutator Subgroup
 
 ```meta
 status: scratch
@@ -42664,7 +42664,7 @@ $[G, G]$.
   quotient. This quotienting is called abelianization.
 
 
-# Simplicity of A5 using PSL(2, 5)
+# Simplicity of A5 Using PSL(2, 5)
 
 ```meta
 status: scratch
@@ -42764,7 +42764,7 @@ TODO! I'm still reading Keith Conrad's notes.
 - [Math.se: isomorphism from PSL to A5](https://math.stackexchange.com/questions/2051241/showing-psl2-5-is-isomorphic-to-a-5)
 
 
-# A5 is not solvable
+# A5 Is Not Solvable
 
 ```meta
 status: technical-note
@@ -43187,7 +43187,7 @@ s = t*t
 ### To think: relationship between square roots and commutators?
 
 
-# Complex orthogonality in terms of projective geometry
+# Complex Orthogonality in Terms of Projective Geometry
 
 ```meta
 status: scratch
@@ -43216,7 +43216,7 @@ If we imagine these as points on the Riemann sphere, TODO
 
 - Visual Complex analysis by Tristan Needham
 
-# Arithmetic sequences, number of integers in a closed interval
+# Arithmetic Sequences, Number of Integers in a Closed Interval
 
 ```meta
 status: scratch
@@ -43235,7 +43235,7 @@ a + (n-1)d = b
 n = b - a + 1
 ```
 
-#  [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
+#  [The Arg Function, Continuity, Orientation](#the-arg-function-continuity-orientation)
 
 ```meta
 status: scratch
@@ -43395,7 +43395,7 @@ out = f'(path)
 - This provides a rigorous definition of what it means to "pick a value in the branch".
   This can clearly be extended to the continuous domain.
 
-# Odd partitions, unique partitions
+# Odd Partitions, Unique Partitions
 
 ```meta
 status: scratch
@@ -43418,7 +43418,7 @@ I really liked this bijection.
 (15, 18, [10, 5], [6, 3], 4) [all unique]
 ```
 
-# Continued fractions, mobius transformations
+# Continued Fractions, Mobius Transformations
 
 ```meta
 status: scratch
@@ -43471,7 +43471,7 @@ So, we can treat the duval algorithm as a way to recover the permutation given
 the raw string. It's a nice way to _remember_ the definition of lyndon
 decomposition if nothng else.
 
-# Graphs are preorders
+# Graphs Are Preorders
 
 ```meta
 status: scratch
@@ -43484,7 +43484,7 @@ to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
 
 
-# Parallelisable version of maximum sum subarray
+# Parallelisable Version of Maximum Sum Subarray
 
 ```meta
 status: scratch
@@ -43544,7 +43544,7 @@ is an integral (sum) of the deltas in height.
 
 <img src="./static/max-sum-subarray.png">
 
-# Thoughts on implicit heaps
+# Thoughts on Implicit Heaps
 
 ```meta
 status: scratch
@@ -43709,7 +43709,7 @@ of the solution we are looking for!
 
 
 
-# Polynomial root finding using QR decomposition
+# Polynomial Root Finding Using QR Decomposition
 
 ```meta
 status: scratch
@@ -43726,7 +43726,7 @@ last-edited: 2020-09-05
    on matrix multiplication.
 
 
-# A hacker's guide to numerical analysis
+# A Hacker's Guide to Numerical Analysis
 
 ```meta
 status: scratch
@@ -44103,7 +44103,7 @@ the discontinuity.
 - Accuracy and stability of numerical algorithms
 - [Branch Cuts for complex elementary functions, or much ado about Nothing's Sign Bit](https://people.freebsd.org/~das/kahan86branch.pdf)
 
-# Mobius inversion on Incidence Algebras
+# Mobius Inversion on Incidence Algebras
 
 ```meta
 status: scratch
@@ -44225,7 +44225,7 @@ $$
 $$
 
 
-# Finite differences and Umbral calculus
+# Finite Differences and Umbral Calculus
 
 ```meta
 status: technical-note
@@ -44769,7 +44769,7 @@ of `y`, which is what we want when `x=2, y = 7`. We need to reach at least
 along `y`.
 
 
-# Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`
+# Geometric Proof Of `e^x >= 1+x`, `e^(-x) >= 1-x`
 
 ```meta
 status: scratch
@@ -44950,7 +44950,7 @@ the classical _adjunction_ between rank and select.
 
 
 
-# Proof of minkowski convex body theorem
+# Proof of Minkowski Convex Body Theorem
 
 ```meta
 status: technical-note
@@ -45384,7 +45384,7 @@ for current letter. Can find next letter using BWT matix.
 - Richard Bird: Pearls of functional algorithm design
 - [Algorithms on strings UCSD](https://www.coursera.org/learn/algorithms-on-strings/lecture/C0opC/inverting-burrows-wheeler-transform)
 
-# Intuitionstic logic as a Heyting algebra
+# Intuitionstic Logic as a Heyting Algebra
 
 ```meta
 status: technical-note
@@ -45557,7 +45557,7 @@ which was the definition of $\Rightarrow$ we wanted!
 
 - [Email by Olaf Klinke on haskell-cafe](https://mail.haskell.org/pipermail/haskell-cafe/2020-May/132297.html)
 
-# Edit distance
+# Edit Distance
 
 ```meta
 status: technical-note
@@ -45678,7 +45678,7 @@ argmin :: (a -> Int) -> a -> a -> a
 argmin f a a' = if (f a) < (f a') then a else a'
 ```
 
-# Evolution of bee colonies (TODO)
+# Evolution of Bee Colonies (TODO)
 
 ```meta
 status: scratch
@@ -45696,7 +45696,7 @@ a society, but tend to be hazy on how this state of affairs came to be.
 - [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
 
 
-# Best practices for array indexing
+# Best Practices for Array Indexing
 
 ```meta
 status: technical-note
@@ -45850,7 +45850,7 @@ loop-writing.
 
 
 
-# Algebraic structure for vector clocks
+# Algebraic Structure for Vector Clocks
 
 ```meta
 status: scratch
@@ -45873,7 +45873,7 @@ $$
 This also shows up in the case of the "Gallager-Humblet-Spira Algorithm" and
 the fragment-name-union-rule.
 
-# Networks are now faster than disks
+# Networks Are Now Faster than Disks
 
 ```meta
 status: scratch
@@ -45897,7 +45897,7 @@ mentioned that SSDs might be much faster, and the numbers bear out:
 - Round trip within same datacenter: 500,000 ns
 - Disk seek: 10,000,000 ns [regular disk]
 
-# Einstein-de Haas effect
+# Einstein-de Haas Effect
 
 ```meta
 status: scratch
@@ -45933,7 +45933,7 @@ So, my understanding of the experiment is:
 
 
 
-# Rank-select as adjunction
+# Rank-select as Adjunction
 
 ```meta
 status: scratch
@@ -45988,7 +45988,7 @@ coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
 Thanks to Edward Kmett for teaching me this.
 
 
-# Bounding chains: uniformly sample colorings
+# Bounding Chains: Uniformly Sample Colorings
 
 ```meta
 status: technical-note
@@ -46370,7 +46370,7 @@ sample = last . chain
 
 - [Exact Sampling and Approximate Counting Techniques](https://dl.acm.org/doi/10.1145/276698.276709)
 
-# Coupling from the past
+# Coupling from the Past
 
 ```meta
 status: scratch
@@ -46385,7 +46385,7 @@ last-edited: 2020-09-05
 - [Coupling from the past, a user's guide](https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf)
 
 
-# Word problems in Russia and America
+# Word Problems in Russia and America
 
 ```meta
 status: scratch
@@ -46400,7 +46400,7 @@ scathing critique of how ameriacn math education is screwed:
 anecdote about how looking for 'reality' in mathematical problems may in fact
 break student's ability to think in the abstract! This is a deep insight.
 
-# Encoding mathematical hieararchies
+# Encoding Mathematical Hieararchies
 
 ```meta
 status: scratch
@@ -46421,7 +46421,7 @@ how mathematical components does it. This might help narrow in on what what the
 
 
 
-# Learning code by hearing it
+# Learning Code by Hearing It
 
 ```meta
 status: scratch
@@ -46496,7 +46496,7 @@ rm /tmp/test.wav
 
 
 
-# Your arm can be a spinor
+# Your Arm Can Be a Spinor
 
 ```meta
 status: scratch
@@ -46513,7 +46513,7 @@ to consider our entire arm + cup we are holding as a system for this to work.
 - [Baliense cup trick](https://www.youtube.com/watch?v=Rzt_byhgujg)
 
 
-# Self modifying code for function calls: Look ma, I don't need a stack!
+# Self Modifying Code for Function Calls: Look Ma, I Don't Need a Stack!
 
 ```meta
 status: technical-note
@@ -46608,7 +46608,7 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
   and vice versa.
 
 
-# Adjunctions as advice
+# Adjunctions as Advice
 
 ```meta
 status: scratch
@@ -46653,7 +46653,7 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 
 
 
-# Reversible computation as groups on programs
+# Reversible Computation as Groups on Programs
 
 ```meta
 status: scratch
@@ -46674,7 +46674,7 @@ exploration of the program space? Ie, can we somehow exploit the
 discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
-# Blazing fast math rendering on the web
+# Blazing Fast Math Rendering on the Web
 
 ```meta
 status: essay
@@ -46869,7 +46869,7 @@ how I want it to be, and that makes me $\epsilon$ more happy.
 I think of it as an investment into future me, since I can extend the
 markdown and the transpiler in the way _I_ want it to be.
 
-# VC dimension
+# VC Dimension
 
 ```meta
 status: scratch
@@ -46947,7 +46947,7 @@ Now, the idea is this:
 We can show that this exponential/polynomial behaviour happens in general
 for $S \subseteq X$.
 
-# Symplectic version of classical mechanics
+# Symplectic Version of Classical Mechanics
 
 ```meta
 status: scratch
@@ -47050,7 +47050,7 @@ $X_{\mathfrak g}$. If we get a hamiltonian from this process, then it
 will have the right symmetries.
 
 
-# Theorems for free
+# Theorems for Free
 
 ```meta
 status: scratch
@@ -47124,7 +47124,7 @@ If this is the case, then we can simplify the math to be:
 #### References
 - [Theorems for free by Phil Wadler](https://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf)
 
-# How to reason with half-open intervals
+# How to Reason with Half-open Intervals
 
 ```meta
 status: scratch
@@ -47171,7 +47171,7 @@ easier to analyse. It took me this long it's easier for me to _think_
 in this viewpoint as well.
 
 
-# How does one build a fusion bomb?
+# How Does One Build a Fusion Bomb?
 
 ```meta
 status: scratch
@@ -47194,7 +47194,7 @@ I read on wikipedia that most countries classify the details:
 > even if it is created by persons who are not government employees or
 > associated with weapons programs, in a legal doctrine known as "born secret".
 
-# Christoffel symbols, geometrically
+# Christoffel Symbols, Geometrically
 
 ```meta
 status: technical-note
@@ -47275,7 +47275,7 @@ $$
 
 - [The wikipedia page on Covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative#Informal_definition_using_an_embedding_into_Euclidean_space)
 
-# A natural vector space without an explicit basis
+# A Natural Vector Space Without an Explicit Basis
 
 ```meta
 status: scratch
@@ -47325,7 +47325,7 @@ For example, one can write the equation:
 ```
 
 
-# Cache oblivious B trees
+# Cache Oblivious B Trees
 
 ```meta
 status: scratch
@@ -47443,7 +47443,7 @@ that has max of nodes. Leaves are the members of the ordered file.
 
 - [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
 
-# Krohn-Rhodes decomposition
+# Krohn-Rhodes Decomposition
 
 ```meta
 status: scratch
@@ -47825,7 +47825,7 @@ We will show how to establish a relational covering:
 - [Computational semigroup theory blog](https://compsemi.wordpress.com/)
 - [Compact notation for semigroup/automata](https://arxiv.org/pdf/1306.1138.pdf)
 
-# Proving block matmul using program analysis
+# Proving Block Matmul Using Program Analysis
 
 ```meta
 status: scratch
@@ -47971,7 +47971,7 @@ We can imagine the scenario as follows:
 - [Polyhedral compilation](http://polyhedral.info/)
 
 
-# Why I like algebra over analysis
+# Why I Like Algebra over Analysis
 
 ```meta
 status: essay
@@ -48033,7 +48033,7 @@ is nothing left to take away".
 I'm really glad that this 2 AM discussion allowed me to finally pin down
 why I like algebra.
 
-# `using` for cleaner function type typedefs
+# `using` For Cleaner Function Type Typedefs
 
 ```meta
 status: scratch
@@ -48064,7 +48064,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-# A walkway of lanterns (TODO)
+# A Walkway of Lanterns (TODO)
 
 ```meta
 status: scratch
@@ -48125,7 +48125,7 @@ $$
 
 
 
-# Natural transformations
+# Natural Transformations
 
 ```meta
 status: scratch
@@ -48141,7 +48141,7 @@ the catories $C$, $FC$, and $GC$, and then show the relationship between
 them, so I made this for my own reference.
 
 
-# The hilarious commentary by dinosaure in OCaml git
+# The Hilarious Commentary by Dinosaure in OCaml Git
 
 ```meta
 status: scratch
@@ -48219,7 +48219,7 @@ devrait avoir un problème. Donc TODO. *)
 (* XXX(dinosaure): at the end, we don't care if we lost something. *)
 ```
 
-# How to link against MLIR with CMake
+# How to Link Against MLIR with CMake
 
 ```meta
 status: scratch
@@ -48307,7 +48307,7 @@ target_link_libraries(languagemodels
 
 
 
-# Energy as triangulaizing state space
+# Energy as Triangulaizing State Space
 
 ```meta
 status: scratch
@@ -48418,7 +48418,7 @@ express the symmetry group in terms of:
 $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 
 
-# The cutest way to write semidirect products
+# The Cutest Way to Write Semidirect Products
 
 ```meta
 status: technical-note
@@ -48507,7 +48507,7 @@ indexes in `xs`.
 └~─────────────────────────→┘
 ```
 
-# Proof of chinese remainder theorem on rings
+# Proof of Chinese Remainder Theorem on Rings
 
 ```meta
 status: scratch
@@ -48612,7 +48612,7 @@ $$
 - [I learnt the material from this course on commutative algebra from IIT bombay](https://www.youtube.com/watch?v=YxyxP894MLk).
 
 
-# monic and epic arrows
+# Monic and Epic Arrows
 
 ```meta
 status: scratch
@@ -48634,7 +48634,7 @@ Similarly, an epic arrow behaves a lot like the arrow in the inverse poset.
 I wonder if quite a lot of category theoretic diagrams are clarified by thinking
 of monic and epic directly in terms of controlling sizes.
 
-# The geometry of Lagrange multipliers
+# The Geometry of Lagrange Multipliers
 
 ```meta
 status: scratch
@@ -48669,7 +48669,7 @@ If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \ve
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \epsilon) = c$.
 
-# Efficient tree transformations on GPUs (TODO)
+# Efficient Tree Transformations on GPUs (TODO)
 
 ```meta
 status: scratch
@@ -49756,7 +49756,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 ### 5.2.2 Edge Mutation Idioms
 ### 5.2.3 Node Mutation Idioms
 
-# Things I wish I knew when I was learning APL
+# Things I Wish I Knew When I Was Learning APL
 
 ```meta
 status: scratch
@@ -49781,7 +49781,7 @@ last-edited: 2020-09-05
 
 - Set `]boxing on` to enable boxing for trains, arguments, everything.
 
-# Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime
+# Every Ideal That Is Maximal Wrt. Being Disjoint from a Multiplicative Subset Is Prime
 
 ```meta
 status: scratch
@@ -49829,7 +49829,7 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
-# Getting started with APL
+# Getting Started with APL
 
 ```meta
 status: scratch
@@ -49848,7 +49848,7 @@ last-edited: 2020-11-24
   refer to it when in need.
 - Ask questions at [the APL orchard](https://chat.stackexchange.com/rooms/52405/the-apl-orchard)
 
-# SpaceChem was the best compiler I ever used
+# SpaceChem Was the Best Compiler I Ever Used
 
 ```meta
 status: scratch
@@ -49875,7 +49875,7 @@ I often forget which is which, so I came up with this:
   picks out the minimum spanning tree one vertex at a time.
 
 
-# Legendre transform
+# Legendre Transform
 
 ```meta
 status: scratch
@@ -49943,7 +49943,7 @@ occurence will do).
 
 
 
-# DFS numbers as a monotone map
+# DFS Numbers as a Monotone Map
 
 ```meta
 status: scratch
@@ -49964,7 +49964,7 @@ This also begs the question: can we use other partial orders, that chunk
 some information, but don't lose _all_ the information as going to a total
 order (the naturals) does?
 
-# Self attention? not really
+# Self Attention? Not Really
 
 ```meta
 status: scratch
@@ -50083,7 +50083,7 @@ So It's not _really_ self attention: it's more like: modulated attention
 to self `:)`
 
 
-# Coarse structures
+# Coarse Structures
 
 ```meta
 status: scratch
@@ -50124,7 +50124,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-# Matroids for greedy algorithms (TODO)
+# Matroids for Greedy Algorithms (TODO)
 
 ```meta
 status: scratch
@@ -50467,7 +50467,7 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
   "infinitesimal thickening" along the $x$-axis
   of the intersection.
 
-# My preferred version of quicksort
+# My Preferred Version of Quicksort
 
 ```meta
 status: technical-note
@@ -50557,7 +50557,7 @@ what data starts and ends where.
 
 What version of quicksort do you prefer? Drop me an email!
 
-# Geometric proof of Cauchy Schwarz inequality
+# Geometric Proof of Cauchy Schwarz Inequality
 
 ```meta
 status: scratch
@@ -50576,7 +50576,7 @@ inequality:
 
 
 
-# Dataflow analysis using Grobner basis
+# Dataflow Analysis Using Grobner Basis
 
 ```meta
 status: scratch
@@ -50627,7 +50627,7 @@ which admit much faster solutions.
 
 
 
-# Fenwick trees and orbits
+# Fenwick Trees and Orbits
 
 ```meta
 status: scratch
@@ -50843,7 +50843,7 @@ Hence, at some point $q = u$.
 - [Fenwick trees on PolyMath](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
 - [Hacker's delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
 
-# Dirichlet inversion
+# Dirichlet Inversion
 
 ```meta
 status: scratch
@@ -51005,7 +51005,7 @@ $$ n = \sum_{d \vert n} n/d $$
 ### Other arithmetical functions and their relations
 
 
-# Incunabulum for the 21st century: Making the J interpreter compile in 2020
+# Incunabulum for the 21st Century: Making the J Interpreter Compile in 2020
 
 ```meta
 status: technical-note
@@ -51181,7 +51181,7 @@ couldn't find explanaing the code on the internet.
 Until then, enjoy the monolith of code!
 
 
-# An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)
+# An Example of a Sequence Whose Successive Terms Get Closer Together but Isn't Cauchy (does not converge)
 
 ```meta
 status: technical-note
@@ -51276,7 +51276,7 @@ $$
 $$
 whose behaviour can do unexpected things depending on the choice of $n$.
 
-# Krylov subspace method
+# Krylov Subspace Method
 
 ```meta
 status: scratch
@@ -51326,7 +51326,7 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 
 ## Conjugate gradient descent
 
-# Good reference to the Rete pattern matching algorithm
+# Good Reference to the Rete Pattern Matching Algorithm
 
 ```meta
 status: scratch
@@ -51522,7 +51522,7 @@ plt.savefig("leapfrog-vs-euler.png")
 plt.show()
 ```
 
-# Comparison of forward and reverse mode AD
+# Comparison of Forward and Reverse Mode AD
 
 ```meta
 status: technical-note
@@ -51755,7 +51755,7 @@ z &= x - y \\
 $$
 
 
-# An invitation to homology and cohomology, Part 1 --- Homology
+# An Invitation to Homology and Cohomology, Part 1 --- Homology
 
 ```meta
 status: technical-note
@@ -52028,7 +52028,7 @@ we can construct $H_1$ as:
 
 
 
-# An invitation to homology and cohomology, Part 2 --- Cohomology
+# An Invitation to Homology and Cohomology, Part 2 --- Cohomology
 
 ```meta
 status: technical-note
@@ -52174,7 +52174,7 @@ is measured by the _existence of a function $h_e$ that is closed but not exact!_
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](https://en.wikipedia.org/wiki/Universal_coefficient_theorem)
 
-# Stuff I learnt in 2019
+# Stuff I Learnt in 2019
 
 ```meta
 status: essay
@@ -52943,7 +52943,7 @@ reading one topic (in exclusion of all else). I don't know what this says
 about my chances as a grad student in the future `:)`.
 
 
-# A motivation for p-adic analysis
+# A Motivation for P-adic Analysis
 
 ```meta
 status: technical-note
@@ -53322,7 +53322,7 @@ I highly recommend the book
 
 
 
-# Line of investigation to build physical intuition for semidirect products
+# Line of Investigation to Build Physical Intuition for Semidirect Products
 
 ```meta
 status: scratch
@@ -53341,7 +53341,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-# Topology is really about computation --- part 2
+# Topology Is Really About Computation --- Part 2
 
 ```meta
 status: scratch
@@ -53370,7 +53370,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-# Topology is really about computation --- part 1
+# Topology Is Really About Computation --- Part 1
 
 ```meta
 status: scratch
@@ -53605,7 +53605,7 @@ def loop(): while True: pass
 #### References
 - [Synthetic topology of data types and classical spaces. Martın Escardo](https://www.cs.bham.ac.uk/~mhe/papers/entcs87.pdf)
 
-# PSLQ algorithm: finding integer relations between reals
+# PSLQ Algorithm: Finding Integer Relations Between Reals
 
 ```meta
 status: scratch
@@ -53619,7 +53619,7 @@ engineering.
 
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
-# Geometric characterization of normal subgroups
+# Geometric Characterization of Normal Subgroups
 
 ```meta
 status: technical-note
@@ -53663,7 +53663,7 @@ From the above equation $Stab(g \cdot x) = g Stab(x) g^{-1}$. If the
 entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
-# Handy characterization of adding an element into an ideal, proof that maximal ideal is prime
+# Handy Characterization of Adding an Element into an Ideal, Proof That Maximal Ideal Is Prime
 
 ```meta
 status: technical-note
@@ -53730,7 +53730,7 @@ $b \in I$.
 
 
 
-# Radical ideals, nilpotents, and reduced rings
+# Radical Ideals, Nilpotents, and Reduced Rings
 
 ```meta
 status: technical-note
@@ -53804,7 +53804,7 @@ and $b \in I \implies \overline b = 0)$.
 I learnt of this explanation from this
 [excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
 
-# My disenchantment with abstract interpretation
+# My Disenchantment with Abstract Interpretation
 
 ```meta
 status: essay
@@ -53860,7 +53860,7 @@ to pay that price, as long as it's an honest-to-god abstract interpretation.
 This was a huge bummer for me to find out that this is not the case.
 
 
-# Computing equivalent gate sets using grobner bases
+# Computing Equivalent Gate Sets Using Grobner Bases
 
 ```meta
 status: scratch
@@ -54236,7 +54236,7 @@ the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
 
 
-# The janus programming language --- Time reversible computation
+# The Janus Programming Language --- Time Reversible Computation
 
 ```meta
 status: scratch
@@ -54256,7 +54256,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-# `A = B` --- A book about proofs of combinatorial closed forms
+# `A = B` --- A Book About Proofs of Combinatorial Closed Forms
 
 ```meta
 status: scratch
@@ -54275,7 +54275,7 @@ my work on compilers.
 
 - [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
 
-# Generating `k` bitsets of a given length `n`:
+# Generating `k` Bitsets of a Given Length `n`:
 
 ```meta
 status: scratch
@@ -54439,7 +54439,7 @@ Continuing this process gives us the rest of the sequence:
 9 | 1 1 0 1 0
 10| 1 1 1 0 0
 ```
-# Bondi k-calculus
+# Bondi K-calculus
 
 ```meta
 status: scratch
@@ -54470,7 +54470,7 @@ the end:
 
 which seems to imply that we need to use hyperbolic geometry for this.
 
-# Topology as an object telling us what zero-locus is closed:
+# Topology as an Object Telling Us What Zero-locus Is Closed:
 
 ```meta
 status: scratch
@@ -54480,7 +54480,7 @@ last-edited: 2019-09-12
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-# Vivado toolchain craziness
+# Vivado Toolchain Craziness
 
 ```meta
 status: scratch
@@ -54608,7 +54608,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# What the hell _is_ a Grobner basis? Ideals as rewrite systems
+# What the Hell _is_ a Grobner Basis? Ideals as Rewrite Systems
 
 ```meta
 status: technical-note
@@ -54679,7 +54679,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 - [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
 
 
-# [Lie bracket versus torsion](lie-bracket-versus-torsion)
+# [Lie Bracket Versus Torsion](lie-bracket-versus-torsion)
 
 ```meta
 status: scratch
@@ -54700,7 +54700,7 @@ well, a parallelogram: we set them up using parallel transport.
 On the other hand, the lie bracket measures the actual failure of the parallelogram
 from being formed.
 
-# [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
+# [Blog Post: Weekend Paper Replication of STOKE, the Stochastic Superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 ```meta
 status: scratch
@@ -54723,7 +54723,7 @@ We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed.
 
 
-# Spatial partitioning data structures in molecular dynamics
+# Spatial Partitioning Data Structures in Molecular Dynamics
 
 ```meta
 status: scratch
@@ -54740,7 +54740,7 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 
 
-# Vector: Arthur Whitney and text editors
+# Vector: Arthur Whitney and Text Editors
 
 ```meta
 status: scratch
@@ -54751,7 +54751,7 @@ last-edited: 2019-06-28
 - http://archive.vector.org.uk/art10501320
 
 
-# Representing CPS in LLVM using the `@coro.*` intrinsics
+# Representing CPS in LLVM Using the `@coro.*` Intrinsics
 
 ```meta
 status: scratch
@@ -54765,7 +54765,7 @@ Gor Nishanov proided the above example of encoding CPS using the llvm `coro` ins
 
 - https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
 
-# Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
+# Bug in the LLVM Code Generator: Lowering of `MO_Add2` And `MO_AddWordC`
 
 ```meta
 status: scratch
@@ -54783,7 +54783,7 @@ In particular, `GHC.Prim` explains:
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
 
-# Discrete random distributions with conditioning in 20 lines of haskell
+# Discrete Random Distributions with Conditioning in 20 Lines of Haskell
 
 ```meta
 status: scratch
@@ -54858,7 +54858,7 @@ D {unD = [(1,0.0),
 
 Notice that `D a ~= WriterT (Product Float) []`!
 
-# Everything you know about word2vec is wrong
+# Everything You Know About Word2vec Is Wrong
 
 ```meta
 status: technical-note
@@ -55022,7 +55022,7 @@ question. But I'm frankly incredibly pissed, and this is probably the last
 time I take a machine learning paper's explanation of the algorithm
 seriously again --- from next time, I read the source _first_.
 
-# Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
+# Hamiltonian Monte Carlo, Leapfrog Integrators, and Sympletic Geometry
 
 ```meta
 status: scratch
@@ -55122,7 +55122,7 @@ plt.show()
 plt.savefig("leapfrog-vs-euler.png")
 ```
 
-# Small Haskell MCMC implementation
+# Small Haskell MCMC Implementation
 
 ```meta
 status: scratch
@@ -55414,7 +55414,7 @@ sampling from x^4 with finite support
 
 ```
 
-# The smallest implementation of reverse mode AD (autograd) ever:
+# The Smallest Implementation of Reverse Mode AD (autograd) Ever:
 
 ```meta
 status: scratch
@@ -55517,7 +55517,7 @@ Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't
 haskell so rad?
 
 
-# Timings of passes in GHC, and low hanging fruit in the backend:
+# Timings of Passes in GHC, and Low Hanging Fruit in the Backend:
 
 ```meta
 status: scratch
@@ -55581,7 +55581,7 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 ```
-# Debugging debug info in GHC
+# Debugging Debug Info in GHC
 
 ```meta
 status: scratch
@@ -55603,7 +55603,7 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 - [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
-# GHC LLVM code generator: Switch to unreachable
+# GHC LLVM Code Generator: Switch to Unreachable
 
 ```meta
 status: scratch
@@ -55626,7 +55626,7 @@ last-edited: 2020-09-05
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
 
-# Handy list of differential geometry definitions
+# Handy List of Differential Geometry Definitions
 
 ```meta
 status: scratch
@@ -55746,7 +55746,7 @@ This satisfies the identity:
 ##### Lie derivation as lie bracket
 
 
-# Lazy programs have space leaks, Strict programs have time leaks
+# Lazy Programs Have Space Leaks, Strict Programs Have Time Leaks
 
 ```meta
 status: scratch
@@ -55767,7 +55767,7 @@ analogue to a space leak in the strict world, so I saw them as a pathology. But
 with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
-# Presburger arithmetic can represent the Collatz Conjecture
+# Presburger Arithmetic Can Represent the Collatz Conjecture
 
 ```meta
 status: scratch
@@ -55836,7 +55836,7 @@ map's range:
 I've yet to check that the image contains a `1` for every choice of `x`.
 
 
-# Using compactness to argue about covers
+# Using Compactness to Argue About Covers
 
 ```meta
 status: scratch
@@ -55882,7 +55882,7 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-# Japanese Financial Counting system
+# Japanese Financial Counting System
 
 ```meta
 status: scratch
@@ -55903,7 +55903,7 @@ from adding strokes to stuff previously written.
 ```
 
 
-# Stephen wolfram's live stream
+# Stephen Wolfram's Live Stream
 
 ```meta
 status: scratch
@@ -55920,7 +55920,7 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-# `Cleave` as a word has some of the most irregular inflections
+# `Cleave` As a Word Has Some of the Most Irregular Inflections
 
 ```meta
 status: scratch
@@ -55933,7 +55933,7 @@ last-edited: 2019-12-28
 - clave
 - cleft
 
-# McCune's single axiom for group theory
+# McCune's Single Axiom for Group Theory
 
 ```meta
 status: scratch
@@ -55945,7 +55945,7 @@ last-edited: 2020-09-05
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
 
-# `Word2Vec` C code implements gradient descent really weirdly
+# `Word2Vec` C Code Implements Gradient Descent Really Weirdly
 
 ```meta
 status: scratch
@@ -56088,7 +56088,7 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-# Arthur Whitney: dense code
+# Arthur Whitney: Dense Code
 
 ```meta
 status: scratch
@@ -56107,7 +56107,7 @@ last-edited: 2020-09-05
 - [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
   A great list of APL snippets that solve classical problems.
 
-# How does one work with arrays in a linear language?
+# How Does One Work with Arrays in a Linear Language?
 
 ```meta
 status: scratch
@@ -56155,7 +56155,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-# Linear optimisation is the same as linear feasibility checking
+# Linear Optimisation Is the Same as Linear Feasibility Checking
 
 ```meta
 status: scratch
@@ -56177,7 +56177,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a
   _check if this polytope is empty_ problem!
 
-# Quantum computation without complex numbers
+# Quantum Computation Without Complex Numbers
 
 ```meta
 status: scratch
@@ -56203,7 +56203,7 @@ something to ponder.
 - [Dorit Aharonov: A Simple Proof that Toffoli and Hadamard are Quantum Universal](https://arxiv.org/pdf/quant-ph/0301040)
 
 
-# Linguistic fun fact: Comparative Illusion
+# Linguistic Fun Fact: Comparative Illusion
 
 ```meta
 status: scratch
@@ -56220,7 +56220,7 @@ I steal from wikipedia:
 For example: "More people have been to Berlin than I have."
 
 
-# Long-form posts:
+# Long-form Posts:
 
 ```meta
 status: scratch
@@ -57246,7 +57246,7 @@ let g:conjure#mapping#eval_motion = "E"
 - Eval last sexp: `C-c C-e` / `C-x C-e`
 - eval last definition: `C-c C-c`
 
-# Big list of quotes
+# Big List of Quotes
 
 ```meta
 status: big-list
@@ -57838,7 +57838,7 @@ last-edited: 2022-09-19
 
 
 
-# Big list of Cardistry
+# Big List of Cardistry
 
 ```meta
 status: big-list
@@ -57965,7 +57965,7 @@ last-edited: 2023-04-02
 
 - [Big list of card mnemonics on wikipedia](https://en.wikipedia.org/wiki/List_of_playing-card_nicknames)
 
-# Poems to memorize
+# Poems to Memorize
 
 ```meta
 status: scratch
@@ -58191,7 +58191,7 @@ last-edited: 2022-09-19
 
 
 
-# Hair in a bun with stick
+# Hair in a Bun with Stick
 
 ```meta
 status: scratch
@@ -58208,7 +58208,7 @@ last-edited: 2022-04-28
 
 - [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
 
-# Big list of shuffle dancing
+# Big List of Shuffle Dancing
 
 ```meta
 status: big-list
@@ -58300,7 +58300,7 @@ last-edited: 2024-01-31
 - `tmux list-sessions` / `C-b s`: show all sessions.
 - `C-b (/)`: move between sessions
 
-# New words
+# New Words
 
 ```meta
 status: scratch
@@ -58311,7 +58311,7 @@ last-edited: 2024-01-31
 - Hermeneutics: Derives from hermes who gave language to humans. 
   the study of interpretation, particularly of philosophical, wisdom literature, and biblical texts.
 
-# Favourite OP1 tutorials
+# Favourite OP1 Tutorials
 
 ```meta
 status: scratch
@@ -58346,7 +58346,7 @@ last-edited: 2024-04-06
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
 
 
-# Classical music
+# Classical Music
 
 ```meta
 status: scratch
