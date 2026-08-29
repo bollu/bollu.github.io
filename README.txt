@@ -59076,7 +59076,7 @@ created: 2025-07-30
 location: Val di Rabbi, Italy
 location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480334.jpg
-blurb: Luisa looks down a valley that keeps going without us.
+blurb: Luisa looks down the valley.
 ```
 
 
@@ -59088,7 +59088,7 @@ created: 2025-07-29
 location: Val di Rabbi, Italy
 location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480247.jpg
-blurb: A yellow butterfly hiding in plain sight among the needles.
+blurb: A butterfly among the needles.
 ```
 
 
@@ -59100,7 +59100,7 @@ created: 2025-07-29
 location: Campisol Alto, Val di Rabbi
 location-url: https://maps.google.com/?q=Campisol+Alto,+Val+di+Rabbi
 photo: /static/photos/479917.jpg
-blurb: Luisa scales the shingles of the shepherd's hut at Campisol Alto.
+blurb: Luisa on the shepherd's hut at Campisol Alto.
 ```
 
 
@@ -59112,7 +59112,7 @@ created: 2025-07-27
 location: Val di Rabbi, Italy
 location-url: https://maps.google.com/?q=Val+di+Rabbi,+Trentino
 photo: /static/photos/480133.jpg
-blurb: A mountain village kitten claims the woodpile.
+blurb: A kitten claims the woodpile.
 ```
 
 
@@ -59124,7 +59124,7 @@ created: 2025-05-19
 location: Istanbul
 location-url: https://maps.google.com/?q=Sultan+Ahmed+Mosque,+Istanbul
 photo: /static/photos/473800.jpg
-blurb: Gold calligraphy banding a fluted column of the Blue Mosque.
+blurb: Calligraphy on a fluted column.
 ```
 
 
@@ -59172,7 +59172,7 @@ created: 2025-05-18
 location: Istanbul
 location-url: https://maps.google.com/?q=Istanbul
 photo: /static/photos/470854.jpg
-blurb: An Istanbul cat, unimpressed, on marble.
+blurb: An unimpressed cat.
 ```
 
 
@@ -59247,7 +59247,7 @@ created: 2025-03-08
 location: Cambridge
 location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473194.jpg
-blurb: Copper baubles nesting in silvered ivy.
+blurb: Copper baubles in silvered ivy.
 ```
 
 
@@ -59259,7 +59259,7 @@ created: 2025-02-24
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Sumatra
 photo: /static/photos/877288.jpg
-blurb: A slab of tofu on boards dark with use.
+blurb: Tofu on old boards.
 ```
 
 
@@ -59283,7 +59283,7 @@ created: 2025-02-24
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Berastagi,+Sumatra
 photo: /static/photos/877210.jpg
-blurb: A volcano exhales under a grey sky.
+blurb: The volcano exhales.
 ```
 
 
@@ -59295,7 +59295,7 @@ created: 2025-02-23
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877174.jpg
-blurb: Coffee service on a well-worn table.
+blurb: Cold brew on a worn table.
 ```
 
 
@@ -59307,7 +59307,7 @@ created: 2025-02-23
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877171.jpg
-blurb: A tabby with opinions, somewhere in Sumatra.
+blurb: A tabby with opinions.
 ```
 
 
@@ -59319,7 +59319,7 @@ created: 2025-02-23
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877162.jpg
-blurb: A tin-hat streetlamp holding court among the wires.
+blurb: A streetlamp among the wires.
 ```
 
 
@@ -59343,7 +59343,7 @@ created: 2025-02-22
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877078.jpg
-blurb: A pig-tailed macaque watches the canopy.
+blurb: A macaque watches the canopy.
 ```
 
 
@@ -59355,7 +59355,7 @@ created: 2025-02-22
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877048.jpg
-blurb: A male orangutan works through a banana leaf in Bukit Lawang.
+blurb: An orangutan works through a banana leaf.
 ```
 
 
@@ -59367,7 +59367,7 @@ created: 2025-02-22
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877024.jpg
-blurb: A splintered limb showing its grain.
+blurb: Splintered grain.
 ```
 
 
@@ -59379,7 +59379,7 @@ created: 2025-02-22
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877003.jpg
-blurb: Sun through the canopy turns leaves into lanterns.
+blurb: Backlit leaves.
 ```
 
 
@@ -59403,7 +59403,7 @@ created: 2025-02-21
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876937.jpg
-blurb: A forest ant negotiates a branch in the understory.
+blurb: An ant negotiates a branch.
 ```
 
 
@@ -59427,7 +59427,7 @@ created: 2025-02-18
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876565.jpg
-blurb: Luisa, a beer, and the clatter of a night food market.
+blurb: Luisa at the night market.
 ```
 
 
@@ -59439,7 +59439,7 @@ created: 2025-02-18
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876295.jpg
-blurb: Skyscrapers wearing their gardens at dusk.
+blurb: Skyscrapers at dusk.
 ```
 
 
@@ -59465,7 +59465,7 @@ created: 2025-02-17
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876247.jpg
-blurb: Glazed ceramic blossoms catching red lantern light.
+blurb: Glazed blossoms in lantern light.
 ```
 
 
@@ -59477,7 +59477,7 @@ created: 2025-02-17
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876232.jpg
-blurb: A string-light bulb holding its own against the dark.
+blurb: A bulb against the dark.
 ```
 
 
@@ -59489,7 +59489,7 @@ created: 2025-02-14
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876199.jpg
-blurb: Folding fans stacked wing over wing.
+blurb: Folding fans.
 ```
 
 
@@ -59549,7 +59549,7 @@ created: 2024-12-26
 location: Malpe, India
 location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/466993.jpg
-blurb: A flowerpot firework throws its sparks at a wedding night.
+blurb: An anar throws sparks.
 ```
 
 
@@ -59573,7 +59573,7 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/463972.jpg
-blurb: Caught mid-laugh in wedding finery.
+blurb: Mid-laugh.
 ```
 
 
@@ -59632,7 +59632,7 @@ created: 2024-09-24
 location: Austin, Texas
 location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472540.jpg
-blurb: A garden gig under porch light.
+blurb: A garden gig.
 ```
 
 
@@ -59644,7 +59644,7 @@ created: 2024-09-22
 location: Austin, Texas
 location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472609.jpg
-blurb: A painted rail losing itself in September light.
+blurb: A painted rail in September light.
 ```
 
 
@@ -59656,7 +59656,7 @@ created: 2024-08-24
 location: Austin, Texas
 location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472645.jpg
-blurb: A fountain floor's worth of small change.
+blurb: A floor of small change.
 ```
 
 
@@ -59668,5 +59668,5 @@ created: 2024-06-22
 location: Austin, Texas
 location-url: https://maps.google.com/?q=Austin,+Texas
 photo: /static/photos/472726.jpg
-blurb: Ribs of a ceiling converging on a skylight.
+blurb: Ribs converging on a skylight.
 ```
