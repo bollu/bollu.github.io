@@ -59256,7 +59256,7 @@ created: 2025-02-24
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Sumatra
 photo: /static/photos/877288.jpg
-blurb: A white slab --- tofu, most likely --- on boards dark with use.
+blurb: A slab of tofu on boards dark with use.
 ```
 
 
@@ -59517,7 +59517,8 @@ blurb: A barbecue joint announces itself on the face of an old shophouse.
 ```meta
 status: photo
 created: 2024-12-28
-location: India
+location: Malpe, India
+location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/466768.jpg
 blurb: A working boat in its best teal, waiting on still water.
 ```
@@ -59539,7 +59540,8 @@ blurb: Watching someone watch the room.
 ```meta
 status: photo
 created: 2024-12-27
-location: India
+location: Malpe, India
+location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/472750.jpg
 blurb: The sun sets past the islets; the sea disagrees quietly.
 ```
@@ -59550,7 +59552,8 @@ blurb: The sun sets past the islets; the sea disagrees quietly.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Malpe, India
+location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/466993.jpg
 blurb: A flowerpot firework throws its sparks at a wedding night.
 ```
@@ -59561,7 +59564,8 @@ blurb: A flowerpot firework throws its sparks at a wedding night.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/464170.jpg
 blurb: Mehendi hands cradling a gerbera.
 ```
@@ -59572,7 +59576,8 @@ blurb: Mehendi hands cradling a gerbera.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/463972.jpg
 blurb: Caught mid-laugh in wedding finery.
 ```
@@ -59583,7 +59588,8 @@ blurb: Caught mid-laugh in wedding finery.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472741.jpg
 blurb: An ear cuff sparkling back at a hurricane lantern.
 ```
@@ -59594,7 +59600,8 @@ blurb: An ear cuff sparkling back at a hurricane lantern.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472729.jpg
 blurb: A bouquet wrapped in newsprint, and a smile to go with it.
 ```
@@ -59605,7 +59612,8 @@ blurb: A bouquet wrapped in newsprint, and a smile to go with it.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472711.jpg
 blurb: A red kurta under festival lights.
 ```
@@ -59616,7 +59624,8 @@ blurb: A red kurta under festival lights.
 ```meta
 status: photo
 created: 2024-12-26
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472666.jpg
 blurb: That face, when the fairy lights are doing their job.
 ```
