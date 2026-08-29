@@ -347,11 +347,11 @@ struct ListItemTm {
 // article metadata from a ```meta fenced block:
 // status/created/last-edited key-values.
 // Scratch is a working note published with the garage door open (the
-// absent-status default). TechnicalNote and Essay mark the curated best:
-// a complete technical exposition, or a piece of reflective prose. BigList
-// marks living list documents, lifted out of the chronological post list
-// into their own homepage section.
-enum class MetaStatus { Scratch, TechnicalNote, Essay, BigList };
+// absent-status default). TechnicalNote and Essay mark the curated best: a
+// complete technical note, or a piece of reflective prose. Exposition marks
+// longform pedagogical series (e.g. the homology invitation). BigList marks
+// living list documents.
+enum class MetaStatus { Scratch, TechnicalNote, Essay, Exposition, BigList };
 
 struct BlockTm {
   enum class Kind {
@@ -439,7 +439,6 @@ struct BlockMeta : public BlockTm {
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   LayoutKind layout = LayoutKind::TwoColumn;
-  int order = 1000000; // big-list display order; lower comes first.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -822,12 +821,14 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         meta->status = MetaStatus::Essay;
       } else if (val == "scratch") {
         meta->status = MetaStatus::Scratch;
+      } else if (val == "exposition") {
+        meta->status = MetaStatus::Exposition;
       } else if (val == "big-list") {
         meta->status = MetaStatus::BigList;
       } else {
         printf_err_span(span, s,
-            "meta status must be 'technical-note', 'essay', 'scratch', or "
-            "'big-list', got: |%s|", val.c_str());
+            "meta status must be 'technical-note', 'essay', 'exposition', "
+            "'scratch', or 'big-list', got: |%s|", val.c_str());
       }
     } else if (key == "created") {
       if (!parseMetaDate(val, meta->created)) {
@@ -839,8 +840,6 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         printf_err_span(span, s,
             "meta last-edited must be YYYY-MM-DD, got: |%s|", val.c_str());
       }
-    } else if (key == "order") {
-      meta->order = atoi(val.c_str());
     } else if (key == "layout") {
       if (val == "two-column") {
         meta->layout = LayoutKind::TwoColumn;
@@ -1912,89 +1911,6 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
   return articles;
 }
 
-// the heading's plain text, trimmed; used for the big-list labels.
-std::string headingPlaintext(const char *raw_input,
-                             const BlockHeading *heading) {
-  const int BUFSIZE = (1 << 10);
-  char buf[BUFSIZE];
-  for (int i = 0; i < BUFSIZE; ++i) { buf[i] = 0; }
-  ll len = 0;
-  inlineLineToPlaintext(raw_input, heading->line, buf, len);
-  std::string s(buf);
-  const size_t b = s.find_first_not_of(" \t");
-  if (b == std::string::npos) { return ""; }
-  const size_t e = s.find_last_not_of(" \t");
-  return s.substr(b, e - b + 1);
-}
-
-// "Big List of Funk Jazz Standards" -> "Funk Jazz Standards";
-// "My Favourite APLisms" -> "APLisms";
-// "Big List of Art and Paintings I Enjoy" -> "Art and Paintings".
-std::string bigListLabel(const std::string &title) {
-  static const char *prefixes[] = {"big list of ", "big lists of ",
-                                   "big list ", "my favourite ",
-                                   "my favorite ", "favourite ", "favorite ",
-                                   "i like "};
-  static const char *suffixes[] = {" i enjoy", " i like", " i admire"};
-  std::string out = title;
-  std::string lower = out;
-  for (char &c : lower) { c = tolower(c); }
-  for (const char *p : prefixes) {
-    if (lower.rfind(p, 0) == 0) {
-      out = out.substr(strlen(p));
-      lower = lower.substr(strlen(p));
-      break;
-    }
-  }
-  for (const char *sfx : suffixes) {
-    const size_t n = strlen(sfx);
-    if (lower.size() > n && lower.compare(lower.size() - n, n, sfx) == 0) {
-      out = out.substr(0, out.size() - n);
-      break;
-    }
-  }
-  return out;
-}
-
-// the big-list articles, lifted out of the chronological list into a ruled
-// section: a centered label nested in a hairline, the list names centered
-// beneath it, and a closing hairline. placed where the preamble's
-// <!-- big-lists --> marker comment sits.
-long long writeBigListsHTML(const char *raw_input,
-                            const vector<ArticleInfo> &articles,
-                            KEEP char *outs) {
-  vector<std::pair<std::string, const ArticleInfo *>> rows;
-  for (const ArticleInfo &a : articles) {
-    if (a.meta && a.meta->status == MetaStatus::BigList) {
-      rows.push_back({bigListLabel(headingPlaintext(raw_input, a.heading)),
-                      &a});
-    }
-  }
-  if (rows.empty()) { return 0; }
-  std::sort(rows.begin(), rows.end(),
-            [](const std::pair<std::string, const ArticleInfo *> &a,
-               const std::pair<std::string, const ArticleInfo *> &b) {
-              const int oa = a.second->meta->order, ob = b.second->meta->order;
-              if (oa != ob) { return oa < ob; }
-              std::string la = a.first, lb = b.first;
-              for (char &c : la) { c = tolower(c); }
-              for (char &c : lb) { c = tolower(c); }
-              return la < lb;
-            });
-
-  ll outlen = 0;
-  outlen += sprintf(outs + outlen,
-                    "<div id='big-lists'>"
-                    "<div class='big-lists-title'>Big Lists</div>"
-                    "<div class='big-lists-items'>");
-  for (const auto &row : rows) {
-    outlen += sprintf(outs + outlen, "<a href='%s.html'>%s</a>",
-                      row.second->url, row.first.c_str());
-  }
-  outlen += sprintf(outs + outlen, "</div></div>");
-  return outlen;
-}
-
 // returns number of characters written.
 // homepage: the done/draft filter and the (filterable) chronological post
 // list; big lists live in their own section (writeBigListsHTML).
@@ -2011,7 +1927,9 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "<div id='status-filter'>"
       "<button class='pill status-pill is-active' data-status-filter='all'>all</button>"
       "<button class='pill status-pill' data-status-filter='technical-note'>technical notes</button>"
+      "<button class='pill status-pill' data-status-filter='exposition'>expositions</button>"
       "<button class='pill status-pill' data-status-filter='essay'>essays</button>"
+      "<button class='pill status-pill' data-status-filter='big-list'>big lists</button>"
       "<button class='pill status-pill' data-status-filter='scratch'>scratch</button>"
       "<a class='garage-door' "
       "href='https://notes.andymatuschak.org/About_these_notes"
@@ -2021,15 +1939,18 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "</div>"
       "</div>");
 
-  // ===post list (big lists live in their own section above)===
+  // ===post list===
   outlen += sprintf(outs + outlen, "<ol reversed id='post-list'>");
   for (const ArticleInfo &a : articles) {
-    if (a.meta && a.meta->status == MetaStatus::BigList) { continue; }
-    const char *status = "scratch";
+    const char *status = "scratch", *label = "scratch";
     if (a.meta && a.meta->status == MetaStatus::TechnicalNote) {
-      status = "technical-note";
+      status = "technical-note"; label = "technical";
     } else if (a.meta && a.meta->status == MetaStatus::Essay) {
-      status = "essay";
+      status = "essay"; label = "essay";
+    } else if (a.meta && a.meta->status == MetaStatus::Exposition) {
+      status = "exposition"; label = "exposition";
+    } else if (a.meta && a.meta->status == MetaStatus::BigList) {
+      status = "big-list"; label = "big list";
     }
     char year[5] = {0};
     if (a.meta && a.meta->created[0]) { strncpy(year, a.meta->created, 4); }
@@ -2045,8 +1966,7 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       outlen += sprintf(outs + outlen, "<span class='post-year'>%s</span>", year);
     }
     outlen += sprintf(outs + outlen,
-        "<span class='status-label status-%s'>%s</span>", status,
-        strcmp(status, "technical-note") == 0 ? "technical" : status);
+        "<span class='status-label status-%s'>%s</span>", status, label);
     outlen += sprintf(outs + outlen, "</span></li>");
   }
   outlen += sprintf(outs + outlen, "</ol>");
@@ -2273,27 +2193,12 @@ int main(int argc, char **argv) {
     ll outlen = 0;
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
 
-    // the preamble's <!-- big-lists --> marker comment places the big-list
-    // section; without a marker it lands just above the post list.
-    bool biglists_emitted = false;
     for (int i = 0; i < ix_h1; ++i) {
-      if (ts[i]->kind == BlockTm::Kind::Comment &&
-          std::string(raw_input + ts[i]->span.begin.si,
-                      raw_input + ts[i]->span.end.si)
-                  .find("big-lists") != std::string::npos) {
-        outlen +=
-            writeBigListsHTML(raw_input, articles, index_html_buf + outlen);
-        biglists_emitted = true;
-        continue;
-      }
       renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen,
                   index_html_buf);
     }
 
     // ===write out table of contents===
-    if (!biglists_emitted) {
-      outlen += writeBigListsHTML(raw_input, articles, index_html_buf + outlen);
-    }
     outlen += writeHomepageTOC(katex_ctx, prism_ctx, raw_input, articles,
                                index_html_buf + outlen);
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
@@ -2352,6 +2257,8 @@ int main(int argc, char **argv) {
       kicker = "technical note"; kicker_cls = "technical-note"; break;
     case MetaStatus::Essay: kicker = "essay"; kicker_cls = "essay"; break;
     case MetaStatus::Scratch: kicker = "scratch"; kicker_cls = "scratch"; break;
+    case MetaStatus::Exposition:
+      kicker = "exposition"; kicker_cls = "exposition"; break;
     case MetaStatus::BigList:
       kicker = "big list"; kicker_cls = "big-list"; break;
     }

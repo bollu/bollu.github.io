@@ -213,7 +213,8 @@ pre {
 
 pre {
   font-family: 'Blog Mono', monospace;
-  font-size: 90%;
+  font-size: 82%;
+  letter-spacing: -0.08em;
 }
 
 pre {
@@ -260,6 +261,8 @@ tt {
 .inline {
   white-space: nowrap;
   background: #efefef;
+  font-size: 0.9em;
+  letter-spacing: -0.08em;
 }
 
 ul,
@@ -381,6 +384,14 @@ ul {
   color: #999;
 }
 
+#post-list .status-label.status-exposition {
+  color: #7b52ab;
+}
+
+#post-list .status-label.status-big-list {
+  color: #1a73e8;
+}
+
 #status-filter .garage-door {
   font-size: 0.85em;
   padding-left: 0.6em;
@@ -413,46 +424,6 @@ ul {
 .container .article-meta-biglist {
   color: #1a73e8;
   font-style: italic;
-}
-
-/* the big-lists section, placed by the preamble's marker comment:
-   a centered label nested in a hairline, the names centered below,
-   and a closing hairline (echoes the tailpiece). */
-#big-lists {
-  margin: 1.4em 0;
-}
-
-#big-lists .big-lists-title {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  font-size: 0.7em;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #777;
-}
-
-#big-lists .big-lists-title::before,
-#big-lists .big-lists-title::after {
-  content: '';
-  flex: 1;
-  border-top: 1px solid #ddd6c8;
-}
-
-#big-lists .big-lists-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 1.8em;
-  row-gap: 0.3em;
-  padding: 0.6em 1em;
-  text-align: center;
-}
-
-#big-lists::after {
-  content: '';
-  display: block;
-  border-top: 1px solid #ddd6c8;
 }
 
 /* === @img(...) figures === */
@@ -578,6 +549,7 @@ ul {
 .container .kicker-technical-note { color: #188038; }
 .container .kicker-essay { color: #1a73e8; }
 .container .kicker-scratch { color: #b3261e; }
+.container .kicker-exposition { color: #7b52ab; }
 .container .kicker-big-list { color: #1a73e8; }
 
 /* drop cap on the opening paragraph of essays */

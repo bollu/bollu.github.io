@@ -8,7 +8,6 @@
 - Motto: **It's useful to finish things.**
 
 
-<!-- big-lists -->
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
  
@@ -4310,7 +4309,6 @@ last-edited: 2024-09-21
 
 ```meta
 status: big-list
-order: 5
 created: 2024-09-21
 last-edited: 2026-08-29
 ```
@@ -4484,7 +4482,6 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 
 ```meta
 status: big-list
-order: 4
 created: 2024-08-31
 last-edited: 2026-08-29
 ```
@@ -51594,7 +51591,7 @@ $$
 # An Invitation to Homology and Cohomology, Part 1 --- Homology
 
 ```meta
-status: technical-note
+status: exposition
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -51867,7 +51864,7 @@ we can construct $H_1$ as:
 # An Invitation to Homology and Cohomology, Part 2 --- Cohomology
 
 ```meta
-status: technical-note
+status: exposition
 created: 2020-09-05
 last-edited: 2021-03-29
 ```
@@ -53182,7 +53179,7 @@ products from the "action" perspective.
 # Topology Is Really About Computation --- Part 2
 
 ```meta
-status: scratch
+status: exposition
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -53211,7 +53208,7 @@ business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 # Topology Is Really About Computation --- Part 1
 
 ```meta
-status: scratch
+status: exposition
 created: 2020-09-05
 last-edited: 2022-05-30
 ```
@@ -56527,7 +56524,6 @@ things on architecture I wish to read and/or have read:
 
 ```meta
 status: big-list
-order: 1
 created: 2025-03-26
 last-edited: 2026-08-29
 ```
@@ -57202,7 +57198,6 @@ let g:conjure#mapping#eval_motion = "E"
 
 ```meta
 status: big-list
-order: 2
 created: 2020-10-30
 last-edited: 2026-08-29
 ```
@@ -58971,7 +58966,6 @@ w: dan-cing un-der-neath the skies of lust
 
 ```meta
 status: big-list
-order: 3
 created: 2021-08-19
 last-edited: 2026-08-29
 ```
