@@ -439,6 +439,7 @@ struct BlockMeta : public BlockTm {
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   LayoutKind layout = LayoutKind::TwoColumn;
+  int order = 1000000; // big-list display order; lower comes first.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -838,6 +839,8 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         printf_err_span(span, s,
             "meta last-edited must be YYYY-MM-DD, got: |%s|", val.c_str());
       }
+    } else if (key == "order") {
+      meta->order = atoi(val.c_str());
     } else if (key == "layout") {
       if (val == "two-column") {
         meta->layout = LayoutKind::TwoColumn;
@@ -1971,6 +1974,8 @@ long long writeBigListsHTML(const char *raw_input,
   std::sort(rows.begin(), rows.end(),
             [](const std::pair<std::string, const ArticleInfo *> &a,
                const std::pair<std::string, const ArticleInfo *> &b) {
+              const int oa = a.second->meta->order, ob = b.second->meta->order;
+              if (oa != ob) { return oa < ob; }
               std::string la = a.first, lb = b.first;
               for (char &c : la) { c = tolower(c); }
               for (char &c : lb) { c = tolower(c); }

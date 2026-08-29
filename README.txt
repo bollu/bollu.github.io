@@ -4310,6 +4310,7 @@ last-edited: 2024-09-21
 
 ```meta
 status: big-list
+order: 5
 created: 2024-09-21
 last-edited: 2026-08-29
 ```
@@ -4483,6 +4484,7 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 
 ```meta
 status: big-list
+order: 4
 created: 2024-08-31
 last-edited: 2026-08-29
 ```
@@ -56525,6 +56527,7 @@ things on architecture I wish to read and/or have read:
 
 ```meta
 status: big-list
+order: 1
 created: 2025-03-26
 last-edited: 2026-08-29
 ```
@@ -57199,6 +57202,7 @@ let g:conjure#mapping#eval_motion = "E"
 
 ```meta
 status: big-list
+order: 2
 created: 2020-10-30
 last-edited: 2026-08-29
 ```
@@ -58967,6 +58971,7 @@ w: dan-cing un-der-neath the skies of lust
 
 ```meta
 status: big-list
+order: 3
 created: 2021-08-19
 last-edited: 2026-08-29
 ```
