@@ -1741,12 +1741,32 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     const BlockQuote *quote = (const BlockQuote *)t;
     bool success = true;
     outlen += sprintf(outs + outlen, "<blockquote>");
-    for (const InlineLine &line : quote->lines) {
-      outlen += sprintf(outs + outlen, "<p>");
-      success &= renderInlineLine(katex_ctx, prism_ctx, raw_input, line,
-                                  outlen, outs);
-      outlen += sprintf(outs + outlen, "</p>");
+    // consecutive quote lines reflow as one paragraph (source linebreaks
+    // are wrapping artifacts); an empty `>` line separates paragraphs.
+    bool open = false;
+    for (size_t k = 0; k < quote->lines.size(); ++k) {
+      const Span &sp = quote->line_spans[k];
+      bool blank = true;
+      for (ll si = sp.begin.si; si < sp.end.si; ++si) {
+        if (!isspace(raw_input[si])) { blank = false; break; }
+      }
+      if (blank) {
+        if (open) {
+          outlen += sprintf(outs + outlen, "</p>");
+          open = false;
+        }
+        continue;
+      }
+      if (!open) {
+        outlen += sprintf(outs + outlen, "<p>");
+        open = true;
+      } else {
+        outlen += sprintf(outs + outlen, "\n");
+      }
+      success &= renderInlineLine(katex_ctx, prism_ctx, raw_input,
+                                  quote->lines[k], outlen, outs);
     }
+    if (open) { outlen += sprintf(outs + outlen, "</p>"); }
     outlen += sprintf(outs + outlen, "</blockquote>");
     return success;
   }
