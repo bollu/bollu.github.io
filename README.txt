@@ -12,10 +12,7 @@
 
 </div>
 
-<div class='masthead-photo brick-photo'>
-<img src='/static/photos/473338.jpg' width='1024' height='685'>
-<div class='photo-caption'>Soap bubble taking a chance on me. <a class='photo-loc' href='https://maps.google.com/?q=Cambridge,+UK'><svg class='pin' viewBox='0 0 24 24' width='11' height='11' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/></svg>Cambridge</a><span class='photo-loc'> · Mar '25</span></div>
-</div>
+<!-- hero: the photo article marked 'hero: yes' renders here as a card. -->
 
 </div>
 
@@ -59212,6 +59209,19 @@ location: Cambridge
 location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/472618.jpg
 blurb: Lilac.
+```
+
+
+# Portrait with Bubble
+
+```meta
+status: photo
+hero: yes
+created: 2025-03-09
+location: Cambridge
+location-url: https://maps.google.com/?q=Cambridge,+UK
+photo: /static/photos/473338.jpg
+blurb: Soap bubble taking a chance on me.
 ```
 
 
