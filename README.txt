@@ -62083,8 +62083,8 @@ blurb: A lump of forest resin takes flame.
 ```meta
 status: photo
 created: 2025-02-18
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876565.jpg
 blurb: Luisa at the night market.
 ```
@@ -62095,8 +62095,8 @@ blurb: Luisa at the night market.
 ```meta
 status: photo
 created: 2025-02-18
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876295.jpg
 blurb: Skyscrapers at dusk.
 ```
@@ -62109,8 +62109,8 @@ blurb: Skyscrapers at dusk.
 ```meta
 status: photo
 created: 2025-02-17
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876262.jpg
 blurb: A queue of lanterns.
 ```
@@ -62121,8 +62121,8 @@ blurb: A queue of lanterns.
 ```meta
 status: photo
 created: 2025-02-17
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876247.jpg
 blurb: Glazed blossoms in lantern light.
 ```
@@ -62133,8 +62133,8 @@ blurb: Glazed blossoms in lantern light.
 ```meta
 status: photo
 created: 2025-02-17
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876232.jpg
 blurb: A bulb against the dark.
 ```
@@ -62145,8 +62145,8 @@ blurb: A bulb against the dark.
 ```meta
 status: photo
 created: 2025-02-14
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876199.jpg
 blurb: Folding fans.
 ```
@@ -62157,8 +62157,8 @@ blurb: Folding fans.
 ```meta
 status: photo
 created: 2025-02-14
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
+location: Singapore
+location-url: https://maps.google.com/?q=Singapore
 photo: /static/photos/876193.jpg
 blurb: Modern BBQ against ancient column.
 ```
