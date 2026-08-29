@@ -12,7 +12,10 @@
 
 </div>
 
-<img class='masthead-photo' src="/static/sid-bubble.jpg">
+<div class='masthead-photo brick-photo'>
+<img src='/static/photos/473338.jpg' width='1024' height='685'>
+<div class='photo-caption'>Soap bubble taking a chance. <a class='photo-loc' href='https://maps.google.com/?q=Cambridge,+UK'><svg class='pin' viewBox='0 0 24 24' width='11' height='11' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/></svg>Cambridge</a><span class='photo-loc'> · Mar '25</span></div>
+</div>
 
 </div>
 
@@ -59184,7 +59187,7 @@ created: 2025-05-18
 location: Istanbul
 location-url: https://maps.google.com/?q=Balat,+Istanbul
 photo: /static/photos/470791.jpg
-blurb: Balat trades plaster for color; bread left on the roof for the birds.
+blurb: Istanbul in color.
 ```
 
 
@@ -59208,20 +59211,10 @@ created: 2025-03-27
 location: Cambridge
 location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/472618.jpg
-blurb: Lilac jumper, pink wall; spring does the color grading.
+blurb: Lilac.
 ```
 
 
-# Portrait with Bubble
-
-```meta
-status: photo
-created: 2025-03-09
-location: Cambridge
-location-url: https://maps.google.com/?q=Cambridge,+UK
-photo: /static/photos/473338.jpg
-blurb: Soap bubble taking a chance.
-```
 
 
 # Grave Vase
@@ -59268,7 +59261,7 @@ created: 2025-02-24
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Sumatra
 photo: /static/photos/877285.jpg
-blurb: Pink water lilies on pewter water.
+blurb: Water lilies.
 ```
 
 
@@ -59328,7 +59321,7 @@ created: 2025-02-23
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/877150.jpg
-blurb: Luisa watercolors the river that is sitting for its portrait.
+blurb: Luisa watercolors at the river.
 ```
 
 
@@ -59498,7 +59491,7 @@ created: 2025-02-14
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876193.jpg
-blurb: A barbecue joint announces itself on the face of an old shophouse.
+blurb: Modern BBQ against ancient column.
 ```
 
 
