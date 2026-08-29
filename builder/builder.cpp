@@ -2196,6 +2196,18 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     return a.meta ? a.meta->status : MetaStatus::Scratch;
   };
 
+  // the homepage lists newest first by created date, regardless of where
+  // an article sits in the README (ISO dates sort lexicographically;
+  // README order breaks ties).
+  vector<const ArticleInfo *> by_date;
+  for (const ArticleInfo &a : articles) { by_date.push_back(&a); }
+  std::stable_sort(by_date.begin(), by_date.end(),
+                   [](const ArticleInfo *a, const ArticleInfo *b) {
+    const char *ca = a->meta ? a->meta->created : "";
+    const char *cb = b->meta ? b->meta->created : "";
+    return strcmp(ca, cb) > 0;
+  });
+
   // ===the mosaic: every polished article as its own tile, interleaved
   // with the photo articles. masonry.js places bricks in source order into
   // the shortest column, so the interleave becomes a mixed wall.
@@ -2203,15 +2215,15 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
                             MetaStatus::BigList};
   vector<const ArticleInfo *> polished, photos;
   for (MetaStatus status : top) {
-    for (const ArticleInfo &a : articles) {
-      if (status_of(a) == status) { polished.push_back(&a); }
+    for (const ArticleInfo *a : by_date) {
+      if (status_of(*a) == status) { polished.push_back(a); }
     }
   }
-  for (const ArticleInfo &a : articles) {
+  for (const ArticleInfo *a : by_date) {
     // the hero photo lives in the masthead, not the mosaic.
-    if (status_of(a) == MetaStatus::Photo && !a.meta->photo.empty() &&
-        !a.meta->hero) {
-      photos.push_back(&a);
+    if (status_of(*a) == MetaStatus::Photo && !a->meta->photo.empty() &&
+        !a->meta->hero) {
+      photos.push_back(a);
     }
   }
   const auto writePhoto = [&](const ArticleInfo &a) {
@@ -2265,9 +2277,9 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
           "<span class='garage-door-author'> — Andy Matuschak</span></div>");
     }
     outlen += sprintf(outs + outlen, "<ol reversed class='toc-list'>");
-    for (const ArticleInfo &a : articles) {
-      if (status_of(a) != g.status) { continue; }
-      outlen += writeTocItem(katex_ctx, prism_ctx, raw_input, a,
+    for (const ArticleInfo *a : by_date) {
+      if (status_of(*a) != g.status) { continue; }
+      outlen += writeTocItem(katex_ctx, prism_ctx, raw_input, *a,
                              outs + outlen);
     }
     outlen += sprintf(outs + outlen, "</ol></div>");
