@@ -2096,6 +2096,16 @@ static void statusKicker(MetaStatus status, const char **name,
   assert(false && "unreachable");
 }
 
+// the later of created and last-edited: when an article was last touched.
+static const char *touchedDate(const BlockMeta *meta) {
+  if (!meta) { return ""; }
+  if (meta->last_edited[0] &&
+      strcmp(meta->last_edited, meta->created) > 0) {
+    return meta->last_edited;
+  }
+  return meta->created;
+}
+
 static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
                        const char *raw_input, const ArticleInfo &a,
                        KEEP char *outs) {
@@ -2108,10 +2118,10 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
   while (outlen > 0 && outs[outlen - 1] == ' ') { outlen--; }
   outs[outlen] = 0;
   outlen += sprintf(outs + outlen, "</a>");
-  if (a.meta && a.meta->created[0]) {
+  if (touchedDate(a.meta)[0]) {
     outlen += sprintf(outs + outlen,
                       "&#160;<span class='post-meta'>%s</span>",
-                      shortDate(a.meta->created).c_str());
+                      shortDate(touchedDate(a.meta)).c_str());
   }
   outlen += sprintf(outs + outlen, "</li>");
   return outlen;
@@ -2172,10 +2182,10 @@ static ll writeMosaicCard(duk_context *katex_ctx, duk_context *prism_ctx,
   while (outlen > 0 && outs[outlen - 1] == ' ') { outlen--; }
   outs[outlen] = 0;
   outlen += sprintf(outs + outlen, "</a>");
-  if (a.meta->created[0]) {
+  if (touchedDate(a.meta)[0]) {
     outlen += sprintf(outs + outlen,
                       "&#160;<span class='post-meta'>%s</span>",
-                      shortDate(a.meta->created).c_str());
+                      shortDate(touchedDate(a.meta)).c_str());
   }
   if (!a.meta->blurb.empty()) {
     outlen += sprintf(outs + outlen, "<div class='brick-blurb'>%s</div>",
@@ -2196,16 +2206,14 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     return a.meta ? a.meta->status : MetaStatus::Scratch;
   };
 
-  // the homepage lists newest first by created date, regardless of where
-  // an article sits in the README (ISO dates sort lexicographically;
-  // README order breaks ties).
+  // the homepage lists most-recently-touched first: the later of created
+  // and last-edited, regardless of where an article sits in the README
+  // (ISO dates sort lexicographically; README order breaks ties).
   vector<const ArticleInfo *> by_date;
   for (const ArticleInfo &a : articles) { by_date.push_back(&a); }
   std::stable_sort(by_date.begin(), by_date.end(),
                    [](const ArticleInfo *a, const ArticleInfo *b) {
-    const char *ca = a->meta ? a->meta->created : "";
-    const char *cb = b->meta ? b->meta->created : "";
-    return strcmp(ca, cb) > 0;
+    return strcmp(touchedDate(a->meta), touchedDate(b->meta)) > 0;
   });
 
   // ===the mosaic: every polished article as its own tile, interleaved
