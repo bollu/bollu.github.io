@@ -1915,6 +1915,19 @@ vector<ArticleInfo> collectArticles(const vector<BlockTm *> &ts,
 // the homepage contents: the three curated categories (essays,
 // expositions, big lists) in full as three ruled mini-columns, then
 // technical notes and scratch as two ruled columns below.
+// "2015-08-23" -> "Aug '15"
+static std::string shortDate(const char *iso) {
+  static const char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+  int y, m, d;
+  if (sscanf(iso, "%4d-%2d-%2d", &y, &m, &d) != 3 || m < 1 || m > 12) {
+    return std::string(iso, iso + 4);
+  }
+  char buf[16];
+  sprintf(buf, "%s '%02d", months[m - 1], y % 100);
+  return buf;
+}
+
 static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
                        const char *raw_input, const ArticleInfo &a,
                        KEEP char *outs) {
@@ -1924,8 +1937,8 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
                    outs);
   outlen += sprintf(outs + outlen, "</a>");
   if (a.meta && a.meta->created[0]) {
-    outlen += sprintf(outs + outlen,
-                      " <span class='post-meta'>%.4s</span>", a.meta->created);
+    outlen += sprintf(outs + outlen, " <span class='post-meta'>%s</span>",
+                      shortDate(a.meta->created).c_str());
   }
   outlen += sprintf(outs + outlen, "</li>");
   return outlen;
