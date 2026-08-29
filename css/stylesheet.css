@@ -217,7 +217,33 @@ pre {
 }
 
 pre {
+  /* long lines wrap (a wrapped line keeps a single number) */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
   overflow-x: auto;
+}
+
+/* build-time line numbers via css counters */
+pre code {
+  counter-reset: code-line;
+  display: block;
+}
+
+pre .code-line {
+  display: block;
+  counter-increment: code-line;
+  position: relative;
+  padding-left: 3em;
+  min-height: 1.45em; /* blank lines keep their height (and number) */
+}
+
+pre .code-line::before {
+  content: counter(code-line);
+  position: absolute;
+  left: 0;
+  width: 2.2em;
+  text-align: right;
+  color: #b5b5b5;
 }
 
 .latexblock {

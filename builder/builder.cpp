@@ -1502,6 +1502,44 @@ static std::string escapeHtmlAttr(const std::string &x) {
   return out;
 }
 
+// wrap each line of prism-highlighted code in a numbered .code-line span.
+// prism spans can cross newlines, so open spans are closed at each line end
+// and reopened on the next line to keep the markup balanced.
+static std::string numberCodeLines(const char *html) {
+  vector<std::string> open_tags;
+  std::string out = "<span class='code-line'>";
+  const char *p = html;
+  // a trailing newline would render as an empty numbered line; drop it.
+  size_t n = strlen(html);
+  while (n > 0 && html[n - 1] == '\n') { n--; }
+  const char *end = html + n;
+  while (p < end) {
+    if (*p == '\n') {
+      for (size_t k = 0; k < open_tags.size(); ++k) { out += "</span>"; }
+      out += "</span><span class='code-line'>";
+      for (const std::string &tag : open_tags) { out += tag; }
+      p++;
+      continue;
+    }
+    if (*p == '<') {
+      const char *q = strchr(p, '>');
+      if (q == nullptr || q >= end) { out += *p++; continue; }
+      std::string tag(p, q + 1);
+      if (tag.rfind("</", 0) == 0) {
+        if (!open_tags.empty()) { open_tags.pop_back(); }
+      } else if (tag[tag.size() - 2] != '/') {
+        open_tags.push_back(tag); // prism only emits <span> tags.
+      }
+      out += tag;
+      p = q + 1;
+      continue;
+    }
+    out += *p++;
+  }
+  out += "</span>";
+  return out;
+}
+
 // the css classes for a figure's size and float attributes.
 static std::string imgFigureClasses(const ImgAttrs &attrs) {
   std::string cls = "fig";
@@ -1668,9 +1706,10 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<pre><code>");
     char *code_html =
         pygmentize(prism_ctx, raw_input, block->langname.c_str(), span);
-    strcpy(outs + outlen, code_html);
-    outlen += strlen(code_html);
+    const std::string numbered = numberCodeLines(code_html);
     free(code_html);
+    strcpy(outs + outlen, numbered.c_str());
+    outlen += numbered.size();
     outlen += sprintf(outs + outlen, "</code></pre>");
     return true;
   }
