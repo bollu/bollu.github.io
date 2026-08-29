@@ -2135,31 +2135,6 @@ last-edited: 2025-06-03
 - Even though this was post WW1!
 
 
-# I Like Art Nouveau
-
-```meta
-status: i-like
-created: 2025-02-19
-last-edited: 2025-10-05
-```
-
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right, caption: "Klimt")
-
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
-
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
-
-- [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
-- [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"
-- decorative, decorative arts. Wanted to take art and make it applied.
-- pantheistic approach to nature.
-- Break from the past.
-- Inspired also by Japanese and Islamic art.
-- Looks like stuff designed by elves.
-- Klimt, with gold foil, "cellular" looking blobs, japanese inspired perspectives.
-  [Judith and the head of Holofernes](https://news.artnet.com/art-world/gustav-klimt-best-works-ranked-2592960)
-
-
 # Bebop Scale
 
 ```meta
@@ -2226,17 +2201,6 @@ last-edited: 2025-02-26
 #### Arpeggiation techniques
 
 - [YT](https://www.youtube.com/watch?v=NYydGXANHJM)
-
-# Pop Piano Covers I Admire
-
-```meta
-status: i-like
-created: 2025-02-26
-last-edited: 2025-02-26
-```
-
-- [Owl City by Pianella Piano](https://www.youtube.com/watch?v=LRhGs8pHSh0&list=PLrXCURCvaqryvr3Q208kEIfLH4Z4A3CGW&index=6)
-
 
 # Wisdom of Critial Pair Theory
 
@@ -4124,48 +4088,6 @@ last-edited: 2024-09-29
   ever-increasing intensity.
 
 
-# I Like To Play Dances, Waltzes and Ragtime
-
-```meta
-status: i-like
-created: 2024-09-21
-last-edited: 2024-09-22
-```
-
-- All the music I like playing has a strong rhythmic component.
-- It should have cute nuggets of ideas, like waltzes and dances.
-- Furthermore, it should have strong syncopation, like ragtime!
-- I need to explore other styles:
-
-
-#### Ragtime
-
-Syncopated rhythms with steady left-hand bass patterns.
-
-
-#### Boogie-Woogie
-
-Driving left-hand basslines, often with walking bass patterns and bluesy syncopation.
-
-#### Stride Piano
-Left hand alternates between bass notes and chords, creating a "striding" sound, similar to ragtime but with more harmonic freedom.
-
-
-#### Swing
-Focuses on rhythmic groove with swung eighth notes, creating a lively, bouncy feel. Lots of space for improvisation.
-
-
-#### Honky Tonk
-
-Ragtime-like piano style, typically played in bars, featuring lively rhythms and a “barroom” feel.
-
-
-#### Bebop
-
-Fast, complex, with intricate chord changes and syncopation. It emphasizes individual improvisation.
-
-
-
 # Implementing Nelson Oppen
 
 ```meta
@@ -4632,17 +4554,58 @@ last-edited: 2024-09-21
 - So we only need to solve the recurrence with $a[0][0], a[0][1], a[1][0]$.
 
 
-# I Like Piano Sonatas
+# Playing the Piano
 
 ```meta
-status: i-like
+status: big-list
 created: 2024-09-21
-last-edited: 2024-09-21
+last-edited: 2026-08-29
 ```
+
+## Piano Sonatas
 
 - Turns out, sonatas [such as this one](https://www.youtube.com/watch?v=7QgT4_e8PTg&list=RDQM0Muak0fLvAQ&start_radio=1) contain clever ideas,
   well packaged.
 - This is perfect, because it's exactly the type of thing I like to play :)
+
+## Pop Piano Covers
+
+- [Owl City by Pianella Piano](https://www.youtube.com/watch?v=LRhGs8pHSh0&list=PLrXCURCvaqryvr3Q208kEIfLH4Z4A3CGW&index=6)
+
+## Dances, Waltzes and Ragtime
+
+- All the music I like playing has a strong rhythmic component.
+- It should have cute nuggets of ideas, like waltzes and dances.
+- Furthermore, it should have strong syncopation, like ragtime!
+- I need to explore other styles:
+
+
+#### Ragtime
+
+Syncopated rhythms with steady left-hand bass patterns.
+
+
+#### Boogie-Woogie
+
+Driving left-hand basslines, often with walking bass patterns and bluesy syncopation.
+
+#### Stride Piano
+Left hand alternates between bass notes and chords, creating a "striding" sound, similar to ragtime but with more harmonic freedom.
+
+
+#### Swing
+Focuses on rhythmic groove with swung eighth notes, creating a lively, bouncy feel. Lots of space for improvisation.
+
+
+#### Honky Tonk
+
+Ragtime-like piano style, typically played in bars, featuring lively rhythms and a “barroom” feel.
+
+
+#### Bebop
+
+Fast, complex, with intricate chord changes and syncopation. It emphasizes individual improvisation.
+
 
 # I Like New Formalism Poetry
 
@@ -4664,12 +4627,12 @@ last-edited: 2024-09-01
 - [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
 - [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
-# Kinds of Fiction Genres I Like
+# Reading
 
 ```meta
-status: i-like
+status: big-list
 created: 2024-09-01
-last-edited: 2024-09-04
+last-edited: 2026-08-29
 ```
 
 - hard sci fi
@@ -58316,10 +58279,10 @@ last-edited: 2024-01-31
 - Hermeneutics: Derives from hermes who gave language to humans. 
   the study of interpretation, particularly of philosophical, wisdom literature, and biblical texts.
 
-# Favourite OP1 Tutorials
+# OP1 Tutorials
 
 ```meta
-status: i-like
+status: scratch
 created: 2024-04-04
 last-edited: 2024-04-04
 ```
@@ -58331,25 +58294,6 @@ last-edited: 2024-04-04
 - [hard hitting hip hop](https://www.youtube.com/watch?v=tFRyL42itNk)
 - [opz daft punk like](https://www.youtube.com/watch?v=olGUyIRi5Ig)
 - [how to make opz album pt 1](https://www.youtube.com/watch?v=gMlRTO93Q38)
-
-# Favourite Demoscenes
-
-```meta
-status: i-like
-created: 2021-08-19
-last-edited: 2024-04-06
-```
-
-- [Engage by Logicoma](https://www.youtube.com/watch?v=r7IIawcFXHA)
-- [Number One / Another one by fairlight](https://www.youtube.com/watch?v=TaEoAJw_0Zc)
-- [Clean Slate by Conspiracy](https://www.youtube.com/watch?v=O3T1-nadehU)
-- [Ziphead by Fairlight & Carillon](https://www.youtube.com/watch?v=rJYVDuEOLLQ)
-- [Sokia by CNCD/Fairlight](https://www.youtube.com/watch?v=ilHnGKGPsy8)
-- [Surge Response by approximate](https://www.youtube.com/watch?v=I4C7RtiqL_0)
-- [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
-- [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
-- [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
-
 
 # Classical Music
 
@@ -59117,13 +59061,15 @@ w: dan-cing un-der-neath the skies of lust
 ### Maroon 5 This Love
 ### Maroon 5 Maps
 
-# Big List of Art and Paintings I Enjoy
+# Big List of Art
 
 ```meta
-status: i-like
-created: 2024-08-04
-last-edited: 2026-08-28
+status: big-list
+created: 2021-08-19
+last-edited: 2026-08-29
 ```
+
+## Paintings and Illustrators
 
 ##### Hiroshi Yoshida
 
@@ -59142,6 +59088,36 @@ last-edited: 2026-08-28
 
 - [How to texture](https://www.youtube.com/watch?v=p0iaumF6Eb8)
 - [Architectural Sketching: texture](https://www.youtube.com/watch?v=zJKZhxV4W9o&list=PL-7IZmGjCRjDEVs-7jjNAepfkBp95VouI&index=3)
+
+## Art Nouveau
+
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right, caption: "Klimt")
+
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
+
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
+
+- [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
+- [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"
+- decorative, decorative arts. Wanted to take art and make it applied.
+- pantheistic approach to nature.
+- Break from the past.
+- Inspired also by Japanese and Islamic art.
+- Looks like stuff designed by elves.
+- Klimt, with gold foil, "cellular" looking blobs, japanese inspired perspectives.
+  [Judith and the head of Holofernes](https://news.artnet.com/art-world/gustav-klimt-best-works-ranked-2592960)
+
+## Demoscenes
+
+- [Engage by Logicoma](https://www.youtube.com/watch?v=r7IIawcFXHA)
+- [Number One / Another one by fairlight](https://www.youtube.com/watch?v=TaEoAJw_0Zc)
+- [Clean Slate by Conspiracy](https://www.youtube.com/watch?v=O3T1-nadehU)
+- [Ziphead by Fairlight & Carillon](https://www.youtube.com/watch?v=rJYVDuEOLLQ)
+- [Sokia by CNCD/Fairlight](https://www.youtube.com/watch?v=ilHnGKGPsy8)
+- [Surge Response by approximate](https://www.youtube.com/watch?v=I4C7RtiqL_0)
+- [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
+- [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
+- [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
 
 # Decision Procedures Research Questions
 
