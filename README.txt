@@ -38819,11 +38819,8 @@ Clearly, `C` cannot express laziness directly, so we need some other
 mechanism to implement this. I will first code-dump, and then explain as we go along.
 
 
-###### Executable `repl.it`:
-<iframe height="400px" width="100%" src="https://repl.it/@bollu/Compiling-non-strict-programs-on-the-call-stack?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
-
 ###### Source code
-```
+```c
 #include <assert.h>
 #include <stdio.h>
 
@@ -38894,9 +38891,6 @@ memory + swap you have. I'm not too sure, however. So, [for my haskell compiler,
 cheating and just using the stack directly.
 
 Code for the same example (with the K combinator) is provided here.
-
-##### Executable `repl.it`:
-<iframe height="1000px" width="100%" src="https://repl.it/@bollu/Compiling-programs-with-continuations?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 
 ##### Source code
@@ -61263,90 +61257,97 @@ https://slatestarcodex.com/2013/03/03/reactionary-philosophy-in-an-enormous-plan
 status: exposition
 created: 2020-04-06
 last-edited: 2026-08-29
-blurb: Entropy as expected surprise, entropy as bits you must pay, and KL divergence as the bits an encoder wastes by assuming the wrong distribution.
+blurb: Entropy as expected surprise, entropy as bits you have to pay, and KL divergence as the extra bits an encoder wastes by assuming the wrong distribution.
 ```
 
-This began life as me explaining entropy and KL divergence to friends in a
-group chat; here it is, written down properly. All my logs are base 2.
+This began life as me explaining entropy and KL divergence to friends on
+a group chat. All my logs are base 2.
 
 ## Surprise
 
-We wish to measure how _surprising_ an event is. We will measure this as
-$Surprise(q) \equiv -\log(q)$, where $q$ is the probability of the event.
-This way, if an event is deterministic ($q = 1$), its surprise is $0$. If an
-event is impossible ($q = 0$), its surprise is infinite. In between, an
-event whose probability is $2^{-n}$ has surprise $n$.
+We wish to measure how "surprising" something is. We will measure this as
+$Surprise(q) = -\log(q)$ where $q$ is the probability of an event. This
+way, if an event is deterministic [$q=1$] then its surprise is 0. If an
+event is impossible [$q=0$], then its surprise is infinite. So the
+surprise of an event whose probability is $2^{-n}$ is going to be $n$.
 
-## Entropy as expected surprise
+## Entropy is expected surprise
 
 The entropy of a random variable is the expected surprise we are going to
 get from it:
 
 $$
-Entropy(X) \equiv \sum_{x \in X} Surprise(p(x)) \cdot p(x)
+Entropy(X) = \sum_{x \in X} Surprise(p(x)) \cdot p(x)
 $$
 
-For example, take a coin which lands heads with probability $q$ and tails
-with probability $(1 - q)$. Its entropy is
+For example, given a binary random variable which takes on heads with
+probability $q$ and tails with probability $(1 - q)$, the entropy is
+going to be $-q\log(q) - (1-q)\log(1-q)$. We can check that this is
+maximum when $q = 0.5$. This ought to be intuitive, because when
+$q = 0.5$, we can't predict anything about the coin toss. If it were
+slightly higher, then we could guess that it's more likely to be heads,
+so we "know more" about it.
 
-$$
--q \log(q) - (1-q)\log(1-q)
-$$
+Note that to define the entropy, all we needed was
+$p: X \rightarrow [0, 1]$. So really, entropy is a property of a
+probability distribution. And if we think about it a little carefully
+[ie, stare at the equation and fiddle with it], we come to the intuition
+that entropy is high when $p(x)$ is spread out. One can show that the
+uniform distribution $p(x) = 1/|X|$ is the unique distribution that has
+the highest entropy over a set $X$. The intuition is the same as the
+coin's: if the distribution is uniform, you can't really guess.
 
-which is maximized at $q = 0.5$. This ought to be intuitive: at $q = 0.5$
-we can't predict anything about the toss. If $q$ were slightly higher, we
-could guess heads, so we "know more" about the coin.
+## Entropy is bits you have to pay
 
-Note that to define entropy, all we needed was $p: X \rightarrow [0, 1]$:
-entropy is really a property of a probability distribution. Staring at the
-equation and fiddling a little gives the intuition that entropy is high
-when $p$ is spread out; one can show the uniform distribution
-$p(x) = 1/|X|$ is the unique distribution of highest entropy over $X$.
-The intuition is the same as the coin's: if the distribution is uniform,
-you can't guess anything.
+OK, now we move to the coding theory perspective on all this, which is
+the one true way (and is, BTW, also the right way to understand KL
+divergence IMO). We have a sender who is sending elements
+$S = x_1, x_2, \dots, x_n$, with each $x$ drawn IID from $X$ with
+distribution $p$. Now, how many bits do we need to encode $S$?
 
-## Entropy as bits you must pay
+We can design clever schemes and stupid schemes. Coding theory proves
+that on average, the best encoding scheme will need $Entropy(p)$ bits to
+encode each $x_i$. It might spend more bits on some $x_0$ and fewer bits
+on some $x_{100}$, but on average we will need $Entropy(p)$ bits, if the
+data $S$ is generated using the distribution $p$. For an actual example
+of this, see [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding):
+it achieves optimal encoding, choosing a different number of bits for
+different elements of $X$, and it doesn't clash because it's prefix-free
+and blah.
 
-Now the coding theory perspective, which is the one true way (and is also,
-in my opinion, the right way to understand KL divergence). We have a
-sender transmitting a sequence $S = x_1, x_2, \dots, x_n$, drawn IID from
-$X$ with distribution $p$. How many bits do we need to encode $S$?
+Some questions, for intuition about this entropy-as-encoding-cost:
 
-We can design clever schemes and stupid schemes. Coding theory proves that
-in expectation, the best encoding scheme needs $Entropy(p)$ bits per
-element. It might spend more bits on some $x_0$ and fewer on some
-$x_{100}$, but on average, $Entropy(p)$ bits is the price. For an actual
-example, see [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding),
-which achieves the optimum: it spends a different number of bits on
-different elements of $X$, and stays unambiguous because it is prefix-free.
-
-Some warm-up questions in this perspective:
-
-- We have a biased coin that only outputs heads. How many bits do we need
-  to encode a sequence of its flips? Zero: the receiver already knows the
-  sequence is heads, heads, heads, so there is no point transmitting
-  anything. (This is somewhat of a failing of entropy: it only considers
-  the unknown to be information. A complex but deterministic object
-  carries no information in this perspective; other perspectives, such as
-  [Kolmogorov complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity),
+- Q1: we have a coin that is biased such that it only outputs heads, and
+  we're going to be sending the results of the coin flips. How many bits
+  do we need? A1: zero, because we don't need to transmit anything: the
+  receiver already knows what's going to be sent, since the sequence must
+  be [heads, heads, heads, ...]. There's no point in transmitting it.
+  (This is actually somewhat of a failing of entropy: it only considers
+  the unknown to be information. If you have some complex, deterministic
+  thing, it's not information in this perspective. Other perspectives,
+  such as [descriptive complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity),
   remedy this.)
-- A fair coin? We are forced to spend one bit per flip, since
-  $-\log_2(0.5) = 1$; this is
+- Q2: a coin that takes heads and tails in equal likelihood? A2: we are
+  forced to use 1 bit, since $-\log_2(0.5) = 1$. This is from
   [Shannon's source coding theorem](https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem).
-- A coin with heads at $0.9$ and tails at $0.1$? Entropy says we ought to
-  manage $-0.9\log(0.9) - 0.1\log(0.1) \approx 0.47$ bits per flip. What
-  the "good" encoding looks like here is a fun question --- one batches
-  flips together and encodes runs.
+- Q3: what is the "good" encoding of a coin where heads occurs with
+  probability 0.9 and tails with 0.1? Entropy tells us that we ought to
+  manage with $-0.9\log(0.9) - 0.1\log(0.1) \approx 0.47$ bits per flip.
+  A3: batch flips together and encode runs.
 
-## KL divergence: the bits you waste
+## KL divergence is extra bits you pay
 
-The KL divergence is a divergence (not a distance!) between two
-distributions $p, q: X \rightarrow [0, 1]$. It tells us how many _extra_
-bits we pay on average if the data came from $p$, but we encoded it as if
-it came from $q$. That is: I am handed $S = x_1, \dots, x_n$ sampled from
-$p$; I hand it to an encoder $Enc_q$ which _assumes_ the data was sampled
-from $q$; and $Enc_q(S)$ uses more bits than $Enc_p(S)$ would have. How
-many more? That is the KL divergence:
+KL divergence is a divergence (not a distance!) between two probability
+distributions $p, q: X \rightarrow [0, 1]$, which tells us how many
+_extra_ bits we pay on average if the data came from distribution $p$,
+but we encoded it as if it came from distribution $q$. That is:
+
+- I was given $S = x_1, \dots, x_n$, sampled from $p$.
+- $S$ is handed to an encoder $Enc_q$ which _assumes_ the data was
+  sampled from $q$ (notice, $q$ not $p$).
+- $Enc_q(S)$ uses more bits than $Enc_p(S)$ would, since it has
+  inefficiencies. How much more? That's the KL divergence between $p$
+  and $q$:
 
 $$
 \begin{aligned}
@@ -61356,104 +61357,142 @@ D_{KL}(P \| Q)
 \end{aligned}
 $$
 
-You can look at it from an adversarial perspective: data from $p$ into an
-encoder tuned for $p$ is the optimal baseline; data from $p$ into an
-encoder tuned for $q$ asks "how bad are you?".
+You can look at it from an adversarial perspective:
+
+```
+[data ~ p(x)] --> [encoder ~ p(x)] (optimal)     [baseline]
+[data ~ p(x)] --> [encoder ~ q(x)] (adversarial) [how bad are you?]
+```
 
 ## The fair coin and the heads coin
 
-We go back to the humble unfair coin, for we are gamblers. Take two coins:
-a fair one, governed by $F$ with $F(heads) = F(tails) = 0.5$, and a coin
-that only tosses heads, governed by $H$ with $H(heads) = 1$.
+We go back to the humble unfair coin, for we are gamblers. Assume we have
+two coins. One is fair, governed by a distribution
+$F: \{heads, tails\} \rightarrow [0,1]$ with $F(heads) = F(tails) = 0.5$
+[$F$ for fair]. The other only tosses heads: $H(heads) = 1$,
+$H(tails) = 0$.
 
-How do we encode the fair coin? Heads is 0, tails is 1. How do we encode
-the heads coin? Coding theory says: _don't_. There is nothing to send.
+Before computing, let's talk intuitions. How do we encode the fair coin?
+We encode heads as 0 and tails as 1. How do we encode the heads coin?
+Well, coding theory says "don't". There's nothing to send, so don't
+bother sending information.
 
-- Hand the sequence HHH to $Enc_F$: it spends 3 bits, encoding it as 000.
-  $Enc_H$ spends zero. So encoding data from $H$ with $Enc_F$ wastes a
-  bit per flip: $D_{KL}(H \| F)$ is finite (it is $1$).
-- Now hand the fair-coin sequence HTH to $Enc_H$: it is out of luck. How
-  is it supposed to send T? It must spend infinitely many bits;
-  $D_{KL}(F \| H) = \infty$.
+- If I have the encoder $Enc_F$ and I hand it the sequence HHH generated
+  from the heads coin, it'll spend 3 bits, encoding it as 000. $Enc_H$
+  will do fine (and not send anything), because it assumes anything it
+  has to send is of the form HHHHH... So $Enc_F$ paid extra bits,
+  assuming the underlying distribution was $H$: $D_{KL}(H \| F)$ is
+  finite [it's 1 bit per flip].
+- If I have the encoder $Enc_H$ and I hand it the sequence HTH generated
+  from the fair coin, it's out of luck. How the fuck is it supposed to
+  send T? It needs to spend infinitely more bits than $Enc_F$ to do
+  anything: $D_{KL}(F \| H) = \infty$.
 
-So the concept is clearly not symmetric. If there are things you literally
-cannot encode, you pay infinite bits; if there are things you can encode
-but are bad at, you pay finitely more --- but on average you always pay
-_more_.
+So, well, clearly, this is not a symmetric concept. If there are things
+you literally cannot encode, you spend an infinite number of bits trying
+to encode them. If there are things you can encode but are bad at, you
+spend more bits trying. But you'll always spend more bits, on average.
 
-This example is also how I remember which way the formula goes: the
-target distribution belongs in the denominator, because if $q(x) = 0$ for
-something $p$ can produce, then $p(x)\log(p(x)/q(x)) = \infty$ --- out of
-band stuff costs infinite bits. And if $p(x) = 0$, I don't care what the
-encoder does with it, matching the convention that $0 \log 0 = 0$.
+This example is also how I remember the formula:
 
-A friend ([Aditya Bharti](https://adityabharti.com/)) offered a less
-roundabout derivation: the expected bits to encode $X \sim p$ is
-$\sum_x p(x)(-\log p(x))$, where the first $p$ is the expectation and the
-second is the encoder's assumption. If the encoder assumes wrongly ---
-data from $p$, encoder tuned to $q$ --- the expectation stays $p$ but the
-encoder's term becomes $-\log q(x)$. Subtract the honest cost, and the
-formula falls out. (Pointwise the difference can go negative for some
-$x$; only the sum is guaranteed non-negative, which is why I am careful
-with the pointwise reading. But it is a good mnemonic.)
+1. It has to be $D_{KL}(P\|Q) = \sum_{x \in X} p(x) \cdot \langle ??? \rangle$,
+   since we're riffing off of entropy.
+2. It is either $\log(p(x)/q(x))$ or $\log(q(x)/p(x))$.
+3. It has to be $p(x)/q(x)$, since if $q(x) = 0$ [ie, $q$ cannot
+   represent something], it is infinitely far away from $p$:
+   $\log(p(x)/0) = \log(\infty) = \infty$. Aka "out of band stuff costs
+   infinite bits".
+4. And it has to be $p(x)/q(x)$ because if $p(x) = 0$ [ie, the source
+   never gives you this data], I don't care whether we can encode it or
+   not, following the convention that $0 \log 0 = 0$.
 
-## Non-negativity, via Bregman divergence
+A friend ([Aditya Bharti](https://github.com/AdityaBharti)) offered a far
+less roundabout mnemonic: the expected bits to encode $X \sim p$ is
+$\sum_x p(x)(-\log p(x))$, where the first $p$ is there because it's an
+expectation, and the second is there because the encoder uses the
+distribution to calculate the number of bits. If the encoder makes the
+wrong assumption [data from $p$, encoder assuming $q$], the expectation
+stays $p$ but the encoder's term becomes $-\log q(x)$. Subtract the
+honest cost from the wrong-assumption cost, and the formula falls out.
+I'm a little iffy with this one because you can write distributions where
+$\log p(x) - \log q(x)$ goes negative for some $x_0$ while the overall
+sum remains positive, which is why I refrain from the pointwise
+perspective. But it's a useful mnemonic.
 
-We have not yet proved that KL divergence is non-negative. My preferred
-proof goes through a gadget called the _Bregman divergence_: a weird
-geometric "distance" valid for any convex function, into which we plug our
-surprisal and regenerate KL.
+## KL divergence is non-negative: the Bregman divergence
 
-Begin with the humble squared distance, writing
-$\langle a | b \rangle$ for the dot product:
+We have not yet proved that KL divergence is always non-negative. So
+let's do that next. I'm going to define a weird geometric distance that's
+only valid for convex functions, into which when we plug in our
+surprisal, life is going to be dandy, and we regenerate the KL
+divergence. This gadget is called as the "Bregman divergence".
+
+So, let us begin with the humble equation
+$d(x, y) = \lVert x-y \rVert^2 = \langle x - y | x - y \rangle$, where I
+use $\langle a | b \rangle$ for the dot product [yay quantum notation].
+Now, we can algebraically manipulate it:
 
 $$
 \begin{aligned}
 d(x, y) &= \langle x - y | x - y \rangle \\
-&= \langle x|x \rangle + \langle y|y \rangle - 2\langle x|y \rangle \\
-&= \langle x|x \rangle - \langle y|y \rangle - 2\langle y|x - y \rangle \\
-&= f(x) - f(y) - \langle f'(y) | x - y \rangle
+&= \langle x|x \rangle + \langle y|y \rangle - 2\langle x|y \rangle
+   \quad \text{[linearity]}\\
+&= \langle x|x \rangle - \langle y|y \rangle - 2\langle y|x - y \rangle
+   \quad \text{[add and subtract $2\langle y|y\rangle$]}\\
+&= lensq(x) - lensq(y) - \langle lensq'(y)|x-y \rangle
 \end{aligned}
 $$
 
-where $f(v) = \langle v|v \rangle$, so that $f'(y) = 2y$. Read the last
-line geometrically: it is the gap between the function's value at $x$ and
-the tangent line drawn at $y$, followed out to $x$. For a convex $f$ the
-function sits above all its tangents, so this gap is always non-negative:
-draw the parabola and a tangent line and it is clear.
-
-Nothing here is special to squared length, or to one dimension. For any
-convex $f: \mathbb R^n \rightarrow \mathbb R$, define the Bregman
-divergence
+where $lensq(v) = \langle v|v \rangle$, so $lensq'(y) = 2y$. We can
+interpret the last line as
 
 $$
-D_f(x, y) \equiv f(x) - f(y) - \langle f'(y) | x - y \rangle \geq 0.
+lensq(x) - [lensq(y) + \langle lensq'(y)|x-y \rangle]
 $$
 
-Now plug in the (convex) negative entropy
-$f(p) = \sum_i p_i \log p_i$, whose gradient is
-$(\partial f/\partial p_i)(y) = 1 + \log y_i$. For $x, y$ probability
-vectors, the $\sum_i x_i - \sum_i y_i$ terms cancel (both sum to one),
-and what survives is
+and $lensq(y) + \langle lensq'(y)|x-y \rangle$ is the equation of a point
+on a line: start at $y$, with slope $lensq'(y)$, and move for a distance
+of $(x - y)$. So the distance we are measuring is the gap between the
+value of the function at $x$ and the tangent drawn at $y$, followed out
+to $x$. Draw the parabola and a tangent line: for a convex function this
+gap is clearly always positive [for a formal proof, please, the
+convexity of $f$].
+
+Now, we can choose to generalize this to any convex function $f$, and it
+will give us an analogous "distance". Note that the same argument holds
+in $\mathbb R^n$; we used nothing special about $\mathbb R$ here. So
+define the divergence
+
+$$
+D_f(x, y) = f(x) - [f(y) + \langle f'(y)|x-y \rangle] \geq 0.
+$$
+
+Now plug in the convex function
+$f((p_1, \dots, p_n)) = \sum_i p_i \log p_i$, whose derivative is
+$(\partial f/\partial p_i)(y) = 1 + \log y_i$. On simplification [for
+$x, y$ probability vectors, the $\sum_i x_i - \sum_i y_i$ terms are zero
+since both sum to one]:
 
 $$
 D_f(x, y) = \sum_i x_i (\log x_i - \log y_i) = D_{KL}(x \| y) \geq 0.
 $$
 
-The KL divergence is the Bregman divergence of negative entropy. For a
-great visualization, see
+Hence, KL divergence is the Bregman divergence of
+$F(x) = \sum_i x_i \log x_i$, and is non-negative. Here is a great
+visualization link:
 [Meet the Bregman divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html).
+Anyway, that's my preferred proof for KL divergence being non-negative.
 
 ## Coda
 
-Why $\log$ for surprise, and not some other function that vanishes at
-$p = 1$? Because we also want surprise to add over independent events ---
-$Entropy(XY) = Entropy(X) + Entropy(Y)$ --- and with a few other
-intuitive conditions, this
-[characterizes entropy uniquely](https://math.stackexchange.com/a/331128/261373).
+Why $\log$ for surprise, and not some other function that is 0 when
+$p = 1$ [which other functions satisfy as well]? If you add the condition
+that $Entropy(XY) = Entropy(X) + Entropy(Y)$ for independent $X, Y$,
+along with some other intuitive conditions,
+[entropy is uniquely characterised](https://math.stackexchange.com/a/331128/261373).
 
-I remain somewhat dissatisfied with my KL divergence explanation; someday
-I will write the Fisher information based motivation.
+I'm still somewhat dis-satisfied with my KL divergence explanation. I'll
+do the Fisher information based motivation someday.
 
 # Lagrange Multipliers Discussion
 
