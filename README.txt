@@ -57219,7 +57219,7 @@ let g:conjure#mapping#eval_motion = "E"
 ```meta
 status: big-list
 created: 2020-10-30
-last-edited: 2026-08-28
+last-edited: 2026-08-29
 ```
 
 > a statistician frustrated by how “everyone wants to be a theorist”
@@ -57235,13 +57235,9 @@ last-edited: 2026-08-28
 
 > "If a "religion" is defined to be a system of ideas that contains unprovable statements, then Gödel taught us that mathematics is not only a religion, it is the only religion that can prove itself to be one ~ Bertrand Russell"
 
-> "Everything's high risk if you're a pussy"
-
 > "Write values as verbs, not adjectives: protect, provide, build, teach, create."
 
-> "Politics is the art of the posible."
-
-> "A single act of careleness leads to the eternal loss of beauty."
+> "A single act of carelessness leads to the eternal loss of beauty."
 
 > "Your job, throughout your entire life, is to disappoint as many people as it takes to avoid disappointing yourself."
 
@@ -57294,9 +57290,9 @@ last-edited: 2026-08-28
 > If the best stuff from then is still better than good stuff from now, it's art.
 > If the best stuff from then is worse than bad stuff from now, it's technology.
 
-- Tradition is not the worship of ashes, but the preservation of fire.
+> Tradition is not the worship of ashes, but the preservation of fire.
 
-- For every problem, there is a solution that is simple, elegant, and wrong.
+> For every problem, there is a solution that is simple, elegant, and wrong.
 
 > If it's worth doing, it's worth doing well.
 > If it's worth doing, it's worth overdoing.
@@ -57306,14 +57302,10 @@ last-edited: 2026-08-28
 > the quality of our worst work. But science is a strong-link problem: progress
 > depends on the quality of our best work.
 
-> Pirates of the caribbean: Take what you can, give nothing back.
+> A simulation of a hurricane is not a real hurricane, but a simulation of a chess game *is* a real chess game.
 
-- A simulation of a hurricane is not a real hurricane, but a simulation of a chess game *is* a real chess game.
-
-- When leaving a party, Brahms is reported to have said ‘If there is anyone
-  here whom I have not offended tonight, I beg their pardon.
-
-- Pirates of the caribbean: Take what you can, give nothing back.
+> When leaving a party, Brahms is reported to have said ‘If there is anyone
+> here whom I have not offended tonight, I beg their pardon.
 
 > How can Alice communicate all of math to Bob? Mail him some chalk and wait!
 
@@ -57348,10 +57340,7 @@ last-edited: 2026-08-28
 > conceals her mystery by means of her essential grandeur, not by her cunning".
 
 
-
 > Whoever is meek to the cruel ones, is cruel to the meek.
-
-> Treat everybody the same v/s treat everybody fairly.
 
 > "Everyone must choose one of two pains: The pain of discipline or the pain of regret.”
 
@@ -57418,9 +57407,6 @@ last-edited: 2026-08-28
 
 > Raising your floor (consistency) is just as important as raising your ceiling
 > (skill)
-
-> "The sky is the limit, so lets build rockets!"
-
 
 > The manner in which the mathematician works his way towards discovery by
 > shifting his confidence from intuition to computation and back again from
@@ -57532,9 +57518,6 @@ last-edited: 2026-08-28
 > good enough for me.”
 > https://www.quantamagazine.org/a-path-less-taken-to-the-peak-of-the-math-world-20170627/
 
-> "you're such a dick!".
-> "I'm moby goddamn dick, and you're swimming in my water".
-
 > When people thought the earth was flat, they were wrong. When people thought
 > the earth was spherical, they were wrong. But if you think that thinking the
 > earth is spherical is just as wrong as thinking the earth is flat, then your
@@ -57547,55 +57530,6 @@ last-edited: 2026-08-28
 
 > The man is nothing, the work is everything. ~ Napoleon
 > L’homme c’est rien–l’oeuvre c’est tout
-
-
-> The road to hell is paved with good intentions
-> I am a coloured South African(an ethnic group that was previously disadvantaged due to apartheid era racial policies) we in South Africa have Affirmative action policies called Black Economic Empower(BEE) (Its open to all previously advantaged racial groups ie Black, Coloured, Indian they just call it BEE) that has led to mass corruption and cronyism.
-> >Start with crony capitalism, which in South Africa goes by the euphemism “black economic empowerment”. The idea behind it seemed laudable enough—to right a historical wrong. Under apartheid, the country produced white titans of industry such as the Oppenheimer family (owners of DeBeers), while making it hard for black South Africans to own businesses. The ANC(Ruling political party) felt it only fair that there should be black billionaires, too. To give them a leg-up it insisted that mining companies should hand at least 26% of their shares to the “historically disadvantaged”. Mining companies (as well as banks and insurers) did so willingly, diluting existing shareholdings when they transferred stakes to the likes of Cyril Ramaphosa, now the president, along with Patrice Motsepe, his brother-in-law, and Bridgette Radebe, his sister-in-law.[1]
-> I and alot of South Africans could stomach a one-off payment or one-off percentage equity stake in firms(in South Africa the government instituted a policy that South African Corporate firms would sell shares preferential)to disadvantaged groups but after these shares were sold, the government wanted to continuously repeat it.
-> >If these handouts had been a one-off tax, their harm would by now have been forgotten. But once the new black shareholders had sold their holdings, the government drafted regulations to repeat the process. And so capital investment in mines fell by 45% between 2010 and 2018, with output falling by 10% and employment by 50,000—a tenth of direct employment in the industry in 2010.[1]
-> When the government gives support not based on merit and competence but gender, race, religion or ethnicity you undermine industrial policy(Instead of support based on a person's potential ability or ability to do things)With affirmative action you end up institutionalising incompetence.
-> >Black Economic Empowerment, a policy that incentivises firms to give equity to black investors or business to black-owned suppliers, has created a new generation of Randlords with more political acumen than entrepreneurial talent. “Cadre deployment”, whereby ANC party(Ruling political party) members get jobs on the basis of factional fealty rather than merit, has degraded the state. These appointees steer contracts towards chosen “tenderpreneurs”, who in turn donate to the party. By 2007 Kgalema Motlanthe, a party grandee, said: “This rot is across the board...Almost every project is conceived because it offers opportunities for certain people to make money.”[2]
-> Many South African feel that our counrty has become "a cappuccino society, A vast, huge, black majority at the bottom with a layer of white cream and a few chocolate sprinklings at the top of it" referring to the small black elite who have gained great riches from the post-apartheid years - from a failed attempt to rebalance the wealth among the many.
-> Yes, I acknowledge the present-day inequities that racist, sexist, etc policies can cause, but if a Government was serious about addressing historical inequalities then you need to invest in education and skills development. Affirmative action never works in the long term, instead of making people competent and self-reliant,it makes them dependent on handouts.
-> Contrast Taiwan and Malaysia's Industrial Policies and Outcomes
-> Taiwan's has currently a healthy semiconductor industry with many successful and impressive firms ie TSMC, etc.
-> And Malaysia with its affirmative action laws favouring certain ethnicities that ultimately undermined their industrial policies. The corruption and shenanigans that result from affirmative action policies happened in South Africa also happened in Malaysia and undermined their long term industrial goals.
-> Appropriating a quote from Deng Xiaoping "It doesn't matter whether a cat is black or white, as long as it catches mice." This is taken to mean that as long as the economy works, it is a good economy.
-> Affirmative action is equality of outcome. Do people think they have godly powers that can guarantee certain outcomes or results? There is an inherent risk of failure in all ventures and endeavours.
-> A correct criticism of capitalism is when it does not provide equal opportunity and so we should always strive to provide equal opportunity, but people confuse that with the equal outcome when, equal outcome can only be enforced through violence because different people, free people make different choices and when they make different choices they have different outcomes if you don't let them suffer the consequences of bad choices or reap the rewards from good choices then you have to use force or violence to get a prefered outcome
-> If people are really serious about freedom and equality then you should want not just the freedom to succeed, but also the freedom to fail.
-> [1]https://www.economist.com/leaders/2021/07/24/end-of-the-line...
-> [2]https://www.economist.com/middle-east-and-africa/2021/07/24/...
-
-
-
-
-> Strongest words ought to start and begin a sentences. A re-phrasing I made:
- "Thus, we know that `pr-ty` lives in UNIV because of correctness of `synth`" into
- "Correctness of `synth` guarantees that `pr-ty` lives in UNIV".
-
-> There is low satisfaction of finishing and understanding a section, it seems
-  to flow a little too continuous.
-
-> Align figures to either all left or all right.
-
-> In structure, label references to future sections are non existent, so it
-  would help assure the reader in section x that you will talk more about the
-  uses of this in section y.
-
-
-
-> What do you have in mind? works well to get to know what the other person
-   would like.
-
-
-> So the way I see it, is that as soon as you are
-  naming something, people may ask things like "What
-  is X exactly? What is X composed of?". So I can
-  clearly see reviewers ask "What is DSL composed
-  of?", but if we wouldn't name it, I wouldn't expect
-  reviewers to ask "What is the python interface composed of?"
 
 
 > She told me that I was what she calls institutionally poor. That I had been
@@ -57612,15 +57546,10 @@ last-edited: 2026-08-28
 > they offer. I told her, and she said I will double that if you stay.
 
 
-
 > Here's a discontinuity irl that I read about: you bite into an apple and find
 > a worm. Disgusting. But worse would be to find 1/2 a worm, worse still 1/4 of
 > a worm, etc... continuity would imply the worst case scenario is biting into
 > an apple and not finding a worm.
-
-> PORT (wine) is always LEFT at sea, but never left at dinner.
-> L for LEFT, is close to P for PORT. R for RIGHT, is close to S for STARBOARD
-
 
 > Mona Lisa was special in part because it was uncommon for people to smile. In
 > Middle Ages, someone smiling a lot would be perceived as stupid. That's why
@@ -57646,14 +57575,6 @@ last-edited: 2026-08-28
 > excels at producing wealth - Universal Basic Income, Universal Healthcare,
 > Unemployment Insurance, better Public Schooling... these are the kind of Social
 > Justice programs that best distribute the wealth back to society.
-
-
-> my only other critique, which is good in general, but try to force yourself to
-speak slower than you want to.
-
-> taking time to build a diagram is the best way to convey knowledge
-
-> learning to be comfortable with silences while speaking doesn't come naturally to anyone.
 
 
 > Some kids grow up on football. I grew up on public speaking (as behavioral

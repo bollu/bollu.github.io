@@ -166,7 +166,15 @@ a:active {
   text-decoration: none;
 }
 
-pre, .latexblock {
+pre {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: #f7f5f0;
+}
+
+.latexblock {
   border-left-color: #BBB;
   border-left-style: solid;
   border-left-width: 5px;
@@ -519,11 +527,20 @@ ul {
   font-family: 'Blog Serif', serif;
 }
 
-/* the end-of-article fleuron */
+/* the end-of-article divider: a rule with a fleuron at its center */
 .container .tailpiece {
+  display: flex;
+  align-items: center;
+  gap: 1em;
   color: #c9bfae;
-  font-size: 1.6em;
-  margin-top: 0.8em;
-  text-align: center;
+  font-size: 1.4em;
+  margin-top: 1em;
   column-span: all; /* sit centered under both columns */
+}
+
+.container .tailpiece::before,
+.container .tailpiece::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #ddd6c8;
 }
