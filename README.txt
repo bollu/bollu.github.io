@@ -33,7 +33,7 @@ blurb: The lives of Udupi-Ajja and Huduco-Ajja, written down before the details 
 - At 5 years, their mom and dad divorced.
 - Went to stay with mom.
 - Mom was the most beautiful woman in town :P, and was great at chess.
-- For 2 years, lived in mangalore. Mom was a nurse. He knows about WW2
+- For 2 years, lived in @location("Mangalore"). Mom was a nurse. He knows about WW2
   as a small child, since he mentioned that this impacted their life.
 - She passed away from TB.
 - He learnt Koknaki while he lived there.
@@ -41,9 +41,9 @@ blurb: The lives of Udupi-Ajja and Huduco-Ajja, written down before the details 
 - Great grandpa hated him, because he deserted him. Ajja was sent
   to work in the fields.
 - Ajja always wanted to study.
-- He was sent (sold?) to Kargal (close to Joga). Unclear for how many years.
+- He was sent (sold?) to @location("Kargal", url: "https://maps.google.com/?q=Kargal,+Karnataka") (close to @location("Joga", url: "https://maps.google.com/?q=Jog+Falls")). Unclear for how many years.
   Worked at a hotel.
-- At the hotel, someone told him about Ujire [Dharmastala]. He ran away
+- At the hotel, someone told him about @location("Ujire") (Dharmastala). He ran away
   to the gurukul.
 - He learnt Sanskrit, Vedas, etc. there till 11th grade. This is known
   _as fact_, cause the person who taught him Sanskrit used to come home.
@@ -51,16 +51,16 @@ blurb: The lives of Udupi-Ajja and Huduco-Ajja, written down before the details 
 - Bhide taught him English at the gurukul.
 - While he was at the gurukul, he worked(?) at Bhide's house. This is known
   cause their families know each other.
-- After his SSLC, he came to Udupi and studied his 12th/13th grade
-  [intermediate] at MGM college. He was a science major.
-- Grab one meal a day at the Krishna temple.
+- After his SSLC, he came to @location("Udupi") and studied his 12th/13th grade
+  (intermediate) at @location("MGM College", url: "https://maps.google.com/?q=MGM+College,+Udupi"). He was a science major.
+- Grab one meal a day at the @location("Krishna temple", url: "https://maps.google.com/?q=Sri+Krishna+Matha,+Udupi").
 - He and his friend Kedlaya grabbed a job at the LIC right after 12th grade.
 - After 3-4 years of joining the LIC, he fell very sick. That was when
   he realized he wishes to get married ;) There was _no one_ for him
   when he fell sick.
 - He apparently then went to his dad and said "If you don't get me married,
   then I'm going to marry someone regardless" to spur his family into action?
-- He then learnt that there was someone at Narkata. He went there, and he was
+- He then learnt that there was someone at @location("Narkata"). He went there, and he was
   speaking there. Grandmom came, knocked the jug of water on the table and
   rushed off in anger. Supposedly this was love at first sight :P
   "Her fiery spirit" and all that.
@@ -70,8 +70,8 @@ blurb: The lives of Udupi-Ajja and Huduco-Ajja, written down before the details 
 
 ## Huduco-Ajja
 
-- Ajja studied till 4th grade, and then he was sent to work in Kerala.
-- He was then sent to Ullala, which is at Karnataka, close to the Kerala
+- Ajja studied till 4th grade, and then he was sent to work in @location("Kerala").
+- He was then sent to @location("Ullala", url: "https://maps.google.com/?q=Ullal,+Karnataka"), which is at Karnataka, close to the Kerala
   border.  He worked at the home of an Ayurveda Pundit.
   He learnt letters by reading signboards, and then learnt the vocabulary.
 - He used to write kannada poetry that was published in the local newspapers.

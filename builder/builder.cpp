@@ -281,6 +281,7 @@ struct InlineTm {
     Italic, // *...* / _..._ ; **...** parses as nested Italic.
     Link,   // [text](url)
     Image,  // @img("path", key: value, ...)
+    Location, // @location("name", url: ...) — a pinned map link.
   };
   const Kind kind;
   Span span;
@@ -334,6 +335,13 @@ struct InlineImage : public InlineTm {
   ImgAttrs attrs;
   InlineImage(Span span, std::string url, ImgAttrs attrs)
       : InlineTm(Kind::Image, span), url(url), attrs(attrs) {}
+};
+
+struct InlineLocation : public InlineTm {
+  std::string name;
+  std::string url; // map link; defaults to a maps search for the name.
+  InlineLocation(Span span, std::string name, std::string url)
+      : InlineTm(Kind::Location, span), name(name), url(url) {}
 };
 
 // one list item: the marker location plus one entry per content line
@@ -541,6 +549,15 @@ static std::string unquote(const std::string &x) {
   return v;
 }
 
+// a small map-pin outline, drawn in the surrounding text color; used by
+// @location links and the photo-card captions.
+static const char PIN_SVG[] =
+    "<svg class='pin' viewBox='0 0 24 24' width='11' height='11' "
+    "fill='none' stroke='currentColor' stroke-width='2' "
+    "stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"
+    "<path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/>"
+    "<circle cx='12' cy='10' r='3'/></svg>";
+
 // an @img("path", key: value, ...) directive, typst-style. the first
 // positional argument is the path; named arguments are size (s/m/l),
 // float (left/right/margin-left/margin-right), width, caption, alt.
@@ -609,8 +626,55 @@ InlineTm *tryParseImg(const char *s, const ll len, const L lat) {
   return new InlineImage(Span(lat, lcur), url, attrs);
 }
 
+// an @location("name", url: ...) directive: a pinned map link in prose.
+// the url defaults to a Google Maps search for the name.
+InlineTm *tryParseLocation(const char *s, const ll len, const L lat) {
+  assert(strpeek(s + lat.si, "@location("));
+  L lcur = lat.next("@location(");
+
+  std::string name, url;
+  while (1) {
+    if (s[lcur.si] == ')') { lcur = lcur.next(')'); break; }
+    std::string arg;
+    if (!scanImgArg(s, lcur, arg)) { return nullptr; } // unclosed directive.
+    if (s[lcur.si] == ',') { lcur = lcur.next(','); }
+    if (trimSpaces(arg).empty()) { continue; }
+
+    const size_t colon = arg.find(':');
+    std::string key = colon == std::string::npos ? "" : trimSpaces(arg.substr(0, colon));
+    const bool keyed = !key.empty() &&
+        key.find_first_not_of("abcdefghijklmnopqrstuvwxyz-") == std::string::npos;
+    if (!keyed) {
+      if (name.empty()) {
+        name = unquote(arg);
+      } else {
+        printf_err_loc(lat, s, "@location: unexpected extra positional arg: |%s|",
+                       arg.c_str());
+      }
+      continue;
+    }
+    const std::string val = unquote(arg.substr(colon + 1));
+    if (key == "url") {
+      url = val;
+    } else {
+      printf_err_loc(lat, s, "@location: unknown key: |%s|", key.c_str());
+    }
+  }
+
+  if (name.empty()) {
+    printf_err_loc(lat, s, "@location: missing place name");
+    return nullptr;
+  }
+  if (url.empty()) {
+    url = "https://maps.google.com/?q=";
+    for (char c : name) { url += (c == ' ') ? '+' : c; }
+  }
+  return new InlineLocation(Span(lat, lcur), name, url);
+}
+
 // one inline term starting at lbegin: a link, `code`, $latex$, *italic*, an
-// @img(...), or a run of raw text up to the next special character.
+// @img(...), an @location(...), or a run of raw text up to the next
+// special character.
 InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
   assert(lbegin.si < len);
 
@@ -618,6 +682,12 @@ InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
     InlineTm *img = tryParseImg(s, len, lbegin);
     if (img) { return img; }
     printf_err_loc(lbegin, s, "malformed @img(...); rendering it as text");
+  }
+
+  if (strpeek(s + lbegin.si, "@location(")) {
+    InlineTm *loc = tryParseLocation(s, len, lbegin);
+    if (loc) { return loc; }
+    printf_err_loc(lbegin, s, "malformed @location(...); rendering it as text");
   }
 
   InlineTm *link = nullptr;
@@ -671,8 +741,9 @@ InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
     }
     return new InlineItalic(Span(lbegin, lcur.next(delim)), items);
   }
-  // raw text: consume up to the next special character (or an @img( opener;
-  // a lone '@' stays ordinary text so emails don't split).
+  // raw text: consume up to the next special character (or an @img( /
+  // @location( opener; a lone '@' stays ordinary text so emails don't
+  // split).
   L lcur = lbegin;
   while (1) {
     lcur = lcur.next(s[lcur.si]);
@@ -681,7 +752,10 @@ InlineTm *parseInlineFragment(const char *s, const ll len, const L lbegin) {
         c == '\n' || c == '\0') {
       break;
     }
-    if (c == '@' && strpeek(s + lcur.si, "@img(")) { break; }
+    if (c == '@' && (strpeek(s + lcur.si, "@img(") ||
+                     strpeek(s + lcur.si, "@location("))) {
+      break;
+    }
   }
   return new InlineText(Span(lbegin, lcur));
 }
@@ -1386,6 +1460,12 @@ void inlineToPlaintext(const char *s, const InlineTm *t, char *outs,
     break;
   case InlineTm::Kind::Image:
     break; // images contribute nothing to plaintext (or slugs).
+  case InlineTm::Kind::Location: {
+    const std::string &name = ((InlineLocation *)t)->name;
+    strncpy(outs, name.c_str(), name.size());
+    outlen += name.size();
+    break;
+  }
   }
 }
 
@@ -1644,6 +1724,14 @@ bool renderInline(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<img class='img-inline' src='%s' alt='%s'>",
                       escapeHtmlAttr(img->url).c_str(),
                       escapeHtmlAttr(alt).c_str());
+    return true;
+  }
+
+  case InlineTm::Kind::Location: {
+    const InlineLocation *loc = (const InlineLocation *)t;
+    outlen += sprintf(outs + outlen, "<a class='loc' href='%s'>%s%s</a>",
+                      escapeHtmlAttr(loc->url).c_str(), PIN_SVG,
+                      loc->name.c_str());
     return true;
   }
   }
@@ -2024,13 +2112,6 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
 // masthead hero); everything else comes from the article's meta block.
 static ll writePhotoCardHTML(const ArticleInfo &a, const char *classes,
                              KEEP char *outs) {
-  // a small map-pin outline, drawn in the caption's text color.
-  const char *pin_svg =
-      "<svg class='pin' viewBox='0 0 24 24' width='11' height='11' "
-      "fill='none' stroke='currentColor' stroke-width='2' "
-      "stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"
-      "<path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/>"
-      "<circle cx='12' cy='10' r='3'/></svg>";
   char fspath[1024];
   sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
           a.meta->photo.c_str() + 1); // skip the leading '/'.
@@ -2054,7 +2135,7 @@ static ll writePhotoCardHTML(const ArticleInfo &a, const char *classes,
   } else {
     outlen += sprintf(outs + outlen, "<span class='photo-loc'>");
   }
-  outlen += sprintf(outs + outlen, "%s%s", pin_svg, a.meta->location.c_str());
+  outlen += sprintf(outs + outlen, "%s%s", PIN_SVG, a.meta->location.c_str());
   outlen += sprintf(outs + outlen, "%s", linked ? "</a>" : "</span>");
   if (a.meta->created[0]) {
     outlen += sprintf(outs + outlen, "<span class='photo-loc'> · %s</span>",
@@ -2227,6 +2308,11 @@ struct RSS {
         break;
       case InlineTm::Kind::Image:
         break; // images contribute nothing to RSS titles.
+      case InlineTm::Kind::Location:
+        for (const char c : ((const InlineLocation *)t)->name) {
+          writeEscapedCharacter(c, out);
+        }
+        break;
       }
     }
   }

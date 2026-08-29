@@ -396,9 +396,14 @@ ul {
   white-space: nowrap;
 }
 
-.container .photo-loc .pin {
+.container .pin {
   vertical-align: -0.1em;
   margin-right: 0.15em;
+}
+
+/* @location links in prose: a normal link wearing a pin. */
+.container a.loc {
+  white-space: nowrap;
 }
 
 .container .brick-card {
