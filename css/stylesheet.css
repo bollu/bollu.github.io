@@ -406,7 +406,6 @@ ul {
 :root {
   --fig-s: 14em;
   --fig-m: 24em;
-  --fig-hang: 9em; /* how far margin figures reach into the gutter */
 }
 
 .container .fig {
@@ -435,20 +434,20 @@ ul {
 .container .fig-left  { float: left;  margin: 0.25em 1.2em 0.6em 0; }
 .container .fig-right { float: right; margin: 0.25em 0 0.6em 1.2em; }
 
-/* tufte margin figures: emitted just before their anchor block, so the
-   float top-aligns with it; the negative margin hangs it into the gutter */
+/* margin figures: emitted just before their anchor block, so the float
+   top-aligns with it; they stay inside the sheet, stacked down the side */
 .container .fig-margin-right {
   float: right;
   clear: right; /* consecutive margin figures stack, not sit side by side */
   width: var(--fig-s);
-  margin: 0 calc(-1 * var(--fig-hang)) 0.6em 1.2em;
+  margin: 0.25em 0 0.6em 1.2em;
 }
 
 .container .fig-margin-left {
   float: left;
   clear: left;
   width: var(--fig-s);
-  margin: 0 1.2em 0.6em calc(-1 * var(--fig-hang));
+  margin: 0.25em 1.2em 0.6em 0;
 }
 
 /* inline images: text-height, sitting on the baseline */
@@ -457,13 +456,6 @@ ul {
   height: 1.4em;
   width: auto;
   vertical-align: text-bottom;
-}
-
-/* 1150px column + two 9em hangs needs ~1450px; below that, margin
-   figures fall back to in-column wrapfig floats */
-@media (max-width: 1450px) {
-  .container .fig-margin-right { margin-right: 0; }
-  .container .fig-margin-left  { margin-left: 0; }
 }
 
 /* phones: no floats at all; every figure is a centered block */

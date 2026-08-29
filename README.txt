@@ -59012,11 +59012,9 @@ last-edited: 2026-08-29
 
 ## Art Nouveau
 
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right, caption: "Klimt")
+@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right, caption: "Gustav Klimt, The Kiss (1907-08)")
 
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
-
-@img("/static/art-nouveau/klimt.jpg", size: s, float: margin-right)
+@img("/static/art-nouveau/klimt-2.jpg", size: s, float: margin-right, caption: "Gustav Klimt, Judith and the Head of Holofernes (1901)")
 
 - [Teaching Art Nouveau: 1890-1914](https://www.nga.gov/content/dam/ngaweb/Education/learning-resources/teaching-packets/pdfs/Art-Nouveau-tp.pdf)
 - [fin de siecle](https://en.wikipedia.org/wiki/Fin_de_si%C3%A8cle): "turn of the century"
