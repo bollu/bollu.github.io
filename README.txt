@@ -59220,7 +59220,7 @@ created: 2025-03-09
 location: Cambridge
 location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473338.jpg
-blurb: The blog's portrait: me not noticing a soap bubble taking its chance.
+blurb: Soap bubble taking a chance.
 ```
 
 
@@ -59529,9 +59529,10 @@ blurb: A working boat in its best teal, waiting on still water.
 ```meta
 status: photo
 created: 2024-12-28
-location: India
+location: Kottayam, India
+location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472765.jpg
-blurb: Watching someone watch the room.
+blurb: Sahiti watching the room.
 ```
 
 
@@ -59615,7 +59616,7 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472711.jpg
-blurb: A red kurta under festival lights.
+blurb: Arjun's favourite color.
 ```
 
 
@@ -59627,7 +59628,7 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472666.jpg
-blurb: That face, when the fairy lights are doing their job.
+blurb: Dalia, when the fairy lights are doing their job.
 ```
 
 
