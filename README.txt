@@ -38605,12 +38605,13 @@ out = smith_normal_form(xs,ys)
 # Laziness for C Programmers
 
 ```meta
-status: technical-note
+status: exposition
 created: 2020-09-22
-last-edited: 2022-05-30
+last-edited: 2026-08-29
+blurb: Non-strict evaluation explained for C programmers, down to how graph reduction runs on stock hardware.
 ```
 
-#### Side node: nonsrict versus lazy (This section can be skipped)
+#### Side note: non-strict versus lazy (This section can be skipped)
 
 I will use the word `non-strict` throughout, and not `lazy`.
 Roughly speaking, `lazy` is more of an implementation detail that guarantees
@@ -38626,7 +38627,7 @@ a lot of confusion involving the two words in general.
 
 #### Showing off non-strictness:
 We first need a toy example to work with to explain the fundamentals of
-non-strict evaluation, so let's consider the example below. I'll explain the `case` construct which is explained below. Don't worry if ato lazy evaluation "looks weird", it feels that way to everyone till one plays around with it for a while!
+non-strict evaluation, so let's consider the example below. I'll explain the `case` construct which is explained below. Don't worry if lazy evaluation "looks weird", it feels that way to everyone till one plays around with it for a while!
 
 We will interpret this example as both a strict program and a non-strict program.
 This will show us that we obtain different outputs on applying different
@@ -50484,57 +50485,6 @@ inequality:
 
 
 
-# Dataflow Analysis Using Grobner Basis
-
-```meta
-status: scratch
-created: 2020-09-05
-last-edited: 2020-09-05
-```
-
-This was a quick experiment in using Grobner basis to model situations. We
-can represent our dataflow analysis constraints in terms of polynomial
-rewrites over $F_2$.
-
-Given the program:
-
-```py
-p = { 0: ["=", "x", 'y'],
-      1: ['br', 2, 100],
-      2: ['=', 'z', 'x'],
-      3: ['br', 2],
-      100: ['ret', 'z'] }
-```
-
-whose semantics I hope are fairly straightforward --- the dictionary represents
-instruction locations. Instructions proceed sequentially. branch moves
-control flow around. Note that `br` can branch to multiple locations,
-since we are not control-flow sensitive.
-
-The idea is that since in a dataflow analysis, we need information at
-each variable at each program point, we can create a ring of polynomials
-over $F_2$ for each variable at each program point. So in this case,
-we wold need:
-
-```
-R = F_2[x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x100, y100, z100]
-```
-
-We then add elements into the ideal that represents our constraints.
-For example, to perform dataflow analysis, we need to add constraints
-about how if a variable `z` is alive, all variables that are used
-to compute `z` at `100` are alive. This sets up equations that may
-have cycles (in the case of loops).
-
-These are usually resolved using the
-[Kildall algorithm](https://en.wikipedia.org/wiki/Data-flow_analysis#An_iterative_algorithm).
-
-However, we can also ask SAGE to kindly solve the Grobner basis. I hypothesize
-that the "easy" dataflow problems out to be [toric ideals](https://hal.inria.fr/inria-00074446/document)
-which admit much faster solutions.
-
-
-
 # Fenwick Trees and Orbits
 
 ```meta
@@ -52859,9 +52809,10 @@ about my chances as a grad student in the future `:)`.
 # A Motivation for P-adic Analysis
 
 ```meta
-status: technical-note
+status: exposition
 created: 2019-12-20
-last-edited: 2020-10-22
+last-edited: 2026-08-29
+blurb: The p-adics by analogy: primes as points, integers as polynomials, completions as Taylor expansions.
 ```
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
@@ -52869,7 +52820,7 @@ but this analogy as motivated by the book
 [p-adic numbers by Fernando Gouvea](https://www.springer.com/gp/book/9783540629115)
 really made me understand why one would study the p-adics, and why the
 definitions are natural. So I'm going to recapitulate the material, with the
-aim of having somoene who reads this post be left with a sense of why it's
+aim of having someone who reads this post be left with a sense of why it's
 profitable to study the p-adics, and what sorts of analogies are fruitful when
 thinking about them.
 
@@ -52877,7 +52828,7 @@ We wish to draw an analogy between the ring $\mathbb C[X]$, where $(X - \alpha)$
 are the prime ideals, and $\mathbb Z$ where $(p)$ are the prime ideals. We wish
 to take all operations one can perform with polynomials, such as generating
 functions ($1/(X - \alpha) = 1 + X + X^2 + \dots$ ),
-taylor expansions (expanding aronund $(X - \alpha)$),
+taylor expansions (expanding around $(X - \alpha)$),
 and see what their analogous objects will look like in $\mathbb Z$
 relative to a prime $p$.
 
@@ -53776,13 +53727,78 @@ to pay that price, as long as it's an honest-to-god abstract interpretation.
 This was a huge bummer for me to find out that this is not the case.
 
 
-# Computing Equivalent Gate Sets Using Grobner Bases
+# What the Hell _is_ a Grobner Basis? Ideals as Rewrite Systems
 
 ```meta
-status: scratch
+status: exposition
 created: 2019-10-25
-last-edited: 2022-05-30
+last-edited: 2026-08-29
+blurb: Grobner bases as confluent rewrite systems for polynomial arithmetic, with a worked application: computing equivalent gate sets.
 ```
+
+## A Motivating Example
+
+The question a Grobner basis allows us to answer is this: can the polynomial
+$p(x, y) = xy^2 + y$ be factorized in terms of $a(x, y) = xy + 1, b(x, y) = y^2 - 1$,
+such that $p(x, y) = f(x, y) a(x, y) + g(x, y) b(x, y)$ for some _arbitrary_ polynomials
+$f(x, y), g(x, y) \in R[x, y]$.
+
+One might imagine, "well, I'll divide and see what happens!" Now, there are two
+routes to go down:
+
+- $xy^2 + y = y(xy + 1) = y a(x, y) + 0 b(x, y)$. Well, problem solved?
+- $xy^2 + y = xy^2 - x + x + y = x (y^2 - 1) + x + y = x b(x, y) + (x + y)$. Now what? we're stuck, and we can't apply `a(x, y)`!
+
+So, clearly, the _order_ in which we perform of factorization / division starts
+to matter! Ideally, we want an algorithm which is _not sensitive_ to the order
+in which we choose to apply these changes.
+
+
+## The Rewrite Rule Perspective
+
+
+An alternative viewpoint of asking "can this be factorized", is to ask
+"can we look at the factorization as a rewrite rule"? For this perspective,
+notice that "factorizing" in terms of $xy + 1$ is the same as being
+able to set $xy = -1$, and then have the polynomial collapse to zero.
+(For the more algebraic minded, this relates to the fact that $R[x] / p(x) \sim R(\text{roots of p})$).
+The intuition behind this is that when we "divide by $xy + 1$", really what
+we are doing is we are setting $xy + 1 = 0$, and then seeing what remains. But
+$xy + 1 = 0 \iff xy = -1$. Thus, we can look at the original question as:
+
+How can we apply the rewrite rules $xy \rightarrow -1$, $y^2 \rightarrow 1$,
+along with the regular rewrite rules of polynomial arithmetic to the polynomial
+$p(x, y) = xy^2 + y$, such that we end with the value $0$?
+
+Our two derivations above correspond to the application of the rules:
+
+- $xy^2 + y \xrightarrow{xy = -1} -y + y = 0$
+- $xy^2 + y \xrightarrow{y^2 = 1} x + y \nrightarrow \text{stuck!}$
+
+That is, our [rewrite rules are not confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting))
+
+The grobner basis is a mathematical object, which is a  _a confluent set of rewrite rules_
+for the above problem. That is, it's a set of polynomials which manage to find
+the rewrite $p(x, y) \xrightarrow{\star} 0$, regardless of the order in which
+we apply them. It's also _correct_, in that it only rewrites to $0$ if the
+original system had _some way_ to rewrite to $0$.
+
+## Buchberger's Algorithm
+
+We need to identify
+[critical pairs](https://en.wikipedia.org/wiki/Critical_pair_(logic)),
+which in this setting are called as S-polynomials.
+
+Let $f_i = H(f_i) + R(f_i)$ and $f_j = H(f_j) + R(f_j)$. Let $m = lcm(H(f_i), H(f_j))$,
+and let $m_i, m_j$ be monomials such that $m_i \cdot H(f_i) = m = m_j \cdot H(f_j)$.
+The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_j f_j$.
+
+
+## References
+- [The term rewriting perspective is from the book "term rewriting and all that"](https://www21.in.tum.de/~nipkow/TRaAT/)
+- [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
+
+## Application: Computing Equivalent Gate Sets
 
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
@@ -53820,7 +53836,7 @@ In this blog post, I'm going to describe what a grobner basis is and why it's
 natural to reach for them to solve this problem, the code, and the eventual
 solution.
 
-As a spolier, the solution is:
+As a spoiler, the solution is:
 
 ```
 a^b^c^d =
@@ -53837,7 +53853,7 @@ If there's some principled way to derive this (beyond throwing symbolic
 algebra machinery), I'd really love to know ---
 [Please raise an issue with the explanation!](https://github.com/bollu/bollu.github.io/issues)
 
-##### What the hell is Grobner Basis?
+### Grobner Bases as String Rewriting
 
 The nutshell is that a grobner basis is a way to construct rewrite rules which
 also understand arithmetic (I learnt this viewpoint from the book "Term
@@ -53877,7 +53893,7 @@ so complicated about that? To understand why this is not always so easy,
 let's consider a pathological, specially constructed example
 
 
-##### A complicated example that shatters dreams
+### A Complicated Example That Shatters Dreams
 
 Here's the pathological example:
 
@@ -53911,15 +53927,14 @@ and we guaranteed that we will only get a 0 from `R'` if and only if
 we could have gotten a `0` from `R` for all strings.
 
 We can then go on to phrase this whole rewriting setup in the language of
-ideals from ring theory, and that is the language in which it is most
-often described. I've gone into more depth on that perspective here:
-["What is a grobner basis? polynomial factorization as rewrite systems"](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems).
+ideals from ring theory --- that is the perspective of the first half of
+this post, and the language in which it is most often described.
 
 Now that we have a handle on what a grobner basis is, let's go on to solve
 the original problem:
 
 
-##### An explanation through a slightly simpler problem
+### A Slightly Simpler Problem
 
 I'll first demonstrate the idea of how to solve the original problem
 by solving a slightly simpler problem:
@@ -53931,8 +53946,8 @@ by solving a slightly simpler problem:
 
 The idea is to construct the polynomial ring over `Z/8Z` (integers modulo 8) with
 variables as `a, b, c, axorb, bxorc, axorc`. Now, we know that `a^b = a + b - 2ab`. So,
-we setup rewrite rules such that `a + b - 2ab -> axorb`, `b + c - 2bc -> bxorb`,
-`c + a - 2ca -> cxora`.
+we setup rewrite rules such that `a + b - 2ab -> axorb`, `b + c - 2bc -> bxorc`,
+`c + a - 2ca -> axorc`.
 
 
 We construct the _polynomial_ `f(a, b, c) = a^b^c`, which
@@ -54030,7 +54045,7 @@ the expected results. But the reduced polynomial is not in our language `L`,
 since it has a term that is a _product_ of `b` with `axorc`.
 
 
-##### Tacking the original problem.
+### Tackling the Original Problem
 
 We try the exact same approach to the original problem of expressing
 `a ^ b ^ c ^ d`. We find that the reduced polynomial is
@@ -54091,7 +54106,7 @@ evaluating reduced a^b^c^d
 1^1^1^1: ref(0) =?= f(0): True
 ```
 
-##### code for `a^b^c^d` reduction:
+### Code for the `a^b^c^d` Reduction
 
 
 ```py
@@ -54145,11 +54160,54 @@ print("evaluating reduced a^b^c^d")
 evalxor3(f_reduced)
 ```
 
-##### Closing thoughts
+### Closing Thoughts
 
 This was a really fun exercise: Around a hundred lines of code illuminates
 the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
+
+## Sketch: Dataflow Analysis via Grobner Bases
+
+This was a quick experiment in using Grobner basis to model situations. We
+can represent our dataflow analysis constraints in terms of polynomial
+rewrites over $F_2$.
+
+Given the program:
+
+```py
+p = { 0: ["=", "x", 'y'],
+      1: ['br', 2, 100],
+      2: ['=', 'z', 'x'],
+      3: ['br', 2],
+      100: ['ret', 'z'] }
+```
+
+whose semantics I hope are fairly straightforward --- the dictionary represents
+instruction locations. Instructions proceed sequentially. branch moves
+control flow around. Note that `br` can branch to multiple locations,
+since we are not control-flow sensitive.
+
+The idea is that since in a dataflow analysis, we need information at
+each variable at each program point, we can create a ring of polynomials
+over $F_2$ for each variable at each program point. So in this case,
+we would need:
+
+```
+R = F_2[x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x100, y100, z100]
+```
+
+We then add elements into the ideal that represents our constraints.
+For example, to perform dataflow analysis, we need to add constraints
+about how if a variable `z` is alive, all variables that are used
+to compute `z` at `100` are alive. This sets up equations that may
+have cycles (in the case of loops).
+
+These are usually resolved using the
+[Kildall algorithm](https://en.wikipedia.org/wiki/Data-flow_analysis#An_iterative_algorithm).
+
+However, we can also ask SAGE to kindly solve the Grobner basis. I hypothesize
+that the "easy" dataflow problems ought to be [toric ideals](https://hal.inria.fr/inria-00074446/document)
+which admit much faster solutions.
 
 
 # The Janus Programming Language --- Time Reversible Computation
@@ -54524,77 +54582,6 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# What the Hell _is_ a Grobner Basis? Ideals as Rewrite Systems
-
-```meta
-status: technical-note
-created: 2020-09-05
-last-edited: 2020-09-05
-```
-
-##### A motivating example
-
-The question a Grobner basis allows us to answer is this: can the polynomial
-$p(x, y) = xy^2 + y$ be factorized in terms of $a(x, y) = xy + 1, b(x, y) = y^2 - 1$,
-such that $p(x, y) = f(x, y) a(x, y) + g(x, y) b(x, y)$ for some _arbitrary_ polynomials
-$f(x, y), g(x, y) \in R[x, y]$.
-
-One might imagine, "well, I'll divide and see what happens!" Now, there are two
-routes to go down:
-
-- $xy^2 + y = y(xy + 1) = y a(x, y) + 0 b(x, y)$. Well, problem solved?
-- $xy^2 + y = xy^2 - x + x + y = x (y^2 - 1) + x + y = x b(x, y) + (x + y)$. Now what? we're stuck, and we can't apply `a(x, y)`!
-
-So, clearly, the _order_ in which we perform of factorization / division starts
-to matter! Ideally, we want an algorithm which is _not sensitive_ to the order
-in which we choose to apply these changes. $x^2 + 1$.
-
-
-##### The rewrite rule perspective
-
-
-An alternative viewpoint of asking "can this be factorized", is to ask
-"can we look at the factorization as a rewrite rule"? For this perspective,
-notice that "factorizing" in terms of $xy + 1$ is the same as being
-able to set $xy = -1$, and then have the polynomial collapse to zero.
-(For the more algebraic minded, this relates to the fact that $R[x] / p(x) \sim R(\text{roots of p})$).
-The intuition behind this is that when we "divide by $xy + 1$", really what
-we are doing is we are setting $xy + 1 = 0$, and then seeing what remains. But
-$xy + 1 = 0 \iff xy = -1$. Thus, we can look at the original question as:
-
-How can we apply the rewrite rules $xy \rightarrow -1$, $y^2 \rightarrow 1$,
-along with the regular rewrite rules of polynomial arithmetic to the polynomial
-$p(x, y) = xy^2 + y$, such that we end with the value $0$?
-
-Our two derivations above correspond to the application of the rules:
-
-- $xy^2 + y \xrightarrow{xy = -1} -y + y = 0$
-- $xy^2 + y \xrightarrow{y^2 = 1} x + y \nrightarrow \text{stuck!}$
-
-That is, our [rewrite rules are not confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting))
-
-The grobner basis is a mathematical object, which is a  _a confluent set of rewrite rules_
-for the above problem. That is, it's a set of polynomials which manage to find
-the rewrite $p(x, y) \xrightarrow{\star} 0$, regardless of the order in which
-we apply them. It's also _correct_, in that it only rewrites to $0$ if the
-original system had _some way_ to rewrite to $0$.
-
-###### The buchberger's algorithm
-
-We need to identify
-[critical pairs](https://en.wikipedia.org/wiki/Critical_pair_(logic)),
-which in this setting are called as S-polynomials.
-
-Let $f_i = H(f_i) + R(f_i)$ and $f_j = H(f_j) + R(f_j)$. Let $m = lcm(H(f_i), H(f_j))$,
-and let $m_i, m_j$ be monomials such that $m_i \cdot H(f_i) = m = m_j \cdot H(f_j)$.
-The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_i f_j$.
-
-
-##### References
-- [The term rewriting perspective is from the book "term rewriting and all that"](https://www21.in.tum.de/~nipkow/TRaAT/)
-- [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
-
-
 # [Lie Bracket Versus Torsion](lie-bracket-versus-torsion)
 
 ```meta
@@ -54777,9 +54764,10 @@ Notice that `D a ~= WriterT (Product Float) []`!
 # Everything You Know About Word2vec Is Wrong
 
 ```meta
-status: technical-note
+status: technical-result
 created: 2020-09-05
-last-edited: 2022-05-30
+last-edited: 2026-08-29
+blurb: The reference word2vec implementation does not do what the paper --- and every explainer of it --- says it does.
 ```
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
