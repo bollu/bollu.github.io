@@ -59136,7 +59136,7 @@ created: 2025-05-19
 location: Istanbul
 location-url: https://maps.google.com/?q=Hagia+Sophia,+Istanbul
 photo: /static/photos/473590.jpg
-blurb: Luisa under the medallions of Hagia Sophia.
+blurb: Red, Luisa, and gold.
 ```
 
 
@@ -59148,7 +59148,7 @@ created: 2025-05-19
 location: Istanbul
 location-url: https://maps.google.com/?q=Sultanahmet,+Istanbul
 photo: /static/photos/470974.jpg
-blurb: An arch carrying its whole garden of illumination.
+blurb: An illuminated arch.
 ```
 
 
@@ -59160,7 +59160,7 @@ created: 2025-05-19
 location: Istanbul
 location-url: https://maps.google.com/?q=Sultanahmet,+Istanbul
 photo: /static/photos/470929.jpg
-blurb: Calligraphy wheeling across a gilded dome.
+blurb: Calligraphy.
 ```
 
 
@@ -59235,7 +59235,7 @@ created: 2025-03-08
 location: Cambridge
 location-url: https://maps.google.com/?q=Cambridge,+UK
 photo: /static/photos/473197.jpg
-blurb: The bronze vase of a quiet grave, holes waiting for stems.
+blurb: A bronze vase on a quiet grave.
 ```
 
 
@@ -59391,7 +59391,7 @@ created: 2025-02-22
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876949.jpg
-blurb: Palm thatch and bamboo: the roof of a jungle camp.
+blurb: Jungle camp.
 ```
 
 
@@ -59415,7 +59415,7 @@ created: 2025-02-21
 location: Sumatra, Indonesia
 location-url: https://maps.google.com/?q=Bukit+Lawang,+Sumatra
 photo: /static/photos/876931.jpg
-blurb: A lump of forest resin takes the flame.
+blurb: A lump of forest resin takes flame.
 ```
 
 
@@ -59453,7 +59453,7 @@ created: 2025-02-17
 location: Hong Kong
 location-url: https://maps.google.com/?q=Hong+Kong
 photo: /static/photos/876262.jpg
-blurb: Red lanterns queue down an alley into the night.
+blurb: A queue of lanterns.
 ```
 
 
@@ -59513,7 +59513,7 @@ created: 2024-12-28
 location: Malpe, India
 location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/466768.jpg
-blurb: A working boat in its best teal, waiting on still water.
+blurb: A working boat in its best teal.
 ```
 
 
@@ -59537,7 +59537,7 @@ created: 2024-12-27
 location: Malpe, India
 location-url: https://maps.google.com/?q=Malpe,+Karnataka
 photo: /static/photos/472750.jpg
-blurb: The sun sets past the islets; the sea disagrees quietly.
+blurb: Malpe sunsets.
 ```
 
 
@@ -59561,7 +59561,7 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/464170.jpg
-blurb: Mehendi hands cradling a gerbera.
+blurb: A cradle of mehendi.
 ```
 
 
@@ -59585,7 +59585,7 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472741.jpg
-blurb: An ear cuff sparkling back at a hurricane lantern.
+blurb: Dalia's ear cuff sparkles back at the lantern.
 ```
 
 
@@ -59597,7 +59597,6 @@ created: 2024-12-26
 location: Kottayam, India
 location-url: https://maps.google.com/?q=Kottayam,+Kerala
 photo: /static/photos/472729.jpg
-blurb: A bouquet wrapped in newsprint, and a smile to go with it.
 ```
 
 
