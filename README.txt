@@ -1997,6 +1997,7 @@ x * BitVec.twoPow y = x <<< y
 status: essay
 created: 2024-12-22
 last-edited: 2025-02-19
+blurb: A year of SAT solvers, UNSAT proof calculi, and bitblasting for Lean, as my research group moved from Edinburgh to Cambridge.
 ```
 
 - Quick TL;DR of the year: My [research group](https://grosser.science/) moved from Edinburgh to Cambridge,
@@ -4317,6 +4318,7 @@ last-edited: 2024-09-21
 status: big-list
 created: 2024-09-21
 last-edited: 2026-08-29
+blurb: Sonatas, pop covers, and jazz: a living list of what I'm playing and listening for at the piano.
 ```
 
 ## Piano Sonatas
@@ -4490,6 +4492,7 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 status: big-list
 created: 2024-08-31
 last-edited: 2026-08-29
+blurb: A living list of what I read and want to read: weird literature, hard sci-fi, ergodic fiction, and the rest.
 ```
 
 ## Fiction Genres
@@ -4662,6 +4665,7 @@ last-edited: 2024-10-09
 status: essay
 created: 2024-09-15
 last-edited: 2024-09-15
+blurb: On binge programming versus the steady drip of research, and what it took to move from one mode to the other.
 ```
 
 - During my PhD, I've realized that I've needed to access two "modes",
@@ -8230,6 +8234,7 @@ last-edited: 2023-03-27
 status: essay
 created: 2022-11-24
 last-edited: 2023-03-26
+blurb: First year of the PhD: giving MLIR a semantics in Lean, moving from India to Edinburgh, and learning what a PhD even is.
 ```
 
 2022 was a weird year for me. I moved from India to Edinburgh to pursue
@@ -32354,6 +32359,7 @@ So, $\mathbb R \otimes \mathbb  R^* \simeq \mathbb R$. Generalize to bundles.
 status: essay
 created: 2021-01-09
 last-edited: 2022-05-30
+blurb: Harish carves wood close to home. On caste, craft, and skills learnt by practice from birth that he holds cannot be taught.
 ```
 
 There's a wood carver who lives close to home, whose name is Harish.
@@ -46519,6 +46525,7 @@ of the unitary group (as in the QM case) to find programs in far quicker ways?
 status: essay
 created: 2020-09-05
 last-edited: 2022-05-30
+blurb: How this blog compiles math to plain HTML at build time with a thousand lines of C++ - no MathJax, no client-side rendering, instant loads.
 ```
 
 So, I've shifted the blog to be static-site-generated using a
@@ -47816,6 +47823,7 @@ We can imagine the scenario as follows:
 status: essay
 created: 2020-09-05
 last-edited: 2020-09-05
+blurb: Analysis feels like algorithms, algebra feels like data structures: midnight discussions with my room-mate about mathematical taste.
 ```
 
 Midnight discussions with my room-mate
@@ -51600,6 +51608,7 @@ $$
 status: exposition
 created: 2020-09-05
 last-edited: 2022-05-30
+blurb: Simplicial homology for anyone with linear algebra and group theory: detecting holes with pictures, without the machinery of algebraic topology.
 ```
 
 There are many introductions to homology on the internet, but none of them
@@ -51873,6 +51882,7 @@ we can construct $H_1$ as:
 status: exposition
 created: 2020-09-05
 last-edited: 2021-03-29
+blurb: The humble triangle again, now with functions living on it: cohomology as the linear-algebraic dual of homology.
 ```
 
 <!--
@@ -52019,6 +52029,7 @@ made explicit by the [Universal Coefficient Theorem](https://en.wikipedia.org/wi
 status: essay
 created: 2020-09-05
 last-edited: 2022-05-30
+blurb: Papers, books, and ideas that survived a year of lost data - the memorable remainder of 2019.
 ```
 
 I write these retrospective blog posts every year since 2017. I tend to post a
@@ -53188,6 +53199,7 @@ products from the "action" perspective.
 status: exposition
 created: 2020-09-05
 last-edited: 2020-09-05
+blurb: Sheaves, topoi, geometry, and logic - writing down what I understand to find the relationship I don't.
 ```
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
@@ -53217,6 +53229,7 @@ business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 status: exposition
 created: 2020-09-05
 last-edited: 2022-05-30
+blurb: Open sets are semi-decidable properties and continuity is computability: topology re-read through Escardo's synthetic lens.
 ```
 
 Most people believe that topology is about some notion of "nearness" or
@@ -53651,6 +53664,7 @@ I learnt of this explanation from this
 status: essay
 created: 2019-10-30
 last-edited: 2020-09-05
+blurb: Abstract interpretation looks magical on paper; in practice, widening is a black art. Notes from trying to use it on real code.
 ```
 
 When I first ran across the theory of abstract interpretation, it seemed magical:
@@ -56532,6 +56546,7 @@ things on architecture I wish to read and/or have read:
 status: big-list
 created: 2025-03-26
 last-edited: 2026-08-29
+blurb: Recipes I actually cook, rava dosa onward, written down so I stop reinventing them.
 ```
 
 ### Rava Dosa
@@ -57206,6 +57221,7 @@ let g:conjure#mapping#eval_motion = "E"
 status: big-list
 created: 2020-10-30
 last-edited: 2026-08-29
+blurb: Quotes I keep returning to, from Breiman on theory versus inquiry to the Seikilos epitaph.
 ```
 
 > a statistician frustrated by how “everyone wants to be a theorist”
@@ -58974,6 +58990,7 @@ w: dan-cing un-der-neath the skies of lust
 status: big-list
 created: 2021-08-19
 last-edited: 2026-08-29
+blurb: Paintings, illustrators, and pieces I love: Hiroshi Yoshida, Klimt, and company.
 ```
 
 ## Paintings and Illustrators

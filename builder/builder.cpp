@@ -440,6 +440,7 @@ struct BlockMeta : public BlockTm {
   char created[11] = {0};     // "YYYY-MM-DD", or empty if absent.
   char last_edited[11] = {0}; // "YYYY-MM-DD", or empty if absent.
   LayoutKind layout = LayoutKind::TwoColumn;
+  std::string blurb; // one-line teaser, shown on the homepage mosaic tile.
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
 
@@ -851,6 +852,8 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
             "meta layout must be 'single-column' or 'two-column', got: |%s|",
             val.c_str());
       }
+    } else if (key == "blurb") {
+      meta->blurb = val;
     } else {
       printf_err_span(span, s, "unknown meta key: |%s|", key.c_str());
     }
@@ -1951,6 +1954,19 @@ static std::string shortDate(const char *iso) {
   return buf;
 }
 
+static void statusKicker(MetaStatus status, const char **name,
+                         const char **cls) {
+  switch (status) {
+  case MetaStatus::TechnicalNote:
+    *name = "technical note"; *cls = "technical-note"; return;
+  case MetaStatus::Essay: *name = "essay"; *cls = "essay"; return;
+  case MetaStatus::Scratch: *name = "scratch"; *cls = "scratch"; return;
+  case MetaStatus::Exposition: *name = "exposition"; *cls = "exposition"; return;
+  case MetaStatus::BigList: *name = "big list"; *cls = "big-list"; return;
+  }
+  assert(false && "unreachable");
+}
+
 static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
                        const char *raw_input, const ArticleInfo &a,
                        KEEP char *outs) {
@@ -1972,6 +1988,36 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
   return outlen;
 }
 
+// one mosaic tile: kicker, linked title, date, and the meta blurb.
+static ll writeMosaicCard(duk_context *katex_ctx, duk_context *prism_ctx,
+                          const char *raw_input,
+                          const ArticleInfo &a, KEEP char *outs) {
+  const char *kicker, *kicker_cls;
+  statusKicker(a.meta->status, &kicker, &kicker_cls);
+  ll outlen = 0;
+  outlen += sprintf(outs + outlen,
+                    "<div class='brick brick-card'>"
+                    "<div class='kicker kicker-%s'>%s</div>"
+                    "<a class='brick-title' href='%s.html'>",
+                    kicker_cls, kicker, a.url);
+  renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line, outlen,
+                   outs);
+  while (outlen > 0 && outs[outlen - 1] == ' ') { outlen--; }
+  outs[outlen] = 0;
+  outlen += sprintf(outs + outlen, "</a>");
+  if (a.meta->created[0]) {
+    outlen += sprintf(outs + outlen,
+                      "&#160;<span class='post-meta'>%s</span>",
+                      shortDate(a.meta->created).c_str());
+  }
+  if (!a.meta->blurb.empty()) {
+    outlen += sprintf(outs + outlen, "<div class='brick-blurb'>%s</div>",
+                      a.meta->blurb.c_str());
+  }
+  outlen += sprintf(outs + outlen, "</div>");
+  return outlen;
+}
+
 long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
                            const char *raw_input,
                            const vector<ArticleInfo> &articles,
@@ -1983,37 +2029,40 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     return a.meta ? a.meta->status : MetaStatus::Scratch;
   };
 
-  // ===the mosaic: the curated trio as cards, interleaved with the album
-  // photos. masonry.js places bricks in source order into the shortest
-  // column, so the three cards top the columns and photos cascade below.
-  struct Group { MetaStatus status; const char *title; };
-  const Group top[] = {{MetaStatus::Essay, "Essays"},
-                       {MetaStatus::Exposition, "Expositions"},
-                       {MetaStatus::BigList, "Big Lists"}};
-  outlen += sprintf(outs + outlen,
-                    "<div class='mosaic'><div class='brick-sizer'></div>");
-  for (const Group &g : top) {
-    outlen += sprintf(outs + outlen,
-                      "<div class='brick brick-card'>"
-                      "<div class='toc-title'>%s</div><ul class='toc-list'>",
-                      g.title);
+  // ===the mosaic: every polished article as its own tile, interleaved
+  // with the album photos. masonry.js places bricks in source order into
+  // the shortest column, so the interleave becomes a mixed wall.
+  const MetaStatus top[] = {MetaStatus::Essay, MetaStatus::Exposition,
+                            MetaStatus::BigList};
+  vector<const ArticleInfo *> polished;
+  for (MetaStatus status : top) {
     for (const ArticleInfo &a : articles) {
-      if (status_of(a) != g.status) { continue; }
-      outlen += writeTocItem(katex_ctx, prism_ctx, raw_input, a,
-                             outs + outlen);
+      if (status_of(a) == status) { polished.push_back(&a); }
     }
-    outlen += sprintf(outs + outlen, "</ul></div>");
   }
+  const vector<StripPhoto> photos = readPhotoManifest();
   const char *album =
       "https://nx72119.your-storageshare.de/apps/photos/public/"
       "3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5";
-  for (const StripPhoto &p : readPhotoManifest()) {
+  const auto writePhoto = [&](const StripPhoto &p) {
     outlen += sprintf(outs + outlen,
                       "<div class='brick brick-photo'><a href='%s'>"
                       "<img loading='lazy' src='/static/photos/strip/%lld.jpg'"
                       " width='%d' height='%d'></a></div>",
                       album, p.id, p.w, p.h);
+  };
+  outlen += sprintf(outs + outlen,
+                    "<div class='mosaic'><div class='brick-sizer'></div>");
+  // after card i, catch the photo cursor up to the even-ratio target so
+  // cards and photos exhaust together.
+  size_t pi = 0;
+  for (size_t ci = 0; ci < polished.size(); ++ci) {
+    outlen += writeMosaicCard(katex_ctx, prism_ctx, raw_input,
+                              *polished[ci], outs + outlen);
+    const size_t target = ((ci + 1) * photos.size()) / polished.size();
+    for (; pi < target; ++pi) { writePhoto(photos[pi]); }
   }
+  for (; pi < photos.size(); ++pi) { writePhoto(photos[pi]); }
   outlen += sprintf(outs + outlen, "</div>");
   // masonry only loads on the homepage.
   outlen += sprintf(outs + outlen,
@@ -2025,6 +2074,7 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       "</script>");
 
   // ===technical notes and scratch, two columns===
+  struct Group { MetaStatus status; const char *title; };
   const Group bottom[] = {{MetaStatus::TechnicalNote, "Technical Notes"},
                           {MetaStatus::Scratch, "Scratch"}};
   outlen += sprintf(outs + outlen, "<div class='toc-bottom'>");
@@ -2334,17 +2384,8 @@ int main(int argc, char **argv) {
     const MetaStatus status = meta ? meta->status : MetaStatus::Scratch;
 
     // ===kicker: the magazine-style section label above the headline===
-    const char *kicker = nullptr, *kicker_cls = nullptr;
-    switch (status) {
-    case MetaStatus::TechnicalNote:
-      kicker = "technical note"; kicker_cls = "technical-note"; break;
-    case MetaStatus::Essay: kicker = "essay"; kicker_cls = "essay"; break;
-    case MetaStatus::Scratch: kicker = "scratch"; kicker_cls = "scratch"; break;
-    case MetaStatus::Exposition:
-      kicker = "exposition"; kicker_cls = "exposition"; break;
-    case MetaStatus::BigList:
-      kicker = "big list"; kicker_cls = "big-list"; break;
-    }
+    const char *kicker, *kicker_cls;
+    statusKicker(status, &kicker, &kicker_cls);
     outlen += sprintf(outbuf + outlen,
                       "<div class='kicker kicker-%s'>%s</div>", kicker_cls,
                       kicker);

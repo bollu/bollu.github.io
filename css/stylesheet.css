@@ -370,6 +370,37 @@ ul {
   border-radius: 2px;
 }
 
+.container .brick-card {
+  background: #faf8f3;
+  border: 1px solid #ddd6c8;
+  border-radius: 2px;
+  padding: 0.9em 1.1em 1em 1.1em;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(60, 50, 30, 0.08);
+}
+
+.container .brick-card .kicker {
+  margin-bottom: 0.35em;
+}
+
+.container .brick-title {
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+.container .brick-card .post-meta {
+  padding-left: 0.5em;
+  font-size: 0.8em;
+  color: #777;
+  white-space: nowrap;
+}
+
+.container .brick-blurb {
+  font-size: 0.85em;
+  color: #444;
+  margin-top: 0.45em;
+}
+
 /* technical notes and scratch: two columns */
 .container .toc-bottom {
   display: flex;
