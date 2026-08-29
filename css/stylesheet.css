@@ -474,7 +474,6 @@ ul {
 .container .two-column {
   columns: 2;
   column-gap: 2.5em;
-  column-rule: 1px solid #ddd; /* the newspaper hairline in the gutter */
   orphans: 2;
   widows: 2;
 }
