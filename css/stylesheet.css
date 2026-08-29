@@ -371,6 +371,7 @@ ul {
 }
 
 .container .brick-card {
+  box-sizing: border-box; /* padding+border stay inside the column width. */
   background: #faf8f3;
   border: 1px solid #ddd6c8;
   border-radius: 2px;
