@@ -61267,8 +61267,8 @@ a group chat. All my logs are base 2.
 
 We wish to measure how "surprising" something is. We will measure this as
 $Surprise(q) = -\log(q)$ where $q$ is the probability of an event. This
-way, if an event is deterministic [$q=1$] then its surprise is 0. If an
-event is impossible [$q=0$], then its surprise is infinite. So the
+way, if an event is deterministic ($q=1$) then its surprise is 0. If an
+event is impossible ($q=0$), then its surprise is infinite. So the
 surprise of an event whose probability is $2^{-n}$ is going to be $n$.
 
 ## Entropy is expected surprise
@@ -61291,7 +61291,7 @@ so we "know more" about it.
 Note that to define the entropy, all we needed was
 $p: X \rightarrow [0, 1]$. So really, entropy is a property of a
 probability distribution. And if we think about it a little carefully
-[ie, stare at the equation and fiddle with it], we come to the intuition
+(ie, stare at the equation and fiddle with it), we come to the intuition
 that entropy is high when $p(x)$ is spread out. One can show that the
 uniform distribution $p(x) = 1/|X|$ is the unique distribution that has
 the highest entropy over a set $X$. The intuition is the same as the
@@ -61369,7 +61369,7 @@ You can look at it from an adversarial perspective:
 We go back to the humble unfair coin, for we are gamblers. Assume we have
 two coins. One is fair, governed by a distribution
 $F: \{heads, tails\} \rightarrow [0,1]$ with $F(heads) = F(tails) = 0.5$
-[$F$ for fair]. The other only tosses heads: $H(heads) = 1$,
+($F$ for fair). The other only tosses heads: $H(heads) = 1$,
 $H(tails) = 0$.
 
 Before computing, let's talk intuitions. How do we encode the fair coin?
@@ -61382,7 +61382,7 @@ bother sending information.
   will do fine (and not send anything), because it assumes anything it
   has to send is of the form HHHHH... So $Enc_F$ paid extra bits,
   assuming the underlying distribution was $H$: $D_{KL}(H \| F)$ is
-  finite [it's 1 bit per flip].
+  finite (it's 1 bit per flip).
 - If I have the encoder $Enc_H$ and I hand it the sequence HTH generated
   from the fair coin, it's out of luck. How the fuck is it supposed to
   send T? It needs to spend infinitely more bits than $Enc_F$ to do
@@ -61398,12 +61398,12 @@ This example is also how I remember the formula:
 1. It has to be $D_{KL}(P\|Q) = \sum_{x \in X} p(x) \cdot \langle ??? \rangle$,
    since we're riffing off of entropy.
 2. It is either $\log(p(x)/q(x))$ or $\log(q(x)/p(x))$.
-3. It has to be $p(x)/q(x)$, since if $q(x) = 0$ [ie, $q$ cannot
-   represent something], it is infinitely far away from $p$:
+3. It has to be $p(x)/q(x)$, since if $q(x) = 0$ (ie, $q$ cannot
+   represent something), it is infinitely far away from $p$:
    $\log(p(x)/0) = \log(\infty) = \infty$. Aka "out of band stuff costs
    infinite bits".
-4. And it has to be $p(x)/q(x)$ because if $p(x) = 0$ [ie, the source
-   never gives you this data], I don't care whether we can encode it or
+4. And it has to be $p(x)/q(x)$ because if $p(x) = 0$ (ie, the source
+   never gives you this data), I don't care whether we can encode it or
    not, following the convention that $0 \log 0 = 0$.
 
 A friend ([Aditya Bharti](https://github.com/AdityaBharti)) offered a far
@@ -61411,7 +61411,7 @@ less roundabout mnemonic: the expected bits to encode $X \sim p$ is
 $\sum_x p(x)(-\log p(x))$, where the first $p$ is there because it's an
 expectation, and the second is there because the encoder uses the
 distribution to calculate the number of bits. If the encoder makes the
-wrong assumption [data from $p$, encoder assuming $q$], the expectation
+wrong assumption (data from $p$, encoder assuming $q$), the expectation
 stays $p$ but the encoder's term becomes $-\log q(x)$. Subtract the
 honest cost from the wrong-assumption cost, and the formula falls out.
 I'm a little iffy with this one because you can write distributions where
@@ -61429,16 +61429,16 @@ divergence. This gadget is called as the "Bregman divergence".
 
 So, let us begin with the humble equation
 $d(x, y) = \lVert x-y \rVert^2 = \langle x - y | x - y \rangle$, where I
-use $\langle a | b \rangle$ for the dot product [yay quantum notation].
+use $\langle a | b \rangle$ for the dot product (yay quantum notation).
 Now, we can algebraically manipulate it:
 
 $$
 \begin{aligned}
 d(x, y) &= \langle x - y | x - y \rangle \\
 &= \langle x|x \rangle + \langle y|y \rangle - 2\langle x|y \rangle
-   \quad \text{[linearity]}\\
+   \quad \text{(linearity)}\\
 &= \langle x|x \rangle - \langle y|y \rangle - 2\langle y|x - y \rangle
-   \quad \text{[add and subtract $2\langle y|y\rangle$]}\\
+   \quad \text{(add and subtract $2\langle y|y\rangle$)}\\
 &= lensq(x) - lensq(y) - \langle lensq'(y)|x-y \rangle
 \end{aligned}
 $$
@@ -61455,8 +61455,8 @@ on a line: start at $y$, with slope $lensq'(y)$, and move for a distance
 of $(x - y)$. So the distance we are measuring is the gap between the
 value of the function at $x$ and the tangent drawn at $y$, followed out
 to $x$. Draw the parabola and a tangent line: for a convex function this
-gap is clearly always positive [for a formal proof, please, the
-convexity of $f$].
+gap is clearly always positive (for a formal proof, please, the
+convexity of $f$).
 
 Now, we can choose to generalize this to any convex function $f$, and it
 will give us an analogous "distance". Note that the same argument holds
@@ -61469,9 +61469,9 @@ $$
 
 Now plug in the convex function
 $f((p_1, \dots, p_n)) = \sum_i p_i \log p_i$, whose derivative is
-$(\partial f/\partial p_i)(y) = 1 + \log y_i$. On simplification [for
+$(\partial f/\partial p_i)(y) = 1 + \log y_i$. On simplification (for
 $x, y$ probability vectors, the $\sum_i x_i - \sum_i y_i$ terms are zero
-since both sum to one]:
+since both sum to one):
 
 $$
 D_f(x, y) = \sum_i x_i (\log x_i - \log y_i) = D_{KL}(x \| y) \geq 0.
@@ -61486,7 +61486,7 @@ Anyway, that's my preferred proof for KL divergence being non-negative.
 ## Conclusion
 
 Why $\log$ for surprise, and not some other function that is 0 when
-$p = 1$ [which other functions satisfy as well]? If you add the condition
+$p = 1$ (which other functions satisfy as well)? If you add the condition
 that $Entropy(XY) = Entropy(X) + Entropy(Y)$ for independent $X, Y$,
 along with some other intuitive conditions,
 [entropy is uniquely characterised](https://math.stackexchange.com/a/331128/261373).
