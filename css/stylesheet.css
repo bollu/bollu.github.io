@@ -367,20 +367,19 @@ ul {
   box-sizing: border-box;
   background: #f1efe9;
   border-radius: 2px;
-  padding: 0.55em;
+  overflow: hidden; /* the photo sits flush against the box edges. */
 }
 
 .container .brick-photo img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 1px;
 }
 
 .container .brick-photo .photo-caption {
   font-size: 0.8em;
   color: #444;
-  margin-top: 0.45em;
+  padding: 0.45em 0.6em 0.55em 0.6em;
   text-align: left;
 }
 

@@ -59068,7 +59068,7 @@ last-edited: 2025-09-07
 
 
 
-# The Valley
+# Valley
 
 ```meta
 status: photo
@@ -59080,7 +59080,7 @@ blurb: Luisa looks down a valley that keeps going without us.
 ```
 
 
-# Butterfly in the Pines
+# Butterfly
 
 ```meta
 status: photo
@@ -59092,7 +59092,7 @@ blurb: A yellow butterfly hiding in plain sight among the needles.
 ```
 
 
-# Onto the Roof
+# Hut Roof
 
 ```meta
 status: photo
@@ -59104,7 +59104,7 @@ blurb: Luisa scales the shingles of the shepherd's hut at Campisol Alto.
 ```
 
 
-# Kitten on the Woodpile
+# Kitten
 
 ```meta
 status: photo
@@ -59128,7 +59128,7 @@ blurb: Gold calligraphy banding a fluted column of the Blue Mosque.
 ```
 
 
-# In Hagia Sophia
+# Hagia Sophia
 
 ```meta
 status: photo
@@ -59140,7 +59140,7 @@ blurb: Luisa under the medallions of Hagia Sophia.
 ```
 
 
-# The Painted Arch
+# Painted Arch
 
 ```meta
 status: photo
@@ -59152,7 +59152,7 @@ blurb: An arch carrying its whole garden of illumination.
 ```
 
 
-# The Gilded Dome
+# Gilded Dome
 
 ```meta
 status: photo
@@ -59164,7 +59164,7 @@ blurb: Calligraphy wheeling across a gilded dome.
 ```
 
 
-# Marble Seat
+# Cat on Marble
 
 ```meta
 status: photo
@@ -59188,7 +59188,7 @@ blurb: Balat trades plaster for color; bread left on the roof for the birds.
 ```
 
 
-# Doorkeeper
+# Mosque Cat
 
 ```meta
 status: photo
@@ -59212,7 +59212,7 @@ blurb: Lilac jumper, pink wall; spring does the color grading.
 ```
 
 
-# Me, with Bubble
+# Portrait with Bubble
 
 ```meta
 status: photo
@@ -59224,7 +59224,7 @@ blurb: Soap bubble taking a chance.
 ```
 
 
-# A Vase for Visitors
+# Grave Vase
 
 ```meta
 status: photo
@@ -59248,7 +59248,7 @@ blurb: Copper baubles nesting in silvered ivy.
 ```
 
 
-# Still Life with Old Wood
+# Tofu
 
 ```meta
 status: photo
@@ -59272,7 +59272,7 @@ blurb: Pink water lilies on pewter water.
 ```
 
 
-# The Volcano Breathes
+# Volcano
 
 ```meta
 status: photo
@@ -59284,7 +59284,7 @@ blurb: A volcano exhales under a grey sky.
 ```
 
 
-# Cold Brew, Warm Wood
+# Cold Brew
 
 ```meta
 status: photo
@@ -59308,7 +59308,7 @@ blurb: A tabby with opinions, somewhere in Sumatra.
 ```
 
 
-# Streetlamp and Wires
+# Streetlamp
 
 ```meta
 status: photo
@@ -59320,7 +59320,7 @@ blurb: A tin-hat streetlamp holding court among the wires.
 ```
 
 
-# Painting the River
+# Luisa Painting
 
 ```meta
 status: photo
@@ -59332,7 +59332,7 @@ blurb: Luisa watercolors the river that is sitting for its portrait.
 ```
 
 
-# Macaque, Looking Up
+# Macaque
 
 ```meta
 status: photo
@@ -59344,7 +59344,7 @@ blurb: A pig-tailed macaque watches the canopy.
 ```
 
 
-# The Old Man of the Forest
+# Orangutan
 
 ```meta
 status: photo
@@ -59356,7 +59356,7 @@ blurb: A male orangutan works through a banana leaf in Bukit Lawang.
 ```
 
 
-# Heartwood
+# Splintered Wood
 
 ```meta
 status: photo
@@ -59368,7 +59368,7 @@ blurb: A splintered limb showing its grain.
 ```
 
 
-# Leaves, Backlit
+# Leaves
 
 ```meta
 status: photo
@@ -59380,7 +59380,7 @@ blurb: Sun through the canopy turns leaves into lanterns.
 ```
 
 
-# Jungle Shelter
+# Jungle Hut
 
 ```meta
 status: photo
@@ -59392,7 +59392,7 @@ blurb: Palm thatch and bamboo: the roof of a jungle camp.
 ```
 
 
-# Ant at Work
+# Ant
 
 ```meta
 status: photo
@@ -59404,7 +59404,7 @@ blurb: A forest ant negotiates a branch in the understory.
 ```
 
 
-# Fire and Stone
+# Fire
 
 ```meta
 status: photo
@@ -59416,7 +59416,7 @@ blurb: A lump of forest resin takes the flame.
 ```
 
 
-# Night Market Portrait
+# Night Market
 
 ```meta
 status: photo
@@ -59428,7 +59428,7 @@ blurb: Luisa, a beer, and the clatter of a night food market.
 ```
 
 
-# Terraced Towers
+# Skyscrapers
 
 ```meta
 status: photo
@@ -59440,19 +59440,9 @@ blurb: Skyscrapers wearing their gardens at dusk.
 ```
 
 
-# Lantern, Up Close
-
-```meta
-status: photo
-created: 2025-02-17
-location: Hong Kong
-location-url: https://maps.google.com/?q=Hong+Kong
-photo: /static/photos/876274.jpg
-blurb: The crown of a red lantern against the street's bokeh.
-```
 
 
-# Lantern Alley
+# Lanterns
 
 ```meta
 status: photo
@@ -59464,7 +59454,7 @@ blurb: Red lanterns queue down an alley into the night.
 ```
 
 
-# Green Glaze
+# Green Tiles
 
 ```meta
 status: photo
@@ -59476,7 +59466,7 @@ blurb: Glazed ceramic blossoms catching red lantern light.
 ```
 
 
-# Filament
+# Bulb
 
 ```meta
 status: photo
@@ -59488,7 +59478,7 @@ blurb: A string-light bulb holding its own against the dark.
 ```
 
 
-# A Shop of Fans
+# Fans
 
 ```meta
 status: photo
@@ -59500,7 +59490,7 @@ blurb: Folding fans stacked wing over wing.
 ```
 
 
-# BBQ in Neon
+# Neon Sign
 
 ```meta
 status: photo
@@ -59560,7 +59550,7 @@ blurb: A flowerpot firework throws its sparks at a wedding night.
 ```
 
 
-# Henna and Gerbera
+# Henna
 
 ```meta
 status: photo
