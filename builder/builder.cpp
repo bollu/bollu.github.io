@@ -2146,7 +2146,8 @@ static ll writePhotoCardHTML(const ArticleInfo &a, const char *classes,
   const bool have_wh = jpegDimensions(fspath, &w, &h);
   ll outlen = 0;
   outlen += sprintf(outs + outlen,
-                    "<div class='%s'><img loading='lazy' src='%s'",
+                    "<div class='%s' data-k='photo'>"
+                    "<img loading='lazy' src='%s'",
                     classes, a.meta->photo.c_str());
   if (have_wh) {
     outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
@@ -2180,10 +2181,10 @@ static ll writeMosaicCard(duk_context *katex_ctx, duk_context *prism_ctx,
   statusKicker(a.meta->status, &kicker, &kicker_cls);
   ll outlen = 0;
   outlen += sprintf(outs + outlen,
-                    "<div class='brick brick-card'>"
+                    "<div class='brick brick-card' data-k='%s'>"
                     "<div class='kicker kicker-%s'>%s</div>"
                     "<a class='brick-title' href='%s.html'>",
-                    kicker_cls, kicker, a.url);
+                    kicker_cls, kicker_cls, kicker, a.url);
   renderInlineLine(katex_ctx, prism_ctx, raw_input, a.heading->line, outlen,
                    outs);
   while (outlen > 0 && outs[outlen - 1] == ' ') { outlen--; }
@@ -2244,6 +2245,16 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   const auto writePhoto = [&](const ArticleInfo &a) {
     outlen += writePhotoCardHTML(a, "brick brick-photo", outs + outlen);
   };
+  // filter bar: each button shows one kind of brick (or all of them).
+  outlen += sprintf(outs + outlen,
+      "<div class='mosaic-filters'>"
+      "<button class='mfilter on' data-k='all'>All</button>"
+      "<button class='mfilter' data-k='essay'>Essays</button>"
+      "<button class='mfilter' data-k='exposition'>Expositions</button>"
+      "<button class='mfilter' data-k='technical-result'>Technical Results</button>"
+      "<button class='mfilter' data-k='big-list'>Big Lists</button>"
+      "<button class='mfilter' data-k='photo'>Photos</button>"
+      "</div>");
   outlen += sprintf(outs + outlen,
                     "<div class='mosaic'><div class='brick-sizer'></div>");
   // after card i, catch the photo cursor up to the even-ratio target so
@@ -2268,7 +2279,20 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       // once they are in (and again on full load, for belt and braces).
       "var re=function(){ms.layout();};"
       "if(document.fonts){document.fonts.ready.then(re);}"
-      "window.addEventListener('load',re);}});"
+      "window.addEventListener('load',re);"
+      // filters: detach non-matching bricks (keeping source order), then
+      // hand masonry the surviving children.
+      "var all=Array.prototype.slice.call(m.querySelectorAll('.brick'));"
+      "var btns=Array.prototype.slice.call("
+      "document.querySelectorAll('.mfilter'));"
+      "btns.forEach(function(b){b.addEventListener('click',function(){"
+      "btns.forEach(function(o){o.classList.remove('on');});"
+      "b.classList.add('on');"
+      "var k=b.getAttribute('data-k');"
+      "all.forEach(function(el){el.remove();});"
+      "all.forEach(function(el){"
+      "if(k==='all'||el.getAttribute('data-k')===k){m.appendChild(el);}});"
+      "ms.reloadItems();ms.layout();});});}});"
       "</script>");
 
   // ===technical notes and scratch, two columns===

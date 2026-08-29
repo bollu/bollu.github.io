@@ -339,6 +339,34 @@ ul {
   border-top: 1px solid #ddd6c8;
 }
 
+/* filter bar above the mosaic: minimal rectangles, an underline that goes
+   blue when selected. */
+.container .mosaic-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.6em;
+  justify-content: center;
+  margin: 1.2em 0 0.2em 0;
+}
+
+.container .mfilter {
+  font-family: 'Blog Serif', serif;
+  font-size: 0.62em;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #777;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #ddd6c8;
+  padding: 0.2em 0.1em 0.35em 0.1em;
+  cursor: pointer;
+}
+
+.container .mfilter.on {
+  color: #1a1a1a;
+  border-bottom-color: #1a73e8;
+}
+
 /* the mosaic: the polished trio as cards, interleaved with photos.
    masonry.js absolutely positions the bricks; the float is the no-JS
    fallback. brick widths must match the masonry gutter (18px). */
@@ -731,10 +759,11 @@ ul {
     break-inside: avoid;
   }
 
-  /* navigation, comments, and the photos are meaningless on paper */
+  /* navigation, comments, filters, and photos are meaningless on paper */
   #footer,
   .utterances,
   .brick-photo,
+  .mosaic-filters,
   script {
     display: none !important;
   }
