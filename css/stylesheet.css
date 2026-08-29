@@ -479,6 +479,12 @@ ul {
   .container .brick {
     width: 100%;
   }
+
+  /* justification needs wide measures; on a phone column it tears words
+     apart with rivers of whitespace. ragged-right reads far better. */
+  .container {
+    text-align: left;
+  }
 }
 
 .container .toc-list .post-meta {
@@ -636,6 +642,7 @@ ul {
 .container .kicker-exposition { color: #7b52ab; }
 .container .kicker-big-list { color: #1a73e8; }
 .container .kicker-photo { color: #b06000; }
+.container .kicker-technical-result { color: #0b7285; }
 
 /* drop cap on the opening paragraph of essays */
 .article-body.status-essay > p:first-of-type::first-letter {

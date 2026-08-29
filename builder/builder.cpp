@@ -369,10 +369,12 @@ struct ListItemTm {
 // absent-status default). TechnicalNote and Essay mark the curated best: a
 // complete technical note, or a piece of reflective prose. Exposition marks
 // longform pedagogical series (e.g. the homology invitation). BigList marks
-// living list documents. Photo is a photograph: the meta block carries the
-// image path, location, and blurb caption.
+// living list documents. TechnicalResult marks a polished, complete,
+// original technical finding — exposition teaches what is known, a
+// technical result presents what was found. Photo is a photograph: the
+// meta block carries the image path, location, and blurb caption.
 enum class MetaStatus { Scratch, TechnicalNote, Essay, Exposition, BigList,
-                        Photo };
+                        Photo, TechnicalResult };
 
 struct BlockTm {
   enum class Kind {
@@ -919,10 +921,13 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
         meta->status = MetaStatus::BigList;
       } else if (val == "photo") {
         meta->status = MetaStatus::Photo;
+      } else if (val == "technical-result") {
+        meta->status = MetaStatus::TechnicalResult;
       } else {
         printf_err_span(span, s,
-            "meta status must be 'technical-note', 'essay', 'exposition', "
-            "'scratch', 'big-list', or 'photo', got: |%s|", val.c_str());
+            "meta status must be 'technical-note', 'technical-result', "
+            "'essay', 'exposition', 'scratch', 'big-list', or 'photo', "
+            "got: |%s|", val.c_str());
       }
     } else if (key == "created") {
       if (!parseMetaDate(val, meta->created)) {
@@ -2092,6 +2097,8 @@ static void statusKicker(MetaStatus status, const char **name,
   case MetaStatus::Exposition: *name = "exposition"; *cls = "exposition"; return;
   case MetaStatus::BigList: *name = "big list"; *cls = "big-list"; return;
   case MetaStatus::Photo: *name = "photo"; *cls = "photo"; return;
+  case MetaStatus::TechnicalResult:
+    *name = "technical result"; *cls = "technical-result"; return;
   }
   assert(false && "unreachable");
 }
@@ -2220,7 +2227,7 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
   // with the photo articles. masonry.js places bricks in source order into
   // the shortest column, so the interleave becomes a mixed wall.
   const MetaStatus top[] = {MetaStatus::Essay, MetaStatus::Exposition,
-                            MetaStatus::BigList};
+                            MetaStatus::TechnicalResult, MetaStatus::BigList};
   vector<const ArticleInfo *> polished, photos;
   for (MetaStatus status : top) {
     for (const ArticleInfo *a : by_date) {
