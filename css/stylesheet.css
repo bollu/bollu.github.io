@@ -260,6 +260,17 @@ pre .code-line::before {
 
 .latexblock {
   line-height: 1em;
+  overflow-x: auto; /* a too-wide equation scrolls, never spills the sheet */
+}
+
+/* katex defaults to 1.21x the surrounding size; too large for the
+   two-column measure */
+.container .katex {
+  font-size: 1.02em;
+}
+
+.container .latexblock .katex {
+  font-size: 0.95em;
 }
 
 pre,
