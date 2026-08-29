@@ -249,6 +249,31 @@ blockquote {
   margin-bottom: 1em;
 }
 
+#status-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: 0.4em;
+}
+
+/* on phones the filters river down, one below the other */
+@media (max-width: 560px) {
+  #status-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #status-filter .pill {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  #status-filter .garage-door {
+    padding-left: 0;
+    margin-top: 0.4em;
+  }
+}
+
 /* minimal tab-style buttons: a colored line under the selected one. */
 #filter-bar .pill {
   font-family: 'Blog Serif', serif;
