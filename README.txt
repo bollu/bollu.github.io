@@ -61483,7 +61483,7 @@ visualization link:
 [Meet the Bregman divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html).
 Anyway, that's my preferred proof for KL divergence being non-negative.
 
-## Coda
+## Conclusion
 
 Why $\log$ for surprise, and not some other function that is 0 when
 $p = 1$ [which other functions satisfy as well]? If you add the condition
