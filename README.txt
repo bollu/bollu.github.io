@@ -28,56 +28,54 @@ blurb: The lives of Udupi-Ajja and Huduco-Ajja, written down before the details 
 
 ## Udupi-Ajja
 
-- He was born at around the 1930s. WW2 was going on when he was a kid.
-  Of course, no records are kept, so we don't really know the details.
-- At 5 years, their mom and dad divorced.
-- Went to stay with mom.
-- Mom was the most beautiful woman in town :P, and was great at chess.
-- For 2 years, lived in @location("Mangalore"). Mom was a nurse. He knows about WW2
-  as a small child, since he mentioned that this impacted their life.
-- She passed away from TB.
-- He learnt Koknaki while he lived there.
-- He moved in with his dad after his mom died.
-- Great grandpa hated him, because he deserted him. Ajja was sent
-  to work in the fields.
-- Ajja always wanted to study.
-- He was sent (sold?) to @location("Kargal", url: "https://maps.google.com/?q=Kargal,+Karnataka") (close to @location("Joga", url: "https://maps.google.com/?q=Jog+Falls")). Unclear for how many years.
-  Worked at a hotel.
-- At the hotel, someone told him about @location("Ujire") (Dharmastala). He ran away
-  to the gurukul.
-- He learnt Sanskrit, Vedas, etc. there till 11th grade. This is known
-  _as fact_, cause the person who taught him Sanskrit used to come home.
-  Supposedly always came first in class.
-- Bhide taught him English at the gurukul.
-- While he was at the gurukul, he worked(?) at Bhide's house. This is known
-  cause their families know each other.
-- After his SSLC, he came to @location("Udupi") and studied his 12th/13th grade
-  (intermediate) at @location("MGM College", url: "https://maps.google.com/?q=MGM+College,+Udupi"). He was a science major.
-- Grab one meal a day at the @location("Krishna temple", url: "https://maps.google.com/?q=Sri+Krishna+Matha,+Udupi").
-- He and his friend Kedlaya grabbed a job at the LIC right after 12th grade.
-- After 3-4 years of joining the LIC, he fell very sick. That was when
-  he realized he wishes to get married ;) There was _no one_ for him
-  when he fell sick.
-- He apparently then went to his dad and said "If you don't get me married,
-  then I'm going to marry someone regardless" to spur his family into action?
-- He then learnt that there was someone at @location("Narkata"). He went there, and he was
-  speaking there. Grandmom came, knocked the jug of water on the table and
-  rushed off in anger. Supposedly this was love at first sight :P
-  "Her fiery spirit" and all that.
-- Grandpa's dad took dowry from the wedding and pocketed it. Grandpa was
-  against the dowry, he learnt of this much later.
-- Passed away in 2003, ~70 years.
+He was born at around the 1930s; WW2 was going on when he was a kid. Of
+course, no records were kept, so we don't really know the details. When he
+was 5, his mom and dad divorced, and he went to stay with his mom. She was
+the most beautiful woman in town :P, and was great at chess. For two years
+they lived in @location("Mangalore"), where she worked as a nurse. He knew
+about WW2 as a small child, since he mentioned that it impacted their life.
+He learnt Konkani while he lived there. She passed away from TB.
+
+After his mom died, he moved in with his dad. Great grandpa hated him,
+because he had deserted him, and Ajja was sent to work in the fields. Ajja
+always wanted to study. He was sent (sold?) to @location("Kargal", url: "https://maps.google.com/?q=Kargal,+Karnataka")
+(close to @location("Joga", url: "https://maps.google.com/?q=Jog+Falls")),
+where he worked at a hotel --- unclear for how many years. At the hotel,
+someone told him about @location("Ujire") (Dharmastala), and he ran away to
+the gurukul there. He learnt Sanskrit, Vedas, etc. there till 11th grade.
+This is known _as fact_, cause the person who taught him Sanskrit used to
+come home. Supposedly he always came first in class. Bhide taught him
+English at the gurukul, and while he was there, he worked(?) at Bhide's
+house. This is known cause their families know each other.
+
+After his SSLC, he came to @location("Udupi") and studied his 12th/13th
+grade (intermediate) at @location("MGM College", url: "https://maps.google.com/?q=MGM+College,+Udupi"),
+as a science major, grabbing one meal a day at the @location("Krishna temple", url: "https://maps.google.com/?q=Sri+Krishna+Matha,+Udupi").
+He and his friend Kedlaya grabbed a job at the LIC right after 12th grade.
+
+After 3-4 years of joining the LIC, he fell very sick. That was when he
+realized he wished to get married ;) There was _no one_ for him when he
+fell sick. He apparently then went to his dad and said "If you don't get me
+married, then I'm going to marry someone regardless", to spur his family
+into action? He then learnt that there was someone at @location("Narkata").
+He went there, and while he was speaking, grandmom came, knocked the jug of
+water on the table, and rushed off in anger. Supposedly this was love at
+first sight :P "Her fiery spirit" and all that. Grandpa's dad took dowry
+from the wedding and pocketed it; grandpa was against the dowry, and learnt
+of this much later.
+
+He passed away in 2003, at around 70.
 
 ## Huduco-Ajja
 
-- Ajja studied till 4th grade, and then he was sent to work in @location("Kerala").
-- He was then sent to @location("Ullala", url: "https://maps.google.com/?q=Ullal,+Karnataka"), which is at Karnataka, close to the Kerala
-  border.  He worked at the home of an Ayurveda Pundit.
-  He learnt letters by reading signboards, and then learnt the vocabulary.
-- He used to write kannada poetry that was published in the local newspapers.
-- He started translation when he was 30-plus years old.
-- Sahitya Akademi award for translation, from kannanda to malayalam (2012).
-  He learnt kannada and malayalam both.
+Ajja studied till 4th grade, and was then sent to work in
+@location("Kerala"). He was then sent to @location("Ullala", url: "https://maps.google.com/?q=Ullal,+Karnataka"),
+which is at Karnataka, close to the Kerala border, where he worked at the
+home of an Ayurveda Pundit. He learnt his letters by reading signboards,
+and then learnt the vocabulary. He used to write Kannada poetry that was
+published in the local newspapers. He started translation when he was
+30-plus years old, and won the Sahitya Akademi award for translation from
+Kannada to Malayalam (2012) --- he had learnt both Kannada and Malayalam.
 
 
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
