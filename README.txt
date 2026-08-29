@@ -4084,20 +4084,20 @@ last-edited: 2024-09-21
 ```meta
 status: scratch
 created: 2024-09-12
-last-edited: 2024-09-21
+last-edited: 2026-08-29
 ```
 
-- Given a hypergeometric function $a(n)$, gosper's algorithm finds the function $S(k) = \sum_{i=0}^k f(k)$, iff $S$ is hypergeometric.
+- Given a hypergeometric function $f(n)$, Gosper's algorithm finds the function $S(k) = \sum_{i=0}^k f(i)$, iff $S$ is hypergeometric.
 - Suppose $S(k)/S(k-1)$ is a rational function of $k$.
-- Then $f(k) / f(k - 1) = (S(k) - S(k - 1))/(S(k - 1) - S(k - 2)$, which equals $(S(k)/S(k - 1) - 1)/(1 - S(k-2)/S(k-1))$ which
+- Then $f(k) / f(k - 1) = (S(k) - S(k - 1))/(S(k - 1) - S(k - 2))$, which equals $(S(k)/S(k - 1) - 1)/(1 - S(k-2)/S(k-1))$ which
   is also a rational function. 
-- Thus, we want to expression $f(k)/f(k - 1) = q(k) / r(k)$.
+- Thus, we want to express $f(k)/f(k - 1) = q(k) / r(k)$.
 - However, we give ourselves a "fudge factor" of the form $f(k) / f(k - 1) = p(k)/p(k - 1) \cdot q(k)/r(k)$.
 
 ### Step 1: p, q, r decomposition
 
 - We try to impose a condition on $q(k), r(k)$ that we impose using $p(k)$, which states:
-  $\forall a, b, (k + a) \| q(k) \land (k + b) \| r(k) \implies a < b$.
+  $\forall a, b, (k + a) \mid q(k) \land (k + b) \mid r(k) \implies a < b$.
 - For example, if we have $(x - 100) / (x - 1)$, then $a = -100$ is less than $b = 1$, which satisfies the condition.
 - We claim that this is always possible to achieve:
 
@@ -4114,9 +4114,9 @@ while exists a, b such that q % (k + a) = 0 and r % (k + b) = 0:
   q = q / (k + a); r = r / (k + b);
   fudge = falling_factorial(k + a, N)
   # so 'fudge(k) = (k + a) (k + a - 1) ... (k + b + 1)'
-  # see that 't(k) / t(k - 1) = (k + a) / (k + b)',
+  # see that 'fudge(k) / fudge(k - 1) = (k + a) / (k + b)',
   # which is exactly what we cancelled from p, q.
-  p = p * t
+  p = p * fudge
 ```
 
 ### Step 2: The secret function s(k)
@@ -4130,9 +4130,9 @@ while exists a, b such that q % (k + a) = 0 and r % (k + b) = 0:
 
 $$
 \begin{aligned}
-s(k) &= \frac{p(k)}{q(k)} frac{S(k)}{f(k)} \\
-&= \frac{p(k)}{q(k)} \frac{S(k)}{(S(k) - S(k - 1)} \\
-&= \frac{p(k)}{q(k)} \frac{1}{(1 - (S(k - 1)/S(k))} \\
+s(k) &= \frac{p(k)}{q(k+1)} \frac{S(k)}{f(k)} \\
+&= \frac{p(k)}{q(k+1)} \frac{S(k)}{S(k) - S(k - 1)} \\
+&= \frac{p(k)}{q(k+1)} \frac{1}{1 - S(k - 1)/S(k)} \\
 \end{aligned}
 $$
 
@@ -4147,9 +4147,8 @@ Substituting $S(k) = q(k + 1)/p(k) \cdot s(k) f(k)$ into $f(k) = S(k) - S(k - 1)
 $$
 \begin{aligned}
 f(k) &= \frac{q(k+1)}{p(k)}s(k)f(k) -  \frac{q(k)}{p(k-1)}s(k-1)f(k-1) \\
-\frac{p(k)}{f(k)} f(k) &= \frac{p(k)}{f(k)} \frac{q(k+1)}{p(k)}s(k)f(k) -  \frac{p(k)}{f(k)} \frac{q(k)}{p(k-1)}s(k-1)f(k-1) \\
-\dots
-p(k) = q(k + 1)s(k) - r(k) s(k - 1)
+p(k) &= q(k+1)s(k) - \frac{p(k)\,q(k)}{p(k-1)}\frac{f(k-1)}{f(k)}s(k-1) \\
+p(k) &= q(k + 1)s(k) - r(k) s(k - 1)
 \end{aligned}
 $$
 
@@ -4158,7 +4157,7 @@ $$
 ### Step 3: $s(k)$ is polynomial iff $S(k)$ is a rational function
 
 - We already know that $s(k)$ is a rational function.
-- For contradiction, assume $s(k) = u(k) / v(k)$ where $v(k) \neq 1$, $gcd(u(k), v(k)) = 1$ for contradiction.
+- For contradiction, assume $s(k) = u(k) / v(k)$ where $v(k) \neq 1$, $\gcd(u(k), v(k)) = 1$ for contradiction.
 - let $N$ be the largest natural such that $(k + \beta)$ and $(k + \beta + N)$ both occur as factors for $v(k)$ ($\beta \in \mathbb C$).
   See that $N$ always exists because $N = 0$ exists.
 - Substituting into the definition of $p(k)$ in terms of $q(k), r(k), s(k)$, we get:
@@ -4172,7 +4171,7 @@ p(k)v(k)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)v(k) \\
 \end{aligned}
 $$
 
-- We know that $v$ can be made zero if its argument equals $\beta$, and $beta + N$, so we perform the followig assignments:
+- We know that $v$ vanishes at $-\beta$ and $-\beta - N$, so we perform the following assignments:
 - First set $k - 1 =  -\beta$ (so $v(k-1) = 0$):
 
 $$
@@ -4194,7 +4193,7 @@ p(k)(v(k) \sim 0)v(k-1) &= q(k + 1)u(k)v(k-1) - r(k) u(k - 1)(v(k) \sim 0) \\
 \end{aligned}
 $$
 
-- Now, we must have that $u(-beta) \neq 0$, and $u(-\beta -N) \neq 0$, since $(u, v)$ have no common factors.
+- Now, we must have that $u(-\beta) \neq 0$, and $u(-\beta -N) \neq 0$, since $(u, v)$ have no common factors.
 - Also, $v(-\beta + 1) \neq 0$ and $v(-\beta -N - 1) \neq 0$, because $v(k)$ would otherwise have a factor of $k + \beta + N + 1$ or $k + \beta - 1$,
   which contradicts the maximality of $N$ (??? what does this even mean?)
 - Thus, we must have $r(-\beta + 1) = 0 = q(-\beta - N + 1)$. 
