@@ -116,6 +116,10 @@ img {
 .container h1, .container h2, .container h3, .container h4, .container h5 {
   margin-top: 1em;
   margin-bottom: 0.4em;
+  /* hanging indent: wrapped heading lines align with the title text,
+     not with the section mark */
+  padding-left: 1.3em;
+  text-indent: -1.3em;
 }
 
 /* the site header: the name sits tight under the title, big and heavy --
