@@ -12,126 +12,6 @@
 
 <img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
  
-# Big List of Hosting
-
-```meta
-status: big-list
-created: 2026-08-23
-last-edited: 2026-08-29
-```
-
-#### Cooking
-
-- 1.5 big aperol spritz bottles more than suffices.
-- 3 baguettes, crisps.
-- Some cheeses, ask people to bring more wine and cheese.
-
-- background music: search Spotify for “italian cooking music”
-- Recipe Book: Alison Roman, Nothing Fancy
-
-
-## THE ART OF GATHERING BY PRIYA PARKER
-
-### Be Specific In Why We Gather
-
-- "The book club was organized to get us to read a book together.
-  This is the circular logic that guides the planning of many of our gatherings."
-  When we gather, we often make the mistake of **conflating category with purpose**.
-- "routine - that great enemy of meaningful gathering". Name meetings with specificity.
-  The more focused and particular a gathering is,
-  the more narrowly it frames itself and the more passion it arouses.
-- Werewolf /mafia.
-- the Latitude society in SF: "you couldn’t pour yourself a drink; someone had to pour it for you".
-- Everyone opens with a toast, about what ''the good life' means to them.
-- Under the Chatham House Rule, anyone who comes to a meeting is free to use
-  information from the discussion, but is not allowed to reveal who made any
-  particular comment
-- "Community Table" as a name for a shared gathering with food.
-- When asking people to speak, as them to speak with no ideas, only experiences. 
-- Some other ideas: "Which parts of your life have been a waste of time”.
-- [Ichi-go Ichi-e](https://en.wikipedia.org/wiki/Ichi-go_ichi-e), about treasuring the unrepeatable nature of a moment.
-- “A good gathering purpose should also be disputable”.
-  “A disputable purpose, on the other hand, begins to be a decision filter. If
-  you commit to a purpose of your wedding as a ceremonial repayment of your
-  parents for all they have done for you as you set off to build your own family,
-  that is disputable, and it will immediately help you make choices. That one
-  remaining seat will go to your parents’ long-lost friend, not your estranged
-  college buddy. If, on the other hand, you commit to the equally valid purpose
-  of a wedding as a melding of a new couple with the tribe of people with whom
-  they feel the most open, that, too, is disputable, and it implies clear and
-  different answers. The parents’ friend may have to stand down for the college
-  buddy.”
-- “The Golden Retriever Festival in Scotland, which attracts hundreds of dogs and
-  their owners, has an admirably clear, if cosmically inconsequential, purpose:
-  to pay tribute to Lord Tweedmouth, the nineteenth-century nobleman responsible
-  for developing that breed”.
-- “Make purpose your bouncer. Let it decide what goes into your gathering and
-  what stays out. When in doubt about any element, even the smallest detail, hark
-  back to that purpose and decide in accordance with it”.
-
-#### Don't be a Chill Host
-
-- “Gathering well isn’t a chill activity”.
-- "Chill" is selfishness disguised as kindness.
-- “If you are going to create a kingdom for an hour or a day, rule it—and rule it with generosity”
-- “A gathering run on generous authority is run with a strong, confident hand,
-  but it is run selflessly, for the sake of others. Generous authority is
-  imposing in a way that serves your guests”
-- “To protect your guests in this way can be challenging, because the anger of
-  the shushed is concentrated, while the gratitude of the protected is diffuse.
-  Anyone who has ever moderated a panel—that most lamentable of gatherings—knows
-  the feeling”
-
-#### Who And How Many To Invite
-
-> “Inviting people is easy. Excluding people can be hard. 
-> “That’s why so many of our gatherings end up being hijacked in the name of
-> politeness. It is blood that makes a tribe, a border that makes a nation”
-
-- Number of poeple are “6, 12 to 15, 30, and 150”.
-- Groups of 6 is great for intimacy.
-- 12 to 15 is large enough for a quotient of mystery and intrugue. 12 apostles,
-  12 knights of the round table. 30 has a party vibe and energy to it.
-- Dinner party: Sophisticated (20 sq ft), Lively  (15 sq ft)
-- Cocktail party: Sophisticated (12 sq ft), Lively (10 sq ft), Hot (8 sq ft).
-- Extremely poor source is [apartment therapy](https://www.apartmenttherapy.com/party-architecture-density-how-to-plan-a-party-5359).
-
-#### How To Close
-
-- Organize Last Call.
-- ring a cowbell.
-- Thank people as the second to last thing.
-- Every event should have a zenith (eg dessert) that allows people to leave after.
-
-
-## THE SOCIOLOGY OF SOCIABILITY
-
-Interesting argument, that sociability is where it's all about 'form', not content.
-So, it's gauche to bring in 'content' such as personal wealth, or personal happiness.
-
-An example of how sociability is about form is an example of decoultage,
-where a woman feels more comfortable wearing decoultage at a *larger* group,
-since she is lesser herself, and more a player of the game.
-
-
-
-
-
-
-## Reading: Philosophy of Hosting
-
-- Brillat-Savarin, The Physiology of Taste
-- An Alphabet for Gourmets (1949)
-- Martha Stewart, Entertaining (1982)
-- Margaret Visser, The Rituals of Dinner (1991)
-
-## Reading: Philosophy of Ritual And Gathering
-
-- Victor Turner, The Ritual Process
-- Georg Simmel, The Sociology of Sociability
-- Ivan Illich, Tools for Conviviality
-
-
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
 ```meta
@@ -1376,10 +1256,10 @@ last-edited: 2025-06-03
 - Any two are completely independent, if `x, y` are sampled IID.
 - But given any two, the third is determined.
 
-# Big List of Italian Learning
+# Italian Learning
 
 ```meta
-status: big-list
+status: scratch
 created: 2025-05-22
 last-edited: 2025-07-18
 ```
@@ -4599,33 +4479,15 @@ Fast, complex, with intricate chord changes and syncopation. It emphasizes indiv
 - These two make the classic 'so-what' call and response pattern:
   `low: C F [RH: E B G]`, `low: D G [RH: C F E]`.
 
-# I Like New Formalism Poetry
-
-```meta
-status: big-list
-created: 2024-08-31
-last-edited: 2024-09-01
-```
-
-- Took a heck of a lot of searching and sheer dumb luck to name the
-  kind of poetry I was looking for. What helped was looking for threads on
-  reddit complaining about the sorry state of contemporary poetry.
-
-- A poet I'm going to be picking up is A. E. Stallings.
-- [The society of classical poets](https://classicalpoets.org/about-us/)
-- [Light: A journal of light verse](https://lightpoetrymagazine.com/)
-- [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
-- [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
-- [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
-- [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
-
 # Reading
 
 ```meta
 status: big-list
-created: 2024-09-01
+created: 2024-08-31
 last-edited: 2026-08-29
 ```
+
+## Fiction Genres
 
 - hard sci fi
 - ergodic literature
@@ -4761,6 +4623,20 @@ Triumphant antiformalism has to answer, besides, for a more
  tion, and if that doesn't unlatch the door, we turn it in the other. We then use the
  same doorknob to pull the door toward us or push it away from us. We perceive
  what design theorists and cognitive psychologists call the doorknob's affordances.
+
+## Poetry
+
+- Took a heck of a lot of searching and sheer dumb luck to name the
+  kind of poetry I was looking for. What helped was looking for threads on
+  reddit complaining about the sorry state of contemporary poetry.
+
+- A poet I'm going to be picking up is A. E. Stallings.
+- [The society of classical poets](https://classicalpoets.org/about-us/)
+- [Light: A journal of light verse](https://lightpoetrymagazine.com/)
+- [Lighten Up Online: Clever Rhyming Verse](https://www.lightenup-online.co.uk/)
+- [Asses of Parnassus: Short witty poetry](https://www.tumblr.com/assesofparnassus)
+- [The HyperTexts: Large collection of poetry](http://www.thehypertexts.com/About_The_Hypertexts.htm)
+- [Annie Finch: 60 places to publish formal poetry](https://anniefinch.com/places-publish-poetry/)
 
 # Eliminating Decision Fatigue
 
@@ -48429,10 +48305,10 @@ which is indeed the right expression for the inverse.
 
 
 
-# My Favourite APLisms
+# APLisms
 
 ```meta
-status: big-list
+status: scratch
 created: 2020-09-05
 last-edited: 2020-09-05
 ```
@@ -56645,12 +56521,12 @@ things on architecture I wish to read and/or have read:
 
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
-# Recipes Cheat Sheet / Big List of Recipes
+# Big List of Recipes
 
 ```meta
-status: scratch
+status: big-list
 created: 2025-03-26
-last-edited: 2026-06-22
+last-edited: 2026-08-29
 ```
 
 ### Rava Dosa
@@ -56990,6 +56866,119 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Salt
 - Add more water (300ml).
 
+
+## Hosting a Wine and Cheese Evening
+
+#### Cooking
+
+- 1.5 big aperol spritz bottles more than suffices.
+- 3 baguettes, crisps.
+- Some cheeses, ask people to bring more wine and cheese.
+
+- background music: search Spotify for “italian cooking music”
+- Recipe Book: Alison Roman, Nothing Fancy
+
+
+## THE ART OF GATHERING BY PRIYA PARKER
+
+### Be Specific In Why We Gather
+
+- "The book club was organized to get us to read a book together.
+  This is the circular logic that guides the planning of many of our gatherings."
+  When we gather, we often make the mistake of **conflating category with purpose**.
+- "routine - that great enemy of meaningful gathering". Name meetings with specificity.
+  The more focused and particular a gathering is,
+  the more narrowly it frames itself and the more passion it arouses.
+- Werewolf /mafia.
+- the Latitude society in SF: "you couldn’t pour yourself a drink; someone had to pour it for you".
+- Everyone opens with a toast, about what ''the good life' means to them.
+- Under the Chatham House Rule, anyone who comes to a meeting is free to use
+  information from the discussion, but is not allowed to reveal who made any
+  particular comment
+- "Community Table" as a name for a shared gathering with food.
+- When asking people to speak, as them to speak with no ideas, only experiences. 
+- Some other ideas: "Which parts of your life have been a waste of time”.
+- [Ichi-go Ichi-e](https://en.wikipedia.org/wiki/Ichi-go_ichi-e), about treasuring the unrepeatable nature of a moment.
+- “A good gathering purpose should also be disputable”.
+  “A disputable purpose, on the other hand, begins to be a decision filter. If
+  you commit to a purpose of your wedding as a ceremonial repayment of your
+  parents for all they have done for you as you set off to build your own family,
+  that is disputable, and it will immediately help you make choices. That one
+  remaining seat will go to your parents’ long-lost friend, not your estranged
+  college buddy. If, on the other hand, you commit to the equally valid purpose
+  of a wedding as a melding of a new couple with the tribe of people with whom
+  they feel the most open, that, too, is disputable, and it implies clear and
+  different answers. The parents’ friend may have to stand down for the college
+  buddy.”
+- “The Golden Retriever Festival in Scotland, which attracts hundreds of dogs and
+  their owners, has an admirably clear, if cosmically inconsequential, purpose:
+  to pay tribute to Lord Tweedmouth, the nineteenth-century nobleman responsible
+  for developing that breed”.
+- “Make purpose your bouncer. Let it decide what goes into your gathering and
+  what stays out. When in doubt about any element, even the smallest detail, hark
+  back to that purpose and decide in accordance with it”.
+
+#### Don't be a Chill Host
+
+- “Gathering well isn’t a chill activity”.
+- "Chill" is selfishness disguised as kindness.
+- “If you are going to create a kingdom for an hour or a day, rule it—and rule it with generosity”
+- “A gathering run on generous authority is run with a strong, confident hand,
+  but it is run selflessly, for the sake of others. Generous authority is
+  imposing in a way that serves your guests”
+- “To protect your guests in this way can be challenging, because the anger of
+  the shushed is concentrated, while the gratitude of the protected is diffuse.
+  Anyone who has ever moderated a panel—that most lamentable of gatherings—knows
+  the feeling”
+
+#### Who And How Many To Invite
+
+> “Inviting people is easy. Excluding people can be hard. 
+> “That’s why so many of our gatherings end up being hijacked in the name of
+> politeness. It is blood that makes a tribe, a border that makes a nation”
+
+- Number of poeple are “6, 12 to 15, 30, and 150”.
+- Groups of 6 is great for intimacy.
+- 12 to 15 is large enough for a quotient of mystery and intrugue. 12 apostles,
+  12 knights of the round table. 30 has a party vibe and energy to it.
+- Dinner party: Sophisticated (20 sq ft), Lively  (15 sq ft)
+- Cocktail party: Sophisticated (12 sq ft), Lively (10 sq ft), Hot (8 sq ft).
+- Extremely poor source is [apartment therapy](https://www.apartmenttherapy.com/party-architecture-density-how-to-plan-a-party-5359).
+
+#### How To Close
+
+- Organize Last Call.
+- ring a cowbell.
+- Thank people as the second to last thing.
+- Every event should have a zenith (eg dessert) that allows people to leave after.
+
+
+## THE SOCIOLOGY OF SOCIABILITY
+
+Interesting argument, that sociability is where it's all about 'form', not content.
+So, it's gauche to bring in 'content' such as personal wealth, or personal happiness.
+
+An example of how sociability is about form is an example of decoultage,
+where a woman feels more comfortable wearing decoultage at a *larger* group,
+since she is lesser herself, and more a player of the game.
+
+
+
+
+
+
+## Reading: Philosophy of Hosting
+
+- Brillat-Savarin, The Physiology of Taste
+- An Alphabet for Gourmets (1949)
+- Martha Stewart, Entertaining (1982)
+- Margaret Visser, The Rituals of Dinner (1991)
+
+## Reading: Philosophy of Ritual And Gathering
+
+- Victor Turner, The Ritual Process
+- Georg Simmel, The Sociology of Sociability
+- Ivan Illich, Tools for Conviviality
 
 # History Cheat Sheet
 
@@ -57719,10 +57708,10 @@ last-edited: 2022-09-19
 
 
 
-# Big List of Cardistry
+# Cardistry
 
 ```meta
-status: big-list
+status: scratch
 created: 2022-09-19
 last-edited: 2023-04-02
 ```
@@ -58089,10 +58078,10 @@ last-edited: 2022-04-28
 
 - [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
 
-# Big List of Shuffle Dancing
+# Shuffle Dancing
 
 ```meta
-status: big-list
+status: scratch
 created: 2022-09-19
 last-edited: 2025-06-10
 ```
