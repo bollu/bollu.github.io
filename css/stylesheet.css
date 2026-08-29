@@ -363,18 +363,34 @@ ul {
   margin-right: 18px;
 }
 
+.container .brick-photo {
+  box-sizing: border-box;
+  background: #f1efe9;
+  border: 1px solid #ddd6c8;
+  border-radius: 2px;
+  padding: 0.55em;
+}
+
 .container .brick-photo img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .container .brick-photo .photo-caption {
   font-size: 0.8em;
   color: #444;
-  margin-top: 0.35em;
+  margin-top: 0.45em;
   text-align: left;
+}
+
+.container a.photo-loc {
+  text-decoration: none;
+}
+
+.container a.photo-loc:hover {
+  text-decoration: underline;
 }
 
 .container .photo-loc {
@@ -382,18 +398,9 @@ ul {
   white-space: nowrap;
 }
 
-/* the photograph on its own article page. */
-.container .photo-page-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 2px;
-  margin: 1em 0 0.6em 0;
-}
-
-.container .single-column .photo-caption {
-  font-style: italic;
-  color: #444;
+.container .photo-loc .pin {
+  vertical-align: -0.1em;
+  margin-right: 0.15em;
 }
 
 .container .brick-card {
@@ -403,7 +410,6 @@ ul {
   border-radius: 2px;
   padding: 0.9em 1.1em 1em 1.1em;
   text-align: left;
-  box-shadow: 0 1px 3px rgba(60, 50, 30, 0.08);
 }
 
 .container .brick-card .kicker {

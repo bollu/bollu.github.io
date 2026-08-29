@@ -444,6 +444,7 @@ struct BlockMeta : public BlockTm {
   LayoutKind layout = LayoutKind::TwoColumn;
   std::string blurb;    // one-line teaser, shown on the homepage mosaic tile.
   std::string location; // where a photo was taken (status: photo).
+  std::string location_url; // map link for the location; plain text if empty.
   std::string photo;    // site-absolute image path (status: photo).
   BlockMeta(Span span) : BlockTm(Kind::Meta, span) {}
 };
@@ -862,6 +863,8 @@ BlockMeta *parseMetaBlock(const char *s, const Span span) {
       meta->blurb = val;
     } else if (key == "location") {
       meta->location = val;
+    } else if (key == "location-url") {
+      meta->location_url = val;
     } else if (key == "photo") {
       meta->photo = val;
     } else {
@@ -1672,39 +1675,22 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
 
   case BlockTm::Kind::Meta: {
     // the dates line under the heading; the kicker above the headline
-    // carries the status.
+    // carries the status. (photo articles never render a page at all.)
     const BlockMeta *meta = (const BlockMeta *)t;
-    if (meta->created[0] || meta->last_edited[0] || !meta->location.empty()) {
-      outlen += sprintf(outs + outlen, "<div class='article-meta'>");
-      const char *sep = "";
-      if (!meta->location.empty()) {
-        outlen += sprintf(outs + outlen, "%s", meta->location.c_str());
-        sep = " · ";
-      }
-      if (meta->created[0]) {
-        outlen += sprintf(outs + outlen, "%s%s%s", sep,
-                          meta->status == MetaStatus::Photo ? "" : "created ",
-                          meta->created);
-        sep = " · ";
-      }
-      // showing last-edited only makes sense once it differs from created.
-      if (meta->last_edited[0] &&
-          strcmp(meta->last_edited, meta->created) != 0) {
-        outlen += sprintf(outs + outlen, "%slast edited %s", sep,
-                          meta->last_edited);
-      }
-      outlen += sprintf(outs + outlen, "</div>");
+    if (!meta->created[0] && !meta->last_edited[0]) { return true; }
+
+    outlen += sprintf(outs + outlen, "<div class='article-meta'>");
+    const char *sep = "";
+    if (meta->created[0]) {
+      outlen += sprintf(outs + outlen, "created %s", meta->created);
+      sep = " · ";
     }
-    // a photo article's page is the photograph itself plus its caption.
-    if (meta->status == MetaStatus::Photo && !meta->photo.empty()) {
-      outlen += sprintf(outs + outlen,
-                        "<img class='photo-page-img' src='%s'>",
-                        meta->photo.c_str());
-      if (!meta->blurb.empty()) {
-        outlen += sprintf(outs + outlen, "<div class='photo-caption'>%s</div>",
-                          meta->blurb.c_str());
-      }
+    // showing last-edited only makes sense once it differs from created.
+    if (meta->last_edited[0] && strcmp(meta->last_edited, meta->created) != 0) {
+      outlen += sprintf(outs + outlen, "%slast edited %s", sep,
+                        meta->last_edited);
     }
+    outlen += sprintf(outs + outlen, "</div>");
     return true;
   }
 
@@ -2082,6 +2068,13 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
       photos.push_back(&a);
     }
   }
+  // a small map-pin outline, drawn in the caption's text color.
+  const char *pin_svg =
+      "<svg class='pin' viewBox='0 0 24 24' width='11' height='11' "
+      "fill='none' stroke='currentColor' stroke-width='2' "
+      "stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"
+      "<path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/>"
+      "<circle cx='12' cy='10' r='3'/></svg>";
   const auto writePhoto = [&](const ArticleInfo &a) {
     char fspath[1024];
     sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
@@ -2089,23 +2082,32 @@ long long writeHomepageTOC(duk_context *katex_ctx, duk_context *prism_ctx,
     int w = 0, h = 0;
     const bool have_wh = jpegDimensions(fspath, &w, &h);
     outlen += sprintf(outs + outlen,
-                      "<div class='brick brick-photo'><a href='%s.html'>"
+                      "<div class='brick brick-photo'>"
                       "<img loading='lazy' src='%s'",
-                      a.url, a.meta->photo.c_str());
+                      a.meta->photo.c_str());
     if (have_wh) {
       outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
     }
-    outlen += sprintf(outs + outlen, "></a><div class='photo-caption'>");
+    outlen += sprintf(outs + outlen, "><div class='photo-caption'>");
     if (!a.meta->blurb.empty()) {
       outlen += sprintf(outs + outlen, "%s ", a.meta->blurb.c_str());
     }
-    outlen += sprintf(outs + outlen, "<span class='photo-loc'>%s",
+    const bool linked = !a.meta->location_url.empty();
+    if (linked) {
+      outlen += sprintf(outs + outlen, "<a class='photo-loc' href='%s'>",
+                        a.meta->location_url.c_str());
+    } else {
+      outlen += sprintf(outs + outlen, "<span class='photo-loc'>");
+    }
+    outlen += sprintf(outs + outlen, "%s%s", pin_svg,
                       a.meta->location.c_str());
+    outlen += sprintf(outs + outlen, "%s", linked ? "</a>" : "</span>");
     if (a.meta->created[0]) {
-      outlen += sprintf(outs + outlen, " · %s",
+      outlen += sprintf(outs + outlen,
+                        "<span class='photo-loc'> · %s</span>",
                         shortDate(a.meta->created).c_str());
     }
-    outlen += sprintf(outs + outlen, "</span></div></div>");
+    outlen += sprintf(outs + outlen, "</div></div>");
   };
   outlen += sprintf(outs + outlen,
                     "<div class='mosaic'><div class='brick-sizer'></div>");
@@ -2426,14 +2428,6 @@ int main(int argc, char **argv) {
     }
     const char *url = mkHeadingURL(raw_input, heading);
 
-    // TODO: find some easy way to print WTF is the data in the heading.
-    cout << "===Writing [" << url << ".html]===\n";
-
-    char *outbuf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
-    ll outlen = 0;
-    outlen += sprintf(outbuf + outlen, "%s", html_preamble);
-    bool success = true;
-    ll i = ix_start;
     // peek the meta block (it follows the heading) for the kicker, the
     // layout, and the essay drop-cap class.
     const BlockMeta *meta = nullptr;
@@ -2442,6 +2436,18 @@ int main(int argc, char **argv) {
       meta = (const BlockMeta *)ts[ix_start + 1];
     }
     const MetaStatus status = meta ? meta->status : MetaStatus::Scratch;
+
+    // photographs live on the homepage mosaic only: no page.
+    if (status == MetaStatus::Photo) { continue; }
+
+    // TODO: find some easy way to print WTF is the data in the heading.
+    cout << "===Writing [" << url << ".html]===\n";
+
+    char *outbuf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
+    ll outlen = 0;
+    outlen += sprintf(outbuf + outlen, "%s", html_preamble);
+    bool success = true;
+    ll i = ix_start;
 
     // ===kicker: the magazine-style section label above the headline===
     const char *kicker, *kicker_cls;
