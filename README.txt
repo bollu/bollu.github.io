@@ -9,7 +9,7 @@
 
 
 
-<img style="width: 100%; display: block; padding-bottom: 1em;" src="/static/sid-bubble.jpg">
+<img style="width: 100%; max-width: 620px; display: block; margin: 0 auto 1em auto;" src="/static/sid-bubble.jpg">
  
 # Christian Fuchs On Ray Charles Style 60's Funk And Funky Piano
 
