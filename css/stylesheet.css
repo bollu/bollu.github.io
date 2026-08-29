@@ -519,9 +519,11 @@ ul {
   font-family: 'Blog Serif', serif;
 }
 
-/* the end-of-article mark */
+/* the end-of-article fleuron */
 .container .tailpiece {
-  color: #b5b5b5;
-  margin-top: 1em;
-  text-align: left;
+  color: #c9bfae;
+  font-size: 1.6em;
+  margin-top: 0.8em;
+  text-align: center;
+  column-span: all; /* sit centered under both columns */
 }

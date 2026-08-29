@@ -2338,7 +2338,7 @@ int main(int argc, char **argv) {
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
     // ===tailpiece: the end-of-article mark===
-    outlen += sprintf(outbuf + outlen, "<div class='tailpiece'>∎</div>");
+    outlen += sprintf(outbuf + outlen, "<div class='tailpiece'>❦</div>");
     outlen += sprintf(outbuf + outlen, "</div>");
 
     if (!success) {
