@@ -32130,9 +32130,10 @@ knows no bounds, indeed.
 # Tensor Is a Thing That Transforms Like a Tensor
 
 ```meta
-status: technical-note
+status: exposition
 created: 2021-01-09
-last-edited: 2024-04-24
+last-edited: 2026-08-30
+blurb: A tensor is a collection of numbers that track something physical, explained with a deque.
 ```
 
 There are two ways of using linear maps in the context of physics. One is
@@ -32166,7 +32167,9 @@ void queue_realloc(Queue *q, int new_size) {
    int end_offset = q->memory - q->end;
    int *oldmem = q->memory;
    q->memory = realloc(q->memory, new_size);
-   memcpy(q->memory, oldmem + q->start, sizeof(int) * (end_offset - start_offset);
+   memcpy(q->memory,
+          oldmem + q->start,
+          sizeof(int) * (end_offset - start_offset));
    q->start = q->memory + start_offset;
    q->end = q->memory - end_offset;
 }
