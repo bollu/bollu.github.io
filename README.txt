@@ -32145,7 +32145,7 @@ about _coordinate transformatios_, not _space transformations_.
 
 Suppose I implement a double ended queue using two pointers:
 
-```
+```cpp
 struct Queue {int *memory, *start, *end; }
 void queue_init(int size) {
   memory = malloc(sizeof(int) * size);
@@ -32161,7 +32161,7 @@ void queue_deque_tail() { tail--; }
 
 See that the state of the queue is technically three numbers, `{ memory, start, end }` (Pointers are just numbers after all). But this is *coordinate dependent*, as `start` and `end` are relative to the location of `memory`. Now suppose I have a procedure to reallocate the queue size:
 
-```
+```cpp
 void queue_realloc(Queue *q, int new_size) {
    int start_offset = q->memory - q->start; 
    int end_offset = q->memory - q->end;
