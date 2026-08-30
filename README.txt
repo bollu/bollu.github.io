@@ -1009,7 +1009,7 @@ last-edited: 2025-10-09
   which explains how to write prompts by using cooking as an example activity.
   It even highlights some mistakes that I was making, such as adding mnemonics in the *questions* (not the answers).
 
-# How To Benchmark
+# Sid's Guide on Benchmarking Performance
 
 ```meta
 status: scratch
@@ -1017,37 +1017,95 @@ created: 2025-09-29
 last-edited: 2025-09-29
 ```
 
-- I realized that the branch of statistics I need is 'sampling theory',
-  which explains how to estimate parameters from populations by means of polling / sampling,
-  exactly what we do with our experiments. The following books seems super pertinent:
+This only pertains to benchmarking 'speedup' type scenarios. Most of the lessons are obvious in retrospect, but hard earned.
+This is *not* about profiling, but rather about setting up scripting so that one has stable end to end speedup.
 
-- Statistical Rethinking:  Bayesian viewpoint.
-- "Sampling: Design and Analysis" by Sharon L. Lohr.
-  Is in-depth, and has nice examples. Not particularly rigorous.
-- "Sampling Techniques 3rd edition - William G. Cochran": Classic, rigorous, dry.
+## What Not To Benchmark
 
-#### Books on Explicit Benchmarking
+- If you plan to measure a speedup that will be less than, say `1.2x`, then maybe go back and find something better
+  to do instead, since such speedups can often just be system noise.
+  The scariest paper that explains this is [Producing wrong data without doing anything obviously wrong](https://dl.acm.org/doi/10.1145/1508284.1508275),
+  where things like link order of object files, and the executable name (which affects alignment) can cause upto `20%` performance deltas.
+- This eventually led me to decide to only work on projects where I know I have asymptotic gains, or incredible reasons to believe I will see performance
+  (e.g. a better parallel algorithm for a sequential thing, or some such).
 
-- The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling
-- [Understanding Software Dynamics](https://www.oreilly.com/library/view/understanding-software-dynamics/9780137589692/)
+## Things Not To Read Because I Have Read Them For You
 
+- The [SIGPLAN empirical evaluation guidelines](https://www.sigplan.org/Resources/EmpiricalEvaluation/) are utterly unactionable.
+  Thus, I dislike them intensely, since reading them provides one with no information on what to do next.
+- [System Benchmarking Crimes By Gernot Heiser](https://gernot-heiser.org/benchmarking-crimes.html) is good, but IMO easy to condense into
+  (a) don't use percentages, and (b) don't lie.
+- [How not to lie with statistics: The correct way to summarize benchmark results](https://dl.acm.org/doi/epdf/10.1145/5666.5673) is good,
+  but is also easy to condence into (a) use geomean.
+- [Scientific Benchmarking of Parallel Computing Systems](https://dl.acm.org/doi/epdf/10.1145/2807591.2807644) is good as well,
+  but wasn't relevant to me since it's about benching parallel/distributed algorithms, while I have only really needed to bench single-machine algorithms.
 
-#### Cambridge Course
+## What To Benchmark For
 
-- [Part III: Introduction to networking and systems measurements](https://www.cl.cam.ac.uk/teaching/2425/L50/)
+- If you have a real good reason for why you expect a speedup (for example, an algorithmic, asymptotic improvement,
+  or a real win through mechanical sympathy), then go ahead and benchmark it.
+- In this case, you need to be able to measure both (a) the speedup, *as well as* (b) the causal reason for the speedup.
+- For example, if one is implementing an asymptotically better algorithm, then one should see the right asymptotics upon plotting.
+- If one builds an algorithm with much better cache locality, then measure cache hits using approrpiate tooling (e.g. Intel VTune or linux perf),
+  and report this.
+- If you do something, and see speedups *with no explanation*, then you are not doing science, and the speedup can be *safely ignored*!
 
-### Email from Mate Soos:
+## How to Benchmark What We're Looking For
 
-I use ulimit to limit each process's memory etc limits. I make sure none of them can use more memory than K, where the CPU has at least `B*K` memory, where B is the number of processes I will be running on the CPU. I make sure the CPU has at least B cores. Not threads, cores. I make sure that I do the copying of all data to the local HDD of the machine before I start the process. I run all processes under `/usr/bin/time -v` and write its output to a separate file with `-o FILE` and save, and pare it. It tells me about max memory usage, USER and SYSTEM time, wallclock time, memory pages etc. This is essential data, and can be fully relied on. I build all my systems to have a single binary. If you have multiple binaries that call each other, you are gonna be in a world of pain and have to use runlim: https://fmv.jku.at/runlim/ it's good but annoying to use. I make sure my systems are useable, single binary, no shell script or stuff like that. Then I don't have to use runlim. In general, if you control what you are running, you can make your life a lot easier. I then get all the data off the system to my local machine, and process it with a python script into a CSV which I then import into an SQL database.
+- Begin by deploying the project at hand as a binary (NOT a shell script, a single binary).
+  The binary prints minimal info to stdout, which is captured, and explains success/failure by exit code.
+  This makes it trivial to parse, capture output, and to use tools like `runlim` to fix space and time usage.
+- Run the tool on each problem, with `K` runs per `(problem, tool)` variant.
+  Have each run write its data into a folder corresponding to the run as a JSONL file.
+  JSONL can be trivially catenated by concatenating all the files, which makes it great to aggregate,
+- This raw data is processed by first catenating into a single `jsonl` file by a trivial `cat runs/latest/data/**.jsonl > runs/latest/aggregate.jsonl`.
+  This can then be loaded by `polars` (in python) to compute statistics and plot with.
+- I always plot using a cactus plot for solvers [See 'Benchmarking Solvers, SAT style](https://www.sc-square.org/CSA/workshop2-papers/RP3-FinalVersion.pdf),
+  since it provides a nice way to compare speedups. I don't know of a similarly nice way to calculate speedups for things like compiler optimizations.
+  In theory, one can use the same methodology, but in practice, I haven't seen anyone do so.
+- To compute overall speedups, use geomeans.
+  The key motivator for me is that we typically want to measure the speedup of our algorithm against a baseline,
+  and the nice thing about geomeans is that the geomean of the speedup is the speedup of the geomean,
+  which ensures that we can just take the ratio of the geomeans to measure speedup. This tells us what what we are measuring is 'correct',
+  spritually speaking.
+- Whatever 'plotting' you choose to use, don't throw away data. Also, print your data also as a table, not just a figure,
+  becase eyeballing a table makes it easy to see aggregate information.
+- Don't be clever. Setup stupid systems, and parallelize on a large machine by spawing the runs in parallel with time and memory limits.
 
+## Emails With Mate Soos, A Person Who Regularly Benchmarks Computers
 
-I then query this SQL database to generate gnuplot files, and to [generate summarized data](https://github.com/meelgroup/ganak/tree/master/scripts/data)
+- Mate Soos is an expert at developing solvers, and currently owns the world's fastest randomized sharpsat solver,
+  so I take what he says somewhat seriously.
+- I use ulimit to limit each process's memory etc limits.
+- I make sure none of them can use more memory than K, where the CPU has at least `B*K` memory, where B is the number of processes I will be running on the CPU.
+- I make sure the CPU has at least B cores. Not threads, cores.
+- I make sure that I do the copying of all data to the local HDD of the machine before I start the process 
+- I run all processes under `/usr/bin/time -v` and write its output to a separate file with `-o FILE` and save, and parse it
+  It tells me about max memory usage, USER and SYSTEM time, wallclock time, memory pages etc. This is essential data, and can be fully relied on.
+- I build all my systems to have a single binary. If you have multiple binaries that call each other, you are gonna be in a world of pain and have to use [runlim](https://fmv.jku.at/runlim/) it's good but annoying to use.
+- I make sure my systems are useable, single binary, no shell script or stuff like that. Then I don't have to use runlim.
+- In general, if you control what you are running, you can make your life a lot easier.
+- I then get all the data off the system to my local machine, and process it with a python script into a CSV which I then import into an SQL database.
+- I then query this SQL database to generate gnuplot files, and to [generate summarized data](https://github.com/meelgroup/ganak/tree/master/scripts/data)
 
 `get_data.py` gets the data from the files, `create_graphs_ganak.py` generates graphs, summarised tables, jupyter notebook, etc. Note that I used to write bash scripts. I'm actually okay at bash scripting, but python is a LOT more robust and a LOT easier to maintain and improve. Don't forget to add lots of checking and error-outs and asserts into that script, so you don't accidentally parse wrong data.
 
-Even if you do all the above, there'll be variation. Quite a bit of it, maybe up to 5-10% in some cases, on a single file. That's life. Computers have CPU power limits and dynamic clocks and sleep states and shared CPU caches, and other processes running and network latency etc. If you are not prepared to deal with that, then you are gonna be sad. You need to run at least 400 instances every time and then the variation evens out.
+Even if you do all the above, there'll be variation. Quite a bit of it, maybe up to 5-10% in some cases, on a single file.
+That's life. Computers have CPU power limits and dynamic clocks and sleep states and shared CPU caches, and other processes running and network latency etc.
+If you are not prepared to deal with that, then you are gonna be sad.
+You need to run at least 400 instances every time and then the variation evens out.
 
-In general, if you are spending more than 5 minutes to schedule a cluster run, or you are spending more than 5 minutes getting the data and crunching it from the cluster, you are doing it wrong. You should dedicate at least a 2-3 days to writing the initial scripts, and examining failures, etc. Then keep improving the script every time. Every single time. Just spend 10-20 minutes improving it when you do a run and want more data, more summaries, better tables, etc. I once saw a PhD student spending 8h hand-crunching the data after a cluster run, and he only got about 3-4 data points. I sometimes do 30-40 cluster runs in a week, and get 40+ data points from each. It would have taken the guy a year what took me about 1 hour. Then they are surprised they can't win a competition, even though they spent weeks on the cluster data. It turns out, it's not how much you work, it's how efficiently you work. 
+In general, if you are spending more than 5 minutes to schedule a cluster run, or you are spending more than 5 minutes getting the data and crunching it from the cluster,
+you are doing it wrong.
+You should dedicate at least a 2-3 days to writing the initial scripts, and examining failures, etc. Then keep improving the script every time.
+Every single time. Just spend 10-20 minutes improving it when you do a run and want more data, more summaries, better tables, etc.
+I once saw a PhD student spending 8h hand-crunching the data after a cluster run, and he only got about 3-4 data points.
+I sometimes do 30-40 cluster runs in a week, and get 40+ data points from each.
+It would have taken the guy a year what took me about 1 hour.
+Then they are surprised they can't win a competition,
+even though they spent weeks on the cluster data. It turns out, it's not how much you work, it's how efficiently you work.
+
+## Conclusion
 
 # Fairness And Justice
 
@@ -59029,6 +59087,15 @@ blurb: Paintings, illustrators, and pieces I love: Hiroshi Yoshida, Klimt, and c
 - [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
 - [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
+
+
+## Shin Hanga
+
+- [Shin Hanga](https://en.wikipedia.org/wiki/Shin-hanga) was an art movement in Japan in the early 20th
+  century that revived ukiyo-e art.
+
+@img("/static/shin-hanga/hiroshi-yoshida-hikaru-umi-1926.jpg", size: s, float: margin-right, caption: "Hiroshi Yoshida, Hikaru Umi (1926)")
+  
 
 # Decision Procedures Research Questions
 
