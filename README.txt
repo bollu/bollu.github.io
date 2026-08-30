@@ -502,8 +502,6 @@ created: 2026-08-30
 last-edited: 2026-08-30
 ```
 
-- TODO: write up how sequent calculus gives a deterministic proof search procedure.
-
 
 # A Different Derivation of the Bepop Notes
 
@@ -11871,7 +11869,7 @@ last-edited: 2026-08-30
 - These left and right adjoints mimic existential / universal quantifiers.
 - If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
-- [Mitchell-Bénabou language on nlab](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
+- https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
 
 
 #### Algebra of logic
