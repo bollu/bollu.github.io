@@ -494,6 +494,17 @@ last-edited: 2026-04-27
   on the right hand side.
 
 
+# Deterministic Proof Search Via Sequents
+
+```meta
+status: scratch
+created: 2026-08-30
+last-edited: 2026-08-30
+```
+
+- TODO: write up how sequent calculus gives a deterministic proof search procedure.
+
+
 # A Different Derivation of the Bepop Notes
 
 ```meta
@@ -10461,7 +10472,7 @@ last-edited: 2023-03-27
 ```meta
 status: technical-note
 created: 2022-08-22
-last-edited: 2022-08-22
+last-edited: 2026-08-30
 ```
 
 - Key idea: define a notation called `Γ => Δ` iff the conjunction of sentences
@@ -10476,6 +10487,14 @@ last-edited: 2022-08-22
 - Recall that haskell teaches us to replace failure with a list of successes!
 - Thus we should use `Γ => Δ` where on the RHS, we have a list that is smooshed together by or (`\/`)!
 - Great, we have successfully invented sequents.
+- Another motivation is that given a sequent like `{ A_i } => { B_j }`, we can have this
+  mean one of four things: (1) `ΠA_i => ΠB_j`, (2) `ΠA_i => ΣB_j`, (3) `ΣA_i => ΠB_j`, and (4) `ΣA_i => ΣB_j`.
+- We should rule out any `ΣA_i => X`, since these maps can be further decomposed into a
+  family of maps `f_i: A_i => X`.
+- We should rule out any `Y => ΠB_j`, since these can be decomposed into a family of maps
+  `g_j : Y => B_j`.
+- The only indecomposable map left is `ΠA_i => ΣB_j`, which is exactly the structure that
+  sequents have!
 
 
 # Fibrational Category Theory, Sec 1.1, Sec 1.2
