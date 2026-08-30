@@ -11860,7 +11860,7 @@ last-edited: 2023-04-02
 ```meta
 status: scratch
 created: 2022-06-03
-last-edited: 2023-04-02
+last-edited: 2026-08-30
 ```
 - A hyperdoctrine equips a category with some kind of logic `L`.
 - It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
@@ -11871,6 +11871,7 @@ last-edited: 2023-04-02
 - These left and right adjoints mimic existential / universal quantifiers.
 - If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
+- [Mitchell-Bénabou language on nlab](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
 
 
 #### Algebra of logic
@@ -12720,25 +12721,6 @@ last-edited: 2022-09-28
 ```
 
 - [Link](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
-
-# Hyperdoctrine
-
-```meta
-status: scratch
-created: 2022-06-03
-last-edited: 2023-04-02
-```
-
-- A hyperdoctrine equips a category with some kind of logic `L`.
-- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
-  whose internal logic corresponds to `L`.
-- In the classical case, `L` is propositional logic, and `C` is the 2-category of posets.
-  We send `A ∈ T` to the poset of subobjects `Sub_T(A)`.
-- We ask that for every morphism `f: A -> B`, the morphism `P(f)` has left and right adjoints.
-- These left and right adjoints mimic existential / universal quantifiers.
-- If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
-  reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
-- https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
 
 # Why Is Product in Rel Not Cartesian Product?
 
@@ -14117,7 +14099,7 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
 ```meta
 status: technical-note
 created: 2021-07-08
-last-edited: 2022-05-30
+last-edited: 2026-08-30
 ```
 
 - Do not confuse with **Center of a tree**, which is a node $v$ that minimizes the distance to all other nodes:
@@ -14201,6 +14183,15 @@ int centroid(int v, int p) {
 
 #### Existence of centroid
 
+- If tree has exactly one node, we are done, the centroid is the root.
+- Suppose for induction a centroid exists for trees of size $n-1$. We will now prove the existence of a centroid for tree of size $n$.
+- Otherwise, if the root has all children whose subtree sizes are at most `ceil(n/2)`, the root is the centroid and we are done.
+- Otherwise, the root has *one* child with subtree size *strictly greater than* `ceil(n/2)`. There can't be two such children, because their
+  combined size would be `2*ceil(n/2) >= n`. This is nonsensical, as the size of the subtrees plus the root node would mean the tree
+  has `2*ceil(n/2) + 1 >= n+1` nodes, a contradiction.
+- We recurse into the subtree. The size of the subtree of the child is at least one less than the size of the root, thus we are decreasing on the size of the tree.
+- By recursion, we must terminate this process and find a centroid.
+
 #### Equivalence to size definition
 
 
@@ -14208,6 +14199,13 @@ int centroid(int v, int p) {
 
 - If we find the centroids of the subtrees that hang from the centroid, then we decompose the graph
   into a **centroid decomposition**.
+- Once we find the centroid of a tree, we see that all of its subtrees has size less than `ceil(n/2)`.
+- We can now recurse, and find sizes of centroids of these subtrees.
+- These subtrees are disjoint, so we will take at most `O(n)` to compute sizes and whatnot.
+- We can do this `log(n)` many steps since we're halving the size of the subtree each time.
+- In total, this implies that we can recursively find centroids to arrive at a "centroid decomposition" of a tree.
+- Note that the centroid decomposition of the tree constructs a new tree, which is different from the original tree, sorta how the dominator tree
+  is a different tree from the original tree.
 
 # Path Query to Subtree Query
 
@@ -15290,18 +15288,6 @@ last-edited: 2023-04-02
 - Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something?
 - Have quantitative: `0,1,fin,inf`?
 
-
-# Backward Dataflow and Continuations
-
-```meta
-status: scratch
-created: 2021-12-28
-last-edited: 2022-04-03
-```
-
-- Forward dataflow deals with facts _thus far_.
-- Backward dataflow deals with facts about _the future_, or the _rest of the program_.
-  Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
 # The Tyranny of Structurelessness
 
@@ -21296,37 +21282,6 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 ```
 
 
-# Centroid of a Tree
-
-```meta
-status: technical-note
-created: 2021-07-08
-last-edited: 2022-05-30
-```
-
-- A centroid is a node which upon removal creates subtrees of size at most `ceil(n/2)`.
-
-#### Existence of centroid for rooted tree (algorithm to compute centroid)
-
-- If tree has exactly one node, we are done, the centroid is the root.
-- Suppose for induction a centroid exists for trees of size $n-1$. We will now prove the existence of a centroid for tree of size $n$.
-- Otherwise, if the root has all children whose subtree sizes are at most `ceil(n/2)`, the root is the centroid and we are done.
-- Otherwise, the root has *one* child with subtree size *strictly greater than* `ceil(n/2)`. There can't be two such children, because their
-  combined size would be `2*ceil(n/2) >= n`. This is nonsensical, as the size of the subtrees plus the root node would mean the tree
-  has `2*ceil(n/2) + 1 >= n+1` nodes, a contradiction.
-- We recurse into the subtree. The size of the subtree of the child is at least one less than the size of the root, thus we are decreasing on the size of the tree.
-- By recursion, we must terminate this process and find a centroid.
-
-#### Centroid decomposition
-
-- Once we find the centroid of a tree, we see that all of its subtrees has size less than `ceil(n/2)`.
-- We can now recurse, and find sizes of centroids of these subtrees.
-- These subtrees are disjoint, so we will take at most `O(n)` to compute sizes and whatnot.
-- We can do this `log(n)` many steps since we're halving the size of the subtree each time.
-- In total, this implies that we can recursively find centroids to arrive at a "centroid decomposition" of a tree.
-- Note that the centroid decomposition of the tree constructs a new tree, which is different from the original tree, sorta how the dominator tree
-  is a different tree from the original tree.
-
 # Center of a Tree
 
 ```meta
@@ -22748,15 +22703,6 @@ last-edited: 2021-06-27
 `sqrt(ab)` is dimensionally meaningful even if `a` and `b` are dimensionally different. I found
 this interesting, since it implies that Geomean is not "biased": arithmetic mean is more sensitive to large values (eg: `(1 + 999)/2 = 500`),
 while harmonic mean is more sensitive to small values. Geomean is neither, so it's more "balanced".
-
-# Thoughts on Playing Em Bm.
-
-```meta
-status: scratch
-created: 2021-06-27
-last-edited: 2021-06-27
-```
-
 
 # Induction on Natural Numbers Cannot Be Derived from Other Axioms
 
@@ -25725,17 +25671,6 @@ The base $2$ is quite mysterious! I wanted to know why this is.
 a multiple oCochlea and why frequencies are 1:2
 
 > https://physics.stackexchange.com/questions/44469/octave-equivalence-biological-or-more
-
-# Bias and Gain
-
-```meta
-status: scratch
-created: 2021-05-16
-last-edited: 2021-05-16
-```
-
-- Bias lets us move the "mean" of the  plot.
-- Gain lets us move "how quickly" we get to the mean.
 
 # Show, Don't Tell
 
