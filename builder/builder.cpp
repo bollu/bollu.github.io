@@ -389,6 +389,7 @@ struct BlockTm {
     Comment,      // <!-- ... -->, emitted as nothing.
     Meta,         // ```meta fence; renders as nothing.
     Figure,       // @img(...) alone on a line: a block figure.
+    Hr,           // @hline() alone on a line: a horizontal rule.
   };
   const Kind kind;
   Span span;
@@ -1192,6 +1193,22 @@ vector<BlockTm *> parseBlocks(const char *s, const ll len) {
     continue;
   }
 
+  // ===@hline() alone on its line: a horizontal rule===
+  if (strpeek(s + lcur.si, "@hline()")) {
+    L lend = lcur.next("@hline()");
+    while (s[lend.si] == ' ' || s[lend.si] == '\t') {
+      lend = lend.next(s[lend.si]);
+    }
+    // block form only when nothing but whitespace follows on the line;
+    // otherwise the prose path renders the text literally.
+    if (lend.si >= len || s[lend.si] == '\n') {
+      closePara();
+      ts.push_back(new BlockRaw(BlockTm::Kind::Hr, Span(lcur, lend)));
+      lcur = lend.nextline();
+      continue;
+    }
+  }
+
   // ===@img(...) alone on its line: a block figure===
   if (strpeek(s + lcur.si, "@img(")) {
     L limg = lcur;
@@ -1760,6 +1777,11 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
                  char *outs) {
   switch (t->kind) {
   case BlockTm::Kind::Comment: {
+    return true;
+  }
+
+  case BlockTm::Kind::Hr: {
+    outlen += sprintf(outs + outlen, "<hr class='article-hr'>");
     return true;
   }
 

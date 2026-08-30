@@ -32175,13 +32175,13 @@ Notice that when I do this, the values of `start` and `end` can be completely di
 
 However, see that the *length* of the queue, given by `(end - start)` is *invariant*: It hasn't changed!
 
-----
+@hline()
 
 In the exact same way, a "tensor" is a collection of numbers that describes something physical with respect to a particular coordinate system (the pointers `start` and `end` with respect to the `memory` coordinate system). "tensor calculus" is a bunch of rules that tell you how the numbers change when one changes coordinate systems (ie, how the pointers `start` and `end` change when the pointer `memory` changes). Some quantities that are computed from tensors are "physical", like the length of the queue, as they are *invariant* under transformations. 
 
 Tensor calculus gives a principled way to make sure that the final answers we calculate are "invariant" / "physical" / "real". The actual locations of `start` and `end` don't matter, as `(end - start)` will always be the length of the list!
 
-----
+@hline()
 
 Physicists (and people who write memory allocators) need such elaborate tracking, to keep track of what is "real" and what is "coordinate dependent", since a lot of physics involves [crazy coordinate systems](https://en.wikipedia.org/wiki/Schwarzschild_metric#History), and having ways to know what things are real and what are artefacts of one's coordinate system is invaluable. For a real example, consider the case of singularities of the Schwarzschild  solution to GR, where we initially thought there were two singularities, but it later turned out there was only one "real" singularity, and the other singularity was due to a poor choice of coordinate system:
 

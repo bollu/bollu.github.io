@@ -424,6 +424,14 @@ ul {
   white-space: nowrap;
 }
 
+/* @hline(): a section separator, in the spirit of the tailpiece. */
+.container hr.article-hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  width: 30%;
+  margin: 1.8em auto;
+}
+
 /* the brick image is a link to the photograph's own page. */
 .container .brick-photo a.photo-link {
   display: block;
