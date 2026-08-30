@@ -424,6 +424,34 @@ ul {
   white-space: nowrap;
 }
 
+/* the brick image is a link to the photograph's own page. */
+.container .brick-photo a.photo-link {
+  display: block;
+  line-height: 0; /* no phantom descender gap under the image. */
+}
+
+/* the photograph's own page: the image flush in a tinted box, caption
+   below, and the comment thread underneath. */
+.container .photo-page .photo-figure {
+  margin: 1.2em 0 0 0;
+  background: #f1efe9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.container .photo-page .photo-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container .photo-page .photo-figure figcaption {
+  font-size: 0.85em;
+  color: #444;
+  padding: 0.5em 0.65em 0.6em 0.65em;
+  text-align: left;
+}
+
 .container .pin {
   vertical-align: -0.1em;
   margin-right: 0.15em;
