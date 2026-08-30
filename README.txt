@@ -494,15 +494,6 @@ last-edited: 2026-04-27
   on the right hand side.
 
 
-# Deterministic Proof Search Via Sequents
-
-```meta
-status: scratch
-created: 2026-08-30
-last-edited: 2026-08-30
-```
-
-
 # A Different Derivation of the Bepop Notes
 
 ```meta
