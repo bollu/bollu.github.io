@@ -31,14 +31,6 @@ last-edited: 2026-09-01
 
 ## Concurrent Separation Logic Without Higher Order Nonsense
 
-
-### Resource Algebras
-
-- Resource algebra is a commutative monoid that has a predicate `valid` on it.
-- For example, for fractional ownership, we use $\mathbb Q \cap [0, \infty)$,
-  where `valid(x)` is true if $x \in [0, 1]$.
-  We use $0$ as the unit, and $x \cdot y = x + y$.
-
 ### Invariants
 
 - An invariant is a proposition that's drawn as if it's in a box (I assume it's a modality?)
@@ -46,7 +38,35 @@ last-edited: 2026-09-01
 - Secondly, an invariant can be 'opened', as long as can re-prove the invariant after closing it.
 - I can't remember where ''atomically?'' was important.
 
-### 
+Consider a program that adds 2 and 2 to a variable `x`. 
+
+```py
+def progi(_i : thread_id, x : int):
+   x += 2
+   return x
+
+x = 0; progi(0, x) || progi(0, x);
+```
+
+- If we just have invariants, then we can keep an invariant that `x` is even,
+  and we can prove that both threads maintain this invariant.
+- However, we cannot prove that the value of `x` is `4`. 
+- So, we invent some more machinery to allow us to prove that `x` is `4`.
+
+### Resource Algebras
+
+- Resource algebra is a commutative monoid that has a predicate `valid` on it.
+- For example, for fractional ownership, we use $\mathbb Q \cap [0, \infty)$,
+  where `valid(x)` is true if $x \in [0, 1]$.
+  We use $0$ as the unit, and $x \cdot y = x + y$.
+- This generalizes heaps, because a heap is a RA with finite maps and a bottom element,
+  with `valid(h)` is true if `h` is a finite map, and `h1 * h2 = h1 \cup h2` if `dom(h1) \cap dom(h2) = \emptyset`, and bottom otherwise. The unit is the empty heap.
+- More interestingly, we can have an RA that has `frac(a)` or `both` or `full(a)` or `empty(a)` or bottom. 
+
+
+### Atomically 
+
+I can't remmber where this played a role.
 
 
 
