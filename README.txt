@@ -16,6 +16,37 @@
 
 </div>
 
+# IRIS, As Explained To Me By Johannes
+
+```meta
+status: scratch
+created: 2026-09-01
+last-edited: 2026-09-01
+```
+
+## Regular Plain Separation Logic
+
+- Have the separating conjuction `*` and the magic wand operator `-*`.
+- 
+
+## Concurrent Separation Logic Without Higher Order Nonsense
+
+
+### Resource Algebras
+
+- Resource algebra is a commutative monoid that has a predicate `valid` on it.
+- For example, for fractional ownership, we use $\mathbb Q \cap [0, \infty)$,
+  where `valid(x)` is true if $x \in [0, 1]$.
+  We use $0$ as the unit, and $x \cdot y = x + y$.
+
+### Invariants
+
+- An invariant is a proposition that's drawn as if it's in a box (I assume it's a modality?)
+- Firstly an invaraiant is duplicable, and is thus not substructral.
+- Secondly, an invariant can be 'opened', as long as can re-prove the invariant after closing it.
+- I can't remember where ''atomically?'' was important.
+
+
 
 # My Two Ajjas
 
