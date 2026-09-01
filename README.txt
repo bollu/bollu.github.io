@@ -61,7 +61,8 @@ x = 0; progi(0, x) || progi(0, x);
   We use $0$ as the unit, and $x \cdot y = x + y$.
 - This generalizes heaps, because a heap is a RA with finite maps and a bottom element,
   with `valid(h)` is true if `h` is a finite map, and `h1 * h2 = h1 \cup h2` if `dom(h1) \cap dom(h2) = \emptyset`, and bottom otherwise. The unit is the empty heap.
-- More interestingly, we can have an RA that has `frac(a)` or `both` or `full(a)` or `empty(a)` or bottom. 
+- More interestingly, we can have an RA that has `frac(a)` or `botha(a)` or `full(a)` or `empty(a)` or `bottom`.
+- We say that `frac(a) <> full(a) = both(a)`, and `empty(a) <> x = x`, and anything else is `bottom`.
 
 
 ### Atomically 
