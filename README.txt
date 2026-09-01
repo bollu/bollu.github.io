@@ -27,7 +27,6 @@ last-edited: 2026-09-01
 ## Regular Plain Separation Logic
 
 - Have the separating conjuction `*` and the magic wand operator `-*`.
-- 
 
 ## Concurrent Separation Logic Without Higher Order Nonsense
 
