@@ -39,6 +39,8 @@ def nth(x : ptr, i : int) -> ptr:
     case succ i': return nth(x.next, i')
 ```
 
+
+
 ## Concurrent Separation Logic Without Higher Order Nonsense
 
 ### Invariants
