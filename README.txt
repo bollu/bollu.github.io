@@ -65,6 +65,12 @@ x = 0; progi(0, x) || progi(0, x);
 - We say that `frac(a) <> full(a) = both(a)`, and `empty(a) <> x = x`, and anything else is `bottom`.
 
 
+```
+x = 0; progi(0, x) || progi(0, x);
+```
+
+- We start with the precondition that `x = p1 + p2` and `...`.
+
 ### Atomically 
 
 I can't remmber where this played a role.
