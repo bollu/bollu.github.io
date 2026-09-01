@@ -46,7 +46,6 @@ last-edited: 2026-09-01
 - Secondly, an invariant can be 'opened', as long as can re-prove the invariant after closing it.
 - I can't remember where ''atomically?'' was important.
 
-
 ### 
 
 
