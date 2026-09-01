@@ -30,7 +30,6 @@ last-edited: 2026-09-01
 - We use what's called as the 'update pattern' (?) when trying to reason about thing like linked lists.
 - For example, consider the program that returns the pointer to the `n`th element on the linked list.
 
-
 ## Concurrent Separation Logic Without Higher Order Nonsense
 
 ### Invariants
