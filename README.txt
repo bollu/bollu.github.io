@@ -19,6 +19,9 @@
 # Nuclear Energy Prices 
 
 - Henrik's claim: nuclear is the most expensive way to build energy.
+- UK nuclear: "if it ever happens, it would be the most expesntive giga watt hour"
+- Henrik's adj to ideal energy mix: renewables plus gas to smooth out the spikes.
+- Would be nice to to have nuclear, but is too expensive.
 
 # IRIS, As Explained To Me By Johannes
 
