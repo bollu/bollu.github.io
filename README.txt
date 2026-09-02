@@ -24,6 +24,10 @@
 - Would be nice to to have nuclear, but is too expensive.
 
 - Sid's model of the world (no numbers): Nuclear is expensive to build, but cheap to run.
+- Furthermore, we've gotten worse at building nuclear. So, the aggregate cost of buuilding K nuclea plants
+  is offset by improvements. 
+- Sid's ideal mix: nuclear + renewables + storage
+  
 
 # IRIS, As Explained To Me By Johannes
 
