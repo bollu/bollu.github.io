@@ -16,6 +16,10 @@
 
 </div>
 
+# Nuclear Energy Prices 
+
+- Henrik's claim: nuclear is the most expensive way to build energy.
+
 # IRIS, As Explained To Me By Johannes
 
 ```meta
