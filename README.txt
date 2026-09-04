@@ -27,6 +27,11 @@
 - Furthermore, we've gotten worse at building nuclear. So, the aggregate cost of buuilding K nuclea plants
   is offset by improvements. 
 - Sid's ideal mix: nuclear + renewables + storage
+
+# Power of LTL versus Power of CTL
+
+- It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
+
   
 
 # IRIS, As Explained To Me By Johannes
