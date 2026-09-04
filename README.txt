@@ -32,6 +32,16 @@
 
 - It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
 
+# Nuno's Wisdom On Building Tools And Algorithms
+```meta
+status: scratch
+created: 2026-09-04
+last-edited: 2026-09-04
+```
+
+- If you can't run the algorithm by hand against the problem, then you have no hope.
+
+
   
 
 # IRIS, As Explained To Me By Johannes
