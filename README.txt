@@ -187,6 +187,7 @@ last-edited: 2026-08-28
 ```
 
 - [Jazz Piano Site Jazz Standards Sheet Music](https://www.thejazzpianosite.com/jazz-piano-lessons/the-basics/jazz-piano-sheet-music/)
+- [Jazz Lead Sheets](https://jazzleadsheet.com/categories/)
 - [Video](https://www.youtube.com/watch?v=a5WhMqNkuZ0&list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 - [Playlist](https://www.youtube.com/playlist?list=PLLSuwesi2CZLtB_Kp42orBWaSyzfY814r)
 
