@@ -34,6 +34,19 @@ last-edited: 2026-09-07
   is offset by improvements. 
 - Sid's ideal mix: nuclear + renewables + storage
 
+# Structure of Airline Markets
+
+
+```meta
+status: scratch
+created: 2026-09-07
+last-edited: 2026-09-07
+```
+
+- Ed claims that airlines  are an area where the markets are competitive, but the value is totally uncaptured by the people who manufacture airlines.
+- This is meant to be in analogy with model providers, to understand who captures most of the value.
+
+
 # Power of LTL versus Power of CTL
 
 ```meta
@@ -43,7 +56,6 @@ last-edited: 2026-09-07
 ```
 
 - It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
-- 
 
   
 
