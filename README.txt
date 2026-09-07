@@ -18,6 +18,12 @@
 
 # Nuclear Energy Prices 
 
+```meta
+status: scratch
+created: 2026-09-07
+last-edited: 2026-09-07
+```
+
 - Henrik's claim: nuclear is the most expensive way to produce energy.
 - UK nuclear: "if it ever happens, it would be the most expesntive giga watt hour"
 - Henrik's adj to ideal energy mix: renewables plus gas to smooth out the spikes.
@@ -30,17 +36,14 @@
 
 # Power of LTL versus Power of CTL
 
-- It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
-
-# Nuno's Wisdom On Building Tools And Algorithms
 ```meta
 status: scratch
-created: 2026-09-04
-last-edited: 2026-09-04
+created: 2026-09-07
+last-edited: 2026-09-07
 ```
 
-- If you can't run the algorithm by hand against the problem, then you have no hope.
-
+- It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
+- 
 
   
 
