@@ -56,7 +56,6 @@ last-edited: 2026-09-07
 ```
 
 - It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
-
   
 
 # IRIS, As Explained To Me By Johannes
