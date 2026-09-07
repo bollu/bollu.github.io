@@ -56,6 +56,15 @@ last-edited: 2026-09-07
 ```
 
 - It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
+- First, let's recall the math of LTL and CTL.
+
+
+### LTL but not CTL
+
+We want to say that for every trace, we will eventually stay `off`.
+In LTL, we can write `eventually always off`.
+
+### CTL but not LTL
   
 
 # IRIS, As Explained To Me By Johannes
