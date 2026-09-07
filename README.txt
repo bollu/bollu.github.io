@@ -56,15 +56,32 @@ last-edited: 2026-09-07
 ```
 
 - It's classical that LTL and CTL have different power. Here, I write down the example that shows how.
-- First, let's recall the math of LTL and CTL.
+- First, let's recall what LTL and CTL can talk about.
+- Call a system as a finite transition system, so we have states, transitions, and predicates over states.
+- Both LTL and CTL formulae can talk about boolean combinations of atomic predicates, along with box and diamond modalities.
+- LTL can talk about *traces*. A system satisfies an LTL formula iff every trace satisfies the formula. So, truth in LTL depends on the set of traces.
+  Truth is defined on a `(trace, index)` pair. The toplevel truth is given by starting at index `0` and stepping forward.
+- CTL can talk about *states*, and in CTL, we talk about branching that happens at a state. In CTL, every `□` or `◇` is with a quantifier, `∀` or `∃`.
+- For example, `∀□p` means: *for all* paths from the current state, *for all states*, the predicate `p` holds.
+- For example, `∃□p` means: *for some* path from the current state, *for some state*, the predicate `p` holds.
+- For example, `∀◇p` means: *for all* paths from the current state, *for all states*, the predicate `p` holds.
+
+
+
+### CTL but not LTL
+
+CTL can say "reset is always possible". That is, `∀□(E◇ reset)`. This says that for all paths from a given state,
+it is always the case that there exists a path to a state where reset holds.
+
+However, LTL cannot express this, since LTL can only reason about the current trace. The way to show this is to create two machines `T` and `F`
+(`T` where the reset predicate is true, `F` where the reset predicate is false), but whose set of traces is the same.
+
 
 
 ### LTL but not CTL
 
-We want to say that for every trace, we will eventually stay `off`.
-In LTL, we can write `eventually always off`.
+This is more counterintuitive: How can it be that something that can talk about branching cannot capture something that LTL can?
 
-### CTL but not LTL
   
 
 # IRIS, As Explained To Me By Johannes
