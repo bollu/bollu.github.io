@@ -66,7 +66,6 @@ last-edited: 2026-09-07
 - For example, `∃□p` means: *for some* path from the current state, *for some state*, the predicate `p` holds.
 - For example, `∀◇p` means: *for all* paths from the current state, *for all states*, the predicate `p` holds.
 
-
 ### CTL but not LTL
 
 CTL can say "reset is always possible". That is, `∀□(E◇ reset)`. This says that for all paths from a given state,
