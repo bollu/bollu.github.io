@@ -67,7 +67,6 @@ last-edited: 2026-09-07
 - For example, `∀◇p` means: *for all* paths from the current state, *for all states*, the predicate `p` holds.
 
 
-
 ### CTL but not LTL
 
 CTL can say "reset is always possible". That is, `∀□(E◇ reset)`. This says that for all paths from a given state,
@@ -81,6 +80,13 @@ However, LTL cannot express this, since LTL can only reason about the current tr
 ### LTL but not CTL
 
 This is more counterintuitive: How can it be that something that can talk about branching cannot capture something that LTL can?
+Consider the LTL formula `◇□p`. This says that `p` eventually stabilizes.
+This is clearly an LTL formula.
+
+Let's to write it in CTL. Intuitively, we want to say that there exists a path, along with `p` always happens.
+So we may try `∃◇?m` where `?m` is something we ned to fill. Clearly, this starts with the right shape,
+wher we're saying that 'for some state along some path...`. Then, we can say `∃□p`, which is 
+
 
   
 
