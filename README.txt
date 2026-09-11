@@ -47,6 +47,19 @@ last-edited: 2026-09-07
 - This is meant to be in analogy with model providers, to understand who captures most of the value.
 
 
+# Model Checking For Streaming Automata Ala CIRCT Handshake
+
+
+```meta
+status: scratch
+created: 2026-09-11
+last-edited: 2026-09-11
+```
+
+- Just treat the automata as having natural number, monotonic state which is the 'cursor' of where we are ponting in the stream.
+- The transitions are then a function of the current state? And it should all be LIA?
+
+
 # Power of LTL versus Power of CTL
 
 ```meta
