@@ -16,6 +16,17 @@
 
 </div>
 
+# B epsilon trees
+
+```meta
+status: scratch
+created: 2026-09-18
+last-edited: 2026-09-18
+```
+
+- [I learnt of these from 'good enough FS'](https://orib.dev/gefs.pdf)
+
+
 # Nuclear Energy Prices 
 
 ```meta
@@ -59,6 +70,7 @@ last-edited: 2026-09-11
 - Just treat the automata as having natural number, monotonic state which is the 'cursor' of where we are ponting in the stream.
 - The transitions are then a function of the current state? And it should all be LIA?
 - So, PDR style techniques (yay Nikolaj) should allow us to do stream verification on these?
+
 
 
 # Power of LTL versus Power of CTL
