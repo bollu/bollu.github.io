@@ -16,16 +16,38 @@
 
 </div>
 
-# Photography: Color
+# Photography: What The Hell Is Color
+
+```meta
+status: scratch
+created: 2026-09-21
+last-edited: 2026-09-21
+```
 
 
 # Photography: Going From Analog Signals to A Real Picture
 
 ```meta
 status: scratch
-created: 2026-09-18
-last-edited: 2026-09-18
+created: 2026-09-21
+last-edited: 2026-09-21
 ```
+
+# Photography: Geometric Optics, Aperture, Focal Length, Zoom, (D)SLR and APS-C
+
+```meta
+status: scratch
+created: 2026-09-21
+last-edited: 2026-09-21
+```
+
+- Throughout, we will assume thin lenses, and we won't have precise definitions for some concepts.
+- Recall that the focal length of a thin lens is the location at which lines at infinity entering the lens all merge.
+
+### Aperture
+
+- The aperture is measured in units of $f/k$, where $f$ is the focal length.
+- Why is stuff written relative to focal length? Well, historically, 
 
 
 # Nuclear Energy Prices 
@@ -59,6 +81,8 @@ last-edited: 2026-09-11
 - Just treat the automata as having natural number, monotonic state which is the 'cursor' of where we are ponting in the stream.
 - The transitions are then a function of the current state? And it should all be LIA?
 - So, PDR style techniques (yay Nikolaj) should allow us to do stream verification on these?
+- However, the issue is that FSM with two counters can simulate a TM.
+- However! We have a monotonicity criterion, which restricts what can be done. So maybe something can be done here?
 
 
 
