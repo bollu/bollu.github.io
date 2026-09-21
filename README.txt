@@ -49,6 +49,23 @@ last-edited: 2026-09-21
 - The aperture is measured in units of $f/k$, where $f$ is the focal length.
 - Why is stuff written relative to focal length? Well, historically, 
 
+### SLR (Single Lens Reflex)
+
+- Light enters camera through aperture, and is focused on a strip of film.
+- But to see what one is shooting, a mirror in front of the film bounces the light to the viewfinder that lets us preview. (This is the 'reflex' part).
+- When we press the shutter button, the mirror moves away  to allow the light onto the film, exposing it.
+- DSLR is the same, except the film is digital.
+
+### Mirrorless
+
+- Digitize the entire process above.
+- The light hits the screen, and the data from the sensor is sent to the viewfinderm which is a digital screen.
+- This means that the camera can be smaller, since we don't need a mirror, and also, the postprocessing can also be shown in the preview.
+
+### APS-C 
+
+- This is the image sensor format (format is physical, so size and shape).
+
 
 # Nuclear Energy Prices 
 
