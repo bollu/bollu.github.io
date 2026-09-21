@@ -42,6 +42,8 @@ last-edited: 2026-09-21
 ```
 
 - Throughout, we will assume thin lenses, and we won't have precise definitions for some concepts.
+- [CS 178 (Spring 2014)](https://graphics.stanford.edu/courses/cs178/) has been an amazing course with detailed material.
+- [CS 179 Course Schedule](https://sites.google.com/site/marclevoylectures/schedule?authuser=0)
 
 ### Focal Length Physically
 
@@ -50,8 +52,16 @@ last-edited: 2026-09-21
 
 ### Focal Length Photographically (1. Zoom)
 
+- If we have a real physical object of height $1$, distance $1$ from the lens. and let the projected height be $h$ on the focal plane.
+- Then, we see that $1/1 = h/f$, so $h = f$. In general, we will have that $h \propto f$, so the focal length is proportional to the zoom factor.
+- So, 'Zoom lenses' (Which support multiple focal lengths) report the zoom factor in terms of focal length.
+  For example, a `24-70mm` lens has a zoom factor of `70/24 = 2.9x`.
+
 ### Focal Length Photographically (2. Field of View)
 
+- Suppose we have a fixed screen height $w$. Now, we want to understand what angle of vision we can capture on the screen height $w$.
+- We have $\tan(theta/2) = (w/2)/f$. Thus, $theta = 2 \arctan(w/(2f))$. So, $theta$ decreases as $f$ increases.
+- So, if we want a wide angle lens, it must have a small focal length.
 
 ### Aperture Physically
 
@@ -63,7 +73,14 @@ last-edited: 2026-09-21
 - Thus, f-stops are available in `f/1.4`, `f/2`, `f/2.8`, where each has an aperture that is $\sqrt 2$ smaller than the previous one.
   Consequently, they let in half the light of the previous one.
 
-#### Aperture Photographically (Depth of Field)
+#### Aperture Photographically (Depth of Field, Maximum Circle of Confusion)
+
+- My intuition is the following. If we have a pinhole camera, then everything is sharp, since we get a 'single' point of light from each point in the scene.
+  But this corresponds to aperture of $\epsilon$ (very small).
+- As we increase the aperture, we get a cone of light from each point in the scene.
+- This means that not everything lies on the focal plane.
+- 
+
 
 ### Shutter Speed Physically
 ### Shutter Speed Photographically (Motion Blur)
