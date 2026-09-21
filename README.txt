@@ -42,12 +42,38 @@ last-edited: 2026-09-21
 ```
 
 - Throughout, we will assume thin lenses, and we won't have precise definitions for some concepts.
-- Recall that the focal length of a thin lens is the location at which lines at infinity entering the lens all merge.
 
-### Aperture
+### Focal Length Physically
+
+- Recall that the focal length of a thin lens is the location at which lines at infinity entering the lens all merge.
+- Physically, this amounts to the distance from the lens to the focal point.
+
+### Focal Length Photographically (1. Zoom)
+
+### Focal Length Photographically (2. Field of View)
+
+
+### Aperture Physically
 
 - The aperture is measured in units of $f/k$, where $f$ is the focal length.
-- Why is stuff written relative to focal length? Well, historically, 
+- The units are called 'f-stops'.
+- Why stops? Well, cause a dude called 'Waterhouse' designed an interchangeable 'stop' (a part of an optics device that can stop light) 
+  to control the amount of light that enters the camera.
+- Now, while aperture itself (physically) is measured in diameters, what it lets in (light) has units of area. So, increasing the diameter by $\sqrt 2$ doubles the light.
+- Thus, f-stops are available in `f/1.4`, `f/2`, `f/2.8`, where each has an aperture that is $\sqrt 2$ smaller than the previous one.
+  Consequently, they let in half the light of the previous one.
+
+#### Aperture Photographically (Depth of Field)
+
+### Shutter Speed Physically
+### Shutter Speed Photographically (Motion Blur)
+
+### ISO Physically
+
+### ISO Photographically (Grain/Noise/Light)
+
+
+
 
 ### SLR (Single Lens Reflex)
 
