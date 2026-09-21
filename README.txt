@@ -16,15 +16,16 @@
 
 </div>
 
-# B epsilon trees
+# Photography: Color
+
+
+# Photography: Going From Analog Signals to A Real Picture
 
 ```meta
 status: scratch
 created: 2026-09-18
 last-edited: 2026-09-18
 ```
-
-- [I learnt of these from 'good enough FS'](https://orib.dev/gefs.pdf)
 
 
 # Nuclear Energy Prices 
@@ -44,18 +45,6 @@ last-edited: 2026-09-07
 - Furthermore, we've gotten worse at building nuclear. So, the aggregate cost of buuilding K nuclea plants
   is offset by improvements. 
 - Sid's ideal mix: nuclear + renewables + storage
-
-# Structure of Airline Markets
-
-
-```meta
-status: scratch
-created: 2026-09-07
-last-edited: 2026-09-07
-```
-
-- Ed claims that airlines  are an area where the markets are competitive, but the value is totally uncaptured by the people who manufacture airlines.
-- This is meant to be in analogy with model providers, to understand who captures most of the value.
 
 
 # Model Checking For Streaming Automata Ala CIRCT Handshake
