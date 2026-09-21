@@ -25,13 +25,14 @@ last-edited: 2026-09-21
 ```
 
 
-# Photography: Going From Analog Signals to A Real Picture
+# Photography: Going From Analog Signals to A Real Picture (Post Processing Pipeline)
 
 ```meta
 status: scratch
 created: 2026-09-21
 last-edited: 2026-09-21
 ```
+
 
 # Photography: Geometric Optics, Aperture, Focal Length, Zoom, (D)SLR and APS-C
 
@@ -62,6 +63,11 @@ last-edited: 2026-09-21
 - Suppose we have a fixed screen height $w$. Now, we want to understand what angle of vision we can capture on the screen height $w$.
 - We have $\tan(theta/2) = (w/2)/f$. Thus, $theta = 2 \arctan(w/(2f))$. So, $theta$ decreases as $f$ increases.
 - So, if we want a wide angle lens, it must have a small focal length.
+- Easy way to see this: keep a triangle with a fixed base (this is the sensor) at $y = 0$.
+  Move the apex of the triangle (this is the lens) closer to the base. As we do this, the angle at the apex increases.
+- The angle at the apex, when extended, corresponds to the 'extent of the object' that can be captured on the sensor.
+- Two extreme cases: When the apex 'lies on' the base, the angle is 180 degrees, and the object can be as large as we want.
+- Another extreme case: When the apex is very very far away, the angle is very small, and the object can be very small.
 
 ### Aperture Physically
 
@@ -79,17 +85,22 @@ last-edited: 2026-09-21
   But this corresponds to aperture of $\epsilon$ (very small).
 - As we increase the aperture, we get a cone of light from each point in the scene.
 - This means that not everything lies on the focal plane.
-- 
-
 
 ### Shutter Speed Physically
+
+- Amount of time shutter remains open
+
 ### Shutter Speed Photographically (Motion Blur)
+
+- Longer the shutter remains open, more blurry stuff looks.
 
 ### ISO Physically
 
+- Gain on the physical sensor, before analog to digital conversion.
+
 ### ISO Photographically (Grain/Noise/Light)
 
-
+- Results in a bunch of noise when increased, but also lets in more light.
 
 
 ### SLR (Single Lens Reflex)
