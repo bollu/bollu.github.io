@@ -233,6 +233,11 @@ Undergraduate coursework included NLP, deep learning, and word embeddings.
   [Impossibility of compass-straightedge constructions via field theory](https://faculty.iiit.ac.in/~theory/seminar/talks/trisecting-ruler-compass/)
 - **ETH Zurich** — [The Barvinok algorithm for counting lattice points in polyhedra](https://github.com/bollu/barvinok/blob/master/slides.pdf)
 
+## Academic service
+
+- **Reviewer, NeurIPS 2026 Workshop MATH-AI.**
+- **Reviewer, NeurIPS 2025 Workshop MATH-AI.**
+
 ## Awards and grants
 
 - **Renaissance Philanthropy, AI for Maths** grant — *Towards Evaluating Natural Language

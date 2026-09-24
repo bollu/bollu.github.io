@@ -389,6 +389,7 @@ struct BlockTm {
     Comment,      // <!-- ... -->, emitted as nothing.
     Meta,         // ```meta fence; renders as nothing.
     Figure,       // @img(...) alone on a line: a block figure.
+    Hr,           // @hline() alone on a line: a horizontal rule.
   };
   const Kind kind;
   Span span;
@@ -1192,6 +1193,22 @@ vector<BlockTm *> parseBlocks(const char *s, const ll len) {
     continue;
   }
 
+  // ===@hline() alone on its line: a horizontal rule===
+  if (strpeek(s + lcur.si, "@hline()")) {
+    L lend = lcur.next("@hline()");
+    while (s[lend.si] == ' ' || s[lend.si] == '\t') {
+      lend = lend.next(s[lend.si]);
+    }
+    // block form only when nothing but whitespace follows on the line;
+    // otherwise the prose path renders the text literally.
+    if (lend.si >= len || s[lend.si] == '\n') {
+      closePara();
+      ts.push_back(new BlockRaw(BlockTm::Kind::Hr, Span(lcur, lend)));
+      lcur = lend.nextline();
+      continue;
+    }
+  }
+
   // ===@img(...) alone on its line: a block figure===
   if (strpeek(s + lcur.si, "@img(")) {
     L limg = lcur;
@@ -1763,6 +1780,11 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
     return true;
   }
 
+  case BlockTm::Kind::Hr: {
+    outlen += sprintf(outs + outlen, "<hr class='article-hr'>");
+    return true;
+  }
+
   case BlockTm::Kind::Figure: {
     const BlockFigure *fig = (const BlockFigure *)t;
     const std::string alt =
@@ -1786,7 +1808,7 @@ bool renderBlock(duk_context *katex_ctx, duk_context *prism_ctx,
 
   case BlockTm::Kind::Meta: {
     // the dates line under the heading; the kicker above the headline
-    // carries the status. (photo articles never render a page at all.)
+    // carries the status.
     const BlockMeta *meta = (const BlockMeta *)t;
     if (!meta->created[0] && !meta->last_edited[0]) { return true; }
 
@@ -2140,19 +2162,23 @@ static ll writeTocItem(duk_context *katex_ctx, duk_context *prism_ctx,
 static ll writePhotoCardHTML(const ArticleInfo &a, const char *classes,
                              KEEP char *outs) {
   char fspath[1024];
+  // keep the photo path's leading '/': cmake's PATH cache type strips the
+  // root's trailing slash, and doubled slashes are harmless.
   sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
-          a.meta->photo.c_str() + 1); // skip the leading '/'.
+          a.meta->photo.c_str());
   int w = 0, h = 0;
   const bool have_wh = jpegDimensions(fspath, &w, &h);
   ll outlen = 0;
+  // the image links to the photograph's own page, where comments live.
   outlen += sprintf(outs + outlen,
                     "<div class='%s' data-k='photo'>"
+                    "<a class='photo-link' href='%s.html'>"
                     "<img loading='lazy' src='%s'",
-                    classes, a.meta->photo.c_str());
+                    classes, a.url, a.meta->photo.c_str());
   if (have_wh) {
     outlen += sprintf(outs + outlen, " width='%d' height='%d'", w, h);
   }
-  outlen += sprintf(outs + outlen, "><div class='photo-caption'>");
+  outlen += sprintf(outs + outlen, "></a><div class='photo-caption'>");
   if (!a.meta->blurb.empty()) {
     outlen += sprintf(outs + outlen, "%s ", a.meta->blurb.c_str());
   }
@@ -2624,8 +2650,8 @@ int main(int argc, char **argv) {
     }
     const MetaStatus status = meta ? meta->status : MetaStatus::Scratch;
 
-    // photographs live on the homepage mosaic only: no page.
-    if (status == MetaStatus::Photo) { continue; }
+    // photographs render a dedicated page (the mosaic card links to it):
+    // the image, its caption, and comments.
 
     // TODO: find some easy way to print WTF is the data in the heading.
     cout << "===Writing [" << url << ".html]===\n";
@@ -2655,12 +2681,45 @@ int main(int argc, char **argv) {
     }
 
     std::string body_cls = "article-body";
-    if (!meta || meta->layout == LayoutKind::TwoColumn) {
+    if (status == MetaStatus::Photo) {
+      body_cls += " photo-page"; // the image reads best in one column.
+    } else if (!meta || meta->layout == LayoutKind::TwoColumn) {
       body_cls += " two-column";
     }
     if (status == MetaStatus::Essay) { body_cls += " status-essay"; }
     outlen +=
         sprintf(outbuf + outlen, "<div class='%s'>", body_cls.c_str());
+    // ===the photograph itself: image in a tinted box, caption below===
+    if (status == MetaStatus::Photo && meta && !meta->photo.empty()) {
+      char fspath[1024];
+      sprintf(fspath, "%s%s", BLOG_ROOT_FOLDER_TRAILING_SLASH,
+              meta->photo.c_str()); // leading '/' kept; see writePhotoCardHTML.
+      int w = 0, h = 0;
+      const bool have_wh = jpegDimensions(fspath, &w, &h);
+      outlen += sprintf(outbuf + outlen,
+                        "<figure class='photo-figure'><img src='%s'",
+                        meta->photo.c_str());
+      if (have_wh) {
+        outlen += sprintf(outbuf + outlen, " width='%d' height='%d'", w, h);
+      }
+      outlen += sprintf(outbuf + outlen, "><figcaption>");
+      if (!meta->blurb.empty()) {
+        outlen += sprintf(outbuf + outlen, "%s ", meta->blurb.c_str());
+      }
+      if (!meta->location.empty()) {
+        const bool linked = !meta->location_url.empty();
+        if (linked) {
+          outlen += sprintf(outbuf + outlen, "<a class='photo-loc' href='%s'>",
+                            meta->location_url.c_str());
+        } else {
+          outlen += sprintf(outbuf + outlen, "<span class='photo-loc'>");
+        }
+        outlen += sprintf(outbuf + outlen, "%s%s", PIN_SVG,
+                          meta->location.c_str());
+        outlen += sprintf(outbuf + outlen, "%s", linked ? "</a>" : "</span>");
+      }
+      outlen += sprintf(outbuf + outlen, "</figcaption></figure>");
+    }
     for (; i < ix_h1; ++i) {
       success &=
           renderBlock(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
