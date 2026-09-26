@@ -51,7 +51,15 @@ last-edited: 2026-09-21
 - Since the response to any spectrum $L_e(\lambda)$ is given by three values $(\rho, \gamma, \beta)$, we can consider the space of all possible $(\rho, \gamma, \beta)$.
 - Moreover, since the computation of $\rho$ is linear in $L_e(\lambda)$, the mapping from $L_e(\lambda) \mapsto \rho$ is a linear function. Similarly for the others.
 - What we can now do is to consider the span of the the color maping function $L_e(\lambda) \mapsto (\rho, \gamma, \beta)$.
-- This gives us a convex shape in 3D, called the ``locus of spectral colors''.
+- This gives us a convex shape in 3D. Let's call it the ``gamut of percieveable colors''. This will be convex hull of the ``locus of spectral colors'' or the ``spectral locus''.
+- Since it's a convex shape, the boundary of the shape is formed by dirac delta functions at each wavelength. The boundary curve is called as the ``locus of spectral colors''.
+- Also, see that the response to the diract delta at $\delta_{\lambda_0}$ recovers $(\rho(\lambda_0), \gamma(\lambda_0), \beta(\lambda_0))$.
+- So, we can see that the locus of spectral colors is the curve traced out by $(\rho(\lambda), \gamma(\lambda), \beta(\lambda))$ as $\lambda$ varies from 400nm to 700nm.
+- These are called the ``tristimulus sensitivity functions'' of humans, written as $\rho(\lambda), \gamma(\lambda), \beta(\lambda)$. (See that this matches the previous definition.
+- We want the camera's sensitivity functions $R(\lambda)$ to be similar to that of the human's $\rho(\lambda)$, so we capture the same colors as humans do.
+
+### Reproducing Colors With 3 Primary Colors
+
 
 
 ## Color 2: Applications in Photography
