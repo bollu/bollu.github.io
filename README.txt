@@ -29,6 +29,7 @@ last-edited: 2026-09-21
 
 - Figured out that white light (from the sun) can be split into a spectrum of colors.
 - But wait, why isn't the light from the sun monochromatic, or randomly colored?
+- something something about how the sun is a blackbody radiator, and thus emits a spectrum with components at all frequencies.
 
 ## Color 2: Applications in Photography
 
