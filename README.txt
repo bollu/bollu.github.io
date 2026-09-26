@@ -63,13 +63,16 @@ last-edited: 2026-09-21
 - These are called the ``tristimulus sensitivity functions'' of humans, written as $\rho(\lambda), \gamma(\lambda), \beta(\lambda)$. (See that this matches the previous definition.
 - We want the camera's sensitivity functions $R(\lambda)$ to be similar to that of the human's $\rho(\lambda)$, so we capture the same colors as humans do.
 
-### Reproducing Colors With 3 Primary Colors/ Color Matching Functions
+### Reproducing Colors With 3 Primary Colors/ CMFs (Color Matching Functions)
 
 - [Colour and Vision Research Lab](http://www.cvrl.org/database/text/intros/introcmfs.htm)
 - Given a target light $T$, we want to find a combination of the lights $P_1, P_2, P_3$ in order to reproduce the same color as $T$.
 - Sometimes, we have to add some amount of, say, $P_1$ to $T$! (since $T$ was not saturated enough in the $P_1$ direction).
 - So, in some sense, we're trying to solve for $T + k_1 P_1 + k_2 P_2 + k_3 P_3 = 0$. Naively, we would only imagine that $k_1, k_2, k_3 \geq 0$.
   However, we offer how to interpret negative values of $k_i$ as adding $P_i$ to the target light $T$!
+- This takes the footing into pure abstraction.
+- Now, the values of $k_1, k_2, k_3$ are called as the ``color matching values'' for a given target light $T$.
+- 
 
 
 
