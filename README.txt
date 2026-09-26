@@ -36,7 +36,7 @@ last-edited: 2026-09-21
 - We typically plot these as 'power distributions', which are normalized to clamp the maximum power to 1.
   Then, we can 'read off' what the color of the object is by looking at the peak of the power distribution.
 
-### Color Response Function Of Humans
+### Color Response Function Of Humans (Trichromatic Color Theory / Young-Helmholtz Three Component Theory)
 
 - Each type of cone in the retina (for red, green, blue) have different 'spectral sensitivity distribution' curves, that map wavelength to the normalized sensitivity of the cone to that wavelength.
 - If we multiply the input wavelength-by-wavelength power distribution with the spectral sensitivity distribution of each cone, and integrate, we get three numbers, which are the 'cone responses' of the human eye to that color at each area of the retina.
@@ -59,6 +59,7 @@ last-edited: 2026-09-21
 - We want the camera's sensitivity functions $R(\lambda)$ to be similar to that of the human's $\rho(\lambda)$, so we capture the same colors as humans do.
 
 ### Reproducing Colors With 3 Primary Colors
+
 
 
 
