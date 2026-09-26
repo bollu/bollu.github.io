@@ -80,7 +80,11 @@ last-edited: 2026-09-21
 - Anyway, this gives us the functions $\bar \rho(\lambda)$, $\bar \gamma(\lambda)$, $\bar \beta(\lambda)$, which are the color matching functions of humans, with a chosen basis of the CIE standard.
 - So, we can parametrize the true color $T$ by these values.
 - The *gamut* that corresponds to our choice of basis is the set of all colors we can form with nonnegative combinations of the basis.
-- Q. why don't we choose the basis to be the actual human response curves of our cones? A. Because the primaries have to be light we can actually generate.
+- Q. why don't we choose the basis to be the actual human response curves of our cones? A. Because the primaries have to be light we can actually generate, and we actually can generate pure wavelengths.
+
+### LMS Color space
+
+- 
 
 ### Additive Color Mixing
 
@@ -92,6 +96,7 @@ last-edited: 2026-09-21
 - Subtractive mixing is used in printing, where all subsets of `C`yan, `Y`ellow, `M`agenta, blac`K` are used to create pigments of various shades.
   The colors of each spot have their spectra interpreted **additively** by the eye when viewed from a distance.
 - Q. Why do we need the subtractive step in the first place? Can't we just use R, G, B?
+- A. With just R, G, B, we can reproduce chromaticity (hue plus saturation), but not lightness.
 
 
 
