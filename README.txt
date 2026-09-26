@@ -23,6 +23,9 @@ status: scratch
 created: 2026-09-21
 last-edited: 2026-09-21
 ```
+## Color 1: Trichromatic Color Theory
+
+## Color 2: Applications in Photography
 
 
 # Photography: Going From Analog Signals to A Real Picture (Post Processing Pipeline)
