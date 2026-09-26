@@ -30,6 +30,17 @@ last-edited: 2026-09-21
 - Figured out that white light (from the sun) can be split into a spectrum of colors.
 - But wait, why isn't the light from the sun monochromatic, or randomly colored?
 - something something about how the sun is a blackbody radiator, and thus emits a spectrum with components at all frequencies.
+- humans can see the wavelengths from 400nm to 700nm, which is the visible spectrum.
+- luckily for us, the light that is reflected can be computed by multiplying wavelength-by-wavelength
+  the illumination spectrum with the reflectance spectrum of the object. Recall that these spectrum map wavelengths to power.
+- We typically plot these as 'power distributions', which are normalized to clamp the maximum power to 1.
+  Then, we can 'read off' what the color of the object is by looking at the peak of the power distribution.
+
+### Color Response in Humans
+
+- Each type of cone in the retina (for red, green, blue) have different 'spectral sensitivity distribution' curves, that map wavelength to the normalized sensitivity of the cone to that wavelength.
+- If we multiply the input wavelength-by-wavelength power distribution with the spectral sensitivity distribution of each cone, and integrate, we get three numbers, which are the 'cone responses' of the human eye to that color at each area of the retina.
+
 
 ## Color 2: Applications in Photography
 
