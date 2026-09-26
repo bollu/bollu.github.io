@@ -36,10 +36,22 @@ last-edited: 2026-09-21
 - We typically plot these as 'power distributions', which are normalized to clamp the maximum power to 1.
   Then, we can 'read off' what the color of the object is by looking at the peak of the power distribution.
 
-### Color Response in Humans
+### Color Response Function Of Humans
 
 - Each type of cone in the retina (for red, green, blue) have different 'spectral sensitivity distribution' curves, that map wavelength to the normalized sensitivity of the cone to that wavelength.
 - If we multiply the input wavelength-by-wavelength power distribution with the spectral sensitivity distribution of each cone, and integrate, we get three numbers, which are the 'cone responses' of the human eye to that color at each area of the retina.
+- Said more mathematically, take a stimulus spectrum $L_e(\lambda)$.
+- Then, suppose we have divined the functions $\rho(\lambda)$ which gives us the normalized sensitivity of the red cone to wavelength $\lambda$. 
+- Then, $\rho = \int L_e(\lambda) \rho(\lambda) d\lambda$ is the response of the red cone to the stimulus spectrum $L_e(\lambda)$.
+- So, overall, $(\rho, \gamma, \beta)$ equal $\int L_e(\lambda) (\rho(\lambda), \gamma(\lambda), \beta(\lambda)) d\lambda$.
+- The function $L_e(\lambda) \mapsto (\rho, \gamma, \beta)$ is called the 'color response function of humans'.
+
+### Locus Of Spectral Colors
+
+- Since the response to any spectrum $L_e(\lambda)$ is given by three values $(\rho, \gamma, \beta)$, we can consider the space of all possible $(\rho, \gamma, \beta)$.
+- Moreover, since the computation of $\rho$ is linear in $L_e(\lambda)$, the mapping from $L_e(\lambda) \mapsto \rho$ is a linear function. Similarly for the others.
+- What we can now do is to consider the span of the the color maping function $L_e(\lambda) \mapsto (\rho, \gamma, \beta)$.
+- This gives us a convex shape in 3D, called the ``locus of spectral colors''.
 
 
 ## Color 2: Applications in Photography
