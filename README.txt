@@ -84,7 +84,7 @@ last-edited: 2026-09-21
 
 ### LMS Color space
 
-- 
+- The name for the color space of the human matching functions. 
 
 ### Additive Color Mixing
 
@@ -98,8 +98,64 @@ last-edited: 2026-09-21
 - Q. Why do we need the subtractive step in the first place? Can't we just use R, G, B?
 - A. With just R, G, B, we can reproduce chromaticity (hue plus saturation), but not lightness.
 
+### Color Appearance Terminology
+
+- All taken from Fairchild's book, "Color Appearance Models".
+
+##### Color
+
+> Attribute of visual perception consisting of any combination of chromatic and
+> achromatic content. This attribute can be described by chromatic color names
+> such as yellow, orange, brown, red, pink, green, blue, purple, etc., or by achromatic color names such as white, gray, black, etc., and qualified by bright,
+> dim, light, dark, etc., or by combinations of such names.
 
 
+##### Hue
+
+> Attribute of a visual sensation according to which an area appears to be
+> similar to one of the perceived colors: red, yellow, green, and blue, or to a
+> combination of two of them.
+> Achromatic Color: Perceived color devoid of hue.
+> Chromatic Color: Perceived color possessing a hue.
+
+
+- Think of the hue circle as the correct mental model for 'hue'.
+
+##### Brightness And Lightness
+
+
+> Brightness
+> Attribute of a visual sensation according to which an area appears to emit
+> more or less light.
+
+> Lightness (Relative Brightness)
+> The brightness of an area judged relative to the brightness of a similarly
+> illuminated area that appears to be white or highly transmitting
+
+- A classic example to distinguish these is a piece of paper. 
+- When viewed indoors, it has some brightness, and is probably the lightest thing in the field of view.
+- When viewed outdoors, it reflects a lot more light (and thus appears brighter), and is probably still the lightest thing in the field of view.
+- Thus, the outdoor scene's paper has more brightness, but roughly equal lightness.
+
+
+##### Colourfulness and Chroma
+
+
+> Colorfulness
+> Attribute of a visual sensation according to which the perceived color of an
+> area appears to be more or less chromatic.
+
+
+> Chroma
+> Colorfulness of an area judged as a proportion of the brightness of a similarly
+> illuminated area that appears white or highly transmitting.
+
+
+- Color is thought to be three dimensional. Two of the dimensions (hue and brightness) have been defined already.
+  The third dimension is colorfulness and chroma.
+- Colorfulness is to chroma as brightness is to lightness.
+- So, brightness : lightness :: colorfulness : chroma.
+- chroma is "relative colorfulness".
 
 ## Color 2: Applications in Photography
 
