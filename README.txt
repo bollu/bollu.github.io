@@ -73,8 +73,23 @@ last-edited: 2026-09-21
 - This takes the footing into pure abstraction.
 - Now, the values of $k_1, k_2, k_3$ are called as the ``color matching values'' for a given target light $T$.
 - The standard CIE 1931 RGB standard picks *monochromatic primaries*. Here, $P_1 = R = 700nm$, $P_2 = G = 546.1nm$, $P_3 = B = 435.8nm$.
-- Then, the values $k_1, k_2, k_3$ used to match a target light $T = \delta_{\lambda_0}$ are written as $\bar r(\lambda_0), \bar g(\lambda_0), \bar b(\lambda_0)$,
+- Then, the values $k_1, k_2, k_3$ used to match a target light $T = \delta_{\lambda_0}$ are written as $\bar \rho(\lambda_0), \bar \gamma(\lambda_0), \bar \beta(\lambda_0)$,
   and are called the ``color matching functions'' (CMFs).
+- We picked 700nm red since it only excites the red cone basically, and is the most saturated.
+- We picked the green and blue due to engineering convenience, since these happen to be spectra of a mercury lamp, if I got my reading right.
+- Anyway, this gives us the functions $\bar \rho(\lambda)$, $\bar \gamma(\lambda)$, $\bar \beta(\lambda)$, which are the color matching functions of humans, with a chosen basis of the CIE standard.
+- So, we can parametrize the true color $T$ by these values.
+- The *gamut* that corresponds to our choice of basis is the set of all colors we can form with nonnegative combinations of the basis.
+- Naive question: why don't we choose the basis to be the actual human response curves of our cones?!
+
+### Additive Color Mixing
+
+- Just add wavelengths together, it's linear algebra.
+
+### Subtractive Color Mixing
+
+- Multiply the transmittance spectra. The output $o(\lambda)$ equals $i_1(\lambda) \cdot i_2(\lambda)$ for input material transmittance spectra $i_1, i_2$.
+- 
 
 
 
