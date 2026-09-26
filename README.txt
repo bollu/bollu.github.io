@@ -25,6 +25,11 @@ last-edited: 2026-09-21
 ```
 ## Color 1: Trichromatic Color Theory
 
+### Newton
+
+- Figured out that white light (from the sun) can be split into a spectrum of colors.
+- But wait, why isn't the light from the sun monochromatic, or randomly colored?
+
 ## Color 2: Applications in Photography
 
 
