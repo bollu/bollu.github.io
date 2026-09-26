@@ -98,6 +98,12 @@ last-edited: 2026-09-21
 - Q. Why do we need the subtractive step in the first place? Can't we just use R, G, B?
 - A. With just R, G, B, we can reproduce chromaticity (hue plus saturation), but not lightness.
 
+### Photometry
+
+- Photometry is just radiometry (which cares about power and related concepts) integrated against the human visual system.
+- So, I will describe the radiometric concept first, and the related photometric version.
+- TODO: do the photometry thing here.
+
 ### Color Appearance Terminology
 
 - All taken from Fairchild's book, "Color Appearance Models".
@@ -136,6 +142,7 @@ last-edited: 2026-09-21
 - When viewed indoors, it has some brightness, and is probably the lightest thing in the field of view.
 - When viewed outdoors, it reflects a lot more light (and thus appears brighter), and is probably still the lightest thing in the field of view.
 - Thus, the outdoor scene's paper has more brightness, but roughly equal lightness.
+- Lightness is therefore approximately the same across luminances.
 
 
 ##### Colourfulness and Chroma
@@ -156,6 +163,39 @@ last-edited: 2026-09-21
 - Colorfulness is to chroma as brightness is to lightness.
 - So, brightness : lightness :: colorfulness : chroma.
 - chroma is "relative colorfulness".
+- Colorfulness is the intensity of a hue in a given color stimulus.
+- Acrhomatic colors have zero colorfulness (and thus, also zero chroma).
+- As the amount of color content increases (holding brightness and hue constant), so does the colorfulness and chroma.
+- Like Lightness, Chroma too tends to be approximately the same across luminances.
+
+
+##### Saturation
+
+> Colorfulness of an area judged in proportion to its brightness.
+
+
+- Saturation is a unique perceptual experience separate from chroma.
+- Like chroma, saturation can be thought of as relative colorfulness. 
+- However, saturation is the colorfulness of a stimulus relative to **its own brightness**.
+- Chroma is colorfulness relative to the brightness of a similarly illuminated area that appears white.
+- In order for a stimulus to have chroma, it must be judged in relation to other colors.
+- On the other hand, a stimulus seen completely in isolation can have saturation.
+- An example of a stimulus that exhibits saturation, but not chroma, is a traffic signal light viewed in isolation on a dark night.
+- The lights, typically red, yellow, or green, are quite saturated and can be compared with the color appearance of oncoming headlights whose saturation is very nearly zero
+  (since they typically appear white).
+- Saturation is sometimes described as a shadow series. =
+  This refers to the range of colors observed when a single object has a shadow cast upon it.
+  As the object falls into deeper shadow, it becomes darker, but saturation remains constant.
+
+
+##### Five Parameters
+
+- (1) Brightness
+- (2) Lightness
+- (3) Colorfulness
+- (4) Chroma
+- (5) Hue
+- We don't need saturation, can be derived.
 
 ## Color 2: Applications in Photography
 
