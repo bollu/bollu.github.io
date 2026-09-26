@@ -23,7 +23,12 @@ status: scratch
 created: 2026-09-21
 last-edited: 2026-09-21
 ```
+
+- [Handprint: Color Science](https://www.handprint.com/HP/WCL/color6.html)
+- [CS 178, Spring 2014, Color 1: trichromatic theory](https://graphics.stanford.edu/courses/cs178/lectures/color1-13may14.pdf)
+
 ## Color 1: Trichromatic Color Theory
+
 
 ### Newton
 
@@ -58,7 +63,9 @@ last-edited: 2026-09-21
 - These are called the ``tristimulus sensitivity functions'' of humans, written as $\rho(\lambda), \gamma(\lambda), \beta(\lambda)$. (See that this matches the previous definition.
 - We want the camera's sensitivity functions $R(\lambda)$ to be similar to that of the human's $\rho(\lambda)$, so we capture the same colors as humans do.
 
-### Reproducing Colors With 3 Primary Colors
+### Reproducing Colors With 3 Primary Colors/ Color Matching Functions
+
+- [Colour and Vision Research Lab](http://www.cvrl.org/database/text/intros/introcmfs.htm)
 
 
 
