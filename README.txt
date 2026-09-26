@@ -34,6 +34,34 @@ last-edited: 2026-09-21
 ```
 
 
+## On peer review and "A+B+C" papers
+
+
+```meta
+status: scratch
+created: 2026-09-26
+last-edited: 2026-09-21
+```
+
+Wisdom written down by [Guanya Shi](https://www.gshi.me/).
+
+
+- In today's AI and robotics community, paper publication should be viewed as a *tool* for sharing ideas,
+  engaging with the research community,
+  and providing helpful deadlines that cut through distractions and push our work forward. 
+- Paper publication is neither sufficient nor necessary for a research project to be meaningful, impactful, or high-quality.
+- Technically, most (if not all) robotics papers are convex combinations of existing ideas.
+  I still deeply appreciate A+B+C papers, especially when they deliver:
+- **New capabilities**: the "trivial combination" unlocks behaviors we simply couldn't achieve before
+- **Sensible & organic design**: A+B+C is clearly the right composition—not some arbitrary A′+B+C′
+- **Nontrivial interactions**: careful analysis of the dynamics, coupling, or failure modes between A, B, C
+- **Rehabilitating old ideas**: A was dismissed for years, but paired with modern B/C, it suddenly works—and teaches us why
+- **System-level & "interface" insight**: the contribution is not any single piece, but how the pieces talk to each other
+- **Scaling laws or regimes**: identifying when/why A+B+C works (and when it doesn't)
+- **Engineering clarity**: making something actually work robustly in the real world is not "trivial"
+- **New problem formulations**: sometimes the real novelty is in the reformulation—only under this view does A+B+C make sense.
+
+
 # Photography: Geometric Optics, Aperture, Focal Length, Zoom, (D)SLR and APS-C
 
 ```meta
