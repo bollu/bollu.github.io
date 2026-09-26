@@ -72,7 +72,9 @@ last-edited: 2026-09-21
   However, we offer how to interpret negative values of $k_i$ as adding $P_i$ to the target light $T$!
 - This takes the footing into pure abstraction.
 - Now, the values of $k_1, k_2, k_3$ are called as the ``color matching values'' for a given target light $T$.
-- 
+- The standard CIE 1931 RGB standard picks *monochromatic primaries*. Here, $P_1 = R = 700nm$, $P_2 = G = 546.1nm$, $P_3 = B = 435.8nm$.
+- Then, the values $k_1, k_2, k_3$ used to match a target light $T = \delta_{\lambda_0}$ are written as $\bar r(\lambda_0), \bar g(\lambda_0), \bar b(\lambda_0)$,
+  and are called the ``color matching functions'' (CMFs).
 
 
 
