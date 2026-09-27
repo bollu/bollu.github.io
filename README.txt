@@ -57054,6 +57054,21 @@ created: 2025-03-26
 last-edited: 2026-08-29
 blurb: Recipes I actually cook, rava dosa onward, written down so I stop reinventing them.
 ```
+### Pesto
+
+- Basil: 17g
+- Olio Extravergine: 70g
+- Parmigiano Reggiano: 50g
+- Pecorino: 30g
+- Pine nuts: 30g
+- Garlic: 2 pieces
+- Coarse Salt: 3g
+
+
+- First clean the basil leaves, remove the stem of the leaf, then dry the leaves on by one with a large kitchen cloth.
+- Add the basil and pine nuts into the mortar, and crush them together. Note that no oil or cheese has been added yet. 
+
+- When using the blender, add ice for the basil.
 
 ### Cutlets of Veal / Pork
 
@@ -57062,6 +57077,7 @@ blurb: Recipes I actually cook, rava dosa onward, written down so I stop reinven
 - low heat, cook on one side, then flip and cook on the other side.
 - at the end, once both sides are cooked and golden-brown, add white wine for flavouring, and let it reduce. Flip in the middle of reducing for even distribution.
 - Finally, add pepper at the end, once the heat is off, so we don't burn the pepper.
+
 
 
 ### Rava Dosa
