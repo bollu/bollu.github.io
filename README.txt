@@ -57038,7 +57038,6 @@ things on architecture I wish to read and/or have read:
   here... nothing valued is here. Design to ward off people for nuclear waste.
 
 - [When is the revolution in architecture coming](https://www.currentaffairs.org/2021/04/when-is-the-revolution-in-architecture-coming)
-
 > Beauty is kind of “objective” in this sense, in that something either does or
 > doesn’t give you pleasure.
 - [Antoni Gaudi](https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD)
@@ -57063,12 +57062,11 @@ blurb: Recipes I actually cook, rava dosa onward, written down so I stop reinven
 - Pine nuts: 30g
 - Garlic: 2 pieces
 - Coarse Salt: 3g
-
-
 - First clean the basil leaves, remove the stem of the leaf, then dry the leaves on by one with a large kitchen cloth.
-- Add the basil and pine nuts into the mortar, and crush them together. Note that no oil or cheese has been added yet. 
-
-- When using the blender, add ice for the basil.
+- Add the basil, salt, and pine nuts into the mortar, and crush them together. Note that no oil or cheese has been added yet. 
+- If using the blender, add ice for the basil.
+- Then, chop the pecorino and the the parmigianno into thin flakes (but NOT grated), and once again, pestle and mortar.
+- Finally, add oil to create a suspension. 
 
 ### Cutlets of Veal / Pork
 
