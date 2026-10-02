@@ -57051,7 +57051,7 @@ things on architecture I wish to read and/or have read:
 status: big-list
 created: 2025-03-26
 last-edited: 2026-08-29
-blurb: Recipes I actually cook, rava dosa onward, written down so I stop reinventing them.
+blurb: Recipes I actually cook.
 ```
 ### Pesto
 
