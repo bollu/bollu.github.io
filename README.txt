@@ -56,11 +56,11 @@ last-edited: 2026-09-21
 - Since the response to any spectrum $L_e(\lambda)$ is given by three values $(\rho, \gamma, \beta)$, we can consider the space of all possible $(\rho, \gamma, \beta)$.
 - Moreover, since the computation of $\rho$ is linear in $L_e(\lambda)$, the mapping from $L_e(\lambda) \mapsto \rho$ is a linear function. Similarly for the others.
 - What we can now do is to consider the span of the the color maping function $L_e(\lambda) \mapsto (\rho, \gamma, \beta)$.
-- This gives us a convex shape in 3D. Let's call it the ``gamut of percieveable colors''. This will be convex hull of the ``locus of spectral colors'' or the ``spectral locus''.
-- Since it's a convex shape, the boundary of the shape is formed by dirac delta functions at each wavelength. The boundary curve is called as the ``locus of spectral colors''.
+- This gives us a convex shape in 3D. Let's call it the "gamut of percieveable colors". This will be convex hull of the "locus of spectral colors" or the "spectral locus".
+- Since it's a convex shape, the boundary of the shape is formed by dirac delta functions at each wavelength. The boundary curve is called as the "locus of spectral colors".
 - Also, see that the response to the diract delta at $\delta_{\lambda_0}$ recovers $(\rho(\lambda_0), \gamma(\lambda_0), \beta(\lambda_0))$.
 - So, we can see that the locus of spectral colors is the curve traced out by $(\rho(\lambda), \gamma(\lambda), \beta(\lambda))$ as $\lambda$ varies from 400nm to 700nm.
-- These are called the ``tristimulus sensitivity functions'' of humans, written as $\rho(\lambda), \gamma(\lambda), \beta(\lambda)$. (See that this matches the previous definition.
+- These are called the "tristimulus sensitivity functions" of humans, written as $\rho(\lambda), \gamma(\lambda), \beta(\lambda)$. (See that this matches the previous definition.
 - We want the camera's sensitivity functions $R(\lambda)$ to be similar to that of the human's $\rho(\lambda)$, so we capture the same colors as humans do.
 
 ### Reproducing Colors With 3 Primary Colors/ CMFs (Color Matching Functions)
@@ -71,10 +71,10 @@ last-edited: 2026-09-21
 - So, in some sense, we're trying to solve for $T + k_1 P_1 + k_2 P_2 + k_3 P_3 = 0$. Naively, we would only imagine that $k_1, k_2, k_3 \geq 0$.
   However, we offer how to interpret negative values of $k_i$ as adding $P_i$ to the target light $T$!
 - This takes the footing into pure abstraction.
-- Now, the values of $k_1, k_2, k_3$ are called as the ``color matching values'' for a given target light $T$.
+- Now, the values of $k_1, k_2, k_3$ are called as the "color matching values" for a given target light $T$.
 - The standard CIE 1931 RGB standard picks *monochromatic primaries*. Here, $P_1 = R = 700nm$, $P_2 = G = 546.1nm$, $P_3 = B = 435.8nm$.
 - Then, the values $k_1, k_2, k_3$ used to match a target light $T = \delta_{\lambda_0}$ are written as $\bar \rho(\lambda_0), \bar \gamma(\lambda_0), \bar \beta(\lambda_0)$,
-  and are called the ``color matching functions'' (CMFs).
+  and are called the "color matching functions" (CMFs).
 - We picked 700nm red since it only excites the red cone basically, and is the most saturated.
 - We picked the green and blue due to engineering convenience, since these happen to be spectra of a mercury lamp, if I got my reading right.
 - Anyway, this gives us the functions $\bar \rho(\lambda)$, $\bar \gamma(\lambda)$, $\bar \beta(\lambda)$, which are the color matching functions of humans, with a chosen basis of the CIE standard.
@@ -57038,6 +57038,7 @@ things on architecture I wish to read and/or have read:
   here... nothing valued is here. Design to ward off people for nuclear waste.
 
 - [When is the revolution in architecture coming](https://www.currentaffairs.org/2021/04/when-is-the-revolution-in-architecture-coming)
+
 > Beauty is kind of “objective” in this sense, in that something either does or
 > doesn’t give you pleasure.
 - [Antoni Gaudi](https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD)
