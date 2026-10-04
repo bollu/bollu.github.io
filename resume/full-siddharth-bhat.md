@@ -13,6 +13,7 @@ selections *from* this file. Anything new goes here first.
 - LinkedIn: [linkedin.com/in/siddharth-bhat](https://www.linkedin.com/in/siddharth-bhat-388b60104/)
 - Google Scholar: [profile](https://scholar.google.com/citations?user=7Irb-OUAAAAJ&hl=en)
 - Address: 64 Storey's Way, Churchill College, Cambridge CB3 0DS, United Kingdom
+- Right to work: UK Global Talent visa (Exceptional Promise)
 
 ## Summary
 
@@ -244,6 +245,7 @@ Undergraduate coursework included NLP, deep learning, and word embeddings.
   Proofs*; one of 30 research groups funded from 280+ applicants.
 - **Best paper, ICSE 2025** — *Towards Neural Synthesis for SMT-Assisted Proof-Oriented
   Programming*.
+- **UK Global Talent visa, Exceptional Promise** endorsement.
 - **5th place, SMT-COMP 2025**, `QF_BV` division, for `bv_decide`.
 - **Google Summer of Code** — student 2015 (VisPy), selected 2016 (SymEngine), mentor 2016 and
   2018 (LLVM/Polly).
