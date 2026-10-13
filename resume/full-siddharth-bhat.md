@@ -17,7 +17,7 @@ selections *from* this file. Anything new goes here first.
 
 ## Summary
 
-PhD researcher (Cambridge) working on formally verified decision procedures and mechanical
+ML Performance Engineer at XTX Markets; PhD researcher (Cambridge) working on formally verified decision procedures and mechanical
 theorem proving in Lean, with a focus on compiler verification. Co-developer of Lean's
 `bv_decide` bitvector solver (5th at SMT-COMP 2025, `QF_BV`) and author of sound-and-complete,
 machine-checked decision procedures for parametric bitvectors. Also a decade of
@@ -79,6 +79,10 @@ Infrastructure: LLVM, MLIR, polyhedral compilation, SMT solvers, GPU code genera
 - Awarded a [Renaissance Philanthropy AI for Maths](https://www.renaissancephilanthropy.org/mathbench-towards-evaluating-natural-language-proofs)
   grant for *Towards Evaluating Natural Language Proofs*; one of 30 groups funded from 280+
   applicants.
+- Awarded a second [Renaissance Philanthropy AI for Maths](https://www.renaissancephilanthropy.org/tactic-synthesis-via-lean-metaprogramming-towards-self-improving-theorem-provers)
+  grant (with Stella Biderman and Pawan Sasanka Ammanamanchi, EleutherAI) for *Tactic Synthesis
+  via Lean Metaprogramming: Towards Self-Improving Theorem Provers* — MetaLean, a benchmark for
+  whether models can write reusable proof automation (tactics, decision procedures) in Lean.
 
 ## Education
 
@@ -94,6 +98,8 @@ Undergraduate coursework included NLP, deep learning, and word embeddings.
 
 ## Industry research
 
+- **2026–present — XTX Markets, London, UK. ML Performance Engineer.**
+  Performance engineering for machine-learning systems.
 - **Sep–Nov 2024 — Amazon Web Services, Automated Reasoning Group, Austin, TX. Research Intern.**
   Tactics for deciding memory (non-)interference in `lnsym`, a Lean-based ARM symbolic
   simulator. Large-scale symbolic execution and performance optimization.
@@ -243,6 +249,9 @@ Undergraduate coursework included NLP, deep learning, and word embeddings.
 
 - **Renaissance Philanthropy, AI for Maths** grant — *Towards Evaluating Natural Language
   Proofs*; one of 30 research groups funded from 280+ applicants.
+- **Renaissance Philanthropy, AI for Maths** grant — [*Tactic Synthesis via Lean
+  Metaprogramming: Towards Self-Improving Theorem Provers*](https://www.renaissancephilanthropy.org/tactic-synthesis-via-lean-metaprogramming-towards-self-improving-theorem-provers), with
+  EleutherAI (Stella Biderman, Pawan Sasanka Ammanamanchi).
 - **Best paper, ICSE 2025** — *Towards Neural Synthesis for SMT-Assisted Proof-Oriented
   Programming*.
 - **UK Global Talent visa, Exceptional Promise** endorsement.
