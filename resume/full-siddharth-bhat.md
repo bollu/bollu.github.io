@@ -2,7 +2,8 @@
 
 Master record of everything: education, positions, publications, software, talks, awards.
 The specialized one-page CVs (`cv-compilers.tex`, `cv-verification.tex`, `cv-ml.tex`) are
-selections *from* this file. Anything new goes here first.
+selections *from* this file, as is the consolidated `cv-full.tex` that the website links to.
+Anything new goes here first.
 
 ## Contact
 

@@ -1,11 +1,12 @@
-CVS := cv-compilers cv-verification cv-ml
+CVS := cv-full cv-compilers cv-verification cv-ml
 PDFS := $(addsuffix .pdf,$(CVS))
 
 .PHONY: all cvs full-siddharth-bhat.pdf clean
 
-# `make` builds the three specialized one-page CVs (compilers, formal
-# verification, machine learning). They are selections from
-# full-siddharth-bhat.md, the master record; style lives in cvstyle.sty.
+# `make` builds the one-page CVs: cv-full (consolidated; the one the website
+# links to) and the three specialized tracks (compilers, formal verification,
+# machine learning). All are selections from full-siddharth-bhat.md, the master
+# record; style lives in cvstyle.sty.
 all: cvs
 
 cvs: $(PDFS)

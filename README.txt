@@ -7,7 +7,7 @@
 </h1>
 
 - [Get in touch (Anonymously)](https://www.admonymous.co/bollu) / Email:  <a href='mailto:bollu@fastmail.com'> `bollu@fastmail.com` </a> / [Grab a video call](https://calendly.com/bollu)
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  Resume ([compilers](resume/cv-compilers.pdf), [verification](resume/cv-verification.pdf), [ML](resume/cv-ml.pdf)) / [Link hoard](todo.md) / [Photography](https://nx72119.your-storageshare.de/apps/photos/public/3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume (full)](resume/cv-full.pdf) / [Link hoard](todo.md) / [Photography](https://nx72119.your-storageshare.de/apps/photos/public/3unZrGZ2EsoVZiAJKeWWxtH1SueN0TR5) / <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - Motto: **It's useful to finish things.**
 
 </div>
