@@ -16,11 +16,6 @@
 
 </div>
 
-# Formal methods will eat the compilers world
-
-- Registering
-
-
 # Photography: What The Hell Is Color
 
 ```meta
