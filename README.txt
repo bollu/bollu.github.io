@@ -16,10 +16,10 @@
 
 </div>
 
-# Thoughts on Compiler Dev In The Age of AI
+# Formal methods will eat the compilers world
 
-- Important to create *artificial friction* to aid learning.
-- Projects that are *efforts of specification* will continue to survive,
+- Registering
+
 
 # Photography: What The Hell Is Color
 
