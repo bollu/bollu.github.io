@@ -16,6 +16,11 @@
 
 </div>
 
+# Thoughts on Compiler Dev In The Age of AI
+
+- Important to create *artificial friction* to aid learning.
+- Projects that are *efforts of specification* will continue to survive,
+
 # Photography: What The Hell Is Color
 
 ```meta
