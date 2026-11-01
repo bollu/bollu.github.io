@@ -58628,12 +58628,14 @@ last-edited: 2025-06-10
 ```
 
 Cutting Shapes is the UK style of shuffle, which have moves I like best, where we move around quickly.
+I very much like Emylee and marbiik's tutorials on YouTube.
 
 #### List of Moves
 
 - [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
 - Running man
 - [Charleston by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=Asqhme7lV7Q)
+- [Charleston by Marbiik](https://www.youtube.com/watch?v=4YhzRZDatn8&list=PLFOfDatx56Y5R72Abx1Kbyn23BvJn4uGl&index=3)
 - [T step by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=c2fWjG8ahkA)
 - Backward Charleston
 
