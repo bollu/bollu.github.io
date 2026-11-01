@@ -16,16 +16,14 @@
 
 </div>
 
-# Piet Oudolf
+# Learn A Single Pentatonic Shape For All Keys
 
-> Sometimes I think to myself that there are too many flowers, and I long for then to become skeletons.
-
-Perennial plants movement. Sculpts gardens based on not just flowering plants,
-but with an aim towards how plants look throughout the year.
-
-Plant grasses for year-round looks, herbaceous perennials for flowering.
-
-Plant them in groups. Flowers en-masse are irresistible. Plant them as a meadow, but with a plan.
+- [Idea from New Jazz](https://www.youtube.com/watch?v=mOCyAo5ZfIw)
+- For D, play `D (FGA) C`. Move these around to all 12 keys.
+- This is the pentatonic scale, but also eg inside it, contains `D G C` which is a stack of quartals.
+- Learn it in all 12 keys. Then to improv, move the shape around on both LH and RH, and on RH, play the notes,
+  on LH, play all the notes, or any subset you like.
+- Now, by staying at particular notes, we can interpret them as modes of C.
 
 
 # Photography: What The Hell Is Color
