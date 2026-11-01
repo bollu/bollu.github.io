@@ -24,6 +24,8 @@
 - Learn it in all 12 keys. Then to improv, move the shape around on both LH and RH, and on RH, play the notes,
   on LH, play all the notes, or any subset you like.
 - Now, by staying at particular notes, we can interpret them as modes of C.
+- [Similar idea for upper structures](https://www.youtube.com/watch?v=3FcuCR14Lmw) where we learn a single
+  shape for all upper structures.
 
 
 # Photography: What The Hell Is Color
