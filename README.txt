@@ -16,6 +16,12 @@
 
 </div>
 
+# Piet Oudolf
+
+> Sometimes I think to myself that there are too many flowers, and I long for then to become skeletons.
+
+Perennial plants movement.
+
 # Photography: What The Hell Is Color
 
 ```meta
@@ -188,28 +194,7 @@ last-edited: 2026-09-21
   As the object falls into deeper shadow, it becomes darker, but saturation remains constant.
 
 
-##### Five Parameters
-
-- (1) Brightness
-- (2) Lightness
-- (3) Colorfulness
-- (4) Chroma
-- (5) Hue
-- We don't need saturation, can be derived.
-
-## Color 2: Applications in Photography
-
-
-# Photography: Going From Analog Signals to A Real Picture (Post Processing Pipeline)
-
-```meta
-status: scratch
-created: 2026-09-21
-last-edited: 2026-09-21
-```
-
-
-## On peer review and "A+B+C" papers
+# On peer review and "A+B+C" papers
 
 
 ```meta
