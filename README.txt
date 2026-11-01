@@ -58627,21 +58627,15 @@ created: 2022-09-19
 last-edited: 2025-06-10
 ```
 
-#### Insta Reels
-
-- [Front, Back, Front, Open](https://www.instagram.com/reel/DJQavDQtG3f/?utm_source=ig_web_copy_link)
-
-#### Cutting Shapes
-
-- These are the moves I like best, where we move around quickly
+Cutting Shapes is the UK style of shuffle, which have moves I like best, where we move around quickly.
 
 #### List of Moves
 
 - [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
 - Running man
-- Charleston
+- [Charleston by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=Asqhme7lV7Q)
+- [T step by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=c2fWjG8ahkA)
 - Backward Charleston
-- T step
 
 # Latte Art
 
