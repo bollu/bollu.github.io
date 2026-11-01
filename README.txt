@@ -20,7 +20,13 @@
 
 > Sometimes I think to myself that there are too many flowers, and I long for then to become skeletons.
 
-Perennial plants movement.
+Perennial plants movement. Sculpts gardens based on not just flowering plants,
+but with an aim towards how plants look throughout the year.
+
+Plant grasses for year-round looks, herbaceous perennials for flowering.
+
+Plant them in groups. Flowers en-masse are irresistible. Plant them as a meadow, but with a plan.
+
 
 # Photography: What The Hell Is Color
 
