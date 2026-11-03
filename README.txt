@@ -58621,14 +58621,12 @@ I very much like Emylee and marbiik's tutorials on YouTube.
 
 #### List of Moves
 
-- [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
-- Running man
 - [Running man  by Marbiik](https://www.youtube.com/watch?v=HUOjOJvPJc8&t=1s)
 - [Charleston by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=Asqhme7lV7Q)
 - [Charleston by Marbiik](https://www.youtube.com/watch?v=4YhzRZDatn8&list=PLFOfDatx56Y5R72Abx1Kbyn23BvJn4uGl&index=3)
 - [T step by Emylee x Shuffle Vault](https://www.youtube.com/watch?v=c2fWjG8ahkA)
 - [T step by Marbiik](https://www.youtube.com/watch?v=EdN8S2phxbs)
-- Backward Charleston
+- [Cutting shapes routine by Emylee](https://www.youtube.com/watch?v=em1X9Syh_M4&t=568s)
 
 # Latte Art
 
