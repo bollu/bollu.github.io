@@ -17,6 +17,26 @@
 </div>
 
 
+# Thoughts on the rising sea and automating mathematics
+
+```meta
+status: essay
+created: 2026-11-09
+last-edited: 2026-11-09
+```
+
+If Grothendieck is to be believed, then a swarm of agents should be able to prove anything?
+After all, what else does the rising sea claim, beyond the fact that one can accumulate thousands of pages of (the right) lemmas,
+only to crack the nut once one has performed the acummulation?
+
+An interesting experiment for me to try would be to take theorems that have 'ingenious proofs'
+(the one that comes to mind is quadratic reciprocity), and to find out what the 'rising sea' approach to them is.
+Another prime example for me is the closure of buchi automata under complementation - Safra's construction is basically pure magic to me,
+and I do wonder what the rising sea version of the proof looks like.
+
+Does a rising sea version always exist for any proof?  Can proof complexity say something useful about this?
+
+
 # Photography: What The Hell Is Color
 
 ```meta
